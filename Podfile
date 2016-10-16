@@ -11,4 +11,7 @@ pod "HMSegmentedControl"
 pod "CTAssetsPickerController"
 pod 'ActionSheetPicker-3.0'
 pod 'MJExtension'
+
+pod 'BlocksKit'
+
 end
