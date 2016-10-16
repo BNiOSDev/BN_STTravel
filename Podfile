@@ -1,19 +1,7 @@
-
-platform :ios, '7.0'
+platform :ios, '8.0'
 target 'ST_Travel' do
-pod "AFNetworking"
-pod "SDWebImage"
-pod "Masonry"
-pod "MBProgressHUD"
-pod "ReactiveCocoa"
-pod "SWTableViewCell"
-pod "HMSegmentedControl"
-pod "CTAssetsPickerController"
+pod 'BN_BaseKit'
 pod 'ActionSheetPicker-3.0'
 pod 'MJExtension'
-
-#pooh add start
 pod 'BlocksKit'
-
-#pooh add end
 end
