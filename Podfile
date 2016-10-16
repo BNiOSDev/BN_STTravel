@@ -9,4 +9,6 @@ pod "ReactiveCocoa"
 pod "SWTableViewCell"
 pod "HMSegmentedControl"
 pod "CTAssetsPickerController"
+pod 'ActionSheetPicker-3.0'
+pod 'MJExtension'
 end
