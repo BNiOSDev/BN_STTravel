@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5E197903CB02F083652634448AE359CF35FC55C6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "c7e35e2a-59cb-4199-89bd-0fe7ff3ab383++505" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "c7e35e2a-59cb-4199-89bd-0fe7ff3ab383++505" : 9223372036854775807,
+    "5E197903CB02F083652634448AE359CF35FC55C6" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "84ECFAD5-F25B-4694-A0C7-6DF57C300EBA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "c7e35e2a-59cb-4199-89bd-0fe7ff3ab383++505" : "..",
+    "5E197903CB02F083652634448AE359CF35FC55C6" : "BN_STTravel\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ST_Travel",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ST_Travel.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/BNiOSDev\/BN_STTravel.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5E197903CB02F083652634448AE359CF35FC55C6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/112.74.31.159",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "c7e35e2a-59cb-4199-89bd-0fe7ff3ab383++505"
+    }
+  ]
+}
