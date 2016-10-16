@@ -70,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8437D2EB1DB3539300B8CCD8 /* LBBNibTemplate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBBNibTemplate.h; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F60CD1D9F4CD9004FE75C /* CALayer+TPCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+TPCategory.h"; sourceTree = "<group>"; };
@@ -238,6 +239,7 @@
 			children = (
 				C91F60ED1D9F4CD9004FE75C /* ARCMacros.h */,
 				C91F60EE1D9F4CD9004FE75C /* Base_Common.h */,
+				8437D2EB1DB3539300B8CCD8 /* LBBNibTemplate.h */,
 				C91F60EF1D9F4CD9004FE75C /* Base_ControlsFactory.h */,
 				C91F60F01D9F4CD9004FE75C /* Base_ControlsFactory.m */,
 				C91F60F11D9F4CD9004FE75C /* QJTL_ImageData.xcassets */,

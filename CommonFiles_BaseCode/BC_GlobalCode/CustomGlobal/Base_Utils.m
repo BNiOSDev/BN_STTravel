@@ -71,4 +71,33 @@
     
 }
 
+#pragma 获取对应路径文件大小    
++ (long long)fileSizeAtPath:(NSString*)filePath
+{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]){
+        //        NSDictionary<NSString *, id> *fileDict = [manager attributesOfItemAtPath:filePath error:nil];
+        //
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
+
+#pragma 获取对应路径文件夹大小
++ (CGFloat) folderSizeAtPath:(NSString *)folderPath
+{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    //    BOOL isFileExit = [manager fileExistsAtPath:folderPath];
+    
+    if (![manager fileExistsAtPath:folderPath]) return 0;
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath:folderPath] objectEnumerator];
+    NSString* fileName;
+    long long folderSize = 0;
+    while ((fileName = [childFilesEnumerator nextObject]) != nil){
+        NSString* fileAbsolutePath = [folderPath stringByAppendingPathComponent:fileName];
+        folderSize += [self fileSizeAtPath:fileAbsolutePath];
+    }
+    return folderSize;
+}
+    
 @end

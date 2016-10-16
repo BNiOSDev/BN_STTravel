@@ -78,4 +78,14 @@
 #define Font5 [UIFont systemFontOfSize: 17.0]
 #define Font6 [UIFont systemFontOfSize: 18.0]
 
+#define RGB(r,g,b)        [UIColor colorWithRed:r / 255.f green:g / 255.f blue:b / 255.f alpha:1.f]
+#define RGBA(r,g,b,a)     [UIColor colorWithRed:r / 255.f green:g / 255.f blue:b / 255.f alpha:a]
+#define RGBAHEX(hex,a)    RGBA((float)((hex & 0xFF0000) >> 16),(float)((hex & 0xFF00) >> 8),(float)(hex & 0xFF),a)
+
+#ifdef DEBUG
+#define LBBLOG(...) NSLog(__VA_ARGS__)
+#else
+#define LBBLOG(...)
+#endif
+
 #endif

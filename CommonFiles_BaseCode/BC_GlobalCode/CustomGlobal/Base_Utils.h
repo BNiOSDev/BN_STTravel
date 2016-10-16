@@ -22,5 +22,10 @@
 + (BOOL)checkEmployeeNumber : (NSString *) number;
 #pragma 正则匹配URL
 + (BOOL)checkURL : (NSString *) url;
+ 
+#pragma 获取对应路径文件大小
++ (long long)fileSizeAtPath:(NSString*)filePath;
+#pragma 获取对应路径文件夹大小
++ (CGFloat) folderSizeAtPath:(NSString *)folderPath;
 
 @end
