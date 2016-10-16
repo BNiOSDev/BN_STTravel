@@ -12,6 +12,8 @@ pod "CTAssetsPickerController"
 pod 'ActionSheetPicker-3.0'
 pod 'MJExtension'
 
+#pooh add start
 pod 'BlocksKit'
 
+#pooh add end
 end
