@@ -64,7 +64,7 @@
 
 - (void)dealloc{
     [self unsubscribeAll];
-    DDLogInfo(@"%@",[self class]);
+    NSLog(@"%@",[self class]);
 }
 
 

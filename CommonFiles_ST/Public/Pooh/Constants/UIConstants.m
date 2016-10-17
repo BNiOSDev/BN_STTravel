@@ -22,7 +22,7 @@
 
 + (UIColor *)getAppColor{
     
-     return [UIColor whiteColor]; //红色
+    return [UIColor colorWithRGB:0xd4413b]; //红色
 }
 
 #pragma color
