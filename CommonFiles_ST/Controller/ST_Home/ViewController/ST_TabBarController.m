@@ -12,7 +12,7 @@
 #import "ST_MallViewController.h"
 #import "ST_MyViewController.h"
 
-@interface ST_TabBarController ()
+@interface ST_TabBarController ()<UITabBarControllerDelegate>
 {
     UINavigationController *navigationControllerHome;
     UINavigationController *navigationControllerMy;
