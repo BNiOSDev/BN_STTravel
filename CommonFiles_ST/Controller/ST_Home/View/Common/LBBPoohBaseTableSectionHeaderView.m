@@ -56,7 +56,7 @@
         
         
         self.markButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.markButton setImage:IMAGE(@"poohtest") forState:UIControlStateNormal];
+        [self.markButton setImage:IMAGE(@"poohArrow") forState:UIControlStateNormal];
         [self addSubview:self.markButton];
         [self.markButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws);
