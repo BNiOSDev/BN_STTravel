@@ -28,6 +28,11 @@
 		1D293C061DB4BFE200ED2CBB /* LBBHomeAnnouncementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C031DB4BFE200ED2CBB /* LBBHomeAnnouncementTableViewCell.m */; };
 		1D293C071DB4BFE200ED2CBB /* LBBHomeMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C051DB4BFE200ED2CBB /* LBBHomeMenuTableViewCell.m */; };
 		1D293C131DB4D3EE00ED2CBB /* GYChangeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C121DB4D3EE00ED2CBB /* GYChangeTextView.m */; };
+		1D293C281DB5B4F700ED2CBB /* LBBHomeHotestTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C241DB5B4F700ED2CBB /* LBBHomeHotestTableViewCellItem.m */; };
+		1D293C291DB5B4F700ED2CBB /* LBBHomeHotestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C261DB5B4F700ED2CBB /* LBBHomeHotestTableViewCell.m */; };
+		1D293C2C1DB5B50000ED2CBB /* LBBPoohGreatItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C2A1DB5B50000ED2CBB /* LBBPoohGreatItemView.m */; };
+		1D293C321DB5B51600ED2CBB /* LBBNearbyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C2F1DB5B51600ED2CBB /* LBBNearbyMainViewController.m */; };
+		1D293C331DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C301DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -111,6 +116,16 @@
 		1D293C051DB4BFE200ED2CBB /* LBBHomeMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeMenuTableViewCell.m; sourceTree = "<group>"; };
 		1D293C111DB4D3EE00ED2CBB /* GYChangeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYChangeTextView.h; sourceTree = "<group>"; };
 		1D293C121DB4D3EE00ED2CBB /* GYChangeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYChangeTextView.m; sourceTree = "<group>"; };
+		1D293C241DB5B4F700ED2CBB /* LBBHomeHotestTableViewCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeHotestTableViewCellItem.m; sourceTree = "<group>"; };
+		1D293C251DB5B4F700ED2CBB /* LBBHomeHotestTableViewCellItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeHotestTableViewCellItem.h; sourceTree = "<group>"; };
+		1D293C261DB5B4F700ED2CBB /* LBBHomeHotestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeHotestTableViewCell.m; sourceTree = "<group>"; };
+		1D293C271DB5B4F700ED2CBB /* LBBHomeHotestTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeHotestTableViewCell.h; sourceTree = "<group>"; };
+		1D293C2A1DB5B50000ED2CBB /* LBBPoohGreatItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBPoohGreatItemView.m; sourceTree = "<group>"; };
+		1D293C2B1DB5B50000ED2CBB /* LBBPoohGreatItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBPoohGreatItemView.h; sourceTree = "<group>"; };
+		1D293C2E1DB5B51600ED2CBB /* LBBNearbyMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBNearbyMainViewController.h; sourceTree = "<group>"; };
+		1D293C2F1DB5B51600ED2CBB /* LBBNearbyMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBNearbyMainViewController.m; sourceTree = "<group>"; };
+		1D293C301DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeSearchResultViewController.m; sourceTree = "<group>"; };
+		1D293C311DB5B51600ED2CBB /* LBBHomeSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeSearchResultViewController.h; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -250,6 +265,8 @@
 		1D293BE71DB4A09A00ED2CBB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1D293C2A1DB5B50000ED2CBB /* LBBPoohGreatItemView.m */,
+				1D293C2B1DB5B50000ED2CBB /* LBBPoohGreatItemView.h */,
 				1D293C101DB4D3EE00ED2CBB /* GYChangeTextView */,
 				1D293BE81DB4A09A00ED2CBB /* LBBPoohVerticalButton.h */,
 				1D293BE91DB4A09A00ED2CBB /* LBBPoohVerticalButton.m */,
@@ -266,6 +283,10 @@
 		1D293C011DB4BFE200ED2CBB /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				1D293C241DB5B4F700ED2CBB /* LBBHomeHotestTableViewCellItem.m */,
+				1D293C251DB5B4F700ED2CBB /* LBBHomeHotestTableViewCellItem.h */,
+				1D293C261DB5B4F700ED2CBB /* LBBHomeHotestTableViewCell.m */,
+				1D293C271DB5B4F700ED2CBB /* LBBHomeHotestTableViewCell.h */,
 				1D293C021DB4BFE200ED2CBB /* LBBHomeAnnouncementTableViewCell.h */,
 				1D293C031DB4BFE200ED2CBB /* LBBHomeAnnouncementTableViewCell.m */,
 				1D293C041DB4BFE200ED2CBB /* LBBHomeMenuTableViewCell.h */,
@@ -283,6 +304,15 @@
 			path = GYChangeTextView;
 			sourceTree = "<group>";
 		};
+		1D293C2D1DB5B51600ED2CBB /* nearBy */ = {
+			isa = PBXGroup;
+			children = (
+				1D293C2E1DB5B51600ED2CBB /* LBBNearbyMainViewController.h */,
+				1D293C2F1DB5B51600ED2CBB /* LBBNearbyMainViewController.m */,
+			);
+			path = nearBy;
+			sourceTree = "<group>";
+		};
 		C91F612C1D9F8B77004FE75C /* ST_Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +328,9 @@
 		C91F612D1D9F8B77004FE75C /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				1D293C2D1DB5B51600ED2CBB /* nearBy */,
+				1D293C301DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m */,
+				1D293C311DB5B51600ED2CBB /* LBBHomeSearchResultViewController.h */,
 			);
 			path = ChildController;
 			sourceTree = "<group>";
@@ -812,11 +845,15 @@
 				1D293C061DB4BFE200ED2CBB /* LBBHomeAnnouncementTableViewCell.m in Sources */,
 				1D293BED1DB4A0A300ED2CBB /* PoohBaseTableViewController.m in Sources */,
 				1D293BB81DB4607D00ED2CBB /* UIViewExt.m in Sources */,
+				1D293C281DB5B4F700ED2CBB /* LBBHomeHotestTableViewCellItem.m in Sources */,
 				1D293BF41DB4A4FA00ED2CBB /* LBBPoohCycleScrollCell.m in Sources */,
+				1D293C331DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m in Sources */,
 				1D293BB01DB4607D00ED2CBB /* NSDate+PoohCategory.m in Sources */,
+				1D293C321DB5B51600ED2CBB /* LBBNearbyMainViewController.m in Sources */,
 				1D293BF11DB4A37F00ED2CBB /* LBBPoohBaseTableViewCell.m in Sources */,
 				1D293BB11DB4607D00ED2CBB /* NSDateFormatter+PoohCategory.m in Sources */,
 				1D293BB61DB4607D00ED2CBB /* UIImage+animatedGIF.m in Sources */,
+				1D293C2C1DB5B50000ED2CBB /* LBBPoohGreatItemView.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1D293BBB1DB4607D00ED2CBB /* UIConstants.m in Sources */,
 				1D293BF71DB4AD3E00ED2CBB /* LBBPoohBaseTableSectionHeaderView.m in Sources */,
@@ -829,6 +866,7 @@
 				C91F61551D9F96CA004FE75C /* ST_MallViewController.m in Sources */,
 				C91F61591D9F96CA004FE75C /* ST_SquareViewController.m in Sources */,
 				C91F61571D9F96CA004FE75C /* ST_MyViewController.m in Sources */,
+				1D293C291DB5B4F700ED2CBB /* LBBHomeHotestTableViewCell.m in Sources */,
 				C91F61341D9F8B77004FE75C /* ST_TabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
