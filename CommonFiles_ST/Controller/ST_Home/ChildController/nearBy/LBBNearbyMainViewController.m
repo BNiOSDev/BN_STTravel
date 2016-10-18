@@ -7,12 +7,13 @@
 //
 
 #import "LBBNearbyMainViewController.h"
-#import "LBBHomeHotestTableViewCellItem.h"
+#import "KSViewPagerView.h"
+#import "LBBPoohCycleScrollCell.h"
+#import "LBBNearbyMenuListTableViewCell.h"
 
-@interface LBBNearbyMainViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface LBBNearbyMainViewController ()
 
-@property (nonatomic, strong) UICollectionView *collectionView;
-
+@property (nonatomic, retain) UIView* mapView;
 
 @end
 
@@ -22,48 +23,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"附近";
     
-    WS(ws);
-    
-    [self addBackButton:nil];
-    [self setBaseNavigationBarTitle:@"附近"];
-    UICollectionViewFlowLayout *horizontalCellLayout = [UICollectionViewFlowLayout new];
-    horizontalCellLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right)
-    horizontalCellLayout.sectionInset = UIEdgeInsetsMake(15, 8, 15, 8);
-    horizontalCellLayout.minimumInteritemSpacing = 10;
-    horizontalCellLayout.minimumLineSpacing = 10;
-    horizontalCellLayout.itemSize = CGSizeMake(UISCREEN_WIDTH * 2/3, UISCREEN_WIDTH * 2/3-30);
-    
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:horizontalCellLayout];
-    //  self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:horizontalCellLayout];
-    
-    _collectionView.backgroundColor = [UIColor whiteColor];
-    _collectionView.showsHorizontalScrollIndicator = NO;
-    
-    self.collectionView.alwaysBounceHorizontal = YES;
-    //    self.collectionView.alwaysBounceVertical = YES;
-    
-    _collectionView.dataSource = self;
-    _collectionView.delegate = self;
-    
-    
-    [self.baseContentView addSubview:_collectionView];
-    
-    
-    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(ws.baseContentView);
-        make.left.right.equalTo(ws.baseContentView);
-        //   make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
-        
-        make.height.equalTo(@( UISCREEN_WIDTH * 2/3));
-    }];
-    
-    [_collectionView registerClass:NSClassFromString(@"LBBHomeHotestTableViewCellItem")
-        forCellWithReuseIdentifier:@"LBBHomeHotestTableViewCellItem"];
-
-    
+    [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,23 +42,124 @@
 }
 */
 
-#pragma mark - UICollectionViewDataSource
+/*
+ * setup Navigation UI
+ */
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 8;
+-(void)loadCustomNavigationButton{
+    self.title = @"附近";
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    LBBHomeHotestTableViewCellItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBBHomeHotestTableViewCellItem"forIndexPath:indexPath];
+/*
+ * setup UI
+ */
+-(void)setupUI{
     
-    [cell sizeToFit];
-    if (!cell) {
-        NSLog(@"无法创建LBBHomeHotestTableViewCellItem时打印，自定义的cell就不可能进来了。");
+    WS(ws);
+    
+    self.mapView = [UIView new];
+    [self.mapView setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+    [self.mapView setFrame:CGRectMake(0, 0, UISCREEN_WIDTH, 150)];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [self.baseContentView addSubview:self.tableView];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.tableHeaderView = self.mapView;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.centerX.top.equalTo(ws.baseContentView);
+        make.bottom.equalTo(ws.baseContentView);
+    }];
+    
+    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
+    [self.tableView registerClass:[LBBNearbyMenuListTableViewCell class] forCellReuseIdentifier:@"LBBNearbyMenuListTableViewCell"];
+
+}
+
+
+#pragma tableView Delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 40;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    UIView* v = [UIView new];
+    CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
+    [v setFrame:CGRectMake(0, 0, UISCREEN_WIDTH, height)];
+    
+    NSArray* segmentArray = @[@"景点",@"美食",@"民宿"];
+
+    
+    KSViewPagerView* pagerView = [[KSViewPagerView alloc] initWithArray:segmentArray];
+    [v addSubview:pagerView];
+    pagerView.backgroundColor = [UIColor whiteColor];
+    [pagerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.width.height.equalTo(v);
+    }];
+    [pagerView setActiveColor:[UIConstants getProminentFillColor]];
+    [pagerView setInactiveColor:[UIColor colorWithRGB:0xafafaf]];
+    [pagerView setTitleFont:Font3];
+    [pagerView enableSeperatorView:YES];
+    [pagerView.cursorView setHidden:YES];
+    pagerView.click = ^(KSViewPagerView*v, NSNumber *index){
+        
+        
+    };
+    [pagerView setCursorPosition:0];
+    
+    return v;
+    
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 14;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    LBBPoohBaseTableViewCell* cell = (LBBPoohBaseTableViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    return [cell getCellHeight];
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) { //ad
+        static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
+        LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+            NSLog(@"LBBPoohCycleScrollCell nil");
+        }
+        
+        [cell setCycleScrollViewUrls:nil];
+        
+        return cell;
+    }
+    else{
+        static NSString *cellIdentifier = @"LBBNearbyMenuListTableViewCell";
+        LBBNearbyMenuListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBBNearbyMenuListTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        
+            NSLog(@"LBBNearbyMenuListTableViewCell nil");
+        }
+        cell.portraitImageView.layer.cornerRadius = 5;
+        cell.portraitImageView.layer.masksToBounds = YES;
+        [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/h%3D200/sign=5c00db24cd95d143c576e32343f18296/03087bf40ad162d9ec74553b14dfa9ec8a13cd7a.jpg"] placeholderImage:IMAGE(@"poohtest")];
+
+        
+        return cell;
     }
     
-    [cell.mainImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
-    
-    return cell;
 }
+
 
 @end

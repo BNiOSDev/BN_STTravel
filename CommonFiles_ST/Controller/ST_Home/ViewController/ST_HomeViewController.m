@@ -187,6 +187,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         
         NSLog(@"back touch");
         LBBNearbyMainViewController* v = [[LBBNearbyMainViewController alloc]init];
+        v.isGroup = YES;
         [ws.navigationController pushViewController:v animated:YES];
     }];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:back];
@@ -504,11 +505,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         NSLog(@"LBBHomeSquareCenterTableViewCell nil");
         cell = [[LBBHomeSquareCenterTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
-    
- //   [cell.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
-   // [cell.item1.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg"] placeholderImage:IMAGE(@"poohtest")];
-    
-    
     [cell.item2.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/h%3D200/sign=5c00db24cd95d143c576e32343f18296/03087bf40ad162d9ec74553b14dfa9ec8a13cd7a.jpg"] placeholderImage:IMAGE(@"poohtest")];
     [cell.item2.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
     [cell.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://a.hiphotos.baidu.com/image/pic/item/4b90f603738da97739bab10cb551f8198618e37b.jpg"] placeholderImage:IMAGE(@"poohtest")];

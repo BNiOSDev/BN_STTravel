@@ -6,8 +6,8 @@
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "PoohBaseViewController.h"
+#import "PoohBaseTableViewController.h"
 
-@interface LBBNearbyMainViewController : PoohBaseViewController
+@interface LBBNearbyMainViewController : PoohBaseTableViewController
 
 @end

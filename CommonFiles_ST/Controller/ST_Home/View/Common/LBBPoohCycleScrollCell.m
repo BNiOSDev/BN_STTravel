@@ -71,6 +71,7 @@
                                   @"http://img2.ph.126.net/O_N-vMFrIBv-vaXfC40fcA==/1679279711155879130.jpg",
                                   @"http://upload.sanqin.com/2014/0820/1408524577544.jpg",
                                   ];
+  //  imagesURLStrings = @[@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg" ];
     cycleScrollView.imageURLStringsGroup = imagesURLStrings;
 
 }

@@ -35,6 +35,8 @@
 		1D293C331DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C301DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m */; };
 		1D293C461DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C451DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.m */; };
 		1D293C491DB5F81700ED2CBB /* LBBHomeSquareCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C481DB5F81600ED2CBB /* LBBHomeSquareCenterTableViewCell.m */; };
+		1D293C4C1DB60B0700ED2CBB /* KSViewPagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C4A1DB60B0700ED2CBB /* KSViewPagerView.m */; };
+		1D293C501DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C4F1DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -132,6 +134,10 @@
 		1D293C451DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeTravelRecommendTableViewCell.m; sourceTree = "<group>"; };
 		1D293C471DB5F81600ED2CBB /* LBBHomeSquareCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeSquareCenterTableViewCell.h; sourceTree = "<group>"; };
 		1D293C481DB5F81600ED2CBB /* LBBHomeSquareCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeSquareCenterTableViewCell.m; sourceTree = "<group>"; };
+		1D293C4A1DB60B0700ED2CBB /* KSViewPagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSViewPagerView.m; sourceTree = "<group>"; };
+		1D293C4B1DB60B0700ED2CBB /* KSViewPagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSViewPagerView.h; sourceTree = "<group>"; };
+		1D293C4E1DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBBNearbyMenuListTableViewCell.h; path = nearBy/LBBNearbyMenuListTableViewCell.h; sourceTree = "<group>"; };
+		1D293C4F1DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBBNearbyMenuListTableViewCell.m; path = nearBy/LBBNearbyMenuListTableViewCell.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -262,6 +268,7 @@
 		1D293BE61DB4A09A00ED2CBB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D293C4D1DB614A900ED2CBB /* nearBy */,
 				1D293C011DB4BFE200ED2CBB /* HomePage */,
 				1D293BE71DB4A09A00ED2CBB /* Common */,
 			);
@@ -271,6 +278,8 @@
 		1D293BE71DB4A09A00ED2CBB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1D293C4A1DB60B0700ED2CBB /* KSViewPagerView.m */,
+				1D293C4B1DB60B0700ED2CBB /* KSViewPagerView.h */,
 				1D293C2A1DB5B50000ED2CBB /* LBBPoohGreatItemView.m */,
 				1D293C2B1DB5B50000ED2CBB /* LBBPoohGreatItemView.h */,
 				1D293C101DB4D3EE00ED2CBB /* GYChangeTextView */,
@@ -321,6 +330,15 @@
 				1D293C2F1DB5B51600ED2CBB /* LBBNearbyMainViewController.m */,
 			);
 			path = nearBy;
+			sourceTree = "<group>";
+		};
+		1D293C4D1DB614A900ED2CBB /* nearBy */ = {
+			isa = PBXGroup;
+			children = (
+				1D293C4E1DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.h */,
+				1D293C4F1DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.m */,
+			);
+			name = nearBy;
 			sourceTree = "<group>";
 		};
 		C91F612C1D9F8B77004FE75C /* ST_Home */ = {
@@ -864,10 +882,12 @@
 				1D293BB11DB4607D00ED2CBB /* NSDateFormatter+PoohCategory.m in Sources */,
 				1D293BB61DB4607D00ED2CBB /* UIImage+animatedGIF.m in Sources */,
 				1D293C2C1DB5B50000ED2CBB /* LBBPoohGreatItemView.m in Sources */,
+				1D293C4C1DB60B0700ED2CBB /* KSViewPagerView.m in Sources */,
 				1D293C491DB5F81700ED2CBB /* LBBHomeSquareCenterTableViewCell.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1D293BBB1DB4607D00ED2CBB /* UIConstants.m in Sources */,
 				1D293BF71DB4AD3E00ED2CBB /* LBBPoohBaseTableSectionHeaderView.m in Sources */,
+				1D293C501DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.m in Sources */,
 				1D293B6B1DB45E6D00ED2CBB /* PoohBaseViewController.m in Sources */,
 				1D293C071DB4BFE200ED2CBB /* LBBHomeMenuTableViewCell.m in Sources */,
 				1D293C461DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.m in Sources */,
