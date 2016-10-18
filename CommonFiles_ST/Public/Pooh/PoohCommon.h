@@ -30,10 +30,17 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import "NSObject+PoohCommon.h"
 #import "UIConstants.h"
 #import "IConstants.h"
+#import "UIViewExt.h"
 
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define UISCREEN_HEIGTH [UIScreen mainScreen].bounds.size.height
-
+//屏幕适配
+#define FB_FIX_SIZE_WIDTH(w) (((w) / 375.0) * UISCREEN_WIDTH)
+#define SET_FIX_SIZE_WIDTH (UISCREEN_WIDTH /375.0)
+//获取当前app版本
+#define IOS_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
+//获取适配后的数据大小
+#define AUTO(num)  num * SET_FIX_SIZE_WIDTH
 
 
 
