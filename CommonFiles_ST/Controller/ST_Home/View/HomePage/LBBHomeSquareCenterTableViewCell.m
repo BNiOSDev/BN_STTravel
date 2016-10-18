@@ -43,6 +43,8 @@
         [sub mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.equalTo(ws.bgImageView.mas_bottom).offset(8);
             make.bottom.left.right.equalTo(ws);
+            make.height.equalTo(@35);
+
         }];
         
         
@@ -51,7 +53,7 @@
         [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.left.top.bottom.equalTo(sub);
-            make.width.height.equalTo(@35);
+            make.width.equalTo(@35);
         }];
         self.portraitImageView.layer.cornerRadius = 35/2;
         self.portraitImageView.layer.masksToBounds = YES;
@@ -170,9 +172,6 @@
             make.height.equalTo(@1.5);
             make.top.equalTo(ws.item1.mas_bottom).offset(2*interval);
         }];
-        
-        [self layoutSubviews];
-
         
     }
     return self;
