@@ -12,6 +12,7 @@
 
 #import "LBBHomeSearchResultViewController.h"
 #import "LBBNearbyMainViewController.h"
+#import "LBBSigninMainViewController.h"
 
 
 #import "LBBPoohCycleScrollCell.h"
@@ -104,6 +105,8 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     [sign bk_whenTapped:^{
         
         NSLog(@"signButton touch");
+        LBBSigninMainViewController* v = [[LBBSigninMainViewController alloc]init];
+        [ws.navigationController pushViewController:v animated:YES];
         
     }];
     UIBarButtonItem *signItem = [[UIBarButtonItem alloc] initWithCustomView:sign];
@@ -199,7 +202,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     if (section == LBBHomeSectionMenuType) {
         return 0;
     }
-    return 60;
+    return 40;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -388,7 +391,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
         LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
-            cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+            cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeHotestTableViewCell nil");
 
         }

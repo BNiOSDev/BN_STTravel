@@ -8,7 +8,7 @@
 
 #import <SWTableViewCell/SWTableViewCell.h>
 
-@interface LBBPoohBaseTableViewCell : SWTableViewCell
+@interface LBBPoohBaseTableViewCell : UITableViewCell
 
 -(CGFloat)getCellHeight;
 

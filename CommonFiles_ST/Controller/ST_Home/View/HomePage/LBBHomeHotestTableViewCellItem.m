@@ -16,9 +16,6 @@
     WS(ws);
     if (self) {
      
-        [self setBackgroundColor:[UIColor purpleColor]];
-
-        
         self.mainImageView = [UIImageView new];
         [self.contentView addSubview:self.mainImageView];
         [self.mainImageView mas_makeConstraints:^(MASConstraintMaker* make){
@@ -53,8 +50,6 @@
         [self.titleLabel setBackgroundColor:[UIColor redColor]];
 
         self.disView = [[LBBPoohGreatItemView alloc]init];
-        [self.disView setBackgroundColor:[UIColor blueColor]];
-
         [self.disView.iconView setImage:IMAGE(@"poohComment")];
         [self.disView.desLabel setText:@"1000"];
         [self.contentView addSubview:self.disView];
@@ -74,7 +69,6 @@
         
         
         self.greetView = [[LBBPoohGreatItemView alloc]init];
-        [self.greetView setBackgroundColor:[UIColor yellowColor]];
         [self.greetView.iconView setImage:IMAGE(@"poohGreat")];
         [self.greetView.desLabel setText:@"190"];
         [self.contentView addSubview:self.greetView];

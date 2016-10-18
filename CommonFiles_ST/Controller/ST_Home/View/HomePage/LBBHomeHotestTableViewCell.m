@@ -47,20 +47,20 @@
         _collectionView.showsHorizontalScrollIndicator = NO;
         
         self.collectionView.alwaysBounceHorizontal = YES;
-      //    self.collectionView.alwaysBounceVertical = YES;
-
+//          self.collectionView.alwaysBounceVertical = NO;
+        
         _collectionView.scrollEnabled = YES;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
-        [self.contentView addSubview:_collectionView];
-
+        [self addSubview:_collectionView];
         
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(ws.contentView);
-            make.left.right.bottom.equalTo(ws.contentView);
+            make.top.equalTo(ws);
+            make.left.right.bottom.equalTo(ws);
          //   make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
         }];
 
+        
         [_collectionView registerClass:NSClassFromString(@"LBBHomeHotestTableViewCellItem")
             forCellWithReuseIdentifier:@"LBBHomeHotestTableViewCellItem"];
         
