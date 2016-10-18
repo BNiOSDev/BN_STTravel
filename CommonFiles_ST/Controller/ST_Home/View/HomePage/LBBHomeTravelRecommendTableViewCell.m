@@ -199,6 +199,33 @@
         [self.specialLabelButton4 setHidden:YES];
 
         
+        [self.specialLabelButton1 bk_addEventHandler:^(id sender){
+        
+            NSLog(@"specialLabelButton1 touch");
+        } forControlEvents:UIControlEventTouchUpInside];
+        [self.specialLabelButton2 bk_addEventHandler:^(id sender){
+            
+            NSLog(@"specialLabelButton2 touch");
+        } forControlEvents:UIControlEventTouchUpInside];
+        [self.specialLabelButton3 bk_addEventHandler:^(id sender){
+            
+            NSLog(@"specialLabelButton3 touch");
+        } forControlEvents:UIControlEventTouchUpInside];
+        [self.specialLabelButton4 bk_addEventHandler:^(id sender){
+            
+            NSLog(@"specialLabelButton4 touch");
+        } forControlEvents:UIControlEventTouchUpInside];
+        [self.specialLabelButton5 bk_addEventHandler:^(id sender){
+            
+            NSLog(@"specialLabelButton5 touch");
+        } forControlEvents:UIControlEventTouchUpInside];
+        [self.specialLabelButton6 bk_addEventHandler:^(id sender){
+            
+            NSLog(@"specialLabelButton6 touch");
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
         UIView* sep2 = [UIView new];
         [sep2 setBackgroundColor:[UIConstants getSeperatorLineColor]];
         [self.contentView addSubview:sep2];
