@@ -10,19 +10,32 @@
 #import "ST_TabBarController.h"
 #import "LBBPoohVerticalButton.h"
 
+#import "LBBHomeSearchResultViewController.h"
+#import "LBBNearbyMainViewController.h"
+
+
 #import "LBBPoohCycleScrollCell.h"
 #import "LBBPoohBaseTableSectionHeaderView.h"
 #import "LBBHomeMenuTableViewCell.h"
 #import "LBBHomeAnnouncementTableViewCell.h"
+#import "LBBHomeHotestTableViewCell.h"
 
-//static const NSInteger kSearchButtonMarginRight = -10;
-//static const NSInteger kButtonFontSize = 15;
-//static const NSInteger kButtonWidth = 45;
+
+
+typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
+    LBBHomeSectionMenuType = 0,//入口
+    LBBHomeSectionHotestType,//热门推荐
+    LBBHomeSectionVisitRecommendType,//游记推荐
+    LBBHomeSectionVipRecommendType,//达人推荐
+    LBBHomeSectionSquareCenterType,//广场中心
+    LBBHomeSectionVisitProductType,//旅游产品
+};
+
 
 @interface ST_HomeViewController ()<UISearchBarDelegate>
 
 @property (nonatomic, retain) UISearchBar *searchBar;
-
+@property (nonatomic, retain) NSArray* sectionArray;
 
 @end
 
@@ -76,11 +89,11 @@
     LBBPoohVerticalButton *nearButton = [[LBBPoohVerticalButton alloc] init];
     nearButton.titleLabel.font = Font1;
     nearButton.titleLabel.text = @"附近";
-    nearButton.imageView.image = [UIImage imageNamed:@"poohtest"];
+    nearButton.imageView.image = [UIImage imageNamed:@"PoohNearby"];
     [self.baseNavigationBarView addSubview:nearButton];
     [nearButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.baseNavigationBarView).offset(10);
-        make.width.equalTo(@(IAppNavigationBarHeight+IAppStatusBarHeight - 2*interval));
+        make.width.equalTo(@45);
         make.centerY.equalTo(ws.baseNavigationBarView);
         make.top.equalTo(ws.baseNavigationBarView).offset(interval);
         make.bottom.equalTo(ws.baseNavigationBarView).offset(-interval);
@@ -90,6 +103,8 @@
     [nearButton bk_whenTapped:^{
         
         NSLog(@"nearButton touch");
+        LBBNearbyMainViewController* v = [[LBBNearbyMainViewController alloc]init];
+        [ws.navigationController pushViewController:v animated:YES];
         
     }];
     
@@ -97,7 +112,7 @@
     LBBPoohVerticalButton *signButton = [[LBBPoohVerticalButton alloc] init];
     signButton.titleLabel.font = Font1;
     signButton.titleLabel.text = @"签到";
-    signButton.imageView.image = [UIImage imageNamed:@"poohtest"];
+    signButton.imageView.image = [UIImage imageNamed:@"PoohSign"];
     [self.baseNavigationBarView addSubview:signButton];
     [signButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(ws.baseNavigationBarView).offset(-10);
@@ -111,14 +126,30 @@
     }];
     
     //search bar
+
     UISearchBar *bar = [UISearchBar new];
+   // bar.barStyle = UIBarStyleDefault;
+  //  bar.translucent = YES;
+   // bar.barTintColor = Global_mainBackgroundColor;
+   // bar.tintColor = Global_tintColor;
+    UIImageView *view = [[[bar.subviews objectAtIndex:0] subviews] firstObject];
+    view.layer.borderColor = [UIColor blackColor].CGColor;
+    view.layer.borderWidth = 0.8;
+    view.layer.cornerRadius = 15;
+
+   // bar.layer.borderColor = [UIColor blackColor].CGColor;
+   // bar.layer.borderWidth = 0.8;
+    //bar.layer.cornerRadius = 8;
+   // bar.showsBookmrarkButton = YES;
+  //  [bar setImage:[UIImage imageNamed:@"VoiceSearchStartBtn"] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
     [bar setBackgroundImage:[UIImage new]];
     [self.baseNavigationBarView addSubview:bar];
     [bar mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.center.equalTo(ws.baseNavigationBarView);
-        make.left.equalTo(nearButton.mas_right).offset(2*interval);
-        make.right.equalTo(signButton.mas_left).offset(-2*interval);
+        make.left.equalTo(nearButton.mas_right).offset(interval);
+        make.right.equalTo(signButton.mas_left).offset(-interval);
+        make.height.equalTo(@30);
     }];
     bar.delegate = self;
     bar.placeholder = @"请输入 景点 美食 民宿";
@@ -142,6 +173,17 @@
         make.bottom.equalTo(ws.baseContentView).offset(-IAppTabBarHeight);
     }];
     
+    self.sectionArray = @[
+                          @[@"",@""],
+                          @[@"热门推荐",@"poohtest"],
+                          @[@"游记推荐",@"poohtest"],
+                          @[@"达人推荐",@"poohtest"],
+                          @[@"广场中心",@"poohtest"],
+                          @[@"旅游产品",@"poohtest"],
+                          
+                          ];
+    
+    
 }
 
 #pragma mark - UISearchBarDelegate
@@ -160,19 +202,32 @@
 #pragma tableView Delegate
 
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return self.sectionArray.count;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
+    if (section == LBBHomeSectionMenuType) {
+        return 0;
+    }
     return 60;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
+    if (section == LBBHomeSectionMenuType) {
+        return [UIView new];
+    }
     UIView* v = [UIView new];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     [v setFrame:CGRectMake(0, 0, UISCREEN_WIDTH, height)];
     
     LBBPoohBaseTableSectionHeaderView* header = [[LBBPoohBaseTableSectionHeaderView alloc]init];
     [v addSubview:header];
+    [header.titleLabel setText:[[self.sectionArray objectAtIndex:section] objectAtIndex:0]];
+    [header.iconView setImage:IMAGE([[self.sectionArray objectAtIndex:section] objectAtIndex:1])];
     [header mas_makeConstraints:^(MASConstraintMaker* make){
         make.center.width.height.equalTo(v);
     }];
@@ -190,7 +245,44 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 3;
+
+    switch (section) {
+        case LBBHomeSectionMenuType:
+            {
+                return 3;
+            }
+            break;
+
+        case LBBHomeSectionHotestType:
+            {
+                return 2;
+            }
+            break;
+        case LBBHomeSectionVisitRecommendType:
+            {
+                return 2;
+            }
+            break;
+        case LBBHomeSectionVipRecommendType:
+            {
+                return 2;
+            }
+            break;
+        case LBBHomeSectionSquareCenterType:
+            {
+                return 2;
+            }
+            break;
+        case LBBHomeSectionVisitProductType:
+            {
+                return 2;
+            }
+            break;
+        default:
+            return 0;
+            break;
+    }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -202,7 +294,43 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell* cell = [self tableView:tableView cycleCellForRowAtIndexPath:indexPath];
+    UITableViewCell* cell;
+    
+    switch (indexPath.section) {
+        case LBBHomeSectionMenuType:
+        {
+            cell = [self tableView:tableView menuSectionCellForRowAtIndexPath:indexPath];
+        }
+            break;
+        case LBBHomeSectionHotestType:
+        {
+            cell = [self tableView:tableView hotSectionCellForRowAtIndexPath:indexPath];
+        }
+            break;
+        case LBBHomeSectionVisitRecommendType:
+        {
+            cell = [self tableView:tableView menuSectionCellForRowAtIndexPath:indexPath];
+        }
+            break;
+        case LBBHomeSectionVipRecommendType:
+        {
+            cell = [self tableView:tableView menuSectionCellForRowAtIndexPath:indexPath];
+        }
+            break;
+        case LBBHomeSectionSquareCenterType:
+        {
+            cell = [self tableView:tableView menuSectionCellForRowAtIndexPath:indexPath];
+        }
+            break;
+        case LBBHomeSectionVisitProductType:
+        {
+            cell = [self tableView:tableView menuSectionCellForRowAtIndexPath:indexPath];
+        }
+            break;
+        default:
+            return nil;
+            break;
+    }
     
     return cell;
 }
@@ -210,7 +338,7 @@
 
 
 #pragma tableViewCell getter
--(UITableViewCell*)tableView:(UITableView *)tableView cycleCellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell*)tableView:(UITableView *)tableView menuSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
         
@@ -236,15 +364,44 @@
         static NSString *cellIdentifier = @"LBBHomeAnnouncementTableViewCell";
         LBBHomeAnnouncementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
+            NSLog(@"LBBHomeAnnouncementTableViewCell initWithStyle");
             cell = [[LBBHomeAnnouncementTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         }
-        
         NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
         [cell setScrollTextArray:array];
         
         return cell;
     }
-    
 }
+
+-(UITableViewCell*)tableView:(UITableView *)tableView hotSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {
+        
+        static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
+        LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        }
+        
+        [cell setCycleScrollViewUrls:nil];
+        
+        return cell;
+    }
+    else if (indexPath.row == 1){
+        static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
+        LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        }
+        
+        [cell setreload];
+        return cell;
+    }
+    else{
+        return nil;
+    }
+}
+
 
 @end

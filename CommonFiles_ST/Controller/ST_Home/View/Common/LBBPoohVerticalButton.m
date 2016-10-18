@@ -35,7 +35,7 @@
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setFont:Font2];
-        [self.titleLabel setTextColor:[UIColor whiteColor]];
+        [self.titleLabel setTextColor:[UIColor blackColor]];
         [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){

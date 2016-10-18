@@ -51,7 +51,7 @@
                 make.bottom.equalTo(ws.contentView).offset(-margineTop);
 
             }];
-            [self layoutSubviews];//it must to be done to layouts subviews
+            [self.contentView layoutSubviews];//it must to be done to layouts subviews
             [btn bk_addEventHandler:^(LBBPoohVerticalButton* sender){
                 
                 NSLog(@"%@ touch button %ld",[self class],sender.tag);
@@ -72,5 +72,6 @@
     NSLog(@"%@ height:%f",[self class],height);
     return height;
 }
+
 
 @end

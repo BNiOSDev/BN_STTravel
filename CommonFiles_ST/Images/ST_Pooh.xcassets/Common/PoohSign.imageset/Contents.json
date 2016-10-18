@@ -6,11 +6,11 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "BackGray@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "签到.png",
       "scale" : "3x"
     }
   ],

@@ -23,6 +23,8 @@
     WS(ws);
     if (self = [super init]) {
         
+        [self setBackgroundColor:[UIColor whiteColor]];
+        
         UIView* sub = [UIView new];
         [self addSubview: sub];
         [sub mas_makeConstraints:^(MASConstraintMaker* make){
@@ -37,7 +39,7 @@
             
             make.left.equalTo(sub);
             make.centerY.equalTo(sub);
-            make.width.height.equalTo(@35);
+            make.width.height.equalTo(@25);
             
         }];
         

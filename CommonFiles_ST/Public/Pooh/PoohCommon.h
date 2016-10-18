@@ -21,6 +21,8 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import <Masonry/Masonry.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import <GLPubSub/NSObject+GLPubSub.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+
 
 #import "NSString+PoohCommon.h"
 #import "UIColor+PoohCommon.h"
