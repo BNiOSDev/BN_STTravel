@@ -67,7 +67,7 @@ UITableViewDataSource
     cell.contentLabel.text = [cellDict objectForKey:@"Title"];
     cell.descLabel.hidden = ![[cellDict objectForKey:@"ShowDesc"] boolValue];
     [cell.switchBtn setOn:[[cellDict objectForKey:@"SwitchOn"] boolValue]];
-    LBBLOG(@"%d",[[cellDict objectForKey:@"SwitchOn"] boolValue]);
+    NSLog(@"%d",[[cellDict objectForKey:@"SwitchOn"] boolValue]);
     cell.accessoryView =  nil;
     
     return cell;

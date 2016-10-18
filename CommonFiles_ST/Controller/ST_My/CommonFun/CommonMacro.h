@@ -24,10 +24,4 @@
 #define IS_IPHONE_4_0 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define IS_IPHONE_3_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )480 ) < DBL_EPSILON )
 
-#ifdef DEBUG
-#define LBBLOG(...) NSLog(__VA_ARGS__)
-#else
-#define LBBLOG(...)
-#endif
-
 #endif /* CommonMacro_h */

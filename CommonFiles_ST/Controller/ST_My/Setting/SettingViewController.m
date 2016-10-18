@@ -190,7 +190,7 @@ UITableViewDataSource
 - (void)showPickerMenu:(id)sender {
     NSNumber *actionSender = (NSNumber*)sender;
     SettingViewType setType = [actionSender intValue];
-    LBBLOG(@"\n 选中类型:%@",@(setType));
+    NSLog(@"\n 选中类型:%@",@(setType));
     
     NSString *title = NSLocalizedString(@"请选择", nil);
     NSString *cancelButtonTitle = NSLocalizedString(@"取消", nil);

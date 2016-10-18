@@ -40,9 +40,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UIViewController *dstController =   segue.destinationViewController;
     if ([dstController isKindOfClass:NSClassFromString(@"BalanceExtractViewController")]) {
-        LBBLOG(@"余额提现");
+        NSLog(@"余额提现");
     }else if([dstController isKindOfClass:NSClassFromString(@"BalanceDetailViewController")]) {
-         LBBLOG(@"余额明细");
+         NSLog(@"余额明细");
         BalanceDetailViewController* vc = (BalanceDetailViewController*)dstController;
         vc.showType = BalanceDetailType;
     }

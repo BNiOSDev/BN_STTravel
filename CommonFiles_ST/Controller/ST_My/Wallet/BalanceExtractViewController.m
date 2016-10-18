@@ -56,7 +56,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UIViewController *dstController =   segue.destinationViewController;
     if ([dstController isKindOfClass:NSClassFromString(@"CardDetailViewController")]) {
-        LBBLOG(@"银行卡详情页");
+        NSLog(@"银行卡详情页");
     }
 }
 

@@ -142,7 +142,7 @@ TicketViewCellDelegate>
 #pragma mark - cell delegate
 - (void)cellBtnClickDelegate:(NSDictionary*)cellInfo StateType:(StateType)type
 {
-    LBBLOG(@"\n 点击按钮");
+    NSLog(@"\n 点击按钮");
 }
 
 @end
