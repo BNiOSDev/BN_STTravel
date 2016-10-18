@@ -42,18 +42,16 @@
         horizontalCellLayout.itemSize = CGSizeMake(UISCREEN_WIDTH * 2/3, UISCREEN_WIDTH * 2/3-30);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:horizontalCellLayout];
-      //  self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:horizontalCellLayout];
 
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.showsHorizontalScrollIndicator = NO;
         
         self.collectionView.alwaysBounceHorizontal = YES;
-    //    self.collectionView.alwaysBounceVertical = YES;
+      //    self.collectionView.alwaysBounceVertical = YES;
+
         _collectionView.scrollEnabled = YES;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
-
-        
         [self.contentView addSubview:_collectionView];
 
         
@@ -75,7 +73,7 @@
             make.height.equalTo(@1.5);
         }];
         
-      //  [self layoutSubviews];//it must to be done to layouts subviews
+        [self layoutSubviews];//it must to be done to layouts subviews
 
     }
     return self;

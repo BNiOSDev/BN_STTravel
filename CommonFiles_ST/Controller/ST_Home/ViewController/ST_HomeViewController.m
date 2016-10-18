@@ -21,7 +21,6 @@
 #import "LBBHomeHotestTableViewCell.h"
 
 
-
 typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     LBBHomeSectionMenuType = 0,//入口
     LBBHomeSectionHotestType,//热门推荐
@@ -45,8 +44,8 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    [self setupNavigationUI];
-    [self setupUI];
+  //  [self setupNavigationUI];
+  //  [self setupUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -56,10 +55,11 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 
 }
 
+/*
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }
-
+*/
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -107,6 +107,8 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         [ws.navigationController pushViewController:v animated:YES];
         
     }];
+  
+    
     
     //near button
     LBBPoohVerticalButton *signButton = [[LBBPoohVerticalButton alloc] init];
@@ -155,15 +157,74 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     bar.placeholder = @"请输入 景点 美食 民宿";
     [bar setContentMode:UIViewContentModeLeft];
     self.searchBar = bar;
+}
+
+-(void)loadCustomNavigationButton{
+    WS(ws);
+    LBBPoohVerticalButton *back = [[LBBPoohVerticalButton alloc] init];
+    back.titleLabel.font = Font1;
+    back.titleLabel.text = @"附近";
+    back.frame = CGRectMake(0, 0, 45, 45);
+    [back.imageView setImage:IMAGE(@"PoohNearby")];
+    [back bk_whenTapped:^{
+        
+        NSLog(@"back touch");
+        LBBNearbyMainViewController* v = [[LBBNearbyMainViewController alloc]init];
+        [ws.navigationController pushViewController:v animated:YES];
+    }];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:back];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+    LBBPoohVerticalButton *sign = [[LBBPoohVerticalButton alloc] init];
+    sign.titleLabel.font = Font1;
+    sign.titleLabel.text = @"签到";
+    sign.frame = CGRectMake(0, 0, 45, 45);
+    [sign.imageView setImage:IMAGE(@"PoohSign")];
+    [sign bk_whenTapped:^{
+        
+        NSLog(@"signButton touch");
+        
+    }];
+    UIBarButtonItem *signItem = [[UIBarButtonItem alloc] initWithCustomView:sign];
+    self.navigationItem.rightBarButtonItem = signItem;
+    
+    
+    
+    
+    
+    CGFloat height = IAppNavigationBarHeight - 10;
+    CGFloat width = UISCREEN_WIDTH - 2*45 - 30;
+
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];//allocate titleView
+    UISearchBar *bar = [UISearchBar new];
+    bar.barStyle = UIBarStyleDefault;
+    
+    bar.layer.borderColor = [UIColor blackColor].CGColor;
+    bar.layer.borderWidth = 0.8;
+    bar.layer.cornerRadius = height/2;
+    bar.layer.masksToBounds = YES;
+    [bar setBackgroundImage:[UIImage new]];
+    bar.delegate = self;
+    bar.placeholder = @"请输入 景点 美食 民宿";
+    [bar setContentMode:UIViewContentModeLeft];
+    self.searchBar = bar;
+    [titleView addSubview:bar];
+    [bar mas_makeConstraints:^(MASConstraintMaker* make){
+        make.center.width.height.equalTo(titleView);
+    }];
+    
+    [self.navigationItem.titleView sizeToFit];
+    self.navigationItem.titleView = titleView;
     
 
     
 }
 
+
 /*
  *  setup UI
  */
--(void)setupUI{
+-(void)buildControls{
     WS(ws);
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -309,6 +370,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             break;
         case LBBHomeSectionVisitRecommendType:
         {
+
             cell = [self tableView:tableView menuSectionCellForRowAtIndexPath:indexPath];
         }
             break;

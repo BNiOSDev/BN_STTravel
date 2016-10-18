@@ -22,6 +22,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.title = @"附近";
+    
     WS(ws);
     
     [self addBackButton:nil];

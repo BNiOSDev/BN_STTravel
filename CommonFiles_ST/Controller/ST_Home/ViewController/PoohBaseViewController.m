@@ -42,7 +42,7 @@
         make.centerX.equalTo(ws.view);
     }];
     
-    [self setBaseNavigationBarHidden:NO];
+    [self setBaseNavigationBarHidden:YES];
     [self setupTitleAndButton];
     
     // Do any additional setup after loading the view.
@@ -50,7 +50,7 @@
     self.baseNavigationBarView.backgroundColor = [UIConstants getAppColor];
     [self setStatusBarStyle:UIStatusBarStyleLightContent];
     [self setBaseNavigationBarColor:[UIColor blackColor]];
-    self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
+   // self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
 }
 
 
@@ -71,7 +71,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+  //  [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
