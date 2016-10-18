@@ -34,6 +34,7 @@
 		1D293C321DB5B51600ED2CBB /* LBBNearbyMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C2F1DB5B51600ED2CBB /* LBBNearbyMainViewController.m */; };
 		1D293C331DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C301DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m */; };
 		1D293C461DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C451DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.m */; };
+		1D293C491DB5F81700ED2CBB /* LBBHomeSquareCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C481DB5F81600ED2CBB /* LBBHomeSquareCenterTableViewCell.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -129,6 +130,8 @@
 		1D293C311DB5B51600ED2CBB /* LBBHomeSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeSearchResultViewController.h; sourceTree = "<group>"; };
 		1D293C441DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeTravelRecommendTableViewCell.h; sourceTree = "<group>"; };
 		1D293C451DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeTravelRecommendTableViewCell.m; sourceTree = "<group>"; };
+		1D293C471DB5F81600ED2CBB /* LBBHomeSquareCenterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeSquareCenterTableViewCell.h; sourceTree = "<group>"; };
+		1D293C481DB5F81600ED2CBB /* LBBHomeSquareCenterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeSquareCenterTableViewCell.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -296,6 +299,8 @@
 				1D293C051DB4BFE200ED2CBB /* LBBHomeMenuTableViewCell.m */,
 				1D293C441DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.h */,
 				1D293C451DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.m */,
+				1D293C471DB5F81600ED2CBB /* LBBHomeSquareCenterTableViewCell.h */,
+				1D293C481DB5F81600ED2CBB /* LBBHomeSquareCenterTableViewCell.m */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -859,6 +864,7 @@
 				1D293BB11DB4607D00ED2CBB /* NSDateFormatter+PoohCategory.m in Sources */,
 				1D293BB61DB4607D00ED2CBB /* UIImage+animatedGIF.m in Sources */,
 				1D293C2C1DB5B50000ED2CBB /* LBBPoohGreatItemView.m in Sources */,
+				1D293C491DB5F81700ED2CBB /* LBBHomeSquareCenterTableViewCell.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1D293BBB1DB4607D00ED2CBB /* UIConstants.m in Sources */,
 				1D293BF71DB4AD3E00ED2CBB /* LBBPoohBaseTableSectionHeaderView.m in Sources */,

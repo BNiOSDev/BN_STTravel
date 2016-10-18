@@ -38,7 +38,7 @@
         [self.desLabel setTextColor:[UIConstants getSecondaryTitleColor]];
         [self addSubview:self.desLabel];
         [self.desLabel mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.equalTo(ws.iconView.mas_right).offset(5);
+            make.left.equalTo(ws.iconView.mas_right).offset(1);
             make.centerY.equalTo(ws);
             make.right.equalTo(ws);
         }];
