@@ -6,8 +6,7 @@
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "PoohBaseTableViewController.h"
+#import "Base_BaseViewController.h"
 
-@interface ST_HomeViewController : PoohBaseTableViewController
-
+@interface ST_HomeViewController : Base_BaseViewController
 @end

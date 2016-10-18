@@ -11,9 +11,10 @@
 #import "LBBPoohCycleScrollCell.h"
 #import "LBBNearbyMenuListTableViewCell.h"
 
-@interface LBBNearbyMainViewController ()
+@interface LBBNearbyMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UIView* mapView;
+@property (nonatomic, retain) UITableView* tableView;
 
 @end
 
@@ -22,9 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
-    [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,24 +51,26 @@
 /*
  * setup UI
  */
--(void)setupUI{
+
+-(void)buildControls{
     
     WS(ws);
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
+
     self.mapView = [UIView new];
     [self.mapView setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
     [self.mapView setFrame:CGRectMake(0, 0, UISCREEN_WIDTH, 150)];
-    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-    [self.baseContentView addSubview:self.tableView];
+    [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
+
     self.tableView.tableHeaderView = self.mapView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.centerX.top.equalTo(ws.baseContentView);
-        make.bottom.equalTo(ws.baseContentView);
+        make.width.centerX.top.equalTo(ws.view);
+        make.bottom.equalTo(ws.view);
     }];
     
     [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];

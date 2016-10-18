@@ -56,7 +56,7 @@
         [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.left.equalTo(ws.portraitImageView.mas_right).offset(interval);
-            make.top.equalTo(ws.portraitImageView.mas_centerY).offset(3);
+            make.top.equalTo(ws.portraitImageView.mas_centerY).offset(5);
         }];
        
         self.arrowImageView = [UIImageView new];
@@ -70,7 +70,7 @@
         
         self.descLabel = [UILabel new];
         [self.descLabel setFont:Font1];
-        [self.descLabel setTextColor:[UIConstants getSecondaryTitleColor]];
+        [self.descLabel setTextColor:[UIConstants getLevelThreeTitleColor]];
         [self.descLabel setText:@"1.5km"];
         [self.descLabel setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:self.descLabel];

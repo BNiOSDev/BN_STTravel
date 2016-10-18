@@ -33,10 +33,11 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 };
 
 
-@interface ST_HomeViewController ()<UISearchBarDelegate>
+@interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, retain) NSArray* sectionArray;
+@property (nonatomic, retain) UITableView* tableView;
 
 @end
 
@@ -48,21 +49,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 
   //  [self setupNavigationUI];
   //  [self setupUI];
-    WS(ws);
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.left.right.equalTo(ws.baseContentView);
-        make.top.equalTo(ws.baseContentView.mas_top);
-        make.bottom.equalTo(ws.baseContentView).offset(-IAppTabBarHeight);
-    }];
-    
-    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
-    [self.tableView registerClass:[LBBHomeMenuTableViewCell class] forCellReuseIdentifier:@"LBBHomeMenuTableViewCell"];
-    [self.tableView registerClass:[LBBHomeAnnouncementTableViewCell class] forCellReuseIdentifier:@"LBBHomeAnnouncementTableViewCell"];
-    [self.tableView registerClass:[LBBHomeHotestTableViewCell class] forCellReuseIdentifier:@"LBBHomeHotestTableViewCell"];
-    [self.tableView registerClass:[LBBHomeTravelRecommendTableViewCell class] forCellReuseIdentifier:@"LBBHomeTravelRecommendTableViewCell"];
-    [self.tableView registerClass:[LBBHomeSquareCenterTableViewCell class] forCellReuseIdentifier:@"LBBHomeSquareCenterTableViewCell"];
-
+ 
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -93,89 +80,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 */
 
 
-/*
- *  setup navigation UI
- */
-- (void)setupNavigationUI
-{
-    WS(ws);
-
-    CGFloat interval = 8;
-    
-    //near button
-    LBBPoohVerticalButton *nearButton = [[LBBPoohVerticalButton alloc] init];
-    nearButton.titleLabel.font = Font1;
-    nearButton.titleLabel.text = @"附近";
-    nearButton.imageView.image = [UIImage imageNamed:@"PoohNearby"];
-    [self.baseNavigationBarView addSubview:nearButton];
-    [nearButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(ws.baseNavigationBarView).offset(10);
-        make.width.equalTo(@45);
-        make.centerY.equalTo(ws.baseNavigationBarView);
-        make.top.equalTo(ws.baseNavigationBarView).offset(interval);
-        make.bottom.equalTo(ws.baseNavigationBarView).offset(-interval);
-        
-    }];
-    
-    [nearButton bk_whenTapped:^{
-        
-        NSLog(@"nearButton touch");
-        LBBNearbyMainViewController* v = [[LBBNearbyMainViewController alloc]init];
-        [ws.navigationController pushViewController:v animated:YES];
-        
-    }];
-  
-    
-    
-    //near button
-    LBBPoohVerticalButton *signButton = [[LBBPoohVerticalButton alloc] init];
-    signButton.titleLabel.font = Font1;
-    signButton.titleLabel.text = @"签到";
-    signButton.imageView.image = [UIImage imageNamed:@"PoohSign"];
-    [self.baseNavigationBarView addSubview:signButton];
-    [signButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(ws.baseNavigationBarView).offset(-10);
-        
-        make.centerY.width.height.equalTo(nearButton);
-    }];
-    [signButton bk_whenTapped:^{
-        
-        NSLog(@"signButton touch");
-        
-    }];
-    
-    //search bar
-
-    UISearchBar *bar = [UISearchBar new];
-   // bar.barStyle = UIBarStyleDefault;
-  //  bar.translucent = YES;
-   // bar.barTintColor = Global_mainBackgroundColor;
-   // bar.tintColor = Global_tintColor;
-    UIImageView *view = [[[bar.subviews objectAtIndex:0] subviews] firstObject];
-    view.layer.borderColor = [UIColor blackColor].CGColor;
-    view.layer.borderWidth = 0.8;
-    view.layer.cornerRadius = 15;
-
-   // bar.layer.borderColor = [UIColor blackColor].CGColor;
-   // bar.layer.borderWidth = 0.8;
-    //bar.layer.cornerRadius = 8;
-   // bar.showsBookmrarkButton = YES;
-  //  [bar setImage:[UIImage imageNamed:@"VoiceSearchStartBtn"] forSearchBarIcon:UISearchBarIconBookmark state:UIControlStateNormal];
-    [bar setBackgroundImage:[UIImage new]];
-    [self.baseNavigationBarView addSubview:bar];
-    [bar mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.center.equalTo(ws.baseNavigationBarView);
-        make.left.equalTo(nearButton.mas_right).offset(interval);
-        make.right.equalTo(signButton.mas_left).offset(-interval);
-        make.height.equalTo(@30);
-    }];
-    bar.delegate = self;
-    bar.placeholder = @"请输入 景点 美食 民宿";
-    [bar setContentMode:UIViewContentModeLeft];
-    self.searchBar = bar;
-}
-
 -(void)loadCustomNavigationButton{
     WS(ws);
     LBBPoohVerticalButton *back = [[LBBPoohVerticalButton alloc] init];
@@ -187,7 +91,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         
         NSLog(@"back touch");
         LBBNearbyMainViewController* v = [[LBBNearbyMainViewController alloc]init];
-        v.isGroup = YES;
         [ws.navigationController pushViewController:v animated:YES];
     }];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:back];
@@ -205,9 +108,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     }];
     UIBarButtonItem *signItem = [[UIBarButtonItem alloc] initWithCustomView:sign];
     self.navigationItem.rightBarButtonItem = signItem;
-    
-    
-    
     
     
     CGFloat height = IAppNavigationBarHeight - 10;
@@ -241,7 +141,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
  *  setup UI
  */
 -(void)buildControls{
-    
     self.sectionArray = @[
                           @[@"",@""],
                           @[@"热门推荐",@"poohtest"],
@@ -251,6 +150,27 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
                           @[@"旅游产品",@"poohtest"],
                           
                           ];
+    
+    WS(ws);
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [self.view addSubview:self.tableView];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.width.left.right.equalTo(ws.view);
+        make.top.equalTo(ws.view.mas_top);
+        make.bottom.equalTo(ws.view);
+    }];
+    
+    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
+    [self.tableView registerClass:[LBBHomeMenuTableViewCell class] forCellReuseIdentifier:@"LBBHomeMenuTableViewCell"];
+    [self.tableView registerClass:[LBBHomeAnnouncementTableViewCell class] forCellReuseIdentifier:@"LBBHomeAnnouncementTableViewCell"];
+    [self.tableView registerClass:[LBBHomeHotestTableViewCell class] forCellReuseIdentifier:@"LBBHomeHotestTableViewCell"];
+    [self.tableView registerClass:[LBBHomeTravelRecommendTableViewCell class] forCellReuseIdentifier:@"LBBHomeTravelRecommendTableViewCell"];
+    [self.tableView registerClass:[LBBHomeSquareCenterTableViewCell class] forCellReuseIdentifier:@"LBBHomeSquareCenterTableViewCell"];
+
 }
 
 #pragma mark - UISearchBarDelegate
