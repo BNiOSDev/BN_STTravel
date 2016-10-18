@@ -44,10 +44,11 @@
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setFont:Font3];
+        [self.titleLabel setText:@"曾厝垵"];
         [self.contentView addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.contentView);
-            make.top.equalTo(ws.mainImageView.mas_bottom).offset(2);
+            make.top.equalTo(ws.mainImageView.mas_bottom).offset(5);
         }];
         [self.titleLabel setBackgroundColor:[UIColor redColor]];
 
@@ -60,7 +61,7 @@
         [self.disView mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.left.equalTo(ws.titleLabel);
-            make.top.equalTo(ws.titleLabel.mas_bottom).offset(8);
+            make.top.equalTo(ws.titleLabel.mas_bottom).offset(5);
             make.bottom.equalTo(ws.contentView).offset(-3);
             make.height.equalTo(@25);
         }];
