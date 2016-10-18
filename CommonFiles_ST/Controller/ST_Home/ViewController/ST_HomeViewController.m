@@ -19,6 +19,7 @@
 #import "LBBHomeMenuTableViewCell.h"
 #import "LBBHomeAnnouncementTableViewCell.h"
 #import "LBBHomeHotestTableViewCell.h"
+#import "LBBHomeTravelRecommendTableViewCell.h"
 
 
 typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
@@ -46,6 +47,13 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 
   //  [self setupNavigationUI];
   //  [self setupUI];
+    WS(ws);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.width.left.right.equalTo(ws.baseContentView);
+        make.top.equalTo(ws.baseContentView.mas_top);
+        make.bottom.equalTo(ws.baseContentView).offset(-IAppTabBarHeight);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -216,8 +224,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     [self.navigationItem.titleView sizeToFit];
     self.navigationItem.titleView = titleView;
     
-
-    
 }
 
 
@@ -226,13 +232,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
  */
 -(void)buildControls{
     WS(ws);
-    
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.left.right.equalTo(ws.baseContentView);
-        make.top.equalTo(ws.baseContentView.mas_top);
-        make.bottom.equalTo(ws.baseContentView).offset(-IAppTabBarHeight);
-    }];
     
     self.sectionArray = @[
                           @[@"",@""],
@@ -243,8 +242,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
                           @[@"旅游产品",@"poohtest"],
                           
                           ];
-    
-    
 }
 
 #pragma mark - UISearchBarDelegate
@@ -371,7 +368,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         case LBBHomeSectionVisitRecommendType:
         {
 
-            cell = [self tableView:tableView menuSectionCellForRowAtIndexPath:indexPath];
+            cell = [self tableView:tableView travelRecommendSectionCellForRowAtIndexPath:indexPath];
         }
             break;
         case LBBHomeSectionVipRecommendType:
@@ -465,5 +462,19 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     }
 }
 
+-(UITableViewCell*)tableView:(UITableView *)tableView travelRecommendSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellIdentifier = @"LBBHomeTravelRecommendTableViewCell";
+    LBBHomeTravelRecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[LBBHomeTravelRecommendTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
+    
+    [cell.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
+    [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg"] placeholderImage:IMAGE(@"poohtest")];
+
+    return cell;
+   
+}
 
 @end
