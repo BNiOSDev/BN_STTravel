@@ -234,7 +234,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     
     [header.markButton bk_addEventHandler:^(id sender){
     
-        NSLog(@"%@ section header button click:%ld",[self class],section);
+        NSLog(@" section header button click:%ld",section);
         
     } forControlEvents:UIControlEventTouchUpInside];
     

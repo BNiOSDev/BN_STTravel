@@ -54,7 +54,7 @@
             [self.contentView layoutSubviews];//it must to be done to layouts subviews
             [btn bk_addEventHandler:^(LBBPoohVerticalButton* sender){
                 
-                NSLog(@"%@ touch button %ld",[self class],sender.tag);
+                NSLog(@"touch button %ld",sender.tag);
             
             } forControlEvents:UIControlEventTouchUpInside];
             
@@ -69,7 +69,7 @@
 -(CGFloat)getCellHeight{
     
     CGFloat height = 80;
-    NSLog(@"%@ height:%f",[self class],height);
+    NSLog(@"getCellHeight:%f",height);
     return height;
 }
 

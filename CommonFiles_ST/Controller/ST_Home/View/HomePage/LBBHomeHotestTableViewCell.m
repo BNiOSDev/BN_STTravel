@@ -109,13 +109,13 @@
     
     CGFloat height = 0;
     height = UISCREEN_WIDTH * 2/3;
-    NSLog(@"%@ height:%f",[self class],height);
+    NSLog(@"getCellHeight:%f",height);
     return height;
 }
 
 -(void)setreload{
     
-    NSLog(@"%@ setreload",[self class]);
+    NSLog(@"setreload");
     
     [self layoutSubviews];
     [self.collectionView reloadData];

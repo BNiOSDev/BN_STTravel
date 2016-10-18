@@ -36,7 +36,7 @@
         }];
         [self.favoriteButton bk_addEventHandler:^(id sender){
         
-            NSLog(@"%@ favoriteButton touch",[self class]);
+            NSLog(@"favoriteButton touch");
             
         } forControlEvents:UIControlEventTouchUpInside];
         
@@ -67,7 +67,7 @@
         
         [self.disView bk_addEventHandler:^(id sender){
             
-            NSLog(@"%@ disView touch",[self class]);
+            NSLog(@"disView touch");
             
         } forControlEvents:UIControlEventTouchUpInside];
         
@@ -84,7 +84,7 @@
         }];
         [self.greetView bk_addEventHandler:^(id sender){
             
-            NSLog(@"%@ greetView touch",[self class]);
+            NSLog(@"greetView touch");
             
         } forControlEvents:UIControlEventTouchUpInside];
         

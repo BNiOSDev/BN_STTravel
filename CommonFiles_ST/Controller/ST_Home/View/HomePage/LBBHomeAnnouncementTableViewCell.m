@@ -113,14 +113,14 @@
 -(CGFloat)getCellHeight{
     
     CGFloat height = 50;
-    NSLog(@"%@ height:%f",[self class],height);
+    NSLog(@"getCellHeight:%f",height);
     return height;
 }
 
 #pragma GYChangeTextView delegate
 
 - (void)gyChangeTextView:(GYChangeTextView *)textView didTapedAtIndex:(NSInteger)index {
-    NSLog(@"%@ %@ select: %ld",[self class],[textView class],index);
+    NSLog(@"%@ select: %ld",[textView class],index);
 }
 
 @end
