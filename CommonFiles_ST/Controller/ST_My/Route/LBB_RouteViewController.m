@@ -1,35 +1,22 @@
 //
-//  ST_HomeViewController.m
+//  LBB_RouteViewController.m
 //  ST_Travel
 //
-//  Created by newman on 16/10/1.
+//  Created by dhxiang on 16/10/16.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "ST_MyViewController.h"
-#import "ST_TabBarController.h"
+#import "LBB_RouteViewController.h"
 
-@interface ST_MyViewController ()
+@interface LBB_RouteViewController ()
 
 @end
 
-@implementation ST_MyViewController
+@implementation LBB_RouteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    [(ST_TabBarController*)self.tabBarController setTabBarHidden:NO animated:YES];
-
-}
-
-- (void)loadCustomNavigationButton
-{
-    ;
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

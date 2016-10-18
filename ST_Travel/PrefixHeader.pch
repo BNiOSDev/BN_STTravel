@@ -15,8 +15,9 @@
 #ifdef __OBJC__
 
 #import "QJTL_Global.h"
-
 #import "PoohCommon.h"
+#import "CommonFunc.h"
+#import "CommonMacro.h"
 
 #endif
 
