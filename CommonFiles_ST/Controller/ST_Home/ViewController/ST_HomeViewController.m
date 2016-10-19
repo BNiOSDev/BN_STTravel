@@ -47,9 +47,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-
-  //  [self setupNavigationUI];
-  //  [self setupUI];
  
 }
 
@@ -433,9 +430,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     [cell.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://a.hiphotos.baidu.com/image/pic/item/4b90f603738da97739bab10cb551f8198618e37b.jpg"] placeholderImage:IMAGE(@"poohtest")];
     [cell.item1.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/a9d3fd1f4134970a9edd270890cad1c8a7865d6e.jpg"] placeholderImage:IMAGE(@"poohtest")];
 
-    
     return cell;
-    
 }
 
 @end

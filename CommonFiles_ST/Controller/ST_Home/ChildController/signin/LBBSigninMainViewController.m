@@ -11,6 +11,10 @@
 
 @interface LBBSigninMainViewController ()
 
+@property(nonatomic, retain)UIView* mapView;
+
+@property(nonatomic, retain)UILabel* noteLable;
+
 @end
 
 @implementation LBBSigninMainViewController
@@ -61,6 +65,9 @@
 -(void)buildControls{
     
     WS(ws);
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     UIControl* ctr1 = [UIControl new];
     UIControl* ctr2 = [UIControl new];
     UIView* sep = [UIView new];
@@ -77,11 +84,11 @@
     
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(ctr1);
-        make.width.equalTo(@1);
+        make.width.equalTo(@1.5);
         make.height.equalTo(@30);
         make.left.equalTo(ctr1.mas_right);
     }];
-    [ctr1 mas_makeConstraints:^(MASConstraintMaker* make){
+    [ctr2 mas_makeConstraints:^(MASConstraintMaker* make){
         make.right.top.equalTo(ws.view);
         make.height.width.equalTo(ctr1);
         make.left.equalTo(sep.mas_right);
@@ -106,6 +113,30 @@
     [signRank mas_makeConstraints:^(MASConstraintMaker* make){
         make.center.equalTo(ctr2);
         make.height.equalTo(signList);
+    }];
+    
+    
+    //map
+    self.mapView = [UIView new];
+    [self.mapView setBackgroundColor:[UIColor yellowColor]];
+    [self.view addSubview:self.mapView];
+    [self.mapView mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.centerX.width.equalTo(ws.view);
+        make.top.equalTo(ctr1.mas_bottom);
+        make.height.mas_equalTo(UISCREEN_WIDTH*3/2);
+    }];
+    
+    self.noteLable = [UILabel new];
+    [self.noteLable setText:@"您已完成80个景点，目前排名第12名"];
+    [self.noteLable setTextColor:[UIColor whiteColor]];
+    [self.noteLable setTextAlignment:NSTextAlignmentCenter];
+    [self.noteLable setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+    [self.noteLable setFont:Font3];
+    [self.view addSubview:self.noteLable];
+    [self.noteLable mas_makeConstraints:^(MASConstraintMaker* make){
+        make.centerX.width.top.equalTo(ws.mapView);
+        make.height.mas_equalTo(45);
     }];
 
 }
