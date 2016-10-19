@@ -50,6 +50,7 @@
 }
 //提现
 - (IBAction)extractMoney:(id)sender {
+     [self performSegueWithIdentifier:@"VerificationViewController" sender:nil];
 }
 
 #pragma mark -  perform segue

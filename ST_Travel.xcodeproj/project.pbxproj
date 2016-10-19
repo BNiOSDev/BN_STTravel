@@ -29,6 +29,8 @@
 		3C95E0651DB4C38100536704 /* ZJScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E05D1DB4C38100536704 /* ZJScrollPageView.m */; };
 		3C95E0661DB4C38100536704 /* ZJScrollSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E05F1DB4C38100536704 /* ZJScrollSegmentView.m */; };
 		3C95E0671DB4C38100536704 /* ZJSegmentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E0611DB4C38100536704 /* ZJSegmentStyle.m */; };
+		841406671DB7583400A1D904 /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406661DB7583400A1D904 /* VerificationViewController.m */; };
+		8414066A1DB75D8000A1D904 /* ExtractDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406691DB75D8000A1D904 /* ExtractDetailViewController.m */; };
 		84E9C5851DB5EC4900F70C79 /* MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C5271DB5EC4900F70C79 /* MineHeaderView.m */; };
 		84E9C5861DB5EC4900F70C79 /* MineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E9C5281DB5EC4900F70C79 /* MineHeaderView.xib */; };
 		84E9C5871DB5EC4900F70C79 /* MineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C52A1DB5EC4900F70C79 /* MineViewCell.m */; };
@@ -160,6 +162,10 @@
 		3C95E05F1DB4C38100536704 /* ZJScrollSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJScrollSegmentView.m; sourceTree = "<group>"; };
 		3C95E0601DB4C38100536704 /* ZJSegmentStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSegmentStyle.h; sourceTree = "<group>"; };
 		3C95E0611DB4C38100536704 /* ZJSegmentStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSegmentStyle.m; sourceTree = "<group>"; };
+		841406651DB7583400A1D904 /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
+		841406661DB7583400A1D904 /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
+		841406681DB75D8000A1D904 /* ExtractDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractDetailViewController.h; sourceTree = "<group>"; };
+		841406691DB75D8000A1D904 /* ExtractDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractDetailViewController.m; sourceTree = "<group>"; };
 		84E9C5261DB5EC4900F70C79 /* MineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
 		84E9C5271DB5EC4900F70C79 /* MineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
 		84E9C5281DB5EC4900F70C79 /* MineHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineHeaderView.xib; sourceTree = "<group>"; };
@@ -585,6 +591,10 @@
 				84E9C5821DB5EC4900F70C79 /* PointsViewController.m */,
 				84E9C5831DB5EC4900F70C79 /* WalletViewController.h */,
 				84E9C5841DB5EC4900F70C79 /* WalletViewController.m */,
+				841406651DB7583400A1D904 /* VerificationViewController.h */,
+				841406661DB7583400A1D904 /* VerificationViewController.m */,
+				841406681DB75D8000A1D904 /* ExtractDetailViewController.h */,
+				841406691DB75D8000A1D904 /* ExtractDetailViewController.m */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -1127,6 +1137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84E9C58D1DB5EC4900F70C79 /* MineBaseViewController.m in Sources */,
+				8414066A1DB75D8000A1D904 /* ExtractDetailViewController.m in Sources */,
 				84E9C5A51DB5EC4900F70C79 /* AddCardViewController.m in Sources */,
 				1D293BC91DB4671700ED2CBB /* PoohDirector.m in Sources */,
 				84E9C5A01DB5EC4900F70C79 /* TicketViewCell.m in Sources */,
@@ -1145,6 +1156,7 @@
 				84E9C5C21DB5F05A00F70C79 /* LBB_AddressPickerView.m in Sources */,
 				1D293BB41DB4607D00ED2CBB /* NSString+PoohCommon.m in Sources */,
 				1D293BB81DB4607D00ED2CBB /* UIViewExt.m in Sources */,
+				841406671DB7583400A1D904 /* VerificationViewController.m in Sources */,
 				1D293BB01DB4607D00ED2CBB /* NSDate+PoohCategory.m in Sources */,
 				3C95E0661DB4C38100536704 /* ZJScrollSegmentView.m in Sources */,
 				1D293BB11DB4607D00ED2CBB /* NSDateFormatter+PoohCategory.m in Sources */,

@@ -76,6 +76,12 @@
            self.navigationItem.title = NSLocalizedString(@"余额提现", nil);
         }
             break;
+        case eExtractVerification: //提现验证
+        {
+            self.navigationItem.title = NSLocalizedString(@"提现验证", nil);
+        }
+            break;
+            
         case eBalanceDetail: //余额明细
         {
            self.navigationItem.title = NSLocalizedString(@"余额明细", nil);

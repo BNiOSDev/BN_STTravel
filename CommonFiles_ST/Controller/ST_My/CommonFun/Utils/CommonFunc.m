@@ -2,8 +2,8 @@
 //  CommonFunc.m
 //  LUBABA
 //
-//  Created by dhxiang on 16/10/14.
-//  Copyright © 2016年 dhxiang. All rights reserved.
+//  Created by Diana on 16/10/14.
+//  Copyright © 2016年 Diana. All rights reserved.
 //
 
 #import "CommonFunc.h"

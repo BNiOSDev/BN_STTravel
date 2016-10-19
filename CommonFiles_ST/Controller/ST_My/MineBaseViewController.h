@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     eEditUserSignature,//用户签名
     eBalance, //我的余额
     eBalanceExtract, //余额提现
+    eExtractVerification,//提现验证
     eBalanceDetail, //余额明细
     eCard, //我的银行卡
     eAddCard,//添加银行卡
