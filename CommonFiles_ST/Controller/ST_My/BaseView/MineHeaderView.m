@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *authenticationLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *authenticationImgView;
 @property (weak, nonatomic) IBOutlet UILabel *userSignatureLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userHeadViewWidthConstraint;
 
 @end
 

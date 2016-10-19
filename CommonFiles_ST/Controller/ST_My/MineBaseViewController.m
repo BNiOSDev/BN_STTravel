@@ -65,7 +65,16 @@
             self.navigationItem.title = NSLocalizedString(@"个人签名", nil);
         }
             break;
-            
+        case eAddress://收货地址
+        {
+            self.navigationItem.title = NSLocalizedString(@"收货地址", nil);
+        }
+            break;
+        case eAddAddress://新建收货地址
+        {
+            self.navigationItem.title = NSLocalizedString(@"新建收货地址", nil);
+        }
+            break;
         case eBalance://我的余额:
         {
             self.navigationItem.title = NSLocalizedString(@"我的余额", nil);

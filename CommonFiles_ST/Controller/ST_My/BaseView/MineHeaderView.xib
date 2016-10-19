@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -42,12 +44,11 @@
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0849.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="scl-L3-6Av">
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="Kfq-6Z-zhY"/>
-                        <constraint firstAttribute="width" constant="80" id="vZl-G3-eRJ"/>
+                        <constraint firstAttribute="width" secondItem="scl-L3-6Av" secondAttribute="height" id="fAM-RH-G08"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="滨滨" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2wz-OO-4JQ">
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -62,7 +63,7 @@
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="达人认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBV-0I-0er">
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
@@ -74,7 +75,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="95" id="9Qr-Uz-LH0"/>
+                        <constraint firstAttribute="width" constant="80" id="9Qr-Uz-LH0"/>
                         <constraint firstAttribute="height" secondItem="tqK-Jg-CeQ" secondAttribute="height" id="F6X-pw-hz0"/>
                         <constraint firstItem="hBV-0I-0er" firstAttribute="leading" secondItem="tqK-Jg-CeQ" secondAttribute="trailing" constant="5" id="bfw-nl-7Cr"/>
                         <constraint firstItem="hBV-0I-0er" firstAttribute="centerY" secondItem="tqK-Jg-CeQ" secondAttribute="centerY" id="d4u-Da-kF1"/>
@@ -108,16 +109,17 @@
                 <constraint firstAttribute="trailing" secondItem="o73-iB-rku" secondAttribute="trailing" constant="20" id="Cg3-jD-Vmh"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2wz-OO-4JQ" secondAttribute="trailing" constant="20" id="FGT-cv-WU8"/>
                 <constraint firstItem="H7z-pR-IUK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Gxw-If-zbi"/>
+                <constraint firstAttribute="bottom" secondItem="TJS-7M-k0G" secondAttribute="bottom" constant="16" id="IOW-vN-HK6"/>
                 <constraint firstItem="HQz-1Q-RGS" firstAttribute="height" secondItem="scl-L3-6Av" secondAttribute="height" id="Jwb-9O-mpK"/>
                 <constraint firstAttribute="trailing" secondItem="TJS-7M-k0G" secondAttribute="trailing" constant="20" id="Ndm-NJ-k0I"/>
-                <constraint firstItem="scl-L3-6Av" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="SKi-fw-7lv"/>
                 <constraint firstItem="scl-L3-6Av" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Tln-yX-8iR"/>
                 <constraint firstItem="2wz-OO-4JQ" firstAttribute="centerX" secondItem="scl-L3-6Av" secondAttribute="centerX" id="WQC-zW-gKZ"/>
-                <constraint firstItem="TJS-7M-k0G" firstAttribute="top" secondItem="NrP-ui-27p" secondAttribute="bottom" constant="25" id="YCH-gV-3fQ"/>
+                <constraint firstItem="scl-L3-6Av" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="7:10" id="bQC-Yt-Umr"/>
                 <constraint firstItem="H7z-pR-IUK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dQf-n7-Z6I"/>
                 <constraint firstItem="azg-Ho-OOT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="i9T-fN-iOs"/>
                 <constraint firstAttribute="trailing" secondItem="H7z-pR-IUK" secondAttribute="trailing" id="inl-22-a4Y"/>
                 <constraint firstItem="azg-Ho-OOT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="jkh-7X-ScW"/>
+                <constraint firstItem="scl-L3-6Av" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="80:407" id="kHO-iH-li0"/>
                 <constraint firstItem="NrP-ui-27p" firstAttribute="top" secondItem="2wz-OO-4JQ" secondAttribute="bottom" constant="5" id="lAV-qo-BfO"/>
                 <constraint firstItem="2wz-OO-4JQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="qwD-uM-21h"/>
                 <constraint firstItem="o73-iB-rku" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="rc6-yA-Ccm"/>

@@ -27,7 +27,7 @@ UITableViewDataSource
     // Do any additional setup after loading the view.
      self.baseViewType =  eCard;
      [self initData];
-    [self loadRightBarItem];
+     [self loadRightBarItem];
 }
 
 - (void)viewDidAppear:(BOOL)animated

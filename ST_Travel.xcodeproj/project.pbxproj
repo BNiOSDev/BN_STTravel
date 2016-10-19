@@ -31,6 +31,9 @@
 		3C95E0671DB4C38100536704 /* ZJSegmentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E0611DB4C38100536704 /* ZJSegmentStyle.m */; };
 		841406671DB7583400A1D904 /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406661DB7583400A1D904 /* VerificationViewController.m */; };
 		8414066A1DB75D8000A1D904 /* ExtractDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406691DB75D8000A1D904 /* ExtractDetailViewController.m */; };
+		84B25B171DB7966E002EDA7F /* ReceiptAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B25B161DB7966E002EDA7F /* ReceiptAddressViewController.m */; };
+		84B25B1E1DB797D2002EDA7F /* ReceiptAddressViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B25B1C1DB797D2002EDA7F /* ReceiptAddressViewCell.m */; };
+		84B25B1F1DB797D2002EDA7F /* ReceiptAddressViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B25B1D1DB797D2002EDA7F /* ReceiptAddressViewCell.xib */; };
 		84E9C5851DB5EC4900F70C79 /* MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C5271DB5EC4900F70C79 /* MineHeaderView.m */; };
 		84E9C5861DB5EC4900F70C79 /* MineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E9C5281DB5EC4900F70C79 /* MineHeaderView.xib */; };
 		84E9C5871DB5EC4900F70C79 /* MineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C52A1DB5EC4900F70C79 /* MineViewCell.m */; };
@@ -78,6 +81,7 @@
 		84E9C5C11DB5F05A00F70C79 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 84E9C5BD1DB5F05A00F70C79 /* address.json */; };
 		84E9C5C21DB5F05A00F70C79 /* LBB_AddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C5BF1DB5F05A00F70C79 /* LBB_AddressPickerView.m */; };
 		84E9C5C31DB5F05A00F70C79 /* LBB_AddressPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E9C5C01DB5F05A00F70C79 /* LBB_AddressPickerView.xib */; };
+		84FBE84A1DB7B1E80016C9AF /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBE8491DB7B1E80016C9AF /* AddAddressViewController.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -166,6 +170,11 @@
 		841406661DB7583400A1D904 /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
 		841406681DB75D8000A1D904 /* ExtractDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractDetailViewController.h; sourceTree = "<group>"; };
 		841406691DB75D8000A1D904 /* ExtractDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractDetailViewController.m; sourceTree = "<group>"; };
+		84B25B151DB7966E002EDA7F /* ReceiptAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptAddressViewController.h; sourceTree = "<group>"; };
+		84B25B161DB7966E002EDA7F /* ReceiptAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptAddressViewController.m; sourceTree = "<group>"; };
+		84B25B1B1DB797D2002EDA7F /* ReceiptAddressViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptAddressViewCell.h; sourceTree = "<group>"; };
+		84B25B1C1DB797D2002EDA7F /* ReceiptAddressViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptAddressViewCell.m; sourceTree = "<group>"; };
+		84B25B1D1DB797D2002EDA7F /* ReceiptAddressViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReceiptAddressViewCell.xib; sourceTree = "<group>"; };
 		84E9C5261DB5EC4900F70C79 /* MineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
 		84E9C5271DB5EC4900F70C79 /* MineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
 		84E9C5281DB5EC4900F70C79 /* MineHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineHeaderView.xib; sourceTree = "<group>"; };
@@ -246,6 +255,8 @@
 		84E9C5BE1DB5F05A00F70C79 /* LBB_AddressPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_AddressPickerView.h; sourceTree = "<group>"; };
 		84E9C5BF1DB5F05A00F70C79 /* LBB_AddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AddressPickerView.m; sourceTree = "<group>"; };
 		84E9C5C01DB5F05A00F70C79 /* LBB_AddressPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_AddressPickerView.xib; sourceTree = "<group>"; };
+		84FBE8481DB7B1E80016C9AF /* AddAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
+		84FBE8491DB7B1E80016C9AF /* AddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -490,6 +501,10 @@
 				84E9C5461DB5EC4900F70C79 /* LBB_UserNameViewController.m */,
 				84E9C5471DB5EC4900F70C79 /* PersonalCenterViewController.h */,
 				84E9C5481DB5EC4900F70C79 /* PersonalCenterViewController.m */,
+				84B25B151DB7966E002EDA7F /* ReceiptAddressViewController.h */,
+				84B25B161DB7966E002EDA7F /* ReceiptAddressViewController.m */,
+				84FBE8481DB7B1E80016C9AF /* AddAddressViewController.h */,
+				84FBE8491DB7B1E80016C9AF /* AddAddressViewController.m */,
 			);
 			path = PersonalCenter;
 			sourceTree = "<group>";
@@ -500,6 +515,9 @@
 				84E9C5421DB5EC4900F70C79 /* PersonalInfoCell.h */,
 				84E9C5431DB5EC4900F70C79 /* PersonalInfoCell.m */,
 				84E9C5441DB5EC4900F70C79 /* PersonalInfoCell.xib */,
+				84B25B1B1DB797D2002EDA7F /* ReceiptAddressViewCell.h */,
+				84B25B1C1DB797D2002EDA7F /* ReceiptAddressViewCell.m */,
+				84B25B1D1DB797D2002EDA7F /* ReceiptAddressViewCell.xib */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -1057,6 +1075,7 @@
 				C91F615A1D9F96CA004FE75C /* ST_SquareViewController.xib in Resources */,
 				C9C0E95A1D9948F100575A7C /* Main.storyboard in Resources */,
 				84E9C5911DB5EC4900F70C79 /* MineStoryboard.storyboard in Resources */,
+				84B25B1F1DB797D2002EDA7F /* ReceiptAddressViewCell.xib in Resources */,
 				84E9C5861DB5EC4900F70C79 /* MineHeaderView.xib in Resources */,
 				84E9C58F1DB5EC4900F70C79 /* IMG_0848.JPG in Resources */,
 				C91F61391D9F8B94004FE75C /* ST_HomeViewController.xib in Resources */,
@@ -1162,12 +1181,14 @@
 				1D293BB11DB4607D00ED2CBB /* NSDateFormatter+PoohCategory.m in Sources */,
 				1D293BCD1DB4680200ED2CBB /* DDFormatter.m in Sources */,
 				3C95E0651DB4C38100536704 /* ZJScrollPageView.m in Sources */,
+				84FBE84A1DB7B1E80016C9AF /* AddAddressViewController.m in Sources */,
 				1D293BB61DB4607D00ED2CBB /* UIImage+animatedGIF.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1D293BBB1DB4607D00ED2CBB /* UIConstants.m in Sources */,
 				1D293B6B1DB45E6D00ED2CBB /* PoohBaseViewController.m in Sources */,
 				84E9C59E1DB5EC4900F70C79 /* TicketDetailViewCell.m in Sources */,
 				84E9C5951DB5EC4900F70C79 /* LBB_UserNameViewController.m in Sources */,
+				84B25B1E1DB797D2002EDA7F /* ReceiptAddressViewCell.m in Sources */,
 				84E9C5B11DB5EC4900F70C79 /* ConvertiblePointsViewController.m in Sources */,
 				84E9C5A81DB5EC4900F70C79 /* BalanceViewController.m in Sources */,
 				84E9C5931DB5EC4900F70C79 /* PersonalInfoCell.m in Sources */,
@@ -1183,6 +1204,7 @@
 				84E9C58C1DB5EC4900F70C79 /* LBB_FightGroupViewController.m in Sources */,
 				84E9C5AF1DB5EC4900F70C79 /* CardDetailViewController.m in Sources */,
 				84E9C5B21DB5EC4900F70C79 /* PointsViewController.m in Sources */,
+				84B25B171DB7966E002EDA7F /* ReceiptAddressViewController.m in Sources */,
 				84E9C59D1DB5EC4900F70C79 /* SettingViewController.m in Sources */,
 				C9C0E9511D9948F100575A7C /* main.m in Sources */,
 				1D293BB31DB4607D00ED2CBB /* NSObject+PoohCommon.m in Sources */,

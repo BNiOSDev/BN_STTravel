@@ -19,7 +19,6 @@ typedef NS_ENUM(NSInteger,PersonalInfoType) {
     eSex, //性别
     eBirthDate,//出生日期
     eCity,//所在城市
-    eAddress ,// 收货地址
     ePassword //修改密码
 };
 
@@ -186,7 +185,7 @@ UITableViewDataSource
 
 - (void)showReceiptAddress:(id)sender
 {
-    
+    [self performSegueWithIdentifier:@"ReceiptAddressViewController" sender:sender];
 }
 
 - (void)showSexPickerMenu:(id)sender {
