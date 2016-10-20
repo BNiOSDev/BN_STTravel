@@ -7,11 +7,16 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "KSViewPagerView.h"
+
 
 @interface LBBHomeHotestTableViewCell : LBBPoohBaseTableViewCell
 
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, retain) KSViewPagerView* pagerView;
+-(void)setPagerViewHidden:(BOOL)isHidden;
+
 
 -(void)setreload;
 

@@ -343,7 +343,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             break;
         case LBBHomeSectionVisitProductType:
         {
-            cell = [self tableView:tableView hotSectionCellForRowAtIndexPath:indexPath];
+            cell = [self tableView:tableView visitProductCellForRowAtIndexPath:indexPath];
         }
             break;
         default:
@@ -422,7 +422,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
-        
+        [cell setPagerViewHidden:YES];
         [cell setreload];
         return cell;
     }
@@ -459,5 +459,38 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 
     return cell;
 }
+
+-(UITableViewCell*)tableView:(UITableView *)tableView visitProductCellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {
+        
+        static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
+        LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+            NSLog(@"LBBPoohCycleScrollCell nil");
+            
+        }
+        
+        [cell setCycleScrollViewUrls:nil];
+        
+        return cell;
+    }
+    else if (indexPath.row == 1){
+        static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
+        LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            NSLog(@"LBBHomeHotestTableViewCell nil");
+        }
+        [cell setPagerViewHidden:NO];
+        [cell setreload];
+        return cell;
+    }
+    else{
+        return nil;
+    }
+}
+
 
 @end

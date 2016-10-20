@@ -30,8 +30,32 @@
     WS(ws);
     if (self) {
         
-        [self setBackgroundColor:[UIColor grayColor]];
+        [self setBackgroundColor:[UIColor whiteColor]];
 
+        NSArray* segmentArray = @[@"景点",@"美食",@"民宿"];
+        
+        
+        KSViewPagerView* pagerView = [[KSViewPagerView alloc] initWithArray:segmentArray];
+        [self.contentView addSubview:pagerView];
+        [pagerView setActiveColor:[UIConstants getSecondaryTitleColor]];
+        [pagerView setInactiveColor:[UIConstants getSecondaryTitleColor]];
+        [pagerView setTitleFont:Font1];
+        [pagerView enableSeperatorView:NO];
+        [pagerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@35);
+            make.width.equalTo(@200);
+            make.top.centerX.equalTo(ws.contentView);
+        }];
+
+        pagerView.click = ^(KSViewPagerView*v, NSNumber *index){
+            
+            
+        };
+        [pagerView setCursorPosition:0];
+        self.pagerView = pagerView;
+        
+        
+        
         
         UICollectionViewFlowLayout *horizontalCellLayout = [UICollectionViewFlowLayout new];
         horizontalCellLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -55,8 +79,8 @@
         [self addSubview:_collectionView];
         
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(ws);
-            make.left.right.bottom.equalTo(ws);
+            make.top.equalTo(ws.pagerView.mas_bottom);
+            make.left.right.bottom.equalTo(ws.contentView);
          //   make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
         }];
 
@@ -106,9 +130,43 @@
 -(CGFloat)getCellHeight{
     
     CGFloat height = 0;
-    height = UISCREEN_WIDTH * 2/3;
+
+    if ([self.pagerView isHidden]) {
+        height = UISCREEN_WIDTH * 2/3;
+
+    }
+    else{
+        height = UISCREEN_WIDTH * 2/3 + 35;
+
+    }
+    
  //   NSLog(@"getCellHeight:%f",height);
     return height;
+}
+
+-(void)setPagerViewHidden:(BOOL)isHidden{
+    WS(ws);
+    if (isHidden) {
+        
+        self.pagerView.hidden = YES;
+        
+        [self.pagerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@0);
+            make.width.equalTo(@200);
+            make.top.centerX.equalTo(ws.contentView);
+        }];
+    }
+    else{
+        self.pagerView.hidden = NO;
+        
+        [self.pagerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@35);
+            make.width.equalTo(@200);
+            make.top.centerX.equalTo(ws.contentView);
+        }];
+    }
+    
+    [self.contentView layoutSubviews];
 }
 
 -(void)setreload{
