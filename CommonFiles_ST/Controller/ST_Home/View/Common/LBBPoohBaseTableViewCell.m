@@ -34,7 +34,7 @@
 
 -(CGFloat)getCellHeight{
     CGFloat height = 0;
-    NSLog(@"getCellHeight:%f",height);
+//    NSLog(@"getCellHeight:%f",height);
 
     return height;
 };

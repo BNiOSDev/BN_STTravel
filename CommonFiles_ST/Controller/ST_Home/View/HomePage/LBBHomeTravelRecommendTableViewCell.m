@@ -244,7 +244,7 @@
     
     CGFloat height = 0;
     height = UISCREEN_WIDTH * 3/4;
-    NSLog(@"getCellHeight:%f",height);
+   // NSLog(@"getCellHeight:%f",height);
     return height;
     
 }

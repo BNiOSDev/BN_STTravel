@@ -26,6 +26,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+
+        
         CGFloat interval = 8;
         
         self.portraitImageView = [UIImageView new];
@@ -102,7 +105,7 @@
 -(CGFloat)getCellHeight{
     
     CGFloat height = 70;
-    NSLog(@"getCellHeight:%f",height);
+  //  NSLog(@"getCellHeight:%f",height);
     return height;
 }
 

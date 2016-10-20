@@ -8,6 +8,8 @@
 
 #import "LBBSigninMainViewController.h"
 #import "LBBPoohGreatItemView.h"
+#import "LBB_SignInListViewController.h"
+#import "LBB_SignInRankListViewController.h"
 
 @interface LBBSigninMainViewController ()
 
@@ -142,5 +144,16 @@
         make.height.mas_equalTo(45);
     }];
 
+    
+    [ctr1 bk_whenTapped:^{
+        LBB_SignInListViewController* v = [[LBB_SignInListViewController alloc]init];
+        [ws.navigationController pushViewController:v animated:YES];
+    }];
+    
+    
+    [ctr2 bk_whenTapped:^{
+        LBB_SignInRankListViewController* v = [[LBB_SignInRankListViewController alloc]init];
+        [ws.navigationController pushViewController:v animated:YES];
+    }];
 }
 @end

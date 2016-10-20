@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBBPoohBaseTableViewCell.h"
+@interface LBB_SignInListCell : LBBPoohBaseTableViewCell
 
-@interface LBB_SignInListCell : UITableViewCell
+@property(nonatomic, retain)UIImageView* portraitImageView;
+@property(nonatomic, retain)UILabel* titleLabel;
+@property(nonatomic, retain)UILabel* subTitleLabel;
+@property(nonatomic, retain)UIButton* signinButton;
+@property(nonatomic, retain)UILabel* rankLabel;
+@property(nonatomic, retain)UIImageView* rankImageView;
+@property(nonatomic, retain)UIView* sep;
+
+@property(nonatomic, retain)id model;
+
+-(void)showSigninButton:(BOOL)show;
+
 
 @end
