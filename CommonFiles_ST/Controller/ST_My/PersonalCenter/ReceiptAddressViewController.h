@@ -2,7 +2,7 @@
 //  ReceiptAddressViewController.h
 //  ST_Travel
 //
-//  Created by dhxiang on 16/10/19.
+//  Created by Diana on 16/10/19.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 

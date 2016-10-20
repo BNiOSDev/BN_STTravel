@@ -32,6 +32,7 @@ UITableViewDataSource
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
 @property (strong, nonatomic) LBB_AddressPickerView *addressPicker;
 @property (strong, nonatomic) ActionSheetDatePicker *datePicker;
+@property (strong, nonatomic) UIView *exitLoginView;
 
 @end
 
@@ -117,6 +118,26 @@ UITableViewDataSource
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return [[UIView alloc] initWithFrame:CGRectZero];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 100.f;
+}
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (!self.exitLoginView) {
+        self.exitLoginView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, 100)];
+        UIButton *exitBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 30, DeviceWidth - 60, 50)];
+        [exitBtn setTitle:NSLocalizedString(@"退 出 登 录", nil) forState:UIControlStateNormal];
+        [exitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [exitBtn setBackgroundColor:RGBAHEX(0xCC9749, 1.0)];
+        [exitBtn addTarget:self
+                    action:@selector(exitLogin:)
+          forControlEvents:UIControlEventTouchUpInside];
+        [self.exitLoginView addSubview:exitBtn];
+        
+    }
+    return self.exitLoginView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -232,6 +253,11 @@ UITableViewDataSource
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void)changePassword:(id)sender
+{
+    [self performSegueWithIdentifier:@"ChangePasswordViewController" sender:sender];
+}
+
 - (void)birthDatePickerMenu:(id)sender
 {
     [ActionSheetDatePicker showPickerWithTitle:NSLocalizedString(@"选择日期", nil)
@@ -246,10 +272,7 @@ UITableViewDataSource
 
 }
 
-- (void)changePassword:(id)sender
-{
-    
-}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UIViewController *dstController =   segue.destinationViewController;
@@ -264,6 +287,13 @@ UITableViewDataSource
         ChangePhoneNumViewController *phoneVC = (ChangePhoneNumViewController*)dstController;
         phoneVC.baseViewType = eChangePhoneNum;
     }
+}
+
+
+#pragma mark - 退出登录
+- (void)exitLogin:(id)sender
+{
+    NSLog(@"\n 退出登录");
 }
 
 @end

@@ -82,6 +82,7 @@
 		84E9C5C21DB5F05A00F70C79 /* LBB_AddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9C5BF1DB5F05A00F70C79 /* LBB_AddressPickerView.m */; };
 		84E9C5C31DB5F05A00F70C79 /* LBB_AddressPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E9C5C01DB5F05A00F70C79 /* LBB_AddressPickerView.xib */; };
 		84EADCD41DB8EDD5003C8F0F /* ChangePhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EADCD31DB8EDD5003C8F0F /* ChangePhoneNumViewController.m */; };
+		84EADCD71DB8F89D003C8F0F /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EADCD61DB8F89D003C8F0F /* ChangePasswordViewController.m */; };
 		84FBE84A1DB7B1E80016C9AF /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBE8491DB7B1E80016C9AF /* AddAddressViewController.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
@@ -258,6 +259,8 @@
 		84E9C5C01DB5F05A00F70C79 /* LBB_AddressPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_AddressPickerView.xib; sourceTree = "<group>"; };
 		84EADCD21DB8EDD5003C8F0F /* ChangePhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneNumViewController.h; sourceTree = "<group>"; };
 		84EADCD31DB8EDD5003C8F0F /* ChangePhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneNumViewController.m; sourceTree = "<group>"; };
+		84EADCD51DB8F89D003C8F0F /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		84EADCD61DB8F89D003C8F0F /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		84FBE8481DB7B1E80016C9AF /* AddAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
 		84FBE8491DB7B1E80016C9AF /* AddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
@@ -510,6 +513,8 @@
 				84FBE8491DB7B1E80016C9AF /* AddAddressViewController.m */,
 				84EADCD21DB8EDD5003C8F0F /* ChangePhoneNumViewController.h */,
 				84EADCD31DB8EDD5003C8F0F /* ChangePhoneNumViewController.m */,
+				84EADCD51DB8F89D003C8F0F /* ChangePasswordViewController.h */,
+				84EADCD61DB8F89D003C8F0F /* ChangePasswordViewController.m */,
 			);
 			path = PersonalCenter;
 			sourceTree = "<group>";
@@ -1226,6 +1231,7 @@
 				3C95E0641DB4C38100536704 /* ZJCustomLabel.m in Sources */,
 				84E9C59B1DB5EC4900F70C79 /* SettingPrivaceViewController.m in Sources */,
 				C91F61341D9F8B77004FE75C /* ST_TabBarController.m in Sources */,
+				84EADCD71DB8F89D003C8F0F /* ChangePasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
