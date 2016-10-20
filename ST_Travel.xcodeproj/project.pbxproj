@@ -38,6 +38,7 @@
 		1D293C4C1DB60B0700ED2CBB /* KSViewPagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C4A1DB60B0700ED2CBB /* KSViewPagerView.m */; };
 		1D293C501DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C4F1DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.m */; };
 		1D293C541DB6411500ED2CBB /* LBBSigninMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293C531DB6411500ED2CBB /* LBBSigninMainViewController.m */; };
+		1DA26C081DB86BFD0044B9B1 /* LBB_SignInListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA26C071DB86BFD0044B9B1 /* LBB_SignInListCell.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -141,6 +142,8 @@
 		1D293C4F1DB614E900ED2CBB /* LBBNearbyMenuListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBBNearbyMenuListTableViewCell.m; path = nearBy/LBBNearbyMenuListTableViewCell.m; sourceTree = "<group>"; };
 		1D293C521DB6411500ED2CBB /* LBBSigninMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBBSigninMainViewController.h; path = signin/LBBSigninMainViewController.h; sourceTree = "<group>"; };
 		1D293C531DB6411500ED2CBB /* LBBSigninMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBBSigninMainViewController.m; path = signin/LBBSigninMainViewController.m; sourceTree = "<group>"; };
+		1DA26C061DB86BFD0044B9B1 /* LBB_SignInListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_SignInListCell.h; path = signIn/LBB_SignInListCell.h; sourceTree = "<group>"; };
+		1DA26C071DB86BFD0044B9B1 /* LBB_SignInListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_SignInListCell.m; path = signIn/LBB_SignInListCell.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 		1D293BE61DB4A09A00ED2CBB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1DA26C051DB86BBB0044B9B1 /* SignIn */,
 				1D293C4D1DB614A900ED2CBB /* nearBy */,
 				1D293C011DB4BFE200ED2CBB /* HomePage */,
 				1D293BE71DB4A09A00ED2CBB /* Common */,
@@ -351,6 +355,15 @@
 				1D293C531DB6411500ED2CBB /* LBBSigninMainViewController.m */,
 			);
 			name = signin;
+			sourceTree = "<group>";
+		};
+		1DA26C051DB86BBB0044B9B1 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				1DA26C061DB86BFD0044B9B1 /* LBB_SignInListCell.h */,
+				1DA26C071DB86BFD0044B9B1 /* LBB_SignInListCell.m */,
+			);
+			name = SignIn;
 			sourceTree = "<group>";
 		};
 		C91F612C1D9F8B77004FE75C /* ST_Home */ = {
@@ -911,6 +924,7 @@
 				1D293BB21DB4607D00ED2CBB /* NSDictionary+PoohCommon.m in Sources */,
 				C91F61551D9F96CA004FE75C /* ST_MallViewController.m in Sources */,
 				C91F61591D9F96CA004FE75C /* ST_SquareViewController.m in Sources */,
+				1DA26C081DB86BFD0044B9B1 /* LBB_SignInListCell.m in Sources */,
 				C91F61571D9F96CA004FE75C /* ST_MyViewController.m in Sources */,
 				1D293C291DB5B4F700ED2CBB /* LBBHomeHotestTableViewCell.m in Sources */,
 				C91F61341D9F8B77004FE75C /* ST_TabBarController.m in Sources */,

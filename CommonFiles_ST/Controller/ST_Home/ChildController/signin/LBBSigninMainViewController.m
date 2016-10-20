@@ -45,9 +45,9 @@
 -(void)loadCustomNavigationButton{
     self.title = @"旅游足迹";
     LBBPoohGreatItemView *sign = [[LBBPoohGreatItemView alloc] init];
-    [sign.iconView setImage:IMAGE(@"poohGreat")];
+    [sign.iconView setImage:IMAGE(@"ST_Sign_signIcon")];
     [sign.desLabel setText:@"签到"];
-    [sign setFrame:CGRectMake(0, 0, 55, 25)];
+    [sign setFrame:CGRectMake(0, 0, 65, 20)];
     [sign bk_addEventHandler:^(id sender){
         
         NSLog(@"sign touch");
@@ -96,17 +96,20 @@
     
     
     LBBPoohGreatItemView *signList = [[LBBPoohGreatItemView alloc] init];
-    [signList.iconView setImage:IMAGE(@"poohGreat")];
+    [signList.iconView setImage:IMAGE(@"ST_Sign_signList")];
     [signList.desLabel setText:@"签到列表"];
+    [signList.desLabel setFont:Font4];
+    
     
     LBBPoohGreatItemView *signRank = [[LBBPoohGreatItemView alloc] init];
-    [signRank.iconView setImage:IMAGE(@"poohGreat")];
+    [signRank.iconView setImage:IMAGE(@"ST_Sign_signRank")];
     [signRank.desLabel setText:@"签到排行"];
-    
+    [signRank.desLabel setFont:Font4];
+
     [ctr1 addSubview:signList];
     [signList mas_makeConstraints:^(MASConstraintMaker* make){
         make.center.equalTo(ctr1);
-        make.height.equalTo(@25);
+        make.height.equalTo(@18);
     }];
     
     [ctr2 addSubview:signRank];

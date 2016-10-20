@@ -60,12 +60,15 @@
         }];
        
         self.arrowImageView = [UIImageView new];
-        [self.arrowImageView setImage:IMAGE(@"poohArrow")];
+        [self.arrowImageView setImage:IMAGE(@"ST_Home_Arrow")];
+       // [self.arrowImageView setContentMode:UIViewContentModeCenter];
+
         [self.contentView addSubview:self.arrowImageView];
         [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker* make){
             make.right.equalTo(ws.contentView).offset(-interval);
             make.centerY.equalTo(ws.titleLabel);
-            make.width.height.equalTo(@20);
+            make.width.mas_equalTo(10);
+            make.height.equalTo(@15);
         }];
         
         self.descLabel = [UILabel new];
