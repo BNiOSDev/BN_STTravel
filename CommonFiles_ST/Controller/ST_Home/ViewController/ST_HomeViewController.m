@@ -84,7 +84,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     back.titleLabel.font = Font1;
     back.titleLabel.text = @"附近";
     back.frame = CGRectMake(0, 0, 45, 45);
-    [back.imageView setImage:IMAGE(@"PoohNearby")];
+    [back.imageView setImage:IMAGE(@"ST_Home_Nearby")];
     [back bk_whenTapped:^{
         
         NSLog(@"back touch");
@@ -98,7 +98,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     sign.titleLabel.font = Font1;
     sign.titleLabel.text = @"签到";
     sign.frame = CGRectMake(0, 0, 45, 45);
-    [sign.imageView setImage:IMAGE(@"PoohSign")];
+    [sign.imageView setImage:IMAGE(@"ST_Home_Signin")];
     [sign bk_whenTapped:^{
         
         NSLog(@"signButton touch");
@@ -142,13 +142,12 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
  */
 -(void)buildControls{
     self.sectionArray = @[
-                          @[@"",@""],
-                          @[@"热门推荐",@"poohtest"],
-                          @[@"游记推荐",@"poohtest"],
-                          @[@"达人推荐",@"poohtest"],
-                          @[@"广场中心",@"poohtest"],
-                          @[@"旅游产品",@"poohtest"],
-                          
+                          @"",
+                          @"热门推荐",
+                          @"游记推荐",
+                          @"达人推荐",
+                          @"广场中心",
+                          @"伴手礼推荐",
                           ];
     
     WS(ws);
@@ -199,7 +198,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     if (section == LBBHomeSectionMenuType) {
         return 0;
     }
-    return 40;
+    return 43;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -208,23 +207,38 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         return [UIView new];
     }
     UIView* v = [UIView new];
+    [v setBackgroundColor:[UIColor whiteColor]];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     [v setFrame:CGRectMake(0, 0, UISCREEN_WIDTH, height)];
     
-    LBBPoohBaseTableSectionHeaderView* header = [[LBBPoohBaseTableSectionHeaderView alloc]init];
-    [v addSubview:header];
-    [header.titleLabel setText:[[self.sectionArray objectAtIndex:section] objectAtIndex:0]];
-    [header.iconView setImage:IMAGE([[self.sectionArray objectAtIndex:section] objectAtIndex:1])];
-    [header mas_makeConstraints:^(MASConstraintMaker* make){
-        make.center.width.height.equalTo(v);
+    
+    UIImageView* img = [UIImageView new];
+    [img setImage:IMAGE([self.sectionArray objectAtIndex:section])];
+    [img setContentMode:UIViewContentModeCenter];
+    [v addSubview:img];
+    [img mas_makeConstraints:^(MASConstraintMaker* make){
+        make.center.height.width.equalTo(v);
+       // make.width.equalTo(@184);
     }];
     
-    [header.markButton bk_addEventHandler:^(id sender){
+    UIButton* btn = [UIButton new];
+    [btn setBackgroundImage:IMAGE(@"ST_Home_Arrow") forState:UIControlStateNormal];
+    [btn setContentMode:UIViewContentModeCenter];
+    [v addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.width.mas_equalTo(15);
+        make.height.equalTo(@22);
+        make.centerY.equalTo(v);
+        make.right.equalTo(v).offset(-16);
+    }];
     
-        NSLog(@" section header button click:%ld",section);
+    [btn bk_addEventHandler:^(id sender){
+    
+        NSLog(@"touch section header");
         
     } forControlEvents:UIControlEventTouchUpInside];
-    
+
     return v;
     
 }

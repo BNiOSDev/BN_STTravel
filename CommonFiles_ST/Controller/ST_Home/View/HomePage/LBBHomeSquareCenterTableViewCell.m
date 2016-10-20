@@ -71,7 +71,7 @@
 
         
         self.commentsView = [[LBBPoohGreatItemView alloc]init];
-        [self.commentsView.iconView setImage:IMAGE(@"poohComment")];
+        [self.commentsView.iconView setImage:IMAGE(@"ST_Home_Comments")];
         [self.commentsView.desLabel setText:@"32"];
         [sub addSubview:self.commentsView];
         [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
@@ -89,7 +89,7 @@
         
         
         self.greetView = [[LBBPoohGreatItemView alloc]init];
-        [self.greetView.iconView setImage:IMAGE(@"poohGreat")];
+        [self.greetView.iconView setImage:IMAGE(@"ST_Home_Great")];
         [self.greetView.desLabel setText:@"10"];
         [sub addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){

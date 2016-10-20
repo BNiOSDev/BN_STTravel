@@ -25,7 +25,7 @@
             
         self.iconView = [UIImageView new];
         [self.iconView setImage:IMAGE(@"poohtest")];
-       // [self.iconView setContentMode:UIViewContentModeCenter];
+     //   [self.iconView setContentMode:UIViewContentModeCenter];
         [self addSubview:self.iconView];
         [self.iconView mas_makeConstraints:^(MASConstraintMaker* make){
         
@@ -38,7 +38,7 @@
         [self.desLabel setTextColor:[UIConstants getSecondaryTitleColor]];
         [self addSubview:self.desLabel];
         [self.desLabel mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.equalTo(ws.iconView.mas_right).offset(1);
+            make.left.equalTo(ws.iconView.mas_right).offset(3);
             make.centerY.equalTo(ws);
             make.right.equalTo(ws);
         }];

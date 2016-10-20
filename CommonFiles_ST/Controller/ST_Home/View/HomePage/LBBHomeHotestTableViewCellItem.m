@@ -24,7 +24,7 @@
         }];
         
         self.favoriteButton = [UIButton new];
-        [self.favoriteButton setImage:IMAGE(@"PoohFavorite") forState:UIControlStateNormal];
+        [self.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
         [self.contentView addSubview:self.favoriteButton];
         [self.favoriteButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.equalTo(ws.contentView).offset(5);
@@ -47,10 +47,9 @@
             make.left.equalTo(ws.contentView);
             make.top.equalTo(ws.mainImageView.mas_bottom).offset(5);
         }];
-        [self.titleLabel setBackgroundColor:[UIColor redColor]];
 
         self.disView = [[LBBPoohGreatItemView alloc]init];
-        [self.disView.iconView setImage:IMAGE(@"poohComment")];
+        [self.disView.iconView setImage:IMAGE(@"ST_Home_Comments")];
         [self.disView.desLabel setText:@"1000"];
         [self.contentView addSubview:self.disView];
         [self.disView mas_makeConstraints:^(MASConstraintMaker* make){
@@ -58,7 +57,7 @@
             make.left.equalTo(ws.titleLabel);
             make.top.equalTo(ws.titleLabel.mas_bottom).offset(5);
             make.bottom.equalTo(ws.contentView).offset(-3);
-            make.height.equalTo(@25);
+            make.height.equalTo(@18);
         }];
         
         [self.disView bk_addEventHandler:^(id sender){
@@ -69,7 +68,7 @@
         
         
         self.greetView = [[LBBPoohGreatItemView alloc]init];
-        [self.greetView.iconView setImage:IMAGE(@"poohGreat")];
+        [self.greetView.iconView setImage:IMAGE(@"ST_Home_Great")];
         [self.greetView.desLabel setText:@"190"];
         [self.contentView addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){

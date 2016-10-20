@@ -26,11 +26,11 @@
     if (self) {
         
         NSArray* titleArray = @[@"攻略", @"景点",@"导游",@"美食",@"民宿",];
-        NSArray* iconArray = @[@"poohtest",@"poohtest",@"poohtest",@"poohtest",@"poohtest"];
+        NSArray* iconArray = @[@"ST_Home_Strategy",@"ST_Home_Tourism",@"ST_Home_TourGuide",@"ST_Home_Foods",@"ST_Home_HomeStay"];
         
         NSInteger count = [titleArray count];
-        CGFloat margineLeft = 16;
-        CGFloat margineTop = 8;
+        CGFloat margineLeft = 12;
+        CGFloat margineTop = 5;
         CGFloat width = (UISCREEN_WIDTH - (count+1)*margineLeft)/count;
         NSLog(@"width:%f",width);
         NSLog(@"UISCREEN_WIDTH:%f",UISCREEN_WIDTH);
@@ -68,7 +68,7 @@
 
 -(CGFloat)getCellHeight{
     
-    CGFloat height = 80;
+    CGFloat height = 60;
     NSLog(@"getCellHeight:%f",height);
     return height;
 }
