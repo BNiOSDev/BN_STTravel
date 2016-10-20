@@ -10,12 +10,15 @@
 #import "LBBPoohGreatItemView.h"
 #import "LBB_SignInListViewController.h"
 #import "LBB_SignInRankListViewController.h"
+#import "LBB_SigninPopView.h"
 
 @interface LBBSigninMainViewController ()
 
 @property(nonatomic, retain)UIView* mapView;
 
 @property(nonatomic, retain)UILabel* noteLable;
+
+@property(nonatomic, retain)LBB_SigninPopView* popView;
 
 @end
 
@@ -45,6 +48,8 @@
  * setup navigation bar view
  */
 -(void)loadCustomNavigationButton{
+    
+    WS(ws);
     self.title = @"旅游足迹";
     LBBPoohGreatItemView *sign = [[LBBPoohGreatItemView alloc] init];
     [sign.iconView setImage:IMAGE(@"ST_Sign_signIcon")];
@@ -53,6 +58,20 @@
     [sign bk_addEventHandler:^(id sender){
         
         NSLog(@"sign touch");
+        if (!ws.popView) {
+            ws.popView = [[LBB_SigninPopView alloc]init];
+        }
+        [ws.popView showPopView];
+        [ws.popView.signinButton bk_addEventHandler:^(id sender){
+            NSLog(@"ws.popView.signinButton touch");
+            
+            ws.popView.hidden = YES;
+            [ws.popView resignKeyWindow];
+            ws.popView = nil;
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        
         
     } forControlEvents:UIControlEventTouchUpInside];
     
