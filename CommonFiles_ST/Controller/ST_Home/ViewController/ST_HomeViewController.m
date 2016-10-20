@@ -151,7 +151,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
                           ];
     
     WS(ws);
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -193,10 +193,18 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     return self.sectionArray.count;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.001;
+}
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView* v = [UIView new];
+    return v;
+};
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
     if (section == LBBHomeSectionMenuType) {
-        return 0;
+        return 0.001;
     }
     return 43;
 }
@@ -239,6 +247,13 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         
     } forControlEvents:UIControlEventTouchUpInside];
 
+    
+    if ((section == LBBHomeSectionHotestType)
+        ||(section == LBBHomeSectionVipRecommendType)) {
+        btn.hidden = YES;
+    }
+    
+    
     return v;
     
 }
@@ -404,7 +419,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         if (cell == nil) {
             cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeHotestTableViewCell nil");
-
         }
         
         [cell setreload];
@@ -425,8 +439,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 
     }
     
-    [cell.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
-    [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg"] placeholderImage:IMAGE(@"poohtest")];
+    [cell setModel:nil];
 
     return cell;
    
@@ -439,10 +452,8 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         NSLog(@"LBBHomeSquareCenterTableViewCell nil");
         cell = [[LBBHomeSquareCenterTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
-    [cell.item2.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/h%3D200/sign=5c00db24cd95d143c576e32343f18296/03087bf40ad162d9ec74553b14dfa9ec8a13cd7a.jpg"] placeholderImage:IMAGE(@"poohtest")];
-    [cell.item2.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
-    [cell.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://a.hiphotos.baidu.com/image/pic/item/4b90f603738da97739bab10cb551f8198618e37b.jpg"] placeholderImage:IMAGE(@"poohtest")];
-    [cell.item1.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/a9d3fd1f4134970a9edd270890cad1c8a7865d6e.jpg"] placeholderImage:IMAGE(@"poohtest")];
+
+    [cell setModel:nil];
 
     return cell;
 }

@@ -105,7 +105,7 @@
 
 -(void)setScrollTextArray:(NSArray*)array{
 
-    [tView animationWithTexts:[NSArray arrayWithObjects:@"这是第1条",@"这是第2条",@"这是第3条", nil]];
+    [tView animationWithTexts:array/*[NSArray arrayWithObjects:@"这是第1条",@"这是第2条",@"这是第3条", nil]*/];
 
 }
 

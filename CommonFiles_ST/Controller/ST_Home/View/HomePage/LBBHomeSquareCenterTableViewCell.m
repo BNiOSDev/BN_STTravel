@@ -78,14 +78,14 @@
             
             make.right.equalTo(sub).offset(-3);
             make.centerY.equalTo(ws.portraitImageView);
-            make.height.equalTo(@20);
+            make.height.equalTo(@15);
         }];
         
-        [self.commentsView bk_addEventHandler:^(id sender){
+        [self.commentsView bk_whenTapped:^{
             
             NSLog(@"commentsView touch");
             
-        } forControlEvents:UIControlEventTouchUpInside];
+        }];
         
         
         self.greetView = [[LBBPoohGreatItemView alloc]init];
@@ -97,11 +97,11 @@
             make.right.equalTo(ws.commentsView.mas_left).offset(-3);
             make.centerY.height.equalTo(ws.commentsView);
         }];
-        [self.greetView bk_addEventHandler:^(id sender){
+        [self.greetView bk_whenTapped:^{
             
             NSLog(@"greetView touch");
             
-        } forControlEvents:UIControlEventTouchUpInside];
+        }];
         
         self.videoButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
         [self addSubview:self.videoButton];
@@ -155,7 +155,7 @@
         CGFloat interval = 8;
         [self.item1 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.contentView).offset(2*interval);
+            make.left.equalTo(ws.contentView).offset(interval);
             make.top.equalTo(ws.contentView);
         }];
         
@@ -178,6 +178,14 @@
 }
 
 
+-(void)setModel:(id)model{
+    
+    [self.item2.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
+    [self.item2.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
+    [self.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
+    [self.item1.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
+    
+}
 
 -(CGFloat)getCellHeight{
     

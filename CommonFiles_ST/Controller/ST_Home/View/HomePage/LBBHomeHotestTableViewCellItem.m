@@ -57,14 +57,14 @@
             make.left.equalTo(ws.titleLabel);
             make.top.equalTo(ws.titleLabel.mas_bottom).offset(5);
             make.bottom.equalTo(ws.contentView).offset(-3);
-            make.height.equalTo(@18);
+            make.height.equalTo(@16);
         }];
         
-        [self.disView bk_addEventHandler:^(id sender){
+        [self.disView bk_whenTapped:^{
             
             NSLog(@"disView touch");
             
-        } forControlEvents:UIControlEventTouchUpInside];
+        }];
         
         
         self.greetView = [[LBBPoohGreatItemView alloc]init];
@@ -76,17 +76,17 @@
             make.left.equalTo(ws.disView.mas_right).offset(8);
             make.centerY.height.equalTo(ws.disView);
         }];
-        [self.greetView bk_addEventHandler:^(id sender){
+        [self.greetView bk_whenTapped:^{
             
             NSLog(@"greetView touch");
             
-        } forControlEvents:UIControlEventTouchUpInside];
+        }];
         
         
         self.priceLabel = [UILabel new];
         [self.priceLabel setText:@"120元起/人"];
         [self.priceLabel setTextColor:[UIConstants getProminentFillColor]];
-        [self.priceLabel setFont:Font5];
+        [self.priceLabel setFont:Font2];
         [self.priceLabel setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:self.priceLabel];
         [self.priceLabel mas_makeConstraints:^(MASConstraintMaker* make){

@@ -26,4 +26,6 @@
 @property(nonatomic, retain)UIButton* specialLabelButton5;
 @property(nonatomic, retain)UIButton* specialLabelButton6;
 
+@property(nonatomic, retain)id model;
+
 @end

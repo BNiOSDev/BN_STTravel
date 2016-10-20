@@ -52,8 +52,8 @@
         [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.left.equalTo(ws.contentView).offset(16);
-            make.width.height.equalTo(@60);
-            make.top.equalTo(ws.bgImageView.mas_bottom).offset(-30);
+            make.width.height.equalTo(@45);
+            make.top.equalTo(ws.bgImageView.mas_bottom).offset(-45.0/2);
         }];
         
         self.userLable = [UILabel new];
@@ -82,16 +82,16 @@
         [self.contentView addSubview:self.commentsView];
         [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.equalTo(ws.contentView).offset(-3);
-            make.top.equalTo(ws.bgImageView.mas_bottom).offset(2);
-            make.height.equalTo(@18);
+            make.right.equalTo(ws.contentView).offset(-8);
+            make.top.equalTo(ws.bgImageView.mas_bottom).offset(5);
+            make.height.equalTo(@16);
         }];
         
-        [self.commentsView bk_addEventHandler:^(id sender){
+        [self.commentsView bk_whenTapped:^{
             
             NSLog(@"commentsView touch");
             
-        } forControlEvents:UIControlEventTouchUpInside];
+        }];
         
         
         self.greetView = [[LBBPoohGreatItemView alloc]init];
@@ -103,11 +103,11 @@
             make.right.equalTo(ws.commentsView.mas_left).offset(-3);
             make.centerY.height.equalTo(ws.commentsView);
         }];
-        [self.greetView bk_addEventHandler:^(id sender){
+        [self.greetView bk_whenTapped:^{
             
             NSLog(@"greetView touch");
             
-        } forControlEvents:UIControlEventTouchUpInside];
+        }];
         
         //specialLabelButton
         self.specialLabelButton1 = [UIButton new];
@@ -239,6 +239,12 @@
 }
 
 
+-(void)setModel:(id)model{
+    
+    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
+    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg"] placeholderImage:IMAGE(@"poohtest")];
+
+}
 
 -(CGFloat)getCellHeight{
     

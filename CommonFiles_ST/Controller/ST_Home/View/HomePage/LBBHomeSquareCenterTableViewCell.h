@@ -30,5 +30,7 @@
 @property(nonatomic, retain)LBBHomeSquareCenterTableViewCellItem* item2;
 @property(nonatomic, retain)UIView* sep;
 
+@property(nonatomic, retain)id model;
+
 
 @end
