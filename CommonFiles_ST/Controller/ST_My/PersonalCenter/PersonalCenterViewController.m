@@ -10,6 +10,7 @@
 #import "PersonalInfoCell.h"
 #import "LBB_AddressPickerView.h"
 #import "ActionSheetDatePicker.h"
+#import "ChangePhoneNumViewController.h"
 
 typedef NS_ENUM(NSInteger,PersonalInfoType) {
     eUserHead = 0,//头像
@@ -71,7 +72,7 @@ UITableViewDataSource
                                                                      @"ActionSender" : [NSNumber numberWithInt:eEditUserSignature]},
                                                                    @{@"Title": NSLocalizedString(@"手机号",nil),
                                                                      @"Desc" : @"1234**901",
-                                                                     @"Action":@"showTextFieldView:",
+                                                                     @"Action":@"showChangePhoneNum:",
                                                                      @"ActionSender" : [NSNumber numberWithInt:ePhoneNum]},
                                                                    @{@"Title": NSLocalizedString(@"性别",nil),
                                                                      @"Desc" : @"美女",
@@ -171,6 +172,11 @@ UITableViewDataSource
     [self performSegueWithIdentifier:@"LBB_UserNameViewController" sender:sender];
 }
 
+- (void)showChangePhoneNum:(id)sender
+{
+    [self performSegueWithIdentifier:@"ChangePhoneNumViewController" sender:nil];
+}
+
 - (void)showAddressPickerMenu:(id)sender
 {
     if (!self.addressPicker) {
@@ -247,11 +253,16 @@ UITableViewDataSource
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UIViewController *dstController =   segue.destinationViewController;
-    if ([dstController isKindOfClass:NSClassFromString(@"LBB_UserNameViewController")]) {
+    if ([dstController isKindOfClass:NSClassFromString(@"LBB_UserNameViewController")]){
         MineBaseViewController *baseVC = (MineBaseViewController*)dstController;
         if (sender && [sender isKindOfClass:[NSNumber class]]) {
             baseVC.baseViewType = [(NSNumber *)sender intValue];
         }
+    }else if([dstController isKindOfClass:NSClassFromString(@"ReceiptAddressViewController")]){
+        
+    }else if([dstController isKindOfClass:NSClassFromString(@"ChangePhoneNumViewController")]){
+        ChangePhoneNumViewController *phoneVC = (ChangePhoneNumViewController*)dstController;
+        phoneVC.baseViewType = eChangePhoneNum;
     }
 }
 

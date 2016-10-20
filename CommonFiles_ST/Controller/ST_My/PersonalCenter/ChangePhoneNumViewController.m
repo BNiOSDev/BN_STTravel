@@ -8,7 +8,18 @@
 
 #import "ChangePhoneNumViewController.h"
 
-@interface ChangePhoneNumViewController ()
+@interface ChangePhoneNumViewController ()<
+UITextFieldDelegate
+>
+@property (weak, nonatomic) IBOutlet UILabel *phoneTipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNumLabel;
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
+
+@property (weak, nonatomic) IBOutlet UILabel *checkTipLabel;
+@property (weak, nonatomic) IBOutlet UITextField *checkNumTextField;
+@property (weak, nonatomic) IBOutlet UIButton *getCheckNumBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 
 @end
 
@@ -17,6 +28,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if (self.baseViewType == eChangePhoneNum) {
+        self.phoneNumLabel.hidden = NO;
+        self.phoneNumTextField.hidden = YES;
+        self.phoneNumTextField.userInteractionEnabled = NO;
+    }else if (self.baseViewType == eCheckPhoneNum)  {
+        self.phoneNumLabel.hidden = YES;
+        self.phoneNumTextField.hidden = NO;
+        [self.nextBtn setTitle:NSLocalizedString(@"绑定", nil) forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +44,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - UI Action
+- (IBAction)getCheckNumBtnClickAction:(id)sender {
+    
 }
-*/
+
+- (IBAction)nextBtnClickAction:(id)sender {
+    if (self.baseViewType == eChangePhoneNum) {
+        UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+        ChangePhoneNumViewController *phoneVC = [main instantiateViewControllerWithIdentifier:@"ChangePhoneNumViewController"];
+        phoneVC.baseViewType = eEditUserSignature;
+        [self.navigationController pushViewController:phoneVC animated:YES];
+    }else {
+        //请求后台进行绑定后跳转到前一页
+        //Todo
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
+
+#pragma mark - textField delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    return YES;
+}
 
 @end
