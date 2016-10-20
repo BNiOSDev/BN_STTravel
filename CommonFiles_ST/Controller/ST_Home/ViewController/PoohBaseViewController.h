@@ -7,6 +7,7 @@
 //
 
 #import "Base_BaseViewController.h"
+#import "PoohCommon.h"
 
 @interface PoohBaseViewController : Base_BaseViewController
 

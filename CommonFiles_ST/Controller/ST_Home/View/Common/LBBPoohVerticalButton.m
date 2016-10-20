@@ -7,6 +7,7 @@
 //
 
 #import "LBBPoohVerticalButton.h"
+#import "PoohCommon.h"
 
 @implementation LBBPoohVerticalButton
 

@@ -7,6 +7,7 @@
 //
 
 #import <SWTableViewCell/SWTableViewCell.h>
+#import "PoohCommon.h"
 
 @interface LBBPoohBaseTableViewCell : UITableViewCell
 

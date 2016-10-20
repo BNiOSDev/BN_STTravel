@@ -7,6 +7,7 @@
 //
 
 #import "LBBHomeHotestTableViewCellItem.h"
+#import "PoohCommon.h"
 
 @implementation LBBHomeHotestTableViewCellItem
 

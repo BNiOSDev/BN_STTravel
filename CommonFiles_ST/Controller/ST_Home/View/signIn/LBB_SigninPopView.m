@@ -7,6 +7,7 @@
 //
 
 #import "LBB_SigninPopView.h"
+#import "PoohCommon.h"
 
 @implementation LBB_SigninPopView
 

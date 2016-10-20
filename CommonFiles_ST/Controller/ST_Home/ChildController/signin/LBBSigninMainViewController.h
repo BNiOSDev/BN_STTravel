@@ -6,7 +6,7 @@
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "Base_BaseViewController.h"
+#import "PoohBaseViewController.h"
 
 @interface LBBSigninMainViewController : Base_BaseViewController
 

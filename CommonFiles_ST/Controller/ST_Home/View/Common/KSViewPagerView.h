@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PoohCommon.h"
 
 @interface KSViewPagerView : UIView
 

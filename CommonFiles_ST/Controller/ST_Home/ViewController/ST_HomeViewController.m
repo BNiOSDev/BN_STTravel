@@ -7,6 +7,8 @@
 //
 
 #import "ST_HomeViewController.h"
+#import "PoohCommon.h"
+
 #import "ST_TabBarController.h"
 #import "LBBPoohVerticalButton.h"
 

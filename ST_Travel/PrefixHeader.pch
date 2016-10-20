@@ -16,8 +16,6 @@
 
 #import "QJTL_Global.h"
 
-#import "PoohCommon.h"
-
 #endif
 
 #endif /* PrefixHeader_pch */

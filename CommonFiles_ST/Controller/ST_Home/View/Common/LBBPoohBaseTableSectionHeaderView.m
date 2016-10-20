@@ -7,6 +7,7 @@
 //
 
 #import "LBBPoohBaseTableSectionHeaderView.h"
+#import "PoohCommon.h"
 
 @implementation LBBPoohBaseTableSectionHeaderView
 
