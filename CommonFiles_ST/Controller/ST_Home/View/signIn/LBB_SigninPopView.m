@@ -106,4 +106,23 @@
     
 }
 
+-(void)setSigninStatus:(BOOL)signin{
+
+    if (signin) {
+        self.signinButton.layer.borderColor = [UIConstants getProminentFillColor].CGColor;
+        [self.signinButton setTitle:@"已签到" forState:UIControlStateNormal];
+        [self.signinButton setTitleColor:[UIConstants getProminentFillColor] forState:UIControlStateNormal];
+        [self.signinButton setUserInteractionEnabled:NO];
+    }
+    else{
+        self.signinButton.layer.borderColor = [UIConstants getSeperatorLineColor].CGColor;
+        [self.signinButton setTitle:@"签到" forState:UIControlStateNormal];
+        [self.signinButton setTitleColor:[UIConstants getSecondaryTitleColor] forState:UIControlStateNormal];
+    }
+    
+}
+
+
+
+
 @end

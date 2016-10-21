@@ -65,10 +65,12 @@
         [ws.popView.signinButton bk_addEventHandler:^(id sender){
             NSLog(@"ws.popView.signinButton touch");
             
-            ws.popView.hidden = YES;
-            [ws.popView resignKeyWindow];
-            ws.popView = nil;
-            
+            [ws.popView setSigninStatus:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                ws.popView.hidden = YES;
+                [ws.popView resignKeyWindow];
+                ws.popView = nil;
+            });
         } forControlEvents:UIControlEventTouchUpInside];
         
         

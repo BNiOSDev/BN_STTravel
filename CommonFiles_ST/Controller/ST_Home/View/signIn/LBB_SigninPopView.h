@@ -15,7 +15,7 @@
 
 -(void)showPopView;
 -(void)dismissPopView;
-
+-(void)setSigninStatus:(BOOL)signin;
 
 @end
 
