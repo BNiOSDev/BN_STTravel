@@ -8,6 +8,7 @@
 
 #import "LBBHomeMenuTableViewCell.h"
 #import "LBBPoohVerticalButton.h"
+#import "LBB_DiscoveryMainViewController.h"
 
 @implementation LBBHomeMenuTableViewCell
 
@@ -55,6 +56,19 @@
             [btn bk_addEventHandler:^(LBBPoohVerticalButton* sender){
                 
                 NSLog(@"touch button %ld",sender.tag);
+                
+                UIViewController* dest;
+                
+                switch (sender.tag) {
+                    case 0://攻略
+                        dest = [[LBB_DiscoveryMainViewController alloc] init];
+                        break;
+                        
+                    default:
+                        break;
+                }
+                [[ws getViewController].navigationController pushViewController:dest animated:YES];
+                
             
             } forControlEvents:UIControlEventTouchUpInside];
             

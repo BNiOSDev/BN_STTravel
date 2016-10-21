@@ -42,6 +42,9 @@
 		1DA26C0B1DB8704B0044B9B1 /* LBB_SignInListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA26C0A1DB8704B0044B9B1 /* LBB_SignInListViewController.m */; };
 		1DA26C0E1DB874D70044B9B1 /* LBB_SignInRankListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA26C0D1DB874D70044B9B1 /* LBB_SignInRankListViewController.m */; };
 		1DA26C1E1DB8B4700044B9B1 /* LBB_SigninPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA26C1D1DB8B4700044B9B1 /* LBB_SigninPopView.m */; };
+		1DF0AB7B1DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0AB7A1DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.m */; };
+		1DF0AB921DBA15FF003D78D2 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0AB8F1DBA15FF003D78D2 /* UITableView+SDAutoTableViewCellHeight.m */; };
+		1DF0AB931DBA15FF003D78D2 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0AB911DBA15FF003D78D2 /* UIView+SDAutoLayout.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -153,6 +156,13 @@
 		1DA26C0D1DB874D70044B9B1 /* LBB_SignInRankListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_SignInRankListViewController.m; path = signin/LBB_SignInRankListViewController.m; sourceTree = "<group>"; };
 		1DA26C1C1DB8B4700044B9B1 /* LBB_SigninPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_SigninPopView.h; path = signIn/LBB_SigninPopView.h; sourceTree = "<group>"; };
 		1DA26C1D1DB8B4700044B9B1 /* LBB_SigninPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_SigninPopView.m; path = signIn/LBB_SigninPopView.m; sourceTree = "<group>"; };
+		1DF0AB791DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_DiscoveryMainViewController.h; path = Discovery/LBB_DiscoveryMainViewController.h; sourceTree = "<group>"; };
+		1DF0AB7A1DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_DiscoveryMainViewController.m; path = Discovery/LBB_DiscoveryMainViewController.m; sourceTree = "<group>"; };
+		1DF0AB8D1DBA15FF003D78D2 /* SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAutoLayout.h; sourceTree = "<group>"; };
+		1DF0AB8E1DBA15FF003D78D2 /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
+		1DF0AB8F1DBA15FF003D78D2 /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
+		1DF0AB901DBA15FF003D78D2 /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
+		1DF0AB911DBA15FF003D78D2 /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -229,7 +239,7 @@
 		1D293B941DB4607D00ED2CBB /* Pooh */ = {
 			isa = PBXGroup;
 			children = (
-				1D293BBE1DB4671700ED2CBB /* Utilities */,
+				1DF0AB8C1DBA15FF003D78D2 /* SDAutoLayout */,
 				1D293B951DB4607D00ED2CBB /* Category */,
 				1D293BA81DB4607D00ED2CBB /* Constants */,
 				1D293BAF1DB4607D00ED2CBB /* PoohCommon.h */,
@@ -271,13 +281,6 @@
 				1D293BAE1DB4607D00ED2CBB /* UIConstants.m */,
 			);
 			path = Constants;
-			sourceTree = "<group>";
-		};
-		1D293BBE1DB4671700ED2CBB /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		1D293BE61DB4A09A00ED2CBB /* View */ = {
@@ -381,6 +384,27 @@
 			name = SignIn;
 			sourceTree = "<group>";
 		};
+		1DF0AB781DB9FE43003D78D2 /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				1DF0AB791DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.h */,
+				1DF0AB7A1DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.m */,
+			);
+			name = Discovery;
+			sourceTree = "<group>";
+		};
+		1DF0AB8C1DBA15FF003D78D2 /* SDAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				1DF0AB8D1DBA15FF003D78D2 /* SDAutoLayout.h */,
+				1DF0AB8E1DBA15FF003D78D2 /* UITableView+SDAutoTableViewCellHeight.h */,
+				1DF0AB8F1DBA15FF003D78D2 /* UITableView+SDAutoTableViewCellHeight.m */,
+				1DF0AB901DBA15FF003D78D2 /* UIView+SDAutoLayout.h */,
+				1DF0AB911DBA15FF003D78D2 /* UIView+SDAutoLayout.m */,
+			);
+			path = SDAutoLayout;
+			sourceTree = "<group>";
+		};
 		C91F612C1D9F8B77004FE75C /* ST_Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +420,7 @@
 		C91F612D1D9F8B77004FE75C /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				1DF0AB781DB9FE43003D78D2 /* Discovery */,
 				1D293C511DB640DE00ED2CBB /* signin */,
 				1D293C2D1DB5B51600ED2CBB /* nearBy */,
 				1D293C301DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m */,
@@ -908,6 +933,7 @@
 				1D293BBA1DB4607D00ED2CBB /* IConstants.m in Sources */,
 				1D293BB71DB4607D00ED2CBB /* UIImage+PoohCommon.m in Sources */,
 				1DA26C0B1DB8704B0044B9B1 /* LBB_SignInListViewController.m in Sources */,
+				1DF0AB7B1DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.m in Sources */,
 				C91F61381D9F8B94004FE75C /* ST_HomeViewController.m in Sources */,
 				1D293BEA1DB4A09A00ED2CBB /* LBBPoohVerticalButton.m in Sources */,
 				1D293C131DB4D3EE00ED2CBB /* GYChangeTextView.m in Sources */,
@@ -917,6 +943,7 @@
 				1D293BB81DB4607D00ED2CBB /* UIViewExt.m in Sources */,
 				1D293C281DB5B4F700ED2CBB /* LBBHomeHotestTableViewCellItem.m in Sources */,
 				1D293BF41DB4A4FA00ED2CBB /* LBBPoohCycleScrollCell.m in Sources */,
+				1DF0AB931DBA15FF003D78D2 /* UIView+SDAutoLayout.m in Sources */,
 				1D293C331DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m in Sources */,
 				1D293BB01DB4607D00ED2CBB /* NSDate+PoohCategory.m in Sources */,
 				1D293C321DB5B51600ED2CBB /* LBBNearbyMainViewController.m in Sources */,
@@ -925,6 +952,7 @@
 				1D293BB61DB4607D00ED2CBB /* UIImage+animatedGIF.m in Sources */,
 				1D293C2C1DB5B50000ED2CBB /* LBBPoohGreatItemView.m in Sources */,
 				1D293C4C1DB60B0700ED2CBB /* KSViewPagerView.m in Sources */,
+				1DF0AB921DBA15FF003D78D2 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1D293C491DB5F81700ED2CBB /* LBBHomeSquareCenterTableViewCell.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1D293C541DB6411500ED2CBB /* LBBSigninMainViewController.m in Sources */,
