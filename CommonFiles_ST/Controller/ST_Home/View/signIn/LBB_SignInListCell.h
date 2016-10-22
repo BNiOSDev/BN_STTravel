@@ -17,10 +17,12 @@
 @property(nonatomic, retain)UILabel* rankLabel;
 @property(nonatomic, retain)UIImageView* rankImageView;
 @property(nonatomic, retain)UIView* sep;
+@property(nonatomic, retain)UIImageView* arrowImageView;
 
 @property(nonatomic, retain)id model;
 
 -(void)showSigninButton:(BOOL)show;
-
+-(void)showRankMsg:(BOOL)show;
+-(void)showArrowImageView:(BOOL)show;
 
 @end

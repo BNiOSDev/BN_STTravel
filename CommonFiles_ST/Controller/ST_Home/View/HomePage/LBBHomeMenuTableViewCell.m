@@ -33,8 +33,6 @@
         CGFloat margineLeft = 12;
         CGFloat margineTop = 5;
         CGFloat width = (UISCREEN_WIDTH - (count+1)*margineLeft)/count;
-        NSLog(@"width:%f",width);
-        NSLog(@"UISCREEN_WIDTH:%f",UISCREEN_WIDTH);
 
         for (int i = 0 ; i<count; i++) {
             

@@ -79,7 +79,6 @@
             make.width.equalTo(@80);
         }];
         
-        
         self.rankLabel = [UILabel new];
         [self.rankLabel setFont:Font1];
         [self.rankLabel setTextColor:[UIConstants getSecondaryTitleColor]];
@@ -91,7 +90,6 @@
             make.centerY.equalTo(ws.contentView);
         }];
         
-        
         self.rankImageView = [UIImageView new];
         [self.rankImageView setImage:IMAGE(@"ST_Sign_Num1Icon")];
         [self.contentView addSubview:self.rankImageView];
@@ -102,7 +100,16 @@
             make.height.equalTo(@25);
         }];
         
-        
+        self.arrowImageView = [UIImageView new];
+        [self.arrowImageView setImage:IMAGE(@"ST_Home_Arrow")];
+        [self.contentView addSubview:self.arrowImageView];
+        [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker* make){
+            make.centerY.equalTo(ws.contentView);
+            make.right.equalTo(ws.contentView).offset(-8);
+            make.width.mas_equalTo(10);
+            make.height.equalTo(@15);
+        }];
+
         self.sep = [UIView new];
         [self.sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
         [self.contentView addSubview:self.sep];
@@ -113,6 +120,10 @@
         
         [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
 
+        self.arrowImageView.hidden = YES;
+        self.signinButton.hidden = YES;
+        self.rankLabel.hidden = YES;
+        self.rankImageView.hidden = YES;
         
     }
     return self;
@@ -123,15 +134,32 @@
     
     if (show) {
         self.signinButton.hidden = NO;
-        self.rankLabel.hidden = YES;
-        self.rankImageView.hidden = YES;
     }
     else{
         self.signinButton.hidden = YES;
+    }
+}
+
+-(void)showRankMsg:(BOOL)show{
+    
+    if (show) {
         self.rankLabel.hidden = NO;
         self.rankImageView.hidden = NO;
     }
+    else{
+        self.rankLabel.hidden = YES;
+        self.rankImageView.hidden = YES;
+    }
+}
+
+-(void)showArrowImageView:(BOOL)show{
     
+    if (show) {
+        self.arrowImageView.hidden = NO;
+    }
+    else{
+        self.arrowImageView.hidden = YES;
+    }
 }
 
 -(void)setModel:(id)model{

@@ -48,6 +48,9 @@
 		1DF0AB981DBA1C5F003D78D2 /* LBB_DiscoveryMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0AB971DBA1C5F003D78D2 /* LBB_DiscoveryMainModel.m */; };
 		1DF0AB9B1DBA1D40003D78D2 /* LBB_DiscoveryMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0AB9A1DBA1D40003D78D2 /* LBB_DiscoveryMainTableViewCell.m */; };
 		1DF0AB9F1DBB0297003D78D2 /* PoohAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0AB9E1DBB0297003D78D2 /* PoohAppHelper.m */; };
+		1DF0ABA21DBB1758003D78D2 /* LBB_DiscoveryCustomizedSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0ABA11DBB1758003D78D2 /* LBB_DiscoveryCustomizedSelectView.m */; };
+		1DF0ABA51DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0ABA41DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.m */; };
+		1DF0ABA91DBB4B83003D78D2 /* LBB_AddressAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0ABA81DBB4B83003D78D2 /* LBB_AddressAddViewController.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -172,6 +175,12 @@
 		1DF0AB9A1DBA1D40003D78D2 /* LBB_DiscoveryMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_DiscoveryMainTableViewCell.m; path = Discovery/LBB_DiscoveryMainTableViewCell.m; sourceTree = "<group>"; };
 		1DF0AB9D1DBB0297003D78D2 /* PoohAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohAppHelper.h; sourceTree = "<group>"; };
 		1DF0AB9E1DBB0297003D78D2 /* PoohAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohAppHelper.m; sourceTree = "<group>"; };
+		1DF0ABA01DBB1758003D78D2 /* LBB_DiscoveryCustomizedSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_DiscoveryCustomizedSelectView.h; path = Discovery/LBB_DiscoveryCustomizedSelectView.h; sourceTree = "<group>"; };
+		1DF0ABA11DBB1758003D78D2 /* LBB_DiscoveryCustomizedSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_DiscoveryCustomizedSelectView.m; path = Discovery/LBB_DiscoveryCustomizedSelectView.m; sourceTree = "<group>"; };
+		1DF0ABA31DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_DiscoveryCustomizedViewController.h; path = Discovery/LBB_DiscoveryCustomizedViewController.h; sourceTree = "<group>"; };
+		1DF0ABA41DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_DiscoveryCustomizedViewController.m; path = Discovery/LBB_DiscoveryCustomizedViewController.m; sourceTree = "<group>"; };
+		1DF0ABA71DBB4B83003D78D2 /* LBB_AddressAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_AddressAddViewController.h; path = Common/LBB_AddressAddViewController.h; sourceTree = "<group>"; };
+		1DF0ABA81DBB4B83003D78D2 /* LBB_AddressAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_AddressAddViewController.m; path = Common/LBB_AddressAddViewController.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -400,6 +409,8 @@
 			children = (
 				1DF0AB791DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.h */,
 				1DF0AB7A1DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.m */,
+				1DF0ABA31DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.h */,
+				1DF0ABA41DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.m */,
 			);
 			name = Discovery;
 			sourceTree = "<group>";
@@ -421,6 +432,8 @@
 			children = (
 				1DF0AB991DBA1D40003D78D2 /* LBB_DiscoveryMainTableViewCell.h */,
 				1DF0AB9A1DBA1D40003D78D2 /* LBB_DiscoveryMainTableViewCell.m */,
+				1DF0ABA01DBB1758003D78D2 /* LBB_DiscoveryCustomizedSelectView.h */,
+				1DF0ABA11DBB1758003D78D2 /* LBB_DiscoveryCustomizedSelectView.m */,
 			);
 			name = Discovery;
 			sourceTree = "<group>";
@@ -443,6 +456,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		1DF0ABA61DBB4B58003D78D2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1DF0ABA71DBB4B83003D78D2 /* LBB_AddressAddViewController.h */,
+				1DF0ABA81DBB4B83003D78D2 /* LBB_AddressAddViewController.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		C91F612C1D9F8B77004FE75C /* ST_Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +480,7 @@
 		C91F612D1D9F8B77004FE75C /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				1DF0ABA61DBB4B58003D78D2 /* Common */,
 				1DF0AB781DB9FE43003D78D2 /* Discovery */,
 				1D293C511DB640DE00ED2CBB /* signin */,
 				1D293C2D1DB5B51600ED2CBB /* nearBy */,
@@ -983,8 +1006,10 @@
 				1D293C281DB5B4F700ED2CBB /* LBBHomeHotestTableViewCellItem.m in Sources */,
 				1D293BF41DB4A4FA00ED2CBB /* LBBPoohCycleScrollCell.m in Sources */,
 				1DF0AB981DBA1C5F003D78D2 /* LBB_DiscoveryMainModel.m in Sources */,
+				1DF0ABA91DBB4B83003D78D2 /* LBB_AddressAddViewController.m in Sources */,
 				1DF0AB931DBA15FF003D78D2 /* UIView+SDAutoLayout.m in Sources */,
 				1D293C331DB5B51600ED2CBB /* LBBHomeSearchResultViewController.m in Sources */,
+				1DF0ABA51DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.m in Sources */,
 				1D293BB01DB4607D00ED2CBB /* NSDate+PoohCategory.m in Sources */,
 				1D293C321DB5B51600ED2CBB /* LBBNearbyMainViewController.m in Sources */,
 				1D293BF11DB4A37F00ED2CBB /* LBBPoohBaseTableViewCell.m in Sources */,
@@ -1006,6 +1031,7 @@
 				1D293C461DB5D3B100ED2CBB /* LBBHomeTravelRecommendTableViewCell.m in Sources */,
 				C9C0E9511D9948F100575A7C /* main.m in Sources */,
 				1D293BB31DB4607D00ED2CBB /* NSObject+PoohCommon.m in Sources */,
+				1DF0ABA21DBB1758003D78D2 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
 				1DA26C0E1DB874D70044B9B1 /* LBB_SignInRankListViewController.m in Sources */,
 				1D293BB51DB4607D00ED2CBB /* UIColor+PoohCommon.m in Sources */,
 				1D293BB21DB4607D00ED2CBB /* NSDictionary+PoohCommon.m in Sources */,

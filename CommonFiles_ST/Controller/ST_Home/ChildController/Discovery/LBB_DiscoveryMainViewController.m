@@ -9,6 +9,7 @@
 #import "LBB_DiscoveryMainViewController.h"
 #import "SDCycleScrollView.h"
 #import "LBB_DiscoveryMainTableViewCell.h"
+#import "LBB_DiscoveryCustomizedViewController.h"
 
 static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell.h";
 
@@ -159,6 +160,15 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell.h";
         make.height.mas_equalTo(5*margin);
         make.width.equalTo(@120);
     }];
+    [b bk_addEventHandler:^(id sender){
+        
+        
+        LBB_DiscoveryCustomizedViewController* dest = [[LBB_DiscoveryCustomizedViewController alloc]init];
+        [ws.navigationController pushViewController:dest animated:YES];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
     UIView* sep = [UIView new];
     [sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
@@ -257,7 +267,6 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell.h";
     
     LBB_DiscoveryMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
    
-    
     cell.model = [self.dataArray objectAtIndex:indexPath.row];
     
     return cell;

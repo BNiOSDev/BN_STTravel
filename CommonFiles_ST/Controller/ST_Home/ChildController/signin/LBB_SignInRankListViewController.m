@@ -104,7 +104,7 @@
         cell = [[LBB_SignInListCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_SignInListCell nil");
     }*/
-    [cell showSigninButton:NO];
+    [cell showRankMsg:YES];
         
     return cell;
     
