@@ -224,6 +224,19 @@
         
     }];
     
+    [submit bk_addEventHandler:^(id sender){
+        
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"定制路线成功" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
+            
+            [ws.navigationController popViewControllerAnimated:YES];
+            
+        }];
+        [alert addAction:ok];
+        [ws.navigationController presentViewController:alert animated:YES completion:nil];
+    
+    } forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 
