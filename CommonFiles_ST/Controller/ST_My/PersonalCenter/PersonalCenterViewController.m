@@ -13,9 +13,7 @@
 #import "ChangePhoneNumViewController.h"
 
 typedef NS_ENUM(NSInteger,PersonalInfoType) {
-    eUserHead = 0,//头像
-    eUserName, //用户名
-    eUserSignature, //个人签名
+    eUserHead = 1000,//头像
     ePhoneNum, //手机号
     eSex, //性别
     eBirthDate,//出生日期
@@ -97,6 +95,21 @@ UITableViewDataSource
                                                                      @"ActionSender" : [NSNumber numberWithInt:ePassword]}
                                                                    ]];
     
+}
+- (void)reloadTableView:(NSInteger)type content:(NSString*)contentStr
+{
+    for (NSInteger i = 0; i < self.dataSourceArray.count; i++)  {
+        NSDictionary *tmpDict = (NSDictionary*)[self.dataSourceArray objectAtIndex:i];
+        if ([[tmpDict objectForKey:@"ActionSender"] intValue] == type) {
+            NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithObjects:[tmpDict allValues]
+                                                                              forKeys:[tmpDict allKeys]];
+            [newDict setObject:contentStr forKey:@"Desc"];
+            [self.dataSourceArray replaceObjectAtIndex:i  withObject:newDict];
+            [self.tableView reloadData];
+            break;
+        }
+       
+    }
 }
 
 #pragma mark - tableView delegate
@@ -208,6 +221,12 @@ UITableViewDataSource
     }
   
     [self.addressPicker showPickerView];
+    __weak typeof (self) weakSelf = self;
+    self.addressPicker.myBlock = ^(NSString *address,NSArray *selections){
+        if (address && [address length]) {
+            [weakSelf reloadTableView:eCity content:address];
+        }
+    };
 }
 
 - (void)showReceiptAddress:(id)sender
@@ -229,19 +248,19 @@ UITableViewDataSource
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction *action) {
-        NSLog(@"The \"Okay/Cancel\" alert's cancel action occured.");
+        [self reloadTableView:eSex content:NSLocalizedString(@"保密", nil)];
     }];
     
     UIAlertAction *otherAction = [UIAlertAction actionWithTitle:otherButtonTitle
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction *action) {
-        NSLog(@"The \"Okay/Cancel\" alert's other action occured.");
+         [self reloadTableView:eSex content:NSLocalizedString(@"帅哥", nil)];
     }];
     
     UIAlertAction *otherAction1 = [UIAlertAction actionWithTitle:otherButtonTitle1
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
-        NSLog(@"The \"Okay/Cancel\" alert's other action occured.");
+       [self reloadTableView:eSex content:NSLocalizedString(@"美女", nil)];
     }];
     
     
@@ -260,11 +279,13 @@ UITableViewDataSource
 
 - (void)birthDatePickerMenu:(id)sender
 {
+    __weak typeof (self) weakSelf = self;
     [ActionSheetDatePicker showPickerWithTitle:NSLocalizedString(@"选择日期", nil)
                                 datePickerMode:UIDatePickerModeDate
                                   selectedDate:[NSDate date]
                                      doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
                                          NSLog(@"selectedDate =  %@",selectedDate);
+                                         [weakSelf reloadTableView:eBirthDate content:[weakSelf stringFromDate:selectedDate]];
                                      }
                                    cancelBlock:^(ActionSheetDatePicker *picker){
                                        
@@ -272,6 +293,16 @@ UITableViewDataSource
 
 }
 
+
+- (NSString *)stringFromDate:(NSDate *)date{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+    //[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    return destDateString;
+}
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

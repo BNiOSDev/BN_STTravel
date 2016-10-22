@@ -14,7 +14,8 @@ UITableViewDelegate,
 UITableViewDataSource
 >
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
-
+@property (assign,nonatomic) TicketStateType stateType;
+@property (assign,nonatomic) TicketClickType clickType;
 @end
 
 @implementation TicketViewCell
@@ -42,11 +43,46 @@ UITableViewDataSource
 {
     self.dataSourceArray = [cellInfo objectForKey:@"GoodList"];
     self.numLabel.text = [cellInfo objectForKey:@"TicketNum"];
-    self.stateLabel.text = [cellInfo objectForKey:@"State"];
     self.goodNumLabel.text = [cellInfo objectForKey:@"GoogNum"];
     self.goodMoneyLabel.text = [cellInfo objectForKey:@"TotalMonney"];
-    self.rightBtn.hidden = NO;
-    self.leftBtn.hidden = NO;
+    self.stateType = [[cellInfo objectForKey:@"TicketState"] intValue];
+    switch (self.stateType) {
+        case eWaitPay://待付款
+        {
+            self.rightBtn.hidden = NO;
+            self.leftBtn.hidden = NO;
+            self.stateLabel.text = @"待支付";
+            [self.rightBtn setTitle:@"立即支付" forState:UIControlStateNormal];
+            [self.leftBtn setTitle:@"取消订单" forState:UIControlStateNormal];
+        }
+            break;
+        case eWaitGetTicket://待取票
+        {
+            self.rightBtn.hidden = NO;
+            self.leftBtn.hidden = YES;
+            self.stateLabel.text = @"待取票";
+            [self.rightBtn setTitle:@"立即取票" forState:UIControlStateNormal];
+        }
+            break;
+        case eWaitComment://待评价
+        {
+            self.rightBtn.hidden = NO;
+            self.leftBtn.hidden = YES;
+            self.stateLabel.text = @"待评价";
+            [self.rightBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+        }
+            break;
+        case eRefund://退款
+        {
+            self.rightBtn.hidden = NO;
+            self.leftBtn.hidden = YES;
+            self.stateLabel.text = @"已退款";
+            [self.rightBtn setTitle:@"查看详情" forState:UIControlStateNormal];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 
@@ -57,13 +93,34 @@ UITableViewDataSource
 }
 
 #pragma mark - tableView delegate
+
+CGFloat ticketDetailCellHeight(NSString *nameStr ,NSString *typeStr)
+{
+    CGFloat height = 60.f;
+    
+    CGSize constranedTypeSize = CGSizeMake(9999, 16.f);
+    CGSize typeSize = sizeOfString(typeStr, constranedTypeSize, [UIFont systemFontOfSize:13.f]);
+    
+    CGSize constranedSize = CGSizeMake(DeviceWidth - 135.f, 99999.f);
+    if (typeSize.width > 29.f) {
+        constranedSize = CGSizeMake(DeviceWidth - 135.f - (typeSize.width - 29.f), 99999.f);
+    }
+    CGSize nameSize = sizeOfString(nameStr, constranedSize, [UIFont systemFontOfSize:13.f]);
+    if (nameSize.height > 16) {
+        height += nameSize.height - 16;
+    }
+    return height;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.dataSourceArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60.f;
+    NSDictionary *detailDict = [self.dataSourceArray objectAtIndex:indexPath.row];
+    CGFloat height = ticketDetailCellHeight([detailDict objectForKey:@"Title"], [detailDict objectForKey:@"Type"]);
+    return height;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -102,18 +159,78 @@ UITableViewDataSource
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.mDelegate &&
+        [self.mDelegate respondsToSelector:@selector(ticketDetailDelegate:StateType:TicketClickType:)]) {
+        [self.mDelegate ticketDetailDelegate:self.cellInfo
+                                   StateType:self.stateType
+                             TicketClickType:eShowDetail];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - UI Action
 
 - (IBAction)rightBtnAction:(id)sender {
-    if (self.mDelegate && [self.mDelegate respondsToSelector:@selector(cellBtnClickDelegate:StateType:)]) {
-        [self.mDelegate cellBtnClickDelegate:self.cellInfo StateType:eHavePayState];
+    if (self.mDelegate &&
+        [self.mDelegate respondsToSelector:@selector(cellBtnClickDelegate:StateType:TicketClickType:)]) {
+        [self.mDelegate cellBtnClickDelegate:self.cellInfo
+                                   StateType:self.stateType
+                             TicketClickType:[self clickType:NO]];
     }
 }
+
 - (IBAction)leftBtnAction:(id)sender {
     
-    if (self.mDelegate && [self.mDelegate respondsToSelector:@selector(cellBtnClickDelegate:StateType:)]) {
-        [self.mDelegate cellBtnClickDelegate:self.cellInfo StateType:eWaitReceiveState];
+    if (self.mDelegate &&
+        [self.mDelegate respondsToSelector:@selector(cellBtnClickDelegate:StateType:TicketClickType:)]) {
+        [self.mDelegate cellBtnClickDelegate:self.cellInfo
+                                   StateType:self.stateType
+                             TicketClickType:[self clickType:YES]];
     }
+}
+
+- (TicketClickType)clickType:(BOOL)isLeft
+{
+    if (isLeft) {
+        switch (self.stateType) {
+            case eWaitPay:
+            {
+                _clickType = eCancelTicket;
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }else {
+        switch (self.stateType) {
+            case eWaitPay:
+            {
+                _clickType = eTicketPay;
+            }
+                break;
+            case eWaitGetTicket:
+            {
+                _clickType = eGetTicket;
+            }
+                break;
+            case eWaitComment:
+            {
+                _clickType = eComment;
+            }
+                break;
+            case eRefund:
+            {
+                _clickType = eShowDetail;
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    return _clickType;
 }
 
 @end

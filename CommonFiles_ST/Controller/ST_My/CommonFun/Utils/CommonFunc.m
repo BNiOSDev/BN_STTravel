@@ -52,4 +52,93 @@ CGFloat folderSizeAtPath(NSString *folderPath)
 }
 
 
+/**
+ *	@brief	计算字符串size
+ *
+ *	@param 	str 	字符串
+ *	@param 	constranedSize 	限制size
+ *	@param 	font 	字体
+ *
+ *	@return	字符串size
+ */
+CGSize sizeOfString(NSString *str, CGSize constranedSize, UIFont *font)
+{
+    if (constranedSize.width && constranedSize.height) {
+        
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+        paragraphStyle.alignment = NSTextAlignmentLeft;
+        
+        NSDictionary *attributes = @{NSFontAttributeName: font,
+                                     NSParagraphStyleAttributeName: paragraphStyle};
+        
+        CGSize size = [str boundingRectWithSize:constranedSize
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:attributes context:nil].size;
+        
+        size.width = ceil(size.width);
+        size.height = ceil(size.height);
+        
+        return size;
+    } else {
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+        paragraphStyle.alignment = NSTextAlignmentLeft;
+        
+        NSDictionary *attributes = @{NSFontAttributeName: font,
+                                     NSParagraphStyleAttributeName: paragraphStyle};
+        
+        CGSize size = [str sizeWithAttributes:attributes];
+        size.width = ceil(size.width);
+        size.height = ceil(size.height);
+        
+        return size;
+    }
+}
+
+/**
+ *	@brief	计算字符串size
+ *
+ *	@param 	str 	字符串
+ *	@param 	constranedSize 	限制size
+ *	@param 	font 	字体
+ *
+ *	@return	字符串size
+ */
+CGSize sizeOfStringByWordWrapping(NSString *str, CGSize constranedSize, UIFont *font)
+{
+    if (constranedSize.width && constranedSize.height) {
+        
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        paragraphStyle.alignment = NSTextAlignmentLeft;
+        
+        NSDictionary *attributes = @{NSFontAttributeName: font,
+                                     NSParagraphStyleAttributeName: paragraphStyle};
+        
+        CGSize size = [str boundingRectWithSize:constranedSize
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:attributes context:nil].size;
+        
+        size.width = ceil(size.width);
+        size.height = ceil(size.height);
+        
+        return size;
+    } else {
+        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        paragraphStyle.alignment = NSTextAlignmentLeft;
+        
+        NSDictionary *attributes = @{NSFontAttributeName: font,
+                                     NSParagraphStyleAttributeName: paragraphStyle};
+        
+        CGSize size = [str sizeWithAttributes:attributes];
+        size.width = ceil(size.width);
+        size.height = ceil(size.height);
+        
+        return size;
+    }
+}
+
+
 @end

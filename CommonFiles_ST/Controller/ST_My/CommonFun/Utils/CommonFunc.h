@@ -29,4 +29,28 @@ long long fileSizeAtPath(NSString *filePath);
  */
 CGFloat folderSizeAtPath(NSString *folderPath);
 
+
+/**
+ *	@brief	计算字符串size
+ *
+ *	@param 	str 	字符串
+ *	@param 	constranedSize 	限制size
+ *	@param 	font 	字体
+ *
+ *	@return	字符串size
+ */
+CGSize sizeOfString(NSString *str, CGSize constranedSize, UIFont *font);
+
+/**
+ *	@brief	计算字符串size
+ *
+ *	@param 	str 	字符串
+ *	@param 	constranedSize 	限制size
+ *	@param 	font 	字体
+ *
+ *	@return	字符串size
+ */
+CGSize sizeOfStringByWordWrapping(NSString *str, CGSize constranedSize, UIFont *font);
+
+
 @end

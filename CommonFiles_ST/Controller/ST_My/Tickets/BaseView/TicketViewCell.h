@@ -8,21 +8,36 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger,StateType)
+CGFloat ticketDetailCellHeight(NSString *nameStr ,NSString *typeStr);
+
+typedef NS_ENUM(NSInteger,TicketStateType)
 {
-    eHavePayState = 0,// 已支付
-    eWaitPayState, //待支付
-    eWaitReceiveState,//待收货
-    eWaitCommentState, //待评价
-    eSureGetState   //确定收货
+    eAllTicket = 0, //全部
+    eWaitPay,  //待付款
+    eWaitGetTicket,//待取票
+    eWaitComment,//待评价
+    eRefund  //退款
 };
 
+typedef NS_ENUM(NSInteger,TicketClickType)
+{
+    eCancelTicket = 0, //取消订单
+    eTicketPay,  //立即支付
+    eGetTicket,//立即取票
+    eComment,//立即评价
+    eShowDetail  //查看详情
+};
 
 @protocol TicketViewCellDelegate <NSObject>
 
 @optional
-- (void)cellBtnClickDelegate:(NSDictionary*)cellInfo StateType:(StateType)type;
+- (void)cellBtnClickDelegate:(NSDictionary*)cellInfo
+                   StateType:(TicketStateType)type
+             TicketClickType:(TicketClickType)clickType;
 
+- (void)ticketDetailDelegate:(NSDictionary*)cellInfo
+                   StateType:(TicketStateType)type
+             TicketClickType:(TicketClickType)clickType;
 
 @end
 
