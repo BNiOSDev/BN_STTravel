@@ -8,6 +8,8 @@
 
 #import "LBB_DiscoveryMainTableViewCell.h"
 #import "LBBPoohGreatItemView.h"
+#import "LBB_StarRatingViewController.h"
+
 @implementation LBB_DiscoveryMainTableViewCell{
 
     UIImageView* imageView;
@@ -126,7 +128,8 @@
         [commentsView bk_whenTapped:^{
             
             NSLog(@"commentsView touch");
-            
+            LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
         
     }

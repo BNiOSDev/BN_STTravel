@@ -51,6 +51,10 @@
 		1DF0ABA21DBB1758003D78D2 /* LBB_DiscoveryCustomizedSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0ABA11DBB1758003D78D2 /* LBB_DiscoveryCustomizedSelectView.m */; };
 		1DF0ABA51DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0ABA41DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.m */; };
 		1DF0ABA91DBB4B83003D78D2 /* LBB_AddressAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0ABA81DBB4B83003D78D2 /* LBB_AddressAddViewController.m */; };
+		1DF0ABAC1DBB578F003D78D2 /* LBB_StarRatingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0ABAB1DBB578F003D78D2 /* LBB_StarRatingViewController.m */; };
+		1DF0ABBF1DBB5DD6003D78D2 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DF0ABBB1DBB5DD6003D78D2 /* b27_icon_star_gray@2x.png */; };
+		1DF0ABC01DBB5DD6003D78D2 /* b27_icon_star_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DF0ABBC1DBB5DD6003D78D2 /* b27_icon_star_yellow@2x.png */; };
+		1DF0ABC11DBB5DD6003D78D2 /* CWStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF0ABBE1DBB5DD6003D78D2 /* CWStarRateView.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -181,6 +185,12 @@
 		1DF0ABA41DBB1AAF003D78D2 /* LBB_DiscoveryCustomizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_DiscoveryCustomizedViewController.m; path = Discovery/LBB_DiscoveryCustomizedViewController.m; sourceTree = "<group>"; };
 		1DF0ABA71DBB4B83003D78D2 /* LBB_AddressAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_AddressAddViewController.h; path = Common/LBB_AddressAddViewController.h; sourceTree = "<group>"; };
 		1DF0ABA81DBB4B83003D78D2 /* LBB_AddressAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_AddressAddViewController.m; path = Common/LBB_AddressAddViewController.m; sourceTree = "<group>"; };
+		1DF0ABAA1DBB578F003D78D2 /* LBB_StarRatingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_StarRatingViewController.h; path = Common/LBB_StarRatingViewController.h; sourceTree = "<group>"; };
+		1DF0ABAB1DBB578F003D78D2 /* LBB_StarRatingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_StarRatingViewController.m; path = Common/LBB_StarRatingViewController.m; sourceTree = "<group>"; };
+		1DF0ABBB1DBB5DD6003D78D2 /* b27_icon_star_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_gray@2x.png"; sourceTree = "<group>"; };
+		1DF0ABBC1DBB5DD6003D78D2 /* b27_icon_star_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "b27_icon_star_yellow@2x.png"; sourceTree = "<group>"; };
+		1DF0ABBD1DBB5DD6003D78D2 /* CWStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWStarRateView.h; sourceTree = "<group>"; };
+		1DF0ABBE1DBB5DD6003D78D2 /* CWStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWStarRateView.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -317,6 +327,7 @@
 		1D293BE71DB4A09A00ED2CBB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1DF0ABBA1DBB5DD6003D78D2 /* CWStarRateView */,
 				1D293C4A1DB60B0700ED2CBB /* KSViewPagerView.m */,
 				1D293C4B1DB60B0700ED2CBB /* KSViewPagerView.h */,
 				1D293C2A1DB5B50000ED2CBB /* LBBPoohGreatItemView.m */,
@@ -461,8 +472,21 @@
 			children = (
 				1DF0ABA71DBB4B83003D78D2 /* LBB_AddressAddViewController.h */,
 				1DF0ABA81DBB4B83003D78D2 /* LBB_AddressAddViewController.m */,
+				1DF0ABAA1DBB578F003D78D2 /* LBB_StarRatingViewController.h */,
+				1DF0ABAB1DBB578F003D78D2 /* LBB_StarRatingViewController.m */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		1DF0ABBA1DBB5DD6003D78D2 /* CWStarRateView */ = {
+			isa = PBXGroup;
+			children = (
+				1DF0ABBB1DBB5DD6003D78D2 /* b27_icon_star_gray@2x.png */,
+				1DF0ABBC1DBB5DD6003D78D2 /* b27_icon_star_yellow@2x.png */,
+				1DF0ABBD1DBB5DD6003D78D2 /* CWStarRateView.h */,
+				1DF0ABBE1DBB5DD6003D78D2 /* CWStarRateView.m */,
+			);
+			path = CWStarRateView;
 			sourceTree = "<group>";
 		};
 		C91F612C1D9F8B77004FE75C /* ST_Home */ = {
@@ -918,6 +942,8 @@
 				C91F615A1D9F96CA004FE75C /* ST_SquareViewController.xib in Resources */,
 				C9C0E95A1D9948F100575A7C /* Main.storyboard in Resources */,
 				C91F61391D9F8B94004FE75C /* ST_HomeViewController.xib in Resources */,
+				1DF0ABBF1DBB5DD6003D78D2 /* b27_icon_star_gray@2x.png in Resources */,
+				1DF0ABC01DBB5DD6003D78D2 /* b27_icon_star_yellow@2x.png in Resources */,
 				C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -997,6 +1023,7 @@
 				1DA26C0B1DB8704B0044B9B1 /* LBB_SignInListViewController.m in Sources */,
 				1DF0AB7B1DB9FE6D003D78D2 /* LBB_DiscoveryMainViewController.m in Sources */,
 				C91F61381D9F8B94004FE75C /* ST_HomeViewController.m in Sources */,
+				1DF0ABAC1DBB578F003D78D2 /* LBB_StarRatingViewController.m in Sources */,
 				1D293BEA1DB4A09A00ED2CBB /* LBBPoohVerticalButton.m in Sources */,
 				1D293C131DB4D3EE00ED2CBB /* GYChangeTextView.m in Sources */,
 				1D293BB41DB4607D00ED2CBB /* NSString+PoohCommon.m in Sources */,
@@ -1018,6 +1045,7 @@
 				1D293C2C1DB5B50000ED2CBB /* LBBPoohGreatItemView.m in Sources */,
 				1DF0AB9F1DBB0297003D78D2 /* PoohAppHelper.m in Sources */,
 				1D293C4C1DB60B0700ED2CBB /* KSViewPagerView.m in Sources */,
+				1DF0ABC11DBB5DD6003D78D2 /* CWStarRateView.m in Sources */,
 				1DF0AB921DBA15FF003D78D2 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1D293C491DB5F81700ED2CBB /* LBBHomeSquareCenterTableViewCell.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,

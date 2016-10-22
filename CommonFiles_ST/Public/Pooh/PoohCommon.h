@@ -33,6 +33,7 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import "UIConstants.h"
 #import "IConstants.h"
 #import "PoohAppHelper.h"
+#import "UIViewExt.h"
 
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define UISCREEN_HEIGTH [UIScreen mainScreen].bounds.size.height
