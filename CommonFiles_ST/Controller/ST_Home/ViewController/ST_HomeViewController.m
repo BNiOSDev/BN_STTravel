@@ -363,12 +363,12 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
         LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
+     /*   if (cell == nil) {
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
 
         }
-        
+        */
         [cell setCycleScrollViewUrls:nil];
         
         return cell;
@@ -376,22 +376,22 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     else if (indexPath.row == 1){
         static NSString *cellIdentifier = @"LBBHomeMenuTableViewCell";
         LBBHomeMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
+     /*   if (cell == nil) {
             cell = [[LBBHomeMenuTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeMenuTableViewCell nil");
 
-        }
+        }*/
         return cell;
     }
     else{
         static NSString *cellIdentifier = @"LBBHomeAnnouncementTableViewCell";
         LBBHomeAnnouncementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
+     /*   if (cell == nil) {
             NSLog(@"LBBHomeAnnouncementTableViewCell initWithStyle");
             cell = [[LBBHomeAnnouncementTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeAnnouncementTableViewCell nil");
 
-        }
+        }*/
         NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
         [cell setScrollTextArray:array];
         
@@ -405,11 +405,11 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
         LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
+      /*  if (cell == nil) {
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
 
-        }
+        }*/
         
         [cell setCycleScrollViewUrls:nil];
         
@@ -418,10 +418,10 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     else if (indexPath.row == 1){
         static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
         LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
+      /*  if (cell == nil) {
             cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeHotestTableViewCell nil");
-        }
+        }*/
         [cell setPagerViewHidden:YES];
         [cell setreload];
         return cell;
@@ -435,12 +435,12 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     
     static NSString *cellIdentifier = @"LBBHomeTravelRecommendTableViewCell";
     LBBHomeTravelRecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
+  /*  if (cell == nil) {
         cell = [[LBBHomeTravelRecommendTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBBHomeTravelRecommendTableViewCell nil");
 
     }
-    
+    */
     [cell setModel:nil];
 
     return cell;
@@ -450,11 +450,11 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     
     static NSString *cellIdentifier = @"LBBHomeSquareCenterTableViewCell";
     LBBHomeSquareCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
+  /*  if (cell == nil) {
         NSLog(@"LBBHomeSquareCenterTableViewCell nil");
         cell = [[LBBHomeSquareCenterTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
-
+*/
     [cell setModel:nil];
 
     return cell;
@@ -466,11 +466,11 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
         LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
+    /*    if (cell == nil) {
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
             
-        }
+        }*/
         
         [cell setCycleScrollViewUrls:nil];
         
@@ -479,10 +479,10 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     else if (indexPath.row == 1){
         static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
         LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
+     /*   if (cell == nil) {
             cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeHotestTableViewCell nil");
-        }
+        }*/
         [cell setPagerViewHidden:NO];
         [cell setreload];
         return cell;

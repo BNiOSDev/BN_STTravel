@@ -102,10 +102,10 @@
 
     static NSString *cellIdentifier = @"LBB_SignInListCell";
     LBB_SignInListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
+   /* if (cell == nil) {
         cell = [[LBB_SignInListCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_SignInListCell nil");
-    }
+    }*/
     [cell showSigninButton:YES];
     return cell;
     

@@ -13,4 +13,7 @@
 
 -(CGFloat)getCellHeight;
 
++(CGFloat)contentViewWidth;
+
+
 @end

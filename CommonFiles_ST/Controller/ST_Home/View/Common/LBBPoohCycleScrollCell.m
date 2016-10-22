@@ -45,7 +45,7 @@
         // 情景一：采用本地图片实现
 
         cycleScrollView = [[SDCycleScrollView alloc]init];
-        cycleScrollView.placeholderImage = IMAGE(@"poohBack");
+        cycleScrollView.placeholderImage = IMAGE(PlaceHolderImage);
         cycleScrollView.infiniteLoop = YES;
         cycleScrollView.autoScrollTimeInterval = 2;
       //  cycleScrollView.localizationImageNamesGroup = imageNames;

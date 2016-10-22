@@ -7,8 +7,11 @@
 //
 
 #import "LBB_DiscoveryMainViewController.h"
-#import "LBB_SignInListCell.h"
 #import "SDCycleScrollView.h"
+#import "LBB_DiscoveryMainTableViewCell.h"
+
+static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell.h";
+
 
 @interface LBB_DiscoveryMainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
@@ -53,6 +56,8 @@
 -(void)buildControls{
     
     WS(ws);
+    self.tableView.fd_debugLogEnabled = YES;
+
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
 
     [self.view setBackgroundColor:[UIColor whiteColor]];
@@ -70,20 +75,33 @@
         make.bottom.equalTo(ws.view);
     }];
     
-    [self.tableView registerClass:[LBB_SignInListCell class] forCellReuseIdentifier:@"LBB_SignInListCell"];
+    [self configData];
+    
+    [self.tableView registerClass:[LBB_DiscoveryMainTableViewCell class] forCellReuseIdentifier:cellIdentifier];
 }
 
 
 -(void)configData{
 
-  /*  _dataArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 0; i++) {
-        ZJMTravelModel  *model = [[ZJMTravelModel alloc]init];
-        model.iconName = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.name = @"钟爱SD的男人";
-        model.msgContent = @"这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了";
+    _dataArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i <= 10; i++) {
+        LBB_DiscoveryMainModel  *model = [[LBB_DiscoveryMainModel alloc]init];
+        model.imageUrl = [NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"];
+        model.title = @"钟爱SD的男人";
+        
+        if (i%2) {
+            model.content = @"这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了,某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太";
+ 
+        }
+        else{
+            model.content = @"asdadjadhqhkhkjasasblkasdhjahajsfhasdhajkdhjhwqiudhdshajksdhquwidhiquhdqjkdh这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了,某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太";
+        }
+        
+        model.time = [PoohAppHelper getStringFromDate:[NSDate new] withFormat:DateFormatFullDate];
+        model.commentsNum = 189;
+        model.greatNum = 721;
         [_dataArray addObject:model];
-    }*/
+    }
 }
 
 /*
@@ -102,7 +120,7 @@
     // 情景一：采用本地图片实现
     
     self.cycScrollView = [[SDCycleScrollView alloc]init];
-    self.cycScrollView.placeholderImage = IMAGE(@"poohBack");
+    self.cycScrollView.placeholderImage = IMAGE(PlaceHolderImage);
     self.cycScrollView.infiniteLoop = YES;
     self.cycScrollView.autoScrollTimeInterval = 2;
     //  cycleScrollView.localizationImageNamesGroup = imageNames;
@@ -223,25 +241,25 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 10;
+    return self.dataArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    LBBPoohBaseTableViewCell* cell = (LBBPoohBaseTableViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    
-    return [cell getCellHeight];
+    LBB_DiscoveryMainModel *entity = self.dataArray[indexPath.row];
+    return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath configuration:^(LBB_DiscoveryMainTableViewCell *cell) {
+        
+        cell.model = entity;
+    }];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellIdentifier = @"LBB_SignInListCell";
-    LBB_SignInListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[LBB_SignInListCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-        NSLog(@"LBB_SignInListCell nil");
-    }
-    [cell showSigninButton:YES];
+    LBB_DiscoveryMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+   
+    
+    cell.model = [self.dataArray objectAtIndex:indexPath.row];
+    
     return cell;
     
 }

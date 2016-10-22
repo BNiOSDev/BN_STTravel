@@ -39,4 +39,9 @@
     return height;
 };
 
++(CGFloat)contentViewWidth{
+    
+    return UISCREEN_WIDTH;
+}
+
 @end
