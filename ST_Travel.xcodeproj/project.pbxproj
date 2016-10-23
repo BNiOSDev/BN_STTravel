@@ -22,6 +22,31 @@
 		1D293BC91DB4671700ED2CBB /* PoohDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293BC41DB4671700ED2CBB /* PoohDirector.m */; };
 		1D293BCD1DB4680200ED2CBB /* DDFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D293BCB1DB4680200ED2CBB /* DDFormatter.m */; };
 		1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */; };
+		3C0FC2D01DBB3AC800A71D16 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2CB1DBB3AC800A71D16 /* CommentModel.m */; };
+		3C0FC2D11DBB3AC800A71D16 /* PraiseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2CD1DBB3AC800A71D16 /* PraiseModel.m */; };
+		3C0FC2D21DBB3AC800A71D16 /* ZJMHostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2CF1DBB3AC800A71D16 /* ZJMHostModel.m */; };
+		3C0FC2D71DBB492A00A71D16 /* ST_Square.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */; };
+		3C0FC2E11DBB52ED00A71D16 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2DE1DBB52ED00A71D16 /* UITableView+SDAutoTableViewCellHeight.m */; };
+		3C0FC2E21DBB52ED00A71D16 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2E01DBB52ED00A71D16 /* UIView+SDAutoLayout.m */; };
+		3C0FC2E51DBB5BAE00A71D16 /* ZJMHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2E41DBB5BAE00A71D16 /* ZJMHostViewController.m */; };
+		3C0FC2E91DBB5BDD00A71D16 /* ZJMHostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2E81DBB5BDD00A71D16 /* ZJMHostTableViewCell.m */; };
+		3C0FC2F51DBB5BF600A71D16 /* CommentBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2EC1DBB5BF600A71D16 /* CommentBoxView.m */; };
+		3C0FC2F61DBB5BF600A71D16 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2EE1DBB5BF600A71D16 /* CommentView.m */; };
+		3C0FC2F71DBB5BF600A71D16 /* ContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2F01DBB5BF600A71D16 /* ContentImageView.m */; };
+		3C0FC2F81DBB5BF600A71D16 /* PraiseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2F21DBB5BF600A71D16 /* PraiseView.m */; };
+		3C0FC2F91DBB5BF600A71D16 /* ZJMCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2F41DBB5BF600A71D16 /* ZJMCommentView.m */; };
+		3C0FC2FD1DBB9D5E00A71D16 /* LBBVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2FC1DBB9D5E00A71D16 /* LBBVideoViewController.m */; };
+		3C0FC3001DBB9D9500A71D16 /* LBBVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC2FF1DBB9D9500A71D16 /* LBBVideoTableViewCell.m */; };
+		3C0FC3301DBC405100A71D16 /* LBBTravelContentImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC32F1DBC405100A71D16 /* LBBTravelContentImage.m */; };
+		3C0FC3341DBC41BB00A71D16 /* LBBTravelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC3331DBC41BB00A71D16 /* LBBTravelTableViewCell.m */; };
+		3C0FC3371DBC4FEE00A71D16 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC3361DBC4FEE00A71D16 /* LBBFriendViewController.m */; };
+		3C0FC33A1DBC504B00A71D16 /* LBBFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC3391DBC504B00A71D16 /* LBBFriendTableViewCell.m */; };
+		3C0FC33D1DBC530F00A71D16 /* LBBFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC33C1DBC530F00A71D16 /* LBBFriendModel.m */; };
+		3C0FC3401DBCA0C000A71D16 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0FC33F1DBCA0C000A71D16 /* LBBHostDetailViewController.m */; };
+		3C3C10AC1DB8A7B200645134 /* LGSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C10AB1DB8A7B200645134 /* LGSegment.m */; };
+		3C5223101DB9B183002455D3 /* ZJMTravelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C52230F1DB9B183002455D3 /* ZJMTravelsViewController.m */; };
+		3C5223131DB9B3DD002455D3 /* ZJMTravelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5223121DB9B3DD002455D3 /* ZJMTravelCell.m */; };
+		3C5223161DB9B507002455D3 /* ZJMTravelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5223151DB9B507002455D3 /* ZJMTravelModel.m */; };
 		3C95E0541DB4BF5900536704 /* ZJMSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E0531DB4BF5900536704 /* ZJMSearchBar.m */; };
 		3C95E0621DB4C38100536704 /* UIView+ZJFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E0571DB4C38100536704 /* UIView+ZJFrame.m */; };
 		3C95E0631DB4C38100536704 /* ZJContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E0591DB4C38100536704 /* ZJContentView.m */; };
@@ -29,6 +54,7 @@
 		3C95E0651DB4C38100536704 /* ZJScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E05D1DB4C38100536704 /* ZJScrollPageView.m */; };
 		3C95E0661DB4C38100536704 /* ZJScrollSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E05F1DB4C38100536704 /* ZJScrollSegmentView.m */; };
 		3C95E0671DB4C38100536704 /* ZJSegmentStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C95E0611DB4C38100536704 /* ZJSegmentStyle.m */; };
+		3CE866131DB610BF0022830C /* ZJMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE866121DB610BF0022830C /* ZJMBaseViewController.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -101,6 +127,56 @@
 		1D293BCC1DB4680200ED2CBB /* DDFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFormatter.h; sourceTree = "<group>"; };
 		1D293BCE1DB468C500ED2CBB /* PoohDDLogConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohDDLogConfig.h; sourceTree = "<group>"; };
 		1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
+		3C0FC2CA1DBB3AC800A71D16 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		3C0FC2CB1DBB3AC800A71D16 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		3C0FC2CC1DBB3AC800A71D16 /* PraiseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PraiseModel.h; sourceTree = "<group>"; };
+		3C0FC2CD1DBB3AC800A71D16 /* PraiseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PraiseModel.m; sourceTree = "<group>"; };
+		3C0FC2CE1DBB3AC800A71D16 /* ZJMHostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMHostModel.h; sourceTree = "<group>"; };
+		3C0FC2CF1DBB3AC800A71D16 /* ZJMHostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMHostModel.m; sourceTree = "<group>"; };
+		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
+		3C0FC2DC1DBB52ED00A71D16 /* SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAutoLayout.h; sourceTree = "<group>"; };
+		3C0FC2DD1DBB52ED00A71D16 /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
+		3C0FC2DE1DBB52ED00A71D16 /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
+		3C0FC2DF1DBB52ED00A71D16 /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
+		3C0FC2E01DBB52ED00A71D16 /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
+		3C0FC2E31DBB5BAE00A71D16 /* ZJMHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMHostViewController.h; sourceTree = "<group>"; };
+		3C0FC2E41DBB5BAE00A71D16 /* ZJMHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMHostViewController.m; sourceTree = "<group>"; };
+		3C0FC2E71DBB5BDD00A71D16 /* ZJMHostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMHostTableViewCell.h; sourceTree = "<group>"; };
+		3C0FC2E81DBB5BDD00A71D16 /* ZJMHostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMHostTableViewCell.m; sourceTree = "<group>"; };
+		3C0FC2EB1DBB5BF600A71D16 /* CommentBoxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentBoxView.h; sourceTree = "<group>"; };
+		3C0FC2EC1DBB5BF600A71D16 /* CommentBoxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentBoxView.m; sourceTree = "<group>"; };
+		3C0FC2ED1DBB5BF600A71D16 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
+		3C0FC2EE1DBB5BF600A71D16 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
+		3C0FC2EF1DBB5BF600A71D16 /* ContentImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentImageView.h; sourceTree = "<group>"; };
+		3C0FC2F01DBB5BF600A71D16 /* ContentImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentImageView.m; sourceTree = "<group>"; };
+		3C0FC2F11DBB5BF600A71D16 /* PraiseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PraiseView.h; sourceTree = "<group>"; };
+		3C0FC2F21DBB5BF600A71D16 /* PraiseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PraiseView.m; sourceTree = "<group>"; };
+		3C0FC2F31DBB5BF600A71D16 /* ZJMCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMCommentView.h; sourceTree = "<group>"; };
+		3C0FC2F41DBB5BF600A71D16 /* ZJMCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMCommentView.m; sourceTree = "<group>"; };
+		3C0FC2FB1DBB9D5E00A71D16 /* LBBVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBVideoViewController.h; sourceTree = "<group>"; };
+		3C0FC2FC1DBB9D5E00A71D16 /* LBBVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBVideoViewController.m; sourceTree = "<group>"; };
+		3C0FC2FE1DBB9D9500A71D16 /* LBBVideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBVideoTableViewCell.h; sourceTree = "<group>"; };
+		3C0FC2FF1DBB9D9500A71D16 /* LBBVideoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBVideoTableViewCell.m; sourceTree = "<group>"; };
+		3C0FC32E1DBC405100A71D16 /* LBBTravelContentImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBTravelContentImage.h; sourceTree = "<group>"; };
+		3C0FC32F1DBC405100A71D16 /* LBBTravelContentImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBTravelContentImage.m; sourceTree = "<group>"; };
+		3C0FC3321DBC41BB00A71D16 /* LBBTravelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBTravelTableViewCell.h; sourceTree = "<group>"; };
+		3C0FC3331DBC41BB00A71D16 /* LBBTravelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBTravelTableViewCell.m; sourceTree = "<group>"; };
+		3C0FC3351DBC4FEE00A71D16 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
+		3C0FC3361DBC4FEE00A71D16 /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
+		3C0FC3381DBC504B00A71D16 /* LBBFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendTableViewCell.h; sourceTree = "<group>"; };
+		3C0FC3391DBC504B00A71D16 /* LBBFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendTableViewCell.m; sourceTree = "<group>"; };
+		3C0FC33B1DBC530F00A71D16 /* LBBFriendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendModel.h; sourceTree = "<group>"; };
+		3C0FC33C1DBC530F00A71D16 /* LBBFriendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendModel.m; sourceTree = "<group>"; };
+		3C0FC33E1DBCA0C000A71D16 /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
+		3C0FC33F1DBCA0C000A71D16 /* LBBHostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHostDetailViewController.m; sourceTree = "<group>"; };
+		3C3C10AA1DB8A7B200645134 /* LGSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGSegment.h; sourceTree = "<group>"; };
+		3C3C10AB1DB8A7B200645134 /* LGSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGSegment.m; sourceTree = "<group>"; };
+		3C52230E1DB9B183002455D3 /* ZJMTravelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMTravelsViewController.h; sourceTree = "<group>"; };
+		3C52230F1DB9B183002455D3 /* ZJMTravelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMTravelsViewController.m; sourceTree = "<group>"; };
+		3C5223111DB9B3DD002455D3 /* ZJMTravelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMTravelCell.h; sourceTree = "<group>"; };
+		3C5223121DB9B3DD002455D3 /* ZJMTravelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMTravelCell.m; sourceTree = "<group>"; };
+		3C5223141DB9B507002455D3 /* ZJMTravelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZJMTravelModel.h; path = ../ZJMTravelModel.h; sourceTree = "<group>"; };
+		3C5223151DB9B507002455D3 /* ZJMTravelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZJMTravelModel.m; path = ../ZJMTravelModel.m; sourceTree = "<group>"; };
 		3C95E0521DB4BF5900536704 /* ZJMSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMSearchBar.h; sourceTree = "<group>"; };
 		3C95E0531DB4BF5900536704 /* ZJMSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMSearchBar.m; sourceTree = "<group>"; };
 		3C95E0561DB4C38100536704 /* UIView+ZJFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZJFrame.h"; sourceTree = "<group>"; };
@@ -115,6 +191,9 @@
 		3C95E05F1DB4C38100536704 /* ZJScrollSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJScrollSegmentView.m; sourceTree = "<group>"; };
 		3C95E0601DB4C38100536704 /* ZJSegmentStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJSegmentStyle.h; sourceTree = "<group>"; };
 		3C95E0611DB4C38100536704 /* ZJSegmentStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJSegmentStyle.m; sourceTree = "<group>"; };
+		3CE866101DB60FCE0022830C /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		3CE866111DB610BF0022830C /* ZJMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMBaseViewController.h; sourceTree = "<group>"; };
+		3CE866121DB610BF0022830C /* ZJMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMBaseViewController.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -247,9 +326,114 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		3C0FC2C91DBB3ABB00A71D16 /* HostModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C0FC2CA1DBB3AC800A71D16 /* CommentModel.h */,
+				3C0FC2CB1DBB3AC800A71D16 /* CommentModel.m */,
+				3C0FC2CC1DBB3AC800A71D16 /* PraiseModel.h */,
+				3C0FC2CD1DBB3AC800A71D16 /* PraiseModel.m */,
+				3C0FC2CE1DBB3AC800A71D16 /* ZJMHostModel.h */,
+				3C0FC2CF1DBB3AC800A71D16 /* ZJMHostModel.m */,
+				3C0FC33B1DBC530F00A71D16 /* LBBFriendModel.h */,
+				3C0FC33C1DBC530F00A71D16 /* LBBFriendModel.m */,
+			);
+			path = HostModel;
+			sourceTree = "<group>";
+		};
+		3C0FC2DB1DBB52ED00A71D16 /* SDAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				3C0FC2DC1DBB52ED00A71D16 /* SDAutoLayout.h */,
+				3C0FC2DD1DBB52ED00A71D16 /* UITableView+SDAutoTableViewCellHeight.h */,
+				3C0FC2DE1DBB52ED00A71D16 /* UITableView+SDAutoTableViewCellHeight.m */,
+				3C0FC2DF1DBB52ED00A71D16 /* UIView+SDAutoLayout.h */,
+				3C0FC2E01DBB52ED00A71D16 /* UIView+SDAutoLayout.m */,
+			);
+			path = SDAutoLayout;
+			sourceTree = "<group>";
+		};
+		3C0FC2E61DBB5BDD00A71D16 /* HostTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				3C0FC2E71DBB5BDD00A71D16 /* ZJMHostTableViewCell.h */,
+				3C0FC2E81DBB5BDD00A71D16 /* ZJMHostTableViewCell.m */,
+				3C0FC3381DBC504B00A71D16 /* LBBFriendTableViewCell.h */,
+				3C0FC3391DBC504B00A71D16 /* LBBFriendTableViewCell.m */,
+			);
+			path = HostTableCell;
+			sourceTree = "<group>";
+		};
+		3C0FC2EA1DBB5BF600A71D16 /* HostViews */ = {
+			isa = PBXGroup;
+			children = (
+				3C0FC2EB1DBB5BF600A71D16 /* CommentBoxView.h */,
+				3C0FC2EC1DBB5BF600A71D16 /* CommentBoxView.m */,
+				3C0FC2ED1DBB5BF600A71D16 /* CommentView.h */,
+				3C0FC2EE1DBB5BF600A71D16 /* CommentView.m */,
+				3C0FC2EF1DBB5BF600A71D16 /* ContentImageView.h */,
+				3C0FC2F01DBB5BF600A71D16 /* ContentImageView.m */,
+				3C0FC2F11DBB5BF600A71D16 /* PraiseView.h */,
+				3C0FC2F21DBB5BF600A71D16 /* PraiseView.m */,
+				3C0FC2F31DBB5BF600A71D16 /* ZJMCommentView.h */,
+				3C0FC2F41DBB5BF600A71D16 /* ZJMCommentView.m */,
+			);
+			path = HostViews;
+			sourceTree = "<group>";
+		};
+		3C0FC2FA1DBB9D3300A71D16 /* VideoTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				3C0FC2FE1DBB9D9500A71D16 /* LBBVideoTableViewCell.h */,
+				3C0FC2FF1DBB9D9500A71D16 /* LBBVideoTableViewCell.m */,
+			);
+			name = VideoTableCell;
+			path = videos;
+			sourceTree = "<group>";
+		};
+		3C0FC32B1DBBAB5900A71D16 /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				3C0FC3351DBC4FEE00A71D16 /* LBBFriendViewController.h */,
+				3C0FC3361DBC4FEE00A71D16 /* LBBFriendViewController.m */,
+				3C0FC33E1DBCA0C000A71D16 /* LBBHostDetailViewController.h */,
+				3C0FC33F1DBCA0C000A71D16 /* LBBHostDetailViewController.m */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		3C0FC32C1DBBABAB00A71D16 /* TravelModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C5223141DB9B507002455D3 /* ZJMTravelModel.h */,
+				3C5223151DB9B507002455D3 /* ZJMTravelModel.m */,
+			);
+			path = TravelModel;
+			sourceTree = "<group>";
+		};
+		3C0FC32D1DBC3FDB00A71D16 /* TravelViews */ = {
+			isa = PBXGroup;
+			children = (
+				3C0FC32E1DBC405100A71D16 /* LBBTravelContentImage.h */,
+				3C0FC32F1DBC405100A71D16 /* LBBTravelContentImage.m */,
+			);
+			path = TravelViews;
+			sourceTree = "<group>";
+		};
+		3C0FC3311DBC41A700A71D16 /* TravelTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				3C0FC3321DBC41BB00A71D16 /* LBBTravelTableViewCell.h */,
+				3C0FC3331DBC41BB00A71D16 /* LBBTravelTableViewCell.m */,
+			);
+			path = TravelTableCell;
+			sourceTree = "<group>";
+		};
 		3C95E04B1DB4BF0E00536704 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3C0FC32C1DBBABAB00A71D16 /* TravelModel */,
+				3C0FC2C91DBB3ABB00A71D16 /* HostModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +441,9 @@
 		3C95E04C1DB4BF0E00536704 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3C0FC32D1DBC3FDB00A71D16 /* TravelViews */,
+				3C0FC2EA1DBB5BF600A71D16 /* HostViews */,
+				3C0FC2DB1DBB52ED00A71D16 /* SDAutoLayout */,
 				3C95E04D1DB4BF0E00536704 /* CustomViews */,
 				3C95E04E1DB4BF0E00536704 /* TableViewCell */,
 			);
@@ -266,6 +453,8 @@
 		3C95E04D1DB4BF0E00536704 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				3C3C10AA1DB8A7B200645134 /* LGSegment.h */,
+				3C3C10AB1DB8A7B200645134 /* LGSegment.m */,
 				3C95E0521DB4BF5900536704 /* ZJMSearchBar.h */,
 				3C95E0531DB4BF5900536704 /* ZJMSearchBar.m */,
 				3C95E0551DB4C38100536704 /* ZJScrollPageView */,
@@ -276,6 +465,11 @@
 		3C95E04E1DB4BF0E00536704 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				3C0FC3311DBC41A700A71D16 /* TravelTableCell */,
+				3C0FC2FA1DBB9D3300A71D16 /* VideoTableCell */,
+				3C0FC2E61DBB5BDD00A71D16 /* HostTableCell */,
+				3C5223111DB9B3DD002455D3 /* ZJMTravelCell.h */,
+				3C5223121DB9B3DD002455D3 /* ZJMTravelCell.m */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -297,6 +491,24 @@
 				3C95E0611DB4C38100536704 /* ZJSegmentStyle.m */,
 			);
 			path = ZJScrollPageView;
+			sourceTree = "<group>";
+		};
+		3CE8660E1DB60FB00022830C /* ZJMBaseController */ = {
+			isa = PBXGroup;
+			children = (
+				3CE8660F1DB60FC40022830C /* Header */,
+				3CE866111DB610BF0022830C /* ZJMBaseViewController.h */,
+				3CE866121DB610BF0022830C /* ZJMBaseViewController.m */,
+			);
+			path = ZJMBaseController;
+			sourceTree = "<group>";
+		};
+		3CE8660F1DB60FC40022830C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				3CE866101DB60FCE0022830C /* Header.h */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 		C91F612C1D9F8B77004FE75C /* ST_Home */ = {
@@ -456,9 +668,11 @@
 		C91F614C1D9F96CA004FE75C /* ST_Square */ = {
 			isa = PBXGroup;
 			children = (
+				3C0FC32B1DBBAB5900A71D16 /* ChildController */,
 				3C95E04B1DB4BF0E00536704 /* Model */,
 				3C95E04C1DB4BF0E00536704 /* View */,
 				C91F61501D9F96CA004FE75C /* ViewController */,
+				3CE8660E1DB60FB00022830C /* ZJMBaseController */,
 			);
 			path = ST_Square;
 			sourceTree = "<group>";
@@ -466,9 +680,15 @@
 		C91F61501D9F96CA004FE75C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3C0FC2E31DBB5BAE00A71D16 /* ZJMHostViewController.h */,
+				3C0FC2E41DBB5BAE00A71D16 /* ZJMHostViewController.m */,
 				C91F61511D9F96CA004FE75C /* ST_SquareViewController.h */,
 				C91F61521D9F96CA004FE75C /* ST_SquareViewController.m */,
 				C91F61531D9F96CA004FE75C /* ST_SquareViewController.xib */,
+				3C52230E1DB9B183002455D3 /* ZJMTravelsViewController.h */,
+				3C52230F1DB9B183002455D3 /* ZJMTravelsViewController.m */,
+				3C0FC2FB1DBB9D5E00A71D16 /* LBBVideoViewController.h */,
+				3C0FC2FC1DBB9D5E00A71D16 /* LBBVideoViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -581,6 +801,7 @@
 			children = (
 				C91F61151D9F754F004FE75C /* ST_Home.xcassets */,
 				1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */,
+				3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -667,13 +888,14 @@
 		C9C0E9441D9948F100575A7C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LBB;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = GL_RunMan;
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8NT4E7BWNP;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 7V268D74T3;
+						ProvisioningStyle = Manual;
 					};
 					C9C0E9641D9948F300575A7C = {
 						CreatedOnToolsVersion = 8.0;
@@ -713,6 +935,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C91F61581D9F96CA004FE75C /* ST_MyViewController.xib in Resources */,
+				3C0FC2D71DBB492A00A71D16 /* ST_Square.xcassets in Resources */,
 				C9C0E95F1D9948F200575A7C /* LaunchScreen.storyboard in Resources */,
 				C91F61561D9F96CA004FE75C /* ST_MallViewController.xib in Resources */,
 				1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */,
@@ -794,33 +1017,58 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D293BC91DB4671700ED2CBB /* PoohDirector.m in Sources */,
+				3C0FC2E91DBB5BDD00A71D16 /* ZJMHostTableViewCell.m in Sources */,
 				C9C0E9571D9948F100575A7C /* ViewController.m in Sources */,
 				1D293BBA1DB4607D00ED2CBB /* IConstants.m in Sources */,
 				3C95E0631DB4C38100536704 /* ZJContentView.m in Sources */,
+				3C5223131DB9B3DD002455D3 /* ZJMTravelCell.m in Sources */,
 				1D293BB71DB4607D00ED2CBB /* UIImage+PoohCommon.m in Sources */,
 				C91F61381D9F8B94004FE75C /* ST_HomeViewController.m in Sources */,
 				1D293BB41DB4607D00ED2CBB /* NSString+PoohCommon.m in Sources */,
+				3C0FC2E51DBB5BAE00A71D16 /* ZJMHostViewController.m in Sources */,
+				3C0FC33D1DBC530F00A71D16 /* LBBFriendModel.m in Sources */,
 				1D293BB81DB4607D00ED2CBB /* UIViewExt.m in Sources */,
 				1D293BB01DB4607D00ED2CBB /* NSDate+PoohCategory.m in Sources */,
+				3C0FC3001DBB9D9500A71D16 /* LBBVideoTableViewCell.m in Sources */,
+				3C0FC2F51DBB5BF600A71D16 /* CommentBoxView.m in Sources */,
 				3C95E0661DB4C38100536704 /* ZJScrollSegmentView.m in Sources */,
+				3C0FC2D21DBB3AC800A71D16 /* ZJMHostModel.m in Sources */,
+				3C0FC2E11DBB52ED00A71D16 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1D293BB11DB4607D00ED2CBB /* NSDateFormatter+PoohCategory.m in Sources */,
 				1D293BCD1DB4680200ED2CBB /* DDFormatter.m in Sources */,
+				3C3C10AC1DB8A7B200645134 /* LGSegment.m in Sources */,
 				3C95E0651DB4C38100536704 /* ZJScrollPageView.m in Sources */,
 				1D293BB61DB4607D00ED2CBB /* UIImage+animatedGIF.m in Sources */,
+				3C0FC3301DBC405100A71D16 /* LBBTravelContentImage.m in Sources */,
+				3C0FC2D11DBB3AC800A71D16 /* PraiseModel.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1D293BBB1DB4607D00ED2CBB /* UIConstants.m in Sources */,
+				3C0FC33A1DBC504B00A71D16 /* LBBFriendTableViewCell.m in Sources */,
+				3C0FC2F61DBB5BF600A71D16 /* CommentView.m in Sources */,
+				3C0FC2F81DBB5BF600A71D16 /* PraiseView.m in Sources */,
 				1D293B6B1DB45E6D00ED2CBB /* PoohBaseViewController.m in Sources */,
 				3C95E0621DB4C38100536704 /* UIView+ZJFrame.m in Sources */,
+				3C0FC2E21DBB52ED00A71D16 /* UIView+SDAutoLayout.m in Sources */,
 				C9C0E9511D9948F100575A7C /* main.m in Sources */,
+				3C0FC3401DBCA0C000A71D16 /* LBBHostDetailViewController.m in Sources */,
+				3C5223101DB9B183002455D3 /* ZJMTravelsViewController.m in Sources */,
 				1D293BB31DB4607D00ED2CBB /* NSObject+PoohCommon.m in Sources */,
+				3C0FC3341DBC41BB00A71D16 /* LBBTravelTableViewCell.m in Sources */,
 				3C95E0671DB4C38100536704 /* ZJSegmentStyle.m in Sources */,
 				1D293BB51DB4607D00ED2CBB /* UIColor+PoohCommon.m in Sources */,
+				3C0FC2F91DBB5BF600A71D16 /* ZJMCommentView.m in Sources */,
 				1D293BB21DB4607D00ED2CBB /* NSDictionary+PoohCommon.m in Sources */,
 				3C95E0541DB4BF5900536704 /* ZJMSearchBar.m in Sources */,
+				3C5223161DB9B507002455D3 /* ZJMTravelModel.m in Sources */,
 				C91F61551D9F96CA004FE75C /* ST_MallViewController.m in Sources */,
+				3C0FC3371DBC4FEE00A71D16 /* LBBFriendViewController.m in Sources */,
 				C91F61591D9F96CA004FE75C /* ST_SquareViewController.m in Sources */,
 				3C95E0641DB4C38100536704 /* ZJCustomLabel.m in Sources */,
+				3CE866131DB610BF0022830C /* ZJMBaseViewController.m in Sources */,
 				C91F61571D9F96CA004FE75C /* ST_MyViewController.m in Sources */,
+				3C0FC2D01DBB3AC800A71D16 /* CommentModel.m in Sources */,
+				3C0FC2F71DBB5BF600A71D16 /* ContentImageView.m in Sources */,
+				3C0FC2FD1DBB9D5E00A71D16 /* LBBVideoViewController.m in Sources */,
 				C91F61341D9F8B77004FE75C /* ST_TabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -894,6 +1142,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -916,7 +1165,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -941,6 +1190,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -957,7 +1207,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -969,13 +1219,17 @@
 			baseConfigurationReference = A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: dawei che (8475DELD6B)";
+				DEVELOPMENT_TEAM = 7V268D74T3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "yuan..ST-Travel";
+				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
+				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
 			};
 			name = Debug;
 		};
@@ -984,13 +1238,17 @@
 			baseConfigurationReference = 8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: dawei che (8475DELD6B)";
+				DEVELOPMENT_TEAM = 7V268D74T3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "yuan..ST-Travel";
+				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
+				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
 			};
 			name = Release;
 		};

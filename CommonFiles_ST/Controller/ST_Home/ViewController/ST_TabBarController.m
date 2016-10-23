@@ -11,6 +11,7 @@
 #import "ST_SquareViewController.h"
 #import "ST_MallViewController.h"
 #import "ST_MyViewController.h"
+#import "ZJMTravelsViewController.h"
 
 @interface ST_TabBarController ()<UITabBarControllerDelegate>
 {
@@ -116,7 +117,7 @@
 
 -(void)buttonAction:(UIButton*)button
 {
-
+    
 }
 
 - (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated

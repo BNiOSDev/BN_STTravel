@@ -22,7 +22,7 @@
     /*
      * pooh add DDloginfo method to show log
      */
-    [[PoohDirector sharedInstance] setupApp];
+//    [[PoohDirector sharedInstance] setupApp];
 
     
     return YES;

@@ -7,7 +7,12 @@
 //
 
 #import "Base_BaseViewController.h"
+#import "LGSegment.h"
 
-@interface ST_SquareViewController : Base_BaseViewController
+@interface ST_SquareViewController : Base_BaseViewController<SegmentDelegate>
+@property (nonatomic, strong) UIScrollView *contentScrollView;
+@property(nonatomic,strong)NSMutableArray *buttonList;
+@property (nonatomic, weak)LGSegment *segment;
+@property(nonatomic,weak)CALayer *LGLayer;
 
 @end
