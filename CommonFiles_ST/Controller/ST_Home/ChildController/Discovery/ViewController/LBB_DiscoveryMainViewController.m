@@ -10,8 +10,7 @@
 #import "SDCycleScrollView.h"
 #import "LBB_DiscoveryMainTableViewCell.h"
 #import "LBB_DiscoveryCustomizedViewController.h"
-
-static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell.h";
+static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
 
 @interface LBB_DiscoveryMainViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
@@ -64,47 +63,23 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell.h";
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.view addSubview:self.tableView];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+
+
     self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = [self configTableHeaderView];
     [self setCycleScrollViewUrls:nil];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.centerX.top.equalTo(ws.view);
         make.bottom.equalTo(ws.view);
     }];
     
-    [self configData];
-    
     [self.tableView registerClass:[LBB_DiscoveryMainTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
-
-
--(void)configData{
-
-    _dataArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 10; i++) {
-        LBB_DiscoveryMainModel  *model = [[LBB_DiscoveryMainModel alloc]init];
-        model.imageUrl = [NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"];
-        model.title = @"钟爱SD的男人";
-        
-        if (i%2) {
-            model.content = @"这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了,某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太";
- 
-        }
-        else{
-            model.content = @"asdadjadhqhkhkjasasblkasdhjahajsfhasdhajkdhjhwqiudhdshajksdhquwidhiquhdqjkdh这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了,某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太";
-        }
-        
-        model.time = [PoohAppHelper getStringFromDate:[NSDate new] withFormat:DateFormatFullDate];
-        model.commentsNum = 189;
-        model.greatNum = 721;
-        [_dataArray addObject:model];
-    }
-}
-
 /*
  * setup table header view
  */
@@ -251,15 +226,14 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell.h";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.dataArray.count;
+    return 10;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    LBB_DiscoveryMainModel *entity = self.dataArray[indexPath.row];
     return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath configuration:^(LBB_DiscoveryMainTableViewCell *cell) {
         
-        cell.model = entity;
+        cell.modelaaa = nil;
     }];
 }
 
@@ -267,8 +241,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell.h";
     
     LBB_DiscoveryMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
    
-    cell.model = [self.dataArray objectAtIndex:indexPath.row];
-    
+    cell.modelaaa = nil;
     return cell;
     
 }

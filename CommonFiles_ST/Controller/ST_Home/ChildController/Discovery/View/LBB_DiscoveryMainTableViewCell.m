@@ -137,15 +137,22 @@
 }
 
 
--(void)setModel:(LBB_DiscoveryMainModel *)model{
+-(void)setModelaaa:(id)model{
+    
+    int i = arc4random();
+    if (i%2) {
+        [contentLabel setText:@"这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了,某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太"];
+    }
+    else{
+        [contentLabel setText:@"asdadjadhqhkhkjasasblkasdhjahajsfhasdhajkdhjhwqiudhdshajksdhquwidhiquhdqjkdh这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了,某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太"];
 
-    [imageView sd_setImageWithURL:model.imageUrl placeholderImage:IMAGE(PlaceHolderImage)];
-    [titleLabel setText:model.title];
-    [contentLabel setText:model.content];
+    }
+    [imageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
+    [titleLabel setText:@"钟爱SD的男人"];
     [contentLabel setNumberOfLines:0];
-    [timeLabel setText:model.time];
-    [greetView.desLabel setText:[NSString stringWithFormat:@"%ld",model.greatNum]];
-    [commentsView.desLabel setText:[NSString stringWithFormat:@"%ld",model.commentsNum]];
+    [timeLabel setText:[PoohAppHelper getStringFromDate:[NSDate new] withFormat:DateFormatFullDate]];
+    [greetView.desLabel setText:[NSString stringWithFormat:@"%ld",231]];
+    [commentsView.desLabel setText:[NSString stringWithFormat:@"%ld",371]];
 }
 
 @end
