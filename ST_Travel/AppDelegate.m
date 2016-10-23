@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+<<<<<<< HEAD
     
     
     /*
@@ -25,6 +26,8 @@
 //    [[PoohDirector sharedInstance] setupApp];
 
     
+=======
+>>>>>>> develop
     return YES;
 }
 

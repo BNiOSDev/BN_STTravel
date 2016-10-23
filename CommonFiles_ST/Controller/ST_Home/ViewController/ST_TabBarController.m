@@ -10,8 +10,12 @@
 #import "ST_HomeViewController.h"
 #import "ST_SquareViewController.h"
 #import "ST_MallViewController.h"
+<<<<<<< HEAD
 #import "ST_MyViewController.h"
 #import "ZJMTravelsViewController.h"
+=======
+#import "MineViewController.h"
+>>>>>>> develop
 
 @interface ST_TabBarController ()<UITabBarControllerDelegate>
 {
@@ -65,7 +69,8 @@
     Base_BaseViewController *viewController1        = [[ST_HomeViewController alloc]init];
     Base_BaseViewController *viewController2        = [[ST_SquareViewController alloc]init];
     Base_BaseViewController *viewController3        = [[ST_MallViewController alloc]init];
-    Base_BaseViewController *viewController4        = [[ST_MyViewController alloc]init];
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    Base_BaseViewController *viewController4 = [main instantiateViewControllerWithIdentifier:@"MineViewController"];
     UIViewController *viewController5        = [[UIViewController alloc]init];
 
     navigationControllerHome          = [[UINavigationController alloc]initWithRootViewController:viewController1];

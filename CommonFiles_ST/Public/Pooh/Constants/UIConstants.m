@@ -7,6 +7,8 @@
 //
 
 #import "UIConstants.h"
+#import "PoohCommon.h"
+
 @implementation UIConstants
 
 + (UIFont *)getFont:(CGFloat)size{
@@ -22,7 +24,9 @@
 
 + (UIColor *)getAppColor{
     
-     return [UIColor whiteColor]; //红色
+  //  return [UIColor colorWithRGB:0xd4413b]; //红色
+    return [UIColor colorWithRGB:0xffffff]; //白色
+
 }
 
 #pragma color

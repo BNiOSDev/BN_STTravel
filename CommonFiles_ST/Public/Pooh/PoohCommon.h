@@ -20,10 +20,10 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import <BlocksKit/BlocksKit.h>
 #import <Masonry/Masonry.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
-#import <CocoaLumberjack/CocoaLumberjack.h>
 #import <GLPubSub/NSObject+GLPubSub.h>
-#import "PoohDDLogConfig.h"
-#import "PoohDirector.h"
+#import <UIImageView+WebCache.h>
+#import <UITableView+FDTemplateLayoutCell.h>
+#import "PoohAppHelper.h"
 
 #import "NSString+PoohCommon.h"
 #import "UIColor+PoohCommon.h"
@@ -35,6 +35,9 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define UISCREEN_HEIGTH [UIScreen mainScreen].bounds.size.height
+
+#define PlaceHolderImage @""
+#define SeparateLineWidth 1.5
 
 
 
