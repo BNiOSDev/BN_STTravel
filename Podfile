@@ -11,4 +11,9 @@ pod 'BlocksKit'
 pod 'SDCycleScrollView','~> 1.64'
 pod 'CocoaLumberjack'
 pod 'GLPubSub'
+<<<<<<< HEAD
+=======
+pod 'SWTableViewCell'
+
+>>>>>>> develop
 end
