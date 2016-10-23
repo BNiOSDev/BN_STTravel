@@ -29,7 +29,9 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
-        [self loadTabBarViewControllers];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self loadTabBarViewControllers];
+        });
     }
     return self;
 }
@@ -65,7 +67,7 @@
     Base_BaseViewController *viewController2        = [[ST_SquareViewController alloc]init];
     Base_BaseViewController *viewController3        = [[ST_MallViewController alloc]init];
     Base_BaseViewController *viewController4        = [[ST_MyViewController alloc]init];
-    UIViewController *viewController5        = [[UIViewController alloc]init];
+    Base_BaseViewController *viewController5        = [[Base_BaseViewController alloc]init];
 
     navigationControllerHome          = [[UINavigationController alloc]initWithRootViewController:viewController1];
     navigationControllerHome.title    = @"首页";
