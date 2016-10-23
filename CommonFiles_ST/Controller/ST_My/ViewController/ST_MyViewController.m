@@ -23,7 +23,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [(ST_TabBarController*)self.tabBarController setTabBarHidden:YES animated:YES];
+    [(ST_TabBarController*)self.tabBarController setTabBarHidden:NO animated:YES];
 
 }
 
