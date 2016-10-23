@@ -20,10 +20,10 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import <BlocksKit/BlocksKit.h>
 #import <Masonry/Masonry.h>
 #import <BlocksKit/BlocksKit+UIKit.h>
-#import <CocoaLumberjack/CocoaLumberjack.h>
 #import <GLPubSub/NSObject+GLPubSub.h>
-#import "PoohDDLogConfig.h"
-#import "PoohDirector.h"
+#import <UIImageView+WebCache.h>
+#import <UITableView+FDTemplateLayoutCell.h>
+#import "PoohAppHelper.h"
 
 #import "NSString+PoohCommon.h"
 #import "UIColor+PoohCommon.h"
@@ -41,6 +41,9 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #define IOS_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
 //获取适配后的数据大小
 #define AUTO(num)  num * SET_FIX_SIZE_WIDTH
+
+#define PlaceHolderImage @""
+#define SeparateLineWidth 1.5
 
 
 
