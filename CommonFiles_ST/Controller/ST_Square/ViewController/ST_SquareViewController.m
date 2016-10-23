@@ -5,14 +5,24 @@
 //  Created by newman on 16/10/1.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
-
+//ScrollView高度
+#define LG_scrollViewH 220
+//Segment高度
+#define LG_segmentH 30
+#define LG_segmentW AUTO(190)
 #import "ST_SquareViewController.h"
 #import "ST_TabBarController.h"
 #import "ZJMSearchBar.h"
 #import "ZJScrollPageView.h"
+#import "Header.h"
+#import "ZJMTravelsViewController.h"
+#import "ZJMHostViewController.h"
+#import "LBBVideoViewController.h"
 
-@interface ST_SquareViewController ()<UISearchBarDelegate>
-@property(nonatomic, weak)UISearchBar       *JMSearchBar;
+@interface ST_SquareViewController ()<UISearchBarDelegate,UIScrollViewDelegate>
+@property(nonatomic, weak)UISearchBar         *JMSearchBar;
+@property (nonatomic, strong) UIScrollView      *scrollView;
+@property(nonatomic, strong)ZJMTravelsViewController    *travelContrller;
 @end
 
 @implementation ST_SquareViewController
@@ -21,15 +31,24 @@
     [super viewDidLoad];
     
     [self  initNaviStyle];
-    [self  initToolsBar];
+    //加载Segment
+    [self setSegment];
+    //加载ViewController
+    [self addChildViewController];
+    //加载ScrollView
+    [self setContentScrollView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     [(ST_TabBarController*)self.tabBarController setTabBarHidden:NO animated:YES];
-    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage createImageWithColor:[UIColor clearColor]]];
+
 }
+
 /**
  *  初始化nav
  */
@@ -52,50 +71,84 @@
     searchTextField.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)initToolsBar
+-(void)setSegment {
+    
+    _buttonList = [[NSMutableArray alloc]init];
+    //初始化
+    LGSegment *segment = [[LGSegment alloc]initWithFrame:CGRectMake((DeviceWidth - LG_segmentW)/ 2 , 5, LG_segmentW , LG_segmentH)];
+    segment.backgroundColor = [UIColor whiteColor];
+    segment.delegate = self;
+    self.segment = segment;
+    [_buttonList addObject:@"主页"];
+    [_buttonList addObject:@"游记"];
+    [_buttonList addObject:@"视频"];
+    self.segment.buttonList = self.buttonList;
+    [self.segment commonInit];
+    [self.view addSubview:segment];
+    self.LGLayer = segment.LGLayer;
+    
+}
+//加载ScrollView
+-(void)setContentScrollView {
+    
+    UIScrollView *sv = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 40, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:sv];
+    sv.bounces = NO;
+    sv.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    sv.contentOffset = CGPointMake(0, 0);
+    sv.pagingEnabled = YES;
+    sv.showsHorizontalScrollIndicator = NO;
+    sv.scrollEnabled = NO;
+    sv.userInteractionEnabled = YES;
+    sv.delegate = self;
+    
+    for (int i=0; i<self.childViewControllers.count; i++) {
+        UIViewController * vc = self.childViewControllers[i];
+        vc.view.frame = CGRectMake(i * DeviceWidth, 0, DeviceWidth, self.view.frame.size.height);
+        [sv addSubview:vc.view];
+        
+    }
+    
+    sv.contentSize = CGSizeMake(_buttonList.count * DeviceWidth, 0);
+    self.contentScrollView = sv;
+}
+//加载3个ViewController
+-(void)addChildViewController{
+    
+    ZJMHostViewController * vc1 = [[ZJMHostViewController alloc]init];
+    vc1.jumpBlock = ^(id obj,id pargram){
+        [self.navigationController pushViewController:obj animated:YES];
+    };
+    [self addChildViewController:vc1];
+    
+    ZJMTravelsViewController *viewVC = [[ZJMTravelsViewController alloc]init];
+    [self addChildViewController:viewVC];
+    
+    LBBVideoViewController * vc3 = [[LBBVideoViewController alloc]init];
+    [self addChildViewController:vc3];
+    
+}
+
+#pragma mark - UIScrollViewDelegate
+//实现LGSegment代理方法
+-(void)scrollToPage:(int)Page {
+    CGPoint offset = self.contentScrollView.contentOffset;
+    offset.x = self.view.frame.size.width * Page;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentScrollView.contentOffset = offset;
+    }];
+    NSLog(@"Page = %d",Page);
+}
+// 只要滚动UIScrollView就会调用
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    //必要的设置, 如果没有设置可能导致内容显示不正常
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    ZJSegmentStyle *style = [[ZJSegmentStyle alloc] init];
-    //显示遮盖
-    style.showCover = NO;
-    style.showLine = YES;
-    // 颜色渐变
-    style.gradualChangeTitleColor = YES;
-    // 显示附加的按钮
-    style.showExtraButton = NO;
-    //style.normalTitleColor =  [UIColor blackColor];
-    style.segmentHeight = AUTO(30);
-    // 设置子控制器 --- 注意子控制器需要设置title, 将用于对应的tag显示title
-    NSArray *childVcs = [NSArray arrayWithArray:[self setupChildVcAndTitle]];
-    // 初始化
-    ZJScrollPageView *scrollPageView = [[ZJScrollPageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64.0) segmentStyle:style childVcs:childVcs parentViewController:self];
-    // 额外的按钮响应的block
-    //    __weak typeof(self) weakSelf = self;
-    //    scrollPageView.extraBtnOnClick = ^(UIButton *extraBtn){
-    //        weakSelf.title = @"点击了extraBtn";
-    //        NSLog(@"点击了extraBtn");
-    //    };
-    [self.view addSubview:scrollPageView];
-    
+//    CGFloat offsetX = scrollView.contentOffset.x;
+//    //计算当前index
+//    NSLog(@"%d",(int)(scrollView.contentOffset.x / DeviceWidth));
+//    //滑动更改self.segment颜色和cylayer的位置
+//    [self.segment moveToOffsetX:offsetX AndIndex:(int)(scrollView.contentOffset.x / LG_segmentW)];
 }
 
-- (NSArray *)setupChildVcAndTitle {
-    
-    UIViewController *vc1 =  [UIViewController new];
-    vc1.title = @"主页";//
-    
-    UIViewController *vc2 = [UIViewController new];
-    vc2.title = @"游记"; //
-    
-    UIViewController *vc3 = [UIViewController new];
-    vc3.title = @"视频"; //
-    
-
-    
-    NSArray *childVcs = [NSArray arrayWithObjects:vc1, vc2, vc3, nil];
-    return childVcs;
-}
 
 
 @end

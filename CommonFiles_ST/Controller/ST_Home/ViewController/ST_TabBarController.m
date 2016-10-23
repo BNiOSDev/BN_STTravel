@@ -10,7 +10,7 @@
 #import "ST_HomeViewController.h"
 #import "ST_SquareViewController.h"
 #import "ST_MallViewController.h"
-#import "ST_MyViewController.h"
+#import "MineViewController.h"
 
 @interface ST_TabBarController ()<UITabBarControllerDelegate>
 {
@@ -50,7 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    centerBtn = [[UIButton alloc]initWithFrame:CGRectMake((DeviceWidth/2) - 22.5, DeviceHeight - 47, 45, 45)];
+    centerBtn = [[UIButton alloc]initWithFrame:CGRectMake((DeviceWidth/2) - 22.5, DeviceHeight - 49 + 2, 45, 45)];
     [centerBtn setBackgroundImage:IMAGE(@"SJR_TabMiddleBtn") forState:UIControlStateNormal];
     [centerBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:centerBtn];
@@ -66,8 +66,10 @@
     Base_BaseViewController *viewController1        = [[ST_HomeViewController alloc]init];
     Base_BaseViewController *viewController2        = [[ST_SquareViewController alloc]init];
     Base_BaseViewController *viewController3        = [[ST_MallViewController alloc]init];
-    Base_BaseViewController *viewController4        = [[ST_MyViewController alloc]init];
-    Base_BaseViewController *viewController5        = [[Base_BaseViewController alloc]init];
+
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    Base_BaseViewController *viewController4 = [main instantiateViewControllerWithIdentifier:@"MineViewController"];
+    UIViewController *viewController5        = [[UIViewController alloc]init];
 
     navigationControllerHome          = [[UINavigationController alloc]initWithRootViewController:viewController1];
     navigationControllerHome.title    = @"首页";
@@ -118,13 +120,13 @@
 
 -(void)buttonAction:(UIButton*)button
 {
-
+    
 }
 
 - (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated
 {
     [super setTabBarHidden:hidden animated:animated];
-    CGFloat height = hidden == YES ? DeviceHeight : DeviceHeight - 47;
+    CGFloat height = hidden == YES ? DeviceHeight + 2 + 6 : DeviceHeight - 49 + 2;
     if(animated == YES)
     {
         [UIView animateWithDuration:.3 animations:^{
