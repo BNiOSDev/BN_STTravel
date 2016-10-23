@@ -18,7 +18,6 @@
 #import "Header.h"
 #import "LBBFriendViewController.h"
 #import "LBBHostDetailViewController.h"
-#import "ST_MyViewController.h"
 
 
 @interface ZJMHostViewController ()<UITableViewDelegate,UITableViewDataSource>

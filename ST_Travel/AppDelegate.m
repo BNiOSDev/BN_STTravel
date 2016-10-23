@@ -17,17 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-<<<<<<< HEAD
-    
-    
-    /*
-     * pooh add DDloginfo method to show log
-     */
-//    [[PoohDirector sharedInstance] setupApp];
-
-    
-=======
->>>>>>> develop
     return YES;
 }
 

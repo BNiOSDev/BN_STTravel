@@ -10,12 +10,7 @@
 #import "ST_HomeViewController.h"
 #import "ST_SquareViewController.h"
 #import "ST_MallViewController.h"
-<<<<<<< HEAD
-#import "ST_MyViewController.h"
-#import "ZJMTravelsViewController.h"
-=======
 #import "MineViewController.h"
->>>>>>> develop
 
 @interface ST_TabBarController ()<UITabBarControllerDelegate>
 {
