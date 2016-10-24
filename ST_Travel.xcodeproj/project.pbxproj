@@ -28,8 +28,6 @@
 		1DF6F88E1DBCB0D8001903D1 /* ContentImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8521DBCB0D8001903D1 /* ContentImageView.m */; };
 		1DF6F88F1DBCB0D8001903D1 /* PraiseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8541DBCB0D8001903D1 /* PraiseView.m */; };
 		1DF6F8901DBCB0D8001903D1 /* ZJMCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8561DBCB0D8001903D1 /* ZJMCommentView.m */; };
-		1DF6F8911DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F85A1DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.m */; };
-		1DF6F8921DBCB0D8001903D1 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F85C1DBCB0D8001903D1 /* UIView+SDAutoLayout.m */; };
 		1DF6F8931DBCB0D8001903D1 /* LBBFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8601DBCB0D8001903D1 /* LBBFriendTableViewCell.m */; };
 		1DF6F8941DBCB0D8001903D1 /* ZJMHostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8621DBCB0D8001903D1 /* ZJMHostTableViewCell.m */; };
 		1DF6F8951DBCB0D8001903D1 /* LBBTravelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8651DBCB0D8001903D1 /* LBBTravelTableViewCell.m */; };
@@ -90,6 +88,8 @@
 		1DF6F9481DBCBF50001903D1 /* ST_HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF6F9181DBCBF50001903D1 /* ST_HomeViewController.xib */; };
 		1DF6F9491DBCBF50001903D1 /* ST_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F91A1DBCBF50001903D1 /* ST_TabBarController.m */; };
 		1DF6F94C1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F94A1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m */; };
+		3CAE678B1DBCF59C000591CF /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAE67881DBCF59C000591CF /* UITableView+SDAutoTableViewCellHeight.m */; };
+		3CAE678C1DBCF59C000591CF /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAE678A1DBCF59C000591CF /* UIView+SDAutoLayout.m */; };
 		841406671DB7583400A1D904 /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406661DB7583400A1D904 /* VerificationViewController.m */; };
 		8414066A1DB75D8000A1D904 /* ExtractDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406691DB75D8000A1D904 /* ExtractDetailViewController.m */; };
 		84B25B171DB7966E002EDA7F /* ReceiptAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B25B161DB7966E002EDA7F /* ReceiptAddressViewController.m */; };
@@ -220,11 +220,6 @@
 		1DF6F8541DBCB0D8001903D1 /* PraiseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PraiseView.m; sourceTree = "<group>"; };
 		1DF6F8551DBCB0D8001903D1 /* ZJMCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMCommentView.h; sourceTree = "<group>"; };
 		1DF6F8561DBCB0D8001903D1 /* ZJMCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMCommentView.m; sourceTree = "<group>"; };
-		1DF6F8581DBCB0D8001903D1 /* SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAutoLayout.h; sourceTree = "<group>"; };
-		1DF6F8591DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
-		1DF6F85A1DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
-		1DF6F85B1DBCB0D8001903D1 /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
-		1DF6F85C1DBCB0D8001903D1 /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
 		1DF6F85F1DBCB0D8001903D1 /* LBBFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendTableViewCell.h; sourceTree = "<group>"; };
 		1DF6F8601DBCB0D8001903D1 /* LBBFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendTableViewCell.m; sourceTree = "<group>"; };
 		1DF6F8611DBCB0D8001903D1 /* ZJMHostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMHostTableViewCell.h; sourceTree = "<group>"; };
@@ -344,6 +339,11 @@
 		1DF6F94A1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryMainModel.m; sourceTree = "<group>"; };
 		1DF6F94B1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryMainModel.h; sourceTree = "<group>"; };
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
+		3CAE67861DBCF59C000591CF /* SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAutoLayout.h; sourceTree = "<group>"; };
+		3CAE67871DBCF59C000591CF /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
+		3CAE67881DBCF59C000591CF /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
+		3CAE67891DBCF59C000591CF /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
+		3CAE678A1DBCF59C000591CF /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
 		841406651DB7583400A1D904 /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
 		841406661DB7583400A1D904 /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
 		841406681DB75D8000A1D904 /* ExtractDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractDetailViewController.h; sourceTree = "<group>"; };
@@ -504,6 +504,7 @@
 		1DF6F8271DBCB0D8001903D1 /* ST_Square */ = {
 			isa = PBXGroup;
 			children = (
+				3CAE678D1DBCFC61000591CF /* ImageResource */,
 				1DF6F8281DBCB0D8001903D1 /* ChildController */,
 				1DF6F82D1DBCB0D8001903D1 /* Model */,
 				1DF6F8391DBCB0D8001903D1 /* View */,
@@ -553,8 +554,8 @@
 			isa = PBXGroup;
 			children = (
 				1DF6F83A1DBCB0D8001903D1 /* CustomViews */,
+				3CAE677E1DBCF28A000591CF /* SDAutoLayout */,
 				1DF6F84C1DBCB0D8001903D1 /* HostViews */,
-				1DF6F8571DBCB0D8001903D1 /* SDAutoLayout */,
 				1DF6F85D1DBCB0D8001903D1 /* TableViewCell */,
 				1DF6F86B1DBCB0D8001903D1 /* TravelViews */,
 			);
@@ -607,18 +608,6 @@
 				1DF6F8561DBCB0D8001903D1 /* ZJMCommentView.m */,
 			);
 			path = HostViews;
-			sourceTree = "<group>";
-		};
-		1DF6F8571DBCB0D8001903D1 /* SDAutoLayout */ = {
-			isa = PBXGroup;
-			children = (
-				1DF6F8581DBCB0D8001903D1 /* SDAutoLayout.h */,
-				1DF6F8591DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.h */,
-				1DF6F85A1DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.m */,
-				1DF6F85B1DBCB0D8001903D1 /* UIView+SDAutoLayout.h */,
-				1DF6F85C1DBCB0D8001903D1 /* UIView+SDAutoLayout.m */,
-			);
-			path = SDAutoLayout;
 			sourceTree = "<group>";
 		};
 		1DF6F85D1DBCB0D8001903D1 /* TableViewCell */ = {
@@ -1052,6 +1041,25 @@
 				1DF6F91A1DBCBF50001903D1 /* ST_TabBarController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3CAE677E1DBCF28A000591CF /* SDAutoLayout */ = {
+			isa = PBXGroup;
+			children = (
+				3CAE67861DBCF59C000591CF /* SDAutoLayout.h */,
+				3CAE67871DBCF59C000591CF /* UITableView+SDAutoTableViewCellHeight.h */,
+				3CAE67881DBCF59C000591CF /* UITableView+SDAutoTableViewCellHeight.m */,
+				3CAE67891DBCF59C000591CF /* UIView+SDAutoLayout.h */,
+				3CAE678A1DBCF59C000591CF /* UIView+SDAutoLayout.m */,
+			);
+			path = SDAutoLayout;
+			sourceTree = "<group>";
+		};
+		3CAE678D1DBCFC61000591CF /* ImageResource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImageResource;
 			sourceTree = "<group>";
 		};
 		84E9C5251DB5EC4900F70C79 /* BaseView */ = {
@@ -1566,8 +1574,8 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 2V3T4T4V4S;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 7V268D74T3;
+						ProvisioningStyle = Manual;
 					};
 					C9C0E9641D9948F300575A7C = {
 						CreatedOnToolsVersion = 8.0;
@@ -1738,6 +1746,7 @@
 				84E9C5AB1DB5EC4900F70C79 /* CardViewCell.m in Sources */,
 				84E9C5B31DB5EC4900F70C79 /* WalletViewController.m in Sources */,
 				84E9C58B1DB5EC4900F70C79 /* LBB_FavoriteViewController.m in Sources */,
+				3CAE678B1DBCF59C000591CF /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				84E9C5A91DB5EC4900F70C79 /* BalanceDetailViewCell.m in Sources */,
 				84E9C5A21DB5EC4900F70C79 /* TicketViewController.m in Sources */,
 				1DF6F8941DBCB0D8001903D1 /* ZJMHostTableViewCell.m in Sources */,
@@ -1754,7 +1763,6 @@
 				841406671DB7583400A1D904 /* VerificationViewController.m in Sources */,
 				1DF6F88B1DBCB0D8001903D1 /* ZJSegmentStyle.m in Sources */,
 				84FBE84A1DB7B1E80016C9AF /* AddAddressViewController.m in Sources */,
-				1DF6F8921DBCB0D8001903D1 /* UIView+SDAutoLayout.m in Sources */,
 				1DF6F9251DBCBF50001903D1 /* LBBPoohGreatItemView.m in Sources */,
 				1DF6F9201DBCBF50001903D1 /* GYChangeTextView.m in Sources */,
 				1DF6F9231DBCBF50001903D1 /* LBBPoohBaseTableViewCell.m in Sources */,
@@ -1781,6 +1789,7 @@
 				1DF6F9401DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m in Sources */,
 				84E9C5A61DB5EC4900F70C79 /* BalanceDetailViewController.m in Sources */,
 				84E9C5971DB5EC4900F70C79 /* LBB_RouteViewController.m in Sources */,
+				3CAE678C1DBCF59C000591CF /* UIView+SDAutoLayout.m in Sources */,
 				84E9C5991DB5EC4900F70C79 /* SwitchViewCell.m in Sources */,
 				84E9C5981DB5EC4900F70C79 /* SetingSwitchBaseViewController.m in Sources */,
 				84E9C59C1DB5EC4900F70C79 /* SettingPushViewController.m in Sources */,
@@ -1810,7 +1819,6 @@
 				84E9C5B91DB5EE0E00F70C79 /* CommonFunc.m in Sources */,
 				1DF6F9331DBCBF50001903D1 /* LBBSigninMainViewController.m in Sources */,
 				1DF6F93F1DBCBF50001903D1 /* UIConstants.m in Sources */,
-				1DF6F8911DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1DF6F9291DBCBF50001903D1 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
 				1DF6F8931DBCB0D8001903D1 /* LBBFriendTableViewCell.m in Sources */,
 				84E9C5AD1DB5EC4900F70C79 /* WalletViewCell.m in Sources */,
@@ -1974,15 +1982,16 @@
 			baseConfigurationReference = A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2V3T4T4V4S;
+				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
+				DEVELOPMENT_TEAM = 7V268D74T3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
-				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
+				PROVISIONING_PROFILE = "4f920f31-eaa1-4e62-a72b-fa1070c0b488";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1991,15 +2000,16 @@
 			baseConfigurationReference = 8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2V3T4T4V4S;
+				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
+				DEVELOPMENT_TEAM = 7V268D74T3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
-				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
+				PROVISIONING_PROFILE = "4f920f31-eaa1-4e62-a72b-fa1070c0b488";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

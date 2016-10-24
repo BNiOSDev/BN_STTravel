@@ -8,7 +8,7 @@
 
 #ifndef Header_h
 #define Header_h
-#import "UIViewExt.h"
+
 #import <UIImageView+WebCache.h>
 
 //使用宏定义16进制颜色值

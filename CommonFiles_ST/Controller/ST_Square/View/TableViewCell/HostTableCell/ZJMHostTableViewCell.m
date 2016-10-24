@@ -165,8 +165,8 @@
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] forState:UIControlStateNormal];
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
-    _addressImage.image = IMAGE(@"zjmaddress");
-    _timeImage.image = IMAGE(@"zjmtime");
+    _addressImage.image = [UIImage imageNamed:@"ST_Sign_Num3Icon"];
+    _timeImage.image = IMAGE(@"zjmadd");
     _addressNameLabel.text = model.address;
     _timeLabel.text = model.timeAgo;
     _contentLabel.text = model.content;
