@@ -39,12 +39,12 @@
         [self.contentView addSubview:pagerView];
         [pagerView setActiveColor:ColorLightGray];
         [pagerView setInactiveColor:ColorLightGray];
-        [pagerView setTitleFont:Font1];
+        [pagerView setTitleFont:Font6];
         [pagerView enableSeperatorView:NO];
         [pagerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.centerX.equalTo(ws.contentView);
             make.height.equalTo(@35);
             make.width.equalTo(@200);
-            make.top.centerX.equalTo(ws.contentView);
         }];
 
         pagerView.click = ^(KSViewPagerView*v, NSNumber *index){
@@ -53,9 +53,6 @@
         };
         [pagerView setCursorPosition:0];
         self.pagerView = pagerView;
-        
-        
-        
         
         UICollectionViewFlowLayout *horizontalCellLayout = [UICollectionViewFlowLayout new];
         horizontalCellLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -80,7 +77,7 @@
         
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(ws.pagerView.mas_bottom);
-            make.left.right.bottom.equalTo(ws.contentView);
+            make.left.right.width.equalTo(ws.contentView);
          //   make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
         }];
 
@@ -93,11 +90,13 @@
         [sep setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep];
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.right.bottom.equalTo(ws.contentView);
+            make.top.equalTo(_collectionView.mas_bottom);
+            make.left.right.equalTo(ws.contentView);
             make.height.equalTo(@1.5);
+            make.bottom.equalTo(ws.contentView);
         }];
         
-        [self layoutSubviews];//it must to be done to layouts subviews
+      //  [self layoutSubviews];//it must to be done to layouts subviews
 
     }
     return self;
@@ -127,20 +126,18 @@
 //    return itemSize;
 //}
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
     CGFloat height = 0;
+    height = DeviceWidth * 2/3;
 
-    if ([self.pagerView isHidden]) {
-        height = DeviceWidth * 2/3;
-
-    }
-    else{
-        height = DeviceWidth * 2/3 + 35;
-
-    }
+    return height;
+}
++(CGFloat)getCellHeight2{
     
- //   NSLog(@"getCellHeight:%f",height);
+    CGFloat height = 0;
+    height = DeviceWidth * 2/3 + 35;
+    
     return height;
 }
 

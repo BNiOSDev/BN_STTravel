@@ -29,10 +29,10 @@
 typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     LBBHomeSectionMenuType = 0,//入口
     LBBHomeSectionHotestType,//热门推荐
-    LBBHomeSectionVisitRecommendType,//游记推荐
+    LBBHomeSectionTravelRecommendType,//游记推荐
     LBBHomeSectionVipRecommendType,//达人推荐
     LBBHomeSectionSquareCenterType,//广场中心
-    LBBHomeSectionVisitProductType,//旅游产品
+    LBBHomeSectionTravelProductType,//旅游产品
 };
 
 
@@ -49,7 +49,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
- 
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -83,7 +82,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 -(void)loadCustomNavigationButton{
     WS(ws);
     LBBPoohVerticalButton *back = [[LBBPoohVerticalButton alloc] init];
-    back.titleLabel.font = Font1;
+    back.titleLabel.font = Font5;
     back.titleLabel.text = @"附近";
     back.frame = CGRectMake(0, 0, 45, 45);
     [back.imageView setImage:IMAGE(@"ST_Home_Nearby")];
@@ -97,7 +96,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     self.navigationItem.leftBarButtonItem = leftItem;
     
     LBBPoohVerticalButton *sign = [[LBBPoohVerticalButton alloc] init];
-    sign.titleLabel.font = Font1;
+    sign.titleLabel.font = Font5;
     sign.titleLabel.text = @"签到";
     sign.frame = CGRectMake(0, 0, 45, 45);
     [sign.imageView setImage:IMAGE(@"ST_Home_Signin")];
@@ -154,6 +153,12 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     
     WS(ws);
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
+    [self.tableView registerClass:[LBBHomeMenuTableViewCell class] forCellReuseIdentifier:@"LBBHomeMenuTableViewCell"];
+    [self.tableView registerClass:[LBBHomeAnnouncementTableViewCell class] forCellReuseIdentifier:@"LBBHomeAnnouncementTableViewCell"];
+    [self.tableView registerClass:[LBBHomeHotestTableViewCell class] forCellReuseIdentifier:@"LBBHomeHotestTableViewCell"];
+    [self.tableView registerClass:[LBBHomeTravelRecommendTableViewCell class] forCellReuseIdentifier:@"LBBHomeTravelRecommendTableViewCell"];
+    [self.tableView registerClass:[LBBHomeSquareCenterTableViewCell class] forCellReuseIdentifier:@"LBBHomeSquareCenterTableViewCell"];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -165,12 +170,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         make.bottom.equalTo(ws.view);
     }];
     
-    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
-    [self.tableView registerClass:[LBBHomeMenuTableViewCell class] forCellReuseIdentifier:@"LBBHomeMenuTableViewCell"];
-    [self.tableView registerClass:[LBBHomeAnnouncementTableViewCell class] forCellReuseIdentifier:@"LBBHomeAnnouncementTableViewCell"];
-    [self.tableView registerClass:[LBBHomeHotestTableViewCell class] forCellReuseIdentifier:@"LBBHomeHotestTableViewCell"];
-    [self.tableView registerClass:[LBBHomeTravelRecommendTableViewCell class] forCellReuseIdentifier:@"LBBHomeTravelRecommendTableViewCell"];
-    [self.tableView registerClass:[LBBHomeSquareCenterTableViewCell class] forCellReuseIdentifier:@"LBBHomeSquareCenterTableViewCell"];
+ 
 
 }
 
@@ -208,7 +208,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     if (section == LBBHomeSectionMenuType) {
         return 0.001;
     }
-    return 43;
+    return DeviceWidth* 86/640;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -276,9 +276,9 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
                 return 2;
             }
             break;
-        case LBBHomeSectionVisitRecommendType:
+        case LBBHomeSectionTravelRecommendType:
             {
-                return 2;
+                return 1;
             }
             break;
         case LBBHomeSectionVipRecommendType:
@@ -291,7 +291,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
                 return 2;
             }
             break;
-        case LBBHomeSectionVisitProductType:
+        case LBBHomeSectionTravelProductType:
             {
                 return 2;
             }
@@ -305,9 +305,87 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    LBBPoohBaseTableViewCell* cell = (LBBPoohBaseTableViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    CGFloat height = 0;
+    switch (indexPath.section) {
+        case LBBHomeSectionMenuType:
+        {
+            if (indexPath.row == 0) {
+
+                height = [LBBPoohCycleScrollCell getCellHeight];
+            }
+            else if (indexPath.row == 1){
+
+                height = [LBBHomeMenuTableViewCell getCellHeight];
+            }
+            else{
+                height = [LBBHomeAnnouncementTableViewCell getCellHeight];
+            }
+                
+        }
+            break;
+        case LBBHomeSectionHotestType:
+        {
+            if (indexPath.row == 0) {
+                
+                height = [LBBPoohCycleScrollCell getCellHeight];
+            }
+            else{
+                height = [LBBHomeHotestTableViewCell getCellHeight];
+                
+              /*  return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
+                    [cell setPagerViewHidden:YES];
+                }];*/
+            }
+            
+        }
+            break;
+        case LBBHomeSectionTravelRecommendType:
+        {
+            
+            return [tableView fd_heightForCellWithIdentifier:@"LBBHomeTravelRecommendTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeTravelRecommendTableViewCell* cell){
+            
+            }];
+           // height = [LBBHomeTravelRecommendTableViewCell getCellHeight];
+        }
+            break;
+        case LBBHomeSectionVipRecommendType:
+        {
+            height = [LBBHomeHotestTableViewCell getCellHeight];
+            
+         /*   return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
+                [cell setPagerViewHidden:YES];
+
+            }];*/
+        }
+            break;
+        case LBBHomeSectionSquareCenterType:
+        {
+            height = [LBBHomeSquareCenterTableViewCell getCellHeight];
+        }
+            break;
+        case LBBHomeSectionTravelProductType:
+        {
+            if (indexPath.row == 0) {
+                
+                height = [LBBPoohCycleScrollCell getCellHeight];
+            }
+            else{
+               height = [LBBHomeHotestTableViewCell getCellHeight2];
+                
+            /*    return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
+                }];*/
+
+            }
+        }
+            break;
+        default:
+            {
+            
+            }
+        break;
+    }
     
-    return [cell getCellHeight];
+    return height;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -325,7 +403,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             cell = [self tableView:tableView hotSectionCellForRowAtIndexPath:indexPath];
         }
             break;
-        case LBBHomeSectionVisitRecommendType:
+        case LBBHomeSectionTravelRecommendType:
         {
 
             cell = [self tableView:tableView travelRecommendSectionCellForRowAtIndexPath:indexPath];
@@ -333,7 +411,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             break;
         case LBBHomeSectionVipRecommendType:
         {
-            cell = [self tableView:tableView menuSectionCellForRowAtIndexPath:indexPath];
+            cell = [self tableView:tableView vipRecommendCellForRowAtIndexPath:indexPath];
         }
             break;
         case LBBHomeSectionSquareCenterType:
@@ -341,9 +419,9 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             cell = [self tableView:tableView squareCenterSectionCellForRowAtIndexPath:indexPath];
         }
             break;
-        case LBBHomeSectionVisitProductType:
+        case LBBHomeSectionTravelProductType:
         {
-            cell = [self tableView:tableView visitProductCellForRowAtIndexPath:indexPath];
+            cell = [self tableView:tableView travelProductCellForRowAtIndexPath:indexPath];
         }
             break;
         default:
@@ -363,12 +441,12 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
         LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-     /*   if (cell == nil) {
+        if (cell == nil) {
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
 
         }
-        */
+      
         [cell setCycleScrollViewUrls:nil];
         
         return cell;
@@ -376,22 +454,22 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     else if (indexPath.row == 1){
         static NSString *cellIdentifier = @"LBBHomeMenuTableViewCell";
         LBBHomeMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-     /*   if (cell == nil) {
+        if (cell == nil) {
             cell = [[LBBHomeMenuTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeMenuTableViewCell nil");
 
-        }*/
+        }
         return cell;
     }
     else{
         static NSString *cellIdentifier = @"LBBHomeAnnouncementTableViewCell";
         LBBHomeAnnouncementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-     /*   if (cell == nil) {
+        if (cell == nil) {
             NSLog(@"LBBHomeAnnouncementTableViewCell initWithStyle");
             cell = [[LBBHomeAnnouncementTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeAnnouncementTableViewCell nil");
 
-        }*/
+        }
         NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
         [cell setScrollTextArray:array];
         
@@ -399,17 +477,19 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     }
 }
 
+    
+    //热门推荐
 -(UITableViewCell*)tableView:(UITableView *)tableView hotSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
         LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-      /*  if (cell == nil) {
+        if (cell == nil) {
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
 
-        }*/
+        }
         
         [cell setCycleScrollViewUrls:nil];
         
@@ -418,10 +498,10 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     else if (indexPath.row == 1){
         static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
         LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-      /*  if (cell == nil) {
+        if (cell == nil) {
             cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeHotestTableViewCell nil");
-        }*/
+        }
         [cell setPagerViewHidden:YES];
         [cell setreload];
         return cell;
@@ -431,46 +511,63 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     }
 }
 
+    //游记推荐
 -(UITableViewCell*)tableView:(UITableView *)tableView travelRecommendSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *cellIdentifier = @"LBBHomeTravelRecommendTableViewCell";
     LBBHomeTravelRecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-  /*  if (cell == nil) {
+    if (cell == nil) {
         cell = [[LBBHomeTravelRecommendTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBBHomeTravelRecommendTableViewCell nil");
 
     }
-    */
+   
     [cell setModel:nil];
 
     return cell;
    
 }
+    //达人推荐
+-(UITableViewCell*)tableView:(UITableView *)tableView vipRecommendCellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
+    LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        NSLog(@"LBBHomeHotestTableViewCell nil");
+    }
+    [cell setPagerViewHidden:NO];
+    [cell setreload];
+    return cell;
+
+}
+    //广场中心
 -(UITableViewCell*)tableView:(UITableView *)tableView squareCenterSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *cellIdentifier = @"LBBHomeSquareCenterTableViewCell";
     LBBHomeSquareCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-  /*  if (cell == nil) {
+    if (cell == nil) {
         NSLog(@"LBBHomeSquareCenterTableViewCell nil");
         cell = [[LBBHomeSquareCenterTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
-*/
+
     [cell setModel:nil];
 
     return cell;
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView visitProductCellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //伴手礼推荐
+-(UITableViewCell*)tableView:(UITableView *)tableView travelProductCellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
         LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    /*    if (cell == nil) {
+        if (cell == nil) {
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
             
-        }*/
+        }
         
         [cell setCycleScrollViewUrls:nil];
         
@@ -479,10 +576,10 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     else if (indexPath.row == 1){
         static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
         LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-     /*   if (cell == nil) {
+        if (cell == nil) {
             cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeHotestTableViewCell nil");
-        }*/
+        }
         [cell setPagerViewHidden:NO];
         [cell setreload];
         return cell;

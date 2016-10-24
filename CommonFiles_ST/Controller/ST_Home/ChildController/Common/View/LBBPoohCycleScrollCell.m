@@ -84,10 +84,10 @@
 }
 
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
 
     CGFloat height = 0;
-    height = DeviceWidth * 3/5;
+    height = AutoSize(370/2);
    // NSLog(@"getCellHeight:%f",height);
     return height;
 }

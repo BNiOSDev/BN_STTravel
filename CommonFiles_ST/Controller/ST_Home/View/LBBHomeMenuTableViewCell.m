@@ -30,8 +30,7 @@
         NSArray* iconArray = @[@"ST_Home_Strategy",@"ST_Home_Tourism",@"ST_Home_TourGuide",@"ST_Home_Foods",@"ST_Home_HomeStay"];
         
         NSInteger count = [titleArray count];
-        CGFloat margineLeft = 12;
-        CGFloat margineTop = 5;
+        CGFloat margineLeft = 20;
         CGFloat width = (DeviceWidth - (count+1)*margineLeft)/count;
 
         for (int i = 0 ; i<count; i++) {
@@ -40,15 +39,14 @@
             [btn setTag:i];
             [btn.titleLabel setText:[titleArray objectAtIndex:i]];
             [btn.titleLabel setTextColor:[UIColor blackColor]];
+            [btn.titleLabel setFont:Font5];
             [btn.imageView setImage:IMAGE([iconArray objectAtIndex:i])];
             [self.contentView addSubview:btn];
             [btn mas_makeConstraints:^(MASConstraintMaker* make){
 
-                make.top.equalTo(ws.contentView).offset(margineTop);
                 make.left.equalTo(ws.contentView).offset(i*(width+margineLeft)+margineLeft);
-                make.width.mas_equalTo(width);
-                make.bottom.equalTo(ws.contentView).offset(-margineTop);
-
+                make.width.height.mas_equalTo(width);
+                make.centerY.equalTo(ws.contentView);
             }];
             [self.contentView layoutSubviews];//it must to be done to layouts subviews
             [btn bk_addEventHandler:^(LBBPoohVerticalButton* sender){
@@ -78,10 +76,9 @@
 
 
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
-    CGFloat height = 60;
-  //  NSLog(@"getCellHeight:%f",height);
+    CGFloat height = AutoSize(116/2);
     return height;
 }
 

@@ -170,7 +170,7 @@
 }
 
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
     CGFloat height = 70;
   //  NSLog(@"getCellHeight:%f",height);

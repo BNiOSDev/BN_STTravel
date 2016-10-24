@@ -187,7 +187,7 @@
     
 }
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
     CGFloat height = 0;
     height = DeviceWidth * 3.5/5;

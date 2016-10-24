@@ -29,7 +29,8 @@
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.left.right.equalTo(ws.contentView);
-            make.top.equalTo(ws.contentView).offset(8);
+            make.top.equalTo(ws.contentView);
+            make.height.mas_equalTo(AutoSize(320/2));
         }];
         
         self.favoriteButton = [UIButton new];
@@ -52,13 +53,13 @@
         [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.left.equalTo(ws.contentView).offset(16);
-            make.width.height.equalTo(@45);
+            make.width.height.mas_equalTo(AutoSize(35));
             make.top.equalTo(ws.bgImageView.mas_bottom).offset(-45.0/2);
         }];
         
         self.userLable = [UILabel new];
         [self.userLable setText:@"梁晓欣"];
-        [self.userLable setFont:Font5];
+        [self.userLable setFont:Font4];
         [self.contentView addSubview:self.userLable];
         [self.userLable mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.portraitImageView.mas_right).offset(3);
@@ -67,7 +68,7 @@
         
         self.travlTitleLable = [UILabel new];
         [self.travlTitleLable setText:@"厦大行"];
-        [self.travlTitleLable setFont:Font5];
+        [self.travlTitleLable setFont:Font6];
         [self.contentView addSubview:self.travlTitleLable];
         [self.travlTitleLable mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.equalTo(ws.portraitImageView.mas_bottom).offset(4);
@@ -246,7 +247,7 @@
 
 }
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
     CGFloat height = 0;
     height = DeviceWidth * 3/4;

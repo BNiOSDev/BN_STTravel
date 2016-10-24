@@ -38,6 +38,13 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #define PlaceHolderImage @""
 #define SeparateLineWidth 1.5
 
+//屏幕适配
+#define FB_FIX_SIZE_WIDTH(w) (((w) / 320.0) * DeviceWidth)
+//获取当前app版本
+#define APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
+//获取适配后的数据大小
+#define AutoSize(num)  num * (DeviceWidth /320.0)
+
 
 
 #endif /* PoohCommon_h */

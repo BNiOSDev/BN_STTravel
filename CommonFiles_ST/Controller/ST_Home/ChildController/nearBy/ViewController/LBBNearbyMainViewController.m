@@ -123,9 +123,13 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    LBBPoohBaseTableViewCell* cell = (LBBPoohBaseTableViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.row == 0) {
+        return [LBBPoohCycleScrollCell getCellHeight];
+    }
+    else{
+        return [LBBNearbyMenuListTableViewCell getCellHeight];
+    }
     
-    return [cell getCellHeight];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
