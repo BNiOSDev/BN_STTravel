@@ -65,18 +65,14 @@
 		1DF6F9311DBCBF50001903D1 /* LBB_SignInListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8E31DBCBF50001903D1 /* LBB_SignInListViewController.m */; };
 		1DF6F9321DBCBF50001903D1 /* LBB_SignInRankListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8E51DBCBF50001903D1 /* LBB_SignInRankListViewController.m */; };
 		1DF6F9331DBCBF50001903D1 /* LBBSigninMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8E71DBCBF50001903D1 /* LBBSigninMainViewController.m */; };
-		1DF6F9341DBCBF50001903D1 /* NSDate+PoohCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8EC1DBCBF50001903D1 /* NSDate+PoohCategory.m */; };
-		1DF6F9351DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8EE1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m */; };
 		1DF6F9361DBCBF50001903D1 /* NSDictionary+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F01DBCBF50001903D1 /* NSDictionary+PoohCommon.m */; };
 		1DF6F9371DBCBF50001903D1 /* NSObject+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F21DBCBF50001903D1 /* NSObject+PoohCommon.m */; };
 		1DF6F9381DBCBF50001903D1 /* NSString+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F41DBCBF50001903D1 /* NSString+PoohCommon.m */; };
 		1DF6F9391DBCBF50001903D1 /* UIColor+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F61DBCBF50001903D1 /* UIColor+PoohCommon.m */; };
 		1DF6F93A1DBCBF50001903D1 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F81DBCBF50001903D1 /* UIImage+animatedGIF.m */; };
 		1DF6F93B1DBCBF50001903D1 /* UIImage+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8FA1DBCBF50001903D1 /* UIImage+PoohCommon.m */; };
-		1DF6F93C1DBCBF50001903D1 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8FC1DBCBF50001903D1 /* UIViewExt.m */; };
 		1DF6F93D1DBCBF50001903D1 /* PoohAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8FF1DBCBF50001903D1 /* PoohAppHelper.m */; };
 		1DF6F93E1DBCBF50001903D1 /* IConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F9021DBCBF50001903D1 /* IConstants.m */; };
-		1DF6F93F1DBCBF50001903D1 /* UIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F9041DBCBF50001903D1 /* UIConstants.m */; };
 		1DF6F9401DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F9081DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m */; };
 		1DF6F9411DBCBF50001903D1 /* LBBHomeHotestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F90A1DBCBF50001903D1 /* LBBHomeHotestTableViewCell.m */; };
 		1DF6F9421DBCBF50001903D1 /* LBBHomeHotestTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F90C1DBCBF50001903D1 /* LBBHomeHotestTableViewCellItem.m */; };
@@ -292,10 +288,6 @@
 		1DF6F8E51DBCBF50001903D1 /* LBB_SignInRankListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SignInRankListViewController.m; sourceTree = "<group>"; };
 		1DF6F8E61DBCBF50001903D1 /* LBBSigninMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBSigninMainViewController.h; sourceTree = "<group>"; };
 		1DF6F8E71DBCBF50001903D1 /* LBBSigninMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBSigninMainViewController.m; sourceTree = "<group>"; };
-		1DF6F8EB1DBCBF50001903D1 /* NSDate+PoohCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+PoohCategory.h"; sourceTree = "<group>"; };
-		1DF6F8EC1DBCBF50001903D1 /* NSDate+PoohCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+PoohCategory.m"; sourceTree = "<group>"; };
-		1DF6F8ED1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+PoohCategory.h"; sourceTree = "<group>"; };
-		1DF6F8EE1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+PoohCategory.m"; sourceTree = "<group>"; };
 		1DF6F8EF1DBCBF50001903D1 /* NSDictionary+PoohCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+PoohCommon.h"; sourceTree = "<group>"; };
 		1DF6F8F01DBCBF50001903D1 /* NSDictionary+PoohCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+PoohCommon.m"; sourceTree = "<group>"; };
 		1DF6F8F11DBCBF50001903D1 /* NSObject+PoohCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PoohCommon.h"; sourceTree = "<group>"; };
@@ -308,14 +300,10 @@
 		1DF6F8F81DBCBF50001903D1 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		1DF6F8F91DBCBF50001903D1 /* UIImage+PoohCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PoohCommon.h"; sourceTree = "<group>"; };
 		1DF6F8FA1DBCBF50001903D1 /* UIImage+PoohCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PoohCommon.m"; sourceTree = "<group>"; };
-		1DF6F8FB1DBCBF50001903D1 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
-		1DF6F8FC1DBCBF50001903D1 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		1DF6F8FE1DBCBF50001903D1 /* PoohAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohAppHelper.h; sourceTree = "<group>"; };
 		1DF6F8FF1DBCBF50001903D1 /* PoohAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohAppHelper.m; sourceTree = "<group>"; };
 		1DF6F9011DBCBF50001903D1 /* IConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IConstants.h; sourceTree = "<group>"; };
 		1DF6F9021DBCBF50001903D1 /* IConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IConstants.m; sourceTree = "<group>"; };
-		1DF6F9031DBCBF50001903D1 /* UIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIConstants.h; sourceTree = "<group>"; };
-		1DF6F9041DBCBF50001903D1 /* UIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIConstants.m; sourceTree = "<group>"; };
 		1DF6F9051DBCBF50001903D1 /* PoohCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohCommon.h; sourceTree = "<group>"; };
 		1DF6F9071DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeAnnouncementTableViewCell.h; sourceTree = "<group>"; };
 		1DF6F9081DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeAnnouncementTableViewCell.m; sourceTree = "<group>"; };
@@ -968,10 +956,6 @@
 		1DF6F8EA1DBCBF50001903D1 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				1DF6F8EB1DBCBF50001903D1 /* NSDate+PoohCategory.h */,
-				1DF6F8EC1DBCBF50001903D1 /* NSDate+PoohCategory.m */,
-				1DF6F8ED1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.h */,
-				1DF6F8EE1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m */,
 				1DF6F8EF1DBCBF50001903D1 /* NSDictionary+PoohCommon.h */,
 				1DF6F8F01DBCBF50001903D1 /* NSDictionary+PoohCommon.m */,
 				1DF6F8F11DBCBF50001903D1 /* NSObject+PoohCommon.h */,
@@ -984,8 +968,6 @@
 				1DF6F8F81DBCBF50001903D1 /* UIImage+animatedGIF.m */,
 				1DF6F8F91DBCBF50001903D1 /* UIImage+PoohCommon.h */,
 				1DF6F8FA1DBCBF50001903D1 /* UIImage+PoohCommon.m */,
-				1DF6F8FB1DBCBF50001903D1 /* UIViewExt.h */,
-				1DF6F8FC1DBCBF50001903D1 /* UIViewExt.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1004,8 +986,6 @@
 			children = (
 				1DF6F9011DBCBF50001903D1 /* IConstants.h */,
 				1DF6F9021DBCBF50001903D1 /* IConstants.m */,
-				1DF6F9031DBCBF50001903D1 /* UIConstants.h */,
-				1DF6F9041DBCBF50001903D1 /* UIConstants.m */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1574,8 +1554,10 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 7V268D74T3;
-						ProvisioningStyle = Manual;
+
+						DevelopmentTeam = 6U52X4M8Y5;
+						ProvisioningStyle = Automatic;
+
 					};
 					C9C0E9641D9948F300575A7C = {
 						CreatedOnToolsVersion = 8.0;
@@ -1717,7 +1699,6 @@
 				1DF6F93D1DBCBF50001903D1 /* PoohAppHelper.m in Sources */,
 				1DF6F89A1DBCB0D8001903D1 /* ST_SquareViewController.m in Sources */,
 				1DF6F8841DBCB0D8001903D1 /* LGSegment.m in Sources */,
-				1DF6F93C1DBCBF50001903D1 /* UIViewExt.m in Sources */,
 				1DF6F8961DBCB0D8001903D1 /* LBBVideoTableViewCell.m in Sources */,
 				1DF6F9411DBCBF50001903D1 /* LBBHomeHotestTableViewCell.m in Sources */,
 				84E9C58D1DB5EC4900F70C79 /* MineBaseViewController.m in Sources */,
@@ -1772,7 +1753,6 @@
 				84E9C59E1DB5EC4900F70C79 /* TicketDetailViewCell.m in Sources */,
 				1DF6F9441DBCBF50001903D1 /* LBBHomeSquareCenterTableViewCell.m in Sources */,
 				1DF6F9301DBCBF50001903D1 /* LBB_SigninPopView.m in Sources */,
-				1DF6F9351DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m in Sources */,
 				84E9C5951DB5EC4900F70C79 /* LBB_UserNameViewController.m in Sources */,
 				1DF6F9281DBCBF50001903D1 /* LBB_StarRatingViewController.m in Sources */,
 				1DF6F91B1DBCBF50001903D1 /* PoohBaseTableViewController.m in Sources */,
@@ -1804,7 +1784,6 @@
 				84E9C5921DB5EC4900F70C79 /* MineViewController.m in Sources */,
 				1DF6F93E1DBCBF50001903D1 /* IConstants.m in Sources */,
 				84E9C5A71DB5EC4900F70C79 /* BalanceExtractViewController.m in Sources */,
-				1DF6F9341DBCBF50001903D1 /* NSDate+PoohCategory.m in Sources */,
 				84E9C58C1DB5EC4900F70C79 /* LBB_FightGroupViewController.m in Sources */,
 				84E9C5AF1DB5EC4900F70C79 /* CardDetailViewController.m in Sources */,
 				1DF6F92A1DBCBF50001903D1 /* LBB_DiscoveryMainTableViewCell.m in Sources */,
@@ -1818,7 +1797,8 @@
 				1DF6F8861DBCB0D8001903D1 /* UIView+ZJFrame.m in Sources */,
 				84E9C5B91DB5EE0E00F70C79 /* CommonFunc.m in Sources */,
 				1DF6F9331DBCBF50001903D1 /* LBBSigninMainViewController.m in Sources */,
-				1DF6F93F1DBCBF50001903D1 /* UIConstants.m in Sources */,
+				1DF6F8911DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
+
 				1DF6F9291DBCBF50001903D1 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
 				1DF6F8931DBCB0D8001903D1 /* LBBFriendTableViewCell.m in Sources */,
 				84E9C5AD1DB5EC4900F70C79 /* WalletViewCell.m in Sources */,
@@ -1982,15 +1962,17 @@
 			baseConfigurationReference = A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
-				DEVELOPMENT_TEAM = 7V268D74T3;
+
+				DEVELOPMENT_TEAM = 6U52X4M8Y5;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4f920f31-eaa1-4e62-a72b-fa1070c0b488";
+
+				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
+
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -2000,15 +1982,18 @@
 			baseConfigurationReference = 8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
-				DEVELOPMENT_TEAM = 7V268D74T3;
+
+				DEVELOPMENT_TEAM = 6U52X4M8Y5;
+
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4f920f31-eaa1-4e62-a72b-fa1070c0b488";
+
+				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
+
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;

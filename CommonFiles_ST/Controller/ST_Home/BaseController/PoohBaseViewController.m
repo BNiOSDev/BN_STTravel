@@ -46,8 +46,8 @@
     [self setupTitleAndButton];
     
     // Do any additional setup after loading the view.
-    self.baseContentView.backgroundColor = [UIConstants getAppBackgroundColor];
-    self.baseNavigationBarView.backgroundColor = [UIConstants getAppColor];
+    self.baseContentView.backgroundColor = ColorBackground;
+    self.baseNavigationBarView.backgroundColor = ColorBackground;
     [self setStatusBarStyle:UIStatusBarStyleLightContent];
     [self setBaseNavigationBarColor:[UIColor blackColor]];
    // self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题

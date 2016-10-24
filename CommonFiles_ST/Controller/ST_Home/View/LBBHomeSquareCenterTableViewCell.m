@@ -62,7 +62,7 @@
         self.userLable = [UILabel new];
         [self.userLable setText:@"梁晓欣"];
         [self.userLable setFont:Font3];
-        [self.userLable setTextColor:[UIConstants getSecondaryTitleColor]];
+        [self.userLable setTextColor:ColorLightGray];
         [sub addSubview:self.userLable];
         [self.userLable mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.portraitImageView.mas_right).offset(5);
@@ -145,7 +145,7 @@
         self.item2 = [[LBBHomeSquareCenterTableViewCellItem alloc]init];
         
         self.sep = [UIView new];
-        [self.sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [self.sep setBackgroundColor:ColorLine];
         
         [self.contentView addSubview:self.item1];
         [self.contentView addSubview:self.item2];
@@ -190,7 +190,7 @@
 -(CGFloat)getCellHeight{
     
     CGFloat height = 0;
-    height = UISCREEN_WIDTH * 3.5/5;
+    height = DeviceWidth * 3.5/5;
    // NSLog(@"getCellHeight:%f",height);
     return height;
     

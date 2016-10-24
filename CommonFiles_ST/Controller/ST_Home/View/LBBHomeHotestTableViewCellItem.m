@@ -86,7 +86,7 @@
         
         self.priceLabel = [UILabel new];
         [self.priceLabel setText:@"120元起/人"];
-        [self.priceLabel setTextColor:[UIConstants getProminentFillColor]];
+        [self.priceLabel setTextColor:ColorBtnYellow];
         [self.priceLabel setFont:Font2];
         [self.priceLabel setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:self.priceLabel];

@@ -59,7 +59,7 @@
         [contentLabel setFont:Font3];
         [contentLabel setTextAlignment:NSTextAlignmentCenter];
         [contentLabel setNumberOfLines:0];
-        [contentLabel setTextColor:[UIConstants getSecondaryTitleColor]];
+        [contentLabel setTextColor:ColorLightGray];
         [self.contentView addSubview:contentLabel];
         [contentLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(ws.contentView);
@@ -72,7 +72,7 @@
         timeLabel = [UILabel new];
         [timeLabel setFont:Font3];
         [timeLabel setTextAlignment:NSTextAlignmentCenter];
-        [timeLabel setTextColor:[UIConstants getSecondaryTitleColor]];
+        [timeLabel setTextColor:ColorLightGray];
         [self.contentView addSubview:timeLabel];
         [timeLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(ws.contentView);

@@ -28,9 +28,8 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import "NSString+PoohCommon.h"
 #import "UIColor+PoohCommon.h"
 #import "NSObject+PoohCommon.h"
-#import "UIConstants.h"
 #import "IConstants.h"
-#import "UIViewExt.h"
+#import "UIView+FRCategory.h"
 #import "SDAutoLayout.h"
 
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width

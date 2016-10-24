@@ -37,8 +37,8 @@
         
         KSViewPagerView* pagerView = [[KSViewPagerView alloc] initWithArray:segmentArray];
         [self.contentView addSubview:pagerView];
-        [pagerView setActiveColor:[UIConstants getSecondaryTitleColor]];
-        [pagerView setInactiveColor:[UIConstants getSecondaryTitleColor]];
+        [pagerView setActiveColor:ColorLightGray];
+        [pagerView setInactiveColor:ColorLightGray];
         [pagerView setTitleFont:Font1];
         [pagerView enableSeperatorView:NO];
         [pagerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,7 +63,7 @@
         horizontalCellLayout.sectionInset = UIEdgeInsetsMake(15, 8, 15, 8);
         horizontalCellLayout.minimumInteritemSpacing = 10;
         horizontalCellLayout.minimumLineSpacing = 10;
-        horizontalCellLayout.itemSize = CGSizeMake(UISCREEN_WIDTH * 2/3, UISCREEN_WIDTH * 2/3-30);
+        horizontalCellLayout.itemSize = CGSizeMake(DeviceWidth * 2/3, DeviceWidth * 2/3-30);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:horizontalCellLayout];
 
@@ -90,7 +90,7 @@
         
         
         UIView* sep = [UIView new];
-        [sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [sep setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep];
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.right.bottom.equalTo(ws.contentView);
@@ -132,11 +132,11 @@
     CGFloat height = 0;
 
     if ([self.pagerView isHidden]) {
-        height = UISCREEN_WIDTH * 2/3;
+        height = DeviceWidth * 2/3;
 
     }
     else{
-        height = UISCREEN_WIDTH * 2/3 + 35;
+        height = DeviceWidth * 2/3 + 35;
 
     }
     

@@ -227,7 +227,7 @@
         
         
         UIView* sep2 = [UIView new];
-        [sep2 setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [sep2 setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep2];
         [sep2 mas_makeConstraints:^(MASConstraintMaker* make){
             make.bottom.left.right.equalTo(ws.contentView);
@@ -249,7 +249,7 @@
 -(CGFloat)getCellHeight{
     
     CGFloat height = 0;
-    height = UISCREEN_WIDTH * 3/4;
+    height = DeviceWidth * 3/4;
    // NSLog(@"getCellHeight:%f",height);
     return height;
     

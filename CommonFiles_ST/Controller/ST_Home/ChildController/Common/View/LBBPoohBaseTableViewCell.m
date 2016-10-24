@@ -41,7 +41,7 @@
 
 +(CGFloat)contentViewWidth{
     
-    return UISCREEN_WIDTH;
+    return DeviceWidth;
 }
 
 @end

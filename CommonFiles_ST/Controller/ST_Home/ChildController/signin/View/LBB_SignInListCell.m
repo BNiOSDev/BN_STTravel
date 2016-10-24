@@ -56,7 +56,7 @@
         
         self.subTitleLabel = [UILabel new];
         [self.subTitleLabel setFont:Font1];
-        [self.subTitleLabel setTextColor:[UIConstants getSecondaryTitleColor]];
+        [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];
         [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -67,7 +67,7 @@
         
         
         self.signinButton = [UIButton new];
-        [self.signinButton setBackgroundColor:[UIConstants getProminentFillColor]];
+        [self.signinButton setBackgroundColor:ColorBtnYellow];
         [self.signinButton setTitle:@"已签到" forState:UIControlStateNormal];
         [self.signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.signinButton.titleLabel setFont:Font1];
@@ -81,7 +81,7 @@
         
         self.rankLabel = [UILabel new];
         [self.rankLabel setFont:Font1];
-        [self.rankLabel setTextColor:[UIConstants getSecondaryTitleColor]];
+        [self.rankLabel setTextColor:ColorLightGray];
         [self.rankLabel setText:@"第一名"];
         [self.contentView addSubview:self.rankLabel];
         [self.rankLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -111,7 +111,7 @@
         }];
 
         self.sep = [UIView new];
-        [self.sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [self.sep setBackgroundColor:ColorLine];
         [self.contentView addSubview:self.sep];
         [self.sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.bottom.equalTo(ws.contentView);

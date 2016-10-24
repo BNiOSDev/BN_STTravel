@@ -159,7 +159,7 @@
     }];
     
     UIView* sep = [UIView new];
-    [sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
+    [sep setBackgroundColor:ColorLine];
     [self.view addSubview:sep];
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.equalTo(ws.view);
@@ -174,7 +174,7 @@
     [submit setTitle:@"立即提交" forState:UIControlStateNormal];
     [submit.titleLabel setFont:[UIFont systemFontOfSize:20]];
     [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [submit setBackgroundColor:[UIConstants getProminentFillColor]];
+    [submit setBackgroundColor:ColorBtnYellow];
     [self.view addSubview:submit];
     [submit mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.equalTo(ws.view);

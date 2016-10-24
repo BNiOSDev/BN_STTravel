@@ -127,7 +127,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     [b setTitle:@"立即定制" forState:UIControlStateNormal];
     [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [b.titleLabel setFont:Font2];
-    [b setBackgroundColor:[UIConstants getProminentFillColor]];
+    [b setBackgroundColor:ColorBtnYellow];
     [v addSubview:b];
     [b mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.equalTo(v);
@@ -146,7 +146,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     
     
     UIView* sep = [UIView new];
-    [sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
+    [sep setBackgroundColor:ColorLine];
     [v addSubview:sep];
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
         make.bottom.width.centerX.equalTo(v);

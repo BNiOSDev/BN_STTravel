@@ -53,7 +53,7 @@
         
         self.subTitleLabel = [UILabel new];
         [self.subTitleLabel setFont:Font1];
-        [self.subTitleLabel setTextColor:[UIConstants getSecondaryTitleColor]];
+        [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];
         [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -76,7 +76,7 @@
         
         self.descLabel = [UILabel new];
         [self.descLabel setFont:Font1];
-        [self.descLabel setTextColor:[UIConstants getLevelThreeTitleColor]];
+        [self.descLabel setTextColor:ColorLightGray];
         [self.descLabel setText:@"1.5km"];
         [self.descLabel setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:self.descLabel];
@@ -87,7 +87,7 @@
         }];
         
         self.sep = [UIView new];
-        [self.sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [self.sep setBackgroundColor:ColorLine];
         [self.contentView addSubview:self.sep];
         [self.sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.bottom.equalTo(ws.contentView);

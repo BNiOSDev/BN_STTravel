@@ -32,7 +32,7 @@
         NSInteger count = [titleArray count];
         CGFloat margineLeft = 12;
         CGFloat margineTop = 5;
-        CGFloat width = (UISCREEN_WIDTH - (count+1)*margineLeft)/count;
+        CGFloat width = (DeviceWidth - (count+1)*margineLeft)/count;
 
         for (int i = 0 ; i<count; i++) {
             

@@ -36,7 +36,7 @@
         
         self.desLabel = [UILabel new];
         [self.desLabel setFont:Font2];
-        [self.desLabel setTextColor:[UIConstants getSecondaryTitleColor]];
+        [self.desLabel setTextColor:ColorLightGray];
         [self addSubview:self.desLabel];
         [self.desLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.iconView.mas_right).offset(3);
