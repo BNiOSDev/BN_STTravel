@@ -94,7 +94,7 @@
     UIControl* ctr1 = [UIControl new];
     UIControl* ctr2 = [UIControl new];
     UIView* sep = [UIView new];
-    [sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
+    [sep setBackgroundColor:ColorLine];
     
     [self.view addSubview:ctr1];
     [self.view addSubview:ctr2];

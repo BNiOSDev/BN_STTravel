@@ -101,7 +101,7 @@
     [pagerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.width.height.equalTo(v);
     }];
-    [pagerView setActiveColor:[UIConstants getProminentFillColor]];
+    [pagerView setActiveColor:ColorBtnYellow];
     [pagerView setInactiveColor:[UIColor colorWithRGB:0xafafaf]];
     [pagerView setTitleFont:Font3];
     [pagerView enableSeperatorView:YES];

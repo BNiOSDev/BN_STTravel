@@ -37,7 +37,7 @@
     if (self) {
         
         UIView* sep = [UIView new];
-        [sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [sep setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep];
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.left.right.equalTo(ws.contentView);
@@ -45,7 +45,7 @@
         }];
         
         UIView* sep1 = [UIView new];
-        [sep1 setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [sep1 setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep1];
         [sep1 mas_makeConstraints:^(MASConstraintMaker* make){
             make.bottom.left.right.equalTo(ws.contentView);
@@ -53,7 +53,7 @@
         }];
         
         UIView* leftBg = [UIView new];
-        [leftBg setBackgroundColor:[UIConstants getProminentFillColor]];
+        [leftBg setBackgroundColor:ColorBtnYellow];
         [self.contentView addSubview:leftBg];
         [leftBg mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -77,7 +77,7 @@
         
         
         UIView* sep2 = [UIView new];
-        [sep2 setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [sep2 setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep2];
         [sep2 mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.height.equalTo(leftBg);

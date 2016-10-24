@@ -7,7 +7,6 @@
 //
 
 #import "LGSegment.h"
-#import "UIViewExt.h"
 
 #define LG_ScreenW [UIScreen mainScreen].bounds.size.width
 #define LG_ScreenH [UIScreen mainScreen].bounds.size.height

@@ -123,7 +123,7 @@ static const NSInteger kPictureInterval = 10;
     self.textField = [UITextView new];
     self.textField.placeholder = @"请输入您的评论内容";
     [self.textField setFont:Font5];
-    self.textField.layer.borderColor = [UIConstants getSeperatorLineColor].CGColor;
+    self.textField.layer.borderColor = ColorLine.CGColor;
     self.textField.layer.borderWidth = SeparateLineWidth;
     [self.mainScrollView addSubview:self.textField];
     [self.textField mas_makeConstraints:^(MASConstraintMaker* make){
@@ -182,7 +182,7 @@ static const NSInteger kPictureInterval = 10;
         make.width.top.centerX.equalTo(self.picturePanel);
         make.height.equalTo(@1);
     }];
-    sep.backgroundColor = [UIConstants getSeperatorLineColor];
+    sep.backgroundColor = ColorLine;
     UIView *lastView = sep;
     
     NSInteger count = self.pictures.count + 1;

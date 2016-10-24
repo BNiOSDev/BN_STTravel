@@ -227,7 +227,7 @@
         
         
         UIView* sep2 = [UIView new];
-        [sep2 setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [sep2 setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep2];
         [sep2 mas_makeConstraints:^(MASConstraintMaker* make){
             make.bottom.left.right.equalTo(ws.contentView);

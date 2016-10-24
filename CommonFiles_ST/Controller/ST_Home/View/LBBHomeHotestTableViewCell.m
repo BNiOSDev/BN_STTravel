@@ -37,8 +37,8 @@
         
         KSViewPagerView* pagerView = [[KSViewPagerView alloc] initWithArray:segmentArray];
         [self.contentView addSubview:pagerView];
-        [pagerView setActiveColor:[UIConstants getSecondaryTitleColor]];
-        [pagerView setInactiveColor:[UIConstants getSecondaryTitleColor]];
+        [pagerView setActiveColor:ColorLightGray];
+        [pagerView setInactiveColor:ColorLightGray];
         [pagerView setTitleFont:Font1];
         [pagerView enableSeperatorView:NO];
         [pagerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -90,7 +90,7 @@
         
         
         UIView* sep = [UIView new];
-        [sep setBackgroundColor:[UIConstants getSeperatorLineColor]];
+        [sep setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep];
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.right.bottom.equalTo(ws.contentView);

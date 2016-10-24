@@ -29,7 +29,9 @@
 {
     if (self = [super initWithCoder:aDecoder])
     {
-        [self loadTabBarViewControllers];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self loadTabBarViewControllers];
+        });
     }
     return self;
 }
@@ -48,7 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    centerBtn = [[UIButton alloc]initWithFrame:CGRectMake((DeviceWidth/2) - 22.5, DeviceHeight - 47, 45, 45)];
+    centerBtn = [[UIButton alloc]initWithFrame:CGRectMake((DeviceWidth/2) - 22.5, DeviceHeight - 49 + 2, 45, 45)];
     [centerBtn setBackgroundImage:IMAGE(@"SJR_TabMiddleBtn") forState:UIControlStateNormal];
     [centerBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:centerBtn];
@@ -64,6 +66,7 @@
     Base_BaseViewController *viewController1        = [[ST_HomeViewController alloc]init];
     Base_BaseViewController *viewController2        = [[ST_SquareViewController alloc]init];
     Base_BaseViewController *viewController3        = [[ST_MallViewController alloc]init];
+
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
     Base_BaseViewController *viewController4 = [main instantiateViewControllerWithIdentifier:@"MineViewController"];
     UIViewController *viewController5        = [[UIViewController alloc]init];
@@ -123,7 +126,7 @@
 - (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated
 {
     [super setTabBarHidden:hidden animated:animated];
-    CGFloat height = hidden == YES ? DeviceHeight : DeviceHeight - 47;
+    CGFloat height = hidden == YES ? DeviceHeight + 2 + 6 : DeviceHeight - 49 + 2;
     if(animated == YES)
     {
         [UIView animateWithDuration:.3 animations:^{

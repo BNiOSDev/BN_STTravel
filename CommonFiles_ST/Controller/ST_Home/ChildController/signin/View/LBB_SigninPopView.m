@@ -61,10 +61,10 @@
         
         self.signinButton = [UIButton new];
         [self.signinButton setTitle:@"签到" forState:UIControlStateNormal];
-        [self.signinButton setTitleColor:[UIConstants getSecondaryTitleColor] forState:UIControlStateNormal];
+        [self.signinButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
         [self.signinButton.titleLabel setFont:Font6];
         self.signinButton.layer.borderWidth = 0.8;
-        self.signinButton.layer.borderColor = [UIConstants getSeperatorLineColor].CGColor;
+        self.signinButton.layer.borderColor = ColorLine.CGColor;
 
         CGFloat height = 40;
         self.signinButton.layer.cornerRadius = height/2;
@@ -109,15 +109,15 @@
 -(void)setSigninStatus:(BOOL)signin{
 
     if (signin) {
-        self.signinButton.layer.borderColor = [UIConstants getProminentFillColor].CGColor;
+        self.signinButton.layer.borderColor = ColorBtnYellow.CGColor;
         [self.signinButton setTitle:@"已签到" forState:UIControlStateNormal];
-        [self.signinButton setTitleColor:[UIConstants getProminentFillColor] forState:UIControlStateNormal];
+        [self.signinButton setTitleColor:ColorBtnYellow forState:UIControlStateNormal];
         [self.signinButton setUserInteractionEnabled:NO];
     }
     else{
-        self.signinButton.layer.borderColor = [UIConstants getSeperatorLineColor].CGColor;
+        self.signinButton.layer.borderColor = ColorLine.CGColor;
         [self.signinButton setTitle:@"签到" forState:UIControlStateNormal];
-        [self.signinButton setTitleColor:[UIConstants getSecondaryTitleColor] forState:UIControlStateNormal];
+        [self.signinButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
     }
     
 }

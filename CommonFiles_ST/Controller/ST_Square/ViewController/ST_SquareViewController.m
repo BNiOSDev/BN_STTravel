@@ -59,7 +59,7 @@
     searchBar.placeholder = @"请搜索 标签 用户";
     searchBar.delegate = self;
     searchBar.layer.borderWidth = AUTO(0.5);
-    searchBar.layer.borderColor = [UIConstants getSeperatorLineColor].CGColor;
+    searchBar.layer.borderColor = ColorBlack.CGColor;
     searchBar.layer.cornerRadius = 20.0;
     _JMSearchBar = searchBar;
     self.navigationItem.titleView = searchBar;

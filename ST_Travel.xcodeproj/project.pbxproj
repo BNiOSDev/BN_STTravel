@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */; };
-		1DF610C61DBD9D6C001903D1 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF610C41DBD9D6C001903D1 /* UIViewExt.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
 		1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8301DBCB0D8001903D1 /* CommentModel.m */; };
@@ -76,7 +75,6 @@
 		1DF6F93B1DBCBF50001903D1 /* UIImage+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8FA1DBCBF50001903D1 /* UIImage+PoohCommon.m */; };
 		1DF6F93D1DBCBF50001903D1 /* PoohAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8FF1DBCBF50001903D1 /* PoohAppHelper.m */; };
 		1DF6F93E1DBCBF50001903D1 /* IConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F9021DBCBF50001903D1 /* IConstants.m */; };
-		1DF6F93F1DBCBF50001903D1 /* UIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F9041DBCBF50001903D1 /* UIConstants.m */; };
 		1DF6F9401DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F9081DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m */; };
 		1DF6F9411DBCBF50001903D1 /* LBBHomeHotestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F90A1DBCBF50001903D1 /* LBBHomeHotestTableViewCell.m */; };
 		1DF6F9421DBCBF50001903D1 /* LBBHomeHotestTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F90C1DBCBF50001903D1 /* LBBHomeHotestTableViewCellItem.m */; };
@@ -178,8 +176,6 @@
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
-		1DF610C41DBD9D6C001903D1 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
-		1DF610C51DBD9D6C001903D1 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
 		1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
 		1DF6F82B1DBCB0D8001903D1 /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
@@ -313,8 +309,6 @@
 		1DF6F8FF1DBCBF50001903D1 /* PoohAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohAppHelper.m; sourceTree = "<group>"; };
 		1DF6F9011DBCBF50001903D1 /* IConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IConstants.h; sourceTree = "<group>"; };
 		1DF6F9021DBCBF50001903D1 /* IConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IConstants.m; sourceTree = "<group>"; };
-		1DF6F9031DBCBF50001903D1 /* UIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIConstants.h; sourceTree = "<group>"; };
-		1DF6F9041DBCBF50001903D1 /* UIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIConstants.m; sourceTree = "<group>"; };
 		1DF6F9051DBCBF50001903D1 /* PoohCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohCommon.h; sourceTree = "<group>"; };
 		1DF6F9071DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeAnnouncementTableViewCell.h; sourceTree = "<group>"; };
 		1DF6F9081DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeAnnouncementTableViewCell.m; sourceTree = "<group>"; };
@@ -973,8 +967,6 @@
 		1DF6F8EA1DBCBF50001903D1 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				1DF610C41DBD9D6C001903D1 /* UIViewExt.m */,
-				1DF610C51DBD9D6C001903D1 /* UIViewExt.h */,
 				1DF6F8EF1DBCBF50001903D1 /* NSDictionary+PoohCommon.h */,
 				1DF6F8F01DBCBF50001903D1 /* NSDictionary+PoohCommon.m */,
 				1DF6F8F11DBCBF50001903D1 /* NSObject+PoohCommon.h */,
@@ -1005,8 +997,6 @@
 			children = (
 				1DF6F9011DBCBF50001903D1 /* IConstants.h */,
 				1DF6F9021DBCBF50001903D1 /* IConstants.m */,
-				1DF6F9031DBCBF50001903D1 /* UIConstants.h */,
-				1DF6F9041DBCBF50001903D1 /* UIConstants.m */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1778,7 +1768,6 @@
 				84E9C5B01DB5EC4900F70C79 /* CardViewController.m in Sources */,
 				1DF6F89D1DBCB0D8001903D1 /* ZJMTravelsViewController.m in Sources */,
 				1DF6F9431DBCBF50001903D1 /* LBBHomeMenuTableViewCell.m in Sources */,
-				1DF610C61DBD9D6C001903D1 /* UIViewExt.m in Sources */,
 				1DF6F8831DBCB0D8001903D1 /* ZJMTravelModel.m in Sources */,
 				1DF6F8821DBCB0D8001903D1 /* ZJMHostModel.m in Sources */,
 				84E9C5921DB5EC4900F70C79 /* MineViewController.m in Sources */,
@@ -1797,7 +1786,6 @@
 				1DF6F8861DBCB0D8001903D1 /* UIView+ZJFrame.m in Sources */,
 				84E9C5B91DB5EE0E00F70C79 /* CommonFunc.m in Sources */,
 				1DF6F9331DBCBF50001903D1 /* LBBSigninMainViewController.m in Sources */,
-				1DF6F93F1DBCBF50001903D1 /* UIConstants.m in Sources */,
 				1DF6F8911DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1DF6F9291DBCBF50001903D1 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
 				1DF6F8931DBCB0D8001903D1 /* LBBFriendTableViewCell.m in Sources */,
