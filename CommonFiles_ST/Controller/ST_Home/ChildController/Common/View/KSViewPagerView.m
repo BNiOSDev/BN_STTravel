@@ -8,7 +8,7 @@
 
 #import "KSViewPagerView.h"
 #import <Foundation/Foundation.h>
-#import "UIViewExt.h"
+#import "UIView+FRCategory.h"
 
 @interface KSViewPagerView()
 

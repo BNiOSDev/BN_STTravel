@@ -92,7 +92,7 @@ static const NSInteger kPictureInterval = 10;
         make.width.equalTo(@70);
     }];
     
-    CGFloat starWidth = UISCREEN_WIDTH  - 70 - margin - 2*margin;
+    CGFloat starWidth = DeviceWidth  - 70 - margin - 2*margin;
     CGFloat starHeigth = 30;
     self.starRatingView = [[CWStarRateView alloc] initWithFrame:CGRectMake(0, 0, starWidth, starHeigth)
                                                      numberOfStars:5];

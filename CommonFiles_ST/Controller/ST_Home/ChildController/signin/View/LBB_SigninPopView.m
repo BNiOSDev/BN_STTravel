@@ -24,7 +24,7 @@
     WS(ws);
     if (self = [super init]) {
         
-        [self setFrame:CGRectMake(0, 0, UISCREEN_WIDTH, UISCREEN_HEIGTH)];
+        [self setFrame:CGRectMake(0, 0, DeviceWidth, DeviceHeight)];
         self.windowLevel = UIWindowLevelAlert+1;
         [self setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
         

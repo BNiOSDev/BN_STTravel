@@ -113,7 +113,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     
     
     CGFloat height = IAppNavigationBarHeight - 10;
-    CGFloat width = UISCREEN_WIDTH - 2*45 - 30;
+    CGFloat width = DeviceWidth - 2*45 - 30;
 
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];//allocate titleView
     UISearchBar *bar = [UISearchBar new];
@@ -219,7 +219,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     UIView* v = [UIView new];
     [v setBackgroundColor:[UIColor whiteColor]];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
-    [v setFrame:CGRectMake(0, 0, UISCREEN_WIDTH, height)];
+    [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
     
     
     UIImageView* img = [UIImageView new];

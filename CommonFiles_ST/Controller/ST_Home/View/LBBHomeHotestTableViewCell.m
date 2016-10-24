@@ -63,7 +63,7 @@
         horizontalCellLayout.sectionInset = UIEdgeInsetsMake(15, 8, 15, 8);
         horizontalCellLayout.minimumInteritemSpacing = 10;
         horizontalCellLayout.minimumLineSpacing = 10;
-        horizontalCellLayout.itemSize = CGSizeMake(UISCREEN_WIDTH * 2/3, UISCREEN_WIDTH * 2/3-30);
+        horizontalCellLayout.itemSize = CGSizeMake(DeviceWidth * 2/3, DeviceWidth * 2/3-30);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:horizontalCellLayout];
 
@@ -132,11 +132,11 @@
     CGFloat height = 0;
 
     if ([self.pagerView isHidden]) {
-        height = UISCREEN_WIDTH * 2/3;
+        height = DeviceWidth * 2/3;
 
     }
     else{
-        height = UISCREEN_WIDTH * 2/3 + 35;
+        height = DeviceWidth * 2/3 + 35;
 
     }
     

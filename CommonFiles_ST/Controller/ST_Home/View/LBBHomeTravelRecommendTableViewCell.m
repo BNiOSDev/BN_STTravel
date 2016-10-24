@@ -249,7 +249,7 @@
 -(CGFloat)getCellHeight{
     
     CGFloat height = 0;
-    height = UISCREEN_WIDTH * 3/4;
+    height = DeviceWidth * 3/4;
    // NSLog(@"getCellHeight:%f",height);
     return height;
     

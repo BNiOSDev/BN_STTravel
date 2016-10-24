@@ -59,7 +59,7 @@
 
     self.mapView = [UIView new];
     [self.mapView setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
-    [self.mapView setFrame:CGRectMake(0, 0, UISCREEN_WIDTH, 150)];
+    [self.mapView setFrame:CGRectMake(0, 0, DeviceWidth, 150)];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
@@ -90,7 +90,7 @@
     
     UIView* v = [UIView new];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
-    [v setFrame:CGRectMake(0, 0, UISCREEN_WIDTH, height)];
+    [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
     
     NSArray* segmentArray = @[@"景点",@"美食",@"民宿"];
 

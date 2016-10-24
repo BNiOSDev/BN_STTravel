@@ -150,7 +150,7 @@
         
         make.centerX.width.equalTo(ws.view);
         make.top.equalTo(ctr1.mas_bottom);
-        make.height.mas_equalTo(UISCREEN_WIDTH*3/2);
+        make.height.mas_equalTo(DeviceWidth*3/2);
     }];
     
     self.noteLable = [UILabel new];

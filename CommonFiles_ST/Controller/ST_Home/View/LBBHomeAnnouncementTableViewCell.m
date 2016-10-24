@@ -87,7 +87,7 @@
         
         CGFloat x = 3 + 20 + 20 + title.frame.size.width + 25;
 
-        tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x+40, 0, UISCREEN_WIDTH-40-x, 50)];
+        tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x+40, 0, DeviceWidth-40-x, 50)];
         tView.delegate = self;
         [self.contentView addSubview:tView];
         [tView mas_makeConstraints:^(MASConstraintMaker* make){

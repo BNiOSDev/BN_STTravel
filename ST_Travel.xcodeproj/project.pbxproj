@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */; };
+		1DF610C61DBD9D6C001903D1 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF610C41DBD9D6C001903D1 /* UIViewExt.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
 		1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8301DBCB0D8001903D1 /* CommentModel.m */; };
@@ -67,15 +68,12 @@
 		1DF6F9311DBCBF50001903D1 /* LBB_SignInListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8E31DBCBF50001903D1 /* LBB_SignInListViewController.m */; };
 		1DF6F9321DBCBF50001903D1 /* LBB_SignInRankListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8E51DBCBF50001903D1 /* LBB_SignInRankListViewController.m */; };
 		1DF6F9331DBCBF50001903D1 /* LBBSigninMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8E71DBCBF50001903D1 /* LBBSigninMainViewController.m */; };
-		1DF6F9341DBCBF50001903D1 /* NSDate+PoohCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8EC1DBCBF50001903D1 /* NSDate+PoohCategory.m */; };
-		1DF6F9351DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8EE1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m */; };
 		1DF6F9361DBCBF50001903D1 /* NSDictionary+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F01DBCBF50001903D1 /* NSDictionary+PoohCommon.m */; };
 		1DF6F9371DBCBF50001903D1 /* NSObject+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F21DBCBF50001903D1 /* NSObject+PoohCommon.m */; };
 		1DF6F9381DBCBF50001903D1 /* NSString+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F41DBCBF50001903D1 /* NSString+PoohCommon.m */; };
 		1DF6F9391DBCBF50001903D1 /* UIColor+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F61DBCBF50001903D1 /* UIColor+PoohCommon.m */; };
 		1DF6F93A1DBCBF50001903D1 /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8F81DBCBF50001903D1 /* UIImage+animatedGIF.m */; };
 		1DF6F93B1DBCBF50001903D1 /* UIImage+PoohCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8FA1DBCBF50001903D1 /* UIImage+PoohCommon.m */; };
-		1DF6F93C1DBCBF50001903D1 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8FC1DBCBF50001903D1 /* UIViewExt.m */; };
 		1DF6F93D1DBCBF50001903D1 /* PoohAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8FF1DBCBF50001903D1 /* PoohAppHelper.m */; };
 		1DF6F93E1DBCBF50001903D1 /* IConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F9021DBCBF50001903D1 /* IConstants.m */; };
 		1DF6F93F1DBCBF50001903D1 /* UIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F9041DBCBF50001903D1 /* UIConstants.m */; };
@@ -180,6 +178,8 @@
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
+		1DF610C41DBD9D6C001903D1 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		1DF610C51DBD9D6C001903D1 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
 		1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
 		1DF6F82B1DBCB0D8001903D1 /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
@@ -297,10 +297,6 @@
 		1DF6F8E51DBCBF50001903D1 /* LBB_SignInRankListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SignInRankListViewController.m; sourceTree = "<group>"; };
 		1DF6F8E61DBCBF50001903D1 /* LBBSigninMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBSigninMainViewController.h; sourceTree = "<group>"; };
 		1DF6F8E71DBCBF50001903D1 /* LBBSigninMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBSigninMainViewController.m; sourceTree = "<group>"; };
-		1DF6F8EB1DBCBF50001903D1 /* NSDate+PoohCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+PoohCategory.h"; sourceTree = "<group>"; };
-		1DF6F8EC1DBCBF50001903D1 /* NSDate+PoohCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+PoohCategory.m"; sourceTree = "<group>"; };
-		1DF6F8ED1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+PoohCategory.h"; sourceTree = "<group>"; };
-		1DF6F8EE1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+PoohCategory.m"; sourceTree = "<group>"; };
 		1DF6F8EF1DBCBF50001903D1 /* NSDictionary+PoohCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+PoohCommon.h"; sourceTree = "<group>"; };
 		1DF6F8F01DBCBF50001903D1 /* NSDictionary+PoohCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+PoohCommon.m"; sourceTree = "<group>"; };
 		1DF6F8F11DBCBF50001903D1 /* NSObject+PoohCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PoohCommon.h"; sourceTree = "<group>"; };
@@ -313,8 +309,6 @@
 		1DF6F8F81DBCBF50001903D1 /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		1DF6F8F91DBCBF50001903D1 /* UIImage+PoohCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PoohCommon.h"; sourceTree = "<group>"; };
 		1DF6F8FA1DBCBF50001903D1 /* UIImage+PoohCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PoohCommon.m"; sourceTree = "<group>"; };
-		1DF6F8FB1DBCBF50001903D1 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
-		1DF6F8FC1DBCBF50001903D1 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		1DF6F8FE1DBCBF50001903D1 /* PoohAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohAppHelper.h; sourceTree = "<group>"; };
 		1DF6F8FF1DBCBF50001903D1 /* PoohAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohAppHelper.m; sourceTree = "<group>"; };
 		1DF6F9011DBCBF50001903D1 /* IConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IConstants.h; sourceTree = "<group>"; };
@@ -979,10 +973,8 @@
 		1DF6F8EA1DBCBF50001903D1 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				1DF6F8EB1DBCBF50001903D1 /* NSDate+PoohCategory.h */,
-				1DF6F8EC1DBCBF50001903D1 /* NSDate+PoohCategory.m */,
-				1DF6F8ED1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.h */,
-				1DF6F8EE1DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m */,
+				1DF610C41DBD9D6C001903D1 /* UIViewExt.m */,
+				1DF610C51DBD9D6C001903D1 /* UIViewExt.h */,
 				1DF6F8EF1DBCBF50001903D1 /* NSDictionary+PoohCommon.h */,
 				1DF6F8F01DBCBF50001903D1 /* NSDictionary+PoohCommon.m */,
 				1DF6F8F11DBCBF50001903D1 /* NSObject+PoohCommon.h */,
@@ -995,8 +987,6 @@
 				1DF6F8F81DBCBF50001903D1 /* UIImage+animatedGIF.m */,
 				1DF6F8F91DBCBF50001903D1 /* UIImage+PoohCommon.h */,
 				1DF6F8FA1DBCBF50001903D1 /* UIImage+PoohCommon.m */,
-				1DF6F8FB1DBCBF50001903D1 /* UIViewExt.h */,
-				1DF6F8FC1DBCBF50001903D1 /* UIViewExt.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1566,7 +1556,7 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 2V3T4T4V4S;
+						DevelopmentTeam = 6U52X4M8Y5;
 						ProvisioningStyle = Automatic;
 					};
 					C9C0E9641D9948F300575A7C = {
@@ -1709,7 +1699,6 @@
 				1DF6F93D1DBCBF50001903D1 /* PoohAppHelper.m in Sources */,
 				1DF6F89A1DBCB0D8001903D1 /* ST_SquareViewController.m in Sources */,
 				1DF6F8841DBCB0D8001903D1 /* LGSegment.m in Sources */,
-				1DF6F93C1DBCBF50001903D1 /* UIViewExt.m in Sources */,
 				1DF6F8961DBCB0D8001903D1 /* LBBVideoTableViewCell.m in Sources */,
 				1DF6F9411DBCBF50001903D1 /* LBBHomeHotestTableViewCell.m in Sources */,
 				84E9C58D1DB5EC4900F70C79 /* MineBaseViewController.m in Sources */,
@@ -1764,7 +1753,6 @@
 				84E9C59E1DB5EC4900F70C79 /* TicketDetailViewCell.m in Sources */,
 				1DF6F9441DBCBF50001903D1 /* LBBHomeSquareCenterTableViewCell.m in Sources */,
 				1DF6F9301DBCBF50001903D1 /* LBB_SigninPopView.m in Sources */,
-				1DF6F9351DBCBF50001903D1 /* NSDateFormatter+PoohCategory.m in Sources */,
 				84E9C5951DB5EC4900F70C79 /* LBB_UserNameViewController.m in Sources */,
 				1DF6F9281DBCBF50001903D1 /* LBB_StarRatingViewController.m in Sources */,
 				1DF6F91B1DBCBF50001903D1 /* PoohBaseTableViewController.m in Sources */,
@@ -1790,12 +1778,12 @@
 				84E9C5B01DB5EC4900F70C79 /* CardViewController.m in Sources */,
 				1DF6F89D1DBCB0D8001903D1 /* ZJMTravelsViewController.m in Sources */,
 				1DF6F9431DBCBF50001903D1 /* LBBHomeMenuTableViewCell.m in Sources */,
+				1DF610C61DBD9D6C001903D1 /* UIViewExt.m in Sources */,
 				1DF6F8831DBCB0D8001903D1 /* ZJMTravelModel.m in Sources */,
 				1DF6F8821DBCB0D8001903D1 /* ZJMHostModel.m in Sources */,
 				84E9C5921DB5EC4900F70C79 /* MineViewController.m in Sources */,
 				1DF6F93E1DBCBF50001903D1 /* IConstants.m in Sources */,
 				84E9C5A71DB5EC4900F70C79 /* BalanceExtractViewController.m in Sources */,
-				1DF6F9341DBCBF50001903D1 /* NSDate+PoohCategory.m in Sources */,
 				84E9C58C1DB5EC4900F70C79 /* LBB_FightGroupViewController.m in Sources */,
 				84E9C5AF1DB5EC4900F70C79 /* CardDetailViewController.m in Sources */,
 				1DF6F92A1DBCBF50001903D1 /* LBB_DiscoveryMainTableViewCell.m in Sources */,
@@ -1974,7 +1962,7 @@
 			baseConfigurationReference = A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2V3T4T4V4S;
+				DEVELOPMENT_TEAM = 6U52X4M8Y5;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -1982,7 +1970,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
-				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1991,7 +1979,7 @@
 			baseConfigurationReference = 8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2V3T4T4V4S;
+				DEVELOPMENT_TEAM = 6U52X4M8Y5;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -1999,7 +1987,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
-				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
