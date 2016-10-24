@@ -5,7 +5,7 @@
 //  Created by dawei che on 2016/10/17.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
-#define SEARCH_WIDTH  UISCREEN_WIDTH * (2.0/3.0)
+#define SEARCH_WIDTH  DeviceWidth * (2.0/3.0)
 #import "ZJMSearchBar.h"
 
 @implementation ZJMSearchBar
@@ -20,7 +20,7 @@
 }
 
 - (void)setFrame:(CGRect)frame {
-    [super setFrame:CGRectMake((UISCREEN_WIDTH - SEARCH_WIDTH) / 2.0,5, SEARCH_WIDTH, self.superview.bounds.size.height - 10)];
+    [super setFrame:CGRectMake((DeviceWidth - SEARCH_WIDTH) / 2.0,5, SEARCH_WIDTH, self.superview.bounds.size.height - 10)];
 }
 
 @end
