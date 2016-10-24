@@ -10,7 +10,6 @@
 #import "KSViewPagerView.h"
 #import "LBBPoohCycleScrollCell.h"
 #import "LBBNearbyMenuListTableViewCell.h"
-
 @interface LBBNearbyMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UIView* mapView;
@@ -95,6 +94,25 @@
     NSArray* segmentArray = @[@"景点",@"美食",@"民宿"];
 
     
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
+    segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font6,
+                                             NSForegroundColorAttributeName:ColorLightGray};
+    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font6,
+                                                     NSForegroundColorAttributeName:ColorBtnYellow};
+    segmentedControl.selectionIndicatorColor = [UIColor clearColor];
+    segmentedControl.verticalDividerWidth = SeparateLineWidth;
+    segmentedControl.verticalDividerColor = ColorLightGray;
+    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    [v addSubview:segmentedControl];
+    [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.width.height.equalTo(v);
+    }];
+    segmentedControl.indexChangeBlock = ^(NSInteger index){
+        NSLog(@"segmentedControl select:%ld",index);
+    };
+    
+    /*
     KSViewPagerView* pagerView = [[KSViewPagerView alloc] initWithArray:segmentArray];
     [v addSubview:pagerView];
     pagerView.backgroundColor = [UIColor whiteColor];
@@ -111,7 +129,7 @@
         
     };
     [pagerView setCursorPosition:0];
-    
+    */
     return v;
     
 }

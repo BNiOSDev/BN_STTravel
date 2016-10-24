@@ -31,6 +31,7 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import "IConstants.h"
 #import "UIView+FRCategory.h"
 #import "SDAutoLayout.h"
+#import "HMSegmentedControl.h"
 
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define UISCREEN_HEIGTH [UIScreen mainScreen].bounds.size.height
