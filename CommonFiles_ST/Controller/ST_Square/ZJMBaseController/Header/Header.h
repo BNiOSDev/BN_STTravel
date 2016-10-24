@@ -15,8 +15,8 @@
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 //屏幕适配
-#define FB_FIX_SIZE_WIDTH(w) (((w) / 320.0) * UISCREEN_WIDTH)
-#define SET_FIX_SIZE_WIDTH (UISCREEN_WIDTH /320.0)
+#define FB_FIX_SIZE_WIDTH(w) (((w) / 320.0) * DeviceWidth)
+#define SET_FIX_SIZE_WIDTH (DeviceWidth /320.0)
 //获取当前app版本
 #define IOS_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
 //获取适配后的数据大小
