@@ -58,7 +58,7 @@
         
         self.userLable = [UILabel new];
         [self.userLable setText:@"梁晓欣"];
-        [self.userLable setFont:Font5];
+        [self.userLable setFont:Font14];
         [self.contentView addSubview:self.userLable];
         [self.userLable mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.portraitImageView.mas_right).offset(3);
@@ -67,7 +67,7 @@
         
         self.travlTitleLable = [UILabel new];
         [self.travlTitleLable setText:@"厦大行"];
-        [self.travlTitleLable setFont:Font5];
+        [self.travlTitleLable setFont:Font14];
         [self.contentView addSubview:self.travlTitleLable];
         [self.travlTitleLable mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.equalTo(ws.portraitImageView.mas_bottom).offset(4);
@@ -113,32 +113,32 @@
         self.specialLabelButton1 = [UIButton new];
         [self.specialLabelButton1 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
         [self.specialLabelButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton1.titleLabel setFont:Font5];
+        [self.specialLabelButton1.titleLabel setFont:Font14];
         
         self.specialLabelButton2 = [UIButton new];
         [self.specialLabelButton2 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
         [self.specialLabelButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton2.titleLabel setFont:Font5];
+        [self.specialLabelButton2.titleLabel setFont:Font14];
         
         self.specialLabelButton3 = [UIButton new];
         [self.specialLabelButton3 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
         [self.specialLabelButton3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton3.titleLabel setFont:Font5];
+        [self.specialLabelButton3.titleLabel setFont:Font14];
         
         self.specialLabelButton4 = [UIButton new];
         [self.specialLabelButton4 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
         [self.specialLabelButton4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton4.titleLabel setFont:Font5];
+        [self.specialLabelButton4.titleLabel setFont:Font14];
         
         self.specialLabelButton5 = [UIButton new];
         [self.specialLabelButton5 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
         [self.specialLabelButton5 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton5.titleLabel setFont:Font5];
+        [self.specialLabelButton5.titleLabel setFont:Font14];
         
         self.specialLabelButton6 = [UIButton new];
         [self.specialLabelButton6 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
         [self.specialLabelButton6 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton6.titleLabel setFont:Font5];
+        [self.specialLabelButton6.titleLabel setFont:Font14];
         
         [self.contentView addSubview:self.specialLabelButton1];
         [self.contentView addSubview:self.specialLabelButton2];

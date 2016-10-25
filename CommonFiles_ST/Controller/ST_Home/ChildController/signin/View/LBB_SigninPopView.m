@@ -50,7 +50,7 @@
         self.locationLabel = [UILabel new];
         [self.locationLabel setText:@"鼓浪屿日光岩"];
         [self.locationLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.locationLabel setFont:Font5];
+        [self.locationLabel setFont:Font14];
         [bg addSubview:self.locationLabel];
         [self.locationLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(bg);
@@ -62,7 +62,7 @@
         self.signinButton = [UIButton new];
         [self.signinButton setTitle:@"签到" forState:UIControlStateNormal];
         [self.signinButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
-        [self.signinButton.titleLabel setFont:Font6];
+        [self.signinButton.titleLabel setFont:Font15];
         self.signinButton.layer.borderWidth = 0.8;
         self.signinButton.layer.borderColor = ColorLine.CGColor;
 
@@ -78,7 +78,7 @@
         
         UILabel* note = [UILabel new];
         [note setText:@"请确认定位是否准确"];
-        [note setFont:Font2];
+        [note setFont:Font10];
         [bg addSubview:note];
         [note mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(bg);

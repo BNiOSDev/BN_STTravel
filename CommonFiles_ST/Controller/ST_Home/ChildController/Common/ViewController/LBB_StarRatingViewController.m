@@ -84,7 +84,7 @@ static const NSInteger kPictureInterval = 10;
     
     UILabel* l1 = [UILabel new];
     [l1 setText:@"评论得分: "];
-    [l1 setFont:Font3];
+    [l1 setFont:Font12];
     [v1 addSubview:l1];
     [l1 mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(v1);
@@ -112,7 +112,7 @@ static const NSInteger kPictureInterval = 10;
     //评论描述
     UILabel* l2 = [UILabel new];
     [l2 setText:@"评论描述: "];
-    [l2 setFont:Font3];
+    [l2 setFont:Font12];
     [self.mainScrollView addSubview:l2];
     [l2 mas_makeConstraints:^(MASConstraintMaker* make){
         
@@ -122,7 +122,7 @@ static const NSInteger kPictureInterval = 10;
     
     self.textField = [UITextView new];
     self.textField.placeholder = @"请输入您的评论内容";
-    [self.textField setFont:Font5];
+    [self.textField setFont:Font14];
     self.textField.layer.borderColor = ColorLine.CGColor;
     self.textField.layer.borderWidth = SeparateLineWidth;
     [self.mainScrollView addSubview:self.textField];
@@ -147,7 +147,7 @@ static const NSInteger kPictureInterval = 10;
     self.submitButton = [UIButton new];
     [self.submitButton setTitle:@"提交评论" forState:UIControlStateNormal];
     [self.submitButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.submitButton.titleLabel setFont:Font2];
+    [self.submitButton.titleLabel setFont:Font10];
     self.submitButton.layer.borderColor = [UIColor blackColor].CGColor;
     self.submitButton.layer.borderWidth = SeparateLineWidth;
     [self.mainScrollView addSubview:self.submitButton];

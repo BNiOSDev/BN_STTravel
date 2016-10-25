@@ -100,7 +100,7 @@
         //设置
         buttonItem.tag = i + 1;
         [buttonItem setTitle:temp forState:UIControlStateNormal];
-        buttonItem.titleLabel.font = Font2;
+        buttonItem.titleLabel.font = Font10;
         [buttonItem setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
         [buttonItem addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:buttonItem];

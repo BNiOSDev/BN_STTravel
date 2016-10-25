@@ -39,7 +39,7 @@
         [self.contentView addSubview:pagerView];
         [pagerView setActiveColor:ColorLightGray];
         [pagerView setInactiveColor:ColorLightGray];
-        [pagerView setTitleFont:Font1];
+        [pagerView setTitleFont:Font8];
         [pagerView enableSeperatorView:NO];
         [pagerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@35);

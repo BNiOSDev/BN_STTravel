@@ -45,7 +45,7 @@
     
     WS(ws);
     UIButton *cancel = [[UIButton alloc] init];
-    cancel.titleLabel.font = Font5;
+    cancel.titleLabel.font = Font14;
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
     [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     cancel.frame = CGRectMake(0, 0, 45, 45);
