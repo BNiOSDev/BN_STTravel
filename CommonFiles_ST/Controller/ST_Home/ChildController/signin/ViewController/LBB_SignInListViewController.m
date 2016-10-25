@@ -85,6 +85,24 @@
 
 #pragma tableView Delegate
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return AutoSize(30);
+}
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+
+    CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
+    UILabel* l = [UILabel new];
+    [l setFrame:CGRectMake(0, 0, DeviceWidth, height)];
+    [l setTextAlignment:NSTextAlignmentCenter];
+    [l setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+    [l setText:@"您已完成80个景点，目前排名第12名"];
+    [l setTextColor:[UIColor whiteColor]];
+    
+    return l;
+    
+};
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     

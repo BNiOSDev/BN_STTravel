@@ -65,7 +65,7 @@
         [ws.popView.signinButton bk_addEventHandler:^(id sender){
             NSLog(@"ws.popView.signinButton touch");
             
-            [ws.popView setSigninStatus:YES];
+            [ws.popView setSigninStatus:NO];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 ws.popView.hidden = YES;
                 [ws.popView resignKeyWindow];
@@ -102,7 +102,7 @@
 
     [ctr1 mas_makeConstraints:^(MASConstraintMaker* make){
         make.left.top.equalTo(ws.view);
-        make.height.equalTo(@45);
+        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
     }];
     
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
@@ -121,13 +121,13 @@
     LBBPoohGreatItemView *signList = [[LBBPoohGreatItemView alloc] init];
     [signList.iconView setImage:IMAGE(@"ST_Sign_signList")];
     [signList.desLabel setText:@"签到列表"];
-    [signList.desLabel setFont:Font4];
+    [signList.desLabel setFont:Font6];
     
     
     LBBPoohGreatItemView *signRank = [[LBBPoohGreatItemView alloc] init];
     [signRank.iconView setImage:IMAGE(@"ST_Sign_signRank")];
     [signRank.desLabel setText:@"签到排行"];
-    [signRank.desLabel setFont:Font4];
+    [signRank.desLabel setFont:Font6];
 
     [ctr1 addSubview:signList];
     [signList mas_makeConstraints:^(MASConstraintMaker* make){
@@ -158,11 +158,11 @@
     [self.noteLable setTextColor:[UIColor whiteColor]];
     [self.noteLable setTextAlignment:NSTextAlignmentCenter];
     [self.noteLable setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
-    [self.noteLable setFont:Font3];
+    [self.noteLable setFont:Font6];
     [self.view addSubview:self.noteLable];
     [self.noteLable mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.width.top.equalTo(ws.mapView);
-        make.height.mas_equalTo(45);
+        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
     }];
 
     

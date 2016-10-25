@@ -278,12 +278,12 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             break;
         case LBBHomeSectionTravelRecommendType:
             {
-                return 1;
+                return 2;
             }
             break;
         case LBBHomeSectionVipRecommendType:
             {
-                return 2;
+                return 1;
             }
             break;
         case LBBHomeSectionSquareCenterType:

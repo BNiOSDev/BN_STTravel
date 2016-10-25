@@ -34,7 +34,7 @@
         [self addSubview:bg];
         [bg mas_makeConstraints:^(MASConstraintMaker* make){
             make.center.equalTo(ws);
-            make.width.equalTo(@250);
+            make.width.mas_equalTo(AutoSize(400/2));
             //make.height.equalTo(@300);
         }];
 
@@ -42,15 +42,16 @@
         [img setImage:IMAGE(@"ST_Sign_PopSigninIcon")];
         [bg addSubview:img];
         [img mas_makeConstraints:^(MASConstraintMaker* make){
-            make.centerX.equalTo(bg).offset(16);
+            make.centerX.equalTo(bg).offset(AutoSize(10));
             make.top.equalTo(bg).offset(30);
             make.width.height.equalTo(@100);
         }];
         
         self.locationLabel = [UILabel new];
         [self.locationLabel setText:@"鼓浪屿日光岩"];
+        [self.locationLabel setTextColor:ColorLightGray];
         [self.locationLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.locationLabel setFont:Font5];
+        [self.locationLabel setFont:Font6];
         [bg addSubview:self.locationLabel];
         [self.locationLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(bg);
@@ -66,26 +67,27 @@
         self.signinButton.layer.borderWidth = 0.8;
         self.signinButton.layer.borderColor = ColorLine.CGColor;
 
-        CGFloat height = 40;
+        CGFloat height = AutoSize(70/2);
         self.signinButton.layer.cornerRadius = height/2;
         [bg addSubview:self.signinButton];
         [self.signinButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(bg);
             make.height.mas_equalTo(height);
             make.top.equalTo(ws.locationLabel.mas_bottom).offset(20);
-            make.width.mas_equalTo(height*4);
+            make.width.mas_equalTo(AutoSize(320/2));
         }];
         
         UILabel* note = [UILabel new];
         [note setText:@"请确认定位是否准确"];
-        [note setFont:Font2];
+        [note setTextColor:ColorLightGray];
+        [note setFont:Font4];
         [bg addSubview:note];
         [note mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(bg);
-            make.top.equalTo(ws.signinButton.mas_bottom).offset(20);
-            make.bottom.equalTo(bg).offset(-20);
+            make.top.equalTo(ws.signinButton.mas_bottom).offset(10);
+            make.bottom.equalTo(bg).offset(-30);
         }];
-        
+        self.noteLabel = note;
         
     }
     
@@ -118,6 +120,9 @@
         self.signinButton.layer.borderColor = ColorLine.CGColor;
         [self.signinButton setTitle:@"签到" forState:UIControlStateNormal];
         [self.signinButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        
+        [self.noteLabel setTextColor:[UIColor redColor]];
+        [self.noteLabel setText:@"您不在定位范围，请重新定位"];
     }
     
 }

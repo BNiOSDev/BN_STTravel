@@ -29,7 +29,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         
-        CGFloat interval = 8;
+        CGFloat interval = 10;
         
         self.portraitImageView = [UIImageView new];
         [self.contentView addSubview:self.portraitImageView];
@@ -42,7 +42,7 @@
         }];
         
         self.titleLabel = [UILabel new];
-        [self.titleLabel setFont:Font6];
+        [self.titleLabel setFont:Font7];
         [self.titleLabel setText:@"厦门鼓浪屿"];
         [self.contentView addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -52,7 +52,7 @@
         }];
         
         self.subTitleLabel = [UILabel new];
-        [self.subTitleLabel setFont:Font1];
+        [self.subTitleLabel setFont:Font4];
         [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];
@@ -75,7 +75,7 @@
         }];
         
         self.descLabel = [UILabel new];
-        [self.descLabel setFont:Font1];
+        [self.descLabel setFont:Font4];
         [self.descLabel setTextColor:ColorLightGray];
         [self.descLabel setText:@"1.5km"];
         [self.descLabel setTextAlignment:NSTextAlignmentRight];
@@ -104,7 +104,7 @@
 
 +(CGFloat)getCellHeight{
     
-    CGFloat height = 70;
+    CGFloat height = AutoSize(130/2);
   //  NSLog(@"getCellHeight:%f",height);
     return height;
 }

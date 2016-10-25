@@ -129,7 +129,7 @@
 +(CGFloat)getCellHeight2{
     
     CGFloat height = 0;
-    height = DeviceWidth * 2/3 + TopSegmmentControlHeight;
+    height = DeviceWidth * 2/3 + TopSegmmentControlHeight + 3;
     
     return height;
 }
@@ -154,7 +154,7 @@
         self.pagerView.hidden = NO;
         
         [self.pagerView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(@35);
+            make.height.mas_equalTo(TopSegmmentControlHeight);
             make.width.equalTo(@200);
             make.top.centerX.equalTo(ws.contentView);
         }];

@@ -32,17 +32,20 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         
-        CGFloat interval = 8;
+        CGFloat interval = 10;
         
         self.portraitImageView = [UIImageView new];
         [self.contentView addSubview:self.portraitImageView];
         [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
             make.left.equalTo(ws.contentView).offset(2*interval);
-            make.top.equalTo(ws.contentView).offset(interval);
-            make.bottom.equalTo(ws.contentView).offset(-interval);
+            make.top.equalTo(ws.contentView).offset(1.5*interval);
+            make.bottom.equalTo(ws.contentView).offset(-1.5*interval);
             make.width.equalTo(ws.portraitImageView.mas_height);
         }];
+        self.portraitImageView.layer.cornerRadius = 5;
+        self.portraitImageView.layer.masksToBounds = YES;
+        
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setFont:Font6];
@@ -55,7 +58,7 @@
         }];
         
         self.subTitleLabel = [UILabel new];
-        [self.subTitleLabel setFont:Font1];
+        [self.subTitleLabel setFont:Font4];
         [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];
@@ -70,17 +73,17 @@
         [self.signinButton setBackgroundColor:ColorBtnYellow];
         [self.signinButton setTitle:@"已签到" forState:UIControlStateNormal];
         [self.signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.signinButton.titleLabel setFont:Font1];
+        [self.signinButton.titleLabel setFont:Font4];
         [self.contentView addSubview:self.signinButton];
         [self.signinButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
-            make.right.equalTo(ws).offset(-interval);
-            make.height.equalTo(@25);
-            make.width.equalTo(@80);
+            make.right.equalTo(ws).offset(-2*interval);
+            make.height.mas_equalTo(AutoSize(22));
+            make.width.mas_equalTo(AutoSize(124/2));
         }];
         
         self.rankLabel = [UILabel new];
-        [self.rankLabel setFont:Font1];
+        [self.rankLabel setFont:Font5];
         [self.rankLabel setTextColor:ColorLightGray];
         [self.rankLabel setText:@"第一名"];
         [self.contentView addSubview:self.rankLabel];
@@ -94,7 +97,7 @@
         [self.rankImageView setImage:IMAGE(@"ST_Sign_Num1Icon")];
         [self.contentView addSubview:self.rankImageView];
         [self.rankImageView mas_makeConstraints:^(MASConstraintMaker* make){
-            make.right.equalTo(ws.rankLabel.mas_left).offset(-2);
+            make.right.equalTo(ws.rankLabel.mas_left).offset(-5);
             make.centerY.equalTo(ws.rankLabel);
             make.width.mas_equalTo(25);
             make.height.equalTo(@25);
@@ -172,7 +175,7 @@
 
 +(CGFloat)getCellHeight{
     
-    CGFloat height = 70;
+    CGFloat height = AutoSize(135/2);
   //  NSLog(@"getCellHeight:%f",height);
     return height;
 }
