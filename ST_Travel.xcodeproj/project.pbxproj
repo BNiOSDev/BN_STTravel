@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */; };
 		1D64E6861DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */; };
+		1D64E6911DBF0C030071876A /* LBB_ScenicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */; };
+		1D64E6941DBF11150071876A /* LBB_ScenicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
 		1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8301DBCB0D8001903D1 /* CommentModel.m */; };
@@ -179,6 +181,10 @@
 		1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
 		1D64E6841DBF01850071876A /* LBB_DiscoveryCustomizedPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryCustomizedPopView.h; sourceTree = "<group>"; };
 		1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryCustomizedPopView.m; sourceTree = "<group>"; };
+		1D64E68F1DBF0C030071876A /* LBB_ScenicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicMainTableViewCell.h; sourceTree = "<group>"; };
+		1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicMainTableViewCell.m; sourceTree = "<group>"; };
+		1D64E6921DBF11150071876A /* LBB_ScenicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicMainViewController.h; sourceTree = "<group>"; };
+		1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicMainViewController.m; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
 		1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
 		1DF6F82B1DBCB0D8001903D1 /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
@@ -899,6 +905,8 @@
 		1DF6F8D81DBCBF50001903D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D64E68F1DBF0C030071876A /* LBB_ScenicMainTableViewCell.h */,
+				1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -906,6 +914,8 @@
 		1DF6F8D91DBCBF50001903D1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1D64E6921DBF11150071876A /* LBB_ScenicMainViewController.h */,
+				1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1698,6 +1708,7 @@
 				1DF6F9411DBCBF50001903D1 /* LBBHomeHotestTableViewCell.m in Sources */,
 				84E9C58D1DB5EC4900F70C79 /* MineBaseViewController.m in Sources */,
 				8414066A1DB75D8000A1D904 /* ExtractDetailViewController.m in Sources */,
+				1D64E6941DBF11150071876A /* LBB_ScenicMainViewController.m in Sources */,
 				84E9C5A51DB5EC4900F70C79 /* AddCardViewController.m in Sources */,
 				1DF6F9241DBCBF50001903D1 /* LBBPoohCycleScrollCell.m in Sources */,
 				84E9C5A01DB5EC4900F70C79 /* TicketViewCell.m in Sources */,
@@ -1787,6 +1798,7 @@
 				1DF6F8991DBCB0D8001903D1 /* LBBVideoViewController.m in Sources */,
 				84E9C59D1DB5EC4900F70C79 /* SettingViewController.m in Sources */,
 				C9C0E9511D9948F100575A7C /* main.m in Sources */,
+				1D64E6911DBF0C030071876A /* LBB_ScenicMainTableViewCell.m in Sources */,
 				1DF6F93A1DBCBF50001903D1 /* UIImage+animatedGIF.m in Sources */,
 				1DF6F8861DBCB0D8001903D1 /* UIView+ZJFrame.m in Sources */,
 				84E9C5B91DB5EE0E00F70C79 /* CommonFunc.m in Sources */,

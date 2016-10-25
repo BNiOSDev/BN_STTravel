@@ -9,6 +9,7 @@
 #import "LBBHomeMenuTableViewCell.h"
 #import "LBBPoohVerticalButton.h"
 #import "LBB_DiscoveryMainViewController.h"
+#import "LBB_ScenicMainViewController.h"
 
 @implementation LBBHomeMenuTableViewCell
 
@@ -59,7 +60,9 @@
                     case 0://攻略
                         dest = [[LBB_DiscoveryMainViewController alloc] init];
                         break;
-                        
+                    case 1://景点
+                        dest = [[LBB_ScenicMainViewController alloc] init];
+                        break;
                     default:
                         break;
                 }
