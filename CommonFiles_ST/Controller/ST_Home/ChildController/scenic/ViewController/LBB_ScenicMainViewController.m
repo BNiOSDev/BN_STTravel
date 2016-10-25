@@ -9,9 +9,12 @@
 #import "LBB_ScenicMainViewController.h"
 #import "LBBPoohCycleScrollCell.h"
 #import "LBB_ScenicMainTableViewCell.h"
+#import "LBB_ScenicSearchViewController.h"
+
 @interface LBB_ScenicMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
+@property (nonatomic, retain) UISearchBar *searchBar;
 
 @end
 
@@ -41,7 +44,8 @@
  */
 
 -(void)loadCustomNavigationButton{
-    self.title = @"附近";
+    WS(ws);
+   self.title = @"景点";
     UIButton *search = [[UIButton alloc] init];
     search.titleLabel.font = Font5;
     [search setTitle:@"搜索" forState:UIControlStateNormal];
@@ -49,6 +53,10 @@
     [search setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     search.frame = CGRectMake(0, 0, 45, 45);
     [search bk_addEventHandler:^(id sender){
+        
+        LBB_ScenicSearchViewController* dest = [[LBB_ScenicSearchViewController alloc]init];
+        
+        [ws.navigationController pushViewController:dest animated:YES];
         
     }forControlEvents:UIControlEventTouchUpInside];
     

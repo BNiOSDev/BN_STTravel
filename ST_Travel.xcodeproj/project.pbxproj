@@ -11,6 +11,9 @@
 		1D64E6861DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */; };
 		1D64E6911DBF0C030071876A /* LBB_ScenicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */; };
 		1D64E6941DBF11150071876A /* LBB_ScenicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */; };
+		1D64E6971DBF374D0071876A /* LBB_ScenicSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6961DBF374D0071876A /* LBB_ScenicSearchViewController.m */; };
+		1D64E69A1DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6991DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m */; };
+		1D64E69D1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E69C1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
 		1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8301DBCB0D8001903D1 /* CommentModel.m */; };
@@ -185,6 +188,12 @@
 		1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicMainTableViewCell.m; sourceTree = "<group>"; };
 		1D64E6921DBF11150071876A /* LBB_ScenicMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicMainViewController.h; sourceTree = "<group>"; };
 		1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicMainViewController.m; sourceTree = "<group>"; };
+		1D64E6951DBF374D0071876A /* LBB_ScenicSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicSearchViewController.h; sourceTree = "<group>"; };
+		1D64E6961DBF374D0071876A /* LBB_ScenicSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicSearchViewController.m; sourceTree = "<group>"; };
+		1D64E6981DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SceninSearchCollectionViewCell.h; sourceTree = "<group>"; };
+		1D64E6991DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SceninSearchCollectionViewCell.m; sourceTree = "<group>"; };
+		1D64E69B1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicSearchCollectionReusableView.h; sourceTree = "<group>"; };
+		1D64E69C1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicSearchCollectionReusableView.m; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
 		1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
 		1DF6F82B1DBCB0D8001903D1 /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
@@ -772,6 +781,10 @@
 				1DF6F8BA1DBCBF50001903D1 /* LBBPoohGreatItemView.m */,
 				1DF6F8BB1DBCBF50001903D1 /* LBBPoohVerticalButton.h */,
 				1DF6F8BC1DBCBF50001903D1 /* LBBPoohVerticalButton.m */,
+				1D64E6981DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.h */,
+				1D64E6991DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m */,
+				1D64E69B1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.h */,
+				1D64E69C1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -803,6 +816,8 @@
 				1DF6F8BF1DBCBF50001903D1 /* LBB_AddressAddViewController.m */,
 				1DF6F8C01DBCBF50001903D1 /* LBB_StarRatingViewController.h */,
 				1DF6F8C11DBCBF50001903D1 /* LBB_StarRatingViewController.m */,
+				1D64E6951DBF374D0071876A /* LBB_ScenicSearchViewController.h */,
+				1D64E6961DBF374D0071876A /* LBB_ScenicSearchViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1699,6 +1714,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D64E6971DBF374D0071876A /* LBB_ScenicSearchViewController.m in Sources */,
 				1DF6F88D1DBCB0D8001903D1 /* CommentView.m in Sources */,
 				1DF6F9211DBCBF50001903D1 /* KSViewPagerView.m in Sources */,
 				1DF6F93D1DBCBF50001903D1 /* PoohAppHelper.m in Sources */,
@@ -1760,6 +1776,7 @@
 				1DF6F9441DBCBF50001903D1 /* LBBHomeSquareCenterTableViewCell.m in Sources */,
 				1DF6F9301DBCBF50001903D1 /* LBB_SigninPopView.m in Sources */,
 				84E9C5951DB5EC4900F70C79 /* LBB_UserNameViewController.m in Sources */,
+				1D64E69D1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m in Sources */,
 				1DF6F9281DBCBF50001903D1 /* LBB_StarRatingViewController.m in Sources */,
 				1DF6F91B1DBCBF50001903D1 /* PoohBaseTableViewController.m in Sources */,
 				1DF6F9261DBCBF50001903D1 /* LBBPoohVerticalButton.m in Sources */,
@@ -1787,6 +1804,7 @@
 				1DF6F8831DBCB0D8001903D1 /* ZJMTravelModel.m in Sources */,
 				1DF6F8821DBCB0D8001903D1 /* ZJMHostModel.m in Sources */,
 				84E9C5921DB5EC4900F70C79 /* MineViewController.m in Sources */,
+				1D64E69A1DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m in Sources */,
 				1DF6F93E1DBCBF50001903D1 /* IConstants.m in Sources */,
 				84E9C5A71DB5EC4900F70C79 /* BalanceExtractViewController.m in Sources */,
 				84E9C58C1DB5EC4900F70C79 /* LBB_FightGroupViewController.m in Sources */,
