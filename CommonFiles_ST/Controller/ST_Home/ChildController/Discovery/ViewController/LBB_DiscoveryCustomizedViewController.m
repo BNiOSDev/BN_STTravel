@@ -11,6 +11,7 @@
 #import "PoohCommon.h"
 #import "LBB_AddressAddViewController.h"
 #import "UITextField+TPCategory.h"
+#import "LBB_DiscoveryCustomizedPopView.h"
 
 @interface LBB_DiscoveryCustomizedViewController ()
 
@@ -25,6 +26,7 @@
 
 @property(nonatomic, assign)NSInteger tagIndex;
 
+@property(nonatomic, retain)LBB_DiscoveryCustomizedPopView* popView;
 
 
 @end
@@ -254,15 +256,20 @@
     
     [submit bk_addEventHandler:^(id sender){
         
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"定制路线成功" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
+        NSLog(@"sign touch");
+        if (!ws.popView) {
+            ws.popView = [[LBB_DiscoveryCustomizedPopView alloc]init];
+        }
+        [ws.popView showPopView];
+        [ws.popView.confirmButton bk_addEventHandler:^(id sender){
+            NSLog(@"ws.popView.confirmButton touch");
             
+            ws.popView.hidden = YES;
+            [ws.popView resignKeyWindow];
+            ws.popView = nil;
             [ws.navigationController popViewControllerAnimated:YES];
-            
-        }];
-        [alert addAction:ok];
-        [ws.navigationController presentViewController:alert animated:YES completion:nil];
-    
+        } forControlEvents:UIControlEventTouchUpInside];
+        
     } forControlEvents:UIControlEventTouchUpInside];
     
 }
