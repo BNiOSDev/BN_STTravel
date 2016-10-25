@@ -114,7 +114,7 @@
     }];
     UILabel* l = [UILabel new];
     [l setText:@"个性标签"];
-    [l setFont:Font5];
+    [l setFont:Font14];
     [l setTextAlignment:NSTextAlignmentCenter];
     [tagView addSubview:l];
     [l mas_makeConstraints:^(MASConstraintMaker* make){
@@ -123,19 +123,19 @@
     }];
     
     self.tag1 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag1.desLabel setFont:Font1];
+    [self.tag1.desLabel setFont:Font8];
     [self.tag1.iconView setImage:IMAGE(@"ST_Discovery_Select")];
     [self.tag1.desLabel setText:@"我是吃货"];
     [tagView addSubview:self.tag1];
     
     self.tag2 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag2.desLabel setFont:Font1];
+    [self.tag2.desLabel setFont:Font8];
     [self.tag2.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
     [self.tag2.desLabel setText:@"潮男潮女"];
     [tagView addSubview:self.tag2];
     
     self.tag3 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag3.desLabel setFont:Font1];
+    [self.tag3.desLabel setFont:Font8];
     [self.tag3.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
     [self.tag3.desLabel setText:@"运动达人"];
     [tagView addSubview:self.tag3];

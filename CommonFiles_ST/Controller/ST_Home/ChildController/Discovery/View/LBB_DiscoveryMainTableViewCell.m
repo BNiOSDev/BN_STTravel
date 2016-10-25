@@ -56,7 +56,7 @@
         }];
         
         contentLabel = [UILabel new];
-        [contentLabel setFont:Font3];
+        [contentLabel setFont:Font12];
         [contentLabel setTextAlignment:NSTextAlignmentCenter];
         [contentLabel setNumberOfLines:0];
         [contentLabel setTextColor:ColorLightGray];
@@ -70,7 +70,7 @@
         }];
         
         timeLabel = [UILabel new];
-        [timeLabel setFont:Font3];
+        [timeLabel setFont:Font12];
         [timeLabel setTextAlignment:NSTextAlignmentCenter];
         [timeLabel setTextColor:ColorLightGray];
         [self.contentView addSubview:timeLabel];

@@ -35,7 +35,7 @@
         }];
         
         self.titleLabel = [UILabel new];
-        [self.titleLabel setFont:Font2];
+        [self.titleLabel setFont:Font10];
         [self.titleLabel setTextColor:[UIColor blackColor]];
         [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.titleLabel];

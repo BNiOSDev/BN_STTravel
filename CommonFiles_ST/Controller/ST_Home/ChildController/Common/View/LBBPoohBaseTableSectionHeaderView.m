@@ -46,7 +46,7 @@
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setText:@"test title"];
-        [self.titleLabel setFont:Font4];
+        [self.titleLabel setFont:Font13];
         [sub addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
             

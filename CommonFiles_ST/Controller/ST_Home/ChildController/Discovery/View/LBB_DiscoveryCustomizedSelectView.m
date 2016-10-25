@@ -27,7 +27,7 @@
         CGFloat margin = 8;
         
         self.titleLabel = [UILabel new];
-        [self.titleLabel setFont:Font5];
+        [self.titleLabel setFont:Font14];
         [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -51,7 +51,7 @@
         
         self.contentLable = [UILabel new];
         [self.contentLable setText:@"请选择"];
-        [self.contentLable setFont:Font2];
+        [self.contentLable setFont:Font10];
         [self.contentLable setTextColor:ColorLightGray];
         [self.bgCtrlView addSubview:self.contentLable];
         [self.contentLable mas_makeConstraints:^(MASConstraintMaker* make){

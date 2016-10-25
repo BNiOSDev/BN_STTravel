@@ -42,7 +42,7 @@
         }];
         
         self.titleLabel = [UILabel new];
-        [self.titleLabel setFont:Font6];
+        [self.titleLabel setFont:Font15];
         [self.titleLabel setText:@"厦门鼓浪屿"];
         [self.contentView addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -52,7 +52,7 @@
         }];
         
         self.subTitleLabel = [UILabel new];
-        [self.subTitleLabel setFont:Font1];
+        [self.subTitleLabel setFont:Font8];
         [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];
@@ -75,7 +75,7 @@
         }];
         
         self.descLabel = [UILabel new];
-        [self.descLabel setFont:Font1];
+        [self.descLabel setFont:Font8];
         [self.descLabel setTextColor:ColorLightGray];
         [self.descLabel setText:@"1.5km"];
         [self.descLabel setTextAlignment:NSTextAlignmentRight];

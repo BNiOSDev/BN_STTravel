@@ -103,7 +103,7 @@
     }];
     [pagerView setActiveColor:ColorBtnYellow];
     [pagerView setInactiveColor:[UIColor colorWithRGB:0xafafaf]];
-    [pagerView setTitleFont:Font3];
+    [pagerView setTitleFont:Font12];
     [pagerView enableSeperatorView:YES];
     [pagerView.cursorView setHidden:YES];
     pagerView.click = ^(KSViewPagerView*v, NSNumber *index){
