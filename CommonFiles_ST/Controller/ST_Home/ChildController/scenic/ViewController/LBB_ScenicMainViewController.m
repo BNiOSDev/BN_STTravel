@@ -42,6 +42,18 @@
 
 -(void)loadCustomNavigationButton{
     self.title = @"附近";
+    UIButton *search = [[UIButton alloc] init];
+    search.titleLabel.font = Font5;
+    [search setTitle:@"搜索" forState:UIControlStateNormal];
+    [search setImage:IMAGE(@"") forState:UIControlStateNormal];
+    [search setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    search.frame = CGRectMake(0, 0, 45, 45);
+    [search bk_addEventHandler:^(id sender){
+        
+    }forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithCustomView:search];
+    self.navigationItem.rightBarButtonItem = searchItem;
 }
 
 /*
