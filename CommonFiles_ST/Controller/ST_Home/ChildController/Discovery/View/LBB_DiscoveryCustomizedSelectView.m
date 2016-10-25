@@ -37,10 +37,12 @@
             make.width.mas_equalTo(100);
         }];
         
-        self.bgCtrlView = [UIControl new];
+        self.bgCtrlView = [UITextField new];
         self.bgCtrlView.layer.borderColor = ColorLine.CGColor;
         self.bgCtrlView.layer.borderWidth = 1;
         self.bgCtrlView.layer.masksToBounds = YES;
+        [self.bgCtrlView setPlaceholder:@"请选择"];
+        [self.bgCtrlView setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.bgCtrlView];
         [self.bgCtrlView mas_makeConstraints:^(MASConstraintMaker* make){
         
@@ -50,6 +52,7 @@
         }];
         
         self.contentLable = [UILabel new];
+        self.contentLable.hidden = YES;
         [self.contentLable setText:@"请选择"];
         [self.contentLable setFont:Font2];
         [self.contentLable setTextColor:ColorLightGray];
@@ -73,12 +76,14 @@
         [self.addMoreView.iconView setImage:IMAGE(@"ST_Discovery_Add")];
         [self.addMoreView.desLabel setText:@"添加更多景点"];
         [self.addMoreView.desLabel setTextColor:ColorLightGray];
+        [self.addMoreView.desLabel setFont:Font4];
         [self.bgCtrlView addSubview:self.addMoreView];
         [self.addMoreView mas_makeConstraints:^(MASConstraintMaker* make){
             make.center.equalTo(ws.bgCtrlView);
             make.height.equalTo(@20);
         }];
         self.addMoreView.hidden = YES;
+        self.addMoreView.userInteractionEnabled = NO;
         
     }
     

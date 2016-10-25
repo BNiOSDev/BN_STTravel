@@ -12,7 +12,7 @@
 @interface LBB_DiscoveryCustomizedSelectView : UIView
 
 @property(nonatomic, retain)UILabel* titleLabel;
-@property(nonatomic, retain)UIControl* bgCtrlView;
+@property(nonatomic, retain)UITextField* bgCtrlView;
 @property(nonatomic, retain)UILabel* contentLable;
 @property(nonatomic, retain)UIImageView* arrowImageView;
 @property(nonatomic, retain)LBBPoohGreatItemView* addMoreView;

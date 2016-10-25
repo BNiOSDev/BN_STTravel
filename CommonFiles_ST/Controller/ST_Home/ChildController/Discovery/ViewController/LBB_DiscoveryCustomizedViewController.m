@@ -10,6 +10,7 @@
 #import "LBB_DiscoveryCustomizedSelectView.h"
 #import "PoohCommon.h"
 #import "LBB_AddressAddViewController.h"
+#import "UITextField+TPCategory.h"
 
 @interface LBB_DiscoveryCustomizedViewController ()
 
@@ -24,7 +25,6 @@
 
 @property(nonatomic, assign)NSInteger tagIndex;
 
-@property(nonatomic, retain)UIDatePicker* datePicker;
 
 
 @end
@@ -96,6 +96,7 @@
   
     self.addMoreAreaView = [[LBB_DiscoveryCustomizedSelectView alloc]init];
     [self.addMoreAreaView.titleLabel setText:@""];
+    [self.addMoreAreaView.bgCtrlView setPlaceholder:@""];
     [self.addMoreAreaView showAddMoreView:YES];
     [self.view addSubview:self.addMoreAreaView];
     [self.addMoreAreaView mas_makeConstraints:^(MASConstraintMaker* make){
@@ -123,19 +124,19 @@
     }];
     
     self.tag1 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag1.desLabel setFont:Font1];
+    [self.tag1.desLabel setFont:Font3];
     [self.tag1.iconView setImage:IMAGE(@"ST_Discovery_Select")];
     [self.tag1.desLabel setText:@"我是吃货"];
     [tagView addSubview:self.tag1];
     
     self.tag2 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag2.desLabel setFont:Font1];
+    [self.tag2.desLabel setFont:Font3];
     [self.tag2.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
     [self.tag2.desLabel setText:@"潮男潮女"];
     [tagView addSubview:self.tag2];
     
     self.tag3 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag3.desLabel setFont:Font1];
+    [self.tag3.desLabel setFont:Font3];
     [self.tag3.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
     [self.tag3.desLabel setText:@"运动达人"];
     [tagView addSubview:self.tag3];
@@ -144,7 +145,7 @@
     [self.tag1 mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(tagView);
         make.left.equalTo(l.mas_right);
-        make.height.equalTo(@20);
+        make.height.equalTo(@18);
     }];
     [self.tag2 mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(tagView);
@@ -169,37 +170,40 @@
         make.top.equalTo(tagView.mas_bottom).offset(2*margin);
 
     }];
+    sep.hidden = YES;
     
     UIButton* submit = [UIButton new];
     [submit setTitle:@"立即提交" forState:UIControlStateNormal];
-    [submit.titleLabel setFont:[UIFont systemFontOfSize:20]];
+    [submit.titleLabel setFont:Font6];
     [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [submit setBackgroundColor:ColorBtnYellow];
     [self.view addSubview:submit];
     [submit mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.equalTo(ws.view);
         make.top.equalTo(sep.mas_bottom).offset(margin);
-        make.left.right.equalTo(sep);
-        make.height.equalTo(@60);
+    //    make.left.right.equalTo(sep);
+        make.height.mas_equalTo(AutoSize(77/2));
+        make.width.mas_equalTo(AutoSize(400/2));
     }];
     
     
 #pragma action
     
-    [RACObserve(self, self.tagIndex) subscribeNext:^(NSNumber* index) {
-
-        [ws.tag1.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
-        [ws.tag2.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
-        [ws.tag3.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
+    @weakify(self);
+    [RACObserve(self, tagIndex) subscribeNext:^(NSNumber* index) {
+        @strongify(self);
+        [self.tag1.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
+        [self.tag2.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
+        [self.tag3.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
         switch ([index integerValue]) {
             case 0:
-                [ws.tag1.iconView setImage:IMAGE(@"ST_Discovery_Select")];
+                [self.tag1.iconView setImage:IMAGE(@"ST_Discovery_Select")];
                 break;
             case 1:
-                [ws.tag2.iconView setImage:IMAGE(@"ST_Discovery_Select")];
+                [self.tag2.iconView setImage:IMAGE(@"ST_Discovery_Select")];
                 break;
             case 2:
-                [ws.tag3.iconView setImage:IMAGE(@"ST_Discovery_Select")];
+                [self.tag3.iconView setImage:IMAGE(@"ST_Discovery_Select")];
                 break;
             default:
                 break;
@@ -216,16 +220,37 @@
         ws.tagIndex = 2;
     }];
     
-    [self.addMoreAreaView.bgCtrlView bk_whenTapped:^{
+    
+    [self.startTimeSelectView.bgCtrlView useDateKeyboard];
+    [self.endTimeSelectView.bgCtrlView useDateKeyboard];
+   // self.startTimeSelectView.bgCtrlView.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+
+    self.areaSelectView.bgCtrlView.bk_shouldBeginEditingBlock = ^(UITextField* text){
+    
         
+        [text resignFirstResponder];
         LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
         dest.click = ^(LBB_AddressAddViewController* add,NSNumber* index){
             NSLog(@"回调地址:%ld",[index integerValue]);
+            [text setText:[NSString stringWithFormat:@"%ld",[index integerValue]]];
             [add.navigationController popViewControllerAnimated:YES];
         };
         [ws.navigationController pushViewController:dest animated:YES];
+        return NO;
+    };
+    
+    self.addMoreAreaView.bgCtrlView.bk_shouldBeginEditingBlock = ^(UITextField* text){
         
-    }];
+        [text resignFirstResponder];
+        LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
+        dest.click = ^(LBB_AddressAddViewController* add,NSNumber* index){
+            NSLog(@"回调地址:%ld",[index integerValue]);
+            [text setText:[NSString stringWithFormat:@"%ld",[index integerValue]]];
+            [add.navigationController popViewControllerAnimated:YES];
+        };
+        [ws.navigationController pushViewController:dest animated:YES];
+        return NO;
+    };
     
     [submit bk_addEventHandler:^(id sender){
         
