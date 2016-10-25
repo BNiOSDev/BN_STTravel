@@ -10,7 +10,7 @@
 
 @interface LBB_DiscoveryMainTableViewCell : LBBPoohBaseTableViewCell
 
--(void)setModelaaa:(id)model;
+-(void)setModelaaa:(id)model andRow:(NSInteger)row;
 
 
 @end

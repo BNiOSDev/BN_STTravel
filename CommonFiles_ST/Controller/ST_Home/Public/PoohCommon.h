@@ -36,7 +36,7 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define UISCREEN_HEIGTH [UIScreen mainScreen].bounds.size.height
 
-#define PlaceHolderImage @""
+#define PlaceHolderImage @"poohtest"
 #define SeparateLineWidth 1.5
 
 //屏幕适配

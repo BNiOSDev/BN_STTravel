@@ -41,13 +41,13 @@
         [imageView mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.top.left.right.equalTo(ws.contentView);
-            make.height.mas_equalTo(UISCREEN_WIDTH*3/5);
+            make.height.mas_equalTo(AutoSize(340/2));
         }];
         
         CGFloat margin = 8;
         
         titleLabel = [UILabel new];
-        [titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
+        [titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         [self.contentView addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -56,7 +56,7 @@
         }];
         
         contentLabel = [UILabel new];
-        [contentLabel setFont:Font3];
+        [contentLabel setFont:Font4];
         [contentLabel setTextAlignment:NSTextAlignmentCenter];
         [contentLabel setNumberOfLines:0];
         [contentLabel setTextColor:ColorLightGray];
@@ -132,15 +132,19 @@
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
         
+        //效果图没有这个
+        greetView.hidden = YES;
+        commentsView.hidden = YES;
+
+        
     }
     return self;
 }
 
 
--(void)setModelaaa:(id)model{
+-(void)setModelaaa:(id)model andRow:(NSInteger)row{
     
-    int i = arc4random();
-    if (i%2) {
+    if (row%2) {
         [contentLabel setText:@"这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了,某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太"];
     }
     else{
