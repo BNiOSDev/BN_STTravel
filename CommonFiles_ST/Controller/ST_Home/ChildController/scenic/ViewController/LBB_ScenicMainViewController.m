@@ -55,7 +55,11 @@
     [search bk_addEventHandler:^(id sender){
         
         LBB_ScenicSearchViewController* dest = [[LBB_ScenicSearchViewController alloc]init];
-        
+        dest.click = ^(LBB_ScenicSearchViewController* v , NSIndexPath* indexPath){
+            
+            NSLog(@"选择搜索的数据:%ld",indexPath.row);
+            [v.navigationController popViewControllerAnimated:YES];
+        };
         [ws.navigationController pushViewController:dest animated:YES];
         
     }forControlEvents:UIControlEventTouchUpInside];
