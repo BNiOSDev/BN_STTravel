@@ -10,6 +10,7 @@
 #import "LBBPoohCycleScrollCell.h"
 #import "LBB_ScenicMainTableViewCell.h"
 #import "LBB_ScenicSearchViewController.h"
+#import "LBB_ScenicDetailViewController.h"
 
 @interface LBB_ScenicMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -96,7 +97,7 @@
     [self.view addSubview:segmentedControl];
     [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.width.equalTo(ws.view);
-        make.height.mas_equalTo(TopSegmmentControlHeight);
+        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
         make.top.equalTo(ws.view);
     }];
     segmentedControl.indexChangeBlock = ^(NSInteger index){
@@ -196,6 +197,12 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+  //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
+    LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
+
+    [self.navigationController pushViewController:dest animated:YES];
+}
 
 @end

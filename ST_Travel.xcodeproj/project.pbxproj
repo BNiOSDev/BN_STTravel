@@ -14,6 +14,8 @@
 		1D64E6971DBF374D0071876A /* LBB_ScenicSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6961DBF374D0071876A /* LBB_ScenicSearchViewController.m */; };
 		1D64E69A1DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6991DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m */; };
 		1D64E69D1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E69C1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m */; };
+		1D64E6A01DBF53430071876A /* LBB_ScenicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E69F1DBF53430071876A /* LBB_ScenicDetailViewController.m */; };
+		1D64E6A41DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6A31DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
 		1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8301DBCB0D8001903D1 /* CommentModel.m */; };
@@ -194,6 +196,10 @@
 		1D64E6991DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SceninSearchCollectionViewCell.m; sourceTree = "<group>"; };
 		1D64E69B1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicSearchCollectionReusableView.h; sourceTree = "<group>"; };
 		1D64E69C1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicSearchCollectionReusableView.m; sourceTree = "<group>"; };
+		1D64E69E1DBF53430071876A /* LBB_ScenicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicDetailViewController.h; sourceTree = "<group>"; };
+		1D64E69F1DBF53430071876A /* LBB_ScenicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicDetailViewController.m; sourceTree = "<group>"; };
+		1D64E6A21DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailPriceMsgCell.h; path = "景点详情/LBB_ScenicDetailPriceMsgCell.h"; sourceTree = "<group>"; };
+		1D64E6A31DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailPriceMsgCell.m; path = "景点详情/LBB_ScenicDetailPriceMsgCell.m"; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
 		1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
 		1DF6F82B1DBCB0D8001903D1 /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
@@ -505,6 +511,15 @@
 				0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1D64E6A11DBF592F0071876A /* 景点详情 */ = {
+			isa = PBXGroup;
+			children = (
+				1D64E6A21DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.h */,
+				1D64E6A31DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m */,
+			);
+			name = "景点详情";
 			sourceTree = "<group>";
 		};
 		1DF6F8271DBCB0D8001903D1 /* ST_Square */ = {
@@ -920,6 +935,7 @@
 		1DF6F8D81DBCBF50001903D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D64E6A11DBF592F0071876A /* 景点详情 */,
 				1D64E68F1DBF0C030071876A /* LBB_ScenicMainTableViewCell.h */,
 				1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */,
 			);
@@ -931,6 +947,8 @@
 			children = (
 				1D64E6921DBF11150071876A /* LBB_ScenicMainViewController.h */,
 				1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */,
+				1D64E69E1DBF53430071876A /* LBB_ScenicDetailViewController.h */,
+				1D64E69F1DBF53430071876A /* LBB_ScenicDetailViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1769,6 +1787,7 @@
 				1DF6F9251DBCBF50001903D1 /* LBBPoohGreatItemView.m in Sources */,
 				1DF6F9201DBCBF50001903D1 /* GYChangeTextView.m in Sources */,
 				1DF6F9231DBCBF50001903D1 /* LBBPoohBaseTableViewCell.m in Sources */,
+				1D64E6A41DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m in Sources */,
 				1DF6F93B1DBCBF50001903D1 /* UIImage+PoohCommon.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1DF6F8891DBCB0D8001903D1 /* ZJScrollPageView.m in Sources */,
@@ -1788,6 +1807,7 @@
 				1DF6F92E1DBCBF50001903D1 /* LBBNearbyMainViewController.m in Sources */,
 				1DF6F91C1DBCBF50001903D1 /* PoohBaseViewController.m in Sources */,
 				1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */,
+				1D64E6A01DBF53430071876A /* LBB_ScenicDetailViewController.m in Sources */,
 				84E9C5931DB5EC4900F70C79 /* PersonalInfoCell.m in Sources */,
 				1DF6F9401DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m in Sources */,
 				84E9C5A61DB5EC4900F70C79 /* BalanceDetailViewController.m in Sources */,
@@ -1989,7 +2009,7 @@
 				DEVELOPMENT_TEAM = 6U52X4M8Y5;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2006,7 +2026,7 @@
 				DEVELOPMENT_TEAM = 6U52X4M8Y5;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.kolj;
 				PRODUCT_NAME = "$(TARGET_NAME)";

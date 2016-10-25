@@ -101,7 +101,6 @@
         
         //right
         self.deletePriceLabel = [UILabel new];
-        self.deletePriceLabel = [UILabel new];
         [self.deletePriceLabel setFont:Font2];
         [self.deletePriceLabel setText:@"230"];
         [self.deletePriceLabel setTextAlignment:NSTextAlignmentCenter];
@@ -113,7 +112,6 @@
             make.centerY.equalTo(ws.addressLabel);
         }];
         
-        self.priceLabel = [UILabel new];
         self.priceLabel = [UILabel new];
         [self.priceLabel setFont:Font2];
         [self.priceLabel setText:@"230元起/1人"];
