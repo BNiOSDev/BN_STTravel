@@ -8,6 +8,7 @@
 
 #import "ImageContentView.h"
 #import "NSArray+Sudoku.h"
+#import "Header.h"
 
 #define IMAGEHEIGHT   250.0
 #define Marign  5.0

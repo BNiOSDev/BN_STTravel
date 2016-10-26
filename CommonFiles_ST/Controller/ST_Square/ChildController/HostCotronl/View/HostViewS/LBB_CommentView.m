@@ -7,6 +7,7 @@
 //
 
 #import "LBB_CommentView.h"
+#import "Header.h"
 #define Ymargin  5.0
 
 @implementation LBB_CommentView
@@ -22,6 +23,10 @@
 
 - (void)setCommentArray:(NSArray *)commentArray
 {
+    for(UIView *view in self.subviews)
+    {
+        [view removeFromSuperview];
+    }
     _commentArray = commentArray;
     __weak typeof(self) weakSelf = self;
     UIView  *lastTopView = self;
@@ -31,10 +36,14 @@
     {
         UILabel *label = [UILabel new];
         label.font = [UIFont systemFontOfSize:14.0];
-        label.textColor = [UIColor grayColor];
+        label.textColor = UIColorFromRGB(0x626262);
         label.numberOfLines = 0;
         label.lineBreakMode = NSLineBreakByTruncatingTail;
-        label.text = _commentArray[i];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc ]initWithString:_commentArray[i]];
+        NSRange range = NSMakeRange(0,[_commentArray[i] rangeOfString:@":"].location);
+        [str addAttributes:@{NSForegroundColorAttributeName:UIColorFromRGB(0x000000)} range:range];
+        
+        [label setAttributedText:str];
         [self addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             if(i == 0)

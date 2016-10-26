@@ -7,6 +7,7 @@
 //
 
 #import "LBB_CommentTextField.h"
+#import "Header.h"
 
 @implementation LBB_CommentTextField
 {
@@ -17,8 +18,9 @@
 {
     if(self == [super initWithFrame:frame])
     {
-        self.layer.borderColor = [UIColor grayColor].CGColor;
+        self.layer.borderColor = LINECOLOR.CGColor;
         self.layer.borderWidth = 1.0;
+        self.backgroundColor = BACKVIEWCOLOR;
     }
     return self;
 }
@@ -29,7 +31,7 @@
     [self addSubview:textField];
     textField.textColor = [UIColor darkTextColor];
     textField.font = [UIFont systemFontOfSize:14.0];
-    textField.backgroundColor = [UIColor orangeColor];
+    
     [textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(5.0);
         make.left.equalTo(self.mas_left).offset(5.0);
@@ -38,7 +40,7 @@
     }];
     
     UIView  *line = [UIView new];
-    line.backgroundColor = [UIColor redColor];
+    line.backgroundColor = LINECOLOR;
     [self addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
@@ -49,8 +51,8 @@
     
     UIButton *pushBtn = [UIButton new];
     [pushBtn setTitle:@"评论" forState:0];
-    [pushBtn setTitleColor:[UIColor grayColor] forState:0];
-    pushBtn.titleLabel.font = [UIFont systemFontOfSize:14.0];
+    [pushBtn setTitleColor:LESSBLACKCOLOR forState:0];
+    pushBtn.titleLabel.font = [UIFont systemFontOfSize:12.0];
     [self addSubview:pushBtn];
     
     [pushBtn mas_makeConstraints:^(MASConstraintMaker *make) {

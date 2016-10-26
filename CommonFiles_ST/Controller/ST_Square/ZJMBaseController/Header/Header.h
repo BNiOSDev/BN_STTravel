@@ -9,6 +9,7 @@
 #ifndef Header_h
 #define Header_h
 #import <UIImageView+WebCache.h>
+#import <Masonry.h>
 
 //使用宏定义16进制颜色值
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -30,8 +31,15 @@
 
 #define DEFAULTIMAGE                  [UIImage imageNamed:@""]
 #define FONT(x)                               [UIFont systemFontOfSize:x]
-#define LINECOLOR                        UIColorFromRGB(0xE0E0E0)
+//#define LINECOLOR                        UIColorFromRGB(0xE0E0E0)
 
+#define COMMONCOLOR                     UIColorFromRGB(0xcaa161)
+#define BLACKCOLOR                          UIColorFromRGB(0x000000)
+#define LESSBLACKCOLOR                 UIColorFromRGB(0x333333)
+#define MORELESSBLACKCOLOR      UIColorFromRGB(0x626262)
+#define LINECOLOR                              UIColorFromRGB(0xeeeeee)
+#define WHITECOLOR                          UIColorFromRGB(0xffffff)
+#define BACKVIEWCOLOR                   UIColorFromRGB(0xf5f5f5)
 
 typedef void(^ClickBlockForControl)(id object, id param);
 

@@ -8,7 +8,6 @@
 
 #import "LBBVideoViewController.h"
 #import "ZJMHostModel.h"
-#import "ZJMHostTableViewCell.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "UIView+SDAutoLayout.h"
 #import "PraiseModel.h"
