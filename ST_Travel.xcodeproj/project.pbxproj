@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */; };
 		1D3023CC1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023CB1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.m */; };
+		1D3023CF1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023CE1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m */; };
 		1D64E6861DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */; };
 		1D64E6911DBF0C030071876A /* LBB_ScenicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */; };
 		1D64E6941DBF11150071876A /* LBB_ScenicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */; };
@@ -193,6 +194,8 @@
 		1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
 		1D3023CA1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailVipFavoriteCell.h; path = "景点详情/LBB_ScenicDetailVipFavoriteCell.h"; sourceTree = "<group>"; };
 		1D3023CB1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailVipFavoriteCell.m; path = "景点详情/LBB_ScenicDetailVipFavoriteCell.m"; sourceTree = "<group>"; };
+		1D3023CD1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailCommentsCell.h; path = "景点详情/LBB_ScenicDetailCommentsCell.h"; sourceTree = "<group>"; };
+		1D3023CE1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailCommentsCell.m; path = "景点详情/LBB_ScenicDetailCommentsCell.m"; sourceTree = "<group>"; };
 		1D64E6841DBF01850071876A /* LBB_DiscoveryCustomizedPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryCustomizedPopView.h; sourceTree = "<group>"; };
 		1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryCustomizedPopView.m; sourceTree = "<group>"; };
 		1D64E68F1DBF0C030071876A /* LBB_ScenicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicMainTableViewCell.h; sourceTree = "<group>"; };
@@ -553,6 +556,8 @@
 				1D64E6B51DC082610071876A /* LBB_ScenicDetailBookStatusCell.m */,
 				1D3023CA1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.h */,
 				1D3023CB1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.m */,
+				1D3023CD1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.h */,
+				1D3023CE1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m */,
 			);
 			name = "景点详情";
 			sourceTree = "<group>";
@@ -1818,6 +1823,7 @@
 				1DF6F89E1DBCB0D8001903D1 /* ZJMBaseViewController.m in Sources */,
 				1DF6F8811DBCB0D8001903D1 /* PraiseModel.m in Sources */,
 				1DF6F8881DBCB0D8001903D1 /* ZJCustomLabel.m in Sources */,
+				1D3023CF1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m in Sources */,
 				1DF6F88C1DBCB0D8001903D1 /* CommentBoxView.m in Sources */,
 				1DF6F9491DBCBF50001903D1 /* ST_TabBarController.m in Sources */,
 				841406671DB7583400A1D904 /* VerificationViewController.m in Sources */,

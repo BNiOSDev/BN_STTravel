@@ -15,6 +15,7 @@
 #import "LBB_ScenicDetailEquipmentCell.h"
 #import "LBB_ScenicDetailBookStatusCell.h"
 #import "LBB_ScenicDetailVipFavoriteCell.h"
+#import "LBB_ScenicDetailCommentsCell.h"
 
 typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     LBBScenicDetailSectionHeaderType = 0,//header部分
@@ -142,6 +143,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     //温馨提示
     [self.tableView registerClass:[LBB_ScenicDetailBookStatusCell class] forCellReuseIdentifier:@"LBB_ScenicDetailBookStatusCell"];
     [self.tableView registerClass:[LBB_ScenicDetailVipFavoriteCell class] forCellReuseIdentifier:@"LBB_ScenicDetailVipFavoriteCell"];
+    [self.tableView registerClass:[LBB_ScenicDetailCommentsCell class] forCellReuseIdentifier:@"LBB_ScenicDetailCommentsCell"];
+
 }
 
 #pragma tableView Delegate
@@ -205,7 +208,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return 1;
             break;
         case LBBScenicDetailSectionWarmPromptType://温馨提示
-            return 3;
+            return 4;
             break;
         case LBBScenicDetailSectionTravelRecommendType://周边推荐
             return 3;
@@ -387,13 +390,23 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         }
         return cell;
     }
-    else{
+    else if(indexPath.row == 2){
         static NSString *cellIdentifier = @"LBB_ScenicDetailVipFavoriteCell";
         LBB_ScenicDetailVipFavoriteCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
             cell = [[LBB_ScenicDetailVipFavoriteCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
             
             NSLog(@"LBB_ScenicDetailVipFavoriteCell nil");
+        }
+        return cell;
+    }
+    else{
+        static NSString *cellIdentifier = @"LBB_ScenicDetailCommentsCell";
+        LBB_ScenicDetailCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBB_ScenicDetailCommentsCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            
+            NSLog(@"LBB_ScenicDetailCommentsCell nil");
         }
         return cell;
     }
@@ -470,8 +483,13 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         
         }];
     }
-    else{
+    else if(indexPath.row == 2){
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailVipFavoriteCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailVipFavoriteCell* cell){
+            
+        }];
+    }
+    else{
+        return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailCommentsCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailCommentsCell* cell){
             
         }];
     }
