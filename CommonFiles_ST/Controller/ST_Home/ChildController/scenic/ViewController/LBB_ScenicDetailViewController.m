@@ -13,6 +13,7 @@
 #import "LBB_ScenicTextTableViewCell.h"
 #import "LBB_ScenicDetailVipMPaiCell.h"
 #import "LBB_ScenicDetailEquipmentCell.h"
+#import "LBB_ScenicDetailBookStatusCell.h"
 
 typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     LBBScenicDetailSectionHeaderType = 0,//header部分
@@ -128,7 +129,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     [self.tableView registerClass:[LBB_ScenicDetailAddressCell class] forCellReuseIdentifier:@"LBB_ScenicDetailAddressCell"];
     [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
     
-    //recommend reason part
+    //推荐理由
     [self.tableView registerClass:[LBB_ScenicTextTableViewCell class] forCellReuseIdentifier:@"LBB_ScenicTextTableViewCell"];
 
     //达人秒拍
@@ -137,6 +138,10 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     //景区设施
     [self.tableView registerClass:[LBB_ScenicDetailEquipmentCell class] forCellReuseIdentifier:@"LBB_ScenicDetailEquipmentCell"];
 
+    //温馨提示
+    [self.tableView registerClass:[LBB_ScenicDetailBookStatusCell class] forCellReuseIdentifier:@"LBB_ScenicDetailBookStatusCell"];
+
+    
 }
 
 #pragma tableView Delegate
@@ -200,7 +205,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return 1;
             break;
         case LBBScenicDetailSectionWarmPromptType://温馨提示
-            return 1;
+            return 2;
             break;
         case LBBScenicDetailSectionTravelRecommendType://周边推荐
             return 3;
@@ -230,7 +235,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return [self tableView:tableView heightForEquipmentRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionWarmPromptType://温馨提示
-            return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+            return [self tableView:tableView heightForWarmPromptRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionTravelRecommendType://周边推荐
             return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
@@ -261,7 +266,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return [self tableView:tableView cellForEquipmentRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionWarmPromptType://温馨提示
-            return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
+            return [self tableView:tableView cellForWarmPromptRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionTravelRecommendType://周边推荐
             return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
@@ -357,6 +362,35 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     
 }
 
+#pragma 温馨提示
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForWarmPromptRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {
+        
+        static NSString *cellIdentifier = @"LBB_ScenicTextTableViewCell";
+        LBB_ScenicTextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBB_ScenicTextTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            
+            NSLog(@"LBB_ScenicTextTableViewCell nil");
+        }
+        return cell;
+    }
+    else{
+        
+        static NSString *cellIdentifier = @"LBB_ScenicDetailBookStatusCell";
+        LBB_ScenicDetailBookStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBB_ScenicDetailBookStatusCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            
+            NSLog(@"LBB_ScenicDetailBookStatusCell nil");
+        }
+        return cell;
+    }
+    
+}
+
+
 /*
  *  对每个section的cell heigt进行分开封装
  */
@@ -410,6 +444,21 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     
     return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailEquipmentCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailEquipmentCell* cell){
     }];
+}
+
+#pragma 温馨提示
+-(CGFloat)tableView:(UITableView *)tableView heightForWarmPromptRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    NSLog(@"heightForWarmPromptRowAtIndexPath:%ld",indexPath.row);
+    if (indexPath.row == 0) {
+        return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicTextTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicTextTableViewCell* cell){
+        }];
+    }
+    else{
+        
+        return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailBookStatusCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailBookStatusCell* cell){
+        
+        }];
+    }
 }
 @end

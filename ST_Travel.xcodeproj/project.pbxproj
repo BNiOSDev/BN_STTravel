@@ -21,6 +21,7 @@
 		1D64E6AD1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6AC1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m */; };
 		1D64E6B01DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */; };
 		1D64E6B31DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6B21DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m */; };
+		1D64E6B61DC082610071876A /* LBB_ScenicDetailBookStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6B51DC082610071876A /* LBB_ScenicDetailBookStatusCell.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
 		1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8301DBCB0D8001903D1 /* CommentModel.m */; };
@@ -215,6 +216,8 @@
 		1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailVipMPaiCell.m; path = "景点详情/LBB_ScenicDetailVipMPaiCell.m"; sourceTree = "<group>"; };
 		1D64E6B11DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailEquipmentCell.h; path = "景点详情/LBB_ScenicDetailEquipmentCell.h"; sourceTree = "<group>"; };
 		1D64E6B21DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailEquipmentCell.m; path = "景点详情/LBB_ScenicDetailEquipmentCell.m"; sourceTree = "<group>"; };
+		1D64E6B41DC082610071876A /* LBB_ScenicDetailBookStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailBookStatusCell.h; path = "景点详情/LBB_ScenicDetailBookStatusCell.h"; sourceTree = "<group>"; };
+		1D64E6B51DC082610071876A /* LBB_ScenicDetailBookStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailBookStatusCell.m; path = "景点详情/LBB_ScenicDetailBookStatusCell.m"; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
 		1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
 		1DF6F82B1DBCB0D8001903D1 /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
@@ -543,6 +546,8 @@
 				1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */,
 				1D64E6B11DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.h */,
 				1D64E6B21DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m */,
+				1D64E6B41DC082610071876A /* LBB_ScenicDetailBookStatusCell.h */,
+				1D64E6B51DC082610071876A /* LBB_ScenicDetailBookStatusCell.m */,
 			);
 			name = "景点详情";
 			sourceTree = "<group>";
@@ -1773,6 +1778,7 @@
 				84E9C5A01DB5EC4900F70C79 /* TicketViewCell.m in Sources */,
 				1DF6F9381DBCBF50001903D1 /* NSString+PoohCommon.m in Sources */,
 				1DF6F8971DBCB0D8001903D1 /* ZJMTravelCell.m in Sources */,
+				1D64E6B61DC082610071876A /* LBB_ScenicDetailBookStatusCell.m in Sources */,
 				1DF6F9221DBCBF50001903D1 /* LBBPoohBaseTableSectionHeaderView.m in Sources */,
 				1DF6F9371DBCBF50001903D1 /* NSObject+PoohCommon.m in Sources */,
 				1DF6F8901DBCB0D8001903D1 /* ZJMCommentView.m in Sources */,
