@@ -32,13 +32,14 @@
         CGFloat margin = 8;
         
         self.contentLabel = [UILabel new];
-        [self.contentLabel setFont:Font13];
+        [self.contentLabel setFont:Font16];
         [self.contentLabel setNumberOfLines:0];
+        [self.contentLabel setTextAlignment:NSTextAlignmentCenter];
         [self.contentLabel setText:@"厦门曾厝垵景区\n暗杀大奥斯卡还打算看的哈啥的佳世客和打开\nsadhjajkdadh1"];
         [self.contentView addSubview:self.contentLabel];
         [self.contentLabel mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.top.equalTo(ws.contentView).offset(margin);
+            make.top.equalTo(ws.contentView).offset(2*margin);
             make.left.equalTo(ws.contentView).offset(2*margin);
             make.right.equalTo(ws.contentView).offset(-2*margin);
 

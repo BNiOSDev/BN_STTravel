@@ -12,6 +12,7 @@
 #import "LBBPoohCycleScrollCell.h"
 #import "LBB_ScenicTextTableViewCell.h"
 #import "LBB_ScenicDetailVipMPaiCell.h"
+#import "LBB_ScenicDetailEquipmentCell.h"
 
 typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     LBBScenicDetailSectionHeaderType = 0,//header部分
@@ -133,6 +134,9 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     //达人秒拍
     [self.tableView registerClass:[LBB_ScenicDetailVipMPaiCell class] forCellReuseIdentifier:@"LBB_ScenicDetailVipMPaiCell"];
 
+    //景区设施
+    [self.tableView registerClass:[LBB_ScenicDetailEquipmentCell class] forCellReuseIdentifier:@"LBB_ScenicDetailEquipmentCell"];
+
 }
 
 #pragma tableView Delegate
@@ -215,7 +219,6 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             break;
         case LBBScenicDetailSectionVipMPaiType://达人秒拍
             return [self tableView:tableView heightForVipMPaiRowAtIndexPath:indexPath];
-           // return 2*LBB_ScenicDetailVipMPaiCellItemHeight;
             break;
         case LBBScenicDetailSectionRecommendReasonType://推荐理由
             return [self tableView:tableView heightForRecommendReasonRowAtIndexPath:indexPath];
@@ -224,7 +227,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionEquipmentType://景区设施
-            return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+            return [self tableView:tableView heightForEquipmentRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionWarmPromptType://温馨提示
             return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
@@ -255,7 +258,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionEquipmentType://景区设施
-            return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
+            return [self tableView:tableView cellForEquipmentRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionWarmPromptType://温馨提示
             return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
@@ -340,7 +343,19 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         
 }
 
-
+#pragma 景区设施
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForEquipmentRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellIdentifier = @"LBB_ScenicDetailEquipmentCell";
+    LBB_ScenicDetailEquipmentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[LBB_ScenicDetailEquipmentCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        
+        NSLog(@"LBB_ScenicDetailEquipmentCell nil");
+    }
+    return cell;
+    
+}
 
 /*
  *  对每个section的cell heigt进行分开封装
@@ -390,5 +405,11 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
   
 }
 
-
+#pragma 景区设施
+-(CGFloat)tableView:(UITableView *)tableView heightForEquipmentRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailEquipmentCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailEquipmentCell* cell){
+    }];
+    
+}
 @end

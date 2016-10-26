@@ -83,7 +83,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     WS(ws);
     LBBPoohVerticalButton *back = [[LBBPoohVerticalButton alloc] init];
 
-    back.titleLabel.font = Font8;
+    back.titleLabel.font = Font13;
     back.titleLabel.text = @"附近";
     back.frame = CGRectMake(0, 0, 45, 45);
     [back.imageView setImage:IMAGE(@"ST_Home_Nearby")];
@@ -97,7 +97,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     self.navigationItem.leftBarButtonItem = leftItem;
     
     LBBPoohVerticalButton *sign = [[LBBPoohVerticalButton alloc] init];
-    sign.titleLabel.font = Font8;
+    sign.titleLabel.font = Font13;
     sign.titleLabel.text = @"签到";
     sign.frame = CGRectMake(0, 0, 45, 45);
     [sign.imageView setImage:IMAGE(@"ST_Home_Signin")];

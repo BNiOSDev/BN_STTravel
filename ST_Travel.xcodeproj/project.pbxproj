@@ -20,6 +20,7 @@
 		1D64E6AA1DC04E610071876A /* LBB_ScenicTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6A91DC04E610071876A /* LBB_ScenicTextTableViewCell.m */; };
 		1D64E6AD1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6AC1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m */; };
 		1D64E6B01DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */; };
+		1D64E6B31DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6B21DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
 		1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8301DBCB0D8001903D1 /* CommentModel.m */; };
@@ -212,6 +213,8 @@
 		1D64E6AC1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailVipMPaiCellItem.m; path = "景点详情/LBB_ScenicDetailVipMPaiCellItem.m"; sourceTree = "<group>"; };
 		1D64E6AE1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailVipMPaiCell.h; path = "景点详情/LBB_ScenicDetailVipMPaiCell.h"; sourceTree = "<group>"; };
 		1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailVipMPaiCell.m; path = "景点详情/LBB_ScenicDetailVipMPaiCell.m"; sourceTree = "<group>"; };
+		1D64E6B11DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailEquipmentCell.h; path = "景点详情/LBB_ScenicDetailEquipmentCell.h"; sourceTree = "<group>"; };
+		1D64E6B21DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailEquipmentCell.m; path = "景点详情/LBB_ScenicDetailEquipmentCell.m"; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
 		1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
 		1DF6F82B1DBCB0D8001903D1 /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
@@ -538,6 +541,8 @@
 				1D64E6AC1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m */,
 				1D64E6AE1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.h */,
 				1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */,
+				1D64E6B11DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.h */,
+				1D64E6B21DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m */,
 			);
 			name = "景点详情";
 			sourceTree = "<group>";
@@ -1773,6 +1778,7 @@
 				1DF6F8901DBCB0D8001903D1 /* ZJMCommentView.m in Sources */,
 				C9C0E9571D9948F100575A7C /* ViewController.m in Sources */,
 				1DF6F8851DBCB0D8001903D1 /* ZJMSearchBar.m in Sources */,
+				1D64E6B31DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m in Sources */,
 				1DF6F9271DBCBF50001903D1 /* LBB_AddressAddViewController.m in Sources */,
 				1DF6F8801DBCB0D8001903D1 /* LBBFriendModel.m in Sources */,
 				1DF6F92F1DBCBF50001903D1 /* LBB_SignInListCell.m in Sources */,
