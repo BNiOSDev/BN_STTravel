@@ -31,16 +31,6 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        //        NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-        //        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRGB:0xfb0d1b]
-        //                                                    title:@"删除"];
-        //        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRGB:0x058cc0]
-        //                                                    title:@"修改"];
-        //
-        //        self.rightUtilityButtons = rightUtilityButtons;
-        
-        
 
         // 情景一：采用本地图片实现
 
@@ -62,6 +52,19 @@
     return self;
 }
 
+
+
+-(void)setCycleScrollViewHeight:(CGFloat)height{
+    
+    WS(ws);
+    [cycleScrollView mas_remakeConstraints:^(MASConstraintMaker* make){
+        make.width.equalTo(ws.contentView);
+        make.height.mas_equalTo(height);
+        make.bottom.top.equalTo(ws.contentView);
+    }];
+    
+    [self.contentView layoutSubviews];
+}
 
 -(void)setCycleScrollViewUrls:(NSArray*)urlArray{
 

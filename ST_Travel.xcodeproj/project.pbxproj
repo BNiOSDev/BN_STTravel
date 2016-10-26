@@ -16,6 +16,10 @@
 		1D64E69D1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E69C1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m */; };
 		1D64E6A01DBF53430071876A /* LBB_ScenicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E69F1DBF53430071876A /* LBB_ScenicDetailViewController.m */; };
 		1D64E6A41DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6A31DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m */; };
+		1D64E6A71DC045980071876A /* LBB_ScenicDetailAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6A61DC045980071876A /* LBB_ScenicDetailAddressCell.m */; };
+		1D64E6AA1DC04E610071876A /* LBB_ScenicTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6A91DC04E610071876A /* LBB_ScenicTextTableViewCell.m */; };
+		1D64E6AD1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6AC1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m */; };
+		1D64E6B01DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
 		1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F8301DBCB0D8001903D1 /* CommentModel.m */; };
@@ -200,6 +204,14 @@
 		1D64E69F1DBF53430071876A /* LBB_ScenicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicDetailViewController.m; sourceTree = "<group>"; };
 		1D64E6A21DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailPriceMsgCell.h; path = "景点详情/LBB_ScenicDetailPriceMsgCell.h"; sourceTree = "<group>"; };
 		1D64E6A31DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailPriceMsgCell.m; path = "景点详情/LBB_ScenicDetailPriceMsgCell.m"; sourceTree = "<group>"; };
+		1D64E6A51DC045980071876A /* LBB_ScenicDetailAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailAddressCell.h; path = "景点详情/LBB_ScenicDetailAddressCell.h"; sourceTree = "<group>"; };
+		1D64E6A61DC045980071876A /* LBB_ScenicDetailAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailAddressCell.m; path = "景点详情/LBB_ScenicDetailAddressCell.m"; sourceTree = "<group>"; };
+		1D64E6A81DC04E610071876A /* LBB_ScenicTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicTextTableViewCell.h; path = "景点详情/LBB_ScenicTextTableViewCell.h"; sourceTree = "<group>"; };
+		1D64E6A91DC04E610071876A /* LBB_ScenicTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicTextTableViewCell.m; path = "景点详情/LBB_ScenicTextTableViewCell.m"; sourceTree = "<group>"; };
+		1D64E6AB1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailVipMPaiCellItem.h; path = "景点详情/LBB_ScenicDetailVipMPaiCellItem.h"; sourceTree = "<group>"; };
+		1D64E6AC1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailVipMPaiCellItem.m; path = "景点详情/LBB_ScenicDetailVipMPaiCellItem.m"; sourceTree = "<group>"; };
+		1D64E6AE1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailVipMPaiCell.h; path = "景点详情/LBB_ScenicDetailVipMPaiCell.h"; sourceTree = "<group>"; };
+		1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailVipMPaiCell.m; path = "景点详情/LBB_ScenicDetailVipMPaiCell.m"; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
 		1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
 		1DF6F82B1DBCB0D8001903D1 /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
@@ -518,6 +530,14 @@
 			children = (
 				1D64E6A21DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.h */,
 				1D64E6A31DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m */,
+				1D64E6A51DC045980071876A /* LBB_ScenicDetailAddressCell.h */,
+				1D64E6A61DC045980071876A /* LBB_ScenicDetailAddressCell.m */,
+				1D64E6A81DC04E610071876A /* LBB_ScenicTextTableViewCell.h */,
+				1D64E6A91DC04E610071876A /* LBB_ScenicTextTableViewCell.m */,
+				1D64E6AB1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.h */,
+				1D64E6AC1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m */,
+				1D64E6AE1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.h */,
+				1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */,
 			);
 			name = "景点详情";
 			sourceTree = "<group>";
@@ -1768,10 +1788,12 @@
 				84E9C5B31DB5EC4900F70C79 /* WalletViewController.m in Sources */,
 				84E9C58B1DB5EC4900F70C79 /* LBB_FavoriteViewController.m in Sources */,
 				84E9C5A91DB5EC4900F70C79 /* BalanceDetailViewCell.m in Sources */,
+				1D64E6B01DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m in Sources */,
 				84E9C5A21DB5EC4900F70C79 /* TicketViewController.m in Sources */,
 				1DF6F8941DBCB0D8001903D1 /* ZJMHostTableViewCell.m in Sources */,
 				1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */,
 				84E9C5851DB5EC4900F70C79 /* MineHeaderView.m in Sources */,
+				1D64E6AD1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */,
 				1DF6F92C1DBCBF50001903D1 /* LBB_DiscoveryMainViewController.m in Sources */,
 				1DF6F8951DBCB0D8001903D1 /* LBBTravelTableViewCell.m in Sources */,
 				84E9C5C21DB5F05A00F70C79 /* LBB_AddressPickerView.m in Sources */,
@@ -1781,6 +1803,7 @@
 				1DF6F88C1DBCB0D8001903D1 /* CommentBoxView.m in Sources */,
 				1DF6F9491DBCBF50001903D1 /* ST_TabBarController.m in Sources */,
 				841406671DB7583400A1D904 /* VerificationViewController.m in Sources */,
+				1D64E6AA1DC04E610071876A /* LBB_ScenicTextTableViewCell.m in Sources */,
 				1DF6F88B1DBCB0D8001903D1 /* ZJSegmentStyle.m in Sources */,
 				84FBE84A1DB7B1E80016C9AF /* AddAddressViewController.m in Sources */,
 				1DF6F8921DBCB0D8001903D1 /* UIView+SDAutoLayout.m in Sources */,
@@ -1853,6 +1876,7 @@
 				84E9C59B1DB5EC4900F70C79 /* SettingPrivaceViewController.m in Sources */,
 				1D64E6861DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m in Sources */,
 				1DF6F9461DBCBF50001903D1 /* LBBHomeSearchResultViewController.m in Sources */,
+				1D64E6A71DC045980071876A /* LBB_ScenicDetailAddressCell.m in Sources */,
 				1DF6F88F1DBCB0D8001903D1 /* PraiseView.m in Sources */,
 				1DF6F91F1DBCBF50001903D1 /* CWStarRateView.m in Sources */,
 				84EADCD71DB8F89D003C8F0F /* ChangePasswordViewController.m in Sources */,

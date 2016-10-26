@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LBBPoohGreatItemView.h"
-@interface LBB_ScenicDetailPriceMsgCell : UITableViewCell
+#import "LBBPoohBaseTableViewCell.h"
+@interface LBB_ScenicDetailPriceMsgCell : LBBPoohBaseTableViewCell
 
 
 @property(nonatomic, retain)UILabel* titleLabel;

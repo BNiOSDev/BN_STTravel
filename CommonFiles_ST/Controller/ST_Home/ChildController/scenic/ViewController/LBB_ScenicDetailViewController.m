@@ -8,10 +8,29 @@
 
 #import "LBB_ScenicDetailViewController.h"
 #import "LBB_ScenicDetailPriceMsgCell.h"
+#import "LBB_ScenicDetailAddressCell.h"
+#import "LBBPoohCycleScrollCell.h"
+#import "LBB_ScenicTextTableViewCell.h"
+#import "LBB_ScenicDetailVipMPaiCell.h"
+
+typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
+    LBBScenicDetailSectionHeaderType = 0,//header部分
+    LBBScenicDetailSectionVipMPaiType,//达人秒拍
+    LBBScenicDetailSectionRecommendReasonType,//推荐理由
+    LBBScenicDetailSectionSpotType,//景点详情
+    LBBScenicDetailSectionEquipmentType,//景区设施
+    LBBScenicDetailSectionWarmPromptType,//温馨提示
+    LBBScenicDetailSectionTravelRecommendType,//周边推荐
+    
+    LBBScenicDetailSectionTotal,//总数
+
+};
+
 
 @interface LBB_ScenicDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
+@property (nonatomic, retain) NSArray* sectionArray;
 
 @end
 
@@ -71,10 +90,23 @@
 -(void)buildControls{
     
     WS(ws);
+    
+    
+    self.sectionArray = @[
+                          @"",
+                          @"景点详情_达人秒拍",
+                          @"景点详情_推荐理由",
+                          @"景点详情_景点详情",
+                          @"景点详情_景区设施",
+                          @"景点详情_温馨提示",
+                          @"景点详情_周边推荐",
+                          ];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     [self.view setBackgroundColor:[UIColor whiteColor]];
  
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self registerTableViewCell];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
@@ -90,7 +122,17 @@
 
 
 -(void)registerTableViewCell{
-      [self.tableView registerClass:[LBB_ScenicDetailPriceMsgCell class] forCellReuseIdentifier:@"LBB_ScenicDetailPriceMsgCell"];
+    //header part
+    [self.tableView registerClass:[LBB_ScenicDetailPriceMsgCell class] forCellReuseIdentifier:@"LBB_ScenicDetailPriceMsgCell"];
+    [self.tableView registerClass:[LBB_ScenicDetailAddressCell class] forCellReuseIdentifier:@"LBB_ScenicDetailAddressCell"];
+    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
+    
+    //recommend reason part
+    [self.tableView registerClass:[LBB_ScenicTextTableViewCell class] forCellReuseIdentifier:@"LBB_ScenicTextTableViewCell"];
+
+    //达人秒拍
+    [self.tableView registerClass:[LBB_ScenicDetailVipMPaiCell class] forCellReuseIdentifier:@"LBB_ScenicDetailVipMPaiCell"];
+
 }
 
 #pragma tableView Delegate
@@ -103,48 +145,250 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return AutoSize(10);
+    if (section == LBBScenicDetailSectionHeaderType) {
+        return 0.001;
+    }
+    return AutoSize(40);
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
+    if (section == LBBScenicDetailSectionHeaderType) {
+        return [UIView new];
+    }
     UIView* v = [UIView new];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
     [v setBackgroundColor:[UIColor whiteColor]];
+
+    
+    UIImageView* img = [UIImageView new];
+    [img setImage:IMAGE([self.sectionArray objectAtIndex:section])];
+    [img setContentMode:UIViewContentModeCenter];
+    [v addSubview:img];
+    [img mas_makeConstraints:^(MASConstraintMaker* make){
+        make.center.height.width.equalTo(v);
+        // make.width.equalTo(@184);
+    }];
     return v;
     
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    
+    return LBBScenicDetailSectionTotal;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    switch (section) {
+        case LBBScenicDetailSectionHeaderType://header部分
+            return 3;
+            break;
+        case LBBScenicDetailSectionVipMPaiType://达人秒拍
+            return 1;
+            break;
+        case LBBScenicDetailSectionRecommendReasonType://推荐理由
+            return 1;
+            break;
+        case LBBScenicDetailSectionSpotType://景点详情
+            return 3;
+            break;
+        case LBBScenicDetailSectionEquipmentType://景区设施
+            return 1;
+            break;
+        case LBBScenicDetailSectionWarmPromptType://温馨提示
+            return 1;
+            break;
+        case LBBScenicDetailSectionTravelRecommendType://周边推荐
+            return 3;
+            break;
+        default:
+            break;
+    }
+    return 3;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 100;
+    switch (indexPath.section) {
+        case LBBScenicDetailSectionHeaderType://header部分
+            return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionVipMPaiType://达人秒拍
+            return [self tableView:tableView heightForVipMPaiRowAtIndexPath:indexPath];
+           // return 2*LBB_ScenicDetailVipMPaiCellItemHeight;
+            break;
+        case LBBScenicDetailSectionRecommendReasonType://推荐理由
+            return [self tableView:tableView heightForRecommendReasonRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionSpotType://景点详情
+            return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionEquipmentType://景区设施
+            return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionWarmPromptType://温馨提示
+            return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionTravelRecommendType://周边推荐
+            return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        default:
+            return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+    }
     
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    static NSString *cellIdentifier = @"LBB_ScenicDetailPriceMsgCell";
-    LBB_ScenicDetailPriceMsgCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[LBB_ScenicDetailPriceMsgCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        
-        NSLog(@"LBB_ScenicDetailPriceMsgCell nil");
+    switch (indexPath.section) {
+        case LBBScenicDetailSectionHeaderType://header部分
+            return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionVipMPaiType://达人秒拍
+            return [self tableView:tableView cellForVipMPaiRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionRecommendReasonType://推荐理由
+            return [self tableView:tableView cellForRecommendReasonRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionSpotType://景点详情
+            return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionEquipmentType://景区设施
+            return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionWarmPromptType://温馨提示
+            return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        case LBBScenicDetailSectionTravelRecommendType://周边推荐
+            return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
+            break;
+        default:
+            return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
+            break;
     }
-    [cell setModel:nil];
-    return cell;
-
-    return nil;
 }
+
+
+/*
+ *  对每个section的cell进行分开封装
+ */
+#pragma header 部分的cell
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForHeaderSectionRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {//ad
+        static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
+        LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            NSLog(@"LBBPoohCycleScrollCell nil");
+        }
+       // [cell setCycleScrollViewHeight:AutoSize(386/2)];
+        [cell setCycleScrollViewUrls:nil];
+        return cell;
+        
+    }
+    else if(indexPath.row == 1){//msg
+        
+        static NSString *cellIdentifier = @"LBB_ScenicDetailPriceMsgCell";
+        LBB_ScenicDetailPriceMsgCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBB_ScenicDetailPriceMsgCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            
+            NSLog(@"LBB_ScenicDetailPriceMsgCell nil");
+        }
+        [cell setModel:nil];
+        return cell;
+    }
+    else{//address
+        static NSString *cellIdentifier = @"LBB_ScenicDetailAddressCell";
+        LBB_ScenicDetailAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBB_ScenicDetailAddressCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            
+            NSLog(@"LBB_ScenicDetailAddressCell nil");
+        }
+        return cell;
+    
+    }
+}
+
+#pragma 达人秒拍
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForVipMPaiRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellIdentifier = @"LBB_ScenicDetailVipMPaiCell";
+    LBB_ScenicDetailVipMPaiCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[LBB_ScenicDetailVipMPaiCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        
+        NSLog(@"LBB_ScenicDetailVipMPaiCell nil");
+    }
+    return cell;
+    
+}
+#pragma 推荐理由
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRecommendReasonRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellIdentifier = @"LBB_ScenicTextTableViewCell";
+    LBB_ScenicTextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[LBB_ScenicTextTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        
+        NSLog(@"LBB_ScenicTextTableViewCell nil");
+    }
+    return cell;
+        
+}
+
+
+
+/*
+ *  对每个section的cell heigt进行分开封装
+ */
+#pragma header 部分
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderSectionRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    if (indexPath.row == 0) {
+        
+        return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
+            [cell setCycleScrollViewHeight:AutoSize(386/2)];
+            [cell setCycleScrollViewUrls:nil];
+        }];
+    }
+    else if (indexPath.row == 1){
+        
+        return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailPriceMsgCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailPriceMsgCell* cell){
+            
+            [cell setModel:nil];
+        }];
+    }
+    else{
+        return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailAddressCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailAddressCell* cell){
+            
+        }];
+    }
+}
+
+#pragma 达人秒拍
+-(CGFloat)tableView:(UITableView *)tableView heightForVipMPaiRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CGFloat height = [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailVipMPaiCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailVipMPaiCell* cell){
+        
+    }];
+    
+    NSLog(@"heightForVipMPaiRowAtIndexPath:%f",height);
+    
+    return height;
+    
+}
+#pragma 推荐理由
+-(CGFloat)tableView:(UITableView *)tableView heightForRecommendReasonRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicTextTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicTextTableViewCell* cell){
+    }];
+  
+}
+
 
 @end

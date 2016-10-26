@@ -79,7 +79,7 @@
         }];
         
         self.greatView = [[LBBPoohGreatItemView alloc]init];
-        [self.greatView.iconView setImage:IMAGE(@"ST_Home_Great")];
+        [self.greatView.iconView setImage:IMAGE(@"景点专题_点赞")];
         [self.greatView.desLabel setText:@"190"];
         [self.greatView.desLabel setTextColor:ColorLightGray];
         [v addSubview:self.greatView];
@@ -95,7 +95,7 @@
         }];
         
         self.commentsView = [[LBBPoohGreatItemView alloc]init];
-        [ self.commentsView.iconView setImage:IMAGE(@"ST_Home_Comments")];
+        [ self.commentsView.iconView setImage:IMAGE(@"景点专题_评论")];
         [ self.commentsView.desLabel setText:@"1000"];
         [ self.commentsView.desLabel setTextColor:ColorLightGray];
         [v addSubview: self.commentsView];
@@ -110,7 +110,7 @@
         }];
         
         self.favoriteView = [[LBBPoohGreatItemView alloc]init];
-        [ self.favoriteView.iconView setImage:IMAGE(@"ST_Home_Comments")];
+        [ self.favoriteView.iconView setImage:IMAGE(@"景点专题_小收藏")];
         [ self.favoriteView.desLabel setText:@"1000"];
         [ self.favoriteView.desLabel setTextColor:ColorLightGray];
         [v addSubview: self.favoriteView];

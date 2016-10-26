@@ -69,7 +69,7 @@
         _collectionView.scrollEnabled = YES;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
-        [self addSubview:_collectionView];
+        [self.contentView addSubview:_collectionView];
         
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(ws.pagerView.mas_bottom).offset(3);

@@ -14,4 +14,6 @@
 
 +(CGFloat)getCellHeight;
 
+-(void)setCycleScrollViewHeight:(CGFloat)height;
+
 @end
