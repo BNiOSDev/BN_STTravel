@@ -117,7 +117,7 @@
     }];
     UILabel* l = [UILabel new];
     [l setText:@"个性标签"];
-    [l setFont:Font5];
+    [l setFont:Font14];
     [l setTextAlignment:NSTextAlignmentCenter];
     [tagView addSubview:l];
     [l mas_makeConstraints:^(MASConstraintMaker* make){
@@ -126,19 +126,20 @@
     }];
     
     self.tag1 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag1.desLabel setFont:Font3];
+    [self.tag1.desLabel setFont:Font8];
     [self.tag1.iconView setImage:IMAGE(@"ST_Discovery_Select")];
     [self.tag1.desLabel setText:@"我是吃货"];
     [tagView addSubview:self.tag1];
     
     self.tag2 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag2.desLabel setFont:Font3];
+    [self.tag2.desLabel setFont:Font8];
     [self.tag2.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
     [self.tag2.desLabel setText:@"潮男潮女"];
     [tagView addSubview:self.tag2];
     
     self.tag3 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag3.desLabel setFont:Font3];
+
+    [self.tag3.desLabel setFont:Font8];
     [self.tag3.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
     [self.tag3.desLabel setText:@"运动达人"];
     [tagView addSubview:self.tag3];
@@ -176,7 +177,7 @@
     
     UIButton* submit = [UIButton new];
     [submit setTitle:@"立即提交" forState:UIControlStateNormal];
-    [submit.titleLabel setFont:Font6];
+    [submit.titleLabel setFont:Font15];
     [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [submit setBackgroundColor:ColorBtnYellow];
     [self.view addSubview:submit];
@@ -223,9 +224,10 @@
     }];
     
     
-    [self.startTimeSelectView.bgCtrlView useDateKeyboard];
-    [self.endTimeSelectView.bgCtrlView useDateKeyboard];
-   // self.startTimeSelectView.bgCtrlView.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    [self.startTimeSelectView.bgCtrlView useDateKeyboard:@"yyyy-MM-dd hh:mm"];
+    [self.endTimeSelectView.bgCtrlView useDateKeyboard:@"yyyy-MM-dd hh:mm"];
+    self.startTimeSelectView.bgCtrlView.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    self.endTimeSelectView.bgCtrlView.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
 
     self.areaSelectView.bgCtrlView.bk_shouldBeginEditingBlock = ^(UITextField* text){
     

@@ -121,13 +121,13 @@
     LBBPoohGreatItemView *signList = [[LBBPoohGreatItemView alloc] init];
     [signList.iconView setImage:IMAGE(@"ST_Sign_signList")];
     [signList.desLabel setText:@"签到列表"];
-    [signList.desLabel setFont:Font6];
+    [signList.desLabel setFont:Font13];
     
     
     LBBPoohGreatItemView *signRank = [[LBBPoohGreatItemView alloc] init];
     [signRank.iconView setImage:IMAGE(@"ST_Sign_signRank")];
     [signRank.desLabel setText:@"签到排行"];
-    [signRank.desLabel setFont:Font6];
+    [signRank.desLabel setFont:Font13];
 
     [ctr1 addSubview:signList];
     [signList mas_makeConstraints:^(MASConstraintMaker* make){
@@ -158,7 +158,7 @@
     [self.noteLable setTextColor:[UIColor whiteColor]];
     [self.noteLable setTextAlignment:NSTextAlignmentCenter];
     [self.noteLable setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
-    [self.noteLable setFont:Font6];
+    [self.noteLable setFont:Font12];
     [self.view addSubview:self.noteLable];
     [self.noteLable mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.width.top.equalTo(ws.mapView);

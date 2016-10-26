@@ -48,7 +48,7 @@
     WS(ws);
    self.title = @"景点";
     UIButton *search = [[UIButton alloc] init];
-    search.titleLabel.font = Font5;
+    search.titleLabel.font = Font14;
     [search setTitle:@"搜索" forState:UIControlStateNormal];
     [search setImage:IMAGE(@"") forState:UIControlStateNormal];
     [search setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -83,9 +83,9 @@
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
     segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font6,
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
                                              NSForegroundColorAttributeName:ColorLightGray};
-    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font6,
+    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
                                                      NSForegroundColorAttributeName:ColorBtnYellow};
     segmentedControl.selectionIndicatorColor = [UIColor clearColor];
     segmentedControl.verticalDividerWidth = SeparateLineWidth;

@@ -48,7 +48,7 @@
         
         
         self.titleLabel = [UILabel new];
-        [self.titleLabel setFont:Font6];
+        [self.titleLabel setFont:Font15];
         [self.titleLabel setText:@"厦门鼓浪屿"];
         [self.contentView addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -58,7 +58,7 @@
         }];
         
         self.subTitleLabel = [UILabel new];
-        [self.subTitleLabel setFont:Font4];
+        [self.subTitleLabel setFont:Font8];
         [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];
@@ -73,7 +73,7 @@
         [self.signinButton setBackgroundColor:ColorBtnYellow];
         [self.signinButton setTitle:@"已签到" forState:UIControlStateNormal];
         [self.signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.signinButton.titleLabel setFont:Font4];
+        [self.signinButton.titleLabel setFont:Font8];
         [self.contentView addSubview:self.signinButton];
         [self.signinButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
@@ -83,7 +83,7 @@
         }];
         
         self.rankLabel = [UILabel new];
-        [self.rankLabel setFont:Font5];
+        [self.rankLabel setFont:Font8];
         [self.rankLabel setTextColor:ColorLightGray];
         [self.rankLabel setText:@"第一名"];
         [self.contentView addSubview:self.rankLabel];

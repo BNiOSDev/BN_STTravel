@@ -35,7 +35,7 @@
         }];
         
         self.desLabel = [UILabel new];
-        [self.desLabel setFont:Font4];
+        [self.desLabel setFont:Font10];
         [self.desLabel setTextColor:ColorLightGray];
         [self addSubview:self.desLabel];
         [self.desLabel mas_makeConstraints:^(MASConstraintMaker* make){

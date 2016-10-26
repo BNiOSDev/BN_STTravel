@@ -32,18 +32,17 @@
         [self setBackgroundColor:[UIColor whiteColor]];
 
         NSArray* segmentArray = @[@"景点",@"美食",@"民宿"];
-        
-
+    
         HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
         segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
-        segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font6,
+        segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
                                                  NSForegroundColorAttributeName:ColorLightGray};
         segmentedControl.selectionIndicatorColor = ColorLightGray;
         segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
         [self.contentView addSubview:segmentedControl];
         [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.centerX.equalTo(ws.contentView);
-            make.height.mas_equalTo(TopSegmmentControlHeight);
+            make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
             make.width.equalTo(@200);
         }];
 

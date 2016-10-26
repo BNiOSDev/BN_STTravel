@@ -111,8 +111,8 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     
     UILabel* l = [UILabel new];
     [l setText:@"鹭爸爸为您定制个性化厦门游攻略"];
-    [l setFont:Font5];
     [l setTextColor:ColorGray];
+    [l setFont:Font14];
     [l setTextAlignment:NSTextAlignmentCenter];
     [v addSubview:l];
     [l mas_makeConstraints:^(MASConstraintMaker* make){
@@ -125,7 +125,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     UIButton* b = [UIButton new];
     [b setTitle:@"立即定制" forState:UIControlStateNormal];
     [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [b.titleLabel setFont:Font4];
+    [b.titleLabel setFont:Font10];
     [b setBackgroundColor:ColorBtnYellow];
     [v addSubview:b];
     [b mas_makeConstraints:^(MASConstraintMaker* make){
@@ -210,7 +210,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     
     UILabel* l = [UILabel new];
     [l setText:@"推荐线路攻略"];
-    [l setFont:Font6];
+    [l setFont:Font12];
     [v addSubview:l];
     [l mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(v);

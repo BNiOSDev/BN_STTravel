@@ -61,7 +61,7 @@
         
         self.userLable = [UILabel new];
         [self.userLable setText:@"梁晓欣"];
-        [self.userLable setFont:Font3];
+        [self.userLable setFont:Font12];
         [self.userLable setTextColor:ColorLightGray];
         [sub addSubview:self.userLable];
         [self.userLable mas_makeConstraints:^(MASConstraintMaker* make){

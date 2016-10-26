@@ -41,7 +41,8 @@
         
         
         self.titleLabel = [UILabel new];
-        [self.titleLabel setFont:Font4];
+
+        [self.titleLabel setFont:Font12];
         [self.titleLabel setText:@"曾厝垵"];
         [self.contentView addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -87,7 +88,7 @@
         self.priceLabel = [UILabel new];
         [self.priceLabel setText:@"120元起/人"];
         [self.priceLabel setTextColor:ColorBtnYellow];
-        [self.priceLabel setFont:Font4];
+        [self.priceLabel setFont:Font10];
         [self.priceLabel setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:self.priceLabel];
         [self.priceLabel mas_makeConstraints:^(MASConstraintMaker* make){

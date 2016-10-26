@@ -42,7 +42,7 @@
         UILabel* note = [UILabel new];
         note.numberOfLines = 0;
         [note setText:@"您的线路定制成功\n请点击确定查看"];
-        [note setFont:Font7];
+        [note setFont:Font16];
         [note setTextAlignment:NSTextAlignmentCenter];
         [bg addSubview:note];
         [note mas_makeConstraints:^(MASConstraintMaker* make){
@@ -58,7 +58,7 @@
         self.confirmButton = [UIButton new];
         [self.confirmButton setTitle:@"确定" forState:UIControlStateNormal];
         [self.confirmButton setTitleColor:ColorBtnYellow forState:UIControlStateNormal];
-        [self.confirmButton.titleLabel setFont:Font6];
+        [self.confirmButton.titleLabel setFont:Font15];
         self.confirmButton.layer.borderWidth = 0.8;
         self.confirmButton.layer.borderColor = ColorBtnYellow.CGColor;
         

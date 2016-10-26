@@ -96,9 +96,9 @@
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
     segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font6,
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
                                              NSForegroundColorAttributeName:ColorLightGray};
-    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font6,
+    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
                                                      NSForegroundColorAttributeName:ColorBtnYellow};
     segmentedControl.selectionIndicatorColor = [UIColor clearColor];
     segmentedControl.verticalDividerWidth = SeparateLineWidth;
@@ -110,6 +110,7 @@
     }];
     segmentedControl.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
+
     };
 
     return v;

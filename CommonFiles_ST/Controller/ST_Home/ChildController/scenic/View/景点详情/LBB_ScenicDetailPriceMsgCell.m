@@ -40,7 +40,7 @@
         
         
         self.priceLabel = [UILabel new];
-        [self.priceLabel setFont:Font4];
+        [self.priceLabel setFont:Font13];
         [self.priceLabel setText:@"230元起/1人"];
         [self.priceLabel setTextAlignment:NSTextAlignmentCenter];
         [self.priceLabel setTextColor:ColorBtnYellow];
@@ -63,7 +63,7 @@
         
         self.signLabel = [UILabel new];
         [self.signLabel setText:@"签到"];
-        [self.signLabel setFont:Font2];
+        [self.signLabel setFont:Font10];
         [self.contentView addSubview:self.signLabel];
         [self.signLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(ws.signButton);

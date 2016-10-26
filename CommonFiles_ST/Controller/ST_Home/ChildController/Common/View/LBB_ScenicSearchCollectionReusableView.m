@@ -34,7 +34,7 @@
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setTextColor:ColorGray];
-        [self.titleLabel setFont:Font6];
+        [self.titleLabel setFont:Font15];
         [v addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.right.equalTo(v);

@@ -18,7 +18,7 @@
         
         self.textLabel = [UILabel new];
         [self.textLabel setTextAlignment:NSTextAlignmentCenter];
-        [self.textLabel setFont:Font4];
+        [self.textLabel setFont:Font13];
         self.textLabel.layer.borderColor = ColorLine.CGColor;
         self.textLabel.layer.borderWidth = SeparateLineWidth;
         [self.textLabel setTextColor:ColorGray];

@@ -48,7 +48,7 @@
         }];
         
         self.addressLabel = [UILabel new];
-        [self.addressLabel setFont:Font4];
+        [self.addressLabel setFont:Font13];
         [self.addressLabel setText:@"鹿角路"];
         [self.addressLabel setTextColor:ColorLightGray];
         [self.contentView addSubview:self.addressLabel];
@@ -70,7 +70,7 @@
         }];
         
         self.streetLabel = [UILabel new];
-        [self.streetLabel setFont:Font4];
+        [self.streetLabel setFont:Font13];
         [self.streetLabel setText:@"鼓浪屿景区"];
         [self.streetLabel setTextColor:ColorLightGray];
         [self.contentView addSubview:self.streetLabel];
@@ -89,7 +89,7 @@
             make.height.width.equalTo(sep);
         }];
         self.distanceLabel = [UILabel new];
-        [self.distanceLabel setFont:Font4];
+        [self.distanceLabel setFont:Font13];
         [self.distanceLabel setText:@"90km"];
         [self.distanceLabel setTextColor:ColorLightGray];
         [self.contentView addSubview:self.distanceLabel];
@@ -101,7 +101,7 @@
         
         //right
         self.deletePriceLabel = [UILabel new];
-        [self.deletePriceLabel setFont:Font2];
+        [self.deletePriceLabel setFont:Font10];
         [self.deletePriceLabel setText:@"230"];
         [self.deletePriceLabel setTextAlignment:NSTextAlignmentCenter];
         [self.deletePriceLabel setTextColor:ColorLightGray];
@@ -113,7 +113,7 @@
         }];
         
         self.priceLabel = [UILabel new];
-        [self.priceLabel setFont:Font2];
+        [self.priceLabel setFont:Font10];
         [self.priceLabel setText:@"230元起/1人"];
         [self.priceLabel setTextAlignment:NSTextAlignmentCenter];
         [self.priceLabel setTextColor:ColorBtnYellow];
@@ -181,7 +181,7 @@
     NSString* strFormat2 = @"元";
     UIColor* fontColor = ColorBtnYellow;
     NSDictionary* attrsDic = @{NSForegroundColorAttributeName:fontColor,
-                               NSFontAttributeName:Font6};    //显示的字符串进行富文本转换
+                               NSFontAttributeName:Font15};    //显示的字符串进行富文本转换
     NSMutableAttributedString* strAttr = [[NSMutableAttributedString alloc]initWithString:strFormat1];
     //字体设置
     NSRange rang = [strFormat1 rangeOfString:strFormat2];
@@ -196,7 +196,7 @@
     //删除的价格设置
     NSAttributedString *attrStr = [[NSAttributedString alloc]initWithString:@"130"
                                   attributes:
-       @{NSFontAttributeName:Font2,
+       @{NSFontAttributeName:Font10,
     NSForegroundColorAttributeName:ColorLightGray,
     NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
     NSStrikethroughColorAttributeName:[UIColor blackColor]}];
