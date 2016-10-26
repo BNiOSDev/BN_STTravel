@@ -14,6 +14,7 @@
 #import "LBB_ScenicDetailVipMPaiCell.h"
 #import "LBB_ScenicDetailEquipmentCell.h"
 #import "LBB_ScenicDetailBookStatusCell.h"
+#import "LBB_ScenicDetailVipFavoriteCell.h"
 
 typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     LBBScenicDetailSectionHeaderType = 0,//header部分
@@ -140,8 +141,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 
     //温馨提示
     [self.tableView registerClass:[LBB_ScenicDetailBookStatusCell class] forCellReuseIdentifier:@"LBB_ScenicDetailBookStatusCell"];
-
-    
+    [self.tableView registerClass:[LBB_ScenicDetailVipFavoriteCell class] forCellReuseIdentifier:@"LBB_ScenicDetailVipFavoriteCell"];
 }
 
 #pragma tableView Delegate
@@ -205,7 +205,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return 1;
             break;
         case LBBScenicDetailSectionWarmPromptType://温馨提示
-            return 2;
+            return 3;
             break;
         case LBBScenicDetailSectionTravelRecommendType://周边推荐
             return 3;
@@ -376,7 +376,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         }
         return cell;
     }
-    else{
+    else if(indexPath.row == 1){
         
         static NSString *cellIdentifier = @"LBB_ScenicDetailBookStatusCell";
         LBB_ScenicDetailBookStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -384,6 +384,16 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             cell = [[LBB_ScenicDetailBookStatusCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
             
             NSLog(@"LBB_ScenicDetailBookStatusCell nil");
+        }
+        return cell;
+    }
+    else{
+        static NSString *cellIdentifier = @"LBB_ScenicDetailVipFavoriteCell";
+        LBB_ScenicDetailVipFavoriteCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBB_ScenicDetailVipFavoriteCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            
+            NSLog(@"LBB_ScenicDetailVipFavoriteCell nil");
         }
         return cell;
     }
@@ -454,10 +464,15 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicTextTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicTextTableViewCell* cell){
         }];
     }
-    else{
+    else if(indexPath.row == 1){
         
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailBookStatusCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailBookStatusCell* cell){
         
+        }];
+    }
+    else{
+        return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailVipFavoriteCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailVipFavoriteCell* cell){
+            
         }];
     }
 }
