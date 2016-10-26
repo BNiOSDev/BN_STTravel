@@ -120,8 +120,49 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.top.centerX.equalTo(ws.view);
-        make.bottom.equalTo(ws.view);
+       // make.bottom.equalTo(ws.view);
     }];
+    
+    UIView* toolBar = [UIView new];
+    toolBar.layer.borderColor = ColorBtnYellow.CGColor;
+    toolBar.layer.borderWidth = 1;
+    [self.view addSubview:toolBar];
+    [toolBar mas_makeConstraints:^(MASConstraintMaker* make){
+        make.centerX.bottom.equalTo(ws.view);
+        make.height.mas_equalTo(AutoSize(75/2));
+        make.top.equalTo(ws.tableView.mas_bottom);
+        make.left.equalTo(ws.view).offset(-1);
+        make.right.equalTo(ws.view).offset(1);
+    }];
+    UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+    [toolBar addSubview:b];
+    [b mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(toolBar.mas_left).offset(1);
+        make.top.bottom.equalTo(toolBar);
+    }];
+    [b setTitle:@"景区电话" forState:UIControlStateNormal];
+    [b setImage:[UIImage imageNamed:@"景点详情_电话底部"] forState:UIControlStateNormal];
+    [b setTitleColor:ColorBtnYellow forState:UIControlStateNormal];
+    //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right
+    b.imageEdgeInsets = UIEdgeInsetsMake(0, 133, 0, 0);
+    b.titleLabel.font = Font15;
+  //  b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
+    UIButton *b1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    [toolBar addSubview:b1];
+    [b1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(b.mas_right);
+        make.right.equalTo(toolBar.mas_right).offset(-1);
+        make.top.bottom.equalTo(toolBar);
+        make.width.equalTo(b);
+    }];
+    [b1 setTitle:@"立即购买" forState:UIControlStateNormal];
+    [b1 setBackgroundColor:ColorBtnYellow];
+    [b1 setImage:[UIImage imageNamed:@"景点详情_箭头Right"] forState:UIControlStateNormal];
+    [b1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right
+    b1.imageEdgeInsets = UIEdgeInsetsMake(0, 130, 0, 0);
+    b1.titleLabel.font = Font15;
     
 }
 
