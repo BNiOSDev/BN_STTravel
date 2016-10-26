@@ -16,6 +16,7 @@
 #import "LBB_ScenicDetailBookStatusCell.h"
 #import "LBB_ScenicDetailVipFavoriteCell.h"
 #import "LBB_ScenicDetailCommentsCell.h"
+#import "LBB_ScenicDetailTravelRecommendCell.h"
 
 typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     LBBScenicDetailSectionHeaderType = 0,//header部分
@@ -144,6 +145,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     [self.tableView registerClass:[LBB_ScenicDetailBookStatusCell class] forCellReuseIdentifier:@"LBB_ScenicDetailBookStatusCell"];
     [self.tableView registerClass:[LBB_ScenicDetailVipFavoriteCell class] forCellReuseIdentifier:@"LBB_ScenicDetailVipFavoriteCell"];
     [self.tableView registerClass:[LBB_ScenicDetailCommentsCell class] forCellReuseIdentifier:@"LBB_ScenicDetailCommentsCell"];
+    //周边推荐
+    [self.tableView registerClass:[LBB_ScenicDetailTravelRecommendCell class] forCellReuseIdentifier:@"LBB_ScenicDetailTravelRecommendCell"];
 
 }
 
@@ -160,6 +163,9 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     if (section == LBBScenicDetailSectionHeaderType) {
         return 0.001;
     }
+    if (section == LBBScenicDetailSectionTravelRecommendType) {
+        return AutoSize(40)+ TopSegmmentControlHeight;
+    }
     return AutoSize(40);
 }
 
@@ -167,12 +173,12 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     if (section == LBBScenicDetailSectionHeaderType) {
         return [UIView new];
     }
+    
     UIView* v = [UIView new];
+    [v setBackgroundColor:[UIColor getRandomColor]];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
     [v setBackgroundColor:[UIColor whiteColor]];
-
-    
     UIImageView* img = [UIImageView new];
     [img setImage:IMAGE([self.sectionArray objectAtIndex:section])];
     [img setContentMode:UIViewContentModeCenter];
@@ -181,6 +187,36 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         make.center.height.width.equalTo(v);
         // make.width.equalTo(@184);
     }];
+    if (section == LBBScenicDetailSectionTravelRecommendType) {
+        
+        
+        [img mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.centerX.width.equalTo(v);
+            make.top.equalTo(v).offset(16);
+        }];
+        
+        NSArray* segmentArray = @[@"景点",@"美食",@"民宿"];
+        
+        HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
+        segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+        segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+                                                 NSForegroundColorAttributeName:ColorLightGray};
+        segmentedControl.selectionIndicatorColor = ColorLightGray;
+        segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+        [v addSubview:segmentedControl];
+        [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(img.mas_bottom).offset(8);
+            make.centerX.equalTo(v);
+            make.height.mas_equalTo(TopSegmmentControlHeight);
+            make.width.equalTo(@200);
+          //  make.bottom.equalTo(v);
+        }];
+        segmentedControl.indexChangeBlock = ^(NSInteger index){
+            NSLog(@"segmentedControl select:%ld",index);
+            
+        };
+    }
+
     return v;
     
 }
@@ -211,7 +247,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return 4;
             break;
         case LBBScenicDetailSectionTravelRecommendType://周边推荐
-            return 3;
+            return 5;
             break;
         default:
             break;
@@ -241,7 +277,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return [self tableView:tableView heightForWarmPromptRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionTravelRecommendType://周边推荐
-            return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+            return [self tableView:tableView heightForTravelRecommendRowAtIndexPath:indexPath];
             break;
         default:
             return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
@@ -272,7 +308,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return [self tableView:tableView cellForWarmPromptRowAtIndexPath:indexPath];
             break;
         case LBBScenicDetailSectionTravelRecommendType://周边推荐
-            return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
+            return [self tableView:tableView cellForTravelRecommendRowAtIndexPath:indexPath];
             break;
         default:
             return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
@@ -413,7 +449,20 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     
 }
 
-
+#pragma 周边推荐
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForTravelRecommendRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellIdentifier = @"LBB_ScenicDetailTravelRecommendCell";
+    LBB_ScenicDetailTravelRecommendCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[LBB_ScenicDetailTravelRecommendCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        
+        NSLog(@"LBB_ScenicDetailTravelRecommendCell nil");
+    }
+    [cell setModel:nil];
+    return cell;
+    
+}
 /*
  *  对每个section的cell heigt进行分开封装
  */
@@ -493,5 +542,12 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             
         }];
     }
+}
+#pragma 周边推荐
+-(CGFloat)tableView:(UITableView *)tableView heightForTravelRecommendRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailTravelRecommendCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailTravelRecommendCell* cell){
+        [cell setModel:nil];
+    }];
 }
 @end
