@@ -10,6 +10,8 @@
 #import "LBBPoohVerticalButton.h"
 #import "LBB_DiscoveryMainViewController.h"
 #import "LBB_ScenicMainViewController.h"
+#import "LBB_HostelMainViewController.h"
+#import "LBB_FoodsMainViewController.h"
 
 @implementation LBBHomeMenuTableViewCell
 
@@ -63,11 +65,20 @@
                     case 1://景点
                         dest = [[LBB_ScenicMainViewController alloc] init];
                         break;
+                    case 2://导游
+                        break;
+                    case 3://美食
+                        dest = [[LBB_FoodsMainViewController alloc] init];
+                        break;
+                    case 4://民宿
+                        dest = [[LBB_HostelMainViewController alloc] init];
+                        break;
                     default:
                         break;
                 }
-                [[ws getViewController].navigationController pushViewController:dest animated:YES];
-                
+                if (dest) {
+                    [[ws getViewController].navigationController pushViewController:dest animated:YES];
+                }
             
             } forControlEvents:UIControlEventTouchUpInside];
             

@@ -15,6 +15,8 @@
 		1D3023E61DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023E51DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m */; };
 		1D3023E91DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023E81DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m */; };
 		1D3023EC1DC1E8430007F7AF /* UILabel+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023EA1DC1E8430007F7AF /* UILabel+Common.m */; };
+		1D3023F01DC1EA930007F7AF /* LBB_HostelMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023EF1DC1EA930007F7AF /* LBB_HostelMainViewController.m */; };
+		1D3023F41DC1EC940007F7AF /* LBB_FoodsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023F31DC1EC940007F7AF /* LBB_FoodsMainViewController.m */; };
 		1D64E6861DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */; };
 		1D64E6911DBF0C030071876A /* LBB_ScenicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */; };
 		1D64E6941DBF11150071876A /* LBB_ScenicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */; };
@@ -211,6 +213,10 @@
 		1D3023E81DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailSubjectContentCell.m; path = "景点详情专题页/LBB_ScenicDetailSubjectContentCell.m"; sourceTree = "<group>"; };
 		1D3023EA1DC1E8430007F7AF /* UILabel+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Common.m"; sourceTree = "<group>"; };
 		1D3023EB1DC1E8430007F7AF /* UILabel+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Common.h"; sourceTree = "<group>"; };
+		1D3023EE1DC1EA930007F7AF /* LBB_HostelMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_HostelMainViewController.h; path = Hostel/LBB_HostelMainViewController.h; sourceTree = "<group>"; };
+		1D3023EF1DC1EA930007F7AF /* LBB_HostelMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_HostelMainViewController.m; path = Hostel/LBB_HostelMainViewController.m; sourceTree = "<group>"; };
+		1D3023F21DC1EC940007F7AF /* LBB_FoodsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_FoodsMainViewController.h; path = Foods/LBB_FoodsMainViewController.h; sourceTree = "<group>"; };
+		1D3023F31DC1EC940007F7AF /* LBB_FoodsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_FoodsMainViewController.m; path = Foods/LBB_FoodsMainViewController.m; sourceTree = "<group>"; };
 		1D64E6841DBF01850071876A /* LBB_DiscoveryCustomizedPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryCustomizedPopView.h; sourceTree = "<group>"; };
 		1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryCustomizedPopView.m; sourceTree = "<group>"; };
 		1D64E68F1DBF0C030071876A /* LBB_ScenicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicMainTableViewCell.h; sourceTree = "<group>"; };
@@ -563,6 +569,24 @@
 			name = "景点详情专题页";
 			sourceTree = "<group>";
 		};
+		1D3023ED1DC1EA680007F7AF /* hostel */ = {
+			isa = PBXGroup;
+			children = (
+				1D3023EE1DC1EA930007F7AF /* LBB_HostelMainViewController.h */,
+				1D3023EF1DC1EA930007F7AF /* LBB_HostelMainViewController.m */,
+			);
+			name = hostel;
+			sourceTree = "<group>";
+		};
+		1D3023F11DC1EC780007F7AF /* Foods */ = {
+			isa = PBXGroup;
+			children = (
+				1D3023F21DC1EC940007F7AF /* LBB_FoodsMainViewController.h */,
+				1D3023F31DC1EC940007F7AF /* LBB_FoodsMainViewController.m */,
+			);
+			name = Foods;
+			sourceTree = "<group>";
+		};
 		1D64E6A11DBF592F0071876A /* 景点详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -821,10 +845,12 @@
 		1DF6F8A51DBCBF50001903D1 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				1D3023F11DC1EC780007F7AF /* Foods */,
+				1D3023ED1DC1EA680007F7AF /* hostel */,
 				1DF6F8A61DBCBF50001903D1 /* Common */,
 				1DF6F8C21DBCBF50001903D1 /* Discovery */,
 				1DF6F8CE1DBCBF50001903D1 /* nearBy */,
-				1DF6F8D61DBCBF50001903D1 /* scenic */,
+				1DF6F8D61DBCBF50001903D1 /* Scenic */,
 				1DF6F8DA1DBCBF50001903D1 /* signin */,
 			);
 			path = ChildController;
@@ -983,13 +1009,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		1DF6F8D61DBCBF50001903D1 /* scenic */ = {
+		1DF6F8D61DBCBF50001903D1 /* Scenic */ = {
 			isa = PBXGroup;
 			children = (
 				1DF6F8D71DBCBF50001903D1 /* Model */,
 				1DF6F8D81DBCBF50001903D1 /* View */,
 				1DF6F8D91DBCBF50001903D1 /* ViewController */,
 			);
+			name = Scenic;
 			path = scenic;
 			sourceTree = "<group>";
 		};
@@ -1869,6 +1896,7 @@
 				1DF6F9201DBCBF50001903D1 /* GYChangeTextView.m in Sources */,
 				1DF6F9231DBCBF50001903D1 /* LBBPoohBaseTableViewCell.m in Sources */,
 				1D64E6A41DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m in Sources */,
+				1D3023F01DC1EA930007F7AF /* LBB_HostelMainViewController.m in Sources */,
 				1DF6F93B1DBCBF50001903D1 /* UIImage+PoohCommon.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1DF6F8891DBCB0D8001903D1 /* ZJScrollPageView.m in Sources */,
@@ -1882,6 +1910,7 @@
 				1DF6F91B1DBCBF50001903D1 /* PoohBaseTableViewController.m in Sources */,
 				1DF6F9261DBCBF50001903D1 /* LBBPoohVerticalButton.m in Sources */,
 				1DF6F88A1DBCB0D8001903D1 /* ZJScrollSegmentView.m in Sources */,
+				1D3023F41DC1EC940007F7AF /* LBB_FoodsMainViewController.m in Sources */,
 				1D3023E61DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m in Sources */,
 				84B25B1E1DB797D2002EDA7F /* ReceiptAddressViewCell.m in Sources */,
 				1DF6F8981DBCB0D8001903D1 /* LBBTravelContentImage.m in Sources */,

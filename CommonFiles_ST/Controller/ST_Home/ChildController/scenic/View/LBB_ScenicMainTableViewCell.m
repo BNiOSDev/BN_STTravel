@@ -26,6 +26,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        CGFloat margin = 8;
+
         self.bgImageView = [UIImageView new];
         [self.contentView addSubview:self.bgImageView];
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
@@ -34,7 +36,15 @@
             make.height.mas_equalTo(AutoSize(360/2));
         }];
         
-        CGFloat margin = 8;
+        self.favoriteButton  = [UIButton new];
+        [self.favoriteButton setBackgroundImage:IMAGE(@"景点详情_收藏HL") forState:UIControlStateNormal];
+        [self.contentView addSubview:self.favoriteButton];
+        [self.favoriteButton mas_makeConstraints:^(MASConstraintMaker* make){
+            make.right.equalTo(ws.contentView).offset(-2*margin);
+            make.top.equalTo(ws.bgImageView).offset(2*margin);
+            make.width.height.mas_equalTo(AutoSize(15));
+        }];
+        
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];

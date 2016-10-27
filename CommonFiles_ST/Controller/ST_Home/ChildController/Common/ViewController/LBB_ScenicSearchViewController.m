@@ -73,7 +73,7 @@
     bar.layer.masksToBounds = YES;
     [bar setBackgroundImage:[UIImage new]];
     bar.delegate = self;
-    bar.placeholder = @"输入关键字搜索景点";
+    bar.placeholder = self.placeHolderString;//@"输入关键字搜索景点";
     [bar setContentMode:UIViewContentModeLeft];
     self.searchBar = bar;
     [titleView addSubview:bar];

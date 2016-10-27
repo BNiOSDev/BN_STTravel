@@ -6,21 +6,21 @@
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBB_ScenicMainViewController.h"
+#import "LBB_HostelMainViewController.h"
 #import "LBBPoohCycleScrollCell.h"
 #import "LBB_ScenicMainTableViewCell.h"
 #import "LBB_ScenicSearchViewController.h"
 #import "LBB_ScenicDetailViewController.h"
 #import "LBB_ScenicDetailSubjectViewController.h"
 
-@interface LBB_ScenicMainViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBB_HostelMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, retain) UISearchBar *searchBar;
 
 @end
 
-@implementation LBB_ScenicMainViewController
+@implementation LBB_HostelMainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,33 +33,33 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 /*
  * setup Navigation UI
  */
 
 -(void)loadCustomNavigationButton{
     WS(ws);
-   self.title = @"景点";
+    self.title = @"民宿";
     UIButton *search = [[UIButton alloc] init];
     search.titleLabel.font = Font14;
-   // [search setTitle:@"搜索" forState:UIControlStateNormal];
-   // [search setImage:IMAGE(@"景区列表_搜索") forState:UIControlStateNormal];
+    // [search setTitle:@"搜索" forState:UIControlStateNormal];
+    // [search setImage:IMAGE(@"景区列表_搜索") forState:UIControlStateNormal];
     [search setBackgroundImage:IMAGE(@"景区列表_搜索") forState:UIControlStateNormal];
-
+    
     [search setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     search.frame = CGRectMake(0, 0, 25, 25);
     [search bk_addEventHandler:^(id sender){
         
         LBB_ScenicSearchViewController* dest = [[LBB_ScenicSearchViewController alloc]init];
-        dest.placeHolderString = @"输入关键字搜索景点";
+        dest.placeHolderString = @"输入关键字搜索民宿";
         dest.click = ^(LBB_ScenicSearchViewController* v , NSIndexPath* indexPath){
             
             NSLog(@"选择搜索的数据:%ld",indexPath.row);
@@ -96,7 +96,7 @@
     segmentedControl.verticalDividerColor = ColorLightGray;
     segmentedControl.layer.borderWidth = 1;
     segmentedControl.layer.borderColor = ColorLine.CGColor;
-
+    
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     [self.view addSubview:segmentedControl];
     [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -122,7 +122,7 @@
         make.bottom.equalTo(ws.view);
     }];
     
-
+    
     
 }
 
@@ -162,7 +162,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-         return [LBBPoohCycleScrollCell getCellHeight];
+        return [LBBPoohCycleScrollCell getCellHeight];
     }
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicMainTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicMainTableViewCell *cell) {
@@ -211,10 +211,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-  //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
+    
+    //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
-
+    
     [self.navigationController pushViewController:dest animated:YES];
 }
 

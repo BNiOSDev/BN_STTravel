@@ -11,5 +11,6 @@
 @interface LBB_ScenicSearchViewController : Base_BaseViewController
 
 @property(nonatomic, strong)ClickBlockEx click;
+@property(nonatomic, retain)NSString* placeHolderString;
 
 @end
