@@ -131,12 +131,6 @@
             LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc]init];
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
-        
-        //效果图没有这个
-        greetView.hidden = YES;
-        commentsView.hidden = YES;
-
-        
     }
     return self;
 }
