@@ -11,6 +11,7 @@
 #import "LBB_ScenicMainTableViewCell.h"
 #import "LBB_ScenicSearchViewController.h"
 #import "LBB_ScenicDetailViewController.h"
+#import "LBB_ScenicDetailSubjectViewController.h"
 
 @interface LBB_ScenicMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -171,6 +172,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    WS(ws);
     if (indexPath.section == 0) { //ad
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
         LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -180,6 +182,14 @@
         }
         
         [cell setCycleScrollViewUrls:nil];
+        
+        cell.click = ^(NSNumber* index){
+            
+            NSInteger num = [index integerValue];
+            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
+            [ws.navigationController pushViewController:dest animated:YES];
+            
+        };
         
         return cell;
     }

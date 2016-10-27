@@ -16,4 +16,6 @@
 
 -(void)setCycleScrollViewHeight:(CGFloat)height;
 
+@property(nonatomic,strong)ClickBlock click;
+
 @end

@@ -75,14 +75,14 @@
         [self.styleButton setTitle:@"浪漫风暴" forState:UIControlStateNormal];
         [self.styleButton setTitleColor:ColorGray forState:UIControlStateNormal];
         self.styleButton.layer.cornerRadius = btnHeight/2;
-        self.styleButton.layer.borderWidth = SeparateLineWidth;
+        self.styleButton.layer.borderWidth = 1;
         self.styleButton.layer.borderColor = ColorLine.CGColor;
         self.styleButton.layer.masksToBounds = YES;
         [self.styleButton.titleLabel setFont:Font10];
         [self.contentView addSubview:self.styleButton];
         [self.styleButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.titleLabel);
-            make.bottom.equalTo(ws.mainImageView.mas_bottom).offset(-margin);
+            make.bottom.equalTo(ws.mainImageView.mas_bottom).offset(0);
             make.width.mas_equalTo(btnWidth);
             make.height.mas_equalTo(btnHeight);
         }];

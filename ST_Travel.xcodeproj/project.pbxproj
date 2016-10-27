@@ -11,6 +11,10 @@
 		1D3023CC1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023CB1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.m */; };
 		1D3023CF1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023CE1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m */; };
 		1D3023D21DC0A36E0007F7AF /* LBB_ScenicDetailTravelRecommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023D11DC0A36E0007F7AF /* LBB_ScenicDetailTravelRecommendCell.m */; };
+		1D3023E31DC1D2460007F7AF /* LBB_ScenicDetailSubjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023E21DC1D2460007F7AF /* LBB_ScenicDetailSubjectViewController.m */; };
+		1D3023E61DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023E51DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m */; };
+		1D3023E91DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023E81DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m */; };
+		1D3023EC1DC1E8430007F7AF /* UILabel+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023EA1DC1E8430007F7AF /* UILabel+Common.m */; };
 		1D64E6861DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */; };
 		1D64E6911DBF0C030071876A /* LBB_ScenicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */; };
 		1D64E6941DBF11150071876A /* LBB_ScenicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */; };
@@ -199,6 +203,14 @@
 		1D3023CE1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailCommentsCell.m; path = "景点详情/LBB_ScenicDetailCommentsCell.m"; sourceTree = "<group>"; };
 		1D3023D01DC0A36E0007F7AF /* LBB_ScenicDetailTravelRecommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailTravelRecommendCell.h; path = "景点详情/LBB_ScenicDetailTravelRecommendCell.h"; sourceTree = "<group>"; };
 		1D3023D11DC0A36E0007F7AF /* LBB_ScenicDetailTravelRecommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailTravelRecommendCell.m; path = "景点详情/LBB_ScenicDetailTravelRecommendCell.m"; sourceTree = "<group>"; };
+		1D3023E11DC1D2460007F7AF /* LBB_ScenicDetailSubjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicDetailSubjectViewController.h; sourceTree = "<group>"; };
+		1D3023E21DC1D2460007F7AF /* LBB_ScenicDetailSubjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicDetailSubjectViewController.m; sourceTree = "<group>"; };
+		1D3023E41DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailSubjectLableCell.h; path = "景点详情专题页/LBB_ScenicDetailSubjectLableCell.h"; sourceTree = "<group>"; };
+		1D3023E51DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailSubjectLableCell.m; path = "景点详情专题页/LBB_ScenicDetailSubjectLableCell.m"; sourceTree = "<group>"; };
+		1D3023E71DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailSubjectContentCell.h; path = "景点详情专题页/LBB_ScenicDetailSubjectContentCell.h"; sourceTree = "<group>"; };
+		1D3023E81DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailSubjectContentCell.m; path = "景点详情专题页/LBB_ScenicDetailSubjectContentCell.m"; sourceTree = "<group>"; };
+		1D3023EA1DC1E8430007F7AF /* UILabel+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Common.m"; sourceTree = "<group>"; };
+		1D3023EB1DC1E8430007F7AF /* UILabel+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Common.h"; sourceTree = "<group>"; };
 		1D64E6841DBF01850071876A /* LBB_DiscoveryCustomizedPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryCustomizedPopView.h; sourceTree = "<group>"; };
 		1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryCustomizedPopView.m; sourceTree = "<group>"; };
 		1D64E68F1DBF0C030071876A /* LBB_ScenicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicMainTableViewCell.h; sourceTree = "<group>"; };
@@ -538,6 +550,17 @@
 				0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1D3023E01DC1D2060007F7AF /* 景点详情专题页 */ = {
+			isa = PBXGroup;
+			children = (
+				1D3023E41DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.h */,
+				1D3023E51DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m */,
+				1D3023E71DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.h */,
+				1D3023E81DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m */,
+			);
+			name = "景点详情专题页";
 			sourceTree = "<group>";
 		};
 		1D64E6A11DBF592F0071876A /* 景点详情 */ = {
@@ -980,6 +1003,7 @@
 		1DF6F8D81DBCBF50001903D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D3023E01DC1D2060007F7AF /* 景点详情专题页 */,
 				1D64E6A11DBF592F0071876A /* 景点详情 */,
 				1D64E68F1DBF0C030071876A /* LBB_ScenicMainTableViewCell.h */,
 				1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */,
@@ -994,6 +1018,8 @@
 				1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */,
 				1D64E69E1DBF53430071876A /* LBB_ScenicDetailViewController.h */,
 				1D64E69F1DBF53430071876A /* LBB_ScenicDetailViewController.m */,
+				1D3023E11DC1D2460007F7AF /* LBB_ScenicDetailSubjectViewController.h */,
+				1D3023E21DC1D2460007F7AF /* LBB_ScenicDetailSubjectViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1060,6 +1086,8 @@
 		1DF6F8EA1DBCBF50001903D1 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				1D3023EA1DC1E8430007F7AF /* UILabel+Common.m */,
+				1D3023EB1DC1E8430007F7AF /* UILabel+Common.h */,
 				1DF6F8EF1DBCBF50001903D1 /* NSDictionary+PoohCommon.h */,
 				1DF6F8F01DBCBF50001903D1 /* NSDictionary+PoohCommon.m */,
 				1DF6F8F11DBCBF50001903D1 /* NSObject+PoohCommon.h */,
@@ -1846,6 +1874,7 @@
 				1DF6F8891DBCB0D8001903D1 /* ZJScrollPageView.m in Sources */,
 				84E9C59E1DB5EC4900F70C79 /* TicketDetailViewCell.m in Sources */,
 				1DF6F9441DBCBF50001903D1 /* LBBHomeSquareCenterTableViewCell.m in Sources */,
+				1D3023EC1DC1E8430007F7AF /* UILabel+Common.m in Sources */,
 				1DF6F9301DBCBF50001903D1 /* LBB_SigninPopView.m in Sources */,
 				84E9C5951DB5EC4900F70C79 /* LBB_UserNameViewController.m in Sources */,
 				1D64E69D1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m in Sources */,
@@ -1853,6 +1882,7 @@
 				1DF6F91B1DBCBF50001903D1 /* PoohBaseTableViewController.m in Sources */,
 				1DF6F9261DBCBF50001903D1 /* LBBPoohVerticalButton.m in Sources */,
 				1DF6F88A1DBCB0D8001903D1 /* ZJScrollSegmentView.m in Sources */,
+				1D3023E61DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m in Sources */,
 				84B25B1E1DB797D2002EDA7F /* ReceiptAddressViewCell.m in Sources */,
 				1DF6F8981DBCB0D8001903D1 /* LBBTravelContentImage.m in Sources */,
 				84E9C5B11DB5EC4900F70C79 /* ConvertiblePointsViewController.m in Sources */,
@@ -1882,6 +1912,7 @@
 				84E9C5A71DB5EC4900F70C79 /* BalanceExtractViewController.m in Sources */,
 				84E9C58C1DB5EC4900F70C79 /* LBB_FightGroupViewController.m in Sources */,
 				84E9C5AF1DB5EC4900F70C79 /* CardDetailViewController.m in Sources */,
+				1D3023E91DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m in Sources */,
 				1DF6F92A1DBCBF50001903D1 /* LBB_DiscoveryMainTableViewCell.m in Sources */,
 				84E9C5B21DB5EC4900F70C79 /* PointsViewController.m in Sources */,
 				1DF6F92B1DBCBF50001903D1 /* LBB_DiscoveryCustomizedViewController.m in Sources */,
@@ -1890,6 +1921,7 @@
 				84E9C59D1DB5EC4900F70C79 /* SettingViewController.m in Sources */,
 				C9C0E9511D9948F100575A7C /* main.m in Sources */,
 				1D64E6911DBF0C030071876A /* LBB_ScenicMainTableViewCell.m in Sources */,
+				1D3023E31DC1D2460007F7AF /* LBB_ScenicDetailSubjectViewController.m in Sources */,
 				1DF6F93A1DBCBF50001903D1 /* UIImage+animatedGIF.m in Sources */,
 				1DF6F8861DBCB0D8001903D1 /* UIView+ZJFrame.m in Sources */,
 				84E9C5B91DB5EE0E00F70C79 /* CommonFunc.m in Sources */,

@@ -28,6 +28,8 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import "NSString+PoohCommon.h"
 #import "UIColor+PoohCommon.h"
 #import "NSObject+PoohCommon.h"
+#import "UILabel+Common.h"
+
 #import "IConstants.h"
 #import "UIView+FRCategory.h"
 #import "SDAutoLayout.h"

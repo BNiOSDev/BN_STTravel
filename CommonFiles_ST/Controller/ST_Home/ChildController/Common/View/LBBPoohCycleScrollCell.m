@@ -84,6 +84,7 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     NSLog(@"cycleScrollView didSelectItemAtIndex:%ld",index);
+    self.click(@(index));
 }
 
 

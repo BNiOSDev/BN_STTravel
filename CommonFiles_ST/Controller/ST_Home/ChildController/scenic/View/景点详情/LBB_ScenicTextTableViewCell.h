@@ -12,5 +12,8 @@
 @interface LBB_ScenicTextTableViewCell : LBBPoohBaseTableViewCell
 
 @property(nonatomic,retain)UILabel* contentLabel;
+@property(nonatomic,retain)UIView* sepLineView;
+
+-(void)setLineInset:(CGFloat)size andHeight:(CGFloat)height;
 
 @end

@@ -53,9 +53,25 @@
             make.height.mas_equalTo(SeparateLineWidth);
             make.top.equalTo(ws.contentLabel.mas_bottom).offset(2*margin);
         }];
+        
+        self.sepLineView = sep2;
     }
     return self;
 }
 
+
+-(void)setLineInset:(CGFloat)size andHeight:(CGFloat)height{
+    WS(ws);
+    CGFloat margin = 8;
+    [self.sepLineView mas_remakeConstraints:^(MASConstraintMaker* make){
+        make.bottom.centerX.equalTo(ws.contentView);
+        make.height.mas_equalTo(height);
+        make.top.equalTo(ws.contentLabel.mas_bottom).offset(2*margin);
+        make.left.equalTo(ws.contentView).offset(size);
+        make.right.equalTo(ws.contentView).offset(-size);
+        
+    }];
+    [self.contentView layoutSubviews];
+}
 
 @end
