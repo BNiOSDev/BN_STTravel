@@ -12,7 +12,7 @@
 #import "LBB_OrderTicketPriceCell.h"
 #import "LBB_OrderContactCustomerServiceCell.h"
 #import "LBB_OrderTicketConfirmCell.h"
-
+#import "LBB_OrderPayWayViewController.h"
 @interface LBB_OrderWaitPayViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (retain, nonatomic) UITableView *tableView;
@@ -159,7 +159,7 @@
         return 0.001f;
     }
     
-    return 25.f;
+    return AutoSize(15);
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -176,6 +176,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    WS(ws);
     if (indexPath.section == 0) {
         
         if (indexPath.row < 3) {
@@ -252,6 +253,18 @@
         cell = [[LBB_OrderTicketConfirmCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
+    [cell.deleteButton bk_addEventHandler:^(id sender){
+        
+        [ws.navigationController popViewControllerAnimated:YES];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+    [cell.payButton bk_addEventHandler:^(id sender){
+        
+        LBB_OrderPayWayViewController* dest = [[LBB_OrderPayWayViewController alloc]init];
+        [ws.navigationController pushViewController:dest animated:YES];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 

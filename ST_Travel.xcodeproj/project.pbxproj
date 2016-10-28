@@ -117,6 +117,8 @@
 		1DF9550A1DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955091DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.m */; };
 		1DF9550D1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF9550C1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.m */; };
 		1DF955111DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955101DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m */; };
+		1DF955141DC2F81C004B08C3 /* LBB_OrderPayWayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955131DC2F81C004B08C3 /* LBB_OrderPayWayCell.m */; };
+		1DF955171DC2F96F004B08C3 /* LBB_OrderPayWayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955161DC2F96F004B08C3 /* LBB_OrderPayWayViewController.m */; };
 		841406671DB7583400A1D904 /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406661DB7583400A1D904 /* VerificationViewController.m */; };
 		8414066A1DB75D8000A1D904 /* ExtractDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406691DB75D8000A1D904 /* ExtractDetailViewController.m */; };
 		84B25B171DB7966E002EDA7F /* ReceiptAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B25B161DB7966E002EDA7F /* ReceiptAddressViewController.m */; };
@@ -424,6 +426,10 @@
 		1DF9550C1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderContactCustomerServiceCell.m; sourceTree = "<group>"; };
 		1DF9550F1DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderTicketConfirmCell.h; sourceTree = "<group>"; };
 		1DF955101DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderTicketConfirmCell.m; sourceTree = "<group>"; };
+		1DF955121DC2F81C004B08C3 /* LBB_OrderPayWayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderPayWayCell.h; sourceTree = "<group>"; };
+		1DF955131DC2F81C004B08C3 /* LBB_OrderPayWayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderPayWayCell.m; sourceTree = "<group>"; };
+		1DF955151DC2F96F004B08C3 /* LBB_OrderPayWayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderPayWayViewController.h; sourceTree = "<group>"; };
+		1DF955161DC2F96F004B08C3 /* LBB_OrderPayWayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderPayWayViewController.m; sourceTree = "<group>"; };
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
 		841406651DB7583400A1D904 /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
 		841406661DB7583400A1D904 /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
@@ -625,6 +631,8 @@
 				1D3024081DC2055F0007F7AF /* LBB_NewOrderViewController.m */,
 				1D3024091DC2055F0007F7AF /* LBB_OrderWaitPayViewController.h */,
 				1D30240A1DC2055F0007F7AF /* LBB_OrderWaitPayViewController.m */,
+				1DF955151DC2F96F004B08C3 /* LBB_OrderPayWayViewController.h */,
+				1DF955161DC2F96F004B08C3 /* LBB_OrderPayWayViewController.m */,
 			);
 			name = ViewController;
 			path = Order/ViewController;
@@ -643,6 +651,8 @@
 				1DF9550C1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.m */,
 				1DF9550F1DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.h */,
 				1DF955101DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m */,
+				1DF955121DC2F81C004B08C3 /* LBB_OrderPayWayCell.h */,
+				1DF955131DC2F81C004B08C3 /* LBB_OrderPayWayCell.m */,
 			);
 			name = View;
 			path = Order/View;
@@ -1943,6 +1953,7 @@
 				1DF6F9271DBCBF50001903D1 /* LBB_AddressAddViewController.m in Sources */,
 				1DF6F8801DBCB0D8001903D1 /* LBBFriendModel.m in Sources */,
 				1DF6F92F1DBCBF50001903D1 /* LBB_SignInListCell.m in Sources */,
+				1DF955171DC2F96F004B08C3 /* LBB_OrderPayWayViewController.m in Sources */,
 				1D3024181DC2058B0007F7AF /* LBB_HostelMainViewController.m in Sources */,
 				1D3023CC1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.m in Sources */,
 				1DF6F88E1DBCB0D8001903D1 /* ContentImageView.m in Sources */,
@@ -1987,6 +1998,7 @@
 				1DF955111DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m in Sources */,
 				1DF6F93B1DBCBF50001903D1 /* UIImage+PoohCommon.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
+				1DF955141DC2F81C004B08C3 /* LBB_OrderPayWayCell.m in Sources */,
 				1DF6F8891DBCB0D8001903D1 /* ZJScrollPageView.m in Sources */,
 				84E9C59E1DB5EC4900F70C79 /* TicketDetailViewCell.m in Sources */,
 				1DF6F9441DBCBF50001903D1 /* LBBHomeSquareCenterTableViewCell.m in Sources */,
