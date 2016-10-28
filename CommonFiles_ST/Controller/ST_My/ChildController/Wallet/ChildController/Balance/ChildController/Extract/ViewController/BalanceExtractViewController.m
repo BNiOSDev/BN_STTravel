@@ -10,6 +10,10 @@
 #import "CardDetailViewController.h"
 
 @interface BalanceExtractViewController ()
+{
+
+}
+@property (assign, nonatomic) CGFloat moneyNum;
 @property (weak, nonatomic) IBOutlet UIImageView *cardImgView;
 @property (weak, nonatomic) IBOutlet UILabel *cardNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cardNumLabel;
@@ -25,12 +29,27 @@
     // Do any additional setup after loading the view.
     self.baseViewType =  eBalanceExtract;
     [self initConstraint];
+    [self initTextField];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)buildControls
+{
+   
 }
+
+- (void)initTextField
+{
+    self.moneyTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    @weakify(self);
+    [self.moneyTextField.rac_textSignal subscribeNext:^(id x) {
+        @strongify(self);
+        NSString *moneyText = self.moneyTextField.text;
+        if (moneyText) {
+            self.moneyNum = [moneyText floatValue];
+        }
+    }];
+}
+
 
 #pragma mark - private
 - (void)initConstraint
@@ -45,12 +64,16 @@
 - (IBAction)cardDetailAction:(id)sender {
     [self performSegueWithIdentifier:@"CardDetailViewController" sender:nil];
 }
+
 //全部提现
 - (IBAction)extractAllMoneyAction:(id)sender {
+    
 }
+
 //提现
 - (IBAction)extractMoney:(id)sender {
-     [self performSegueWithIdentifier:@"VerificationViewController" sender:nil];
+    
+    [self performSegueWithIdentifier:@"VerificationViewController" sender:nil];
 }
 
 #pragma mark -  perform segue

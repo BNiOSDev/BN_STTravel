@@ -8,6 +8,7 @@
 
 #import "ReceiptAddressViewController.h"
 #import "ReceiptAddressViewCell.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 @interface ReceiptAddressViewController ()<
 ReceiptAddressViewCellDelegate
@@ -66,13 +67,13 @@ ReceiptAddressViewCellDelegate
                                                                    @{@"ID" : @"3",
                                                                     @"UserName": NSLocalizedString(@"王大锤",nil),
                                                                      @"PhoneNum" : @"186****9876",
-                                                                     @"Address" : @"福建省 厦门市 思明区",
+                                                                     @"Address" : @"福建省 厦门市 思明区 福建省 厦门市 思明区 福建省 厦门市 思明区",
                                                                      @"Street" : @"软件园望海路59号楼1号楼鑫海科技"},
                                                                    @{@"ID" : @"4",
                                                                      @"UserName": NSLocalizedString(@"马云",nil),
                                                                      @"PhoneNum" : @"186****9876",
-                                                                     @"Address" : @"福建省 厦门市 思明区",
-                                                                     @"Street" : @"软件园望海路59号楼1号楼鑫海科技"},
+                                                                     @"Address" : @"福建省 厦门市 思明区 福建省 厦门市 思明区 福建省 厦门市 思明区",
+                                                                     @"Street" : @"软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技"},
                                                                    @{@"ID" : @"5",
                                                                      @"UserName": NSLocalizedString(@"王健林",nil),
                                                                      @"PhoneNum" : @"186****9876",
@@ -87,14 +88,28 @@ ReceiptAddressViewCellDelegate
 {
     return self.dataSourceArray.count;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100.f;
+    return 44;
 }
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CGFloat height = [tableView fd_heightForCellWithIdentifier:@"ReceiptAddressViewCell"
+                                                 configuration:^(ReceiptAddressViewCell *cell) {
+                                                     NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath row]];
+                                                     [cell setCellInfo:cellDict];
+                                                 }];
+    
+    return height;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 0.001f;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return [[UIView alloc] initWithFrame:CGRectZero];

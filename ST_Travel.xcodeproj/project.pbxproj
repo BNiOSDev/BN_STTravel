@@ -86,6 +86,23 @@
 		1DF6F9481DBCBF50001903D1 /* ST_HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF6F9181DBCBF50001903D1 /* ST_HomeViewController.xib */; };
 		1DF6F9491DBCBF50001903D1 /* ST_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F91A1DBCBF50001903D1 /* ST_TabBarController.m */; };
 		1DF6F94C1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F94A1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m */; };
+		842925E11DC050EB00B8D259 /* LBB_TicketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842925E01DC050EB00B8D259 /* LBB_TicketHeaderView.m */; };
+		842925E41DC0510100B8D259 /* LBB_TicketFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842925E31DC0510100B8D259 /* LBB_TicketFooterView.m */; };
+		842925E61DC0511D00B8D259 /* LBB_TicketFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842925E51DC0511D00B8D259 /* LBB_TicketFooterView.xib */; };
+		842925E81DC0512F00B8D259 /* LBB_TicketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842925E71DC0512F00B8D259 /* LBB_TicketHeaderView.xib */; };
+		842925F61DC0903400B8D259 /* LBB_MessageCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842925F51DC0903400B8D259 /* LBB_MessageCenterViewController.m */; };
+		842925FA1DC0905C00B8D259 /* LBB_MessageCenterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842925F81DC0905C00B8D259 /* LBB_MessageCenterViewCell.m */; };
+		842925FB1DC0905C00B8D259 /* LBB_MessageCenterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842925F91DC0905C00B8D259 /* LBB_MessageCenterViewCell.xib */; };
+		842926131DC09BFA00B8D259 /* LBB_PromotionsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842926111DC09BFA00B8D259 /* LBB_PromotionsViewCell.m */; };
+		842926141DC09BFA00B8D259 /* LBB_PromotionsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842926121DC09BFA00B8D259 /* LBB_PromotionsViewCell.xib */; };
+		842926171DC09C1C00B8D259 /* LBB_PromotionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842926161DC09C1C00B8D259 /* LBB_PromotionsViewController.m */; };
+		8429261A1DC0B41C00B8D259 /* LBB_CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842926191DC0B41C00B8D259 /* LBB_CustomerViewController.m */; };
+		8429261E1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8429261C1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.m */; };
+		8429261F1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8429261D1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.xib */; };
+		842926221DC0CF4900B8D259 /* LBB_PurchaseNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842926211DC0CF4900B8D259 /* LBB_PurchaseNotificationViewController.m */; };
+		842926251DC0D3B800B8D259 /* LBB_MyPropertyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842926241DC0D3B800B8D259 /* LBB_MyPropertyViewController.m */; };
+		842926291DC0D4F200B8D259 /* LBB_MyPropertyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842926271DC0D4F200B8D259 /* LBB_MyPropertyViewCell.m */; };
+		8429262A1DC0D4F200B8D259 /* LBB_MyPropertyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842926281DC0D4F200B8D259 /* LBB_MyPropertyViewCell.xib */; };
 		843011FE1DBF861200F5316A /* MineBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430112F1DBF861200F5316A /* MineBaseViewController.m */; };
 		843011FF1DBF861200F5316A /* LBB_FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011341DBF861200F5316A /* LBB_FavoriteViewController.m */; };
 		843012001DBF861200F5316A /* LBB_FightGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011381DBF861200F5316A /* LBB_FightGroupViewController.m */; };
@@ -331,6 +348,34 @@
 		1DF6F94A1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryMainModel.m; sourceTree = "<group>"; };
 		1DF6F94B1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryMainModel.h; sourceTree = "<group>"; };
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
+		842925DF1DC050EB00B8D259 /* LBB_TicketHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketHeaderView.h; sourceTree = "<group>"; };
+		842925E01DC050EB00B8D259 /* LBB_TicketHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketHeaderView.m; sourceTree = "<group>"; };
+		842925E21DC0510100B8D259 /* LBB_TicketFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketFooterView.h; sourceTree = "<group>"; };
+		842925E31DC0510100B8D259 /* LBB_TicketFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketFooterView.m; sourceTree = "<group>"; };
+		842925E51DC0511D00B8D259 /* LBB_TicketFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_TicketFooterView.xib; sourceTree = "<group>"; };
+		842925E71DC0512F00B8D259 /* LBB_TicketHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_TicketHeaderView.xib; sourceTree = "<group>"; };
+		842925F41DC0903400B8D259 /* LBB_MessageCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MessageCenterViewController.h; sourceTree = "<group>"; };
+		842925F51DC0903400B8D259 /* LBB_MessageCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MessageCenterViewController.m; sourceTree = "<group>"; };
+		842925F71DC0905C00B8D259 /* LBB_MessageCenterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MessageCenterViewCell.h; sourceTree = "<group>"; };
+		842925F81DC0905C00B8D259 /* LBB_MessageCenterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MessageCenterViewCell.m; sourceTree = "<group>"; };
+		842925F91DC0905C00B8D259 /* LBB_MessageCenterViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_MessageCenterViewCell.xib; sourceTree = "<group>"; };
+		842926101DC09BFA00B8D259 /* LBB_PromotionsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PromotionsViewCell.h; sourceTree = "<group>"; };
+		842926111DC09BFA00B8D259 /* LBB_PromotionsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PromotionsViewCell.m; sourceTree = "<group>"; };
+		842926121DC09BFA00B8D259 /* LBB_PromotionsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_PromotionsViewCell.xib; sourceTree = "<group>"; };
+		842926151DC09C1C00B8D259 /* LBB_PromotionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PromotionsViewController.h; sourceTree = "<group>"; };
+		842926161DC09C1C00B8D259 /* LBB_PromotionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PromotionsViewController.m; sourceTree = "<group>"; };
+		842926181DC0B41C00B8D259 /* LBB_CustomerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_CustomerViewController.h; sourceTree = "<group>"; };
+		842926191DC0B41C00B8D259 /* LBB_CustomerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_CustomerViewController.m; sourceTree = "<group>"; };
+		8429261B1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareNotificationViewCell.h; sourceTree = "<group>"; };
+		8429261C1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareNotificationViewCell.m; sourceTree = "<group>"; };
+		8429261D1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_SquareNotificationViewCell.xib; sourceTree = "<group>"; };
+		842926201DC0CF4900B8D259 /* LBB_PurchaseNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PurchaseNotificationViewController.h; sourceTree = "<group>"; };
+		842926211DC0CF4900B8D259 /* LBB_PurchaseNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PurchaseNotificationViewController.m; sourceTree = "<group>"; };
+		842926231DC0D3B800B8D259 /* LBB_MyPropertyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MyPropertyViewController.h; sourceTree = "<group>"; };
+		842926241DC0D3B800B8D259 /* LBB_MyPropertyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MyPropertyViewController.m; sourceTree = "<group>"; };
+		842926261DC0D4F200B8D259 /* LBB_MyPropertyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MyPropertyViewCell.h; sourceTree = "<group>"; };
+		842926271DC0D4F200B8D259 /* LBB_MyPropertyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MyPropertyViewCell.m; sourceTree = "<group>"; };
+		842926281DC0D4F200B8D259 /* LBB_MyPropertyViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_MyPropertyViewCell.xib; sourceTree = "<group>"; };
 		8430112E1DBF861200F5316A /* MineBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineBaseViewController.h; sourceTree = "<group>"; };
 		8430112F1DBF861200F5316A /* MineBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineBaseViewController.m; sourceTree = "<group>"; };
 		843011331DBF861200F5316A /* LBB_FavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_FavoriteViewController.h; sourceTree = "<group>"; };
@@ -1030,6 +1075,227 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		842925EC1DC0900D00B8D259 /* MessageCenter */ = {
+			isa = PBXGroup;
+			children = (
+				842925ED1DC0900D00B8D259 /* ChildController */,
+				842925F11DC0900D00B8D259 /* Model */,
+				842925F21DC0900D00B8D259 /* View */,
+				842925F31DC0900D00B8D259 /* ViewController */,
+			);
+			path = MessageCenter;
+			sourceTree = "<group>";
+		};
+		842925ED1DC0900D00B8D259 /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				842925FC1DC09BB300B8D259 /* Customer */,
+				842926001DC09BB300B8D259 /* MyProperty */,
+				842926041DC09BB300B8D259 /* Promotions */,
+				842926081DC09BB300B8D259 /* PurchageNotification */,
+				8429260C1DC09BB300B8D259 /* SquareTravel */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		842925F11DC0900D00B8D259 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		842925F21DC0900D00B8D259 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				842925F71DC0905C00B8D259 /* LBB_MessageCenterViewCell.h */,
+				842925F81DC0905C00B8D259 /* LBB_MessageCenterViewCell.m */,
+				842925F91DC0905C00B8D259 /* LBB_MessageCenterViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		842925F31DC0900D00B8D259 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				842925F41DC0903400B8D259 /* LBB_MessageCenterViewController.h */,
+				842925F51DC0903400B8D259 /* LBB_MessageCenterViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		842925FC1DC09BB300B8D259 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				842925FD1DC09BB300B8D259 /* Model */,
+				842925FE1DC09BB300B8D259 /* View */,
+				842925FF1DC09BB300B8D259 /* ViewController */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		842925FD1DC09BB300B8D259 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		842925FE1DC09BB300B8D259 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		842925FF1DC09BB300B8D259 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				842926181DC0B41C00B8D259 /* LBB_CustomerViewController.h */,
+				842926191DC0B41C00B8D259 /* LBB_CustomerViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		842926001DC09BB300B8D259 /* MyProperty */ = {
+			isa = PBXGroup;
+			children = (
+				842926011DC09BB300B8D259 /* Model */,
+				842926021DC09BB300B8D259 /* View */,
+				842926031DC09BB300B8D259 /* ViewController */,
+			);
+			path = MyProperty;
+			sourceTree = "<group>";
+		};
+		842926011DC09BB300B8D259 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		842926021DC09BB300B8D259 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				842926261DC0D4F200B8D259 /* LBB_MyPropertyViewCell.h */,
+				842926271DC0D4F200B8D259 /* LBB_MyPropertyViewCell.m */,
+				842926281DC0D4F200B8D259 /* LBB_MyPropertyViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		842926031DC09BB300B8D259 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				842926231DC0D3B800B8D259 /* LBB_MyPropertyViewController.h */,
+				842926241DC0D3B800B8D259 /* LBB_MyPropertyViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		842926041DC09BB300B8D259 /* Promotions */ = {
+			isa = PBXGroup;
+			children = (
+				842926051DC09BB300B8D259 /* Model */,
+				842926061DC09BB300B8D259 /* View */,
+				842926071DC09BB300B8D259 /* ViewController */,
+			);
+			path = Promotions;
+			sourceTree = "<group>";
+		};
+		842926051DC09BB300B8D259 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		842926061DC09BB300B8D259 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				842926101DC09BFA00B8D259 /* LBB_PromotionsViewCell.h */,
+				842926111DC09BFA00B8D259 /* LBB_PromotionsViewCell.m */,
+				842926121DC09BFA00B8D259 /* LBB_PromotionsViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		842926071DC09BB300B8D259 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				842926151DC09C1C00B8D259 /* LBB_PromotionsViewController.h */,
+				842926161DC09C1C00B8D259 /* LBB_PromotionsViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		842926081DC09BB300B8D259 /* PurchageNotification */ = {
+			isa = PBXGroup;
+			children = (
+				842926091DC09BB300B8D259 /* Model */,
+				8429260A1DC09BB300B8D259 /* View */,
+				8429260B1DC09BB300B8D259 /* ViewController */,
+			);
+			path = PurchageNotification;
+			sourceTree = "<group>";
+		};
+		842926091DC09BB300B8D259 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8429260A1DC09BB300B8D259 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8429261B1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.h */,
+				8429261C1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.m */,
+				8429261D1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8429260B1DC09BB300B8D259 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				842926201DC0CF4900B8D259 /* LBB_PurchaseNotificationViewController.h */,
+				842926211DC0CF4900B8D259 /* LBB_PurchaseNotificationViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8429260C1DC09BB300B8D259 /* SquareTravel */ = {
+			isa = PBXGroup;
+			children = (
+				8429260D1DC09BB300B8D259 /* Model */,
+				8429260E1DC09BB300B8D259 /* View */,
+				8429260F1DC09BB300B8D259 /* ViewController */,
+			);
+			path = SquareTravel;
+			sourceTree = "<group>";
+		};
+		8429260D1DC09BB300B8D259 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8429260E1DC09BB300B8D259 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8429260F1DC09BB300B8D259 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		8430112B1DBF861200F5316A /* ST_My */ = {
 			isa = PBXGroup;
 			children = (
@@ -1046,6 +1312,7 @@
 		8430112C1DBF861200F5316A /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				842925EC1DC0900D00B8D259 /* MessageCenter */,
 				8430112D1DBF861200F5316A /* Common */,
 				843011301DBF861200F5316A /* Favorite */,
 				843011351DBF861200F5316A /* FightGroups */,
@@ -1536,6 +1803,12 @@
 				843011901DBF861200F5316A /* TicketViewCell.h */,
 				843011911DBF861200F5316A /* TicketViewCell.m */,
 				843011921DBF861200F5316A /* TicketViewCell.xib */,
+				842925DF1DC050EB00B8D259 /* LBB_TicketHeaderView.h */,
+				842925E01DC050EB00B8D259 /* LBB_TicketHeaderView.m */,
+				842925E71DC0512F00B8D259 /* LBB_TicketHeaderView.xib */,
+				842925E21DC0510100B8D259 /* LBB_TicketFooterView.h */,
+				842925E31DC0510100B8D259 /* LBB_TicketFooterView.m */,
+				842925E51DC0511D00B8D259 /* LBB_TicketFooterView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2395,11 +2668,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8429262A1DC0D4F200B8D259 /* LBB_MyPropertyViewCell.xib in Resources */,
 				1DF6F9481DBCBF50001903D1 /* ST_HomeViewController.xib in Resources */,
+				842925E61DC0511D00B8D259 /* LBB_TicketFooterView.xib in Resources */,
 				1DF6F89B1DBCB0D8001903D1 /* ST_SquareViewController.xib in Resources */,
+				8429261F1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.xib in Resources */,
 				C9C0E95F1D9948F200575A7C /* LaunchScreen.storyboard in Resources */,
+				842925E81DC0512F00B8D259 /* LBB_TicketHeaderView.xib in Resources */,
 				C91F61561D9F96CA004FE75C /* ST_MallViewController.xib in Resources */,
 				1DF6F91E1DBCBF50001903D1 /* b27_icon_star_yellow@2x.png in Resources */,
+				842925FB1DC0905C00B8D259 /* LBB_MessageCenterViewCell.xib in Resources */,
 				8430122C1DBF861200F5316A /* IMG_0849.JPG in Resources */,
 				8430122B1DBF861200F5316A /* IMG_0848.JPG in Resources */,
 				843012221DBF861200F5316A /* CardViewCell.xib in Resources */,
@@ -2409,6 +2687,7 @@
 				1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */,
 				1DF6F91D1DBCBF50001903D1 /* b27_icon_star_gray@2x.png in Resources */,
 				C9C0E95C1D9948F200575A7C /* Assets.xcassets in Resources */,
+				842926141DC09BFA00B8D259 /* LBB_PromotionsViewCell.xib in Resources */,
 				843012061DBF861200F5316A /* LBB_AddressPickerView.xib in Resources */,
 				843012311DBF861200F5316A /* MineViewCell.xib in Resources */,
 				8430122A1DBF861200F5316A /* 19.pic.jpg in Resources */,
@@ -2503,6 +2782,7 @@
 				843012121DBF861200F5316A /* SettingPrivaceViewController.m in Sources */,
 				1DF6F8841DBCB0D8001903D1 /* LGSegment.m in Sources */,
 				843011FF1DBF861200F5316A /* LBB_FavoriteViewController.m in Sources */,
+				842926251DC0D3B800B8D259 /* LBB_MyPropertyViewController.m in Sources */,
 				1DF6F8961DBCB0D8001903D1 /* LBBVideoTableViewCell.m in Sources */,
 				1DF6F9411DBCBF50001903D1 /* LBBHomeHotestTableViewCell.m in Sources */,
 				1DF6F9241DBCBF50001903D1 /* LBBPoohCycleScrollCell.m in Sources */,
@@ -2515,11 +2795,13 @@
 				C9C0E9571D9948F100575A7C /* ViewController.m in Sources */,
 				843012101DBF861200F5316A /* SwitchViewCell.m in Sources */,
 				1DF6F8851DBCB0D8001903D1 /* ZJMSearchBar.m in Sources */,
+				842925E41DC0510100B8D259 /* LBB_TicketFooterView.m in Sources */,
 				843012191DBF861200F5316A /* TicketViewController.m in Sources */,
 				1DF6F9271DBCBF50001903D1 /* LBB_AddressAddViewController.m in Sources */,
 				1DF6F8801DBCB0D8001903D1 /* LBBFriendModel.m in Sources */,
 				1DF6F92F1DBCBF50001903D1 /* LBB_SignInListCell.m in Sources */,
 				1DF6F88E1DBCB0D8001903D1 /* ContentImageView.m in Sources */,
+				842925F61DC0903400B8D259 /* LBB_MessageCenterViewController.m in Sources */,
 				1DF6F9421DBCBF50001903D1 /* LBBHomeHotestTableViewCellItem.m in Sources */,
 				8430120A1DBF861200F5316A /* LBB_UserNameViewController.m in Sources */,
 				8430121A1DBF861200F5316A /* BalanceDetailViewController.m in Sources */,
@@ -2533,7 +2815,9 @@
 				1DF6F8941DBCB0D8001903D1 /* ZJMHostTableViewCell.m in Sources */,
 				1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */,
 				1DF6F92C1DBCBF50001903D1 /* LBB_DiscoveryMainViewController.m in Sources */,
+				8429261E1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.m in Sources */,
 				1DF6F8951DBCB0D8001903D1 /* LBBTravelTableViewCell.m in Sources */,
+				842926131DC09BFA00B8D259 /* LBB_PromotionsViewCell.m in Sources */,
 				1DF6F89E1DBCB0D8001903D1 /* ZJMBaseViewController.m in Sources */,
 				843012031DBF861200F5316A /* AddAddressViewController.m in Sources */,
 				1DF6F8811DBCB0D8001903D1 /* PraiseModel.m in Sources */,
@@ -2547,6 +2831,7 @@
 				1DF6F9231DBCBF50001903D1 /* LBBPoohBaseTableViewCell.m in Sources */,
 				1DF6F93B1DBCBF50001903D1 /* UIImage+PoohCommon.m in Sources */,
 				843012261DBF861200F5316A /* VerificationViewController.m in Sources */,
+				842926171DC09C1C00B8D259 /* LBB_PromotionsViewController.m in Sources */,
 				843012141DBF861200F5316A /* SettingViewController.m in Sources */,
 				843012231DBF861200F5316A /* CardViewController.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
@@ -2564,6 +2849,8 @@
 				1DF6F91C1DBCBF50001903D1 /* PoohBaseViewController.m in Sources */,
 				1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */,
 				843012021DBF861200F5316A /* ChangePhoneNumViewController.m in Sources */,
+				842926221DC0CF4900B8D259 /* LBB_PurchaseNotificationViewController.m in Sources */,
+				842925E11DC050EB00B8D259 /* LBB_TicketHeaderView.m in Sources */,
 				1DF6F9401DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m in Sources */,
 				1DF6F9361DBCBF50001903D1 /* NSDictionary+PoohCommon.m in Sources */,
 				843012011DBF861200F5316A /* ChangePasswordViewController.m in Sources */,
@@ -2571,11 +2858,14 @@
 				1DF6F9311DBCBF50001903D1 /* LBB_SignInListViewController.m in Sources */,
 				8430122E1DBF861200F5316A /* MineHeaderView.m in Sources */,
 				843012301DBF861200F5316A /* MineViewCell.m in Sources */,
+				8429261A1DC0B41C00B8D259 /* LBB_CustomerViewController.m in Sources */,
 				843012131DBF861200F5316A /* SettingPushViewController.m in Sources */,
+				842926291DC0D4F200B8D259 /* LBB_MyPropertyViewCell.m in Sources */,
 				8430120E1DBF861200F5316A /* LBB_RouteViewController.m in Sources */,
 				1DF6F92D1DBCBF50001903D1 /* LBBNearbyMenuListTableViewCell.m in Sources */,
 				843012241DBF861200F5316A /* ConvertiblePointsViewController.m in Sources */,
 				1DF6F89D1DBCB0D8001903D1 /* ZJMTravelsViewController.m in Sources */,
+				842925FA1DC0905C00B8D259 /* LBB_MessageCenterViewCell.m in Sources */,
 				8430120F1DBF861200F5316A /* SetingSwitchBaseViewController.m in Sources */,
 				843012151DBF861200F5316A /* TicketDetailViewCell.m in Sources */,
 				1DF6F9431DBCBF50001903D1 /* LBBHomeMenuTableViewCell.m in Sources */,

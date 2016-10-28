@@ -9,6 +9,7 @@
 #import "TicketViewController.h"
 #import "TicketViewCell.h"
 #import "HMSegmentedControl.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 
 @interface TicketViewController ()
@@ -32,6 +33,7 @@ TicketViewCellDelegate>
     [self initSegmentControll];
     [self initData];
 }
+
 - (void)initSegmentControll
 {
     
@@ -196,6 +198,36 @@ TicketViewCellDelegate>
     }
     return cell;
 }
+
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    aaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"aaTableViewCell" forIndexPath:indexPath];
+//    
+//    if (!cell) {
+//        cell =  [[aaTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"aaTableViewCell"];
+//        
+//    }
+//    [cell.label setText:@"上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑"];
+//    // Configure the cell...
+//    
+//    return cell;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 44;
+//}
+//
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    return [tableView fd_heightForCellWithIdentifier:@"aaTableViewCell" configuration:^(aaTableViewCell *cell) {
+//        
+//        [cell.label setText:@"上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑上电视汳䝷䀑汳䝷䀑"];
+//        
+//    }];
+//}
+
 
 #pragma mark - cell delegate
 - (void)cellBtnClickDelegate:(NSDictionary*)cellInfo

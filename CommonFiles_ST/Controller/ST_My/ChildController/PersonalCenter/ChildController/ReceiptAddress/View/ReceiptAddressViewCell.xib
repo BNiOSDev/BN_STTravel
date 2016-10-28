@@ -88,7 +88,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="软件园二期望海路59号9楼 1号楼901鑫火科技" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sR2-CB-Ca9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="软件园二期望海路59号9楼 1号楼901鑫火科技" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sR2-CB-Ca9">
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -114,6 +114,7 @@
                     <constraint firstItem="k4B-hV-VBr" firstAttribute="trailing" secondItem="sR2-CB-Ca9" secondAttribute="trailing" id="fqV-g8-8gr"/>
                     <constraint firstAttribute="trailingMargin" secondItem="iva-db-xVl" secondAttribute="trailing" constant="5" id="h1U-1k-5gg"/>
                     <constraint firstItem="k4B-hV-VBr" firstAttribute="top" secondItem="9kI-0j-2Hu" secondAttribute="bottom" constant="9" id="i7L-2f-Sdf"/>
+                    <constraint firstAttribute="bottom" secondItem="sR2-CB-Ca9" secondAttribute="bottom" constant="8" id="iqL-x3-Wlh"/>
                     <constraint firstItem="k4B-hV-VBr" firstAttribute="leading" secondItem="9kI-0j-2Hu" secondAttribute="leading" id="jRd-6d-gA9"/>
                     <constraint firstItem="iva-db-xVl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="lcr-9S-VL2"/>
                     <constraint firstItem="VOG-R2-MB8" firstAttribute="centerY" secondItem="iva-db-xVl" secondAttribute="centerY" id="pgW-TA-v3v"/>

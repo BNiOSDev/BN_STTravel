@@ -47,8 +47,6 @@ MineHeaderViewDelegate
 {
    [super viewWillAppear:animated];
    [self setNavigationBarHidden:YES];
-   ST_TabBarController *parentVC = (ST_TabBarController*)self.navigationController.parentViewController;
-//    [parentVC showCenterCamereBtn:YES];
 }
     
 - (void)viewDidAppear:(BOOL)animated
