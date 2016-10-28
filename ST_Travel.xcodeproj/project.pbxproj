@@ -15,8 +15,12 @@
 		1D3023E61DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023E51DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m */; };
 		1D3023E91DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023E81DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m */; };
 		1D3023EC1DC1E8430007F7AF /* UILabel+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023EA1DC1E8430007F7AF /* UILabel+Common.m */; };
-		1D3023F01DC1EA930007F7AF /* LBB_HostelMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023EF1DC1EA930007F7AF /* LBB_HostelMainViewController.m */; };
-		1D3023F41DC1EC940007F7AF /* LBB_FoodsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023F31DC1EC940007F7AF /* LBB_FoodsMainViewController.m */; };
+		1D3023F71DC1FE360007F7AF /* LBBPoohVerticalLableControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3023F61DC1FE360007F7AF /* LBBPoohVerticalLableControl.m */; };
+		1D30240E1DC2055F0007F7AF /* LBB_NewOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3024081DC2055F0007F7AF /* LBB_NewOrderViewController.m */; };
+		1D30240F1DC2055F0007F7AF /* LBB_OrderWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D30240A1DC2055F0007F7AF /* LBB_OrderWaitPayViewController.m */; };
+		1D3024101DC2055F0007F7AF /* LBB_OrderTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D30240D1DC2055F0007F7AF /* LBB_OrderTextCell.m */; };
+		1D3024141DC205830007F7AF /* LBB_FoodsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3024131DC205830007F7AF /* LBB_FoodsMainViewController.m */; };
+		1D3024181DC2058B0007F7AF /* LBB_HostelMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3024171DC2058B0007F7AF /* LBB_HostelMainViewController.m */; };
 		1D64E6861DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */; };
 		1D64E6911DBF0C030071876A /* LBB_ScenicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6901DBF0C030071876A /* LBB_ScenicMainTableViewCell.m */; };
 		1D64E6941DBF11150071876A /* LBB_ScenicMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6931DBF11150071876A /* LBB_ScenicMainViewController.m */; };
@@ -109,6 +113,10 @@
 		1DF6F9481DBCBF50001903D1 /* ST_HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DF6F9181DBCBF50001903D1 /* ST_HomeViewController.xib */; };
 		1DF6F9491DBCBF50001903D1 /* ST_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F91A1DBCBF50001903D1 /* ST_TabBarController.m */; };
 		1DF6F94C1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F94A1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m */; };
+		1DF955071DC2E557004B08C3 /* LBB_OrderTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955061DC2E557004B08C3 /* LBB_OrderTicketCell.m */; };
+		1DF9550A1DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955091DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.m */; };
+		1DF9550D1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF9550C1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.m */; };
+		1DF955111DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955101DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m */; };
 		841406671DB7583400A1D904 /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406661DB7583400A1D904 /* VerificationViewController.m */; };
 		8414066A1DB75D8000A1D904 /* ExtractDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406691DB75D8000A1D904 /* ExtractDetailViewController.m */; };
 		84B25B171DB7966E002EDA7F /* ReceiptAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B25B161DB7966E002EDA7F /* ReceiptAddressViewController.m */; };
@@ -213,10 +221,18 @@
 		1D3023E81DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailSubjectContentCell.m; path = "景点详情专题页/LBB_ScenicDetailSubjectContentCell.m"; sourceTree = "<group>"; };
 		1D3023EA1DC1E8430007F7AF /* UILabel+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Common.m"; sourceTree = "<group>"; };
 		1D3023EB1DC1E8430007F7AF /* UILabel+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Common.h"; sourceTree = "<group>"; };
-		1D3023EE1DC1EA930007F7AF /* LBB_HostelMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_HostelMainViewController.h; path = Hostel/LBB_HostelMainViewController.h; sourceTree = "<group>"; };
-		1D3023EF1DC1EA930007F7AF /* LBB_HostelMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_HostelMainViewController.m; path = Hostel/LBB_HostelMainViewController.m; sourceTree = "<group>"; };
-		1D3023F21DC1EC940007F7AF /* LBB_FoodsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_FoodsMainViewController.h; path = Foods/LBB_FoodsMainViewController.h; sourceTree = "<group>"; };
-		1D3023F31DC1EC940007F7AF /* LBB_FoodsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_FoodsMainViewController.m; path = Foods/LBB_FoodsMainViewController.m; sourceTree = "<group>"; };
+		1D3023F51DC1FE360007F7AF /* LBBPoohVerticalLableControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBPoohVerticalLableControl.h; sourceTree = "<group>"; };
+		1D3023F61DC1FE360007F7AF /* LBBPoohVerticalLableControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBPoohVerticalLableControl.m; sourceTree = "<group>"; };
+		1D3024071DC2055F0007F7AF /* LBB_NewOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NewOrderViewController.h; sourceTree = "<group>"; };
+		1D3024081DC2055F0007F7AF /* LBB_NewOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NewOrderViewController.m; sourceTree = "<group>"; };
+		1D3024091DC2055F0007F7AF /* LBB_OrderWaitPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderWaitPayViewController.h; sourceTree = "<group>"; };
+		1D30240A1DC2055F0007F7AF /* LBB_OrderWaitPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderWaitPayViewController.m; sourceTree = "<group>"; };
+		1D30240C1DC2055F0007F7AF /* LBB_OrderTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderTextCell.h; sourceTree = "<group>"; };
+		1D30240D1DC2055F0007F7AF /* LBB_OrderTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderTextCell.m; sourceTree = "<group>"; };
+		1D3024121DC205830007F7AF /* LBB_FoodsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_FoodsMainViewController.h; sourceTree = "<group>"; };
+		1D3024131DC205830007F7AF /* LBB_FoodsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_FoodsMainViewController.m; sourceTree = "<group>"; };
+		1D3024161DC2058B0007F7AF /* LBB_HostelMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HostelMainViewController.h; sourceTree = "<group>"; };
+		1D3024171DC2058B0007F7AF /* LBB_HostelMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HostelMainViewController.m; sourceTree = "<group>"; };
 		1D64E6841DBF01850071876A /* LBB_DiscoveryCustomizedPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryCustomizedPopView.h; sourceTree = "<group>"; };
 		1D64E6851DBF01850071876A /* LBB_DiscoveryCustomizedPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryCustomizedPopView.m; sourceTree = "<group>"; };
 		1D64E68F1DBF0C030071876A /* LBB_ScenicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicMainTableViewCell.h; sourceTree = "<group>"; };
@@ -400,6 +416,14 @@
 		1DF6F91A1DBCBF50001903D1 /* ST_TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ST_TabBarController.m; sourceTree = "<group>"; };
 		1DF6F94A1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryMainModel.m; sourceTree = "<group>"; };
 		1DF6F94B1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryMainModel.h; sourceTree = "<group>"; };
+		1DF955051DC2E557004B08C3 /* LBB_OrderTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderTicketCell.h; sourceTree = "<group>"; };
+		1DF955061DC2E557004B08C3 /* LBB_OrderTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderTicketCell.m; sourceTree = "<group>"; };
+		1DF955081DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderTicketPriceCell.h; sourceTree = "<group>"; };
+		1DF955091DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderTicketPriceCell.m; sourceTree = "<group>"; };
+		1DF9550B1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderContactCustomerServiceCell.h; sourceTree = "<group>"; };
+		1DF9550C1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderContactCustomerServiceCell.m; sourceTree = "<group>"; };
+		1DF9550F1DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderTicketConfirmCell.h; sourceTree = "<group>"; };
+		1DF955101DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderTicketConfirmCell.m; sourceTree = "<group>"; };
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
 		841406651DB7583400A1D904 /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
 		841406661DB7583400A1D904 /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
@@ -572,8 +596,7 @@
 		1D3023ED1DC1EA680007F7AF /* hostel */ = {
 			isa = PBXGroup;
 			children = (
-				1D3023EE1DC1EA930007F7AF /* LBB_HostelMainViewController.h */,
-				1D3023EF1DC1EA930007F7AF /* LBB_HostelMainViewController.m */,
+				1D3024151DC2058B0007F7AF /* ViewController */,
 			);
 			name = hostel;
 			sourceTree = "<group>";
@@ -581,10 +604,68 @@
 		1D3023F11DC1EC780007F7AF /* Foods */ = {
 			isa = PBXGroup;
 			children = (
-				1D3023F21DC1EC940007F7AF /* LBB_FoodsMainViewController.h */,
-				1D3023F31DC1EC940007F7AF /* LBB_FoodsMainViewController.m */,
+				1D3024111DC205830007F7AF /* ViewController */,
 			);
 			name = Foods;
+			sourceTree = "<group>";
+		};
+		1D3023F81DC1FF010007F7AF /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				1D3024061DC2055F0007F7AF /* ViewController */,
+				1D30240B1DC2055F0007F7AF /* View */,
+			);
+			name = Order;
+			sourceTree = "<group>";
+		};
+		1D3024061DC2055F0007F7AF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D3024071DC2055F0007F7AF /* LBB_NewOrderViewController.h */,
+				1D3024081DC2055F0007F7AF /* LBB_NewOrderViewController.m */,
+				1D3024091DC2055F0007F7AF /* LBB_OrderWaitPayViewController.h */,
+				1D30240A1DC2055F0007F7AF /* LBB_OrderWaitPayViewController.m */,
+			);
+			name = ViewController;
+			path = Order/ViewController;
+			sourceTree = "<group>";
+		};
+		1D30240B1DC2055F0007F7AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D30240C1DC2055F0007F7AF /* LBB_OrderTextCell.h */,
+				1D30240D1DC2055F0007F7AF /* LBB_OrderTextCell.m */,
+				1DF955051DC2E557004B08C3 /* LBB_OrderTicketCell.h */,
+				1DF955061DC2E557004B08C3 /* LBB_OrderTicketCell.m */,
+				1DF955081DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.h */,
+				1DF955091DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.m */,
+				1DF9550B1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.h */,
+				1DF9550C1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.m */,
+				1DF9550F1DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.h */,
+				1DF955101DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m */,
+			);
+			name = View;
+			path = Order/View;
+			sourceTree = "<group>";
+		};
+		1D3024111DC205830007F7AF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D3024121DC205830007F7AF /* LBB_FoodsMainViewController.h */,
+				1D3024131DC205830007F7AF /* LBB_FoodsMainViewController.m */,
+			);
+			name = ViewController;
+			path = Foods/ViewController;
+			sourceTree = "<group>";
+		};
+		1D3024151DC2058B0007F7AF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D3024161DC2058B0007F7AF /* LBB_HostelMainViewController.h */,
+				1D3024171DC2058B0007F7AF /* LBB_HostelMainViewController.m */,
+			);
+			name = ViewController;
+			path = Hostel/ViewController;
 			sourceTree = "<group>";
 		};
 		1D64E6A11DBF592F0071876A /* 景点详情 */ = {
@@ -845,6 +926,7 @@
 		1DF6F8A51DBCBF50001903D1 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				1D3023F81DC1FF010007F7AF /* Order */,
 				1D3023F11DC1EC780007F7AF /* Foods */,
 				1D3023ED1DC1EA680007F7AF /* hostel */,
 				1DF6F8A61DBCBF50001903D1 /* Common */,
@@ -894,6 +976,8 @@
 				1D64E6991DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m */,
 				1D64E69B1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.h */,
 				1D64E69C1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m */,
+				1D3023F51DC1FE360007F7AF /* LBBPoohVerticalLableControl.h */,
+				1D3023F61DC1FE360007F7AF /* LBBPoohVerticalLableControl.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1836,6 +1920,7 @@
 				1DF6F88D1DBCB0D8001903D1 /* CommentView.m in Sources */,
 				1DF6F9211DBCBF50001903D1 /* KSViewPagerView.m in Sources */,
 				1DF6F93D1DBCBF50001903D1 /* PoohAppHelper.m in Sources */,
+				1D3024141DC205830007F7AF /* LBB_FoodsMainViewController.m in Sources */,
 				1DF6F89A1DBCB0D8001903D1 /* ST_SquareViewController.m in Sources */,
 				1DF6F8841DBCB0D8001903D1 /* LGSegment.m in Sources */,
 				1DF6F8961DBCB0D8001903D1 /* LBBVideoTableViewCell.m in Sources */,
@@ -1858,6 +1943,7 @@
 				1DF6F9271DBCBF50001903D1 /* LBB_AddressAddViewController.m in Sources */,
 				1DF6F8801DBCB0D8001903D1 /* LBBFriendModel.m in Sources */,
 				1DF6F92F1DBCBF50001903D1 /* LBB_SignInListCell.m in Sources */,
+				1D3024181DC2058B0007F7AF /* LBB_HostelMainViewController.m in Sources */,
 				1D3023CC1DC08DF90007F7AF /* LBB_ScenicDetailVipFavoriteCell.m in Sources */,
 				1DF6F88E1DBCB0D8001903D1 /* ContentImageView.m in Sources */,
 				1DF6F9421DBCBF50001903D1 /* LBBHomeHotestTableViewCellItem.m in Sources */,
@@ -1875,6 +1961,7 @@
 				1D64E6B01DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m in Sources */,
 				84E9C5A21DB5EC4900F70C79 /* TicketViewController.m in Sources */,
 				1DF6F8941DBCB0D8001903D1 /* ZJMHostTableViewCell.m in Sources */,
+				1DF955071DC2E557004B08C3 /* LBB_OrderTicketCell.m in Sources */,
 				1DF6F87F1DBCB0D8001903D1 /* CommentModel.m in Sources */,
 				84E9C5851DB5EC4900F70C79 /* MineHeaderView.m in Sources */,
 				1D64E6AD1DC055AF0071876A /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */,
@@ -1892,17 +1979,19 @@
 				1DF6F88B1DBCB0D8001903D1 /* ZJSegmentStyle.m in Sources */,
 				84FBE84A1DB7B1E80016C9AF /* AddAddressViewController.m in Sources */,
 				1DF6F8921DBCB0D8001903D1 /* UIView+SDAutoLayout.m in Sources */,
+				1D30240F1DC2055F0007F7AF /* LBB_OrderWaitPayViewController.m in Sources */,
 				1DF6F9251DBCBF50001903D1 /* LBBPoohGreatItemView.m in Sources */,
 				1DF6F9201DBCBF50001903D1 /* GYChangeTextView.m in Sources */,
 				1DF6F9231DBCBF50001903D1 /* LBBPoohBaseTableViewCell.m in Sources */,
 				1D64E6A41DBF59800071876A /* LBB_ScenicDetailPriceMsgCell.m in Sources */,
-				1D3023F01DC1EA930007F7AF /* LBB_HostelMainViewController.m in Sources */,
+				1DF955111DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m in Sources */,
 				1DF6F93B1DBCBF50001903D1 /* UIImage+PoohCommon.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1DF6F8891DBCB0D8001903D1 /* ZJScrollPageView.m in Sources */,
 				84E9C59E1DB5EC4900F70C79 /* TicketDetailViewCell.m in Sources */,
 				1DF6F9441DBCBF50001903D1 /* LBBHomeSquareCenterTableViewCell.m in Sources */,
 				1D3023EC1DC1E8430007F7AF /* UILabel+Common.m in Sources */,
+				1D30240E1DC2055F0007F7AF /* LBB_NewOrderViewController.m in Sources */,
 				1DF6F9301DBCBF50001903D1 /* LBB_SigninPopView.m in Sources */,
 				84E9C5951DB5EC4900F70C79 /* LBB_UserNameViewController.m in Sources */,
 				1D64E69D1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m in Sources */,
@@ -1910,7 +1999,6 @@
 				1DF6F91B1DBCBF50001903D1 /* PoohBaseTableViewController.m in Sources */,
 				1DF6F9261DBCBF50001903D1 /* LBBPoohVerticalButton.m in Sources */,
 				1DF6F88A1DBCB0D8001903D1 /* ZJScrollSegmentView.m in Sources */,
-				1D3023F41DC1EC940007F7AF /* LBB_FoodsMainViewController.m in Sources */,
 				1D3023E61DC1D5D80007F7AF /* LBB_ScenicDetailSubjectLableCell.m in Sources */,
 				84B25B1E1DB797D2002EDA7F /* ReceiptAddressViewCell.m in Sources */,
 				1DF6F8981DBCB0D8001903D1 /* LBBTravelContentImage.m in Sources */,
@@ -1928,6 +2016,7 @@
 				84E9C5981DB5EC4900F70C79 /* SetingSwitchBaseViewController.m in Sources */,
 				84E9C59C1DB5EC4900F70C79 /* SettingPushViewController.m in Sources */,
 				1DF6F9361DBCBF50001903D1 /* NSDictionary+PoohCommon.m in Sources */,
+				1DF9550D1DC2EFF9004B08C3 /* LBB_OrderContactCustomerServiceCell.m in Sources */,
 				1DF6F9311DBCBF50001903D1 /* LBB_SignInListViewController.m in Sources */,
 				1DF6F92D1DBCBF50001903D1 /* LBBNearbyMenuListTableViewCell.m in Sources */,
 				84E9C5B01DB5EC4900F70C79 /* CardViewController.m in Sources */,
@@ -1940,6 +2029,7 @@
 				1DF6F93E1DBCBF50001903D1 /* IConstants.m in Sources */,
 				84E9C5A71DB5EC4900F70C79 /* BalanceExtractViewController.m in Sources */,
 				84E9C58C1DB5EC4900F70C79 /* LBB_FightGroupViewController.m in Sources */,
+				1D3024101DC2055F0007F7AF /* LBB_OrderTextCell.m in Sources */,
 				84E9C5AF1DB5EC4900F70C79 /* CardDetailViewController.m in Sources */,
 				1D3023E91DC1DE2E0007F7AF /* LBB_ScenicDetailSubjectContentCell.m in Sources */,
 				1DF6F92A1DBCBF50001903D1 /* LBB_DiscoveryMainTableViewCell.m in Sources */,
@@ -1953,8 +2043,10 @@
 				1D3023E31DC1D2460007F7AF /* LBB_ScenicDetailSubjectViewController.m in Sources */,
 				1DF6F93A1DBCBF50001903D1 /* UIImage+animatedGIF.m in Sources */,
 				1DF6F8861DBCB0D8001903D1 /* UIView+ZJFrame.m in Sources */,
+				1DF9550A1DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.m in Sources */,
 				84E9C5B91DB5EE0E00F70C79 /* CommonFunc.m in Sources */,
 				1DF6F9331DBCBF50001903D1 /* LBBSigninMainViewController.m in Sources */,
+				1D3023F71DC1FE360007F7AF /* LBBPoohVerticalLableControl.m in Sources */,
 				1DF6F8911DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1DF6F9291DBCBF50001903D1 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
 				1DF6F8931DBCB0D8001903D1 /* LBBFriendTableViewCell.m in Sources */,

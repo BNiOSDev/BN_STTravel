@@ -17,6 +17,8 @@
 #import "LBB_ScenicDetailVipFavoriteCell.h"
 #import "LBB_ScenicDetailCommentsCell.h"
 #import "LBB_ScenicDetailTravelRecommendCell.h"
+#import "LBB_OrderWaitPayViewController.h"
+
 
 typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     LBBScenicDetailSectionHeaderType = 0,//header部分
@@ -163,6 +165,12 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right
     b1.imageEdgeInsets = UIEdgeInsetsMake(0, 130, 0, 0);
     b1.titleLabel.font = Font15;
+    [b1 bk_addEventHandler:^(id sender){
+    
+        LBB_OrderWaitPayViewController* dest = [[LBB_OrderWaitPayViewController alloc]init];
+        [ws.navigationController pushViewController:dest animated:YES];
+    } forControlEvents:UIControlEventTouchUpInside];
+    
     
 }
 

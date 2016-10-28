@@ -40,7 +40,7 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #define UISCREEN_HEIGTH [UIScreen mainScreen].bounds.size.height
 
 #define PlaceHolderImage @"poohtest"
-#define SeparateLineWidth 1.5
+#define SeparateLineWidth 1
 
 //屏幕适配
 #define FB_FIX_SIZE_WIDTH(w) (((w) / 320.0) * DeviceWidth)
