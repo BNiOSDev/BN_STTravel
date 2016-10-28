@@ -148,7 +148,6 @@
         [bg addSubview:self.soldierTypeLabel];
         
         self.adultTextField = [[LBB_PoohPlusMinTextField alloc]init];
-        [self.adultTextField setMaxNum:6];
         [bg addSubview:self.adultTextField];
         
         self.childTextField = [[LBB_PoohPlusMinTextField alloc]init];
@@ -159,6 +158,12 @@
         
         self.soldierTextField = [[LBB_PoohPlusMinTextField alloc]init];
         [bg addSubview:self.soldierTextField];
+        
+        [self.adultTextField.textField setUserInteractionEnabled:NO];
+        [self.childTextField.textField setUserInteractionEnabled:NO];
+        [self.studenTextField.textField setUserInteractionEnabled:NO];
+        [self.soldierTextField.textField setUserInteractionEnabled:NO];
+
         
         [self.adultTypeLabel mas_makeConstraints:^(MASConstraintMaker* make){
         
