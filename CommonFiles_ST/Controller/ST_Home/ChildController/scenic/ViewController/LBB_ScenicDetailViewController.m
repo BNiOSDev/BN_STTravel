@@ -18,6 +18,7 @@
 #import "LBB_ScenicDetailCommentsCell.h"
 #import "LBB_ScenicDetailTravelRecommendCell.h"
 #import "LBB_OrderWaitPayViewController.h"
+#import "LBB_ScenicDetailOrderConfirmView.h"
 
 
 typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
@@ -38,6 +39,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 
 @property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, retain) NSArray* sectionArray;
+@property(nonatomic, retain)LBB_ScenicDetailOrderConfirmView* popView;
+
 
 @end
 
@@ -167,8 +170,35 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     b1.titleLabel.font = Font15;
     [b1 bk_addEventHandler:^(id sender){
     
-        LBB_OrderWaitPayViewController* dest = [[LBB_OrderWaitPayViewController alloc]init];
-        [ws.navigationController pushViewController:dest animated:YES];
+        
+        if (!ws.popView) {
+            ws.popView = [[LBB_ScenicDetailOrderConfirmView alloc]init];
+        }
+        [ws.popView showPopView];
+       // [ws.view addSubview:ws.popView];
+        [ws.popView.confirmButton bk_addEventHandler:^(id sender){
+            NSLog(@"ws.popView.confirmButton touch");
+            
+            ws.popView.hidden = YES;
+            [ws.popView resignKeyWindow];
+            ws.popView = nil;
+            LBB_OrderWaitPayViewController* dest = [[LBB_OrderWaitPayViewController alloc]init];
+            [ws.navigationController pushViewController:dest animated:YES];
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        [ws.popView.closeButton bk_addEventHandler:^(id sender){
+            NSLog(@"ws.popView.closeButton touch");
+            
+            ws.popView.hidden = YES;
+          //  [ws.popView resignKeyWindow];
+            ws.popView = nil;
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
+        
+
     } forControlEvents:UIControlEventTouchUpInside];
     
     

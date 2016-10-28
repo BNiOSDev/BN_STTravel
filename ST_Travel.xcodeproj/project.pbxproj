@@ -119,6 +119,8 @@
 		1DF955111DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955101DC2F435004B08C3 /* LBB_OrderTicketConfirmCell.m */; };
 		1DF955141DC2F81C004B08C3 /* LBB_OrderPayWayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955131DC2F81C004B08C3 /* LBB_OrderPayWayCell.m */; };
 		1DF955171DC2F96F004B08C3 /* LBB_OrderPayWayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955161DC2F96F004B08C3 /* LBB_OrderPayWayViewController.m */; };
+		1DF9551A1DC319F9004B08C3 /* LBB_PoohPlusMinTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF955191DC319F9004B08C3 /* LBB_PoohPlusMinTextField.m */; };
+		1DF9551D1DC320D1004B08C3 /* LBB_ScenicDetailOrderConfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF9551C1DC320D1004B08C3 /* LBB_ScenicDetailOrderConfirmView.m */; };
 		841406671DB7583400A1D904 /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406661DB7583400A1D904 /* VerificationViewController.m */; };
 		8414066A1DB75D8000A1D904 /* ExtractDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841406691DB75D8000A1D904 /* ExtractDetailViewController.m */; };
 		84B25B171DB7966E002EDA7F /* ReceiptAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B25B161DB7966E002EDA7F /* ReceiptAddressViewController.m */; };
@@ -430,6 +432,10 @@
 		1DF955131DC2F81C004B08C3 /* LBB_OrderPayWayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderPayWayCell.m; sourceTree = "<group>"; };
 		1DF955151DC2F96F004B08C3 /* LBB_OrderPayWayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderPayWayViewController.h; sourceTree = "<group>"; };
 		1DF955161DC2F96F004B08C3 /* LBB_OrderPayWayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderPayWayViewController.m; sourceTree = "<group>"; };
+		1DF955181DC319F9004B08C3 /* LBB_PoohPlusMinTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohPlusMinTextField.h; sourceTree = "<group>"; };
+		1DF955191DC319F9004B08C3 /* LBB_PoohPlusMinTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohPlusMinTextField.m; sourceTree = "<group>"; };
+		1DF9551B1DC320D1004B08C3 /* LBB_ScenicDetailOrderConfirmView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailOrderConfirmView.h; path = "景点详情/LBB_ScenicDetailOrderConfirmView.h"; sourceTree = "<group>"; };
+		1DF9551C1DC320D1004B08C3 /* LBB_ScenicDetailOrderConfirmView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailOrderConfirmView.m; path = "景点详情/LBB_ScenicDetailOrderConfirmView.m"; sourceTree = "<group>"; };
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
 		841406651DB7583400A1D904 /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
 		841406661DB7583400A1D904 /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
@@ -701,6 +707,8 @@
 				1D3023CE1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m */,
 				1D3023D01DC0A36E0007F7AF /* LBB_ScenicDetailTravelRecommendCell.h */,
 				1D3023D11DC0A36E0007F7AF /* LBB_ScenicDetailTravelRecommendCell.m */,
+				1DF9551B1DC320D1004B08C3 /* LBB_ScenicDetailOrderConfirmView.h */,
+				1DF9551C1DC320D1004B08C3 /* LBB_ScenicDetailOrderConfirmView.m */,
 			);
 			name = "景点详情";
 			sourceTree = "<group>";
@@ -988,6 +996,8 @@
 				1D64E69C1DBF3D850071876A /* LBB_ScenicSearchCollectionReusableView.m */,
 				1D3023F51DC1FE360007F7AF /* LBBPoohVerticalLableControl.h */,
 				1D3023F61DC1FE360007F7AF /* LBBPoohVerticalLableControl.m */,
+				1DF955181DC319F9004B08C3 /* LBB_PoohPlusMinTextField.h */,
+				1DF955191DC319F9004B08C3 /* LBB_PoohPlusMinTextField.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1931,6 +1941,7 @@
 				1DF6F9211DBCBF50001903D1 /* KSViewPagerView.m in Sources */,
 				1DF6F93D1DBCBF50001903D1 /* PoohAppHelper.m in Sources */,
 				1D3024141DC205830007F7AF /* LBB_FoodsMainViewController.m in Sources */,
+				1DF9551D1DC320D1004B08C3 /* LBB_ScenicDetailOrderConfirmView.m in Sources */,
 				1DF6F89A1DBCB0D8001903D1 /* ST_SquareViewController.m in Sources */,
 				1DF6F8841DBCB0D8001903D1 /* LGSegment.m in Sources */,
 				1DF6F8961DBCB0D8001903D1 /* LBBVideoTableViewCell.m in Sources */,
@@ -1982,6 +1993,7 @@
 				1DF6F89E1DBCB0D8001903D1 /* ZJMBaseViewController.m in Sources */,
 				1DF6F8811DBCB0D8001903D1 /* PraiseModel.m in Sources */,
 				1DF6F8881DBCB0D8001903D1 /* ZJCustomLabel.m in Sources */,
+				1DF9551A1DC319F9004B08C3 /* LBB_PoohPlusMinTextField.m in Sources */,
 				1D3023CF1DC0927F0007F7AF /* LBB_ScenicDetailCommentsCell.m in Sources */,
 				1DF6F88C1DBCB0D8001903D1 /* CommentBoxView.m in Sources */,
 				1DF6F9491DBCBF50001903D1 /* ST_TabBarController.m in Sources */,
