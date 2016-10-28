@@ -26,6 +26,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        [self.contentView setBackgroundColor:[UIColor whiteColor]];
         CGFloat margin = 8;
 
         self.bgImageView = [UIImageView new];
@@ -180,6 +181,25 @@
     return self;
 }
 
+-(void)showTopSepLine:(BOOL)show{
+    WS(ws);
+    if (show) {
+        [self.bgImageView mas_remakeConstraints:^(MASConstraintMaker* make){
+            
+            make.top.equalTo(ws.contentView).offset(AutoSize(10));
+            make.left.right.equalTo(ws.contentView);
+            make.height.mas_equalTo(AutoSize(360/2));
+        }];
+    }
+    else{
+        [self.bgImageView mas_remakeConstraints:^(MASConstraintMaker* make){
+            
+            make.top.left.right.equalTo(ws.contentView);
+            make.height.mas_equalTo(AutoSize(360/2));
+        }];
+    }
+    [self.contentView layoutSubviews];
+}
 
 -(void)setModel:(id)model{
     

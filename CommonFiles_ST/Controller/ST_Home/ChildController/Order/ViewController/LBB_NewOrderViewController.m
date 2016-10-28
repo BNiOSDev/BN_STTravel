@@ -39,7 +39,7 @@
 
 
 -(void)loadCustomNavigationButton{
-    self.title = @"评论";
+    self.title = @"确认订单";
 }
 
 -(void)buildControls{

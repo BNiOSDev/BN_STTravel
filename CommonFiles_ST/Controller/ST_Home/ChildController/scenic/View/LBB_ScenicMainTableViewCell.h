@@ -28,4 +28,6 @@
 
 @property(nonatomic, retain)id model;
 
+-(void)showTopSepLine:(BOOL)show;
+
 @end

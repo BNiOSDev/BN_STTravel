@@ -11,11 +11,13 @@
 #import "LBB_ScenicSearchViewController.h"
 #import "LBB_ScenicDetailViewController.h"
 #import "LBB_ScenicDetailSubjectViewController.h"
-
+#import "LBBPoohCycleScrollCell.h"
+#import "LBB_FoodsMainMenuCell.h"
 @interface LBB_FoodsMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, retain) UISearchBar *searchBar;
+
 
 @end
 
@@ -81,41 +83,22 @@
     WS(ws);
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    NSArray* segmentArray = @[@"附近",@"类别",@"智能排序",@"标签"];
     
-    
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
-    segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
-                                             NSForegroundColorAttributeName:ColorLightGray};
-    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
-                                                     NSForegroundColorAttributeName:ColorBtnYellow};
-    segmentedControl.selectionIndicatorColor = [UIColor clearColor];
-    segmentedControl.verticalDividerWidth = SeparateLineWidth;
-    segmentedControl.verticalDividerColor = ColorLightGray;
-    segmentedControl.layer.borderWidth = 1;
-    segmentedControl.layer.borderColor = ColorLine.CGColor;
-    
-    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    [self.view addSubview:segmentedControl];
-    [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.width.equalTo(ws.view);
-        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
-        make.top.equalTo(ws.view);
-    }];
-    segmentedControl.indexChangeBlock = ^(NSInteger index){
-        NSLog(@"segmentedControl select:%ld",index);
-    };
-    
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.tableView registerClass:[LBB_ScenicMainTableViewCell class] forCellReuseIdentifier:@"LBB_ScenicMainTableViewCell"];
+    [self.tableView registerClass:[LBB_FoodsMainMenuCell class] forCellReuseIdentifier:@"LBB_FoodsMainMenuCell"];
+    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
+
+    
+    
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(segmentedControl.mas_bottom);
+        make.top.equalTo(ws.view);
         make.width.centerX.equalTo(ws.view);
         make.bottom.equalTo(ws.view);
     }];
@@ -136,32 +119,86 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return AutoSize(10);
+    if (section == 1) {
+        return AutoSize(TopSegmmentControlHeight);
+    }
+    return 0;
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
+    if (section == 0) {
+        return [UIView new];
+    }
+    
     UIView* v = [UIView new];
+    [v setBackgroundColor:[UIColor whiteColor]];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
-    [v setBackgroundColor:[UIColor whiteColor]];
-    return v;
     
+    NSArray* segmentArray = @[@"附近",@"类别",@"智能排序",@"标签"];
+    
+    
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
+    segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+                                             NSForegroundColorAttributeName:ColorLightGray};
+    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
+                                                     NSForegroundColorAttributeName:ColorBtnYellow};
+    segmentedControl.selectionIndicatorColor = [UIColor clearColor];
+    segmentedControl.verticalDividerWidth = SeparateLineWidth;
+    segmentedControl.verticalDividerColor = ColorLightGray;
+    segmentedControl.layer.borderWidth = 1;
+    segmentedControl.layer.borderColor = ColorLine.CGColor;
+    
+    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    [v addSubview:segmentedControl];
+    [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.top.bottom.width.equalTo(v);
+        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
+    }];
+    segmentedControl.indexChangeBlock = ^(NSInteger index){
+        NSLog(@"segmentedControl select:%ld",index);
+    };
+    
+    return v;
+
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
+    if (section == 0) {
+        return 2;
+    }
+    return 10;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row == 0) {
+            return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell *cell) {
+                
+                [cell setCycleScrollViewHeight:AutoSize(470/2)];
+                [cell setCycleScrollViewUrls:nil];
+            }];
+        }
+        else{
+            return [tableView fd_heightForCellWithIdentifier:@"LBB_FoodsMainMenuCell" cacheByIndexPath:indexPath configuration:^(LBB_FoodsMainMenuCell *cell) {
+                
+            }];
+        }
+        
+    }
+    
 
     return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicMainTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicMainTableViewCell *cell) {
         
+        [cell showTopSepLine:YES];
         [cell setModel:nil];
     }];
     
@@ -170,6 +207,36 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     WS(ws);
+    
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row == 0) {
+            static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
+            LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+                
+                NSLog(@"LBBPoohCycleScrollCell nil");
+            }
+            [cell setCycleScrollViewHeight:AutoSize(470/2)];
+            [cell setCycleScrollViewUrls:nil];
+            return cell;
+        }
+        else{
+            static NSString *cellIdentifier = @"LBB_FoodsMainMenuCell";
+            LBB_FoodsMainMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            if (cell == nil) {
+                cell = [[LBB_FoodsMainMenuCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+                
+                NSLog(@"LBB_FoodsMainMenuCell nil");
+            }
+
+            return cell;
+        }
+        
+    }
+    
+    
     static NSString *cellIdentifier = @"LBB_ScenicMainTableViewCell";
     LBB_ScenicMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
@@ -177,6 +244,7 @@
         
         NSLog(@"LBB_ScenicMainTableViewCell nil");
     }
+    [cell showTopSepLine:YES];
     [cell setModel:nil];
     return cell;
     
