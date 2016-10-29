@@ -26,6 +26,7 @@
         }];
         
         self.iconImageView = [UIImageView new];
+        [self.iconImageView setContentMode:UIViewContentModeCenter];
         [v addSubview:self.iconImageView];
         [self.iconImageView mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.left.equalTo(v);
@@ -34,7 +35,7 @@
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setTextColor:ColorGray];
-        [self.titleLabel setFont:Font15];
+        [self.titleLabel setFont:Font13];
         [v addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.right.equalTo(v);

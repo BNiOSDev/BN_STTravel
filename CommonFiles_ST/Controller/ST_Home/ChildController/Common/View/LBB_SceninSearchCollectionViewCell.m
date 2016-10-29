@@ -16,6 +16,7 @@
     WS(ws);
     if (self) {
         
+        [self.contentView setBackgroundColor:[UIColor whiteColor]];
         self.textLabel = [UILabel new];
         [self.textLabel setTextAlignment:NSTextAlignmentCenter];
         [self.textLabel setFont:Font13];
