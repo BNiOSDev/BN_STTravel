@@ -30,7 +30,7 @@
         [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
-            make.top.equalTo(ws);
+            make.top.equalTo(ws).offset(3);
             make.left.right.equalTo(ws);
         }];
 
@@ -43,7 +43,8 @@
         [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.top.equalTo(ws.titleLabel.mas_bottom);
-            make.bottom.equalTo(ws);
+            make.bottom.equalTo(ws).offset(-3);
+            make.height.equalTo(ws.titleLabel);
             make.left.right.equalTo(ws);
         }];
         

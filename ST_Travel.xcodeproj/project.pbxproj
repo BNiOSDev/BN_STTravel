@@ -36,6 +36,7 @@
 		1D64E6B31DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6B21DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m */; };
 		1D64E6B61DC082610071876A /* LBB_ScenicDetailBookStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6B51DC082610071876A /* LBB_ScenicDetailBookStatusCell.m */; };
 		1D9A18291DC444330019350D /* LBB_NewOrderPlayTimeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9A18281DC444330019350D /* LBB_NewOrderPlayTimeSelectView.m */; };
+		1D9A182C1DC482290019350D /* LBB_NewOrderTicketTypeInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9A182B1DC482290019350D /* LBB_NewOrderTicketTypeInfoView.m */; };
 		1DDCBD2E1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DDCBD2C1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
@@ -269,6 +270,8 @@
 		1D64E6B51DC082610071876A /* LBB_ScenicDetailBookStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailBookStatusCell.m; path = "景点详情/LBB_ScenicDetailBookStatusCell.m"; sourceTree = "<group>"; };
 		1D9A18271DC444330019350D /* LBB_NewOrderPlayTimeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_NewOrderPlayTimeSelectView.h; path = "确认订单/LBB_NewOrderPlayTimeSelectView.h"; sourceTree = "<group>"; };
 		1D9A18281DC444330019350D /* LBB_NewOrderPlayTimeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_NewOrderPlayTimeSelectView.m; path = "确认订单/LBB_NewOrderPlayTimeSelectView.m"; sourceTree = "<group>"; };
+		1D9A182A1DC482290019350D /* LBB_NewOrderTicketTypeInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_NewOrderTicketTypeInfoView.h; path = "确认订单/LBB_NewOrderTicketTypeInfoView.h"; sourceTree = "<group>"; };
+		1D9A182B1DC482290019350D /* LBB_NewOrderTicketTypeInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_NewOrderTicketTypeInfoView.m; path = "确认订单/LBB_NewOrderTicketTypeInfoView.m"; sourceTree = "<group>"; };
 		1DDCBD2C1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_FoodsMainMenuCell.m; path = Foods/View/LBB_FoodsMainMenuCell.m; sourceTree = "<group>"; };
 		1DDCBD2D1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_FoodsMainMenuCell.h; path = Foods/View/LBB_FoodsMainMenuCell.h; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
@@ -726,6 +729,8 @@
 			children = (
 				1D9A18271DC444330019350D /* LBB_NewOrderPlayTimeSelectView.h */,
 				1D9A18281DC444330019350D /* LBB_NewOrderPlayTimeSelectView.m */,
+				1D9A182A1DC482290019350D /* LBB_NewOrderTicketTypeInfoView.h */,
+				1D9A182B1DC482290019350D /* LBB_NewOrderTicketTypeInfoView.m */,
 			);
 			name = "确认订单";
 			sourceTree = "<group>";
@@ -2077,6 +2082,7 @@
 				1DF6F8831DBCB0D8001903D1 /* ZJMTravelModel.m in Sources */,
 				1DF6F8821DBCB0D8001903D1 /* ZJMHostModel.m in Sources */,
 				84E9C5921DB5EC4900F70C79 /* MineViewController.m in Sources */,
+				1D9A182C1DC482290019350D /* LBB_NewOrderTicketTypeInfoView.m in Sources */,
 				1D64E69A1DBF39FE0071876A /* LBB_SceninSearchCollectionViewCell.m in Sources */,
 				1DF6F93E1DBCBF50001903D1 /* IConstants.m in Sources */,
 				84E9C5A71DB5EC4900F70C79 /* BalanceExtractViewController.m in Sources */,

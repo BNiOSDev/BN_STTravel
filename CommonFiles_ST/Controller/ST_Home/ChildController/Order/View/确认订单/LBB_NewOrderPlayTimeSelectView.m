@@ -25,6 +25,7 @@
     if (self = [super init]) {
         
         UIView* sep = [UIView new];
+        [sep setBackgroundColor:ColorLine];
         [self addSubview:sep];
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.top.equalTo(ws);
@@ -34,15 +35,14 @@
         CGFloat margin = 8;
         
         self.titleLabel = [UILabel new];
-        [self.titleLabel setBackgroundColor:[UIColor getRandomColor]];
-        [self.titleLabel setFont:Font13];
+        [self.titleLabel setFont:Font15];
         [self.titleLabel setTextColor:ColorGray];
         [self.titleLabel setText:@"游玩时间"];
         [self addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws).offset(2*margin);
             make.centerY.equalTo(ws);
-            make.width.mas_equalTo(AutoSize(100/2));
+            make.width.mas_equalTo(AutoSize(120/2));
         }];
         [self.titleLabel sizeToFit];
         
@@ -97,6 +97,7 @@
         }];
         
         UIView* sep1 = [UIView new];
+        [sep1 setBackgroundColor:ColorLine];
         [self addSubview:sep1];
         [sep1 mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.bottom.equalTo(ws);
