@@ -25,7 +25,7 @@
     if (self = [super init]) {
         
         self.titleLabel = [UILabel new];
-        [self.titleLabel setFont:Font10];
+        [self.titleLabel setFont:Font13];
         [self.titleLabel setTextColor:[UIColor blackColor]];
         [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.titleLabel];
@@ -36,7 +36,7 @@
 
 
         self.subTitleLabel = [UILabel new];
-        [self.subTitleLabel setFont:Font10];
+        [self.subTitleLabel setFont:Font13];
         [self.subTitleLabel setTextColor:[UIColor blackColor]];
         [self.subTitleLabel setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.subTitleLabel];
@@ -46,6 +46,12 @@
             make.bottom.equalTo(ws);
             make.left.right.equalTo(ws);
         }];
+        
+        
+        self.layer.borderColor = ColorLine.CGColor;
+        self.layer.borderWidth = SeparateLineWidth;
+        self.layer.cornerRadius = 3;
+        self.layer.masksToBounds = YES;
     }
     return self;
 }

@@ -10,4 +10,6 @@
 
 @interface LBB_NewOrderViewController : Base_BaseViewController
 
+@property(nonatomic, assign)BOOL isIntegral;//是否有积分的状态位
+
 @end

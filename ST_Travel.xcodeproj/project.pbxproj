@@ -35,7 +35,7 @@
 		1D64E6B01DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6AF1DC058CA0071876A /* LBB_ScenicDetailVipMPaiCell.m */; };
 		1D64E6B31DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6B21DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m */; };
 		1D64E6B61DC082610071876A /* LBB_ScenicDetailBookStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D64E6B51DC082610071876A /* LBB_ScenicDetailBookStatusCell.m */; };
-		1DDCBD2B1DC351EF007CA9C5 /* LBB_FoodsMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DDCBD2A1DC351EF007CA9C5 /* LBB_FoodsMainHeaderView.m */; };
+		1D9A18291DC444330019350D /* LBB_NewOrderPlayTimeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9A18281DC444330019350D /* LBB_NewOrderPlayTimeSelectView.m */; };
 		1DDCBD2E1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DDCBD2C1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.m */; };
 		1DF6F87D1DBCB0D8001903D1 /* LBBFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82A1DBCB0D8001903D1 /* LBBFriendViewController.m */; };
 		1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF6F82C1DBCB0D8001903D1 /* LBBHostDetailViewController.m */; };
@@ -267,8 +267,8 @@
 		1D64E6B21DC07A5E0071876A /* LBB_ScenicDetailEquipmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailEquipmentCell.m; path = "景点详情/LBB_ScenicDetailEquipmentCell.m"; sourceTree = "<group>"; };
 		1D64E6B41DC082610071876A /* LBB_ScenicDetailBookStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_ScenicDetailBookStatusCell.h; path = "景点详情/LBB_ScenicDetailBookStatusCell.h"; sourceTree = "<group>"; };
 		1D64E6B51DC082610071876A /* LBB_ScenicDetailBookStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_ScenicDetailBookStatusCell.m; path = "景点详情/LBB_ScenicDetailBookStatusCell.m"; sourceTree = "<group>"; };
-		1DDCBD291DC351EF007CA9C5 /* LBB_FoodsMainHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_FoodsMainHeaderView.h; path = Foods/View/LBB_FoodsMainHeaderView.h; sourceTree = "<group>"; };
-		1DDCBD2A1DC351EF007CA9C5 /* LBB_FoodsMainHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_FoodsMainHeaderView.m; path = Foods/View/LBB_FoodsMainHeaderView.m; sourceTree = "<group>"; };
+		1D9A18271DC444330019350D /* LBB_NewOrderPlayTimeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_NewOrderPlayTimeSelectView.h; path = "确认订单/LBB_NewOrderPlayTimeSelectView.h"; sourceTree = "<group>"; };
+		1D9A18281DC444330019350D /* LBB_NewOrderPlayTimeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_NewOrderPlayTimeSelectView.m; path = "确认订单/LBB_NewOrderPlayTimeSelectView.m"; sourceTree = "<group>"; };
 		1DDCBD2C1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_FoodsMainMenuCell.m; path = Foods/View/LBB_FoodsMainMenuCell.m; sourceTree = "<group>"; };
 		1DDCBD2D1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_FoodsMainMenuCell.h; path = Foods/View/LBB_FoodsMainMenuCell.h; sourceTree = "<group>"; };
 		1DF6F8291DBCB0D8001903D1 /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
@@ -654,6 +654,7 @@
 		1D30240B1DC2055F0007F7AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D9A18261DC443FB0019350D /* 确认订单 */,
 				1D30240C1DC2055F0007F7AF /* LBB_OrderTextCell.h */,
 				1D30240D1DC2055F0007F7AF /* LBB_OrderTextCell.m */,
 				1DF955051DC2E557004B08C3 /* LBB_OrderTicketCell.h */,
@@ -720,13 +721,20 @@
 			name = "景点详情";
 			sourceTree = "<group>";
 		};
+		1D9A18261DC443FB0019350D /* 确认订单 */ = {
+			isa = PBXGroup;
+			children = (
+				1D9A18271DC444330019350D /* LBB_NewOrderPlayTimeSelectView.h */,
+				1D9A18281DC444330019350D /* LBB_NewOrderPlayTimeSelectView.m */,
+			);
+			name = "确认订单";
+			sourceTree = "<group>";
+		};
 		1DDCBD281DC351C7007CA9C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				1DDCBD2C1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.m */,
 				1DDCBD2D1DC3563D007CA9C5 /* LBB_FoodsMainMenuCell.h */,
-				1DDCBD291DC351EF007CA9C5 /* LBB_FoodsMainHeaderView.h */,
-				1DDCBD2A1DC351EF007CA9C5 /* LBB_FoodsMainHeaderView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2050,6 +2058,7 @@
 				1DF6F92E1DBCBF50001903D1 /* LBBNearbyMainViewController.m in Sources */,
 				1DF6F91C1DBCBF50001903D1 /* PoohBaseViewController.m in Sources */,
 				1DF6F87E1DBCB0D8001903D1 /* LBBHostDetailViewController.m in Sources */,
+				1D9A18291DC444330019350D /* LBB_NewOrderPlayTimeSelectView.m in Sources */,
 				1D64E6A01DBF53430071876A /* LBB_ScenicDetailViewController.m in Sources */,
 				84E9C5931DB5EC4900F70C79 /* PersonalInfoCell.m in Sources */,
 				1DF6F9401DBCBF50001903D1 /* LBBHomeAnnouncementTableViewCell.m in Sources */,
@@ -2089,7 +2098,6 @@
 				1DF9550A1DC2EB1A004B08C3 /* LBB_OrderTicketPriceCell.m in Sources */,
 				84E9C5B91DB5EE0E00F70C79 /* CommonFunc.m in Sources */,
 				1DF6F9331DBCBF50001903D1 /* LBBSigninMainViewController.m in Sources */,
-				1DDCBD2B1DC351EF007CA9C5 /* LBB_FoodsMainHeaderView.m in Sources */,
 				1D3023F71DC1FE360007F7AF /* LBBPoohVerticalLableControl.m in Sources */,
 				1DF6F8911DBCB0D8001903D1 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1DF6F9291DBCBF50001903D1 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,

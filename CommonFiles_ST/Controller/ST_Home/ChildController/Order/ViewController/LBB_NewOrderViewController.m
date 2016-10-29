@@ -7,11 +7,13 @@
 //
 
 #import "LBB_NewOrderViewController.h"
-#import "UITextField+TPCategory.h"
-#import "LBBPoohVerticalLableControl.h"
+#import "LBB_NewOrderPlayTimeSelectView.h"
+
 @interface LBB_NewOrderViewController ()
 
 @property (nonatomic, retain) UIScrollView *mainScrollView;
+
+@property (nonatomic, retain)LBB_NewOrderPlayTimeSelectView* playTimeView;
 
 @end
 
@@ -54,18 +56,18 @@
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.view);
-        //make.bottom.equalTo(ws.view);
+        make.bottom.equalTo(ws.view);
         make.width.centerX.equalTo(ws.view);
     }];
     
     CGFloat margin = 8;
     
-    //config star view
-    UIView* v1 = [UIView new];
-    [self.mainScrollView addSubview:v1];
-    [v1 mas_makeConstraints:^(MASConstraintMaker* make){
-        make.centerX.width.equalTo(ws.mainScrollView);
-        make.top.equalTo(ws.mainScrollView).offset(2*margin);
+    self.playTimeView = [[LBB_NewOrderPlayTimeSelectView alloc]init];
+    [self.view addSubview:self.playTimeView];
+    [self.playTimeView mas_makeConstraints:^(MASConstraintMaker* make){
+    
+        make.centerX.top.width.equalTo(ws.mainScrollView);
+        make.height.mas_equalTo(AutoSize(138/2));
     }];
     
 

@@ -19,6 +19,7 @@
 #import "LBB_ScenicDetailTravelRecommendCell.h"
 #import "LBB_OrderWaitPayViewController.h"
 #import "LBB_ScenicDetailOrderConfirmView.h"
+#import "LBB_NewOrderViewController.h"
 
 
 typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
@@ -182,7 +183,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             ws.popView.hidden = YES;
             [ws.popView resignKeyWindow];
             ws.popView = nil;
-            LBB_OrderWaitPayViewController* dest = [[LBB_OrderWaitPayViewController alloc]init];
+            LBB_NewOrderViewController* dest = [[LBB_NewOrderViewController alloc]init];
             [ws.navigationController pushViewController:dest animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LBBPoohVerticalLableControl : UITextField
+@interface LBBPoohVerticalLableControl : UIControl
 
 @property(nonatomic,retain) UILabel* titleLabel;
 @property(nonatomic,retain) UILabel* subTitleLabel;
