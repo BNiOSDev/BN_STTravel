@@ -356,6 +356,7 @@
 		1DF6F94A1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryMainModel.m; sourceTree = "<group>"; };
 		1DF6F94B1DBCC3BF001903D1 /* LBB_DiscoveryMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryMainModel.h; sourceTree = "<group>"; };
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
+		8400137D1DC62AC000BD6297 /* Mine_Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mine_Common.h; sourceTree = "<group>"; };
 		8402FB751DC5F1CC0064E0FC /* LBB_NoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NoticeViewController.h; sourceTree = "<group>"; };
 		8402FB761DC5F1CC0064E0FC /* LBB_NoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NoticeViewController.m; sourceTree = "<group>"; };
 		8402FB781DC5F3450064E0FC /* LBB_SquareTravelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareTravelViewController.h; sourceTree = "<group>"; };
@@ -1388,6 +1389,7 @@
 			children = (
 				8430112E1DBF861200F5316A /* MineBaseViewController.h */,
 				8430112F1DBF861200F5316A /* MineBaseViewController.m */,
+				8400137D1DC62AC000BD6297 /* Mine_Common.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";

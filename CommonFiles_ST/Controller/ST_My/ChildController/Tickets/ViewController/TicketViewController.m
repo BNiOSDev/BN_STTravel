@@ -56,6 +56,27 @@ TicketViewCellDelegate>
     
     [self.view addSubview:segmentedControl];
     [self.view bringSubviewToFront:self.lineView];
+    
+    switch (self.baseViewType) {
+        case eTickets://查看全部-门票
+            [segmentedControl setSelectedSegmentIndex:0];
+            break;
+        case eTicket_WaitPay: //我的门票_待付款
+            [segmentedControl setSelectedSegmentIndex:1];
+             break;
+        case eTicket_WaitGetTicket: //我的门票_待取票
+            [segmentedControl setSelectedSegmentIndex:3];
+             break;
+        case eTicket_WaitComment: //我的门票_待评价
+            [segmentedControl setSelectedSegmentIndex:4];
+             break;
+        case eTicket_Refund: //我的门票_退款;
+            [segmentedControl setSelectedSegmentIndex:5];
+             break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,32 +90,32 @@ TicketViewCellDelegate>
     UINib *nib = [UINib nibWithNibName:@"TicketViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"TicketViewCell"];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [self initDataSourceWithType:eAllTicket];
+    [self initDataSourceWithType:eTickets];
 }
 
-- (void)initDataSourceWithType:(TicketStateType)stateType
+- (void)initDataSourceWithType:(NSInteger)stateType
 {
-    if (stateType == eAllTicket) {
+    if (stateType == eTickets) {
         self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                                                        @{@"TicketNum": NSLocalizedString(@"123456",nil),
                                                                          @"GoogNum":@"共1件商品",
                                                                          @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInt:eWaitPay],
+                                                                         @"TicketState":[NSNumber numberWithInt:eTicket_WaitPay],
                                                                          @"GoodList" : [self goodList:1]},
                                                                        @{@"TicketNum": NSLocalizedString(@"123456",nil),
                                                                          @"GoogNum":@"共3件商品",
                                                                          @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInt:eWaitGetTicket],
+                                                                         @"TicketState":[NSNumber numberWithInt:eTicket_WaitGetTicket],
                                                                          @"GoodList" : [self goodList:2]},
                                                                        @{@"TicketNum": NSLocalizedString(@"123456",nil),
                                                                          @"GoogNum":@"共6件商品",
                                                                          @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInt:eWaitComment],
+                                                                         @"TicketState":[NSNumber numberWithInt:eTicket_WaitComment],
                                                                          @"GoodList" : [self goodList:3]},
                                                                        @{@"TicketNum": NSLocalizedString(@"123456",nil),
                                                                          @"GoogNum":@"共3件商品",
                                                                          @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInt:eRefund],
+                                                                         @"TicketState":[NSNumber numberWithInt:eTicket_Refund],
                                                                          @"GoodList" : [self goodList:2]}
                                                                        ]];
     }else {
@@ -231,14 +252,14 @@ TicketViewCellDelegate>
 
 #pragma mark - cell delegate
 - (void)cellBtnClickDelegate:(NSDictionary*)cellInfo
-                   StateType:(TicketStateType)type
+                   StateType:(MineBaseViewType)type
              TicketClickType:(TicketClickType)clickType
 {
     NSLog(@"type = %d,clickType = %d",type,clickType);
 }
 
 - (void)ticketDetailDelegate:(NSDictionary*)cellInfo
-                   StateType:(TicketStateType)type
+                   StateType:(MineBaseViewType)type
              TicketClickType:(TicketClickType)clickType
 {
     NSLog(@"type = %d,clickType = %d",type,clickType);
@@ -248,7 +269,27 @@ TicketViewCellDelegate>
 - (void)segmentedControlChangedValue:(HMSegmentedControl*)segmentControll
 {
     NSInteger selectIndex = segmentControll.selectedSegmentIndex;
-    [self initDataSourceWithType:selectIndex];
+    switch (self.baseViewType) {
+        case 0://查看全部-门票
+           [self initDataSourceWithType:eTickets];
+            break;
+        case 1: //我的门票_待付款
+            [self initDataSourceWithType:eTicket_WaitPay];
+            break;
+        case 2: //我的门票_待取票
+            [self initDataSourceWithType:eTicket_WaitGetTicket];
+            break;
+        case 3: //我的门票_待评价
+            [self initDataSourceWithType:eTicket_WaitComment];
+            break;
+        case 4: //我的门票_退款;
+            [self initDataSourceWithType:eTicket_Refund];
+            break;
+            
+        default:
+            break;
+    }
+    
     [self.tableView reloadData];
 }
 

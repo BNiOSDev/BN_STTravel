@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,8 +26,8 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fJ9-oD-Ped">
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="NKS-19-Tau"/>
-                            <constraint firstAttribute="width" constant="40" id="dgn-Jp-zSK"/>
+                            <constraint firstAttribute="height" constant="50" id="NKS-19-Tau"/>
+                            <constraint firstAttribute="width" constant="50" id="dgn-Jp-zSK"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhG-AO-5Md">
@@ -38,11 +39,12 @@
                 <constraints>
                     <constraint firstItem="nIh-So-lSy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="3Kk-Us-2UB"/>
                     <constraint firstItem="p4e-K0-Fmz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Dph-YX-l9r"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YhG-AO-5Md" secondAttribute="bottom" constant="27" id="G98-Ut-1dz"/>
                     <constraint firstItem="nIh-So-lSy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Gfw-ya-m64"/>
                     <constraint firstAttribute="bottom" secondItem="nIh-So-lSy" secondAttribute="bottom" id="IoN-yM-3cd"/>
                     <constraint firstAttribute="trailing" secondItem="p4e-K0-Fmz" secondAttribute="trailing" constant="8" id="J8M-ih-CWk"/>
                     <constraint firstItem="p4e-K0-Fmz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="MYN-Ym-dxJ"/>
-                    <constraint firstItem="fJ9-oD-Ped" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="8" id="QXJ-pa-ypO"/>
+                    <constraint firstItem="fJ9-oD-Ped" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="10" id="QXJ-pa-ypO"/>
                     <constraint firstAttribute="trailing" secondItem="nIh-So-lSy" secondAttribute="trailing" id="c5o-Cz-4xl"/>
                     <constraint firstItem="YhG-AO-5Md" firstAttribute="trailing" secondItem="p4e-K0-Fmz" secondAttribute="trailing" id="eJZ-C1-FVw"/>
                     <constraint firstItem="YhG-AO-5Md" firstAttribute="centerY" secondItem="fJ9-oD-Ped" secondAttribute="centerY" id="r2K-Yg-AmP"/>

@@ -106,11 +106,11 @@ UITableViewDelegate
 - (void)segmentedControlChangedValue:(HMSegmentedControl*)segmentControll
 {
     NSInteger selectIndex = segmentControll.selectedSegmentIndex;
-    if (selectIndex == 1) {
-        self.tableView.hidden = YES;//门票通知
-    }else {
-        self.tableView.hidden = NO; //商城通知
-    }
+//    if (selectIndex == 1) {
+//        self.tableView.hidden = YES;//门票通知
+//    }else {
+//        self.tableView.hidden = NO; //商城通知
+//    }
 }
 
 
@@ -131,15 +131,18 @@ UITableViewDelegate
     return 30.f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   CGFloat height = 106.f;
-   NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
-    NSString *contentStr =  [cellDict objectForKey:@"Content"];
-    CGSize conentSize = sizeOfString(contentStr, CGSizeMake(DeviceWidth - 70 - 60, 9999), Font15);
-    if (conentSize.height > 40.f) {
-        height += conentSize.height - 40.f;
-    }
+    CGFloat height = [tableView fd_heightForCellWithIdentifier:@"LBB_SquareNotificationViewCell"
+                                                 configuration:^(LBB_SquareNotificationViewCell *cell) {
+                                                     NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
+                                                     [self configCell:cell Model:cellDict];
+                                                 }];
     return height;
     
 }

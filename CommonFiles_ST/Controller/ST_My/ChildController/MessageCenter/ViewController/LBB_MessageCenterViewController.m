@@ -28,6 +28,7 @@ UITableViewDataSource
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.baseViewType = eMessageCenter;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -172,27 +173,27 @@ UITableViewDataSource
     switch (infoType) {
         case ePromotions://优惠促销
         {
-            [self performSegueWithIdentifier:@"LBB_PromotionsViewController" sender:nil];
+            [self performSegueWithIdentifier:@"LBB_PromotionsViewController" sender:[NSNumber numberWithInt:ePromotions]];
         }
             break;
         case eCustomer://我的客服
         {
-            [self performSegueWithIdentifier:@"LBB_CustomerViewController" sender:nil];
+            [self performSegueWithIdentifier:@"LBB_CustomerViewController" sender:[NSNumber numberWithInt:eCustomer]];
         }
             break;
         case ePurchageNotifion://购买通知
         {
-            [self performSegueWithIdentifier:@"LBB_PurchaseNotificationViewController" sender:nil];
+            [self performSegueWithIdentifier:@"LBB_PurchaseNotificationViewController" sender:[NSNumber numberWithInt:ePurchageNotifion]];
         }
             break;
         case eNotice://鹭爸公告
         {
-            [self performSegueWithIdentifier:@"LBB_NoticeViewController" sender:nil];
+            [self performSegueWithIdentifier:@"LBB_NoticeViewController" sender:[NSNumber numberWithInt:eNotice]];
         }
             break;
         case eSquareTravel://广场游记
         {
-            [self performSegueWithIdentifier:@"LBB_SquareTravelViewController" sender:nil];
+//            [self performSegueWithIdentifier:@"LBB_SquareTravelViewController" sender:nil];
         }
             break;
         default:
@@ -203,6 +204,12 @@ UITableViewDataSource
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     UIViewController *dstVC = segue.destinationViewController;;
+    if ([dstVC isKindOfClass:NSClassFromString(@"MineBaseViewController")]) {
+        if (sender && [sender isKindOfClass:[NSNumber class]]) {
+            MineBaseViewController *baseVC = (MineBaseViewController*)dstVC;
+            baseVC.baseViewType = [(NSNumber*)sender intValue];
+        }
+    }
     if ([dstVC isKindOfClass:NSClassFromString(@"LBB_PromotionsViewController")]) { //优惠促销
         
     }else if([dstVC isKindOfClass:NSClassFromString(@"LBB_CustomerViewController")]) {//我的客服

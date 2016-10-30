@@ -127,7 +127,11 @@
             self.navigationItem.title = NSLocalizedString(@"积分明细", nil);
         }
             break;
-        case eTickets://我的门票
+        case eTickets://查看全部-门票
+        case eTicket_WaitPay: //我的门票_待付款
+        case eTicket_WaitGetTicket: //我的门票_待取票
+        case eTicket_WaitComment: //我的门票_待评价
+        case eTicket_Refund: //我的门票_退款
         {
             self.navigationItem.title = NSLocalizedString(@"我的门票", nil);
         }
@@ -170,6 +174,36 @@
         case eSettingPrivace: //隐私
         {
             self.navigationItem.title = NSLocalizedString(@"隐私", nil);
+        }
+            break;
+        case eMessageCenter://消息中心
+        {
+            self.navigationItem.title = NSLocalizedString(@"消息中心", nil);
+        }
+            break;
+        case ePromotions://消息中心- 优惠促销
+        {
+            self.navigationItem.title = NSLocalizedString(@"优惠促销", nil);
+        }
+            break;
+        case eCustomer://消息中心-我的客服
+        {
+            self.navigationItem.title = NSLocalizedString(@"我的客服", nil);
+        }
+            break;
+        case ePurchageNotifion://消息中心-购买通知
+        {
+            self.navigationItem.title = NSLocalizedString(@"购买通知", nil);
+        }
+            break;
+        case eNotice://消息中心-鹭爸公告
+        {
+            self.navigationItem.title = NSLocalizedString(@"鹭爸公告", nil);
+        }
+            break;
+        case eSquareTravel://消息中心-广场游记
+        {
+            self.navigationItem.title = NSLocalizedString(@"广场游记", nil);
         }
             break;
 

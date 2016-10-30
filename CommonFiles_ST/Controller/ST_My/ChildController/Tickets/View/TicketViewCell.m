@@ -9,12 +9,13 @@
 #import "TicketViewCell.h"
 #import "TicketDetailViewCell.h"
 
+
 @interface TicketViewCell()<
 UITableViewDelegate,
 UITableViewDataSource
 >
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
-@property (assign,nonatomic) TicketStateType stateType;
+@property (assign,nonatomic) MineBaseViewType stateType;
 @property (assign,nonatomic) TicketClickType clickType;
 @end
 
@@ -47,7 +48,7 @@ UITableViewDataSource
     self.goodMoneyLabel.text = [cellInfo objectForKey:@"TotalMonney"];
     self.stateType = [[cellInfo objectForKey:@"TicketState"] intValue];
     switch (self.stateType) {
-        case eWaitPay://待付款
+        case eTicket_WaitPay://待付款
         {
             self.rightBtn.hidden = NO;
             self.leftBtn.hidden = NO;
@@ -56,7 +57,7 @@ UITableViewDataSource
             [self.leftBtn setTitle:@"取消订单" forState:UIControlStateNormal];
         }
             break;
-        case eWaitGetTicket://待取票
+        case eTicket_WaitGetTicket://待取票
         {
             self.rightBtn.hidden = NO;
             self.leftBtn.hidden = YES;
@@ -64,7 +65,7 @@ UITableViewDataSource
             [self.rightBtn setTitle:@"立即取票" forState:UIControlStateNormal];
         }
             break;
-        case eWaitComment://待评价
+        case eTicket_WaitComment://待评价
         {
             self.rightBtn.hidden = NO;
             self.leftBtn.hidden = YES;
@@ -72,7 +73,7 @@ UITableViewDataSource
             [self.rightBtn setTitle:@"立即评价" forState:UIControlStateNormal];
         }
             break;
-        case eRefund://退款
+        case eTicket_Refund://退款
         {
             self.rightBtn.hidden = NO;
             self.leftBtn.hidden = YES;
@@ -195,7 +196,7 @@ CGFloat ticketDetailCellHeight(NSString *nameStr ,NSString *typeStr)
 {
     if (isLeft) {
         switch (self.stateType) {
-            case eWaitPay:
+            case eTicket_WaitPay:
             {
                 _clickType = eCancelTicket;
             }
@@ -206,22 +207,22 @@ CGFloat ticketDetailCellHeight(NSString *nameStr ,NSString *typeStr)
         }
     }else {
         switch (self.stateType) {
-            case eWaitPay:
+            case eTicket_WaitPay:
             {
                 _clickType = eTicketPay;
             }
                 break;
-            case eWaitGetTicket:
+            case eTicket_WaitGetTicket:
             {
                 _clickType = eGetTicket;
             }
                 break;
-            case eWaitComment:
+            case eTicket_WaitComment:
             {
                 _clickType = eComment;
             }
                 break;
-            case eRefund:
+            case eTicket_Refund:
             {
                 _clickType = eShowDetail;
             }

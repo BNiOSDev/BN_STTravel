@@ -53,6 +53,7 @@
                         <segue destination="j9u-XI-COd" kind="show" identifier="LBB_FightGroupViewController" id="NZO-Gs-kow"/>
                         <segue destination="cv0-MY-3cP" kind="show" identifier="LBB_FavoriteViewController" id="BZi-JJ-bvk"/>
                         <segue destination="fUu-hY-90Z" kind="show" identifier="LBB_MessageCenterViewController" id="szf-Ci-W9I"/>
+                        <segue destination="6Xo-tb-Lup" kind="show" identifier="PointsViewController" id="pbo-6F-M1S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AZc-XA-vch" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,7 +131,6 @@
                         <outlet property="balanceViewHeightConstraint" destination="gwU-Bh-pBL" id="yQ9-kn-aaq"/>
                         <outlet property="collectionView" destination="eAH-1u-hhy" id="YPb-Cf-xtQ"/>
                         <segue destination="4LK-SQ-3fH" kind="show" identifier="CardViewController" id="tsv-gT-wqY"/>
-                        <segue destination="6Xo-tb-Lup" kind="show" identifier="PointsViewController" id="Lgx-iE-Yga"/>
                         <segue destination="xv3-Go-6gi" kind="show" identifier="BalanceViewController" id="Dgy-RZ-B0V"/>
                     </connections>
                 </viewController>
