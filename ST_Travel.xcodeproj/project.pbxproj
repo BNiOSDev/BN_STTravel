@@ -136,8 +136,6 @@
 		843012141DBF861200F5316A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011891DBF861200F5316A /* SettingViewController.m */; };
 		843012151DBF861200F5316A /* TicketDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430118E1DBF861200F5316A /* TicketDetailViewCell.m */; };
 		843012161DBF861200F5316A /* TicketDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8430118F1DBF861200F5316A /* TicketDetailViewCell.xib */; };
-		843012171DBF861200F5316A /* TicketViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011911DBF861200F5316A /* TicketViewCell.m */; };
-		843012181DBF861200F5316A /* TicketViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843011921DBF861200F5316A /* TicketViewCell.xib */; };
 		843012191DBF861200F5316A /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011951DBF861200F5316A /* TicketViewController.m */; };
 		8430121A1DBF861200F5316A /* BalanceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8430119F1DBF861200F5316A /* BalanceDetailViewController.m */; };
 		8430121B1DBF861200F5316A /* ExtractDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011A91DBF861200F5316A /* ExtractDetailViewController.m */; };
@@ -443,9 +441,6 @@
 		8430118D1DBF861200F5316A /* TicketDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailViewCell.h; sourceTree = "<group>"; };
 		8430118E1DBF861200F5316A /* TicketDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailViewCell.m; sourceTree = "<group>"; };
 		8430118F1DBF861200F5316A /* TicketDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketDetailViewCell.xib; sourceTree = "<group>"; };
-		843011901DBF861200F5316A /* TicketViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewCell.h; sourceTree = "<group>"; };
-		843011911DBF861200F5316A /* TicketViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewCell.m; sourceTree = "<group>"; };
-		843011921DBF861200F5316A /* TicketViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketViewCell.xib; sourceTree = "<group>"; };
 		843011941DBF861200F5316A /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
 		843011951DBF861200F5316A /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
 		8430119E1DBF861200F5316A /* BalanceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceDetailViewController.h; sourceTree = "<group>"; };
@@ -1968,9 +1963,6 @@
 				8430118D1DBF861200F5316A /* TicketDetailViewCell.h */,
 				8430118E1DBF861200F5316A /* TicketDetailViewCell.m */,
 				8430118F1DBF861200F5316A /* TicketDetailViewCell.xib */,
-				843011901DBF861200F5316A /* TicketViewCell.h */,
-				843011911DBF861200F5316A /* TicketViewCell.m */,
-				843011921DBF861200F5316A /* TicketViewCell.xib */,
 				842925DF1DC050EB00B8D259 /* LBB_TicketHeaderView.h */,
 				842925E01DC050EB00B8D259 /* LBB_TicketHeaderView.m */,
 				842925E71DC0512F00B8D259 /* LBB_TicketHeaderView.xib */,
@@ -2762,7 +2754,6 @@
 				843012111DBF861200F5316A /* SwitchViewCell.xib in Resources */,
 				84DA18EB1DC4386B00680C66 /* LBB_MyViewCell.xib in Resources */,
 				843012281DBF861200F5316A /* WalletViewCell.xib in Resources */,
-				843012181DBF861200F5316A /* TicketViewCell.xib in Resources */,
 				1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */,
 				1DF6F91D1DBCBF50001903D1 /* b27_icon_star_gray@2x.png in Resources */,
 				C9C0E95C1D9948F200575A7C /* Assets.xcassets in Resources */,
@@ -2853,7 +2844,6 @@
 			files = (
 				8430120B1DBF861200F5316A /* PersonalInfoCell.m in Sources */,
 				1DF6F88D1DBCB0D8001903D1 /* CommentView.m in Sources */,
-				843012171DBF861200F5316A /* TicketViewCell.m in Sources */,
 				1DF6F9211DBCBF50001903D1 /* KSViewPagerView.m in Sources */,
 				8430120D1DBF861200F5316A /* PersonalCenterViewController.m in Sources */,
 				1DF6F93D1DBCBF50001903D1 /* PoohAppHelper.m in Sources */,

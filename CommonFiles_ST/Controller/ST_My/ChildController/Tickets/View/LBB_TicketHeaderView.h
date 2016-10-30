@@ -10,7 +10,12 @@
 
 @interface LBB_TicketHeaderView : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *numTipsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
+@property (weak, nonatomic) IBOutlet UIView  *lineView;
+
+@property(nonatomic,strong) NSDictionary* cellInfo;
+
 
 @end

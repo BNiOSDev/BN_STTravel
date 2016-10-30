@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *numLabel;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 
+@property(nonatomic,strong) NSDictionary* cellInfo;
+
 @end

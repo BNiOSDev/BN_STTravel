@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lineHeightConstraint;
 @property (assign, nonatomic) MineBaseViewType baseViewType;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomContraint;
 
 @end

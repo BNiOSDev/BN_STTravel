@@ -1410,8 +1410,8 @@
                                     <constraint firstAttribute="height" constant="1" id="rhe-BT-GKb"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Ee-hM-hc1">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="3Ee-hM-hc1">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="7N8-mc-WMm" id="ngd-MP-fEg"/>
                                     <outlet property="delegate" destination="7N8-mc-WMm" id="gid-Fw-WFt"/>
@@ -1425,7 +1425,7 @@
                             <constraint firstItem="3Ee-hM-hc1" firstAttribute="leading" secondItem="y7z-F4-muh" secondAttribute="leading" id="Ghf-mu-FlR"/>
                             <constraint firstAttribute="trailing" secondItem="yiV-y8-cVs" secondAttribute="trailing" id="J5B-ch-9K8"/>
                             <constraint firstItem="ixu-sW-tMA" firstAttribute="leading" secondItem="y7z-F4-muh" secondAttribute="leading" id="WNe-Kr-tk1"/>
-                            <constraint firstItem="fHA-CJ-Ere" firstAttribute="top" secondItem="3Ee-hM-hc1" secondAttribute="bottom" id="awt-tY-Kp8"/>
+                            <constraint firstItem="fHA-CJ-Ere" firstAttribute="top" secondItem="3Ee-hM-hc1" secondAttribute="bottom" constant="-49" id="awt-tY-Kp8"/>
                             <constraint firstItem="yiV-y8-cVs" firstAttribute="top" secondItem="ixu-sW-tMA" secondAttribute="bottom" constant="-1" id="eWK-L3-Wce"/>
                             <constraint firstAttribute="trailing" secondItem="ixu-sW-tMA" secondAttribute="trailing" id="kr5-YO-Bpc"/>
                             <constraint firstItem="3Ee-hM-hc1" firstAttribute="top" secondItem="9Kr-Bs-fg8" secondAttribute="bottom" id="tnb-qQ-osG"/>
@@ -1433,6 +1433,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="awt-tY-Kp8" id="QOS-Ce-Ezl"/>
                         <outlet property="lineView" destination="yiV-y8-cVs" id="7e3-oW-h79"/>
                         <outlet property="segmentBgView" destination="ixu-sW-tMA" id="qyI-Cl-ug9"/>
                         <outlet property="segmentBgViewHeightConstraint" destination="7Ej-0z-SBb" id="Sn8-KG-roT"/>

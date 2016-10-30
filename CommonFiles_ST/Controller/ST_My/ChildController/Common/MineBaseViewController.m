@@ -27,12 +27,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)buildControls
+{
+    self.bottomViewBottomContraint.constant = TabHeight;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self setNavigationBarHidden:NO];
-    ST_TabBarController *parentVC = (ST_TabBarController*)self.navigationController.parentViewController;
-//    [parentVC showCenterCamereBtn:NO];
 }
     
 - (void)setBaseViewType:(MineBaseViewType)baseViewType

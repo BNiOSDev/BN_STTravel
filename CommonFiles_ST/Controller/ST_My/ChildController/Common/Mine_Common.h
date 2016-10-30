@@ -73,5 +73,14 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     eSquareTravel, //广场游记（消息中心）
 };
 
+typedef NS_ENUM(NSInteger,TicketClickType)
+{
+    eCancelTicket = 0, //取消订单
+    eTicketPay,  //立即支付
+    eGetTicket,//立即取票
+    eComment,//立即评价
+    eShowDetail  //查看详情
+};
+
 
 #endif /* Mine_Common_h */
