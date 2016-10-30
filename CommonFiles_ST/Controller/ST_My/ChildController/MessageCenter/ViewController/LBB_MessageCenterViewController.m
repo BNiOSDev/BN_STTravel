@@ -37,6 +37,9 @@ UITableViewDataSource
 
 - (void)buildControls
 {
+    UINib *nib = [UINib nibWithNibName:@"LBB_MessageCenterViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"LBB_MessageCenterViewCell"];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[@{@"InfoType":[NSNumber numberWithInt:ePromotions],
                                                                     @"Content":@"喜迎国庆,全场8折优惠（最新活动）",
                                                                     @"Date":@"07-17"
@@ -47,9 +50,10 @@ UITableViewDataSource
                                                                     },
                                                                   @{@"InfoType":[NSNumber numberWithInt:ePurchageNotifion],
                                                                     @"Content":@"已发货，您2016-07-16购买黑蒜...",
-                                                                    @"Date":@"07-17"
+                                                                    @"Date":@"07-17",
+                                                                    @"Image":@""
                                                                     },
-                                                                  @{@"InfoType":[NSNumber numberWithInt:eMyProperty],
+                                                                  @{@"InfoType":[NSNumber numberWithInt:eNotice],
                                                                     @"Content":@"提现成功，您2016-07-12申请100...",
                                                                     @"Date":@"07-17"
                                                                     },
@@ -93,7 +97,7 @@ UITableViewDataSource
     static NSString *CellIdentifier = @"LBB_MessageCenterViewCell";
     LBB_MessageCenterViewCell *cell = nil;
     
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
+    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[LBB_MessageCenterViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -108,7 +112,7 @@ UITableViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
+    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:indexPath.row];
     NSInteger infoType = [[cellDict objectForKey:@"InfoType"] intValue];
     [self didSelectWithType:infoType];
 }
@@ -122,31 +126,31 @@ UITableViewDataSource
         case ePromotions://优惠促销
         {
             titleStr = TEXT(@"优惠促销");
-            imageName = @""; //icon 本地图标
+            imageName = @"优惠促销.png"; //icon 本地图标
         }
             break;
         case eCustomer://我的客服
         {
             titleStr = TEXT(@"我的客服");
-            imageName = @""; //icon 本地图标
+            imageName = @"客服.png"; //icon 本地图标
         }
             break;
         case ePurchageNotifion://购买通知
         {
             titleStr = TEXT(@"购买通知");
-            imageName = @""; //icon 本地图标
+            imageName = @"购买通知.png"; //icon 本地图标
         }
             break;
-        case eMyProperty://我的资产
+        case eNotice://鹭爸公告
         {
-            titleStr = TEXT(@"我的资产");
-            imageName = @""; //icon 本地图标
+            titleStr = TEXT(@"鹭爸公告");
+            imageName = @"鹭爸公告.png"; //icon 本地图标
         }
             break;
         case eSquareTravel://广场游记
         {
             titleStr = TEXT(@"广场游记");
-            imageName = @""; //icon 本地图标
+            imageName = @"广场游记.png"; //icon 本地图标
         }
             break;
         default:
@@ -181,12 +185,14 @@ UITableViewDataSource
             [self performSegueWithIdentifier:@"LBB_PurchaseNotificationViewController" sender:nil];
         }
             break;
-        case eMyProperty://我的资产
+        case eNotice://鹭爸公告
         {
+            [self performSegueWithIdentifier:@"LBB_NoticeViewController" sender:nil];
         }
             break;
         case eSquareTravel://广场游记
         {
+            [self performSegueWithIdentifier:@"LBB_SquareTravelViewController" sender:nil];
         }
             break;
         default:

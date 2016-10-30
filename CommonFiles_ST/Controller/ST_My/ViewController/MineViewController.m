@@ -7,25 +7,24 @@
 //
 
 #import "MineViewController.h"
-#import "MineHeaderView.h"
-#import "MineViewCell.h"
+#import "LBB_MyUserHeaderView.h"
 #import "PersonalCenterViewController.h"
 #import "ST_TabBarController.h"
 #import "ST_TabBarController.h"
 #import "MineBaseViewController.h"
+#import "LBB_MineViewDataController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
 
-@interface MineViewController ()
-<UITableViewDelegate,
-UITableViewDataSource,
-MineHeaderViewDelegate
+@interface MineViewController ()<
+LBB_MyUserHeaderViewDelegate,
+LBB_MineViewDataControllerDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
-@property (strong,nonatomic) MineHeaderView *userHeadView;
+@property (strong, nonatomic) IBOutlet LBB_MineViewDataController *dataController;
 
 @end
 
@@ -36,6 +35,7 @@ MineHeaderViewDelegate
     // Do any additional setup after loading the view.
     [self initData];
     [self loadCustomNavigationButton];
+    [self.dataController initDataSource];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +56,12 @@ MineHeaderViewDelegate
 }
     
 #pragma mark - private
+- (void)buildControls
+{
+    self.dataController.cellDelegate = self;
+    self.dataController.userHeaderDelegate = self;
+}
+
 - (void)initData
 {
     UINib *nib = [UINib nibWithNibName:@"MineViewCell" bundle:nil];
@@ -101,65 +107,7 @@ MineHeaderViewDelegate
                                                                   ]];
  
 }
-
-#pragma mark - tableView delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.dataSourceArray.count;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return MineViewCellHeight;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return DeviceWidth * UserHeadViewHegiht;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (!self.userHeadView) {
-        UINib *nib = [UINib nibWithNibName:@"MineHeaderView" bundle:nil];
-        NSArray *array = [nib instantiateWithOwner:nil options:nil];
-        self.userHeadView = [array lastObject];
-        self.userHeadView.delegate = self;
-        self.userHeadView.frame = CGRectMake(0, 0, DeviceWidth, DeviceWidth * UserHeadViewHegiht);
-    }
-    return self.userHeadView;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"MineViewCell";
-    MineViewCell *cell = nil;
-    
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath row]];
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[MineViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
   
-    cell.label.text = [cellDict objectForKey:@"Title"];
-    cell.imgView.image = [UIImage imageNamed:[cellDict objectForKey:@"Image"]];
-    cell.accessoryView =  nil;
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary *cellInfoDict = [self.dataSourceArray objectAtIndex:[indexPath row]];
-    NSString *pushVCIdentifier = [cellInfoDict objectForKey:@"Action"];
-    if (!([pushVCIdentifier isEqualToString:@"publicSquare"])) {
-        [self performSegueWithIdentifier:pushVCIdentifier
-                                  sender:[cellInfoDict objectForKey:@"ViewType"]];
-    }
-
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-    
     
 #pragma mark - headeView delegate
 - (void)didClickSetting:(id)userInfo
@@ -169,12 +117,95 @@ MineHeaderViewDelegate
 
 - (void)didClickMessage:(id)userInfo
 {
-    
+     [self performSegueWithIdentifier:@"LBB_MessageCenterViewController" sender:nil];
 }
 
 - (void)didClickPersonalCenter:(id)userInfo
 {
     [self performSegueWithIdentifier:@"PersonalCenterViewController" sender:nil];
+}
+
+#pragma mark - colectionView delegate
+
+- (void)didClickDetailActionDelegate:(NSInteger)viewType
+{
+    switch (viewType) {
+ /* 我的订单 */
+        case eOrder: //查看全部-订单
+            break;
+        case eOrder_WaitPay: //我的订单_待付款
+            
+            break;
+        case eOrder_WaitGetTicket: //我的订单_待取票
+            
+            break;
+        case eOrder_WaitComment: //我的订单_待评价
+            
+            break;
+ /* 我的门票 */
+        case eTickets://查看全部-门票
+        case eTicket_WaitPay: //我的门票_待付款
+        case eTicket_WaitGetTicket: //我的门票_待取票
+        case eTicket_WaitComment: //我的门票_待评价
+        case eTicket_Refund: //我的门票_退款
+             [self performSegueWithIdentifier:@"TicketViewController" sender:[NSNumber numberWithInteger:viewType]];
+            break;
+      
+/* 我的广场 */
+        case  ePhoto: //照片
+            
+            break;
+        case   eVideo://视频
+            
+            break;
+        case  eTravels://我的游记
+            
+           break;
+        case  eLove://关注
+            
+            break;
+/* 我的收藏 */
+        case eSquare://广场
+            
+            break;
+        case eScenicSpot://景点
+            
+            break;
+        case eFood://美食
+            
+            break;
+        case eHalls://民宿
+            
+            break;
+        case eGoods://商品
+            
+            break;
+        case eFlashSale://限时抢购
+            
+            break;
+        case eHandSpecial://伴手礼专题
+            
+            break;
+        case eTravelGuide://攻略
+            
+            break;
+/* 我的积分 */
+        case ePoints://积分
+             [self performSegueWithIdentifier:@"PointsViewController" sender:[NSNumber numberWithInteger:viewType]];
+            break;
+        case eDownload://我的下载
+           
+            break;
+        case eRoute://定制线路
+            
+            break;
+        case eSetting: //我的设置
+             [self performSegueWithIdentifier:@"SettingViewController" sender:[NSNumber numberWithInteger:viewType]];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark -  perform segue

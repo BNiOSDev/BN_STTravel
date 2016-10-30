@@ -13,6 +13,21 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.contentView.backgroundColor  = ColorBackground;
+    self.backgroundColor = ColorBackground;
+    
+    self.titleLabel.textColor = ColorBlack;
+    self.contentLabel.textColor = ColorGray;
+    
+    self.titleLabel.font = Font15;
+    self.contentLabel.font = Font15;
+}
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.titleLabel.text = nil;
+    self.contentLabel.text = nil;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

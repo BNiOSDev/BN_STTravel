@@ -13,6 +13,13 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.titleLabel.textColor = ColorGray;
+    self.contentLabel.textColor = ColorLightGray;
+    self.dateLabel.textColor = ColorLightGray;
+    
+    self.titleLabel.font = Font16;
+    self.contentLabel.font = Font16;
+    self.dateLabel.font = Font15;
 }
 
 - (void)prepareForReuse

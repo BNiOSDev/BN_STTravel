@@ -14,6 +14,7 @@
 @property (nonatomic,weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic,weak) IBOutlet UILabel *contentLabel;
 @property (nonatomic,weak) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 
 @property(nonatomic,strong) id cellInfo;
 

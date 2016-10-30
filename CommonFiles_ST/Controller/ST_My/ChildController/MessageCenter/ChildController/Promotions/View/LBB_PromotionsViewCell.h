@@ -11,10 +11,12 @@
 @interface LBB_PromotionsViewCell : UITableViewCell
 
 @property (nonatomic,weak) IBOutlet UIImageView *iconImgView;
-@property (nonatomic,weak) IBOutlet UILabel *dateLabel;
 @property (nonatomic,weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic,weak) IBOutlet UILabel *contentLabel;
 @property (nonatomic,weak) IBOutlet UILabel *stateLabel;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImgView;
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 
 @property(nonatomic,strong) id cellInfo;
 

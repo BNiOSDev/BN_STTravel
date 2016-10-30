@@ -34,6 +34,9 @@ UITableViewDataSource
 
 - (void)buildControls
 {
+    UINib *nib = [UINib nibWithNibName:@"LBB_MessageCenterViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"LBB_MessageCenterViewCell"];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[@{@"UserImage":@"19.pic.jpg",
                                                                      @"UserName":@"小路粑粑",
                                                                      @"Content":@"您好，请问有什么可以帮到您",
@@ -95,7 +98,7 @@ UITableViewDataSource
     static NSString *CellIdentifier = @"LBB_MessageCenterViewCell";
     LBB_MessageCenterViewCell *cell = nil;
     
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
+    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[LBB_MessageCenterViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
