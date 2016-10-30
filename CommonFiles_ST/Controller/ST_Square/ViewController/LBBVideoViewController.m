@@ -38,7 +38,7 @@
     [super viewDidLoad];
     [self initData];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 30 - 64 - 44 - 20)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -69,10 +69,10 @@
     }
     
     _commentArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 2; i++) {
+    for (int i = 0; i <= 0; i++) {
         CommentModel *model = [[CommentModel alloc]init];
         model.userName = @"小大王";
-        model.contentStr = @"大王叫我来巡山，抓个和尚当晚餐。看到和尚太有型，抓来当我压寨老公哇哈哈";
+        model.contentStr = @"大王叫我来巡山,大王叫我来巡山,大王叫我来巡山";
         [_commentArray addObject:model];
     }
     
@@ -83,7 +83,7 @@
         model.userName = @"zjmzjmzjmzjm";
         model.timeAgo = @"15min ago";
         model.address = @"address";
-        model.content = @"wdashkdfahsdfhasjkdfhasjlkhfdajshdfjkashdfjakshdjshfkjsahfksajhfsakjhfaslhfkalshfasfkajhfalskhksal";
+        model.content = @"你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你";
         model.hostImageUrl = @"";
         
         if(i % 2 == 0)

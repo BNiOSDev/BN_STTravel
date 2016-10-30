@@ -27,8 +27,7 @@
     UIImageView        *_addressImage;//地址图标
     UIImageView        *_timeImage;//时间图标
     
-    ContentImageView        *_contentImage;//主图，内容图
-    
+    ContentImageView      *_contentImage;//主图，内容图
     PraiseView                  *praiseView;         //
     ZJMCommentView      *commetView;      //
     CommentBoxView       *boxView;             //
@@ -50,19 +49,25 @@
     _iconImage = [UIButton new];
     
     _nameLable = [UILabel new];
-    _nameLable.font = [UIFont systemFontOfSize:15.0];
-    _nameLable.textColor = [UIColor blackColor];
-
+    _nameLable.font = [UIFont systemFontOfSize:14.0];
+    _nameLable.textColor = ColorBlack;
+    
     _addressImage = [UIImageView new];
     
     _timeImage = [UIImageView new];
     
     _timeLabel = [UILabel new];
+    _timeLabel.textColor = ColorGray;
+    _timeLabel.font = Font12;
     
     _addressNameLabel = [UILabel new];
+    _addressNameLabel.textColor = ColorGray;
+    _addressNameLabel.font = Font12;
     
     _contentLabel = [UILabel new];
     _contentLabel.numberOfLines = 0;
+    _contentLabel.font = Font14;
+    _contentLabel.textColor = ColorGray;
     
     _contentImage = [ContentImageView new];
     
@@ -78,7 +83,8 @@
     
     boxView = [CommentBoxView new];
     
-    NSArray   *views = @[_iconImage,_nameLable,_addressImage,_timeImage,_timeLabel,_addressNameLabel,_contentLabel,_contentImage,praiseView,_collectBtn,commetView,boxView];
+    NSArray   *views = @[_iconImage,_nameLable,_timeImage,_timeLabel,_addressImage,_addressNameLabel,_contentLabel,
+                         _contentImage,praiseView,_collectBtn,commetView,boxView];
     [self.contentView sd_addSubviews:views];
     
     UIView *contentView = self.contentView;
@@ -93,10 +99,8 @@
     _nameLable.sd_layout
     .leftSpaceToView(_iconImage, margin)
     .topEqualToView(_iconImage)
-    .heightIs(18);
-    [_nameLable setSingleLineAutoResizeWithMaxWidth:200];
-    
-
+    .heightIs(20)
+    .widthIs(300);
     
     _timeImage.sd_layout
     .leftSpaceToView(_iconImage,margin)
@@ -108,7 +112,7 @@
     .leftSpaceToView(_timeImage, margin - 5)
     .topEqualToView(_timeImage)
     .heightIs(18);
-    [_timeLabel setSingleLineAutoResizeWithMaxWidth:200];
+    //    .widthIs(300);
     
     _addressImage.sd_layout
     .leftSpaceToView(_timeLabel,margin)
@@ -116,24 +120,43 @@
     .heightIs(18)
     .widthIs(12);
     
-
-    
     _addressNameLabel.sd_layout
     .leftSpaceToView(_addressImage, margin - 5)
     .topEqualToView(_addressImage)
     .heightIs(18);
-    [_addressNameLabel setSingleLineAutoResizeWithMaxWidth:200];
+    
+    //    _contentLabel.sd_layout
+    //    .leftEqualToView(_nameLable)
+    //    .topSpaceToView(_iconImage, margin)
+    ////    .rightSpaceToView(contentView, 40)
+    //    .autoHeightRatio(0);
+    
+}
+
+
+- (void)setModel:(ZJMHostModel *)model
+{
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
+    _nameLable.text = model.userName;
+    _addressImage.image = IMAGE(@"zjmaddress");
+    _timeImage.image = IMAGE(@"zjmtime");
+    _addressNameLabel.text = model.address;
+    _timeLabel.text = model.timeAgo;
+    _contentLabel.text = model.content;
+    
+    _contentImage.imageArray = model.imageArray;
+    praiseView.praiseArray = model.praiseModelArray;
+    commetView.commentArray = model.commentModelArray;
     
     _contentLabel.sd_layout
     .leftEqualToView(_nameLable)
-    .topSpaceToView(_iconImage, margin)
-    .rightSpaceToView(contentView, margin)
-    .autoHeightRatio(0);
+    .topSpaceToView(_iconImage, 5);
+    [_contentLabel autoFit:model.content size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 75, DeviceHeight)];
     
     _contentImage.sd_layout
     .leftEqualToView(_nameLable)
-    .topSpaceToView(_contentLabel, margin)
-    .rightSpaceToView(contentView, margin)
+    .topSpaceToView(_contentLabel, 5)
+    .rightSpaceToView(self.contentView, 10)
     .heightIs(AUTO(250));
     
     praiseView.sd_layout
@@ -156,31 +179,9 @@
     .leftEqualToView(commetView)
     .topSpaceToView(commetView,10.0)
     .rightEqualToView(_contentImage)
-    .heightIs(40);
-}
-
-
-- (void)setModel:(ZJMHostModel *)model
-{
-    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] forState:UIControlStateNormal];
-    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
-    _nameLable.text = model.userName;
-    _addressImage.image = [UIImage imageNamed:@"ST_Sign_Num3Icon"];
-    _timeImage.image = IMAGE(@"zjmadd");
-    _addressNameLabel.text = model.address;
-    _timeLabel.text = model.timeAgo;
-    _contentLabel.text = model.content;
-
-//    [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.hostImageUrl] placeholderImage:[UIImage imageNamed:@"pic1.jpg"]];
+    .heightIs(AUTO(30));
     
-    _contentImage.imageArray = model.imageArray;
-    
-    praiseView.praiseArray = model.praiseModelArray;
-    
-    commetView.commentArray = model.commentModelArray;
-    
-    [self setupAutoHeightWithBottomView:boxView bottomMargin:10];
-    
+    [self setupAutoHeightWithBottomViewsArray:@[boxView,_contentLabel] bottomMargin:10];
 }
 
 

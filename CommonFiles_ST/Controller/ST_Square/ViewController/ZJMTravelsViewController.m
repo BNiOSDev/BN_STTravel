@@ -12,6 +12,8 @@
 #import "ZJMTravelModel.h"
 #import "LBBTravelTableViewCell.h"
 #import "Header.h"
+#import "LBB_TravelCommentController.h"
+#import "LBB_TravelDetailViewController.h"
 
 #define ZJMTravelNormal  @"ZJMTravelCell"
 
@@ -53,6 +55,7 @@
 - (void)createTable
 {
     _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:0];
+    _mTableView.height = _mTableView.height - AUTO(40) - 64 -50;
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
     _mTableView.backgroundColor = [UIColor whiteColor];
@@ -72,9 +75,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LBBTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZJMTravelNormal];
-//    cell.indexPath = indexPath;
-//    __weak typeof(self) weakSelf = self;
-    
+    cell.cellBlock = ^(id view,UITableViewCellViewSignal signal){
+        [self dealCellSignal:signal withIndex:indexPath];
+    };
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
@@ -86,7 +89,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,6 +99,33 @@
     return AUTO(215);
 }
 
+
+#pragma mark 处理点击cell上面的按钮
+- (void)dealCellSignal:(UITableViewCellViewSignal)signel  withIndex:(NSIndexPath *)indexPath
+{
+    NSLog(@"indexPath = %ld",(long)indexPath.row);
+    switch (signel) {
+        case UITableViewCellCollect:
+        {
+            
+        }
+            break;
+        case UITableViewCellConment:
+        {
+            LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case UITableViewCellPraise:
+        {
+            
+        }
+            break;
+        
+        default:
+            break;
+    }
+}
 
 
 

@@ -8,8 +8,20 @@
 
 #ifndef Header_h
 #define Header_h
+
 #import <UIImageView+WebCache.h>
 #import <Masonry.h>
+#import "UILabel+AutoFit.h"
+#import "UIView+SDAutoLayout.h"
+
+typedef NS_ENUM(NSInteger, UITableViewCellViewSignal)
+{
+    UITableViewCellPraise = 0,              //赞
+    UITableViewCellCollect,             //收藏
+    UITableViewCellConment,         //评论
+    UITableViewCellFocus,               //关注
+    UITableViewCellSendMessage   //发送评论
+};
 
 //使用宏定义16进制颜色值
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
@@ -42,5 +54,6 @@
 #define BACKVIEWCOLOR                   UIColorFromRGB(0xf5f5f5)
 
 typedef void(^ClickBlockForControl)(id object, id param);
+typedef void(^CellBlockVIew)(id object,UITableViewCellViewSignal signal);
 
 #endif /* Header_h */

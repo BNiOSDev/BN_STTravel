@@ -8,6 +8,7 @@
 
 #import "CommentBoxView.h"
 #import "UIView+SDAutoLayout.h"
+#import "Header.h"
 
 @implementation CommentBoxView
 {
@@ -52,8 +53,8 @@
     
     line.sd_layout
     .leftSpaceToView(contentText,0)
-    .topSpaceToView(self,40 / 4)
-    .heightIs(40 / 2)
+    .topSpaceToView(self,AUTO(30) / 4)
+    .bottomSpaceToView(self,AUTO(30) / 4)
     .widthIs(1.0);
     
     commentBtn.sd_layout

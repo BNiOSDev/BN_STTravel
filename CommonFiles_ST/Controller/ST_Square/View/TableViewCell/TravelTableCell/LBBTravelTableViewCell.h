@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ZJMTravelModel.h"
+#import "Header.h"
 
 @interface LBBTravelTableViewCell : UITableViewCell
 @property(nonatomic,strong)ZJMTravelModel       *model;
+@property(nonatomic,strong)CellBlockVIew           cellBlock;
 @end
