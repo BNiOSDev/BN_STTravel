@@ -149,8 +149,6 @@
 		843012211DBF861200F5316A /* CardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011CD1DBF861200F5316A /* CardViewCell.m */; };
 		843012221DBF861200F5316A /* CardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843011CE1DBF861200F5316A /* CardViewCell.xib */; };
 		843012231DBF861200F5316A /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011D11DBF861200F5316A /* CardViewController.m */; };
-		843012241DBF861200F5316A /* ConvertiblePointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011D91DBF861200F5316A /* ConvertiblePointsViewController.m */; };
-		843012251DBF861200F5316A /* PointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011E21DBF861200F5316A /* PointsViewController.m */; };
 		843012261DBF861200F5316A /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011E51DBF861200F5316A /* VerificationViewController.m */; };
 		843012271DBF861200F5316A /* WalletViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011E91DBF861200F5316A /* WalletViewCell.m */; };
 		843012281DBF861200F5316A /* WalletViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843011EA1DBF861200F5316A /* WalletViewCell.xib */; };
@@ -468,10 +466,6 @@
 		843011CE1DBF861200F5316A /* CardViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardViewCell.xib; sourceTree = "<group>"; };
 		843011D01DBF861200F5316A /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
 		843011D11DBF861200F5316A /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
-		843011D81DBF861200F5316A /* ConvertiblePointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertiblePointsViewController.h; sourceTree = "<group>"; };
-		843011D91DBF861200F5316A /* ConvertiblePointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertiblePointsViewController.m; sourceTree = "<group>"; };
-		843011E11DBF861200F5316A /* PointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsViewController.h; sourceTree = "<group>"; };
-		843011E21DBF861200F5316A /* PointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsViewController.m; sourceTree = "<group>"; };
 		843011E41DBF861200F5316A /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
 		843011E51DBF861200F5316A /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
 		843011E81DBF861200F5316A /* WalletViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletViewCell.h; sourceTree = "<group>"; };
@@ -2012,7 +2006,6 @@
 			children = (
 				843011981DBF861200F5316A /* Balance */,
 				843011B61DBF861200F5316A /* BankCard */,
-				843011D21DBF861200F5316A /* Points */,
 				843011E31DBF861200F5316A /* Verification */,
 			);
 			path = ChildController;
@@ -2350,113 +2343,6 @@
 			children = (
 				843011D01DBF861200F5316A /* CardViewController.h */,
 				843011D11DBF861200F5316A /* CardViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		843011D21DBF861200F5316A /* Points */ = {
-			isa = PBXGroup;
-			children = (
-				843011D31DBF861200F5316A /* ChildController */,
-				843011DE1DBF861200F5316A /* Model */,
-				843011DF1DBF861200F5316A /* View */,
-				843011E01DBF861200F5316A /* ViewController */,
-			);
-			path = Points;
-			sourceTree = "<group>";
-		};
-		843011D31DBF861200F5316A /* ChildController */ = {
-			isa = PBXGroup;
-			children = (
-				843011D41DBF861200F5316A /* ConvertPoints */,
-				843011DA1DBF861200F5316A /* PointsDetail */,
-			);
-			path = ChildController;
-			sourceTree = "<group>";
-		};
-		843011D41DBF861200F5316A /* ConvertPoints */ = {
-			isa = PBXGroup;
-			children = (
-				843011D51DBF861200F5316A /* Model */,
-				843011D61DBF861200F5316A /* View */,
-				843011D71DBF861200F5316A /* ViewController */,
-			);
-			path = ConvertPoints;
-			sourceTree = "<group>";
-		};
-		843011D51DBF861200F5316A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		843011D61DBF861200F5316A /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		843011D71DBF861200F5316A /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				843011D81DBF861200F5316A /* ConvertiblePointsViewController.h */,
-				843011D91DBF861200F5316A /* ConvertiblePointsViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		843011DA1DBF861200F5316A /* PointsDetail */ = {
-			isa = PBXGroup;
-			children = (
-				843011DB1DBF861200F5316A /* Model */,
-				843011DC1DBF861200F5316A /* View */,
-				843011DD1DBF861200F5316A /* ViewController */,
-			);
-			path = PointsDetail;
-			sourceTree = "<group>";
-		};
-		843011DB1DBF861200F5316A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		843011DC1DBF861200F5316A /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		843011DD1DBF861200F5316A /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		843011DE1DBF861200F5316A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		843011DF1DBF861200F5316A /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		843011E01DBF861200F5316A /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				843011E11DBF861200F5316A /* PointsViewController.h */,
-				843011E21DBF861200F5316A /* PointsViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3059,7 +2945,6 @@
 				842926291DC0D4F200B8D259 /* LBB_MyPropertyViewCell.m in Sources */,
 				8430120E1DBF861200F5316A /* LBB_RouteViewController.m in Sources */,
 				1DF6F92D1DBCBF50001903D1 /* LBBNearbyMenuListTableViewCell.m in Sources */,
-				843012241DBF861200F5316A /* ConvertiblePointsViewController.m in Sources */,
 				1DF6F89D1DBCB0D8001903D1 /* ZJMTravelsViewController.m in Sources */,
 				842925FA1DC0905C00B8D259 /* LBB_MessageCenterViewCell.m in Sources */,
 				84CFB31C1DC5D890005B8346 /* LBB_MineViewDataController.m in Sources */,
@@ -3067,7 +2952,6 @@
 				8430120F1DBF861200F5316A /* SetingSwitchBaseViewController.m in Sources */,
 				843012151DBF861200F5316A /* TicketDetailViewCell.m in Sources */,
 				1DF6F9431DBCBF50001903D1 /* LBBHomeMenuTableViewCell.m in Sources */,
-				843012251DBF861200F5316A /* PointsViewController.m in Sources */,
 				843012211DBF861200F5316A /* CardViewCell.m in Sources */,
 				843011FE1DBF861200F5316A /* MineBaseViewController.m in Sources */,
 				1DF6F8831DBCB0D8001903D1 /* ZJMTravelModel.m in Sources */,
