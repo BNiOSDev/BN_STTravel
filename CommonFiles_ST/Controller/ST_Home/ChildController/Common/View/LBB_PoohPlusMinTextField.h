@@ -19,4 +19,6 @@
 @property(nonatomic, retain)UIView*  sep1;
 @property(nonatomic, retain)UIView*  sep2;
 
+-(void)setTextNum:(NSInteger)num;
+
 @end

@@ -89,6 +89,9 @@
 		1D12FA951DC6E97700ACD462 /* ST_HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12FA421DC6E97700ACD462 /* ST_HomeViewController.m */; };
 		1D12FA961DC6E97700ACD462 /* ST_HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D12FA431DC6E97700ACD462 /* ST_HomeViewController.xib */; };
 		1D12FA971DC6E97700ACD462 /* ST_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12FA451DC6E97700ACD462 /* ST_TabBarController.m */; };
+		1D12FA9A1DC713AE00ACD462 /* LBB_NewOrderIntegralView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12FA991DC713AE00ACD462 /* LBB_NewOrderIntegralView.m */; };
+		1D12FA9D1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12FA9C1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m */; };
+		1D12FAA01DC72E7300ACD462 /* LBB_NewOrderInputTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12FA9F1DC72E7300ACD462 /* LBB_NewOrderInputTextField.m */; };
 		1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */; };
 		8400138F1DC62C3200BD6297 /* ConvertiblePointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840013851DC62C3200BD6297 /* ConvertiblePointsViewController.m */; };
 		840013901DC62C3200BD6297 /* PointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8400138E1DC62C3200BD6297 /* PointsViewController.m */; };
@@ -506,6 +509,12 @@
 		1D12FA431DC6E97700ACD462 /* ST_HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ST_HomeViewController.xib; sourceTree = "<group>"; };
 		1D12FA441DC6E97700ACD462 /* ST_TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ST_TabBarController.h; sourceTree = "<group>"; };
 		1D12FA451DC6E97700ACD462 /* ST_TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ST_TabBarController.m; sourceTree = "<group>"; };
+		1D12FA981DC713AE00ACD462 /* LBB_NewOrderIntegralView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NewOrderIntegralView.h; sourceTree = "<group>"; };
+		1D12FA991DC713AE00ACD462 /* LBB_NewOrderIntegralView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NewOrderIntegralView.m; sourceTree = "<group>"; };
+		1D12FA9B1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NewOrderModifyNoteView.h; sourceTree = "<group>"; };
+		1D12FA9C1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NewOrderModifyNoteView.m; sourceTree = "<group>"; };
+		1D12FA9E1DC72E7300ACD462 /* LBB_NewOrderInputTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NewOrderInputTextField.h; sourceTree = "<group>"; };
+		1D12FA9F1DC72E7300ACD462 /* LBB_NewOrderInputTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NewOrderInputTextField.m; sourceTree = "<group>"; };
 		1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
 		8400137D1DC62AC000BD6297 /* Mine_Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mine_Common.h; sourceTree = "<group>"; };
@@ -1192,6 +1201,12 @@
 				1D12F9D91DC6E97700ACD462 /* LBB_NewOrderPlayTimeSelectView.m */,
 				1D12F9DA1DC6E97700ACD462 /* LBB_NewOrderTicketTypeInfoView.h */,
 				1D12F9DB1DC6E97700ACD462 /* LBB_NewOrderTicketTypeInfoView.m */,
+				1D12FA981DC713AE00ACD462 /* LBB_NewOrderIntegralView.h */,
+				1D12FA991DC713AE00ACD462 /* LBB_NewOrderIntegralView.m */,
+				1D12FA9B1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.h */,
+				1D12FA9C1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m */,
+				1D12FA9E1DC72E7300ACD462 /* LBB_NewOrderInputTextField.h */,
+				1D12FA9F1DC72E7300ACD462 /* LBB_NewOrderInputTextField.m */,
 			);
 			path = "确认订单";
 			sourceTree = "<group>";
@@ -3869,6 +3884,7 @@
 				84F6BA071DC6E3D1009ED8DF /* LBB_ShopRecoder_Controller.m in Sources */,
 				8430120A1DBF861200F5316A /* LBB_UserNameViewController.m in Sources */,
 				1D12FA721DC6E97700ACD462 /* LBB_ScenicDetailCommentsCell.m in Sources */,
+				1D12FAA01DC72E7300ACD462 /* LBB_NewOrderInputTextField.m in Sources */,
 				84F6BA371DC6E3D1009ED8DF /* LBBFriendTableViewCell.m in Sources */,
 				1D12FA501DC6E97700ACD462 /* LBBPoohBaseTableSectionHeaderView.m in Sources */,
 				8430121A1DBF861200F5316A /* BalanceDetailViewController.m in Sources */,
@@ -3939,6 +3955,7 @@
 				1D12FA641DC6E97700ACD462 /* LBB_OrderContactCustomerServiceCell.m in Sources */,
 				84F6BA221DC6E3D1009ED8DF /* JHShowInfoView.m in Sources */,
 				843012021DBF861200F5316A /* ChangePhoneNumViewController.m in Sources */,
+				1D12FA9A1DC713AE00ACD462 /* LBB_NewOrderIntegralView.m in Sources */,
 				1D12FA7B1DC6E97700ACD462 /* LBB_ScenicDetailSubjectContentCell.m in Sources */,
 				84F6B8141DC6E277009ED8DF /* (null) in Sources */,
 				842926221DC0CF4900B8D259 /* LBB_PurchaseNotificationViewController.m in Sources */,
@@ -4034,6 +4051,7 @@
 				84F6BA061DC6E3D1009ED8DF /* LBB_ShopRecoder_Cell.m in Sources */,
 				84F6BA1B1DC6E3D1009ED8DF /* JHChart.m in Sources */,
 				1D12FA841DC6E97700ACD462 /* LBBSigninMainViewController.m in Sources */,
+				1D12FA9D1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m in Sources */,
 				1D12FA6C1DC6E97700ACD462 /* LBB_NewOrderViewController.m in Sources */,
 				84F6BA391DC6E3D1009ED8DF /* LBB_TravelCommentCell.m in Sources */,
 				8430121E1DBF861200F5316A /* BalanceDetailViewCell.m in Sources */,
