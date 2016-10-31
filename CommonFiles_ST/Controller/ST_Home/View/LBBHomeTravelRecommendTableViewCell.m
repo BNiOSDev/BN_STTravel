@@ -29,7 +29,8 @@
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.left.right.equalTo(ws.contentView);
-            make.top.equalTo(ws.contentView).offset(8);
+            make.top.equalTo(ws.contentView);
+            make.height.mas_equalTo(AutoSize(320/2));
         }];
         
         self.favoriteButton = [UIButton new];
@@ -52,7 +53,7 @@
         [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.left.equalTo(ws.contentView).offset(16);
-            make.width.height.equalTo(@45);
+            make.width.height.mas_equalTo(AutoSize(35));
             make.top.equalTo(ws.bgImageView.mas_bottom).offset(-45.0/2);
         }];
         
@@ -246,7 +247,7 @@
 
 }
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
     CGFloat height = 0;
     height = DeviceWidth * 3/4;

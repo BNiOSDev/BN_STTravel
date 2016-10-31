@@ -8,17 +8,20 @@
 
 #import "LBBPoohBaseTableViewCell.h"
 #import "KSViewPagerView.h"
+#import "HMSegmentedControl.h"
 
 
 @interface LBBHomeHotestTableViewCell : LBBPoohBaseTableViewCell
 
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, retain) KSViewPagerView* pagerView;
+@property (nonatomic, retain) HMSegmentedControl* pagerView;
 -(void)setPagerViewHidden:(BOOL)isHidden;
 
 
 -(void)setreload;
++(CGFloat)getCellHeight;
++(CGFloat)getCellHeight2;
 
 
 @end

@@ -10,7 +10,6 @@
 #import "KSViewPagerView.h"
 #import "LBBPoohCycleScrollCell.h"
 #import "LBBNearbyMenuListTableViewCell.h"
-
 @interface LBBNearbyMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UIView* mapView;
@@ -59,7 +58,7 @@
 
     self.mapView = [UIView new];
     [self.mapView setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
-    [self.mapView setFrame:CGRectMake(0, 0, DeviceWidth, 150)];
+    [self.mapView setFrame:CGRectMake(0, 0, DeviceWidth, AutoSize(490/2))];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
@@ -83,7 +82,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
-    return 40;
+    return AutoSize(TopSegmmentControlHeight);
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -95,23 +94,25 @@
     NSArray* segmentArray = @[@"景点",@"美食",@"民宿"];
 
     
-    KSViewPagerView* pagerView = [[KSViewPagerView alloc] initWithArray:segmentArray];
-    [v addSubview:pagerView];
-    pagerView.backgroundColor = [UIColor whiteColor];
-    [pagerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
+    segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+                                             NSForegroundColorAttributeName:ColorLightGray};
+    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
+                                                     NSForegroundColorAttributeName:ColorBtnYellow};
+    segmentedControl.selectionIndicatorColor = [UIColor clearColor];
+    segmentedControl.verticalDividerWidth = SeparateLineWidth;
+    segmentedControl.verticalDividerColor = ColorLightGray;
+    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    [v addSubview:segmentedControl];
+    [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.width.height.equalTo(v);
     }];
-    [pagerView setActiveColor:ColorBtnYellow];
-    [pagerView setInactiveColor:[UIColor colorWithRGB:0xafafaf]];
-    [pagerView setTitleFont:Font12];
-    [pagerView enableSeperatorView:YES];
-    [pagerView.cursorView setHidden:YES];
-    pagerView.click = ^(KSViewPagerView*v, NSNumber *index){
-        
-        
+    segmentedControl.indexChangeBlock = ^(NSInteger index){
+        NSLog(@"segmentedControl select:%ld",index);
+
     };
-    [pagerView setCursorPosition:0];
-    
+
     return v;
     
 }
@@ -123,9 +124,14 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    LBBPoohBaseTableViewCell* cell = (LBBPoohBaseTableViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    if (indexPath.row == 0) {
+        return AutoSize(226/2);
+       // return [LBBPoohCycleScrollCell getCellHeight];
+    }
+    else{
+        return [LBBNearbyMenuListTableViewCell getCellHeight];
+    }
     
-    return [cell getCellHeight];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

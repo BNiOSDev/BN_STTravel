@@ -8,8 +8,8 @@
 
 #import "CWStarRateView.h"
 
-#define FOREGROUND_STAR_IMAGE_NAME @"b27_icon_star_yellow"
-#define BACKGROUND_STAR_IMAGE_NAME @"b27_icon_star_gray"
+#define FOREGROUND_STAR_IMAGE_NAME @"评论_评价星星HL"
+#define BACKGROUND_STAR_IMAGE_NAME @"评论_评价星星"
 #define DEFALUT_STAR_NUMBER 5
 #define ANIMATION_TIME_INTERVAL 0.2
 

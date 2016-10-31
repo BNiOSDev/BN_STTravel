@@ -27,5 +27,6 @@
 @property(nonatomic, retain)UIButton* specialLabelButton6;
 
 @property(nonatomic, retain)id model;
++(CGFloat)getCellHeight;
 
 @end

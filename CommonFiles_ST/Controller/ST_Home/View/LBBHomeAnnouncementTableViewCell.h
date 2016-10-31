@@ -12,5 +12,6 @@
 
 -(void)setScrollTextArray:(NSArray*)array;
 
++(CGFloat)getCellHeight;
 
 @end

@@ -65,7 +65,7 @@
         [ws.popView.signinButton bk_addEventHandler:^(id sender){
             NSLog(@"ws.popView.signinButton touch");
             
-            [ws.popView setSigninStatus:YES];
+            [ws.popView setSigninStatus:NO];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 ws.popView.hidden = YES;
                 [ws.popView resignKeyWindow];
@@ -102,7 +102,7 @@
 
     [ctr1 mas_makeConstraints:^(MASConstraintMaker* make){
         make.left.top.equalTo(ws.view);
-        make.height.equalTo(@45);
+        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
     }];
     
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
@@ -162,7 +162,7 @@
     [self.view addSubview:self.noteLable];
     [self.noteLable mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.width.top.equalTo(ws.mapView);
-        make.height.mas_equalTo(45);
+        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
     }];
 
     

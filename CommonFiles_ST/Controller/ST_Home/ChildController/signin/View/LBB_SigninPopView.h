@@ -12,6 +12,7 @@
 
 @property(nonatomic, retain)UIButton* signinButton;
 @property(nonatomic, retain)UILabel* locationLabel;
+@property(nonatomic, retain)UILabel* noteLabel;
 
 -(void)showPopView;
 -(void)dismissPopView;

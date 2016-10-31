@@ -41,6 +41,7 @@
         
         
         self.titleLabel = [UILabel new];
+
         [self.titleLabel setFont:Font12];
         [self.titleLabel setText:@"曾厝垵"];
         [self.contentView addSubview:self.titleLabel];
@@ -96,7 +97,7 @@
             make.centerY.height.equalTo(ws.disView);
         }];
         
-      //  [self layoutSubviews];//it must to be done to layouts subviews
+        [self layoutSubviews];//it must to be done to layouts subviews
 
     }
     return self;
