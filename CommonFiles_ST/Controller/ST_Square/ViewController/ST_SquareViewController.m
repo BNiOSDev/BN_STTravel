@@ -18,6 +18,7 @@
 #import "ZJMTravelsViewController.h"
 #import "ZJMHostViewController.h"
 #import "LBBVideoViewController.h"
+#import "LBB_ZJMHostViewController.h"
 
 @interface ST_SquareViewController ()<UISearchBarDelegate,UIScrollViewDelegate>
 @property(nonatomic, weak)UISearchBar         *JMSearchBar;
@@ -114,11 +115,14 @@
 }
 //加载3个ViewController
 -(void)addChildViewController{
+    //LBB_ZJMHostViewController
+//    ZJMHostViewController * vc1 = [[ZJMHostViewController alloc]init];
+//    vc1.jumpBlock = ^(id obj,id pargram){
+//        [self.navigationController pushViewController:obj animated:YES];
+//    };
+//    [self addChildViewController:vc1];
     
-    ZJMHostViewController * vc1 = [[ZJMHostViewController alloc]init];
-    vc1.jumpBlock = ^(id obj,id pargram){
-        [self.navigationController pushViewController:obj animated:YES];
-    };
+    LBB_ZJMHostViewController *vc1 = [[LBB_ZJMHostViewController alloc]init];
     [self addChildViewController:vc1];
     
     ZJMTravelsViewController *viewVC = [[ZJMTravelsViewController alloc]init];
@@ -142,11 +146,12 @@
 // 只要滚动UIScrollView就会调用
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    CGFloat offsetX = scrollView.contentOffset.x;
-//    //计算当前index
-//    NSLog(@"%d",(int)(scrollView.contentOffset.x / DeviceWidth));
-//    //滑动更改self.segment颜色和cylayer的位置
+    //计算当前index
+    int  pageIndex = (int)(scrollView.contentOffset.x / DeviceWidth);
+    NSLog(@"%d",(int)(scrollView.contentOffset.x / DeviceWidth));
+    //滑动更改self.segment颜色和cylayer的位置
 //    [self.segment moveToOffsetX:offsetX AndIndex:(int)(scrollView.contentOffset.x / LG_segmentW)];
+    [self scrollToPage:pageIndex];//修复页面自动滚动偏差
 }
 
 

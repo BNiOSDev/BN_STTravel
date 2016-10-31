@@ -100,7 +100,7 @@
             }
         }
     
-     [self setupAutoHeightWithBottomView:lastView bottomMargin:10];
+     [self setupAutoHeightWithBottomView:lastView bottomMargin:0];
 }
 
 @end

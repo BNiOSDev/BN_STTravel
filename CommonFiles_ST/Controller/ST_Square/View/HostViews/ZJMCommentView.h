@@ -11,4 +11,5 @@
 
 @interface ZJMCommentView : UIView
 @property(nonatomic, strong)NSArray     *commentArray;
+@property(nonatomic)CGFloat                 maxWidth;
 @end

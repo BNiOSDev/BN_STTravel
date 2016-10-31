@@ -25,6 +25,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.userInteractionEnabled = YES;
         [self setup];
     }
     return self;
@@ -85,20 +86,36 @@
     nameLabel.text = model.name;
     
     [heartBtn setTitle:model.collectNum forState:0];
-    heartBtn.width = [self getWidthWithContent:model.collectNum height:AUTO(15) font:AUTO(11.0)] + AUTO(15);
-    heartBtn.left = DeviceWidth - 20 - heartBtn.width;
+    heartBtn.width = [self getWidthWithContent:model.collectNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    heartBtn.left = DeviceWidth - 10 - heartBtn.width;
     [heartBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    [heartBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
     [pinBtn setTitle:model.commentNum forState:0];
-    pinBtn.width = [self getWidthWithContent:model.commentNum height:AUTO(15) font:AUTO(11.0)] + AUTO(15);
-     pinBtn.left = DeviceWidth - heartBtn.width - pinBtn.width  - 20;
+    pinBtn.width = [self getWidthWithContent:model.commentNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+     pinBtn.left = DeviceWidth - heartBtn.width - pinBtn.width  - 10;
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
     [zanBtn setTitle:model.praiseNum forState:0];
-    zanBtn.width = [self getWidthWithContent:model.praiseNum height:AUTO(15) font:AUTO(11.0)] + AUTO(15);
-    zanBtn.left = DeviceWidth - pinBtn.width - heartBtn.width - zanBtn.width  - 20;
+    zanBtn.width = [self getWidthWithContent:model.praiseNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    zanBtn.left = DeviceWidth - pinBtn.width - heartBtn.width - zanBtn.width  - 10;
+    [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
+}
+
+
+- (void)btnFunc:(UIButton *)btn
+{
+    if (btn == heartBtn) {
+        self.cellBlock(btn,UITableViewCellCollect);
+    }else if(btn == pinBtn)
+    {
+        self.cellBlock(btn,UITableViewCellConment);
+    }else{
+        self.cellBlock(btn,UITableViewCellPraise);
+    }
 }
 
 - (CGFloat)getWidthWithContent:(NSString *)content height:(CGFloat)height font:(CGFloat)font{
