@@ -307,7 +307,6 @@
 		84F6BA3E1DC6E3D1009ED8DF /* LBBVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6B9A61DC6E3D1009ED8DF /* LBBVideoViewController.m */; };
 		84F6BA3F1DC6E3D1009ED8DF /* ST_SquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6B9A81DC6E3D1009ED8DF /* ST_SquareViewController.m */; };
 		84F6BA401DC6E3D1009ED8DF /* ST_SquareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F6B9A91DC6E3D1009ED8DF /* ST_SquareViewController.xib */; };
-		84F6BA411DC6E3D1009ED8DF /* ZJMHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6B9AB1DC6E3D1009ED8DF /* ZJMHostViewController.m */; };
 		84F6BA421DC6E3D1009ED8DF /* ZJMTravelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6B9AD1DC6E3D1009ED8DF /* ZJMTravelsViewController.m */; };
 		84F6BA431DC6E3D1009ED8DF /* ZJMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6B9B21DC6E3D1009ED8DF /* ZJMBaseViewController.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
@@ -728,10 +727,10 @@
 		84F6B90F1DC6E3D1009ED8DF /* zjmxiaofei@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmxiaofei@2x.png"; sourceTree = "<group>"; };
 		84F6B9101DC6E3D1009ED8DF /* zjmyule@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmyule@2x.png"; sourceTree = "<group>"; };
 		84F6B9111DC6E3D1009ED8DF /* zjmyuleed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmyuleed@2x.png"; sourceTree = "<group>"; };
-		84F6B9121DC6E3D1009ED8DF /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBFriendViewController.h; sourceTree = "<group>"; };
-		84F6B9131DC6E3D1009ED8DF /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBFriendViewController.m; sourceTree = "<group>"; };
-		84F6B9141DC6E3D1009ED8DF /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHostDetailViewController.h; sourceTree = "<group>"; };
-		84F6B9151DC6E3D1009ED8DF /* LBBHostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHostDetailViewController.m; sourceTree = "<group>"; };
+		84F6B9121DC6E3D1009ED8DF /* LBBFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBBFriendViewController.h; path = ../../LBBFriendViewController.h; sourceTree = "<group>"; };
+		84F6B9131DC6E3D1009ED8DF /* LBBFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBBFriendViewController.m; path = ../../LBBFriendViewController.m; sourceTree = "<group>"; };
+		84F6B9141DC6E3D1009ED8DF /* LBBHostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBBHostDetailViewController.h; path = ../LBBHostDetailViewController.h; sourceTree = "<group>"; };
+		84F6B9151DC6E3D1009ED8DF /* LBBHostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBBHostDetailViewController.m; path = ../LBBHostDetailViewController.m; sourceTree = "<group>"; };
 		84F6B9181DC6E3D1009ED8DF /* LBB_ShopRecoder_Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ShopRecoder_Cell.h; sourceTree = "<group>"; };
 		84F6B9191DC6E3D1009ED8DF /* LBB_ShopRecoder_Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ShopRecoder_Cell.m; sourceTree = "<group>"; };
 		84F6B91B1DC6E3D1009ED8DF /* LBB_ShopRecoder_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ShopRecoder_Controller.h; sourceTree = "<group>"; };
@@ -842,15 +841,13 @@
 		84F6B9A01DC6E3D1009ED8DF /* ZJMTravelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMTravelCell.m; sourceTree = "<group>"; };
 		84F6B9A21DC6E3D1009ED8DF /* LBBTravelContentImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBTravelContentImage.h; sourceTree = "<group>"; };
 		84F6B9A31DC6E3D1009ED8DF /* LBBTravelContentImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBTravelContentImage.m; sourceTree = "<group>"; };
-		84F6B9A51DC6E3D1009ED8DF /* LBBVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBVideoViewController.h; sourceTree = "<group>"; };
-		84F6B9A61DC6E3D1009ED8DF /* LBBVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBVideoViewController.m; sourceTree = "<group>"; };
+		84F6B9A51DC6E3D1009ED8DF /* LBBVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBBVideoViewController.h; path = ../../../ViewController/LBBVideoViewController.h; sourceTree = "<group>"; };
+		84F6B9A61DC6E3D1009ED8DF /* LBBVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBBVideoViewController.m; path = ../../../ViewController/LBBVideoViewController.m; sourceTree = "<group>"; };
 		84F6B9A71DC6E3D1009ED8DF /* ST_SquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ST_SquareViewController.h; sourceTree = "<group>"; };
 		84F6B9A81DC6E3D1009ED8DF /* ST_SquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ST_SquareViewController.m; sourceTree = "<group>"; };
 		84F6B9A91DC6E3D1009ED8DF /* ST_SquareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ST_SquareViewController.xib; sourceTree = "<group>"; };
-		84F6B9AA1DC6E3D1009ED8DF /* ZJMHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMHostViewController.h; sourceTree = "<group>"; };
-		84F6B9AB1DC6E3D1009ED8DF /* ZJMHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMHostViewController.m; sourceTree = "<group>"; };
-		84F6B9AC1DC6E3D1009ED8DF /* ZJMTravelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMTravelsViewController.h; sourceTree = "<group>"; };
-		84F6B9AD1DC6E3D1009ED8DF /* ZJMTravelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMTravelsViewController.m; sourceTree = "<group>"; };
+		84F6B9AC1DC6E3D1009ED8DF /* ZJMTravelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZJMTravelsViewController.h; path = ../../../ViewController/ZJMTravelsViewController.h; sourceTree = "<group>"; };
+		84F6B9AD1DC6E3D1009ED8DF /* ZJMTravelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZJMTravelsViewController.m; path = ../../../ViewController/ZJMTravelsViewController.m; sourceTree = "<group>"; };
 		84F6B9B01DC6E3D1009ED8DF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		84F6B9B11DC6E3D1009ED8DF /* ZJMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMBaseViewController.h; sourceTree = "<group>"; };
 		84F6B9B21DC6E3D1009ED8DF /* ZJMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMBaseViewController.m; sourceTree = "<group>"; };
@@ -1419,6 +1416,72 @@
 				1D12FA451DC6E97700ACD462 /* ST_TabBarController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3C41EC101DC7391E003F146F /* VideoControl */ = {
+			isa = PBXGroup;
+			children = (
+				3C41EC111DC7391E003F146F /* Model */,
+				3C41EC121DC7391E003F146F /* View */,
+				3C41EC131DC7391E003F146F /* ViewControl */,
+			);
+			path = VideoControl;
+			sourceTree = "<group>";
+		};
+		3C41EC111DC7391E003F146F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3C41EC121DC7391E003F146F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C41EC131DC7391E003F146F /* ViewControl */ = {
+			isa = PBXGroup;
+			children = (
+				84F6B9A51DC6E3D1009ED8DF /* LBBVideoViewController.h */,
+				84F6B9A61DC6E3D1009ED8DF /* LBBVideoViewController.m */,
+			);
+			path = ViewControl;
+			sourceTree = "<group>";
+		};
+		3C41EC141DC7392D003F146F /* FriendControl */ = {
+			isa = PBXGroup;
+			children = (
+				3C41EC151DC7392D003F146F /* Model */,
+				3C41EC161DC7392D003F146F /* View */,
+				3C41EC171DC7392D003F146F /* ViewContrl */,
+			);
+			path = FriendControl;
+			sourceTree = "<group>";
+		};
+		3C41EC151DC7392D003F146F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3C41EC161DC7392D003F146F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C41EC171DC7392D003F146F /* ViewContrl */ = {
+			isa = PBXGroup;
+			children = (
+				84F6B9121DC6E3D1009ED8DF /* LBBFriendViewController.h */,
+				84F6B9131DC6E3D1009ED8DF /* LBBFriendViewController.m */,
+			);
+			path = ViewContrl;
 			sourceTree = "<group>";
 		};
 		8400137E1DC62C3200BD6297 /* Points */ = {
@@ -2777,11 +2840,12 @@
 		84F6B8A51DC6E3D0009ED8DF /* ST_Square */ = {
 			isa = PBXGroup;
 			children = (
+				84F6B8C61DC6E3D0009ED8DF /* imageResource */,
+				84F6B8A71DC6E3D0009ED8DF /* Commom */,
 				84F6B8A61DC6E3D0009ED8DF /* ChildController */,
 				84F6B9411DC6E3D1009ED8DF /* Model */,
 				84F6B94F1DC6E3D1009ED8DF /* View */,
 				84F6B9A41DC6E3D1009ED8DF /* ViewController */,
-				84F6B9AE1DC6E3D1009ED8DF /* ZJMBaseController */,
 			);
 			path = ST_Square;
 			sourceTree = "<group>";
@@ -2789,15 +2853,11 @@
 		84F6B8A61DC6E3D0009ED8DF /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
-				84F6B8A71DC6E3D0009ED8DF /* Commom */,
+				3C41EC141DC7392D003F146F /* FriendControl */,
+				3C41EC101DC7391E003F146F /* VideoControl */,
 				84F6B8AB1DC6E3D0009ED8DF /* EditShopRecoder */,
 				84F6B8B21DC6E3D0009ED8DF /* HostCotronl */,
 				84F6B8C01DC6E3D0009ED8DF /* HostDetailControl */,
-				84F6B8C61DC6E3D0009ED8DF /* imageResource */,
-				84F6B9121DC6E3D1009ED8DF /* LBBFriendViewController.h */,
-				84F6B9131DC6E3D1009ED8DF /* LBBFriendViewController.m */,
-				84F6B9141DC6E3D1009ED8DF /* LBBHostDetailViewController.h */,
-				84F6B9151DC6E3D1009ED8DF /* LBBHostDetailViewController.m */,
 				84F6B9161DC6E3D1009ED8DF /* shopRecoderController */,
 				84F6B91D1DC6E3D1009ED8DF /* TravelBill */,
 				84F6B92B1DC6E3D1009ED8DF /* TravelControl */,
@@ -2809,9 +2869,12 @@
 		84F6B8A71DC6E3D0009ED8DF /* Commom */ = {
 			isa = PBXGroup;
 			children = (
+				84F6B9AE1DC6E3D1009ED8DF /* ZJMBaseController */,
+				84F6B9AF1DC6E3D1009ED8DF /* Header */,
 				84F6B8A81DC6E3D0009ED8DF /* CustomAllQueenView */,
 			);
-			path = Commom;
+			name = Commom;
+			path = ChildController/Commom;
 			sourceTree = "<group>";
 		};
 		84F6B8A81DC6E3D0009ED8DF /* CustomAllQueenView */ = {
@@ -2892,6 +2955,8 @@
 		84F6B8C01DC6E3D0009ED8DF /* HostDetailControl */ = {
 			isa = PBXGroup;
 			children = (
+				84F6B9141DC6E3D1009ED8DF /* LBBHostDetailViewController.h */,
+				84F6B9151DC6E3D1009ED8DF /* LBBHostDetailViewController.m */,
 				84F6B8C11DC6E3D0009ED8DF /* View */,
 			);
 			path = HostDetailControl;
@@ -2914,7 +2979,8 @@
 				84F6B8C71DC6E3D0009ED8DF /* 640 */,
 				84F6B8E61DC6E3D0009ED8DF /* Travel */,
 			);
-			path = imageResource;
+			name = imageResource;
+			path = ChildController/imageResource;
 			sourceTree = "<group>";
 		};
 		84F6B8C71DC6E3D0009ED8DF /* 640 */ = {
@@ -3097,6 +3163,8 @@
 		84F6B92C1DC6E3D1009ED8DF /* ViewControl */ = {
 			isa = PBXGroup;
 			children = (
+				84F6B9AC1DC6E3D1009ED8DF /* ZJMTravelsViewController.h */,
+				84F6B9AD1DC6E3D1009ED8DF /* ZJMTravelsViewController.m */,
 				84F6B92D1DC6E3D1009ED8DF /* LBB_TravelCommentController.h */,
 				84F6B92E1DC6E3D1009ED8DF /* LBB_TravelCommentController.m */,
 			);
@@ -3333,15 +3401,9 @@
 		84F6B9A41DC6E3D1009ED8DF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				84F6B9A51DC6E3D1009ED8DF /* LBBVideoViewController.h */,
-				84F6B9A61DC6E3D1009ED8DF /* LBBVideoViewController.m */,
 				84F6B9A71DC6E3D1009ED8DF /* ST_SquareViewController.h */,
 				84F6B9A81DC6E3D1009ED8DF /* ST_SquareViewController.m */,
 				84F6B9A91DC6E3D1009ED8DF /* ST_SquareViewController.xib */,
-				84F6B9AA1DC6E3D1009ED8DF /* ZJMHostViewController.h */,
-				84F6B9AB1DC6E3D1009ED8DF /* ZJMHostViewController.m */,
-				84F6B9AC1DC6E3D1009ED8DF /* ZJMTravelsViewController.h */,
-				84F6B9AD1DC6E3D1009ED8DF /* ZJMTravelsViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3349,11 +3411,11 @@
 		84F6B9AE1DC6E3D1009ED8DF /* ZJMBaseController */ = {
 			isa = PBXGroup;
 			children = (
-				84F6B9AF1DC6E3D1009ED8DF /* Header */,
 				84F6B9B11DC6E3D1009ED8DF /* ZJMBaseViewController.h */,
 				84F6B9B21DC6E3D1009ED8DF /* ZJMBaseViewController.m */,
 			);
-			path = ZJMBaseController;
+			name = ZJMBaseController;
+			path = ../../ZJMBaseController;
 			sourceTree = "<group>";
 		};
 		84F6B9AF1DC6E3D1009ED8DF /* Header */ = {
@@ -3361,7 +3423,8 @@
 			children = (
 				84F6B9B01DC6E3D1009ED8DF /* Header.h */,
 			);
-			path = Header;
+			name = Header;
+			path = ../../ZJMBaseController/Header;
 			sourceTree = "<group>";
 		};
 		C91F613A1D9F96CA004FE75C /* ST_Mall */ = {
@@ -3998,7 +4061,6 @@
 				84F6BA051DC6E3D1009ED8DF /* LBBHostDetailViewController.m in Sources */,
 				84F6BA1D1DC6E3D1009ED8DF /* JHLineChart.m in Sources */,
 				1D12FA651DC6E97700ACD462 /* LBB_OrderPayWayCell.m in Sources */,
-				84F6BA411DC6E3D1009ED8DF /* ZJMHostViewController.m in Sources */,
 				1D12FA621DC6E97700ACD462 /* LBBNearbyMenuListTableViewCell.m in Sources */,
 				1D12FA741DC6E97700ACD462 /* LBB_ScenicDetailOrderConfirmView.m in Sources */,
 				1D12FA6D1DC6E97700ACD462 /* LBB_OrderPayWayViewController.m in Sources */,
