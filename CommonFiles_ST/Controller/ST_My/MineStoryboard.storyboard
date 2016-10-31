@@ -721,6 +721,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="rDJ-wy-KxT" id="MgG-SA-12d"/>
                         <outlet property="tableView" destination="uV7-9U-VEX" id="NE3-NW-2sq"/>
                     </connections>
                 </viewController>
@@ -1299,12 +1300,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sSY-WX-mgy" firstAttribute="top" secondItem="zC7-X9-4fG" secondAttribute="bottom" id="1jO-8y-7pC"/>
-                            <constraint firstItem="CTG-Xi-ti9" firstAttribute="top" secondItem="sSY-WX-mgy" secondAttribute="bottom" id="Pin-Nr-vwf"/>
+                            <constraint firstItem="CTG-Xi-ti9" firstAttribute="top" secondItem="sSY-WX-mgy" secondAttribute="bottom" constant="-49" id="Pin-Nr-vwf"/>
                             <constraint firstItem="sSY-WX-mgy" firstAttribute="leading" secondItem="Y8j-d8-ihc" secondAttribute="leading" id="tD3-6y-IpH"/>
                             <constraint firstAttribute="trailing" secondItem="sSY-WX-mgy" secondAttribute="trailing" id="uOx-Y7-ZHj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="Pin-Nr-vwf" id="hQV-bm-4Iu"/>
                         <outlet property="tableView" destination="sSY-WX-mgy" id="pAh-fA-zRl"/>
                         <segue destination="Hy7-8X-g7t" kind="show" identifier="SettingPushViewController" id="eP3-hn-XKU"/>
                         <segue destination="VkQ-te-Wq9" kind="show" identifier="SettingPrivaceViewController" id="ysO-pY-Jac"/>
@@ -1343,6 +1345,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="Rxb-aF-9bW" id="AQv-gB-kx5"/>
                         <outlet property="tableView" destination="1pZ-eB-efa" id="FLK-ss-B1h"/>
                     </connections>
                 </viewController>
@@ -1379,6 +1382,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="9AK-V3-OLQ" id="ngp-cW-3d4"/>
                         <outlet property="tableView" destination="DVg-b5-pb0" id="p1R-un-JgQ"/>
                     </connections>
                 </viewController>
@@ -1474,6 +1478,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="YMO-l8-4WP" id="NhA-gS-vzI"/>
                         <outlet property="tableView" destination="xvG-nx-88r" id="J11-q2-zyr"/>
                         <segue destination="3Si-5M-F9S" kind="show" identifier="LBB_UserNameViewController" id="MWO-bb-olx"/>
                         <segue destination="Igj-XI-dmy" kind="show" identifier="ReceiptAddressViewController" id="3vL-At-RZx"/>
@@ -1523,6 +1528,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="1qb-Yh-b67" id="uXc-Et-eFC"/>
                         <outlet property="segmentControlBgView" destination="Gyb-lU-9LA" id="ZSa-iE-PA0"/>
                         <outlet property="segmentControlHeighConstraint" destination="hQQ-mn-Hdo" id="ddD-R0-20K"/>
                         <outlet property="tableView" destination="LTZ-Wl-S7L" id="Xhe-0D-4jU"/>
@@ -2239,6 +2245,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="7CS-9W-nF5" id="9fV-VV-dXU"/>
                         <outlet property="tableView" destination="109-gY-A0C" id="DlZ-wF-jVj"/>
                         <segue destination="0Rm-Db-3nP" kind="show" identifier="LBB_CustomerViewController" id="cgJ-1R-wmE"/>
                         <segue destination="UX0-cf-vJW" kind="show" identifier="LBB_NoticeViewController" id="Cna-Tm-VV2"/>
@@ -2280,6 +2287,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="GFl-fH-tMB" id="ysa-BJ-6kE"/>
                         <outlet property="tableView" destination="o8K-rC-Bee" id="5Ld-6z-GhA"/>
                     </connections>
                 </viewController>
@@ -2316,6 +2324,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="JFC-B6-rn8" id="fKd-W6-aPp"/>
                         <outlet property="tableView" destination="bpA-x2-yj1" id="oVF-nL-Y8S"/>
                     </connections>
                 </viewController>
@@ -2348,6 +2357,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="Thk-iD-zMG" id="YdB-Yg-QdT"/>
                         <outlet property="webView" destination="qck-Gp-h7E" id="I05-Xy-e46"/>
                     </connections>
                 </viewController>
@@ -2402,6 +2412,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="V7w-Zl-nUj" id="Hba-Nf-0kz"/>
                         <outlet property="lineView" destination="oxe-16-ZDX" id="eKw-wM-WY8"/>
                         <outlet property="segmentBgView" destination="nCg-UH-NgS" id="157-Zs-q9B"/>
                         <outlet property="segmentBgViewHeightConstraint" destination="CUU-b0-1np" id="uPg-PA-xCx"/>
@@ -2459,6 +2470,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomViewBottomContraint" destination="qfQ-ha-C4F" id="zHQ-ib-4NO"/>
                         <outlet property="lineView" destination="eUM-R9-Qng" id="pqv-Nc-nkT"/>
                         <outlet property="segmentBgView" destination="gq7-6S-qm1" id="fq9-WN-riA"/>
                         <outlet property="segmentBgViewHeightConstraint" destination="pdF-ZP-ifC" id="gSL-00-e9f"/>

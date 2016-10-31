@@ -29,7 +29,7 @@
 
 - (void)buildControls
 {
-    self.bottomViewBottomContraint.constant = TabHeight;
+    self.bottomViewBottomContraint.constant = -TabHeight;
 }
 
 - (void)viewWillAppear:(BOOL)animated
