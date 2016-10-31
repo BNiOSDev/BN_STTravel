@@ -28,15 +28,26 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import "NSString+PoohCommon.h"
 #import "UIColor+PoohCommon.h"
 #import "NSObject+PoohCommon.h"
+#import "UILabel+Common.h"
+
 #import "IConstants.h"
 #import "UIView+FRCategory.h"
 #import "SDAutoLayout.h"
+#import "HMSegmentedControl.h"
+#import "UINavigationBar+Awesome.h"
 
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define UISCREEN_HEIGTH [UIScreen mainScreen].bounds.size.height
 
-#define PlaceHolderImage @""
-#define SeparateLineWidth 1.5
+#define PlaceHolderImage @"poohtest"
+#define SeparateLineWidth 1
+
+//屏幕适配
+#define FB_FIX_SIZE_WIDTH(w) (((w) / 320.0) * DeviceWidth)
+//获取当前app版本
+#define APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
+//获取适配后的数据大小
+#define AutoSize(num)  num * (DeviceWidth /320.0)
 
 
 

@@ -12,5 +12,10 @@
 
 -(void)setCycleScrollViewUrls:(NSArray*)urlArray;
 
++(CGFloat)getCellHeight;
+
+-(void)setCycleScrollViewHeight:(CGFloat)height;
+
+@property(nonatomic,strong)ClickBlock click;
 
 @end

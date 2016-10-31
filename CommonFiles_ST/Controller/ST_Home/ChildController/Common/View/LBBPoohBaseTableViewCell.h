@@ -11,8 +11,6 @@
 
 @interface LBBPoohBaseTableViewCell : UITableViewCell
 
--(CGFloat)getCellHeight;
-
 +(CGFloat)contentViewWidth;
 
 

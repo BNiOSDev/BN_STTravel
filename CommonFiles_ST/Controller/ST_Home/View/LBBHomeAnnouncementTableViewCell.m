@@ -87,7 +87,7 @@
         
         CGFloat x = 3 + 20 + 20 + title.frame.size.width + 25;
 
-        tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x+40, 0, DeviceWidth-40-x, 50)];
+        tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x+40, 0, DeviceWidth-40-x, [LBBHomeAnnouncementTableViewCell getCellHeight])];
         tView.delegate = self;
         [self.contentView addSubview:tView];
         [tView mas_makeConstraints:^(MASConstraintMaker* make){
@@ -110,9 +110,9 @@
 }
 
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
-    CGFloat height = 50;
+    CGFloat height = AutoSize(35);
   //  NSLog(@"getCellHeight:%f",height);
     return height;
 }

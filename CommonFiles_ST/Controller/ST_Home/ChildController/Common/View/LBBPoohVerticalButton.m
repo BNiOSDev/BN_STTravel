@@ -43,7 +43,8 @@
             
             make.top.equalTo(ws.imageView.mas_bottom).offset(3);
             make.bottom.equalTo(ws);
-            make.left.right.equalTo(ws);
+           // make.left.right.equalTo(ws);
+            make.centerX.equalTo(ws);
         }];
     }
     return self;

@@ -60,15 +60,16 @@ static const NSInteger kPictureInterval = 10;
 -(void)buildControls{
 
     WS(ws);
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.mainScrollView = [UIScrollView new];
+    [self.mainScrollView setBackgroundColor:[UIColor whiteColor]];
     [self.mainScrollView setContentSize:CGSizeMake(0, UISCREEN_HEIGTH)];
     NSLog(@"height:%f",UISCREEN_HEIGTH);
     [self.mainScrollView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.view);
-        make.bottom.equalTo(ws.view);
+        //make.bottom.equalTo(ws.view);
         make.width.centerX.equalTo(ws.view);
     }];
 
@@ -83,13 +84,13 @@ static const NSInteger kPictureInterval = 10;
     }];
     
     UILabel* l1 = [UILabel new];
-    [l1 setText:@"评论得分: "];
-    [l1 setFont:Font12];
+    [l1 setText:@"评论得分 "];
+    [l1 setFont:Font15];
     [v1 addSubview:l1];
     [l1 mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(v1);
-        make.left.equalTo(v1).offset(margin);
-        make.width.equalTo(@70);
+        make.left.equalTo(v1).offset(2*margin);
+        make.width.mas_equalTo(AutoSize(60));
     }];
     
     CGFloat starWidth = DeviceWidth  - 70 - margin - 2*margin;
@@ -111,13 +112,13 @@ static const NSInteger kPictureInterval = 10;
     
     //评论描述
     UILabel* l2 = [UILabel new];
-    [l2 setText:@"评论描述: "];
-    [l2 setFont:Font12];
+    [l2 setText:@"景点评价 "];
+    [l2 setFont:Font15];
     [self.mainScrollView addSubview:l2];
     [l2 mas_makeConstraints:^(MASConstraintMaker* make){
         
-        make.top.equalTo(v1.mas_bottom).offset(margin);
-        make.left.equalTo(v1).offset(margin);
+        make.top.equalTo(v1.mas_bottom).offset(2*margin);
+        make.left.equalTo(v1).offset(2*margin);
     }];
     
     self.textField = [UITextView new];
@@ -131,7 +132,7 @@ static const NSInteger kPictureInterval = 10;
         make.top.equalTo(l2.mas_bottom).offset(margin);
         make.width.equalTo(ws.mainScrollView).offset(-4*margin);
         make.centerX.equalTo(ws.mainScrollView);
-        make.height.equalTo(@150);
+        make.height.mas_equalTo(AutoSize(130));
     }];
     
     //图片
@@ -146,17 +147,20 @@ static const NSInteger kPictureInterval = 10;
     //submit
     self.submitButton = [UIButton new];
     [self.submitButton setTitle:@"提交评论" forState:UIControlStateNormal];
-    [self.submitButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.submitButton.titleLabel setFont:Font10];
-    self.submitButton.layer.borderColor = [UIColor blackColor].CGColor;
-    self.submitButton.layer.borderWidth = SeparateLineWidth;
-    [self.mainScrollView addSubview:self.submitButton];
+    [self.submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.submitButton.titleLabel setFont:Font16];
+    //self.submitButton.layer.borderColor = [UIColor blackColor].CGColor;
+    //self.submitButton.layer.borderWidth = SeparateLineWidth;
+    [self.submitButton setBackgroundColor:ColorBtnYellow];
+    [self.view addSubview:self.submitButton];
     [self.submitButton mas_makeConstraints:^(MASConstraintMaker* make){
         
-        make.top.equalTo(ws.picturePanel.mas_bottom).offset(margin);
+        make.top.equalTo(ws.mainScrollView.mas_bottom);
         make.centerX.equalTo(ws.mainScrollView);
-        make.height.equalTo(@40);
-        make.width.equalTo(@120);
+        make.height.mas_equalTo(AutoSize(45));
+        make.width.mas_equalTo(DeviceWidth);
+        make.bottom.equalTo(ws.view);
+        
     }];
     [self.submitButton bk_addEventHandler:^(id sender){
         
@@ -229,7 +233,10 @@ static const NSInteger kPictureInterval = 10;
             }];
             [v addGestureRecognizer:tap];
             
-            v.image = [UIImage imageNamed:PlaceHolderImage];
+            v.image = [UIImage imageNamed:@"评论_添加"];
+            [v setContentMode:UIViewContentModeCenter];
+            v.layer.borderColor = ColorLine.CGColor;
+            v.layer.borderWidth = SeparateLineWidth;
         }else{
             
             if ([self.pictures[i] isKindOfClass:[UIImage class]]) {

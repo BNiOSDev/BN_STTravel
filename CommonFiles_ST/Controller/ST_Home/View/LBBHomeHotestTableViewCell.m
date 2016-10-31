@@ -8,7 +8,6 @@
 
 #import "LBBHomeHotestTableViewCell.h"
 #import "LBBHomeHotestTableViewCellItem.h"
-
 @interface LBBHomeHotestTableViewCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 
@@ -33,29 +32,24 @@
         [self setBackgroundColor:[UIColor whiteColor]];
 
         NSArray* segmentArray = @[@"景点",@"美食",@"民宿"];
-        
-        
-        KSViewPagerView* pagerView = [[KSViewPagerView alloc] initWithArray:segmentArray];
-        [self.contentView addSubview:pagerView];
-        [pagerView setActiveColor:ColorLightGray];
-        [pagerView setInactiveColor:ColorLightGray];
-        [pagerView setTitleFont:Font8];
-        [pagerView enableSeperatorView:NO];
-        [pagerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(@35);
-            make.width.equalTo(@200);
+    
+        HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
+        segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+        segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+                                                 NSForegroundColorAttributeName:ColorLightGray};
+        segmentedControl.selectionIndicatorColor = ColorLightGray;
+        segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+        [self.contentView addSubview:segmentedControl];
+        [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.centerX.equalTo(ws.contentView);
+            make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
+            make.width.equalTo(@200);
         }];
 
-        pagerView.click = ^(KSViewPagerView*v, NSNumber *index){
-            
-            
+        self.pagerView = segmentedControl;
+        segmentedControl.indexChangeBlock = ^(NSInteger index){
+            NSLog(@"segmentedControl select:%ld",index);
         };
-        [pagerView setCursorPosition:0];
-        self.pagerView = pagerView;
-        
-        
-        
         
         UICollectionViewFlowLayout *horizontalCellLayout = [UICollectionViewFlowLayout new];
         horizontalCellLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -71,17 +65,15 @@
         _collectionView.showsHorizontalScrollIndicator = NO;
         
         self.collectionView.alwaysBounceHorizontal = YES;
-//          self.collectionView.alwaysBounceVertical = NO;
         
         _collectionView.scrollEnabled = YES;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
-        [self addSubview:_collectionView];
+        [self.contentView addSubview:_collectionView];
         
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(ws.pagerView.mas_bottom);
-            make.left.right.bottom.equalTo(ws.contentView);
-         //   make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width);
+            make.top.equalTo(ws.pagerView.mas_bottom).offset(3);
+            make.left.right.width.equalTo(ws.contentView);
         }];
 
         
@@ -93,12 +85,11 @@
         [sep setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep];
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.right.bottom.equalTo(ws.contentView);
+            make.top.equalTo(_collectionView.mas_bottom);
+            make.left.right.equalTo(ws.contentView);
             make.height.equalTo(@1.5);
+            make.bottom.equalTo(ws.contentView);
         }];
-        
-        [self layoutSubviews];//it must to be done to layouts subviews
-
     }
     return self;
 }
@@ -127,20 +118,18 @@
 //    return itemSize;
 //}
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
     CGFloat height = 0;
+    height = DeviceWidth * 2/3;
 
-    if ([self.pagerView isHidden]) {
-        height = DeviceWidth * 2/3;
-
-    }
-    else{
-        height = DeviceWidth * 2/3 + 35;
-
-    }
+    return height;
+}
++(CGFloat)getCellHeight2{
     
- //   NSLog(@"getCellHeight:%f",height);
+    CGFloat height = 0;
+    height = DeviceWidth * 2/3 + TopSegmmentControlHeight + 3;
+    
     return height;
 }
 
@@ -155,14 +144,22 @@
             make.width.equalTo(@200);
             make.top.centerX.equalTo(ws.contentView);
         }];
+        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(ws.pagerView.mas_bottom);
+            make.left.right.width.equalTo(ws.contentView);
+        }];
     }
     else{
         self.pagerView.hidden = NO;
         
         [self.pagerView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(@35);
+            make.height.mas_equalTo(TopSegmmentControlHeight);
             make.width.equalTo(@200);
             make.top.centerX.equalTo(ws.contentView);
+        }];
+        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(ws.pagerView.mas_bottom).offset(3);
+            make.left.right.width.equalTo(ws.contentView);
         }];
     }
     

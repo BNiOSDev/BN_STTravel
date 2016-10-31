@@ -85,6 +85,24 @@
 
 #pragma tableView Delegate
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return AutoSize(30);
+}
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+
+    CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
+    UILabel* l = [UILabel new];
+    [l setFrame:CGRectMake(0, 0, DeviceWidth, height)];
+    [l setTextAlignment:NSTextAlignmentCenter];
+    [l setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+    [l setText:@"您已完成80个景点，目前排名第12名"];
+    [l setTextColor:[UIColor whiteColor]];
+    
+    return l;
+    
+};
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -93,19 +111,17 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    LBBPoohBaseTableViewCell* cell = (LBBPoohBaseTableViewCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    
-    return [cell getCellHeight];
+    return [LBB_SignInListCell getCellHeight];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     static NSString *cellIdentifier = @"LBB_SignInListCell";
     LBB_SignInListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-   /* if (cell == nil) {
+    if (cell == nil) {
         cell = [[LBB_SignInListCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_SignInListCell nil");
-    }*/
+    }
     [cell showSigninButton:YES];
     return cell;
     

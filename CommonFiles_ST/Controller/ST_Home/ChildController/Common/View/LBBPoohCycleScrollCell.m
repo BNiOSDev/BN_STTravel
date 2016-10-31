@@ -31,16 +31,6 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        //        NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-        //        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRGB:0xfb0d1b]
-        //                                                    title:@"删除"];
-        //        [rightUtilityButtons sw_addUtilityButtonWithColor:[UIColor colorWithRGB:0x058cc0]
-        //                                                    title:@"修改"];
-        //
-        //        self.rightUtilityButtons = rightUtilityButtons;
-        
-        
 
         // 情景一：采用本地图片实现
 
@@ -63,6 +53,19 @@
 }
 
 
+
+-(void)setCycleScrollViewHeight:(CGFloat)height{
+    
+    WS(ws);
+    [cycleScrollView mas_remakeConstraints:^(MASConstraintMaker* make){
+        make.width.equalTo(ws.contentView);
+        make.height.mas_equalTo(height);
+        make.bottom.top.equalTo(ws.contentView);
+    }];
+    
+    [self.contentView layoutSubviews];
+}
+
 -(void)setCycleScrollViewUrls:(NSArray*)urlArray{
 
     NSArray* imagesURLStrings = @[@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg",
@@ -81,13 +84,14 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     NSLog(@"cycleScrollView didSelectItemAtIndex:%ld",index);
+    self.click(@(index));
 }
 
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
 
     CGFloat height = 0;
-    height = DeviceWidth * 3/5;
+    height = AutoSize(370/2);
    // NSLog(@"getCellHeight:%f",height);
     return height;
 }

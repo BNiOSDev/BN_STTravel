@@ -9,6 +9,9 @@
 #import "LBBHomeMenuTableViewCell.h"
 #import "LBBPoohVerticalButton.h"
 #import "LBB_DiscoveryMainViewController.h"
+#import "LBB_ScenicMainViewController.h"
+#import "LBB_HostelMainViewController.h"
+#import "LBB_FoodsMainViewController.h"
 
 @implementation LBBHomeMenuTableViewCell
 
@@ -30,8 +33,7 @@
         NSArray* iconArray = @[@"ST_Home_Strategy",@"ST_Home_Tourism",@"ST_Home_TourGuide",@"ST_Home_Foods",@"ST_Home_HomeStay"];
         
         NSInteger count = [titleArray count];
-        CGFloat margineLeft = 12;
-        CGFloat margineTop = 5;
+        CGFloat margineLeft = 20;
         CGFloat width = (DeviceWidth - (count+1)*margineLeft)/count;
 
         for (int i = 0 ; i<count; i++) {
@@ -40,15 +42,14 @@
             [btn setTag:i];
             [btn.titleLabel setText:[titleArray objectAtIndex:i]];
             [btn.titleLabel setTextColor:[UIColor blackColor]];
+            [btn.titleLabel setFont:Font14];
             [btn.imageView setImage:IMAGE([iconArray objectAtIndex:i])];
             [self.contentView addSubview:btn];
             [btn mas_makeConstraints:^(MASConstraintMaker* make){
 
-                make.top.equalTo(ws.contentView).offset(margineTop);
                 make.left.equalTo(ws.contentView).offset(i*(width+margineLeft)+margineLeft);
-                make.width.mas_equalTo(width);
-                make.bottom.equalTo(ws.contentView).offset(-margineTop);
-
+                make.width.height.mas_equalTo(width);
+                make.centerY.equalTo(ws.contentView);
             }];
             [self.contentView layoutSubviews];//it must to be done to layouts subviews
             [btn bk_addEventHandler:^(LBBPoohVerticalButton* sender){
@@ -61,12 +62,23 @@
                     case 0://攻略
                         dest = [[LBB_DiscoveryMainViewController alloc] init];
                         break;
-                        
+                    case 1://景点
+                        dest = [[LBB_ScenicMainViewController alloc] init];
+                        break;
+                    case 2://导游
+                        break;
+                    case 3://美食
+                        dest = [[LBB_FoodsMainViewController alloc] init];
+                        break;
+                    case 4://民宿
+                        dest = [[LBB_HostelMainViewController alloc] init];
+                        break;
                     default:
                         break;
                 }
-                [[ws getViewController].navigationController pushViewController:dest animated:YES];
-                
+                if (dest) {
+                    [[ws getViewController].navigationController pushViewController:dest animated:YES];
+                }
             
             } forControlEvents:UIControlEventTouchUpInside];
             
@@ -78,10 +90,9 @@
 
 
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
-    CGFloat height = 60;
-  //  NSLog(@"getCellHeight:%f",height);
+    CGFloat height = AutoSize(116/2);
     return height;
 }
 

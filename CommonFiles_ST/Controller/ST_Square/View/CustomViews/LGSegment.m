@@ -12,7 +12,8 @@
 #define LG_ScreenH [UIScreen mainScreen].bounds.size.height
 #define LG_ButtonColor_Selected      [UIColor blackColor]
 #define LG_ButtonColor_UnSelected  [UIColor blackColor]
-#define LG_BannerColor               [UIColor grayColor]
+#define LG_BannerColor                      [UIColor grayColor]
+#define LG_Font                                   [UIFont systemFontOfSize:14.0]
 
 @interface LGSegment()
 
@@ -100,7 +101,7 @@
         //设置
         buttonItem.tag = i + 1;
         [buttonItem setTitle:temp forState:UIControlStateNormal];
-        buttonItem.titleLabel.font = Font10;
+        buttonItem.titleLabel.font = LG_Font;
         [buttonItem setTitleColor:LG_ButtonColor_UnSelected forState:UIControlStateNormal];
         [buttonItem addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:buttonItem];

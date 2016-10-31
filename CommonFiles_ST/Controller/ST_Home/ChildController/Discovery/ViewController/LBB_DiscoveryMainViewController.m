@@ -61,10 +61,9 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
 
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [self.tableView registerClass:[LBB_DiscoveryMainTableViewCell class] forCellReuseIdentifier:cellIdentifier];
     [self.view addSubview:self.tableView];
-
-
     self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = [self configTableHeaderView];
     [self setCycleScrollViewUrls:nil];
@@ -75,8 +74,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
         make.width.centerX.top.equalTo(ws.view);
         make.bottom.equalTo(ws.view);
     }];
-    
-    [self.tableView registerClass:[LBB_DiscoveryMainTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
@@ -87,10 +85,10 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     WS(ws);
 
     CGFloat margin = 8;
-    CGFloat height = UISCREEN_WIDTH * 3/5
+    CGFloat height = AutoSize(310/2)
                     + 4*margin + 2*margin
-                    + 2*margin + 5*margin
-                    + 3*margin + 1.5;
+                    + 2*margin + AutoSize(48/2)
+                    + 2*margin + 10;
     UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UISCREEN_WIDTH, height)];
     [v setBackgroundColor:[UIColor whiteColor]];
     // 情景一：采用本地图片实现
@@ -108,11 +106,12 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     [v addSubview:self.cycScrollView];
     [self.cycScrollView mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.width.top.equalTo(v);
-        make.height.mas_equalTo(UISCREEN_WIDTH * 3/5);
+        make.height.mas_equalTo(AutoSize(310/2));
     }];
     
     UILabel* l = [UILabel new];
     [l setText:@"鹭爸爸为您定制个性化厦门游攻略"];
+    [l setTextColor:ColorGray];
     [l setFont:Font14];
     [l setTextAlignment:NSTextAlignmentCenter];
     [v addSubview:l];
@@ -126,14 +125,14 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     UIButton* b = [UIButton new];
     [b setTitle:@"立即定制" forState:UIControlStateNormal];
     [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [b.titleLabel setFont:Font10];
+    [b.titleLabel setFont:Font13];
     [b setBackgroundColor:ColorBtnYellow];
     [v addSubview:b];
     [b mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.equalTo(v);
         make.top.equalTo(l.mas_bottom).offset(2*margin);
-        make.height.mas_equalTo(5*margin);
-        make.width.equalTo(@120);
+        make.height.mas_equalTo(AutoSize(48/2));
+        make.width.mas_equalTo(AutoSize(168/2));
     }];
     [b bk_addEventHandler:^(id sender){
         
@@ -144,14 +143,13 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     } forControlEvents:UIControlEventTouchUpInside];
     
     
-    
     UIView* sep = [UIView new];
     [sep setBackgroundColor:ColorLine];
     [v addSubview:sep];
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
         make.bottom.width.centerX.equalTo(v);
-        make.height.equalTo(@1.5);
-        make.top.equalTo(b.mas_bottom).offset(3*margin);
+        make.height.mas_equalTo(10);
+        make.top.equalTo(b.mas_bottom).offset(2*margin);
     }];
     
     return v;
@@ -187,7 +185,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 
-    return 43;
+    return AutoSize(86/2);
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -205,7 +203,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
         
         make.centerY.equalTo(v);
-        make.height.mas_equalTo(height-2*margin);
+        make.height.mas_equalTo(20);
         make.left.equalTo(v).mas_offset(2*margin);
         make.width.mas_offset(SeparateLineWidth);
     }];
@@ -216,7 +214,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     [v addSubview:l];
     [l mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(v);
-        make.left.equalTo(sep.mas_right).offset(2*margin);
+        make.left.equalTo(sep.mas_right).offset(2);
     }];
     
     return v;
@@ -231,17 +229,23 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath configuration:^(LBB_DiscoveryMainTableViewCell *cell) {
+    CGFloat height = [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath configuration:^(LBB_DiscoveryMainTableViewCell *cell) {
         
-        cell.modelaaa = nil;
+        [cell setModelaaa:nil andRow:indexPath.row];
     }];
+    NSLog(@"height:%f",height);
+    
+    return height;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     LBB_DiscoveryMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-   
-    cell.modelaaa = nil;
+    if (cell == nil) {
+        cell = [[LBB_DiscoveryMainTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+        NSLog(@"LBB_DiscoveryMainTableViewCell nil");
+    }
+    [cell setModelaaa:nil andRow:indexPath.row];
     return cell;
     
 }

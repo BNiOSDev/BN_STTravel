@@ -29,7 +29,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         
-        CGFloat interval = 8;
+        CGFloat interval = 10;
         
         self.portraitImageView = [UIImageView new];
         [self.contentView addSubview:self.portraitImageView];
@@ -102,9 +102,9 @@
 
 
 
--(CGFloat)getCellHeight{
++(CGFloat)getCellHeight{
     
-    CGFloat height = 70;
+    CGFloat height = AutoSize(130/2);
   //  NSLog(@"getCellHeight:%f",height);
     return height;
 }
