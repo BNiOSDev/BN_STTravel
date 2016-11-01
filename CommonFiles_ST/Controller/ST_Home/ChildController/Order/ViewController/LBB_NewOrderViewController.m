@@ -260,7 +260,7 @@
     [orderButton bk_addEventHandler:^(id sender){
         
         LBB_OrderWaitPayViewController* dest = [[LBB_OrderWaitPayViewController alloc]init];
-        dest.ticketStatus = arc4random()%4;
+        dest.ticketStatus = arc4random()%5;
         [ws.navigationController pushViewController:dest animated:YES];
     } forControlEvents:UIControlEventTouchUpInside];
 
