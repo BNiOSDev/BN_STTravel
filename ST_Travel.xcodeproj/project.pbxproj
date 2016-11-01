@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0F487E1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F487D1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m */; };
+		1D0F48811DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48801DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m */; };
+		1D0F48841DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */; };
 		1D12FA461DC6E97700ACD462 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */; };
 		1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97E1DC6E97700ACD462 /* PoohBaseViewController.m */; };
 		1D12FA481DC6E97700ACD462 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D12F9841DC6E97700ACD462 /* b27_icon_star_gray@2x.png */; };
@@ -347,6 +350,12 @@
 
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D0F487C1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryDetailViewController.h; sourceTree = "<group>"; };
+		1D0F487D1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryDetailViewController.m; sourceTree = "<group>"; };
+		1D0F487F1DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryDetailMsgCell.h; sourceTree = "<group>"; };
+		1D0F48801DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryDetailMsgCell.m; sourceTree = "<group>"; };
+		1D0F48821DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohAttributedTextCell.h; sourceTree = "<group>"; };
+		1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohAttributedTextCell.m; sourceTree = "<group>"; };
 		1D12F97B1DC6E97700ACD462 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		1D12F97D1DC6E97700ACD462 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -1006,6 +1015,8 @@
 				1D12F99C1DC6E97700ACD462 /* LBBPoohVerticalButton.m */,
 				1D12F99D1DC6E97700ACD462 /* LBBPoohVerticalLableControl.h */,
 				1D12F99E1DC6E97700ACD462 /* LBBPoohVerticalLableControl.m */,
+				1D0F48821DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.h */,
+				1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1071,6 +1082,8 @@
 				1D12F9AE1DC6E97700ACD462 /* LBB_DiscoveryCustomizedSelectView.m */,
 				1D12F9AF1DC6E97700ACD462 /* LBB_DiscoveryMainTableViewCell.h */,
 				1D12F9B01DC6E97700ACD462 /* LBB_DiscoveryMainTableViewCell.m */,
+				1D0F487F1DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.h */,
+				1D0F48801DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1082,6 +1095,8 @@
 				1D12F9B31DC6E97700ACD462 /* LBB_DiscoveryCustomizedViewController.m */,
 				1D12F9B41DC6E97700ACD462 /* LBB_DiscoveryMainViewController.h */,
 				1D12F9B51DC6E97700ACD462 /* LBB_DiscoveryMainViewController.m */,
+				1D0F487C1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.h */,
+				1D0F487D1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -3874,6 +3889,7 @@
 				84F6BA3B1DC6E3D1009ED8DF /* LBBVideoTableViewCell.m in Sources */,
 				1D12FA4C1DC6E97700ACD462 /* KSViewPagerView.m in Sources */,
 				1D12FA921DC6E97700ACD462 /* LBBHomeSquareCenterTableViewCell.m in Sources */,
+				1D0F48841DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m in Sources */,
 				843012191DBF861200F5316A /* TicketViewController.m in Sources */,
 				84F6BA131DC6E3D1009ED8DF /* LBB_TravelDetailViewCell.m in Sources */,
 				84299B021DC43DF9005943FF /* LBB_MySectionFooterViewCell.m in Sources */,
@@ -3883,6 +3899,7 @@
 				1D12FA6F1DC6E97700ACD462 /* LBB_ScenicMainTableViewCell.m in Sources */,
 				84F6BA071DC6E3D1009ED8DF /* LBB_ShopRecoder_Controller.m in Sources */,
 				8430120A1DBF861200F5316A /* LBB_UserNameViewController.m in Sources */,
+				1D0F487E1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m in Sources */,
 				1D12FA721DC6E97700ACD462 /* LBB_ScenicDetailCommentsCell.m in Sources */,
 				1D12FAA01DC72E7300ACD462 /* LBB_NewOrderInputTextField.m in Sources */,
 				84F6BA371DC6E3D1009ED8DF /* LBBFriendTableViewCell.m in Sources */,
@@ -3984,6 +4001,7 @@
 				1D12FA8B1DC6E97700ACD462 /* UILabel+Common.m in Sources */,
 				84F6BA151DC6E3D1009ED8DF /* CommentModel.m in Sources */,
 				1D12FA731DC6E97700ACD462 /* LBB_ScenicDetailEquipmentCell.m in Sources */,
+				1D0F48811DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m in Sources */,
 				843012151DBF861200F5316A /* TicketDetailViewCell.m in Sources */,
 				84F6BA0F1DC6E3D1009ED8DF /* LBB_PraiseWithCommentView.m in Sources */,
 				84F6B9B81DC6E3D1009ED8DF /* LBB_CommentView.m in Sources */,

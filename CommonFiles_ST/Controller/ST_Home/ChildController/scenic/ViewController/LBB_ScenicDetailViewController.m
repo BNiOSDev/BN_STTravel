@@ -183,6 +183,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             [ws.popView resignKeyWindow];
             ws.popView = nil;
             LBB_NewOrderViewController* dest = [[LBB_NewOrderViewController alloc]init];
+            dest.isIntegral = YES;
             [ws.navigationController pushViewController:dest animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         
@@ -254,7 +255,6 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     }
     
     UIView* v = [UIView new];
-    [v setBackgroundColor:[UIColor getRandomColor]];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
     [v setBackgroundColor:[UIColor whiteColor]];
