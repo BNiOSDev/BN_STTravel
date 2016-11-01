@@ -185,7 +185,7 @@
         }
         
         [cell setCycleScrollViewUrls:nil];
-        
+        [cell setEnableBlock:YES];
         cell.click = ^(NSNumber* index){
             
           //  NSInteger num = [index integerValue];

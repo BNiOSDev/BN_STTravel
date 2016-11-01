@@ -11,6 +11,12 @@
 		1D0F48811DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48801DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m */; };
 		1D0F48841DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */; };
 		1D0F48871DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48861DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.m */; };
+		1D0F48A11DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F489D1DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.m */; };
+		1D0F48A21DC8CB9400A37DE2 /* LBB_LabelDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48A01DC8CB9400A37DE2 /* LBB_LabelDetailViewController.m */; };
+		1D0F48A51DC8DFF400A37DE2 /* LBB_LabelDetailHotDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48A41DC8DFF400A37DE2 /* LBB_LabelDetailHotDataSource.m */; };
+		1D0F48A81DC8E10400A37DE2 /* LBB_LabelDetailHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48A71DC8E10400A37DE2 /* LBB_LabelDetailHotCell.m */; };
+		1D0F48AB1DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48AA1DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.m */; };
+		1D0F48AE1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48AD1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m */; };
 		1D12FA461DC6E97700ACD462 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */; };
 		1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97E1DC6E97700ACD462 /* PoohBaseViewController.m */; };
 		1D12FA481DC6E97700ACD462 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D12F9841DC6E97700ACD462 /* b27_icon_star_gray@2x.png */; };
@@ -359,6 +365,18 @@
 		1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohAttributedTextCell.m; sourceTree = "<group>"; };
 		1D0F48851DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderQrCodeCell.h; sourceTree = "<group>"; };
 		1D0F48861DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderQrCodeCell.m; sourceTree = "<group>"; };
+		1D0F489C1DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LabelDetailHeaderView.h; sourceTree = "<group>"; };
+		1D0F489D1DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LabelDetailHeaderView.m; sourceTree = "<group>"; };
+		1D0F489F1DC8CB9400A37DE2 /* LBB_LabelDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LabelDetailViewController.h; sourceTree = "<group>"; };
+		1D0F48A01DC8CB9400A37DE2 /* LBB_LabelDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LabelDetailViewController.m; sourceTree = "<group>"; };
+		1D0F48A31DC8DFF400A37DE2 /* LBB_LabelDetailHotDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LabelDetailHotDataSource.h; sourceTree = "<group>"; };
+		1D0F48A41DC8DFF400A37DE2 /* LBB_LabelDetailHotDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LabelDetailHotDataSource.m; sourceTree = "<group>"; };
+		1D0F48A61DC8E10400A37DE2 /* LBB_LabelDetailHotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LabelDetailHotCell.h; sourceTree = "<group>"; };
+		1D0F48A71DC8E10400A37DE2 /* LBB_LabelDetailHotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LabelDetailHotCell.m; sourceTree = "<group>"; };
+		1D0F48A91DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LabelDetailUserDataSource.h; sourceTree = "<group>"; };
+		1D0F48AA1DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LabelDetailUserDataSource.m; sourceTree = "<group>"; };
+		1D0F48AC1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LabelDetailUserCell.h; sourceTree = "<group>"; };
+		1D0F48AD1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LabelDetailUserCell.m; sourceTree = "<group>"; };
 		1D12F97B1DC6E97700ACD462 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		1D12F97D1DC6E97700ACD462 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -937,6 +955,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1D0F489A1DC8CB9400A37DE2 /* LabelDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1D0F489B1DC8CB9400A37DE2 /* View */,
+				1D0F489E1DC8CB9400A37DE2 /* ViewController */,
+			);
+			path = LabelDetail;
+			sourceTree = "<group>";
+		};
+		1D0F489B1DC8CB9400A37DE2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D0F489C1DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.h */,
+				1D0F489D1DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.m */,
+				1D0F48A31DC8DFF400A37DE2 /* LBB_LabelDetailHotDataSource.h */,
+				1D0F48A41DC8DFF400A37DE2 /* LBB_LabelDetailHotDataSource.m */,
+				1D0F48A61DC8E10400A37DE2 /* LBB_LabelDetailHotCell.h */,
+				1D0F48A71DC8E10400A37DE2 /* LBB_LabelDetailHotCell.m */,
+				1D0F48A91DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.h */,
+				1D0F48AA1DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.m */,
+				1D0F48AC1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.h */,
+				1D0F48AD1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1D0F489E1DC8CB9400A37DE2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D0F489F1DC8CB9400A37DE2 /* LBB_LabelDetailViewController.h */,
+				1D0F48A01DC8CB9400A37DE2 /* LBB_LabelDetailViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1D12F9791DC6E97700ACD462 /* ST_Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -964,6 +1017,7 @@
 		1D12F97F1DC6E97700ACD462 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				1D0F489A1DC8CB9400A37DE2 /* LabelDetail */,
 				1D12F9801DC6E97700ACD462 /* Common */,
 				1D12F9A61DC6E97700ACD462 /* Discovery */,
 				1D12F9B61DC6E97700ACD462 /* Foods */,
@@ -3872,6 +3926,7 @@
 				84F6BA211DC6E3D1009ED8DF /* JHRingChart.m in Sources */,
 				1D12FA4D1DC6E97700ACD462 /* LBB_PoohPlusMinTextField.m in Sources */,
 				1D12FA5E1DC6E97700ACD462 /* LBB_DiscoveryMainViewController.m in Sources */,
+				1D0F48AE1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m in Sources */,
 				843012121DBF861200F5316A /* SettingPrivaceViewController.m in Sources */,
 				840013901DC62C3200BD6297 /* PointsViewController.m in Sources */,
 				843011FF1DBF861200F5316A /* LBB_FavoriteViewController.m in Sources */,
@@ -3888,6 +3943,7 @@
 				84F6BA1E1DC6E3D1009ED8DF /* JHPieChart.m in Sources */,
 				843012101DBF861200F5316A /* SwitchViewCell.m in Sources */,
 				842925E41DC0510100B8D259 /* LBB_TicketFooterView.m in Sources */,
+				1D0F48A11DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.m in Sources */,
 				1D12FA711DC6E97700ACD462 /* LBB_ScenicDetailBookStatusCell.m in Sources */,
 				1D12FA611DC6E97700ACD462 /* LBB_HostelMainViewController.m in Sources */,
 				84F6BA041DC6E3D1009ED8DF /* LBBFriendViewController.m in Sources */,
@@ -3989,6 +4045,7 @@
 				843012131DBF861200F5316A /* SettingPushViewController.m in Sources */,
 				84F6BA0B1DC6E3D1009ED8DF /* LBB_Travel_Bill_Cell.m in Sources */,
 				842926291DC0D4F200B8D259 /* LBB_MyPropertyViewCell.m in Sources */,
+				1D0F48A21DC8CB9400A37DE2 /* LBB_LabelDetailViewController.m in Sources */,
 				1D12FA6A1DC6E97700ACD462 /* LBB_NewOrderPlayTimeSelectView.m in Sources */,
 				84F6BA181DC6E3D1009ED8DF /* PraiseModel.m in Sources */,
 				1D12FA781DC6E97700ACD462 /* LBB_ScenicDetailVipMPaiCell.m in Sources */,
@@ -4030,6 +4087,7 @@
 				843011FE1DBF861200F5316A /* MineBaseViewController.m in Sources */,
 				8405D8C61DC583B8005A5CE5 /* LBB_MyUserHeaderView.m in Sources */,
 				84F6BA1C1DC6E3D1009ED8DF /* JHColumnChart.m in Sources */,
+				1D0F48AB1DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.m in Sources */,
 				1D12FA701DC6E97700ACD462 /* LBB_ScenicDetailAddressCell.m in Sources */,
 				84F6BA3E1DC6E3D1009ED8DF /* LBBVideoViewController.m in Sources */,
 				84F6B9B71DC6E3D1009ED8DF /* LBB_CommentTextField.m in Sources */,
@@ -4047,8 +4105,10 @@
 				84F6BA311DC6E3D1009ED8DF /* ContentImageView.m in Sources */,
 				84F6BA201DC6E3D1009ED8DF /* JHPieItemsView.m in Sources */,
 				1D12FA5B1DC6E97700ACD462 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
+				1D0F48A81DC8E10400A37DE2 /* LBB_LabelDetailHotCell.m in Sources */,
 				1D12FA561DC6E97700ACD462 /* LBB_AddressAddViewController.m in Sources */,
 				C9C0E9511D9948F100575A7C /* main.m in Sources */,
+				1D0F48A51DC8DFF400A37DE2 /* LBB_LabelDetailHotDataSource.m in Sources */,
 				84F6BA0D1DC6E3D1009ED8DF /* LBB_TravelCommentController.m in Sources */,
 				84F6BA331DC6E3D1009ED8DF /* ZJMCommentView.m in Sources */,
 				843012091DBF861200F5316A /* ReceiptAddressViewController.m in Sources */,

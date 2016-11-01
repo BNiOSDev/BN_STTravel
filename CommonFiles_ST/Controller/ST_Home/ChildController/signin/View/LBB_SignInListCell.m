@@ -58,7 +58,7 @@
         }];
         
         self.subTitleLabel = [UILabel new];
-        [self.subTitleLabel setFont:Font8];
+        [self.subTitleLabel setFont:Font13];
         [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];

@@ -88,7 +88,7 @@
         [v mas_makeConstraints:^(MASConstraintMaker* make){
             make.right.bottom.equalTo(imageView).offset(-2*margin);
         }];
-        
+        [v setHidden:YES];
         
         CGFloat margin1 = 5;
         CGFloat width = 18;
