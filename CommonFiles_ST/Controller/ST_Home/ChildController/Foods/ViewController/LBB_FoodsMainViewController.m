@@ -206,7 +206,6 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    WS(ws);
     
     if (indexPath.section == 0) {
         

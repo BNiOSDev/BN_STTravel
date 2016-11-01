@@ -25,7 +25,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        CGFloat margin = 8;
+        //CGFloat margin = 8;
         
         self.telButton = [UIButton new];
         

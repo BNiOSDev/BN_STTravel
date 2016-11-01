@@ -102,7 +102,7 @@
                 }];
             }
             
-            [self layoutIfNeeded];
+            [[self getViewController].view layoutSubviews];
         }];
         
     }

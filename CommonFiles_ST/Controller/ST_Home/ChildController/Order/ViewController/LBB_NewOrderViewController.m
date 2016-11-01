@@ -12,6 +12,7 @@
 #import "LBB_NewOrderIntegralView.h"
 #import "LBB_NewOrderModifyNoteView.h"
 #import "LBB_NewOrderInputTextField.h"
+#import "LBB_OrderWaitPayViewController.h"
 
 @interface LBB_NewOrderViewController ()
 
@@ -103,6 +104,17 @@
         make.top.equalTo(ticketInfo.mas_bottom);
         make.right.equalTo(ws.playTimeView);
     }];
+    if (!self.isIntegral) {//没有积分抵扣的情况
+        [integralInfo mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.mainScrollView);
+            make.top.equalTo(ticketInfo.mas_bottom);
+            make.right.equalTo(ws.playTimeView);
+            make.height.mas_equalTo(0);
+        }];
+        integralInfo.hidden = YES;
+    }
+    
+    
     
     //合计
     UILabel* totalLabel = [UILabel new];
@@ -137,6 +149,7 @@
     
     //退改说明
     LBB_NewOrderModifyNoteView* modifyNoteView = [[LBB_NewOrderModifyNoteView alloc]init];
+    modifyNoteView.isOpen = YES;
     [self.mainScrollView addSubview:modifyNoteView];
     [modifyNoteView mas_makeConstraints:^(MASConstraintMaker* make){
         make.left.equalTo(ws.mainScrollView);
@@ -246,7 +259,8 @@
     orderButton.titleLabel.font = Font15;
     [orderButton bk_addEventHandler:^(id sender){
         
-        
+        LBB_OrderWaitPayViewController* dest = [[LBB_OrderWaitPayViewController alloc]init];
+        [ws.navigationController pushViewController:dest animated:YES];
     } forControlEvents:UIControlEventTouchUpInside];
 
 }

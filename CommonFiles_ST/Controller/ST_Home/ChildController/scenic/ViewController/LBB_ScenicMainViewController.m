@@ -188,7 +188,7 @@
         [cell setEnableBlock:YES];
         cell.click = ^(NSNumber* index){
             
-            NSInteger num = [index integerValue];
+          //  NSInteger num = [index integerValue];
             LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
             [ws.navigationController pushViewController:dest animated:YES];
             
