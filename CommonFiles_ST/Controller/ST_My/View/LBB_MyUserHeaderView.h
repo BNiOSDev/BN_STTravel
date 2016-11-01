@@ -2,7 +2,7 @@
 //  LBB_MyUserHeaderView.h
 //  ST_Travel
 //
-//  Created by dhxiang on 16/10/30.
+//  Created by Diana on 16/10/30.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -14,12 +14,13 @@
 - (void)didClickSetting:(id)userInfo;
 - (void)didClickMessage:(id)userInfo;
 - (void)didClickPersonalCenter:(id)userInfo;
+- (void)didClickConverPicture:(id)userInfo;
 
 @end
 
 @interface LBB_MyUserHeaderView : UICollectionReusableView
 
 @property (nonatomic,weak) id<LBB_MyUserHeaderViewDelegate> delegate;
-@property (nonatomic,strong) id userInfo;
+@property (nonatomic,strong) NSDictionary* userInfo;
 
 @end

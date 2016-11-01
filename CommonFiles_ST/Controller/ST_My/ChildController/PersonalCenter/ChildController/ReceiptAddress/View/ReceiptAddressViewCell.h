@@ -21,11 +21,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *defaultLabel;
+@property (weak, nonatomic) IBOutlet UILabel *streetLabel;
+@property (weak, nonatomic) IBOutlet UILabel *adressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *editBtn;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
-@property (weak, nonatomic) IBOutlet UILabel *adressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *defaultBtn;
-@property (weak, nonatomic) IBOutlet UILabel *streetLabel;
 
 @property (nonatomic,strong) NSDictionary *cellInfo;
 @property (nonatomic,weak)id<ReceiptAddressViewCellDelegate> delegate;

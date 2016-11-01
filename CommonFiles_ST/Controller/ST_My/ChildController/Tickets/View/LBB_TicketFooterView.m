@@ -2,7 +2,7 @@
 //  LBB_TicketFooterView.m
 //  ST_Travel
 //
-//  Created by dhxiang on 16/10/26.
+//  Created by Diana on 16/10/26.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -21,7 +21,7 @@
     [super awakeFromNib];
     self.goodNumLabel.textColor = ColorBlack;
     self.totoalTipLabel.textColor = ColorBlack;
-    self.goodMoneyLabel.textColor = RGBAHEX(0xFF1344, 1.0);
+    self.goodMoneyLabel.textColor = ColorRed;
     
     self.goodNumLabel.font = Font13;
     self.totoalTipLabel.font = Font13;

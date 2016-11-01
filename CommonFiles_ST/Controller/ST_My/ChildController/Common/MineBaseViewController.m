@@ -20,6 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadCustomNavigationButton];
+    self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
 }
 
 - (void)didReceiveMemoryWarning {

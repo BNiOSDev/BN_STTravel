@@ -15,6 +15,11 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0849.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="zL4-UX-bdR"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTj-UL-7pg">
+                    <connections>
+                        <action selector="converPictureClickEvent:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="eXC-Nb-PNT"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWK-6c-rLK">
                     <constraints>
                         <constraint firstAttribute="width" secondItem="cWK-6c-rLK" secondAttribute="height" id="4FT-P4-UEx"/>
@@ -30,13 +35,13 @@
                         <action selector="personCenterBtnClickEvent:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="PSj-Lc-E4Y"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyT-l3-1jH">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyT-l3-1jH" customClass="EnlargeButton">
                     <state key="normal" image="头部设置"/>
                     <connections>
                         <action selector="setBtnClickEvent:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="LhH-Tf-wOK"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCb-LA-ybJ">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCb-LA-ybJ" customClass="EnlargeButton">
                     <state key="normal" image="头部消息"/>
                     <connections>
                         <action selector="messageBtnClickEvent:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="kBu-L6-uHo"/>
@@ -82,14 +87,18 @@
                 </label>
             </subviews>
             <constraints>
+                <constraint firstItem="oTj-UL-7pg" firstAttribute="centerY" secondItem="zL4-UX-bdR" secondAttribute="centerY" id="1kf-iS-EBI"/>
                 <constraint firstItem="Tg0-zM-dSI" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="5uM-oJ-iZZ"/>
                 <constraint firstAttribute="trailing" secondItem="yCb-LA-ybJ" secondAttribute="trailing" constant="15" id="A1u-b4-pbp"/>
+                <constraint firstItem="oTj-UL-7pg" firstAttribute="centerX" secondItem="zL4-UX-bdR" secondAttribute="centerX" id="BYh-Jv-ngh"/>
                 <constraint firstAttribute="trailing" secondItem="b2J-1y-5Jt" secondAttribute="trailing" constant="10" id="Be6-T1-kuq"/>
                 <constraint firstItem="zL4-UX-bdR" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="CzP-Cv-lEx"/>
+                <constraint firstItem="oTj-UL-7pg" firstAttribute="height" secondItem="zL4-UX-bdR" secondAttribute="height" id="J2h-bZ-nNA"/>
                 <constraint firstItem="Tg0-zM-dSI" firstAttribute="top" secondItem="aEw-Cu-s3c" secondAttribute="bottom" constant="5" id="MZx-OB-J7c"/>
                 <constraint firstItem="aEw-Cu-s3c" firstAttribute="top" secondItem="cWK-6c-rLK" secondAttribute="bottom" constant="5" id="Qey-UZ-scf"/>
                 <constraint firstItem="cWK-6c-rLK" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="SXO-Ld-c7F"/>
                 <constraint firstItem="aEw-Cu-s3c" firstAttribute="centerX" secondItem="cWK-6c-rLK" secondAttribute="centerX" id="VxJ-21-Ixc"/>
+                <constraint firstItem="oTj-UL-7pg" firstAttribute="width" secondItem="zL4-UX-bdR" secondAttribute="width" id="g4r-aF-FTD"/>
                 <constraint firstAttribute="trailing" secondItem="zL4-UX-bdR" secondAttribute="trailing" id="gEK-eK-67A"/>
                 <constraint firstItem="b2J-1y-5Jt" firstAttribute="top" secondItem="Tg0-zM-dSI" secondAttribute="bottom" constant="25" id="hH4-vf-1u3"/>
                 <constraint firstItem="cWK-6c-rLK" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" constant="-40" id="id0-r4-GQL"/>
@@ -103,6 +112,7 @@
             </constraints>
             <connections>
                 <outlet property="backImgView" destination="zL4-UX-bdR" id="kmy-4q-xEH"/>
+                <outlet property="coverPictureBtn" destination="oTj-UL-7pg" id="eTH-pM-ZlD"/>
                 <outlet property="guideImgView" destination="ggN-Nh-QlL" id="zTR-nf-416"/>
                 <outlet property="guideLabel" destination="IZ8-g6-kch" id="EIH-QU-qMr"/>
                 <outlet property="levelGuideBgView" destination="Tg0-zM-dSI" id="37l-hf-0j7"/>

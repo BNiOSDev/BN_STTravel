@@ -15,7 +15,7 @@
     // Initialization code
     self.nameLabel.textColor = ColorBlack;
     self.typeLabel.textColor = ColorBlack;
-    self.monneyLabel.textColor = RGBAHEX(0xFF1344, 1.0);
+    self.monneyLabel.textColor = ColorRed;
     self.numLabel.textColor = ColorBlack;
     
     self.nameLabel.font = Font12;

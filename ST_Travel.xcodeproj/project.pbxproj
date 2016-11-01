@@ -96,6 +96,9 @@
 		8402FB7A1DC5F3450064E0FC /* LBB_SquareTravelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8402FB791DC5F3450064E0FC /* LBB_SquareTravelViewController.m */; };
 		8405D8C61DC583B8005A5CE5 /* LBB_MyUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D8C41DC583B8005A5CE5 /* LBB_MyUserHeaderView.m */; };
 		8405D8C71DC583B8005A5CE5 /* LBB_MyUserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8405D8C51DC583B8005A5CE5 /* LBB_MyUserHeaderView.xib */; };
+		8420B6671DC8642000A8F864 /* LBB_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8420B6661DC8642000A8F864 /* LBB_LoginViewController.m */; };
+		8420B66A1DC8645100A8F864 /* LBB_LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8420B6691DC8645100A8F864 /* LBB_LoginManager.m */; };
+		8420B66D1DC86F1500A8F864 /* LBB_ResgisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8420B66C1DC86F1500A8F864 /* LBB_ResgisterViewController.m */; };
 		842925E11DC050EB00B8D259 /* LBB_TicketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842925E01DC050EB00B8D259 /* LBB_TicketHeaderView.m */; };
 		842925E41DC0510100B8D259 /* LBB_TicketFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842925E31DC0510100B8D259 /* LBB_TicketFooterView.m */; };
 		842925E61DC0511D00B8D259 /* LBB_TicketFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842925E51DC0511D00B8D259 /* LBB_TicketFooterView.xib */; };
@@ -310,6 +313,7 @@
 		84F6BA411DC6E3D1009ED8DF /* ZJMHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6B9AB1DC6E3D1009ED8DF /* ZJMHostViewController.m */; };
 		84F6BA421DC6E3D1009ED8DF /* ZJMTravelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6B9AD1DC6E3D1009ED8DF /* ZJMTravelsViewController.m */; };
 		84F6BA431DC6E3D1009ED8DF /* ZJMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6B9B21DC6E3D1009ED8DF /* ZJMBaseViewController.m */; };
+		84F6BB931DC73866009ED8DF /* LBB_ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6BB921DC73866009ED8DF /* LBB_ImagePickerViewController.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -520,6 +524,12 @@
 		8405D8C31DC583B8005A5CE5 /* LBB_MyUserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MyUserHeaderView.h; sourceTree = "<group>"; };
 		8405D8C41DC583B8005A5CE5 /* LBB_MyUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MyUserHeaderView.m; sourceTree = "<group>"; };
 		8405D8C51DC583B8005A5CE5 /* LBB_MyUserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_MyUserHeaderView.xib; sourceTree = "<group>"; };
+		8420B6651DC8642000A8F864 /* LBB_LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LoginViewController.h; sourceTree = "<group>"; };
+		8420B6661DC8642000A8F864 /* LBB_LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LoginViewController.m; sourceTree = "<group>"; };
+		8420B6681DC8645100A8F864 /* LBB_LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LoginManager.h; sourceTree = "<group>"; };
+		8420B6691DC8645100A8F864 /* LBB_LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LoginManager.m; sourceTree = "<group>"; };
+		8420B66B1DC86F1500A8F864 /* LBB_ResgisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ResgisterViewController.h; sourceTree = "<group>"; };
+		8420B66C1DC86F1500A8F864 /* LBB_ResgisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ResgisterViewController.m; sourceTree = "<group>"; };
 		842925DF1DC050EB00B8D259 /* LBB_TicketHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketHeaderView.h; sourceTree = "<group>"; };
 		842925E01DC050EB00B8D259 /* LBB_TicketHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketHeaderView.m; sourceTree = "<group>"; };
 		842925E21DC0510100B8D259 /* LBB_TicketFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketFooterView.h; sourceTree = "<group>"; };
@@ -854,6 +864,8 @@
 		84F6B9B01DC6E3D1009ED8DF /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		84F6B9B11DC6E3D1009ED8DF /* ZJMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMBaseViewController.h; sourceTree = "<group>"; };
 		84F6B9B21DC6E3D1009ED8DF /* ZJMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMBaseViewController.m; sourceTree = "<group>"; };
+		84F6BB911DC73866009ED8DF /* LBB_ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ImagePickerViewController.h; sourceTree = "<group>"; };
+		84F6BB921DC73866009ED8DF /* LBB_ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ImagePickerViewController.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -1561,6 +1573,83 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		8420B65C1DC8640900A8F864 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8420B65D1DC8640900A8F864 /* ChildController */,
+				8420B6621DC8640900A8F864 /* Model */,
+				8420B6631DC8640900A8F864 /* View */,
+				8420B6641DC8640900A8F864 /* ViewController */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8420B65D1DC8640900A8F864 /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				8420B65E1DC8640900A8F864 /* Register */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		8420B65E1DC8640900A8F864 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				8420B65F1DC8640900A8F864 /* Model */,
+				8420B6601DC8640900A8F864 /* View */,
+				8420B6611DC8640900A8F864 /* ViewController */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		8420B65F1DC8640900A8F864 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8420B6601DC8640900A8F864 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8420B6611DC8640900A8F864 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8420B66B1DC86F1500A8F864 /* LBB_ResgisterViewController.h */,
+				8420B66C1DC86F1500A8F864 /* LBB_ResgisterViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8420B6621DC8640900A8F864 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8420B6681DC8645100A8F864 /* LBB_LoginManager.h */,
+				8420B6691DC8645100A8F864 /* LBB_LoginManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8420B6631DC8640900A8F864 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8420B6641DC8640900A8F864 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8420B6651DC8642000A8F864 /* LBB_LoginViewController.h */,
+				8420B6661DC8642000A8F864 /* LBB_LoginViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		842925EC1DC0900D00B8D259 /* MessageCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1788,6 +1877,7 @@
 		8430112B1DBF861200F5316A /* ST_My */ = {
 			isa = PBXGroup;
 			children = (
+				84F6BB8F1DC73866009ED8DF /* Common */,
 				84CFB3191DC5D890005B8346 /* ModelController */,
 				8430112C1DBF861200F5316A /* ChildController */,
 				843011EE1DBF861200F5316A /* MineResource */,
@@ -1906,6 +1996,7 @@
 		8430113D1DBF861200F5316A /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				8420B65C1DC8640900A8F864 /* Login */,
 				8430113E1DBF861200F5316A /* ChangePassword */,
 				843011441DBF861200F5316A /* PhoneNum */,
 				8430114A1DBF861200F5316A /* ReceiptAddress */,
@@ -3364,6 +3455,23 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		84F6BB8F1DC73866009ED8DF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				84F6BB901DC73866009ED8DF /* Utils */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		84F6BB901DC73866009ED8DF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				84F6BB911DC73866009ED8DF /* LBB_ImagePickerViewController.h */,
+				84F6BB921DC73866009ED8DF /* LBB_ImagePickerViewController.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		C91F613A1D9F96CA004FE75C /* ST_Mall */ = {
 			isa = PBXGroup;
 			children = (
@@ -3898,8 +4006,10 @@
 				84F6BA111DC6E3D1009ED8DF /* LBB_TravelDetailContentView.m in Sources */,
 				84F6B9BB1DC6E3D1009ED8DF /* LBB_HostDetailHeadView.m in Sources */,
 				1D12FA7C1DC6E97700ACD462 /* LBB_ScenicDetailSubjectLableCell.m in Sources */,
+				84F6BB931DC73866009ED8DF /* LBB_ImagePickerViewController.m in Sources */,
 				1D12FA681DC6E97700ACD462 /* LBB_OrderTicketConfirmCell.m in Sources */,
 				1D12FA521DC6E97700ACD462 /* LBBPoohCycleScrollCell.m in Sources */,
+				8420B6671DC8642000A8F864 /* LBB_LoginViewController.m in Sources */,
 				1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */,
 				84F6BA0E1DC6E3D1009ED8DF /* LBB_AddressTipView.m in Sources */,
 				84F6BA161DC6E3D1009ED8DF /* HostModel.m in Sources */,
@@ -3990,6 +4100,7 @@
 				8405D8C61DC583B8005A5CE5 /* LBB_MyUserHeaderView.m in Sources */,
 				84F6BA1C1DC6E3D1009ED8DF /* JHColumnChart.m in Sources */,
 				1D12FA701DC6E97700ACD462 /* LBB_ScenicDetailAddressCell.m in Sources */,
+				8420B66A1DC8645100A8F864 /* LBB_LoginManager.m in Sources */,
 				84F6BA3E1DC6E3D1009ED8DF /* LBBVideoViewController.m in Sources */,
 				84F6B9B71DC6E3D1009ED8DF /* LBB_CommentTextField.m in Sources */,
 				84F6BA171DC6E3D1009ED8DF /* LBBFriendModel.m in Sources */,
@@ -4036,6 +4147,7 @@
 				1D12FA841DC6E97700ACD462 /* LBBSigninMainViewController.m in Sources */,
 				1D12FA6C1DC6E97700ACD462 /* LBB_NewOrderViewController.m in Sources */,
 				84F6BA391DC6E3D1009ED8DF /* LBB_TravelCommentCell.m in Sources */,
+				8420B66D1DC86F1500A8F864 /* LBB_ResgisterViewController.m in Sources */,
 				8430121E1DBF861200F5316A /* BalanceDetailViewCell.m in Sources */,
 				1D12FA8E1DC6E97700ACD462 /* LBBHomeAnnouncementTableViewCell.m in Sources */,
 				84F6BA351DC6E3D1009ED8DF /* UIView+SDAutoLayout.m in Sources */,

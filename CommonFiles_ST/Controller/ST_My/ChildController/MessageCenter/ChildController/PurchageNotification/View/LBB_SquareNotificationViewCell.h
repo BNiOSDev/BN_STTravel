@@ -2,7 +2,7 @@
 //  LBB_SquareNotificationViewCell.h
 //  ST_Travel
 //  消息中心-购买通知-商场通知cell
-//  Created by dhxiang on 16/10/26.
+//  Created by Diana on 16/10/26.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
