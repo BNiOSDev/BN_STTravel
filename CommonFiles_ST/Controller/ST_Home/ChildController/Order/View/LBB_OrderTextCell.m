@@ -104,9 +104,6 @@
         case LBBPoohTicketStatusRefunded:
             [self.textLabel3 setText:@"已退款"];
             break;
-        case LBBPoohTicketStatusWaitEvaluation:
-            [self.textLabel3 setText:@"待评价"];
-            break;
     }
     
     switch (self.indexPath.row) {

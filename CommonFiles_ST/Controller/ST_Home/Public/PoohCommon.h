@@ -54,10 +54,7 @@ typedef NS_ENUM(NSInteger, LBBPoohTicketStatus) {
     LBBPoohTicketStatusWaitPay = 0,//等待付款
     LBBPoohTicketStatusWaitCollect,//等待取票
     LBBPoohTicketStatusCollected,//已取票
-    LBBPoohTicketStatusRefunded,//已退款
-    LBBPoohTicketStatusWaitEvaluation,//待评价
-
-    
+    LBBPoohTicketStatusRefunded,//已退款    
 };
 
 #endif /* PoohCommon_h */

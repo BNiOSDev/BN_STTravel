@@ -148,14 +148,7 @@
             [self.rightButton setTitle:@"确认完成" forState:UIControlStateNormal];
         }
             break;
-        case LBBPoohTicketStatusWaitEvaluation:
-        {
-            self.leftButton.hidden = YES;
-            [self.rightButton setTitle:@"立即评价" forState:UIControlStateNormal];
-        }
-            break;
     }
-    
 
     
 }
