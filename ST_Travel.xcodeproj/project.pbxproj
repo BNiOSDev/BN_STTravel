@@ -10,6 +10,7 @@
 		1D0F487E1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F487D1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m */; };
 		1D0F48811DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48801DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m */; };
 		1D0F48841DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */; };
+		1D0F48871DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48861DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.m */; };
 		1D12FA461DC6E97700ACD462 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */; };
 		1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97E1DC6E97700ACD462 /* PoohBaseViewController.m */; };
 		1D12FA481DC6E97700ACD462 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D12F9841DC6E97700ACD462 /* b27_icon_star_gray@2x.png */; };
@@ -356,6 +357,8 @@
 		1D0F48801DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryDetailMsgCell.m; sourceTree = "<group>"; };
 		1D0F48821DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohAttributedTextCell.h; sourceTree = "<group>"; };
 		1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohAttributedTextCell.m; sourceTree = "<group>"; };
+		1D0F48851DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_OrderQrCodeCell.h; sourceTree = "<group>"; };
+		1D0F48861DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_OrderQrCodeCell.m; sourceTree = "<group>"; };
 		1D12F97B1DC6E97700ACD462 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		1D12F97D1DC6E97700ACD462 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -1198,6 +1201,8 @@
 				1D12F9CE1DC6E97700ACD462 /* LBB_OrderPayWayCell.m */,
 				1D12F9CF1DC6E97700ACD462 /* LBB_OrderTextCell.h */,
 				1D12F9D01DC6E97700ACD462 /* LBB_OrderTextCell.m */,
+				1D0F48851DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.h */,
+				1D0F48861DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.m */,
 				1D12F9D11DC6E97700ACD462 /* LBB_OrderTicketCell.h */,
 				1D12F9D21DC6E97700ACD462 /* LBB_OrderTicketCell.m */,
 				1D12F9D31DC6E97700ACD462 /* LBB_OrderTicketConfirmCell.h */,
@@ -3987,6 +3992,7 @@
 				1D12FA6A1DC6E97700ACD462 /* LBB_NewOrderPlayTimeSelectView.m in Sources */,
 				84F6BA181DC6E3D1009ED8DF /* PraiseModel.m in Sources */,
 				1D12FA781DC6E97700ACD462 /* LBB_ScenicDetailVipMPaiCell.m in Sources */,
+				1D0F48871DC88C7A00A37DE2 /* LBB_OrderQrCodeCell.m in Sources */,
 				1D12FA531DC6E97700ACD462 /* LBBPoohGreatItemView.m in Sources */,
 				1D12FA671DC6E97700ACD462 /* LBB_OrderTicketCell.m in Sources */,
 				84F6BA431DC6E3D1009ED8DF /* ZJMBaseViewController.m in Sources */,

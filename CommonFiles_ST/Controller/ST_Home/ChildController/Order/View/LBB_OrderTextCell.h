@@ -20,4 +20,7 @@
 
 @property(nonatomic, retain)id model;
 
+@property(nonatomic, assign)LBBPoohTicketStatus ticketStatus;
+@property(nonatomic, retain)NSIndexPath* indexPath;
+
 @end

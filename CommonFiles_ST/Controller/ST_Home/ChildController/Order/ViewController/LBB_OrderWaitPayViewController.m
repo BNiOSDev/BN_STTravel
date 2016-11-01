@@ -13,6 +13,8 @@
 #import "LBB_OrderContactCustomerServiceCell.h"
 #import "LBB_OrderTicketConfirmCell.h"
 #import "LBB_OrderPayWayViewController.h"
+#import "LBB_OrderQrCodeCell.h"
+
 @interface LBB_OrderWaitPayViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (retain, nonatomic) UITableView *tableView;
@@ -50,6 +52,8 @@
     [self.tableView registerClass:[LBB_OrderTicketPriceCell class] forCellReuseIdentifier:@"LBB_OrderTicketPriceCell"];
     [self.tableView registerClass:[LBB_OrderContactCustomerServiceCell class] forCellReuseIdentifier:@"LBB_OrderContactCustomerServiceCell"];
     [self.tableView registerClass:[LBB_OrderTicketConfirmCell class] forCellReuseIdentifier:@"LBB_OrderTicketConfirmCell"];
+    [self.tableView registerClass:[LBB_OrderQrCodeCell class] forCellReuseIdentifier:@"LBB_OrderQrCodeCell"];
+
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
@@ -85,6 +89,9 @@
             return 1;
             break;
         case 2:
+            if (self.ticketStatus == LBBPoohTicketStatusWaitCollect) {
+                return 2;
+            }
             return 1;
             break;
             
@@ -146,10 +153,17 @@
     }
     
     else{
-        return [tableView fd_heightForCellWithIdentifier:@"LBB_OrderTicketConfirmCell" cacheByIndexPath:indexPath configuration:^(LBB_OrderTicketConfirmCell *cell) {
-            
-            
-        }];
+        
+        if ((self.ticketStatus == LBBPoohTicketStatusWaitCollect)
+            &&(indexPath.row == 0)) {
+            return [tableView fd_heightForCellWithIdentifier:@"LBB_OrderQrCodeCell" cacheByIndexPath:indexPath configuration:^(LBB_OrderQrCodeCell *cell) {
+                
+            }];
+        }
+        else{
+            return [tableView fd_heightForCellWithIdentifier:@"LBB_OrderTicketConfirmCell" cacheByIndexPath:indexPath configuration:^(LBB_OrderTicketConfirmCell *cell) {
+            }];
+        }
     }
 }
 
@@ -187,7 +201,8 @@
             if (!cell) {
                 cell = [[LBB_OrderTextCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             }
-
+            cell.ticketStatus = self.ticketStatus;
+            cell.indexPath = indexPath;
             [cell setModel:nil];
             return cell;
         }
@@ -245,27 +260,32 @@
         
     }
     
-    static NSString *CellIdentifier = @"LBB_OrderTicketConfirmCell";
-    LBB_OrderTicketConfirmCell *cell = nil;
-    
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[LBB_OrderTicketConfirmCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if ((self.ticketStatus == LBBPoohTicketStatusWaitCollect)
+        &&(indexPath.row == 0)) {
+        static NSString *CellIdentifier = @"LBB_OrderQrCodeCell";
+        LBB_OrderQrCodeCell *cell = nil;
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[LBB_OrderQrCodeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        [cell setModel:nil];
+        return cell;
     }
-
-    [cell.deleteButton bk_addEventHandler:^(id sender){
+    else{
+        static NSString *CellIdentifier = @"LBB_OrderTicketConfirmCell";
+        LBB_OrderTicketConfirmCell *cell = nil;
         
-        [ws.navigationController popViewControllerAnimated:YES];
-        
-    } forControlEvents:UIControlEventTouchUpInside];
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (!cell) {
+            cell = [[LBB_OrderTicketConfirmCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.ticketStatus = self.ticketStatus;
+        [cell setModel:nil];
+        return cell;
+    }
     
-    [cell.payButton bk_addEventHandler:^(id sender){
-        
-        LBB_OrderPayWayViewController* dest = [[LBB_OrderPayWayViewController alloc]init];
-        [ws.navigationController pushViewController:dest animated:YES];
-        
-    } forControlEvents:UIControlEventTouchUpInside];
-    return cell;
+
 }
 
 @end

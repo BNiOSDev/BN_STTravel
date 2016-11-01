@@ -31,7 +31,7 @@
         
         [self.telButton setTitle:@"联系客服" forState:UIControlStateNormal];
         [self.telButton setImage:IMAGE(@"景点详情_电话") forState:UIControlStateNormal];
-        [self.telButton setTitleColor:ColorBlack forState:UIControlStateNormal];
+        [self.telButton setTitleColor:ColorGray forState:UIControlStateNormal];
         [self.telButton.titleLabel setFont:Font15];
         [self.telButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
         [self.contentView addSubview:self.telButton];

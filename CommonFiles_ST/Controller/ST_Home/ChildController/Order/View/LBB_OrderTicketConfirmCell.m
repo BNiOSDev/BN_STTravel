@@ -7,7 +7,7 @@
 //
 
 #import "LBB_OrderTicketConfirmCell.h"
-
+#import "LBB_OrderPayWayViewController.h"
 @implementation LBB_OrderTicketConfirmCell
 
 /*
@@ -37,6 +37,7 @@
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setFont:Font15];
+        [self.titleLabel setTextColor:ColorGray];
         [self.titleLabel setText:@"订单时间"];
         [self.contentView addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -63,21 +64,21 @@
             make.top.equalTo(ws.titleLabel.mas_bottom).offset(2*margin);
         }];
         
-        self.deleteButton = [UIButton new];
-        [self.deleteButton setBackgroundColor:ColorLightGray];
-        [self.deleteButton setTitle:@"删除订单" forState:UIControlStateNormal];
-        [self.deleteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.deleteButton.titleLabel setFont:Font15];
-        [self.contentView addSubview:self.deleteButton];
+        self.leftButton = [UIButton new];
+        [self.leftButton setBackgroundColor:ColorLightGray];
+        [self.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
+        [self.leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.leftButton.titleLabel setFont:Font15];
+        [self.contentView addSubview:self.leftButton];
         
-        self.payButton = [UIButton new];
-        [self.payButton setBackgroundColor:ColorBtnYellow];
-        [self.payButton setTitle:@"立即支付" forState:UIControlStateNormal];
-        [self.payButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.payButton.titleLabel setFont:Font15];
-        [self.contentView addSubview:self.payButton];
+        self.rightButton = [UIButton new];
+        [self.rightButton setBackgroundColor:ColorBtnYellow];
+        [self.rightButton setTitle:@"立即支付" forState:UIControlStateNormal];
+        [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.rightButton.titleLabel setFont:Font15];
+        [self.contentView addSubview:self.rightButton];
         
-        [self.payButton mas_makeConstraints:^(MASConstraintMaker* make){
+        [self.rightButton mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.equalTo(ws.timeLabel);
             make.top.equalTo(sep2.mas_bottom).offset(2*margin);
@@ -87,16 +88,70 @@
 
         }];
         
-        [self.deleteButton mas_makeConstraints:^(MASConstraintMaker* make){
+        [self.leftButton mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.equalTo(ws.payButton.mas_left).offset(-2*margin);
-            make.centerY.width.height.equalTo(ws.payButton);
+            make.right.equalTo(ws.rightButton.mas_left).offset(-2*margin);
+            make.centerY.width.height.equalTo(ws.rightButton);
             
         }];
         
         
     }
     return self;
+}
+
+-(void)setModel:(id)model{
+
+    WS(ws);
+    self.leftButton.hidden = NO;
+    self.rightButton.hidden = NO;
+    
+    switch (self.ticketStatus) {
+        case LBBPoohTicketStatusWaitPay:
+        {
+            
+            [self.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [self.rightButton setTitle:@"立即支付" forState:UIControlStateNormal];
+
+            [self.leftButton bk_addEventHandler:^(id sender){
+                
+                [[ws getViewController].navigationController popViewControllerAnimated:YES];
+                
+            } forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.rightButton bk_addEventHandler:^(id sender){
+                
+                LBB_OrderPayWayViewController* dest = [[LBB_OrderPayWayViewController alloc]init];
+                [[ws getViewController].navigationController pushViewController:dest animated:YES];
+                
+            } forControlEvents:UIControlEventTouchUpInside];
+        }
+            
+            break;
+        case LBBPoohTicketStatusWaitCollect:
+        {
+            self.leftButton.hidden = YES;
+            [self.rightButton setTitle:@"退票" forState:UIControlStateNormal];
+        }
+            
+            break;
+        case LBBPoohTicketStatusCollected:
+        {
+            self.leftButton.hidden = YES;
+            [self.rightButton setTitle:@"立即评价" forState:UIControlStateNormal];
+        }
+            
+            break;
+        case LBBPoohTicketStatusRefunded:
+        {
+            self.leftButton.hidden = YES;
+            [self.rightButton setTitle:@"确认完成" forState:UIControlStateNormal];
+        }
+            break;
+    }
+    
+
+    
 }
 
 @end
