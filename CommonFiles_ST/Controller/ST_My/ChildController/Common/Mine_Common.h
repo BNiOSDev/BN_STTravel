@@ -2,7 +2,7 @@
 //  Mine_Common.h
 //  ST_Travel
 //
-//  Created by dhxiang on 16/10/30.
+//  Created by Diana on 16/10/30.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -34,6 +34,7 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     eTicket_WaitGetTicket,//我的门票_待取票
     eTicket_WaitComment,//我的门票_待评价
     eTicket_Refund,  //我的门票_退款
+    eTicket_Coment,//我的门票-待评价门票详情-立即评价
     eOrder,//我的订单
     eOrder_WaitPay,  //我的订单_待付款
     eOrder_WaitGetTicket,//我的订单_待取票

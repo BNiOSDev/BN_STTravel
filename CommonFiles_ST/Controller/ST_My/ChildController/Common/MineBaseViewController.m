@@ -20,18 +20,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadCustomNavigationButton];
+    self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
+    
+    self.bottomViewBottomContraint.constant = -TabHeight;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)buildControls
-{
-    self.bottomViewBottomContraint.constant = TabHeight;
-}
-
+ 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -139,6 +137,12 @@
             self.navigationItem.title = NSLocalizedString(@"我的门票", nil);
         }
             break;
+        case eTicket_Coment: //我的门票-待评价门票详情-立即评价
+        {
+            self.navigationItem.title = NSLocalizedString(@"立即评价", nil);
+        }
+            break;
+            
         case eFavorite://我的收藏
         {
             self.navigationItem.title = NSLocalizedString(@"我的收藏", nil);

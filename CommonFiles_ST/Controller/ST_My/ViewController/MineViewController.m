@@ -13,19 +13,18 @@
 #import "ST_TabBarController.h"
 #import "MineBaseViewController.h"
 #import "LBB_MineViewDataController.h"
+#import "LBB_ImagePickerViewController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
 
 @interface MineViewController ()<
 LBB_MyUserHeaderViewDelegate,
-LBB_MineViewDataControllerDelegate
+LBB_MySectionHeadViewDelegate
 >
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSMutableArray *dataSourceArray;
 @property (strong, nonatomic) IBOutlet LBB_MineViewDataController *dataController;
-
+@property (strong,nonatomic) LBB_ImagePickerViewController *imagePicker;
 @end
 
 @implementation MineViewController
@@ -33,9 +32,9 @@ LBB_MineViewDataControllerDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self initData];
     [self loadCustomNavigationButton];
     [self.dataController initDataSource];
+    self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,53 +61,6 @@ LBB_MineViewDataControllerDelegate
     self.dataController.userHeaderDelegate = self;
 }
 
-- (void)initData
-{
-    UINib *nib = [UINib nibWithNibName:@"MineViewCell" bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:@"MineViewCell"];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
-                                                                  @{@"Title": NSLocalizedString(@"我的钱包",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"WalletViewController"},
-                                                                  @{@"Title": NSLocalizedString(@"我的广场",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"publicSquare"},
-                                                                  @{@"Title": NSLocalizedString(@"我的门票",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"TicketViewController",
-                                                                    @"ViewType" : [NSNumber numberWithInt:eTickets]},
-                                                                  @{@"Title": NSLocalizedString(@"我的订单",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"TicketViewController",
-                                                                    @"ViewType" : [NSNumber numberWithInt:eOrder]},
-                                                                  @{@"Title": NSLocalizedString(@"我的收藏",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"LBB_FavoriteViewController",
-                                                                    @"ViewType" : [NSNumber numberWithInt:eFavorite]},
-                                                                  @{@"Title": NSLocalizedString(@"我的游记",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"LBB_FavoriteViewController",
-                                                                    @"ViewType" : [NSNumber numberWithInt:eTravels]},
-                                                                  @{@"Title": NSLocalizedString(@"我的下载",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"LBB_FavoriteViewController",
-                                                                    @"ViewType" : [NSNumber numberWithInt:eDownload]},
-                                                                  @{@"Title": NSLocalizedString(@"我的拼团",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"LBB_FightGroupViewController"},
-                                                                  @{@"Title": NSLocalizedString(@"我的线路",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"LBB_FavoriteViewController",
-                                                                    @"ViewType" : [NSNumber numberWithInt:eRoute]},
-                                                                  @{@"Title": NSLocalizedString(@"我的设置",nil),
-                                                                    @"Image" : @"19.pic.jpg",
-                                                                    @"Action":@"SettingViewController"}
-                                                                  ]];
- 
-}
-  
-    
 #pragma mark - headeView delegate
 - (void)didClickSetting:(id)userInfo
 {
@@ -125,6 +77,39 @@ LBB_MineViewDataControllerDelegate
     [self performSegueWithIdentifier:@"PersonalCenterViewController" sender:nil];
 }
 
+- (void)didClickConverPicture:(id)userInfo
+{
+    NSString *cameraStr = NSLocalizedString(@"相机", nil);
+    NSString *albumStr = NSLocalizedString(@"相册", nil);
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换封面图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    // Create the actions.
+    UIAlertAction *camraAction = [UIAlertAction actionWithTitle:cameraStr style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self showImagePickerView:UIImagePickerControllerSourceTypeCamera];
+    }];
+    
+    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:albumStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self showImagePickerView:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    }];
+    
+    // Add the actions.
+    [alertController addAction:camraAction];
+    [alertController addAction:albumAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)showImagePickerView:(UIImagePickerControllerSourceType)sourceType
+{
+    self.imagePicker = nil;
+    self.imagePicker = [[LBB_ImagePickerViewController alloc] initPickerWithType:sourceType Parent:self];
+    
+    __weak typeof (self) weakSelf = self;
+    [self.imagePicker showPicker:^(UIImage *resultImage){
+        [weakSelf.dataController replaceUserHeadImage:resultImage];
+    }];
+}
 #pragma mark - colectionView delegate
 
 - (void)didClickDetailActionDelegate:(NSInteger)viewType

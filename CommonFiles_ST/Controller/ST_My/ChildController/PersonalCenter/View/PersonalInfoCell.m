@@ -16,6 +16,11 @@
     self.rightImgView.layer.cornerRadius = 40.f;
     self.rightImgView.clipsToBounds = YES;
     self.rightImgView.backgroundColor = [UIColor clearColor];
+    
+    self.leftLabal.textColor = ColorBlack;
+    self.rightLabel.textColor = ColorGray;
+    self.leftLabal.font = Font15;
+    self.rightLabel.font = Font14;
 }
 
 - (void)prepareForReuse{
