@@ -17,6 +17,8 @@
 		1D0F48A81DC8E10400A37DE2 /* LBB_LabelDetailHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48A71DC8E10400A37DE2 /* LBB_LabelDetailHotCell.m */; };
 		1D0F48AB1DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48AA1DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.m */; };
 		1D0F48AE1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48AD1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m */; };
+		1D0F48C51DC9C2F500A37DE2 /* LBB_GuiderMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48C11DC9C2F500A37DE2 /* LBB_GuiderMainCell.m */; };
+		1D0F48C61DC9C2F500A37DE2 /* LBB_GuiderMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48C41DC9C2F500A37DE2 /* LBB_GuiderMainViewController.m */; };
 		1D12FA461DC6E97700ACD462 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */; };
 		1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97E1DC6E97700ACD462 /* PoohBaseViewController.m */; };
 		1D12FA481DC6E97700ACD462 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D12F9841DC6E97700ACD462 /* b27_icon_star_gray@2x.png */; };
@@ -377,6 +379,10 @@
 		1D0F48AA1DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LabelDetailUserDataSource.m; sourceTree = "<group>"; };
 		1D0F48AC1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LabelDetailUserCell.h; sourceTree = "<group>"; };
 		1D0F48AD1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LabelDetailUserCell.m; sourceTree = "<group>"; };
+		1D0F48C01DC9C2F500A37DE2 /* LBB_GuiderMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderMainCell.h; sourceTree = "<group>"; };
+		1D0F48C11DC9C2F500A37DE2 /* LBB_GuiderMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderMainCell.m; sourceTree = "<group>"; };
+		1D0F48C31DC9C2F500A37DE2 /* LBB_GuiderMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderMainViewController.h; sourceTree = "<group>"; };
+		1D0F48C41DC9C2F500A37DE2 /* LBB_GuiderMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderMainViewController.m; sourceTree = "<group>"; };
 		1D12F97B1DC6E97700ACD462 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		1D12F97D1DC6E97700ACD462 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -990,6 +996,33 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		1D0F48BE1DC9C2F500A37DE2 /* Guider */ = {
+			isa = PBXGroup;
+			children = (
+				1D0F48BF1DC9C2F500A37DE2 /* View */,
+				1D0F48C21DC9C2F500A37DE2 /* ViewController */,
+			);
+			path = Guider;
+			sourceTree = "<group>";
+		};
+		1D0F48BF1DC9C2F500A37DE2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D0F48C01DC9C2F500A37DE2 /* LBB_GuiderMainCell.h */,
+				1D0F48C11DC9C2F500A37DE2 /* LBB_GuiderMainCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1D0F48C21DC9C2F500A37DE2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D0F48C31DC9C2F500A37DE2 /* LBB_GuiderMainViewController.h */,
+				1D0F48C41DC9C2F500A37DE2 /* LBB_GuiderMainViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1D12F9791DC6E97700ACD462 /* ST_Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1017,6 +1050,7 @@
 		1D12F97F1DC6E97700ACD462 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				1D0F48BE1DC9C2F500A37DE2 /* Guider */,
 				1D0F489A1DC8CB9400A37DE2 /* LabelDetail */,
 				1D12F9801DC6E97700ACD462 /* Common */,
 				1D12F9A61DC6E97700ACD462 /* Discovery */,
@@ -3932,6 +3966,7 @@
 				843011FF1DBF861200F5316A /* LBB_FavoriteViewController.m in Sources */,
 				842926251DC0D3B800B8D259 /* LBB_MyPropertyViewController.m in Sources */,
 				84F6B9B31DC6E3D1009ED8DF /* NSArray+Sudoku.m in Sources */,
+				1D0F48C51DC9C2F500A37DE2 /* LBB_GuiderMainCell.m in Sources */,
 				84F6BA1F1DC6E3D1009ED8DF /* JHPieForeBGView.m in Sources */,
 				8430121B1DBF861200F5316A /* ExtractDetailViewController.m in Sources */,
 				1D12FA6E1DC6E97700ACD462 /* LBB_OrderWaitPayViewController.m in Sources */,
@@ -4140,6 +4175,7 @@
 				84F6BA391DC6E3D1009ED8DF /* LBB_TravelCommentCell.m in Sources */,
 				8430121E1DBF861200F5316A /* BalanceDetailViewCell.m in Sources */,
 				1D12FA8E1DC6E97700ACD462 /* LBBHomeAnnouncementTableViewCell.m in Sources */,
+				1D0F48C61DC9C2F500A37DE2 /* LBB_GuiderMainViewController.m in Sources */,
 				84F6BA351DC6E3D1009ED8DF /* UIView+SDAutoLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
