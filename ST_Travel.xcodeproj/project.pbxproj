@@ -165,6 +165,13 @@
 		843012321DBF861200F5316A /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843011FD1DBF861200F5316A /* MineViewController.m */; };
 		843012371DBF86A700F5316A /* CommonFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = 843012361DBF86A700F5316A /* CommonFunc.m */; };
 		84B377DF1DC4539D0078397C /* ST_Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B377DE1DC4539D0078397C /* ST_Mine.xcassets */; };
+		84C373701DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C373641DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.m */; };
+		84C373711DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C373651DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.xib */; };
+		84C373721DC8C56E000D19A5 /* LBB_TicketCommentSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C373671DC8C56E000D19A5 /* LBB_TicketCommentSectionView.m */; };
+		84C373731DC8C56E000D19A5 /* LBB_TicketCommentSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C373681DC8C56E000D19A5 /* LBB_TicketCommentSectionView.xib */; };
+		84C373741DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C3736A1DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.m */; };
+		84C373751DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C3736B1DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.xib */; };
+		84C3737B1DC8C59B000D19A5 /* LBB_TicketCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C373791DC8C59B000D19A5 /* LBB_TicketCommentViewController.m */; };
 		84CFB31C1DC5D890005B8346 /* LBB_MineViewDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFB31B1DC5D890005B8346 /* LBB_MineViewDataController.m */; };
 		84DA18E51DC4367400680C66 /* LBB_MySectionHeadViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DA18E31DC4367400680C66 /* LBB_MySectionHeadViewCell.m */; };
 		84DA18E61DC4367400680C66 /* LBB_MySectionHeadViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DA18E41DC4367400680C66 /* LBB_MySectionHeadViewCell.xib */; };
@@ -641,6 +648,18 @@
 		843012351DBF86A700F5316A /* CommonFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonFunc.h; sourceTree = "<group>"; };
 		843012361DBF86A700F5316A /* CommonFunc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunc.m; sourceTree = "<group>"; };
 		84B377DE1DC4539D0078397C /* ST_Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Mine.xcassets; sourceTree = "<group>"; };
+		84C244E31DC9FF0400E87EEE /* TicketCommentDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicketCommentDef.h; sourceTree = "<group>"; };
+		84C373631DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketCommentPicturViewCell.h; sourceTree = "<group>"; };
+		84C373641DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketCommentPicturViewCell.m; sourceTree = "<group>"; };
+		84C373651DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_TicketCommentPicturViewCell.xib; sourceTree = "<group>"; };
+		84C373661DC8C56E000D19A5 /* LBB_TicketCommentSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketCommentSectionView.h; sourceTree = "<group>"; };
+		84C373671DC8C56E000D19A5 /* LBB_TicketCommentSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketCommentSectionView.m; sourceTree = "<group>"; };
+		84C373681DC8C56E000D19A5 /* LBB_TicketCommentSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_TicketCommentSectionView.xib; sourceTree = "<group>"; };
+		84C373691DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketCommentTagViewCell.h; sourceTree = "<group>"; };
+		84C3736A1DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketCommentTagViewCell.m; sourceTree = "<group>"; };
+		84C3736B1DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_TicketCommentTagViewCell.xib; sourceTree = "<group>"; };
+		84C373781DC8C59B000D19A5 /* LBB_TicketCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketCommentViewController.h; sourceTree = "<group>"; };
+		84C373791DC8C59B000D19A5 /* LBB_TicketCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketCommentViewController.m; sourceTree = "<group>"; };
 		84CFB31A1DC5D890005B8346 /* LBB_MineViewDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MineViewDataController.h; sourceTree = "<group>"; };
 		84CFB31B1DC5D890005B8346 /* LBB_MineViewDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MineViewDataController.m; sourceTree = "<group>"; };
 		84DA18E21DC4367400680C66 /* LBB_MySectionHeadViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MySectionHeadViewCell.h; sourceTree = "<group>"; };
@@ -2363,6 +2382,7 @@
 		8430118A1DBF861200F5316A /* Tickets */ = {
 			isa = PBXGroup;
 			children = (
+				84C3735F1DC8C56E000D19A5 /* ChildController */,
 				8430118B1DBF861200F5316A /* Model */,
 				8430118C1DBF861200F5316A /* View */,
 				843011931DBF861200F5316A /* ViewController */,
@@ -2854,6 +2874,65 @@
 				843012361DBF86A700F5316A /* CommonFunc.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		84C244E21DC9FEE400E87EEE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				84C244E31DC9FF0400E87EEE /* TicketCommentDef.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		84C3735F1DC8C56E000D19A5 /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				84C373601DC8C56E000D19A5 /* Comment */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		84C373601DC8C56E000D19A5 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				84C244E21DC9FEE400E87EEE /* Common */,
+				84C373611DC8C56E000D19A5 /* Model */,
+				84C373621DC8C56E000D19A5 /* View */,
+				84C3736C1DC8C56E000D19A5 /* ViewController */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		84C373611DC8C56E000D19A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84C373621DC8C56E000D19A5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84C373631DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.h */,
+				84C373641DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.m */,
+				84C373651DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.xib */,
+				84C373661DC8C56E000D19A5 /* LBB_TicketCommentSectionView.h */,
+				84C373671DC8C56E000D19A5 /* LBB_TicketCommentSectionView.m */,
+				84C373681DC8C56E000D19A5 /* LBB_TicketCommentSectionView.xib */,
+				84C373691DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.h */,
+				84C3736A1DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.m */,
+				84C3736B1DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84C3736C1DC8C56E000D19A5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84C373781DC8C59B000D19A5 /* LBB_TicketCommentViewController.h */,
+				84C373791DC8C59B000D19A5 /* LBB_TicketCommentViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		84CFB3191DC5D890005B8346 /* ModelController */ = {
@@ -3763,6 +3842,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C373751DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.xib in Resources */,
 				84F6B9C21DC6E3D1009ED8DF /* zjmaddress@2x.png in Resources */,
 				1D12FA961DC6E97700ACD462 /* ST_HomeViewController.xib in Resources */,
 				8405D8C71DC583B8005A5CE5 /* LBB_MyUserHeaderView.xib in Resources */,
@@ -3854,6 +3934,7 @@
 				1D12FA491DC6E97700ACD462 /* b27_icon_star_yellow@2x.png in Resources */,
 				84F6B9D81DC6E3D1009ED8DF /* zjmtakephotoing@2x.png in Resources */,
 				84F6B9FA1DC6E3D1009ED8DF /* zjmtranpord@2x.png in Resources */,
+				84C373731DC8C56E000D19A5 /* LBB_TicketCommentSectionView.xib in Resources */,
 				C9C0E95A1D9948F100575A7C /* Main.storyboard in Resources */,
 				84F6B9C91DC6E3D1009ED8DF /* zjmdianzaned@2x.png in Resources */,
 				84F6B9D91DC6E3D1009ED8DF /* zjmtime@2x.png in Resources */,
@@ -3867,6 +3948,7 @@
 				84F6B9D21DC6E3D1009ED8DF /* zjmsearch@2x.png in Resources */,
 				C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */,
 				843012041DBF861200F5316A /* address.json in Resources */,
+				84C373711DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.xib in Resources */,
 				84F6B9CF1DC6E3D1009ED8DF /* zjmmengban@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3956,6 +4038,7 @@
 				1D12FA4F1DC6E97700ACD462 /* LBB_SceninSearchCollectionViewCell.m in Sources */,
 				84F6BA281DC6E3D1009ED8DF /* ZJMSearchBar.m in Sources */,
 				1D12FA8D1DC6E97700ACD462 /* IConstants.m in Sources */,
+				84C373741DC8C56E000D19A5 /* LBB_TicketCommentTagViewCell.m in Sources */,
 				84F6BA3F1DC6E3D1009ED8DF /* ST_SquareViewController.m in Sources */,
 				C9C0E9571D9948F100575A7C /* ViewController.m in Sources */,
 				84F6BA1E1DC6E3D1009ED8DF /* JHPieChart.m in Sources */,
@@ -4032,9 +4115,11 @@
 				843012231DBF861200F5316A /* CardViewController.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				1D12FA5D1DC6E97700ACD462 /* LBB_DiscoveryCustomizedViewController.m in Sources */,
+				84C373701DC8C56E000D19A5 /* LBB_TicketCommentPicturViewCell.m in Sources */,
 				1D12FA761DC6E97700ACD462 /* LBB_ScenicDetailTravelRecommendCell.m in Sources */,
 				1D12FA4E1DC6E97700ACD462 /* LBB_ScenicSearchCollectionReusableView.m in Sources */,
 				84F6B9B61DC6E3D1009ED8DF /* ImageContentView.m in Sources */,
+				84C373721DC8C56E000D19A5 /* LBB_TicketCommentSectionView.m in Sources */,
 				84F6BA091DC6E3D1009ED8DF /* LBB_Tarvel_Bill_Free_Cell.m in Sources */,
 				1D12FA931DC6E97700ACD462 /* LBBHomeTravelRecommendTableViewCell.m in Sources */,
 				84F6BA2F1DC6E3D1009ED8DF /* CommentBoxView.m in Sources */,
@@ -4088,6 +4173,7 @@
 				84F6BA0C1DC6E3D1009ED8DF /* LBB_Travel_Bill_ViewController.m in Sources */,
 				843012211DBF861200F5316A /* CardViewCell.m in Sources */,
 				1D12FA8C1DC6E97700ACD462 /* PoohAppHelper.m in Sources */,
+				84C3737B1DC8C59B000D19A5 /* LBB_TicketCommentViewController.m in Sources */,
 				1D12FA801DC6E97700ACD462 /* LBB_SignInListCell.m in Sources */,
 				1D12FA751DC6E97700ACD462 /* LBB_ScenicDetailPriceMsgCell.m in Sources */,
 				1D12FA631DC6E97700ACD462 /* LBBNearbyMainViewController.m in Sources */,

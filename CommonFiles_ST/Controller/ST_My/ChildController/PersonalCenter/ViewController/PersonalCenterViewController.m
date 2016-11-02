@@ -227,7 +227,7 @@ UITableViewDataSource
 {
     self.imagePicker = nil;
 
-    self.imagePicker = [[LBB_ImagePickerViewController alloc] initPickerWithType:UIImagePickerControllerSourceTypePhotoLibrary Parent:self];
+    self.imagePicker = [[LBB_ImagePickerViewController alloc] initPickerWithType:sourceType Parent:self];
     
     __weak typeof (self) weakSelf = self;
     [self.imagePicker showPicker:^(UIImage *resultImage){
