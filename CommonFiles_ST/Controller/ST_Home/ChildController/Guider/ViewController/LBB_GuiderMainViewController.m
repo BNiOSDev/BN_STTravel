@@ -8,6 +8,7 @@
 
 #import "LBB_GuiderMainViewController.h"
 #import "LBB_GuiderMainCell.h"
+#import "LBB_GuiderApplyViewController.h"
 
 @interface LBB_GuiderMainViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -115,6 +116,7 @@
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
+    WS(ws);
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     
     UIView* v = [UIView new];
@@ -135,6 +137,13 @@
         make.height.mas_equalTo(AutoSize(40/2));
 
     }];
+    
+    [b1 bk_addEventHandler:^(id sender){
+    
+        LBB_GuiderApplyViewController* dest = [[LBB_GuiderApplyViewController alloc]init];
+        [ws.navigationController pushViewController:dest animated:YES];
+    } forControlEvents:UIControlEventTouchUpInside];
+
     
     //设置
     NSString* strFormat1 = @"申请导游证 >";

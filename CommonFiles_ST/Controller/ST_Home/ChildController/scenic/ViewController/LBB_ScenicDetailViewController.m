@@ -183,7 +183,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             [ws.popView resignKeyWindow];
             ws.popView = nil;
             LBB_NewOrderViewController* dest = [[LBB_NewOrderViewController alloc]init];
-            dest.isIntegral = YES;
+          //  dest.isIntegral = YES;
             [ws.navigationController pushViewController:dest animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         

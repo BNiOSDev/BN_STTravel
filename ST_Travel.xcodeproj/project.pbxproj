@@ -19,6 +19,13 @@
 		1D0F48AE1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48AD1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m */; };
 		1D0F48C51DC9C2F500A37DE2 /* LBB_GuiderMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48C11DC9C2F500A37DE2 /* LBB_GuiderMainCell.m */; };
 		1D0F48C61DC9C2F500A37DE2 /* LBB_GuiderMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48C41DC9C2F500A37DE2 /* LBB_GuiderMainViewController.m */; };
+		1D0F48C91DC9DC8100A37DE2 /* LBB_GuiderApplyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48C81DC9DC8100A37DE2 /* LBB_GuiderApplyTextField.m */; };
+		1D0F48CC1DC9E1AF00A37DE2 /* LBB_GuiderApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48CB1DC9E1AF00A37DE2 /* LBB_GuiderApplyViewController.m */; };
+		1D0F48D51DC9EE6200A37DE2 /* SKTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48D01DC9EE6200A37DE2 /* SKTag.m */; };
+		1D0F48D61DC9EE6200A37DE2 /* SKTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48D21DC9EE6200A37DE2 /* SKTagButton.m */; };
+		1D0F48D71DC9EE6200A37DE2 /* SKTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48D41DC9EE6200A37DE2 /* SKTagView.m */; };
+		1D0F48DA1DC9F15200A37DE2 /* LBB_GuiderApplyLabelSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48D91DC9F15200A37DE2 /* LBB_GuiderApplyLabelSelectView.m */; };
+		1D0F48DD1DCAD04400A37DE2 /* LBB_GuiderIdentityCardSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48DC1DCAD04400A37DE2 /* LBB_GuiderIdentityCardSelectView.m */; };
 		1D12FA461DC6E97700ACD462 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */; };
 		1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97E1DC6E97700ACD462 /* PoohBaseViewController.m */; };
 		1D12FA481DC6E97700ACD462 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D12F9841DC6E97700ACD462 /* b27_icon_star_gray@2x.png */; };
@@ -383,6 +390,20 @@
 		1D0F48C11DC9C2F500A37DE2 /* LBB_GuiderMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderMainCell.m; sourceTree = "<group>"; };
 		1D0F48C31DC9C2F500A37DE2 /* LBB_GuiderMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderMainViewController.h; sourceTree = "<group>"; };
 		1D0F48C41DC9C2F500A37DE2 /* LBB_GuiderMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderMainViewController.m; sourceTree = "<group>"; };
+		1D0F48C71DC9DC8100A37DE2 /* LBB_GuiderApplyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderApplyTextField.h; sourceTree = "<group>"; };
+		1D0F48C81DC9DC8100A37DE2 /* LBB_GuiderApplyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderApplyTextField.m; sourceTree = "<group>"; };
+		1D0F48CA1DC9E1AF00A37DE2 /* LBB_GuiderApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderApplyViewController.h; sourceTree = "<group>"; };
+		1D0F48CB1DC9E1AF00A37DE2 /* LBB_GuiderApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderApplyViewController.m; sourceTree = "<group>"; };
+		1D0F48CF1DC9EE6200A37DE2 /* SKTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTag.h; sourceTree = "<group>"; };
+		1D0F48D01DC9EE6200A37DE2 /* SKTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTag.m; sourceTree = "<group>"; };
+		1D0F48D11DC9EE6200A37DE2 /* SKTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTagButton.h; sourceTree = "<group>"; };
+		1D0F48D21DC9EE6200A37DE2 /* SKTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTagButton.m; sourceTree = "<group>"; };
+		1D0F48D31DC9EE6200A37DE2 /* SKTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTagView.h; sourceTree = "<group>"; };
+		1D0F48D41DC9EE6200A37DE2 /* SKTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTagView.m; sourceTree = "<group>"; };
+		1D0F48D81DC9F15200A37DE2 /* LBB_GuiderApplyLabelSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderApplyLabelSelectView.h; sourceTree = "<group>"; };
+		1D0F48D91DC9F15200A37DE2 /* LBB_GuiderApplyLabelSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderApplyLabelSelectView.m; sourceTree = "<group>"; };
+		1D0F48DB1DCAD04400A37DE2 /* LBB_GuiderIdentityCardSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderIdentityCardSelectView.h; sourceTree = "<group>"; };
+		1D0F48DC1DCAD04400A37DE2 /* LBB_GuiderIdentityCardSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderIdentityCardSelectView.m; sourceTree = "<group>"; };
 		1D12F97B1DC6E97700ACD462 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		1D12F97D1DC6E97700ACD462 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -1010,6 +1031,12 @@
 			children = (
 				1D0F48C01DC9C2F500A37DE2 /* LBB_GuiderMainCell.h */,
 				1D0F48C11DC9C2F500A37DE2 /* LBB_GuiderMainCell.m */,
+				1D0F48C71DC9DC8100A37DE2 /* LBB_GuiderApplyTextField.h */,
+				1D0F48C81DC9DC8100A37DE2 /* LBB_GuiderApplyTextField.m */,
+				1D0F48D81DC9F15200A37DE2 /* LBB_GuiderApplyLabelSelectView.h */,
+				1D0F48D91DC9F15200A37DE2 /* LBB_GuiderApplyLabelSelectView.m */,
+				1D0F48DB1DCAD04400A37DE2 /* LBB_GuiderIdentityCardSelectView.h */,
+				1D0F48DC1DCAD04400A37DE2 /* LBB_GuiderIdentityCardSelectView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1019,8 +1046,23 @@
 			children = (
 				1D0F48C31DC9C2F500A37DE2 /* LBB_GuiderMainViewController.h */,
 				1D0F48C41DC9C2F500A37DE2 /* LBB_GuiderMainViewController.m */,
+				1D0F48CA1DC9E1AF00A37DE2 /* LBB_GuiderApplyViewController.h */,
+				1D0F48CB1DC9E1AF00A37DE2 /* LBB_GuiderApplyViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1D0F48CE1DC9EE6200A37DE2 /* SKTag */ = {
+			isa = PBXGroup;
+			children = (
+				1D0F48CF1DC9EE6200A37DE2 /* SKTag.h */,
+				1D0F48D01DC9EE6200A37DE2 /* SKTag.m */,
+				1D0F48D11DC9EE6200A37DE2 /* SKTagButton.h */,
+				1D0F48D21DC9EE6200A37DE2 /* SKTagButton.m */,
+				1D0F48D31DC9EE6200A37DE2 /* SKTagView.h */,
+				1D0F48D41DC9EE6200A37DE2 /* SKTagView.m */,
+			);
+			path = SKTag;
 			sourceTree = "<group>";
 		};
 		1D12F9791DC6E97700ACD462 /* ST_Home */ = {
@@ -1084,6 +1126,7 @@
 		1D12F9821DC6E97700ACD462 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D0F48CE1DC9EE6200A37DE2 /* SKTag */,
 				1D12F9831DC6E97700ACD462 /* CWStarRateView */,
 				1D12F9881DC6E97700ACD462 /* GYChangeTextView */,
 				1D12F98B1DC6E97700ACD462 /* KSViewPagerView.h */,
@@ -3961,6 +4004,7 @@
 				1D12FA4D1DC6E97700ACD462 /* LBB_PoohPlusMinTextField.m in Sources */,
 				1D12FA5E1DC6E97700ACD462 /* LBB_DiscoveryMainViewController.m in Sources */,
 				1D0F48AE1DC8EBFB00A37DE2 /* LBB_LabelDetailUserCell.m in Sources */,
+				1D0F48DA1DC9F15200A37DE2 /* LBB_GuiderApplyLabelSelectView.m in Sources */,
 				843012121DBF861200F5316A /* SettingPrivaceViewController.m in Sources */,
 				840013901DC62C3200BD6297 /* PointsViewController.m in Sources */,
 				843011FF1DBF861200F5316A /* LBB_FavoriteViewController.m in Sources */,
@@ -3991,6 +4035,7 @@
 				84299B021DC43DF9005943FF /* LBB_MySectionFooterViewCell.m in Sources */,
 				1D12FA941DC6E97700ACD462 /* LBBHomeSearchResultViewController.m in Sources */,
 				1D12FA791DC6E97700ACD462 /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */,
+				1D0F48DD1DCAD04400A37DE2 /* LBB_GuiderIdentityCardSelectView.m in Sources */,
 				842925F61DC0903400B8D259 /* LBB_MessageCenterViewController.m in Sources */,
 				1D12FA6F1DC6E97700ACD462 /* LBB_ScenicMainTableViewCell.m in Sources */,
 				84F6BA071DC6E3D1009ED8DF /* LBB_ShopRecoder_Controller.m in Sources */,
@@ -4001,6 +4046,7 @@
 				84F6BA371DC6E3D1009ED8DF /* LBBFriendTableViewCell.m in Sources */,
 				1D12FA501DC6E97700ACD462 /* LBBPoohBaseTableSectionHeaderView.m in Sources */,
 				8430121A1DBF861200F5316A /* BalanceDetailViewController.m in Sources */,
+				1D0F48CC1DC9E1AF00A37DE2 /* LBB_GuiderApplyViewController.m in Sources */,
 				1D12FA951DC6E97700ACD462 /* ST_HomeViewController.m in Sources */,
 				1D12FA881DC6E97700ACD462 /* UIColor+PoohCommon.m in Sources */,
 				84DA18E51DC4367400680C66 /* LBB_MySectionHeadViewCell.m in Sources */,
@@ -4062,6 +4108,7 @@
 				1D12FA911DC6E97700ACD462 /* LBBHomeMenuTableViewCell.m in Sources */,
 				1D12FA6B1DC6E97700ACD462 /* LBB_NewOrderTicketTypeInfoView.m in Sources */,
 				84F6BA301DC6E3D1009ED8DF /* CommentView.m in Sources */,
+				1D0F48C91DC9DC8100A37DE2 /* LBB_GuiderApplyTextField.m in Sources */,
 				843012271DBF861200F5316A /* WalletViewCell.m in Sources */,
 				84F6BA381DC6E3D1009ED8DF /* ZJMHostTableViewCell.m in Sources */,
 				843012051DBF861200F5316A /* LBB_AddressPickerView.m in Sources */,
@@ -4119,6 +4166,7 @@
 				1D12FA661DC6E97700ACD462 /* LBB_OrderTextCell.m in Sources */,
 				1D12FA8A1DC6E97700ACD462 /* UIImage+PoohCommon.m in Sources */,
 				1D12FA811DC6E97700ACD462 /* LBB_SigninPopView.m in Sources */,
+				1D0F48D61DC9EE6200A37DE2 /* SKTagButton.m in Sources */,
 				843011FE1DBF861200F5316A /* MineBaseViewController.m in Sources */,
 				8405D8C61DC583B8005A5CE5 /* LBB_MyUserHeaderView.m in Sources */,
 				84F6BA1C1DC6E3D1009ED8DF /* JHColumnChart.m in Sources */,
@@ -4128,6 +4176,7 @@
 				84F6B9B71DC6E3D1009ED8DF /* LBB_CommentTextField.m in Sources */,
 				84F6BA171DC6E3D1009ED8DF /* LBBFriendModel.m in Sources */,
 				1D12FA551DC6E97700ACD462 /* LBBPoohVerticalLableControl.m in Sources */,
+				1D0F48D71DC9EE6200A37DE2 /* SKTagView.m in Sources */,
 				84DA18EA1DC4386B00680C66 /* LBB_MyViewCell.m in Sources */,
 				84F6BA051DC6E3D1009ED8DF /* LBBHostDetailViewController.m in Sources */,
 				84F6BA1D1DC6E3D1009ED8DF /* JHLineChart.m in Sources */,
@@ -4148,6 +4197,7 @@
 				84F6BA331DC6E3D1009ED8DF /* ZJMCommentView.m in Sources */,
 				843012091DBF861200F5316A /* ReceiptAddressViewController.m in Sources */,
 				1D12FA7F1DC6E97700ACD462 /* LBB_ScenicMainViewController.m in Sources */,
+				1D0F48D51DC9EE6200A37DE2 /* SKTag.m in Sources */,
 				8430121C1DBF861200F5316A /* BalanceExtractViewController.m in Sources */,
 				843012071DBF861200F5316A /* ReceiptAddressViewCell.m in Sources */,
 				8430121D1DBF861200F5316A /* BalanceViewController.m in Sources */,
