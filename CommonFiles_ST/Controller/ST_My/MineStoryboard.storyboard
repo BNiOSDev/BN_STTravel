@@ -2460,8 +2460,8 @@
                                     <constraint firstAttribute="height" constant="1" id="9cH-c9-V1F"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZUc-ew-Zc9">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZUc-ew-Zc9">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="R1k-Zi-vsm" id="vEF-uv-knc"/>
                                     <outlet property="delegate" destination="R1k-Zi-vsm" id="ZW4-Zk-dC2"/>
@@ -2478,7 +2478,7 @@
                             <constraint firstItem="nCg-UH-NgS" firstAttribute="top" secondItem="IPB-15-r57" secondAttribute="top" id="T2N-f3-z2Z"/>
                             <constraint firstItem="APg-if-v8k" firstAttribute="top" secondItem="ZUc-ew-Zc9" secondAttribute="bottom" constant="-49" id="V7w-Zl-nUj"/>
                             <constraint firstAttribute="trailing" secondItem="ZUc-ew-Zc9" secondAttribute="trailing" id="awc-Eu-jGo"/>
-                            <constraint firstItem="ZUc-ew-Zc9" firstAttribute="top" secondItem="nCg-UH-NgS" secondAttribute="bottom" constant="225" id="hAv-Q9-Y2j"/>
+                            <constraint firstItem="ZUc-ew-Zc9" firstAttribute="top" secondItem="nCg-UH-NgS" secondAttribute="bottom" id="hAv-Q9-Y2j"/>
                             <constraint firstItem="nCg-UH-NgS" firstAttribute="leading" secondItem="IPB-15-r57" secondAttribute="leading" id="ie3-VJ-8Vr"/>
                         </constraints>
                     </view>

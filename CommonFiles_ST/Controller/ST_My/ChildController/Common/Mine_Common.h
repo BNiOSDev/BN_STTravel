@@ -83,5 +83,12 @@ typedef NS_ENUM(NSInteger,TicketClickType)
     eShowDetail  //查看详情
 };
 
+typedef NS_ENUM(NSInteger,MessageCenterSquareTravelType)
+{
+    eMessageFollow = 0,//关注
+    eMessageLike,//点赞
+    eMessageComment,//评论
+    eMessageCollection //收藏
+};
 
 #endif /* Mine_Common_h */

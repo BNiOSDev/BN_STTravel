@@ -47,8 +47,8 @@
     self.messageBtn.exclusiveTouch = YES;
     
     self.backImgView.contentMode = UIViewContentModeScaleAspectFill;
-    self.setBtn.enlargeInset = UIEdgeInsetsMake(10, 10, 10, 20);
-    self.messageBtn.enlargeInset = UIEdgeInsetsMake(10, 20, 10, 10);
+    self.setBtn.enlargeInset = UIEdgeInsetsMake(10, 10, 40, 40);
+    self.messageBtn.enlargeInset = UIEdgeInsetsMake(10, 40, 40, 10);
 }
 
 - (void)setUserInfo:(NSDictionary*)userInfo

@@ -193,7 +193,7 @@ UITableViewDataSource
             break;
         case eSquareTravel://广场游记
         {
-//            [self performSegueWithIdentifier:@"LBB_SquareTravelViewController" sender:nil];
+            [self performSegueWithIdentifier:@"LBB_SquareTravelViewController" sender:nil];
         }
             break;
         default:
