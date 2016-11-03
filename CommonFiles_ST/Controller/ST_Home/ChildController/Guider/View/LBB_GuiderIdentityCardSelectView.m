@@ -8,6 +8,16 @@
 
 #import "LBB_GuiderIdentityCardSelectView.h"
 #import "PoohCommon.h"
+#import <CTAssetsPickerController/CTAssetsPickerController.h>
+#import <CTAssetsPickerController/CTAssetsPageViewController.h>
+
+@interface LBB_GuiderIdentityCardSelectView()<CTAssetsPickerControllerDelegate>
+
+@property (nonatomic, strong) PHImageRequestOptions *requestOptions;
+@property (nonatomic, strong) CTAssetsPickerController *picker;
+
+@end
+
 @implementation LBB_GuiderIdentityCardSelectView
 
 /*
@@ -65,6 +75,27 @@
             make.bottom.equalTo(ws).offset(-margin);
             make.height.mas_equalTo(AutoSize(160));
         }];
+        
+        
+        [self.addButton bk_addEventHandler:^(id sender){
+        
+            // init picker
+            if (!ws.picker) {
+                ws.picker = [[CTAssetsPickerController alloc] init];
+            }
+            
+            // set delegate
+            ws.picker.delegate = ws;
+            
+            // Optionally present picker as a form sheet on iPad
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+                ws.picker.modalPresentationStyle = UIModalPresentationFormSheet;
+            
+            // present picker
+            [[ws getViewController] presentViewController:ws.picker animated:YES completion:nil];
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+        
         
         self.placeHolderLabel = [UILabel new];
         [self.placeHolderLabel setText:@"身份证正面照片"];
@@ -165,6 +196,77 @@
         }];
     }
     
+}
+
+
+-(void)configImageView:(BOOL)show{
+    
+    if (show) {
+        [self.addButton setBackgroundImage:self.selectImageView.image forState:UIControlStateNormal];
+        self.placeHolderLabel.hidden = YES;
+        [self.addButton setImage:nil forState:UIControlStateNormal];
+    }
+    else{
+        [self.addButton setImage:IMAGE(@"导游_添加照片") forState:UIControlStateNormal];
+        self.placeHolderLabel.hidden = NO;
+        [self.addButton setBackgroundImage:nil forState:UIControlStateNormal];
+    }
+    
+}
+
+#pragma CTAssetsPickerController delegate
+
+- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+{
+    // assets contains PHAsset objects.
+    NSLog(@"CTAssetsPickerController didFinishPickingAssets:%@",assets);
+    [picker dismissViewControllerAnimated:YES completion:nil];
+
+    if (!self.requestOptions) {
+        self.requestOptions = [[PHImageRequestOptions alloc] init];
+        self.requestOptions.resizeMode   = PHImageRequestOptionsResizeModeExact;
+        self.requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
+    }
+    
+    WS(ws);
+    for (PHAsset *asset in assets) {
+        PHImageManager *manager = [PHImageManager defaultManager];
+        [manager requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeDefault options:self.requestOptions resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+            
+            if (!ws.selectImageView) {
+                ws.selectImageView = [UIImageView new];
+            }
+            ws.selectImageView.image = result;
+            [ws configImageView:YES];
+        }];
+    }
+    
+}
+- (BOOL)assetsPickerController:(CTAssetsPickerController *)picker shouldSelectAsset:(PHAsset *)asset
+{
+    NSInteger max = 1;
+    
+    // show alert gracefully
+    // show alert gracefully
+    if (picker.selectedAssets.count >= max)
+    {
+        UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle:@"提示"
+                                            message:[NSString stringWithFormat:@"最多只能选择 %ld 张照片", (long)max]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action =
+        [UIAlertAction actionWithTitle:@"OK"
+                                 style:UIAlertActionStyleDefault
+                               handler:nil];
+        
+        [alert addAction:action];
+        
+        [picker presentViewController:alert animated:YES completion:nil];
+    }
+    
+    // limit selection to max
+    return (picker.selectedAssets.count < max);
 }
 
 @end

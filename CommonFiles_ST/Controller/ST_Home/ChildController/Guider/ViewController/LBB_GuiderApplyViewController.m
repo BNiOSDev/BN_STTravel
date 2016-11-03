@@ -78,9 +78,23 @@
     [self.view addSubview:self.mainScrollView];
     [self.mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.view);
-        make.bottom.equalTo(ws.view);
+       // make.bottom.equalTo(ws.view);
         make.width.centerX.equalTo(ws.view);
     }];
+    
+    //提交申请按钮
+    UIButton* applyButton = [UIButton new];
+    [applyButton setBackgroundColor:ColorBtnYellow];
+    [applyButton setTitle:@"立即申请" forState:UIControlStateNormal];
+    [applyButton setTitleColor:ColorWhite forState:UIControlStateNormal];
+    [applyButton.titleLabel setFont:Font15];
+    [self.view addSubview:applyButton];
+    [applyButton mas_makeConstraints:^(MASConstraintMaker* make){
+        make.centerX.width.bottom.equalTo(ws.view);
+        make.height.mas_equalTo(AutoSize(40));
+        make.top.equalTo(ws.mainScrollView.mas_bottom);
+    }];
+    
     
     CGFloat margin = 8;
     
@@ -270,6 +284,9 @@
         make.centerX.width.equalTo(noteLabel);
         make.bottom.equalTo(ws.mainScrollView).offset(-3*margin);
     }];
+    
+
+    
 }
 
 @end
