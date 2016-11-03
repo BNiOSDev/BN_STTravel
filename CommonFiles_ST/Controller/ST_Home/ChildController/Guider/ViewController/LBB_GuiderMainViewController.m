@@ -9,6 +9,7 @@
 #import "LBB_GuiderMainViewController.h"
 #import "LBB_GuiderMainCell.h"
 #import "LBB_GuiderApplyViewController.h"
+#import "LBB_GuiderUserViewController.h"
 
 @interface LBB_GuiderMainViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
