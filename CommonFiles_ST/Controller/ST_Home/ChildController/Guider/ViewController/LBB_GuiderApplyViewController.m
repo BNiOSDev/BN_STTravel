@@ -11,6 +11,7 @@
 #import "SKTagView.h"
 #import "LBB_GuiderApplyLabelSelectView.h"
 #import "LBB_GuiderIdentityCardSelectView.h"
+#import "LBB_GuiderApplyResultViewController.h"
 
 @interface LBB_GuiderApplyViewController ()
 
@@ -94,6 +95,13 @@
         make.height.mas_equalTo(AutoSize(40));
         make.top.equalTo(ws.mainScrollView.mas_bottom);
     }];
+    [applyButton bk_addEventHandler:^(id sender){
+    
+        LBB_GuiderApplyResultViewController* dest = [[LBB_GuiderApplyResultViewController alloc]init];
+        dest.isSuccess = YES;
+        [ws.navigationController pushViewController:dest animated:YES];
+    } forControlEvents:UIControlEventTouchUpInside];
+    
     
     
     CGFloat margin = 8;
