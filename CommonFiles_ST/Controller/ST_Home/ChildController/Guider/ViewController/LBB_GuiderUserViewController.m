@@ -91,6 +91,54 @@
 
 #pragma tableView Delegate
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+
+    return 2;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    if (section == 0) {
+        return 0.001;
+    }
+    return AutoSize(TopSegmmentControlHeight);
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
+    
+    if (section == 0) {
+        return [UIView new];
+    }
+    
+    UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, height)];
+    
+    NSArray* segmentArray = @[@"动态112",@"关注12",@"粉丝1212"];
+    
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
+    segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+                                             NSForegroundColorAttributeName:ColorLightGray};
+    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
+                                                     NSForegroundColorAttributeName:ColorBtnYellow};
+    segmentedControl.selectionIndicatorColor = ColorBtnYellow;
+    segmentedControl.verticalDividerWidth = SeparateLineWidth;
+    segmentedControl.verticalDividerColor = ColorLightGray;
+  //  segmentedControl.layer.borderWidth = 1;
+   // segmentedControl.layer.borderColor = ColorLine.CGColor;
+    
+    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    [v addSubview:segmentedControl];
+    [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.height.width.equalTo(v);
+
+    }];
+    segmentedControl.indexChangeBlock = ^(NSInteger index){
+        NSLog(@"segmentedControl select:%ld",index);
+    };
+
+    return v;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -98,7 +146,7 @@
         return self.menuArray.count + 1;
     }
     
-    return 10;
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
