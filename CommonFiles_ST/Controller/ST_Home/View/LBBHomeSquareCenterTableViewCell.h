@@ -7,7 +7,6 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-#import "LBBPoohGreatItemView.h"
 
 
 @interface LBBHomeSquareCenterTableViewCellItem : UIControl
@@ -15,8 +14,8 @@
 @property(nonatomic, retain)UIImageView* bgImageView;
 @property(nonatomic, retain)UIImageView* portraitImageView;
 @property(nonatomic, retain)UILabel* userLable;
-@property(nonatomic, retain)LBBPoohGreatItemView* commentsView;
-@property(nonatomic, retain)LBBPoohGreatItemView* greetView;
+@property(nonatomic, retain)UIButton* commentsView;
+@property(nonatomic, retain)UIButton* greetView;
 @property(nonatomic, retain)UIButton* favoriteButton;
 
 @property(nonatomic, retain)UIButton* videoButton;

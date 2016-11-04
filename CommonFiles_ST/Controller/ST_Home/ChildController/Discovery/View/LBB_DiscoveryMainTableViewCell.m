@@ -7,7 +7,6 @@
 //
 
 #import "LBB_DiscoveryMainTableViewCell.h"
-#import "LBBPoohGreatItemView.h"
 #import "LBB_StarRatingViewController.h"
 
 @implementation LBB_DiscoveryMainTableViewCell{
@@ -16,8 +15,8 @@
     UILabel* titleLabel;
     UILabel* contentLabel;
     UILabel* timeLabel;
-    LBBPoohGreatItemView* commentsView;
-    LBBPoohGreatItemView* greetView;
+    UIButton* commentsButton;
+    UIButton* greatButton;
 
     
 }
@@ -88,46 +87,48 @@
         [v mas_makeConstraints:^(MASConstraintMaker* make){
             make.right.bottom.equalTo(imageView).offset(-2*margin);
         }];
-        [v setHidden:YES];
+       [v setHidden:YES];
         
         CGFloat margin1 = 5;
         CGFloat width = 18;
         v.layer.cornerRadius = (width+margin1)/2;
 
-        greetView = [[LBBPoohGreatItemView alloc]init];
-        [greetView.iconView setImage:IMAGE(@"ST_Home_Great")];
-        [greetView.desLabel setText:@"190"];
-        [greetView.desLabel setTextColor:[UIColor whiteColor]];
-        [v addSubview:greetView];
-        [greetView mas_makeConstraints:^(MASConstraintMaker* make){
+        greatButton = [[UIButton alloc]init];
+        [greatButton setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        [greatButton setTitle:@"190" forState:UIControlStateNormal];
+        [greatButton setTitleColor:ColorWhite forState:UIControlStateNormal];
+        [greatButton.titleLabel setFont:Font12];
+        [v addSubview:greatButton];
+        [greatButton mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.left.equalTo(v).offset(margin1);
             make.top.equalTo(v).offset(margin1);
             make.bottom.equalTo(v).offset(-margin1);
-            make.height.mas_equalTo(width);
+           // make.height.mas_equalTo(width);
         }];
-        [greetView bk_whenTapped:^{
+        [greatButton bk_whenTapped:^{
             
-            NSLog(@"greetView touch");
+            NSLog(@"greatButton touch");
             
         }];
         
         
-        commentsView = [[LBBPoohGreatItemView alloc]init];
-        [commentsView.iconView setImage:IMAGE(@"ST_Home_Comments")];
-        [commentsView.desLabel setText:@"1000"];
-        [commentsView.desLabel setTextColor:[UIColor whiteColor]];
-        [v addSubview:commentsView];
-        [commentsView mas_makeConstraints:^(MASConstraintMaker* make){
+        commentsButton = [[UIButton alloc]init];
+        [commentsButton setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
+        [commentsButton setTitle:@"1000" forState:UIControlStateNormal];
+        [commentsButton setTitleColor:ColorWhite forState:UIControlStateNormal];
+        [commentsButton.titleLabel setFont:Font12];
+        [v addSubview:commentsButton];
+        [commentsButton mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(greetView.mas_right).offset(margin1);
-            make.centerY.height.equalTo(greetView);
+            make.left.equalTo(greatButton.mas_right).offset(margin1);
+            make.centerY.height.equalTo(greatButton);
             make.right.equalTo(v).offset(-margin1);
         }];
         
-        [commentsView bk_whenTapped:^{
+        [commentsButton bk_whenTapped:^{
             
-            NSLog(@"commentsView touch");
+            NSLog(@"commentsButton touch");
             LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc]init];
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
@@ -149,8 +150,8 @@
     [titleLabel setText:@"钟爱SD的男人"];
     [contentLabel setNumberOfLines:0];
     [timeLabel setText:[PoohAppHelper getStringFromDate:[NSDate new] withFormat:DateFormatFullDate]];
-    [greetView.desLabel setText:[NSString stringWithFormat:@"%ld",231]];
-    [commentsView.desLabel setText:[NSString stringWithFormat:@"%ld",371]];
+    [greatButton setTitle:[NSString stringWithFormat:@"%ld",231] forState:UIControlStateNormal];
+    [commentsButton setTitle:[NSString stringWithFormat:@"%ld",372] forState:UIControlStateNormal];
 }
 
 @end

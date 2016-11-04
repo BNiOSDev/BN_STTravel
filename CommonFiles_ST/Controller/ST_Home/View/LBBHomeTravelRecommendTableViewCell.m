@@ -78,15 +78,17 @@
             make.height.greaterThanOrEqualTo(@15);
         }];
         
-        self.commentsView = [[LBBPoohGreatItemView alloc]init];
-        [self.commentsView.iconView setImage:IMAGE(@"ST_Home_Comments")];
-        [self.commentsView.desLabel setText:@"1000"];
+        self.commentsView = [[UIButton alloc]init];
+        [self.commentsView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
+        [self.commentsView setTitle:@"1000" forState:UIControlStateNormal];
+        [self.commentsView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.commentsView.titleLabel setFont:Font12];
         [self.contentView addSubview:self.commentsView];
         [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.equalTo(ws.contentView).offset(-8);
             make.top.equalTo(ws.bgImageView.mas_bottom).offset(5);
-            make.height.equalTo(@16);
+          //  make.height.equalTo(@16);
         }];
         
         [self.commentsView bk_whenTapped:^{
@@ -96,9 +98,11 @@
         }];
         
         
-        self.greetView = [[LBBPoohGreatItemView alloc]init];
-        [self.greetView.iconView setImage:IMAGE(@"ST_Home_Great")];
-        [self.greetView.desLabel setText:@"190"];
+        self.greetView = [[UIButton alloc]init];
+        [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        [self.greetView setTitle:@"1000" forState:UIControlStateNormal];
+        [self.greetView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.greetView.titleLabel setFont:Font12];
         [self.contentView addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
             

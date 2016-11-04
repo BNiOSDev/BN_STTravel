@@ -72,50 +72,56 @@
             make.top.equalTo(sep.mas_bottom).offset(1.5*margin);
         }];
         
-        self.greatView = [[LBBPoohGreatItemView alloc]init];
-        [self.greatView.iconView setImage:IMAGE(@"景点专题_点赞")];
-        [self.greatView.desLabel setText:@"190"];
-        [self.greatView.desLabel setTextColor:ColorLightGray];
-        [v addSubview:self.greatView];
-        [self.greatView mas_makeConstraints:^(MASConstraintMaker* make){
+        self.greatButton = [[UIButton alloc]init];
+        [self.greatButton setImage:IMAGE(@"景点专题_点赞") forState:UIControlStateNormal];
+        [self.greatButton setTitle:@"190" forState:UIControlStateNormal];
+        [self.greatButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.greatButton.titleLabel setFont:Font12];
+        [self.greatButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 3, 0, -3)];
+        [v addSubview:self.greatButton];
+        [self.greatButton mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.left.top.bottom.equalTo(v);
-            make.height.mas_equalTo(@15);
+           // make.height.mas_equalTo(@15);
         }];
-        [self.greatView bk_whenTapped:^{
+        [self.greatButton bk_whenTapped:^{
             
             NSLog(@"greetView touch");
             
         }];
         
-        self.commentsView = [[LBBPoohGreatItemView alloc]init];
-        [ self.commentsView.iconView setImage:IMAGE(@"景点专题_评论")];
-        [ self.commentsView.desLabel setText:@"1000"];
-        [ self.commentsView.desLabel setTextColor:ColorLightGray];
-        [v addSubview: self.commentsView];
-        [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
+        self.commentsButton = [[UIButton alloc]init];
+        [ self.commentsButton setImage:IMAGE(@"景点专题_评论") forState:UIControlStateNormal];
+        [ self.commentsButton setTitle:@"1000" forState:UIControlStateNormal];
+        [ self.commentsButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.commentsButton.titleLabel setFont:Font12];
+        [self.commentsButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 3, 0, -3)];
+        [v addSubview: self.commentsButton];
+        [self.commentsButton mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.greatView.mas_right).offset(margin);
-            make.centerY.height.equalTo(ws.greatView);
+            make.left.equalTo(ws.greatButton.mas_right).offset(margin);
+            make.centerY.height.equalTo(ws.greatButton);
         }];
         
-        [self.commentsView bk_whenTapped:^{
+        [self.commentsButton bk_whenTapped:^{
             
         }];
         
-        self.favoriteView = [[LBBPoohGreatItemView alloc]init];
-        [ self.favoriteView.iconView setImage:IMAGE(@"景点专题_小收藏")];
-        [ self.favoriteView.desLabel setText:@"1000"];
-        [ self.favoriteView.desLabel setTextColor:ColorLightGray];
-        [v addSubview: self.favoriteView];
-        [self.favoriteView mas_makeConstraints:^(MASConstraintMaker* make){
+        self.favoriteButton = [[UIButton alloc]init];
+        [ self.favoriteButton setImage:IMAGE(@"景点专题_小收藏") forState:UIControlStateNormal];
+        [ self.favoriteButton setTitle:@"1000" forState:UIControlStateNormal];
+        [ self.favoriteButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.favoriteButton.titleLabel setFont:Font12];
+        [self.favoriteButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 3, 0, -3)];
+        [v addSubview: self.favoriteButton];
+        [self.favoriteButton mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.commentsView.mas_right).offset(margin);
-            make.centerY.height.equalTo(ws.greatView);
+            make.left.equalTo(ws.commentsButton.mas_right).offset(margin);
+            make.centerY.height.equalTo(ws.greatButton);
             make.right.equalTo(v);
         }];
         
-        [self.favoriteView bk_whenTapped:^{
+        [self.favoriteButton bk_whenTapped:^{
             
         }];
         

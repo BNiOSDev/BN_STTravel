@@ -135,36 +135,38 @@
             make.centerY.equalTo(ws.addressLabel);
         }];
         
-        self.greetView = [[LBBPoohGreatItemView alloc]init];
-        [self.greetView.iconView setImage:IMAGE(@"ST_Home_Great")];
-        [self.greetView.desLabel setText:@"190"];
-        [self.greetView.desLabel setTextColor:ColorLightGray];
-        [self.contentView addSubview:self.greetView];
-        [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
+        self.greatButton = [[UIButton alloc]init];
+        [self.greatButton setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        [self.greatButton setTitle:@"190" forState:UIControlStateNormal];
+        [self.greatButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.greatButton.titleLabel setFont:Font12];
+        [self.contentView addSubview:self.greatButton];
+        [self.greatButton mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.left.equalTo(ws.titleLabel);
             make.top.equalTo(ws.addressLabel.mas_bottom).offset(margin);
-            make.height.mas_equalTo(@15);
+            //make.height.mas_equalTo(@15);
         }];
-        [self.greetView bk_whenTapped:^{
+        [self.greatButton bk_whenTapped:^{
             
             NSLog(@"greetView touch");
             
         }];
         
         
-        self.commentsView = [[LBBPoohGreatItemView alloc]init];
-        [ self.commentsView.iconView setImage:IMAGE(@"ST_Home_Comments")];
-        [ self.commentsView.desLabel setText:@"1000"];
-        [ self.commentsView.desLabel setTextColor:ColorLightGray];
-        [self.contentView addSubview: self.commentsView];
-        [ self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
+        self.commentsButton = [[UIButton alloc]init];
+        [self.commentsButton setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
+        [self.commentsButton setTitle:@"190" forState:UIControlStateNormal];
+        [self.commentsButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.commentsButton.titleLabel setFont:Font12];
+        [self.contentView addSubview: self.commentsButton];
+        [ self.commentsButton mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.greetView.mas_right).offset(margin/2);
-            make.centerY.height.equalTo(ws.greetView);
+            make.left.equalTo(ws.greatButton.mas_right).offset(margin/2);
+            make.centerY.height.equalTo(ws.greatButton);
         }];
         
-        [self.commentsView bk_whenTapped:^{
+        [self.commentsButton bk_whenTapped:^{
 
         }];
         
@@ -175,7 +177,7 @@
         [sep2 mas_makeConstraints:^(MASConstraintMaker* make){
             make.bottom.centerX.width.equalTo(ws.contentView);
             make.height.mas_equalTo(SeparateLineWidth);
-            make.top.equalTo(ws.greetView.mas_bottom).offset(margin);
+            make.top.equalTo(ws.greatButton.mas_bottom).offset(margin);
         }];
     }
     return self;

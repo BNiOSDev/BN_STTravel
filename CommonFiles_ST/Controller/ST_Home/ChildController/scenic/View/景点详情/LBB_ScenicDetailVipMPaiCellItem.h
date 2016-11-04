@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LBBPoohGreatItemView.h"
 
 #define LBB_ScenicDetailVipMPaiCellMainImageViewHeight AutoSize(268.0/2)
 #define LBB_ScenicDetailVipMPaiCellPortraitImageViewHeight AutoSize(30.0)
@@ -21,8 +20,8 @@
 @property(nonatomic, retain)UIImageView* portraitImageView;
 @property(nonatomic, retain)UILabel* nickNameLabel;
 
-@property(nonatomic, retain)LBBPoohGreatItemView* commentsView;
-@property(nonatomic, retain)LBBPoohGreatItemView* greetView;
+@property(nonatomic, retain)UIButton* commentsButton;
+@property(nonatomic, retain)UIButton* greatButton;
 
 @property(nonatomic, retain)UIButton* playButton;
 
