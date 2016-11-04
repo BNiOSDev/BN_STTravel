@@ -162,7 +162,10 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
-        return [LBBPoohCycleScrollCell getCellHeight];
+        return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell *cell) {
+            
+            [cell setCycleScrollViewHeight:AutoSize(460/2)];
+        }];
     }
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicMainTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicMainTableViewCell *cell) {
@@ -183,7 +186,7 @@
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
         }
-        
+        [cell setCycleScrollViewHeight:AutoSize(460/2)];
         [cell setCycleScrollViewUrls:nil];
         [cell setEnableBlock:YES];
         cell.click = ^(NSNumber* index){

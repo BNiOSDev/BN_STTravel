@@ -17,6 +17,5 @@
 @property(nonatomic, retain)UIImageView* arrowImageView;
 
 @property(nonatomic, retain)UIView* sep;
-+(CGFloat)getCellHeight;
 
 @end

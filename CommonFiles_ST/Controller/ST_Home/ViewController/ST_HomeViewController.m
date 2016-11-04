@@ -311,8 +311,10 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         case LBBHomeSectionMenuType:
         {
             if (indexPath.row == 0) {
-
-                height = [LBBPoohCycleScrollCell getCellHeight];
+                return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
+                    
+                    [cell setCycleScrollViewHeight:AutoSize(370/2)];
+                }];
             }
             else if (indexPath.row == 1){
 
@@ -328,7 +330,10 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         {
             if (indexPath.row == 0) {
                 
-                height = [LBBPoohCycleScrollCell getCellHeight];
+                return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
+                    
+                    [cell setCycleScrollViewHeight:AutoSize(380/2)];
+                }];
             }
             else{
                 height = [LBBHomeHotestTableViewCell getCellHeight];
@@ -368,7 +373,10 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         {
             if (indexPath.row == 0) {
                 
-                height = [LBBPoohCycleScrollCell getCellHeight];
+                return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
+                    
+                    [cell setCycleScrollViewHeight:AutoSize(390/2)];
+                }];
             }
             else{
                height = [LBBHomeHotestTableViewCell getCellHeight2];
@@ -447,7 +455,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             NSLog(@"LBBPoohCycleScrollCell nil");
 
         }
-      
+        [cell setCycleScrollViewHeight:AutoSize(370/2)];
         [cell setCycleScrollViewUrls:nil];
         [cell setEnableBlock:YES];
         cell.click = ^(NSNumber* index){
@@ -498,7 +506,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             NSLog(@"LBBPoohCycleScrollCell nil");
 
         }
-        
+        [cell setCycleScrollViewHeight:AutoSize(380/2)];
         [cell setCycleScrollViewUrls:nil];
         
         return cell;
@@ -576,7 +584,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             NSLog(@"LBBPoohCycleScrollCell nil");
             
         }
-        
+        [cell setCycleScrollViewHeight:AutoSize(390/2)];
         [cell setCycleScrollViewUrls:nil];
         
         return cell;

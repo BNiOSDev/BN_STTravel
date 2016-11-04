@@ -175,7 +175,7 @@
         
         [self.sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.bottom.equalTo(ws.contentView);
-            make.height.equalTo(@1.5);
+            make.height.mas_equalTo(SeparateLineWidth);
             make.top.equalTo(ws.item1.mas_bottom).offset(2*interval);
         }];
         

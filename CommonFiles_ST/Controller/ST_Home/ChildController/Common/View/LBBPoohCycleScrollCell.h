@@ -12,7 +12,6 @@
 
 -(void)setCycleScrollViewUrls:(NSArray*)urlArray;
 
-+(CGFloat)getCellHeight;
 
 -(void)setCycleScrollViewHeight:(CGFloat)height;
 

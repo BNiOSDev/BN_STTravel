@@ -60,6 +60,8 @@
     [self.mapView setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
     [self.mapView setFrame:CGRectMake(0, 0, DeviceWidth, AutoSize(490/2))];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
+    [self.tableView registerClass:[LBBNearbyMenuListTableViewCell class] forCellReuseIdentifier:@"LBBNearbyMenuListTableViewCell"];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -72,8 +74,7 @@
         make.bottom.equalTo(ws.view);
     }];
     
-    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
-    [self.tableView registerClass:[LBBNearbyMenuListTableViewCell class] forCellReuseIdentifier:@"LBBNearbyMenuListTableViewCell"];
+
 
 }
 
@@ -125,11 +126,15 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
-        return AutoSize(226/2);
-       // return [LBBPoohCycleScrollCell getCellHeight];
+        return  [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
+            [cell setCycleScrollViewHeight:AutoSize(226/2)];
+            [cell setCycleScrollViewUrls:nil];
+        }];
     }
     else{
-        return [LBBNearbyMenuListTableViewCell getCellHeight];
+        return  [tableView fd_heightForCellWithIdentifier:@"LBBNearbyMenuListTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBNearbyMenuListTableViewCell* cell){
+
+        }];
     }
     
 }
@@ -143,7 +148,7 @@
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
         }
-        
+        [cell setCycleScrollViewHeight:AutoSize(226/2)];
         [cell setCycleScrollViewUrls:nil];
         
         return cell;

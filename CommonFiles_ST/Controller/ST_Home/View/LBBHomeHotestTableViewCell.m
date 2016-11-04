@@ -87,7 +87,7 @@
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.equalTo(_collectionView.mas_bottom);
             make.left.right.equalTo(ws.contentView);
-            make.height.equalTo(@1.5);
+            make.height.mas_equalTo(SeparateLineWidth);
             make.bottom.equalTo(ws.contentView);
         }];
     }

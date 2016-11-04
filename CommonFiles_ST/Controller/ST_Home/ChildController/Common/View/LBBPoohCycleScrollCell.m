@@ -90,12 +90,4 @@
 }
 
 
-+(CGFloat)getCellHeight{
-
-    CGFloat height = 0;
-    height = AutoSize(370/2);
-   // NSLog(@"getCellHeight:%f",height);
-    return height;
-}
-
 @end

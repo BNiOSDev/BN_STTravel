@@ -24,6 +24,5 @@
 -(void)showSigninButton:(BOOL)show;
 -(void)showRankMsg:(BOOL)show;
 -(void)showArrowImageView:(BOOL)show;
-+(CGFloat)getCellHeight;
 
 @end

@@ -109,7 +109,7 @@
     
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(ctr1);
-        make.width.equalTo(@1.5);
+        make.width.mas_equalTo(SeparateLineWidth);
         make.height.equalTo(@30);
         make.left.equalTo(ctr1.mas_right);
     }];

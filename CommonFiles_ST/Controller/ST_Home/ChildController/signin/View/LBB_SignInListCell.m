@@ -167,18 +167,9 @@
 
 -(void)setModel:(id)model{
 
-    
-    
-    
+
 }
 
-
-+(CGFloat)getCellHeight{
-    
-    CGFloat height = AutoSize(135/2);
-  //  NSLog(@"getCellHeight:%f",height);
-    return height;
-}
 
 
 @end

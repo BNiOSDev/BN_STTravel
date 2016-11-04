@@ -38,7 +38,7 @@
             make.left.equalTo(ws.contentView).offset(2*interval);
             make.top.equalTo(ws.contentView).offset(interval);
             make.bottom.equalTo(ws.contentView).offset(-interval);
-            make.width.equalTo(ws.portraitImageView.mas_height);
+            make.width.height.mas_equalTo(AutoSize(90/2));
         }];
         
         self.titleLabel = [UILabel new];
@@ -52,7 +52,7 @@
         }];
         
         self.subTitleLabel = [UILabel new];
-        [self.subTitleLabel setFont:Font8];
+        [self.subTitleLabel setFont:Font12];
         [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];
@@ -75,7 +75,7 @@
         }];
         
         self.descLabel = [UILabel new];
-        [self.descLabel setFont:Font8];
+        [self.descLabel setFont:Font12];
         [self.descLabel setTextColor:ColorLightGray];
         [self.descLabel setText:@"1.5km"];
         [self.descLabel setTextAlignment:NSTextAlignmentRight];
@@ -91,7 +91,7 @@
         [self.contentView addSubview:self.sep];
         [self.sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.bottom.equalTo(ws.contentView);
-            make.height.equalTo(@1.5);
+            make.height.mas_equalTo(SeparateLineWidth);
         }];
         
     }
@@ -99,14 +99,5 @@
 }
 
 
-
-
-
-+(CGFloat)getCellHeight{
-    
-    CGFloat height = AutoSize(130/2);
-  //  NSLog(@"getCellHeight:%f",height);
-    return height;
-}
 
 @end
