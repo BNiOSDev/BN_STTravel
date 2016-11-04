@@ -32,7 +32,6 @@ UITableViewDataSource
     dispatch_queue_t _folderSizeQueue;
 }
 
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
  
@@ -129,6 +128,8 @@ UITableViewDataSource
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
+    cell.textLabel.font = Font16;
+    cell.textLabel.textColor = ColorBlack;
     cell.textLabel.text = [cellDict objectForKey:@"Title"];
     cell.accessoryView =  nil;
     if ([cell.textLabel.text isEqualToString:NSLocalizedString(@"清除缓存",nil)]) {
@@ -141,8 +142,8 @@ UITableViewDataSource
 {
     UILabel *label = [[UILabel alloc] init];
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont systemFontOfSize:14];
-    label.textColor = RGBAHEX(0x000000, 1.0);
+    label.font = Font16;
+    label.textColor = ColorBlack;
     label.textAlignment = NSTextAlignmentRight;
     if (!_isFinishCacuteCacheSize) { //还没计算完成显示0KB
         label.text = [NSString stringWithFormat:@"0KB"];
@@ -219,6 +220,12 @@ UITableViewDataSource
     [alertController addAction:wifiAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+//邀请好友
+- (void)inviteFriends:(id)sender
+{
+   [self performSegueWithIdentifier:@"LBB_InviteFriendsViewController" sender:nil];
 }
 
 #pragma mark - 计算缓存大小

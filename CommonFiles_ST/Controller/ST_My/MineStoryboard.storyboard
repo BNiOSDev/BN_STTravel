@@ -1325,6 +1325,7 @@
                         <outlet property="tableView" destination="sSY-WX-mgy" id="pAh-fA-zRl"/>
                         <segue destination="Hy7-8X-g7t" kind="show" identifier="SettingPushViewController" id="eP3-hn-XKU"/>
                         <segue destination="VkQ-te-Wq9" kind="show" identifier="SettingPrivaceViewController" id="ysO-pY-Jac"/>
+                        <segue destination="3qT-pJ-F7V" kind="show" identifier="LBB_InviteFriendsViewController" id="p4P-TE-WhP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fA7-ni-hTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1404,6 +1405,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42K-Zp-sDk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-334" y="723"/>
+        </scene>
+        <!--LBB_InviteFriendsViewController-->
+        <scene sceneID="qLO-hV-emD">
+            <objects>
+                <viewController storyboardIdentifier="LBB_InviteFriendsViewController" id="3qT-pJ-F7V" userLabel="LBB_InviteFriendsViewController" customClass="LBB_InviteFriendsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pev-Ym-PPB"/>
+                        <viewControllerLayoutGuide type="bottom" id="5JP-I7-gEp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wPh-ur-tBf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="U6R-Ve-s7o">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="3qT-pJ-F7V" id="wZp-xb-Kzf"/>
+                                    <outlet property="delegate" destination="3qT-pJ-F7V" id="Kkz-iZ-zbZ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="U6R-Ve-s7o" firstAttribute="top" secondItem="Pev-Ym-PPB" secondAttribute="bottom" id="BL9-6M-4xd"/>
+                            <constraint firstItem="U6R-Ve-s7o" firstAttribute="leading" secondItem="wPh-ur-tBf" secondAttribute="leading" id="CFC-h6-pi7"/>
+                            <constraint firstAttribute="trailing" secondItem="U6R-Ve-s7o" secondAttribute="trailing" id="QvW-wK-E4f"/>
+                            <constraint firstItem="5JP-I7-gEp" firstAttribute="top" secondItem="U6R-Ve-s7o" secondAttribute="bottom" id="YBB-6Y-jZb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomViewBottomContraint" destination="YBB-6Y-jZb" id="OoI-2m-EmN"/>
+                        <outlet property="tableView" destination="U6R-Ve-s7o" id="bJ9-n2-JPh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wz2-V8-CCu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="412" y="723"/>
         </scene>
         <!--TicketViewController-->
         <scene sceneID="n9e-PS-fkI">

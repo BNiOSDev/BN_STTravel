@@ -15,7 +15,13 @@
     // Initialization code
     self.descLabel.hidden = YES;
     self.switchBtn.enabled = NO;
+    self.descLabel.font = Font16;
+    self.descLabel.textColor = ColorBlack;
+    self.contentLabel.font = Font16;
+    self.contentLabel.textColor = ColorBlack;
+    
 }
+
 - (void)prepareForReuse
 {
     [super prepareForReuse];
