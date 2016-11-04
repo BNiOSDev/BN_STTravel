@@ -38,10 +38,10 @@
         [self.contentView addSubview:self.portraitImageView];
         [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
-            make.left.equalTo(ws.contentView).offset(2*interval);
-            make.top.equalTo(ws.contentView).offset(1.5*interval);
-            make.bottom.equalTo(ws.contentView).offset(-1.5*interval);
-            make.width.equalTo(ws.portraitImageView.mas_height);
+            make.left.equalTo(ws.contentView).offset(1.5*interval);
+            make.top.equalTo(ws.contentView).offset(interval);
+            make.bottom.equalTo(ws.contentView).offset(-interval);
+            make.width.height.mas_equalTo(AutoSize(90/2));
         }];
         self.portraitImageView.layer.cornerRadius = 5;
         self.portraitImageView.layer.masksToBounds = YES;
@@ -83,7 +83,7 @@
         }];
         
         self.rankLabel = [UILabel new];
-        [self.rankLabel setFont:Font8];
+        [self.rankLabel setFont:Font12];
         [self.rankLabel setTextColor:ColorLightGray];
         [self.rankLabel setText:@"第一名"];
         [self.contentView addSubview:self.rankLabel];

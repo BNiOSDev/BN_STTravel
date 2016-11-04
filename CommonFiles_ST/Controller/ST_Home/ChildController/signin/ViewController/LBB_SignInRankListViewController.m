@@ -59,7 +59,7 @@
     [self.noteLable setTextColor:[UIColor whiteColor]];
     [self.noteLable setTextAlignment:NSTextAlignmentCenter];
     [self.noteLable setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
-    [self.noteLable setFont:Font12];
+    [self.noteLable setFont:Font15];
     [self.view addSubview:self.noteLable];
     [self.noteLable mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.width.top.equalTo(ws.view);
@@ -67,6 +67,7 @@
     }];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [self.tableView registerClass:[LBB_SignInListCell class] forCellReuseIdentifier:@"LBB_SignInListCell"];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -78,7 +79,6 @@
         make.bottom.equalTo(ws.view);
     }];
     
-    [self.tableView registerClass:[LBB_SignInListCell class] forCellReuseIdentifier:@"LBB_SignInListCell"];
 }
 
 #pragma tableView Delegate
@@ -96,6 +96,7 @@
     [l setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
     [l setText:@"您已完成80个景点，目前排名第12名"];
     [l setTextColor:[UIColor whiteColor]];
+    [l setFont:Font15];
     
     return l;
     
@@ -108,7 +109,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return [LBB_SignInListCell getCellHeight];
+    return [tableView fd_heightForCellWithIdentifier:@"LBB_SignInListCell" cacheByIndexPath:indexPath configuration:^(LBB_SignInListCell* cell){
+    
+    }];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

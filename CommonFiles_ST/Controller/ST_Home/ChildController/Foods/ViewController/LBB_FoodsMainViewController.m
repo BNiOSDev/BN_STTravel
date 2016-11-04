@@ -261,7 +261,8 @@
     
     //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
-    
+    dest.homeType = LBBPoohHomeTypeFoods;
+
     [self.navigationController pushViewController:dest animated:YES];
 }
 

@@ -158,7 +158,7 @@
     [self.noteLable setTextColor:[UIColor whiteColor]];
     [self.noteLable setTextAlignment:NSTextAlignmentCenter];
     [self.noteLable setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
-    [self.noteLable setFont:Font12];
+    [self.noteLable setFont:Font15];
     [self.view addSubview:self.noteLable];
     [self.noteLable mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.width.top.equalTo(ws.mapView);
