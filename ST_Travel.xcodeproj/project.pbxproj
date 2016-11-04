@@ -31,6 +31,11 @@
 		1D11B09D1DCB2247008610CB /* LBB_GuiderUserHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B09A1DCB2247008610CB /* LBB_GuiderUserHeaderCell.m */; };
 		1D11B09E1DCB2247008610CB /* LBB_GuiderUserMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B09C1DCB2247008610CB /* LBB_GuiderUserMsgCell.m */; };
 		1D11B0A11DCB310B008610CB /* LBB_GuiderUserDeatilMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B09F1DCB310B008610CB /* LBB_GuiderUserDeatilMsgCell.m */; };
+		1D11B0A41DCC1F04008610CB /* LBB_GuiderUserDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B0A31DCC1F04008610CB /* LBB_GuiderUserDynamicCell.m */; };
+		1D11B0A71DCC2064008610CB /* LBB_GuiderUserDynamicDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B0A61DCC2064008610CB /* LBB_GuiderUserDynamicDataSource.m */; };
+		1D11B0AA1DCC2386008610CB /* LBB_GuiderUserFunsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B0A91DCC2386008610CB /* LBB_GuiderUserFunsListCell.m */; };
+		1D11B0AD1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B0AC1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.m */; };
+		1D11B0B01DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B0AF1DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.m */; };
 		1D12FA461DC6E97700ACD462 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */; };
 		1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97E1DC6E97700ACD462 /* PoohBaseViewController.m */; };
 		1D12FA481DC6E97700ACD462 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D12F9841DC6E97700ACD462 /* b27_icon_star_gray@2x.png */; };
@@ -419,6 +424,16 @@
 		1D11B09C1DCB2247008610CB /* LBB_GuiderUserMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderUserMsgCell.m; sourceTree = "<group>"; };
 		1D11B09F1DCB310B008610CB /* LBB_GuiderUserDeatilMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderUserDeatilMsgCell.m; sourceTree = "<group>"; };
 		1D11B0A01DCB310B008610CB /* LBB_GuiderUserDeatilMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderUserDeatilMsgCell.h; sourceTree = "<group>"; };
+		1D11B0A21DCC1F04008610CB /* LBB_GuiderUserDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderUserDynamicCell.h; sourceTree = "<group>"; };
+		1D11B0A31DCC1F04008610CB /* LBB_GuiderUserDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderUserDynamicCell.m; sourceTree = "<group>"; };
+		1D11B0A51DCC2064008610CB /* LBB_GuiderUserDynamicDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderUserDynamicDataSource.h; sourceTree = "<group>"; };
+		1D11B0A61DCC2064008610CB /* LBB_GuiderUserDynamicDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderUserDynamicDataSource.m; sourceTree = "<group>"; };
+		1D11B0A81DCC2386008610CB /* LBB_GuiderUserFunsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderUserFunsListCell.h; sourceTree = "<group>"; };
+		1D11B0A91DCC2386008610CB /* LBB_GuiderUserFunsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderUserFunsListCell.m; sourceTree = "<group>"; };
+		1D11B0AB1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderUserFavoriteDataSource.h; sourceTree = "<group>"; };
+		1D11B0AC1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderUserFavoriteDataSource.m; sourceTree = "<group>"; };
+		1D11B0AE1DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderUserFunsDataSource.h; sourceTree = "<group>"; };
+		1D11B0AF1DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderUserFunsDataSource.m; sourceTree = "<group>"; };
 		1D12F97B1DC6E97700ACD462 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		1D12F97D1DC6E97700ACD462 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -1094,6 +1109,16 @@
 				1D11B09A1DCB2247008610CB /* LBB_GuiderUserHeaderCell.m */,
 				1D11B09B1DCB2247008610CB /* LBB_GuiderUserMsgCell.h */,
 				1D11B09C1DCB2247008610CB /* LBB_GuiderUserMsgCell.m */,
+				1D11B0A21DCC1F04008610CB /* LBB_GuiderUserDynamicCell.h */,
+				1D11B0A31DCC1F04008610CB /* LBB_GuiderUserDynamicCell.m */,
+				1D11B0A51DCC2064008610CB /* LBB_GuiderUserDynamicDataSource.h */,
+				1D11B0A61DCC2064008610CB /* LBB_GuiderUserDynamicDataSource.m */,
+				1D11B0A81DCC2386008610CB /* LBB_GuiderUserFunsListCell.h */,
+				1D11B0A91DCC2386008610CB /* LBB_GuiderUserFunsListCell.m */,
+				1D11B0AB1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.h */,
+				1D11B0AC1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.m */,
+				1D11B0AE1DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.h */,
+				1D11B0AF1DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.m */,
 			);
 			path = "个人";
 			sourceTree = "<group>";
@@ -4031,6 +4056,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D11B0A41DCC1F04008610CB /* LBB_GuiderUserDynamicCell.m in Sources */,
 				8430120B1DBF861200F5316A /* PersonalInfoCell.m in Sources */,
 				8430120D1DBF861200F5316A /* PersonalCenterViewController.m in Sources */,
 				84F6BA211DC6E3D1009ED8DF /* JHRingChart.m in Sources */,
@@ -4056,6 +4082,7 @@
 				84F6BA1E1DC6E3D1009ED8DF /* JHPieChart.m in Sources */,
 				843012101DBF861200F5316A /* SwitchViewCell.m in Sources */,
 				842925E41DC0510100B8D259 /* LBB_TicketFooterView.m in Sources */,
+				1D11B0A71DCC2064008610CB /* LBB_GuiderUserDynamicDataSource.m in Sources */,
 				1D0F48A11DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.m in Sources */,
 				1D12FA711DC6E97700ACD462 /* LBB_ScenicDetailBookStatusCell.m in Sources */,
 				1D12FA611DC6E97700ACD462 /* LBB_HostelMainViewController.m in Sources */,
@@ -4121,6 +4148,7 @@
 				84F6BA361DC6E3D1009ED8DF /* LBB_HostTableViewCell.m in Sources */,
 				84F6BA241DC6E3D1009ED8DF /* LGSegment.m in Sources */,
 				1D12FA851DC6E97700ACD462 /* NSDictionary+PoohCommon.m in Sources */,
+				1D11B0AA1DCC2386008610CB /* LBB_GuiderUserFunsListCell.m in Sources */,
 				84F6BA2E1DC6E3D1009ED8DF /* ZJSegmentStyle.m in Sources */,
 				843012141DBF861200F5316A /* SettingViewController.m in Sources */,
 				1D12FA771DC6E97700ACD462 /* LBB_ScenicDetailVipFavoriteCell.m in Sources */,
@@ -4186,6 +4214,7 @@
 				1D0F48811DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m in Sources */,
 				843012151DBF861200F5316A /* TicketDetailViewCell.m in Sources */,
 				84F6BA0F1DC6E3D1009ED8DF /* LBB_PraiseWithCommentView.m in Sources */,
+				1D11B0AD1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.m in Sources */,
 				84F6B9B81DC6E3D1009ED8DF /* LBB_CommentView.m in Sources */,
 				84F6BA341DC6E3D1009ED8DF /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				84F6BA421DC6E3D1009ED8DF /* ZJMTravelsViewController.m in Sources */,
@@ -4233,6 +4262,7 @@
 				84F6BA0D1DC6E3D1009ED8DF /* LBB_TravelCommentController.m in Sources */,
 				84F6BA331DC6E3D1009ED8DF /* ZJMCommentView.m in Sources */,
 				843012091DBF861200F5316A /* ReceiptAddressViewController.m in Sources */,
+				1D11B0B01DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.m in Sources */,
 				1D12FA7F1DC6E97700ACD462 /* LBB_ScenicMainViewController.m in Sources */,
 				1D0F48D51DC9EE6200A37DE2 /* SKTag.m in Sources */,
 				8430121C1DBF861200F5316A /* BalanceExtractViewController.m in Sources */,

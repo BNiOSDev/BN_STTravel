@@ -12,11 +12,28 @@
 #import "LBB_GuiderUserMsgCell.h"
 #import "LBB_GuiderUserDeatilMsgCell.h"
 
+#import "LBB_GuiderUserDynamicDataSource.h"
+#import "LBB_GuiderUserFavoriteDataSource.h"
+#import "LBB_GuiderUserFunsDataSource.h"
+
+
+typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
+    LBB_GuiderUserlDynamic = 0,//动态
+    LBB_GuiderUserlFavorite,//关注
+    LBB_GuiderUserFuns,//粉丝
+};
+
 @interface LBB_GuiderUserViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, retain) NSArray* menuArray;
 @property(nonatomic, assign)BOOL isOpen;
+
+@property(nonatomic, retain)LBB_GuiderUserDynamicDataSource* dynamicDataSource;
+@property(nonatomic, retain)LBB_GuiderUserFavoriteDataSource* favoriteDataSource;
+@property(nonatomic, retain)LBB_GuiderUserFunsDataSource* funsDataSource;
+
+@property(nonatomic, assign)LBB_GuiderUserType selectType;
 
 @end
 
@@ -72,6 +89,11 @@
     [self.tableView registerClass:[LBB_GuiderUserMsgCell class] forCellReuseIdentifier:@"LBB_GuiderUserMsgCell"];
     [self.tableView registerClass:[LBB_GuiderUserDeatilMsgCell class] forCellReuseIdentifier:@"LBB_GuiderUserDeatilMsgCell"];
 
+    self.dynamicDataSource = [[LBB_GuiderUserDynamicDataSource alloc] initWithTableView:self.tableView];
+    self.favoriteDataSource = [[LBB_GuiderUserFavoriteDataSource alloc] initWithTableView:self.tableView];
+    self.funsDataSource = [[LBB_GuiderUserFunsDataSource alloc] initWithTableView:self.tableView];
+
+    
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -126,15 +148,18 @@
     segmentedControl.verticalDividerColor = ColorLightGray;
   //  segmentedControl.layer.borderWidth = 1;
    // segmentedControl.layer.borderColor = ColorLine.CGColor;
-    
+    segmentedControl.selectedSegmentIndex = self.selectType;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     [v addSubview:segmentedControl];
     [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.height.width.equalTo(v);
 
     }];
+    WS(ws);
     segmentedControl.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
+        ws.selectType = index;
+        [ws.tableView reloadData];
     };
 
     return v;
@@ -146,17 +171,53 @@
         return self.menuArray.count + 1;
     }
     
-    return 0;
+    switch (self.selectType) {
+        case LBB_GuiderUserlDynamic:
+            return [self.dynamicDataSource tableView:self.tableView numberOfRowsInSection:section];
+            break;
+        case LBB_GuiderUserlFavorite:
+            return [self.favoriteDataSource tableView:self.tableView numberOfRowsInSection:section];
+            break;
+        case LBB_GuiderUserFuns:
+            return [self.funsDataSource tableView:self.tableView numberOfRowsInSection:section];
+            break;
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return [self tableView:tableView headerSectionCellForRowAtIndexPath:indexPath];
-
+    if (indexPath.section == 0) {
+        return [self tableView:tableView headerSectionCellForRowAtIndexPath:indexPath];
+    }
+    switch (self.selectType) {
+        case LBB_GuiderUserlDynamic:
+            return [self.dynamicDataSource tableView:self.tableView cellForRowAtIndexPath:indexPath];
+            break;
+        case LBB_GuiderUserlFavorite:
+            return [self.favoriteDataSource tableView:self.tableView cellForRowAtIndexPath:indexPath];
+            break;
+        case LBB_GuiderUserFuns:
+            return [self.funsDataSource tableView:self.tableView cellForRowAtIndexPath:indexPath];
+            break;
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        return [self tableView:tableView heightForHeaderSectionRowAtIndexPath:indexPath];
+    }
+    switch (self.selectType) {
+        case LBB_GuiderUserlDynamic:
+            return [self.dynamicDataSource tableView:self.tableView heightForRowAtIndexPath:indexPath];
+            break;
+        case LBB_GuiderUserlFavorite:
+            return [self.favoriteDataSource tableView:self.tableView heightForRowAtIndexPath:indexPath];
+            break;
+        case LBB_GuiderUserFuns:
+            return [self.funsDataSource tableView:self.tableView heightForRowAtIndexPath:indexPath];
+            break;
+    }
 }
 
 

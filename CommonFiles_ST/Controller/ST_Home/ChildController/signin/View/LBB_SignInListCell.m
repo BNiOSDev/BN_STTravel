@@ -73,7 +73,7 @@
         [self.signinButton setBackgroundColor:ColorBtnYellow];
         [self.signinButton setTitle:@"已签到" forState:UIControlStateNormal];
         [self.signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.signinButton.titleLabel setFont:Font8];
+        [self.signinButton.titleLabel setFont:Font13];
         [self.contentView addSubview:self.signinButton];
         [self.signinButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
@@ -118,7 +118,7 @@
         [self.contentView addSubview:self.sep];
         [self.sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.bottom.equalTo(ws.contentView);
-            make.height.equalTo(@1.5);
+            make.height.mas_equalTo(SeparateLineWidth);
         }];
         
         [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
