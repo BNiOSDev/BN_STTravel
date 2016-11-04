@@ -7,7 +7,6 @@
 //
 
 #import "LBBSigninMainViewController.h"
-#import "LBBPoohGreatItemView.h"
 #import "LBB_SignInListViewController.h"
 #import "LBB_SignInRankListViewController.h"
 #import "LBB_SigninPopView.h"
@@ -51,10 +50,13 @@
     
     WS(ws);
     self.title = @"旅游足迹";
-    LBBPoohGreatItemView *sign = [[LBBPoohGreatItemView alloc] init];
-    [sign.iconView setImage:IMAGE(@"ST_Sign_signIcon")];
-    [sign.desLabel setText:@"签到"];
-    [sign setFrame:CGRectMake(0, 0, 65, 20)];
+    UIButton *sign = [[UIButton alloc] init];
+    [sign setImage:IMAGE(@"ST_Sign_signIcon") forState:UIControlStateNormal];
+    [sign setTitle:@"签到" forState:UIControlStateNormal];
+    [sign setTitleColor:ColorLightGray forState:UIControlStateNormal];
+    [sign.titleLabel setFont:Font15];
+    [sign setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    [sign setFrame:CGRectMake(0, 0, AutoSize(60), AutoSize(30))];
     [sign bk_addEventHandler:^(id sender){
         
         NSLog(@"sign touch");
@@ -118,27 +120,31 @@
     }];
     
     
-    LBBPoohGreatItemView *signList = [[LBBPoohGreatItemView alloc] init];
-    [signList.iconView setImage:IMAGE(@"ST_Sign_signList")];
-    [signList.desLabel setText:@"签到列表"];
-    [signList.desLabel setFont:Font13];
+    UIButton *signList = [[UIButton alloc] init];
+    [signList setImage:IMAGE(@"ST_Sign_signList") forState:UIControlStateNormal];
+    [signList setTitle:@"签到列表" forState:UIControlStateNormal];
+    [signList.titleLabel setFont:Font15];
+    [signList setTitleColor:ColorGray forState:UIControlStateNormal];
+    [signList setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
     
     
-    LBBPoohGreatItemView *signRank = [[LBBPoohGreatItemView alloc] init];
-    [signRank.iconView setImage:IMAGE(@"ST_Sign_signRank")];
-    [signRank.desLabel setText:@"签到排行"];
-    [signRank.desLabel setFont:Font13];
+    UIButton *signRank = [[UIButton alloc] init];
+    [signRank setImage:IMAGE(@"ST_Sign_signRank") forState:UIControlStateNormal];
+    [signRank setTitle:@"签到排行" forState:UIControlStateNormal];
+    [signRank.titleLabel setFont:Font15];
+    [signRank setTitleColor:ColorGray forState:UIControlStateNormal];
+    [signRank setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
 
     [ctr1 addSubview:signList];
     [signList mas_makeConstraints:^(MASConstraintMaker* make){
         make.center.equalTo(ctr1);
-        make.height.equalTo(@18);
+       // make.height.equalTo(@18);
     }];
     
     [ctr2 addSubview:signRank];
     [signRank mas_makeConstraints:^(MASConstraintMaker* make){
         make.center.equalTo(ctr2);
-        make.height.equalTo(signList);
+      //  make.height.equalTo(signList);
     }];
     
     
