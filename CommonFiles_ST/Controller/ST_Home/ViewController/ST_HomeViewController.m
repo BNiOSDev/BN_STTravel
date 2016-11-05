@@ -17,23 +17,13 @@
 #import "LBBSigninMainViewController.h"
 #import "LBB_ScenicDetailSubjectViewController.h"
 
-#import "LBBPoohCycleScrollCell.h"
 #import "LBBPoohBaseTableSectionHeaderView.h"
-#import "LBBHomeMenuTableViewCell.h"
-#import "LBBHomeAnnouncementTableViewCell.h"
-#import "LBBHomeHotestTableViewCell.h"
-#import "LBBHomeTravelRecommendTableViewCell.h"
-#import "LBBHomeSquareCenterTableViewCell.h"
 
 
-typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
-    LBBHomeSectionMenuType = 0,//入口
-    LBBHomeSectionHotestType,//热门推荐
-    LBBHomeSectionTravelRecommendType,//游记推荐
-    LBBHomeSectionVipRecommendType,//达人推荐
-    LBBHomeSectionSquareCenterType,//广场中心
-    LBBHomeSectionTravelProductType,//旅游产品
-};
+#import "LBB_HomeTableViewDataSource.h"
+
+
+
 
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -41,6 +31,9 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, retain) NSArray* sectionArray;
 @property (nonatomic, retain) UITableView* tableView;
+
+@property(nonatomic, retain)LBB_HomeTableViewDataSource* dataSource;
+
 
 @end
 
@@ -154,12 +147,10 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     
     WS(ws);
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
-    [self.tableView registerClass:[LBBHomeMenuTableViewCell class] forCellReuseIdentifier:@"LBBHomeMenuTableViewCell"];
-    [self.tableView registerClass:[LBBHomeAnnouncementTableViewCell class] forCellReuseIdentifier:@"LBBHomeAnnouncementTableViewCell"];
-    [self.tableView registerClass:[LBBHomeHotestTableViewCell class] forCellReuseIdentifier:@"LBBHomeHotestTableViewCell"];
-    [self.tableView registerClass:[LBBHomeTravelRecommendTableViewCell class] forCellReuseIdentifier:@"LBBHomeTravelRecommendTableViewCell"];
-    [self.tableView registerClass:[LBBHomeSquareCenterTableViewCell class] forCellReuseIdentifier:@"LBBHomeSquareCenterTableViewCell"];
+    
+    self.dataSource = [[LBB_HomeTableViewDataSource alloc] initWithTableView:self.tableView];
+    self.dataSource.parentViewController = self;
+
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -264,351 +255,22 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-
-    switch (section) {
-        case LBBHomeSectionMenuType:
-            {
-                return 3;
-            }
-            break;
-
-        case LBBHomeSectionHotestType:
-            {
-                return 2;
-            }
-            break;
-        case LBBHomeSectionTravelRecommendType:
-            {
-                return 2;
-            }
-            break;
-        case LBBHomeSectionVipRecommendType:
-            {
-                return 1;
-            }
-            break;
-        case LBBHomeSectionSquareCenterType:
-            {
-                return 2;
-            }
-            break;
-        case LBBHomeSectionTravelProductType:
-            {
-                return 2;
-            }
-            break;
-        default:
-            return 0;
-            break;
-    }
+    return [self.dataSource tableView:tableView numberOfRowsInSection:section];
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CGFloat height = 0;
-    switch (indexPath.section) {
-        case LBBHomeSectionMenuType:
-        {
-            if (indexPath.row == 0) {
-                return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
-                    
-                    [cell setCycleScrollViewHeight:AutoSize(370/2)];
-                }];
-            }
-            else if (indexPath.row == 1){
+    return [self.dataSource tableView:tableView heightForRowAtIndexPath:indexPath];
 
-                return [tableView fd_heightForCellWithIdentifier:@"LBBHomeMenuTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeMenuTableViewCell* cell){
-                    
-                }];
-            }
-            else{
-                return [tableView fd_heightForCellWithIdentifier:@"LBBHomeAnnouncementTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeAnnouncementTableViewCell* cell){
-                    
-                }];
-            }
-                
-        }
-            break;
-        case LBBHomeSectionHotestType:
-        {
-            if (indexPath.row == 0) {
-                
-                return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
-                    
-                    [cell setCycleScrollViewHeight:AutoSize(380/2)];
-                }];
-            }
-            else{
-                height = [LBBHomeHotestTableViewCell getCellHeight];
-                
-              /*  return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
-                    [cell setPagerViewHidden:YES];
-                }];*/
-            }
-            
-        }
-            break;
-        case LBBHomeSectionTravelRecommendType:
-        {
-            
-            return [tableView fd_heightForCellWithIdentifier:@"LBBHomeTravelRecommendTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeTravelRecommendTableViewCell* cell){
-            
-            }];
-        }
-            break;
-        case LBBHomeSectionVipRecommendType:
-        {
-            height = [LBBHomeHotestTableViewCell getCellHeight];
-            
-         /*   return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
-                [cell setPagerViewHidden:YES];
-
-            }];*/
-        }
-            break;
-        case LBBHomeSectionSquareCenterType:
-        {
-            return [tableView fd_heightForCellWithIdentifier:@"LBBHomeSquareCenterTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeSquareCenterTableViewCell* cell){
-                
-            }];
-        }
-            break;
-        case LBBHomeSectionTravelProductType:
-        {
-            if (indexPath.row == 0) {
-                
-                return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
-                    
-                    [cell setCycleScrollViewHeight:AutoSize(390/2)];
-                }];
-            }
-            else{
-               height = [LBBHomeHotestTableViewCell getCellHeight2];
-                
-            /*    return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
-                }];*/
-
-            }
-        }
-            break;
-        default:
-            {
-            
-            }
-        break;
-    }
-    
-    return height;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell* cell;
-    
-    switch (indexPath.section) {
-        case LBBHomeSectionMenuType:
-        {
-            cell = [self tableView:tableView menuSectionCellForRowAtIndexPath:indexPath];
-        }
-            break;
-        case LBBHomeSectionHotestType:
-        {
-            cell = [self tableView:tableView hotSectionCellForRowAtIndexPath:indexPath];
-        }
-            break;
-        case LBBHomeSectionTravelRecommendType:
-        {
-
-            cell = [self tableView:tableView travelRecommendSectionCellForRowAtIndexPath:indexPath];
-        }
-            break;
-        case LBBHomeSectionVipRecommendType:
-        {
-            cell = [self tableView:tableView vipRecommendCellForRowAtIndexPath:indexPath];
-        }
-            break;
-        case LBBHomeSectionSquareCenterType:
-        {
-            cell = [self tableView:tableView squareCenterSectionCellForRowAtIndexPath:indexPath];
-        }
-            break;
-        case LBBHomeSectionTravelProductType:
-        {
-            cell = [self tableView:tableView travelProductCellForRowAtIndexPath:indexPath];
-        }
-            break;
-        default:
-            return nil;
-            break;
-    }
-    
-    return cell;
+    return [self.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 
-
-#pragma tableViewCell getter
--(UITableViewCell*)tableView:(UITableView *)tableView menuSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    WS(ws);
-    if (indexPath.row == 0) {
-        
-        static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
-        LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-            NSLog(@"LBBPoohCycleScrollCell nil");
-
-        }
-        [cell setCycleScrollViewHeight:AutoSize(370/2)];
-        [cell setCycleScrollViewUrls:nil];
-        [cell setEnableBlock:YES];
-        cell.click = ^(NSNumber* index){
-            
-            //  NSInteger num = [index integerValue];
-            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
-            [ws.navigationController pushViewController:dest animated:YES];
-            
-        };
-        return cell;
-    }
-    else if (indexPath.row == 1){
-        static NSString *cellIdentifier = @"LBBHomeMenuTableViewCell";
-        LBBHomeMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[LBBHomeMenuTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-            NSLog(@"LBBHomeMenuTableViewCell nil");
-
-        }
-        return cell;
-    }
-    else{
-        static NSString *cellIdentifier = @"LBBHomeAnnouncementTableViewCell";
-        LBBHomeAnnouncementTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            NSLog(@"LBBHomeAnnouncementTableViewCell initWithStyle");
-            cell = [[LBBHomeAnnouncementTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-            NSLog(@"LBBHomeAnnouncementTableViewCell nil");
-
-        }
-        NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
-        [cell setScrollTextArray:array];
-        
-        return cell;
-    }
-}
-
-    
-    //热门推荐
--(UITableViewCell*)tableView:(UITableView *)tableView hotSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.row == 0) {
-        
-        static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
-        LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-            NSLog(@"LBBPoohCycleScrollCell nil");
-
-        }
-        [cell setCycleScrollViewHeight:AutoSize(380/2)];
-        [cell setCycleScrollViewUrls:nil];
-        
-        return cell;
-    }
-    else if (indexPath.row == 1){
-        static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
-        LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-            NSLog(@"LBBHomeHotestTableViewCell nil");
-        }
-        [cell setPagerViewHidden:YES];
-        [cell setreload];
-        return cell;
-    }
-    else{
-        return nil;
-    }
-}
-
-    //游记推荐
--(UITableViewCell*)tableView:(UITableView *)tableView travelRecommendSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *cellIdentifier = @"LBBHomeTravelRecommendTableViewCell";
-    LBBHomeTravelRecommendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[LBBHomeTravelRecommendTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-        NSLog(@"LBBHomeTravelRecommendTableViewCell nil");
-
-    }
-   
-    [cell setModel:nil];
-
-    return cell;
-   
-}
-    //达人推荐
--(UITableViewCell*)tableView:(UITableView *)tableView vipRecommendCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
-    LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        NSLog(@"LBBHomeHotestTableViewCell nil");
-    }
-    [cell setPagerViewHidden:NO];
-    [cell setreload];
-    return cell;
-
-}
-    //广场中心
--(UITableViewCell*)tableView:(UITableView *)tableView squareCenterSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *cellIdentifier = @"LBBHomeSquareCenterTableViewCell";
-    LBBHomeSquareCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        NSLog(@"LBBHomeSquareCenterTableViewCell nil");
-        cell = [[LBBHomeSquareCenterTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-    }
-
-    [cell setModel:nil];
-
-    return cell;
-}
-
-    //伴手礼推荐
--(UITableViewCell*)tableView:(UITableView *)tableView travelProductCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.row == 0) {
-        
-        static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
-        LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-            NSLog(@"LBBPoohCycleScrollCell nil");
-            
-        }
-        [cell setCycleScrollViewHeight:AutoSize(390/2)];
-        [cell setCycleScrollViewUrls:nil];
-        
-        return cell;
-    }
-    else if (indexPath.row == 1){
-        static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
-        LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-            NSLog(@"LBBHomeHotestTableViewCell nil");
-        }
-        [cell setPagerViewHidden:NO];
-        [cell setreload];
-        return cell;
-    }
-    else{
-        return nil;
-    }
-}
 
 
 @end
