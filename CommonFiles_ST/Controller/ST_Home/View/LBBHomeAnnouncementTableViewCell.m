@@ -60,6 +60,7 @@
             make.centerY.equalTo(ws.contentView);
             make.left.equalTo(ws.contentView);
             make.width.mas_equalTo(3);
+            make.height.mas_equalTo(AutoSize(35)-16);
             make.top.equalTo(ws.contentView).offset(8);
             make.bottom.equalTo(ws.contentView).offset(-8);
         }];
@@ -87,7 +88,7 @@
         
         CGFloat x = 3 + 20 + 20 + title.frame.size.width + 25;
 
-        tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x+40, 0, DeviceWidth-40-x, [LBBHomeAnnouncementTableViewCell getCellHeight])];
+        tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x+40, 0, DeviceWidth-40-x, AutoSize(35))];
         tView.delegate = self;
         [self.contentView addSubview:tView];
         [tView mas_makeConstraints:^(MASConstraintMaker* make){
@@ -109,13 +110,6 @@
 
 }
 
-
-+(CGFloat)getCellHeight{
-    
-    CGFloat height = AutoSize(35);
-  //  NSLog(@"getCellHeight:%f",height);
-    return height;
-}
 
 #pragma GYChangeTextView delegate
 

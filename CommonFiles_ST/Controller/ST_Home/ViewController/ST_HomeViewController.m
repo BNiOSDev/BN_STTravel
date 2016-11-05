@@ -323,7 +323,9 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
                 }];
             }
             else{
-                height = [LBBHomeAnnouncementTableViewCell getCellHeight];
+                return [tableView fd_heightForCellWithIdentifier:@"LBBHomeAnnouncementTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeAnnouncementTableViewCell* cell){
+                    
+                }];
             }
                 
         }
