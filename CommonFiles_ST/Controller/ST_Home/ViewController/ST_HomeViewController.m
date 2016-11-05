@@ -15,7 +15,7 @@
 #import "LBBHomeSearchResultViewController.h"
 #import "LBBNearbyMainViewController.h"
 #import "LBBSigninMainViewController.h"
-
+#import "LBB_ScenicDetailSubjectViewController.h"
 
 #import "LBBPoohCycleScrollCell.h"
 #import "LBBPoohBaseTableSectionHeaderView.h"
@@ -437,7 +437,7 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 
 #pragma tableViewCell getter
 -(UITableViewCell*)tableView:(UITableView *)tableView menuSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     if (indexPath.row == 0) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
@@ -449,7 +449,14 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
         }
       
         [cell setCycleScrollViewUrls:nil];
-        
+        [cell setEnableBlock:YES];
+        cell.click = ^(NSNumber* index){
+            
+            //  NSInteger num = [index integerValue];
+            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
+            [ws.navigationController pushViewController:dest animated:YES];
+            
+        };
         return cell;
     }
     else if (indexPath.row == 1){

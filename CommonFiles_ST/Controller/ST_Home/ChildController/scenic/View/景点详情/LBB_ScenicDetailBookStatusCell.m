@@ -32,9 +32,12 @@
             make.top.equalTo(ws.contentView).offset(16);
         }];
         
-        self.status1View = [[LBBPoohGreatItemView alloc]init];
-        [self.status1View.iconView setImage:IMAGE(@"景点详情_选中HL")];
-        [self.status1View.desLabel setText:@"提前一天退"];
+        self.status1View = [[UIButton alloc]init];
+        [self.status1View setImage:IMAGE(@"景点详情_选中HL") forState:UIControlStateNormal];
+        [self.status1View setTitle:@"提前一天退" forState:UIControlStateNormal];
+        [self.status1View setTitleColor:ColorGray forState:UIControlStateNormal];
+        [self.status1View.titleLabel setFont:Font12];
+        [self.status1View setTitleEdgeInsets:UIEdgeInsetsMake(0, 3, 0, -3)];
         [sub addSubview:self.status1View];
         [self.status1View mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -43,9 +46,12 @@
             make.top.bottom.equalTo(sub);
         }];
         
-        self.status2View = [[LBBPoohGreatItemView alloc]init];
-        [self.status2View.iconView setImage:IMAGE(@"景点详情_选中")];
-        [self.status2View.desLabel setText:@"需预约"];
+        self.status2View = [[UIButton alloc]init];
+        [self.status2View setImage:IMAGE(@"景点详情_选中") forState:UIControlStateNormal];
+        [self.status2View setTitle:@"需预约" forState:UIControlStateNormal];
+        [self.status2View setTitleColor:ColorGray forState:UIControlStateNormal];
+        [self.status2View.titleLabel setFont:Font12];
+        [self.status2View setTitleEdgeInsets:UIEdgeInsetsMake(0, 3, 0, -3)];
         [sub addSubview:self.status2View];
         [self.status2View mas_makeConstraints:^(MASConstraintMaker* make){
             

@@ -57,4 +57,14 @@ typedef NS_ENUM(NSInteger, LBBPoohTicketStatus) {
     LBBPoohTicketStatusRefunded,//已退款    
 };
 
+typedef NS_ENUM(NSInteger, LBBPoohHomeType) {
+    LBBPoohHomeTypeDiscovery = 0,//攻略
+    LBBPoohHomeTypeScenic,//景点
+    LBBPoohHomeTypeGuide,//导游
+    LBBPoohHomeTypeFoods,//美食
+    LBBPoohHomeTypeHostel,//民宿
+
+};
+
+
 #endif /* PoohCommon_h */

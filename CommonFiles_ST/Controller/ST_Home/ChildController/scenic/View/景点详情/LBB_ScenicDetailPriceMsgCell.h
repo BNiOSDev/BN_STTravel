@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LBBPoohGreatItemView.h"
 #import "LBBPoohBaseTableViewCell.h"
 @interface LBB_ScenicDetailPriceMsgCell : LBBPoohBaseTableViewCell
 
@@ -18,9 +17,9 @@
 @property(nonatomic, retain)UIButton* signButton;
 @property(nonatomic, retain)UILabel* signLabel;
 
-@property(nonatomic, retain)LBBPoohGreatItemView* greatView;
-@property(nonatomic, retain)LBBPoohGreatItemView* commentsView;
-@property(nonatomic, retain)LBBPoohGreatItemView* favoriteView;
+@property(nonatomic, retain)UIButton* greatView;
+@property(nonatomic, retain)UIButton* commentsView;
+@property(nonatomic, retain)UIButton* favoriteView;
 
 
 @property(nonatomic, retain)id model;

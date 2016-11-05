@@ -7,15 +7,14 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-#import "LBBPoohGreatItemView.h"
 @interface LBB_DiscoveryDetailMsgCell : LBBPoohBaseTableViewCell
 
 @property(nonatomic, retain)UILabel* titleLabel;
 @property(nonatomic, retain)UILabel* timeLabel;
 
-@property(nonatomic, retain)LBBPoohGreatItemView* greatView;
-@property(nonatomic, retain)LBBPoohGreatItemView* commentsView;
-@property(nonatomic, retain)LBBPoohGreatItemView* favoriteView;
+@property(nonatomic, retain)UIButton* greatButton;
+@property(nonatomic, retain)UIButton* commentsButton;
+@property(nonatomic, retain)UIButton* favoriteButton;
 
 @property(nonatomic, retain)UIButton* scenicButton;
 @property(nonatomic, retain)UIButton* foodsButton;

@@ -185,7 +185,7 @@
         }
         
         [cell setCycleScrollViewUrls:nil];
-        
+        [cell setEnableBlock:YES];
         cell.click = ^(NSNumber* index){
             
           //  NSInteger num = [index integerValue];
@@ -214,7 +214,7 @@
     
     //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
-    
+    dest.homeType = LBBPoohHomeTypeHostel;
     [self.navigationController pushViewController:dest animated:YES];
 }
 

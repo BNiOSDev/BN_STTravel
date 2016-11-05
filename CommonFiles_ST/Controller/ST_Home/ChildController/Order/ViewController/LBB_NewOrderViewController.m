@@ -40,7 +40,7 @@
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    [self.mainScrollView setContentSize:CGSizeMake(0, self.verCodeField.frame.origin.y + self.verCodeField.size.height + 15)];
+ //   [self.mainScrollView setContentSize:CGSizeMake(0, self.verCodeField.frame.origin.y + self.verCodeField.size.height + 15)];
 }
 
 /*
@@ -149,7 +149,6 @@
     
     //退改说明
     LBB_NewOrderModifyNoteView* modifyNoteView = [[LBB_NewOrderModifyNoteView alloc]init];
-    modifyNoteView.isOpen = YES;
     [self.mainScrollView addSubview:modifyNoteView];
     [modifyNoteView mas_makeConstraints:^(MASConstraintMaker* make){
         make.left.equalTo(ws.mainScrollView);
@@ -206,6 +205,7 @@
         make.right.equalTo(ws.playTimeView);
         make.height.mas_equalTo(SeparateLineWidth);
         make.top.equalTo(verCodeField.mas_bottom);
+        make.bottom.equalTo(ws.mainScrollView).offset(-2*margin);
     }];
     
     //配置底部的控制栏

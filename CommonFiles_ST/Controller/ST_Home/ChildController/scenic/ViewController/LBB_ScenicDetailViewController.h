@@ -10,4 +10,6 @@
 
 @interface LBB_ScenicDetailViewController : Base_BaseViewController
 
+@property(nonatomic, assign)LBBPoohHomeType homeType;
+
 @end

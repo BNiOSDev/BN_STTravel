@@ -206,7 +206,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    WS(ws);
     if (indexPath.section == 0) {
         
         if (indexPath.row == 0) {
@@ -219,6 +219,14 @@
             }
             [cell setCycleScrollViewHeight:AutoSize(470/2)];
             [cell setCycleScrollViewUrls:nil];
+            [cell setEnableBlock:YES];
+            cell.click = ^(NSNumber* index){
+                
+                //  NSInteger num = [index integerValue];
+                LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
+                [ws.navigationController pushViewController:dest animated:YES];
+                
+            };
             return cell;
         }
         else{
@@ -253,7 +261,8 @@
     
     //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
-    
+    dest.homeType = LBBPoohHomeTypeFoods;
+
     [self.navigationController pushViewController:dest animated:YES];
 }
 
