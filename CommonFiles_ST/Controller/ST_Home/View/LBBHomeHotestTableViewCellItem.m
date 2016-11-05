@@ -22,6 +22,7 @@
         [self.mainImageView mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.top.left.right.equalTo(ws.contentView);
+            make.height.mas_equalTo(AutoSize(186/2));
         }];
         
         self.favoriteButton = [UIButton new];
@@ -30,7 +31,7 @@
         [self.favoriteButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.equalTo(ws.contentView).offset(5);
             make.right.equalTo(ws.contentView).offset(-5);
-            make.height.width.mas_equalTo(25);
+           // make.height.width.mas_equalTo(25);
         }];
         [self.favoriteButton bk_addEventHandler:^(id sender){
         

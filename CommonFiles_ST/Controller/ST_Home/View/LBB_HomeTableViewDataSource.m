@@ -291,7 +291,6 @@
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
         [cell setPagerViewHidden:YES];
-        [cell setreload];
         return cell;
     }
     else{
@@ -310,11 +309,11 @@
         }];
     }
     else{
-        return [LBBHomeHotestTableViewCell getCellHeight];
+     //   return [LBBHomeHotestTableViewCell getCellHeight];
         
-        /*  return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
-         [cell setPagerViewHidden:YES];
-         }];*/
+          return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
+              [cell setPagerViewHidden:YES];
+         }];
     }
 }
 
@@ -353,19 +352,16 @@
         NSLog(@"LBBHomeHotestTableViewCell nil");
     }
     [cell setPagerViewHidden:NO];
-    [cell setreload];
     return cell;
     
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForVipRecommendSectionRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return [LBBHomeHotestTableViewCell getCellHeight];
-    
-    /*   return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
-     [cell setPagerViewHidden:YES];
+    return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
+        [cell setPagerViewHidden:NO];
      
-     }];*/
+     }];
 }
 
 #pragma    //广场中心
@@ -415,7 +411,6 @@
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
         [cell setPagerViewHidden:NO];
-        [cell setreload];
         return cell;
     }
     else{
@@ -433,11 +428,9 @@
         }];
     }
     else{
-        return [LBBHomeHotestTableViewCell getCellHeight2];
-        
-        /*    return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
-         }];*/
-        
+        return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
+            [cell setPagerViewHidden:NO];
+        }];
     }
 }
 

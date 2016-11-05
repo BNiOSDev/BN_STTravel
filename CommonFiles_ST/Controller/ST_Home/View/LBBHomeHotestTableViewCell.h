@@ -19,9 +19,4 @@
 -(void)setPagerViewHidden:(BOOL)isHidden;
 
 
--(void)setreload;
-+(CGFloat)getCellHeight;
-+(CGFloat)getCellHeight2;
-
-
 @end

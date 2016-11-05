@@ -42,8 +42,8 @@
         [self.contentView addSubview:segmentedControl];
         [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.centerX.equalTo(ws.contentView);
-            make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
-            make.width.equalTo(@200);
+            make.height.mas_equalTo(TopSegmmentControlHeight);
+            make.width.mas_equalTo(AutoSize(300/2));
         }];
 
         self.pagerView = segmentedControl;
@@ -54,10 +54,10 @@
         UICollectionViewFlowLayout *horizontalCellLayout = [UICollectionViewFlowLayout new];
         horizontalCellLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right)
-        horizontalCellLayout.sectionInset = UIEdgeInsetsMake(15, 8, 15, 8);
-        horizontalCellLayout.minimumInteritemSpacing = 10;
-        horizontalCellLayout.minimumLineSpacing = 10;
-        horizontalCellLayout.itemSize = CGSizeMake(DeviceWidth * 2/3, DeviceWidth * 2/3-30);
+        horizontalCellLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        horizontalCellLayout.minimumInteritemSpacing = 6;
+        horizontalCellLayout.minimumLineSpacing = 6;
+        horizontalCellLayout.itemSize = CGSizeMake(AutoSize(250/2), AutoSize(250/2));
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:horizontalCellLayout];
 
@@ -72,8 +72,9 @@
         [self.contentView addSubview:_collectionView];
         
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(ws.pagerView.mas_bottom).offset(3);
-            make.left.right.width.equalTo(ws.contentView);
+            make.top.equalTo(ws.pagerView.mas_bottom);
+            make.left.right.bottom.equalTo(ws.contentView);
+            make.height.mas_equalTo(AutoSize(300/2));
         }];
 
         
@@ -85,7 +86,6 @@
         [sep setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep];
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
-            make.top.equalTo(_collectionView.mas_bottom);
             make.left.right.equalTo(ws.contentView);
             make.height.mas_equalTo(SeparateLineWidth);
             make.bottom.equalTo(ws.contentView);
@@ -118,21 +118,6 @@
 //    return itemSize;
 //}
 
-+(CGFloat)getCellHeight{
-    
-    CGFloat height = 0;
-    height = DeviceWidth * 2/3;
-
-    return height;
-}
-+(CGFloat)getCellHeight2{
-    
-    CGFloat height = 0;
-    height = DeviceWidth * 2/3 + TopSegmmentControlHeight + 3;
-    
-    return height;
-}
-
 -(void)setPagerViewHidden:(BOOL)isHidden{
     WS(ws);
     if (isHidden) {
@@ -141,12 +126,13 @@
         
         [self.pagerView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@0);
-            make.width.equalTo(@200);
+            make.width.mas_equalTo(AutoSize(300/2));
             make.top.centerX.equalTo(ws.contentView);
         }];
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(ws.pagerView.mas_bottom);
-            make.left.right.width.equalTo(ws.contentView);
+            make.left.right.bottom.equalTo(ws.contentView);
+            make.height.mas_equalTo(AutoSize(300/2));
         }];
     }
     else{
@@ -154,24 +140,19 @@
         
         [self.pagerView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(TopSegmmentControlHeight);
-            make.width.equalTo(@200);
+            make.width.mas_equalTo(AutoSize(300/2));
             make.top.centerX.equalTo(ws.contentView);
         }];
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(ws.pagerView.mas_bottom).offset(3);
-            make.left.right.width.equalTo(ws.contentView);
+            make.top.equalTo(ws.pagerView.mas_bottom);
+            make.left.right.bottom.equalTo(ws.contentView);
+            make.height.mas_equalTo(AutoSize(300/2));
         }];
     }
-    
     [self.contentView layoutSubviews];
 }
 
--(void)setreload{
-    
-  //  NSLog(@"setreload");
-    
-    [self.collectionView reloadData];
-}
+
 
 
 
