@@ -67,7 +67,8 @@ UITableViewDataSource
     cell.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
     cell.contentLabel.text = [cellDict objectForKey:@"Title"];
     cell.descLabel.hidden = ![[cellDict objectForKey:@"ShowDesc"] boolValue];
-    [cell.switchBtn setOn:[[cellDict objectForKey:@"SwitchOn"] boolValue]];
+    cell.switchBtn.selected = [[cellDict objectForKey:@"SwitchOn"] boolValue];
+
     NSLog(@"%d",[[cellDict objectForKey:@"SwitchOn"] boolValue]);
     cell.accessoryView =  nil;
     

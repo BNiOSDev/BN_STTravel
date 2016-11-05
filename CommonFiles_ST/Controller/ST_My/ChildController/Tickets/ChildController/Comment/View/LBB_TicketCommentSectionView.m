@@ -299,7 +299,7 @@ UITextViewDelegate
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换封面图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     // Create the actions.
-    UIAlertAction *camraAction = [UIAlertAction actionWithTitle:cameraStr style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    UIAlertAction *camraAction = [UIAlertAction actionWithTitle:cameraStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self showImagePickerView:UIImagePickerControllerSourceTypeCamera];
     }];
     
@@ -308,8 +308,14 @@ UITextViewDelegate
     }];
     
     // Add the actions.
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    
+    // Add the actions.
     [alertController addAction:camraAction];
     [alertController addAction:albumAction];
+    [alertController addAction:cancelAction];
     
     [self.parentVC presentViewController:alertController animated:YES completion:nil];
 }

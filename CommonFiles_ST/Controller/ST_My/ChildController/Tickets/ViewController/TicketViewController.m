@@ -44,12 +44,11 @@ TicketFooterViewDelegate>
 - (void)buildControls
 {
     [self initSegmentControll];
-    [self initData];
+    [self initTableview];
 }
 
 - (void)initSegmentControll
 {
-    
     self.tableViewTopConstraint.constant = self.segmentBgViewHeightConstraint.constant;
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[NSLocalizedString(@"全部", nil),
                                                                                                NSLocalizedString(@"待付款", nil),
@@ -98,7 +97,7 @@ TicketFooterViewDelegate>
   
 }
 
-- (void)initData
+- (void)initTableview
 {
     UINib *nib = [UINib nibWithNibName:@"TicketDetailViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"TicketDetailViewCell"];

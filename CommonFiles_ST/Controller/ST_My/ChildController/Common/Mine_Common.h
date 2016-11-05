@@ -19,6 +19,11 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     eCheckPhoneNum,//验证手机号
     eAddress, //收货地址
     eAddAddress, //新建收货地址
+    eLogin ,//登录
+    eResgister,//注册
+    eFindPassword,//找回密码
+    eResetPassword,//设置密码
+    
     eBalance, //我的余额
     eBalanceExtract, //余额提现
     eExtractVerification,//提现验证
@@ -83,5 +88,12 @@ typedef NS_ENUM(NSInteger,TicketClickType)
     eShowDetail  //查看详情
 };
 
+typedef NS_ENUM(NSInteger,MessageCenterSquareTravelType)
+{
+    eMessageFollow = 0,//关注
+    eMessageLike,//点赞
+    eMessageComment,//评论
+    eMessageCollection //收藏
+};
 
 #endif /* Mine_Common_h */

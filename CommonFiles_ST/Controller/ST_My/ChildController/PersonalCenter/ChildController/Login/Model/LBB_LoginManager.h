@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger,LoginType)
      UserHeadImage:(UIImage*)headImage
            Account:(NSString*)account
           Password:(NSString*)password
+          CheckNum:(NSString*)checkNum
                Sex:(NSInteger)sex
            Address:(NSString*)address;
 

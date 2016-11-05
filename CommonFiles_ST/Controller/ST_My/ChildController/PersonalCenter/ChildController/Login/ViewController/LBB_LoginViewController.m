@@ -8,7 +8,8 @@
 
 #import "LBB_LoginViewController.h"
 #import "LBB_LoginManager.h"
-#import "LBB_ResgisterViewController.h"
+#import "LBB_ResgisterViewController.h" 
+#import "VerificationViewController.h"
 
 @interface LBB_LoginViewController ()
 
@@ -17,16 +18,23 @@
 
 @property(nonatomic,copy) NSString *account;
 @property(nonatomic,copy) NSString *password;
+@property(nonatomic,copy) NSString *checkNum;
 @property(nonatomic,assign) LoginType loignType;
 
-@property(nonatomic,weak) IBOutlet UILabel *accountLabel;
-@property(nonatomic,weak) IBOutlet UILabel *passwordLabel;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property(nonatomic,weak) IBOutlet UIButton *registerButton;
 @property(nonatomic,weak) IBOutlet UIButton *forgetButton;
+@property(nonatomic,weak) IBOutlet UIButton *QQBtn;
+@property(nonatomic,weak) IBOutlet UIButton *wechatBtn;
 
 @property(nonatomic,weak) IBOutlet UIView *line1;
 @property(nonatomic,weak) IBOutlet UIView *line2;
 @property(nonatomic,weak) IBOutlet UIView *line3;
+@property(nonatomic,weak) IBOutlet UIView *line4;
+
+@property (weak, nonatomic) IBOutlet UIImageView *accountImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *passwordImgView;
+@property (weak, nonatomic) IBOutlet UILabel *otherLoginTypeLabel;
 
 @end
 
@@ -40,6 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.baseViewType = eLogin;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,12 +64,12 @@
     self.line1.backgroundColor = ColorLine;
     self.line2.backgroundColor = ColorLine;
     self.line3.backgroundColor = ColorLine;
-    self.accountLabel.font = Font14;
-    self.passwordLabel.font = Font14;
-    self.accountLabel.textColor = ColorBlack;
-    self.passwordLabel.textColor = ColorBlack;
+    self.line3.backgroundColor = ColorLine;
     self.registerButton.exclusiveTouch = YES;
     self.forgetButton.exclusiveTouch = YES;
+    self.wechatBtn.exclusiveTouch = YES;
+    self.QQBtn.exclusiveTouch = YES;
+    self.loginButton.backgroundColor = ColorBtnYellow;
     
     @weakify(self);
     [self.accountTextField.rac_textSignal subscribeNext:^(id x) {
@@ -78,8 +87,9 @@
 - (IBAction)loignAction:(id)sender
 {
     self.loignType = eLoginTelePhone;
-    self.account = [self removeWhiteSpaceWithOrignString:self.account];
-    self.password = [self removeWhiteSpaceWithOrignString:self.password];
+    self.account = [self.account Trim];
+    self.password = [self.password Trim];
+  
     if (self.account && self.password) {
         LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
         [loginManager login:self.loignType Account:self.account Password:self.password];
@@ -90,20 +100,32 @@
                 [self showHudPrompt:@"登录失败，请检查账号和密码是否正确"];
             }
         };
+    }else{
+        [self showHudPrompt:@"请检查账号和密码是否正确"];
     }
 }
 
+
+#pragma mark - UI Action
 - (IBAction)registerAction:(id)sender
 {
-    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
-    LBB_ResgisterViewController *resgisterVC = [main instantiateViewControllerWithIdentifier:@"LBB_ResgisterViewController"];
-    [self presentViewController:resgisterVC animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"LBB_ResgisterViewController" sender:nil];
 }
 
 - (IBAction)forgetPassword:(id)sender
 {
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    VerificationViewController* vc = [main instantiateViewControllerWithIdentifier:@"VerificationViewController"];
+    vc.baseViewType = eFindPassword;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
+- (IBAction)wechatLoginBtnClickAction:(id)sender {
+}
+
+- (IBAction)QQLoginBtnClickAction:(id)sender {
+}
+
 
 - (NSString*)removeWhiteSpaceWithOrignString:(NSString *)orignStr
 {
@@ -118,5 +140,15 @@
     return nil;
 }
 
+#pragma mark - textfield delegate
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    if (self.accountTextField == textField) {
+//        self.account = [self removeWhiteSpaceWithOrignString:self.account];
+//        self.password = [self removeWhiteSpaceWithOrignString:self.password];
+//    }
+//    
+//    return YES;
+//}
 
 @end

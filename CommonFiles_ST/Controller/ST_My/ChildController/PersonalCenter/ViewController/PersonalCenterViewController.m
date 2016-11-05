@@ -208,17 +208,22 @@ UITableViewDataSource
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换封面图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     // Create the actions.
-    UIAlertAction *camraAction = [UIAlertAction actionWithTitle:cameraStr style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    UIAlertAction *camraAction = [UIAlertAction actionWithTitle:cameraStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self showImagePickerView:UIImagePickerControllerSourceTypeCamera];
     }];
     
     UIAlertAction *albumAction = [UIAlertAction actionWithTitle:albumStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self showImagePickerView:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    }]; 
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+       
     }];
     
     // Add the actions.
     [alertController addAction:camraAction];
     [alertController addAction:albumAction];
+    [alertController addAction:cancelAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -369,10 +374,11 @@ UITableViewDataSource
 #pragma mark - 退出登录
 - (void)exitLogin:(id)sender
 {
-    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
-    LBB_LoginViewController *loginVC = [main instantiateViewControllerWithIdentifier:@"LBB_LoginViewController"];
-    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    [self presentViewController:navi animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
+//    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+//    LBB_LoginViewController *loginVC = [main instantiateViewControllerWithIdentifier:@"LBB_LoginViewController"];
+//    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:loginVC];
+//    [self presentViewController:navi animated:YES completion:nil];
     
     NSLog(@"\n 退出登录");
 }

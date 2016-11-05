@@ -75,6 +75,26 @@
             self.navigationItem.title = NSLocalizedString(@"新建收货地址", nil);
         }
             break;
+        case eLogin: //登录
+        {
+            self.navigationItem.title = NSLocalizedString(@"登录", nil);
+        }
+            break;
+        case eResgister://注册
+        {
+            self.navigationItem.title = NSLocalizedString(@"注册", nil);
+        }
+            break;
+        case eFindPassword://找回密码
+        {
+            self.navigationItem.title = NSLocalizedString(@"找回密码", nil);
+        }
+            break;
+        case eResetPassword://设置密码
+        {
+            self.navigationItem.title = NSLocalizedString(@"设置密码", nil);
+        }
+            break;
         case eBalance://我的余额:
         {
             self.navigationItem.title = NSLocalizedString(@"我的余额", nil);

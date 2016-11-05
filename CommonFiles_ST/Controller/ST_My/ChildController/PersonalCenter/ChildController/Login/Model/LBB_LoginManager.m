@@ -12,6 +12,7 @@
 
 @property(nonatomic,copy) NSString *account;
 @property(nonatomic,copy) NSString *password;
+@property(nonatomic,copy) NSString *checkNum;
 @property(nonatomic,copy) NSString *userID;
 @property(nonatomic,copy) NSString *address;
 @property(nonatomic,assign) NSInteger sex;
@@ -49,6 +50,7 @@
      UserHeadImage:(UIImage*)headImage
            Account:(NSString*)account
           Password:(NSString*)password
+          CheckNum:(NSString*)checkNum
                Sex:(NSInteger)sex
            Address:(NSString*)address
 {
@@ -56,6 +58,7 @@
     self.account = account;
     self.password = password;
     self.loginType = loginType;
+    self.checkNum = checkNum;
     self.sex = sex;
     if (address) {
         self.address = address;
