@@ -9,6 +9,6 @@
 #import "LBBPoohBaseTableViewCell.h"
 
 @interface LBBHomeMenuTableViewCell : LBBPoohBaseTableViewCell
-+(CGFloat)getCellHeight;
+
 
 @end

@@ -21,6 +21,7 @@
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.left.right.top.equalTo(ws);
+            make.height.equalTo(ws.bgImageView.mas_width);
         }];
         
         self.favoriteButton = [UIButton new];
@@ -109,10 +110,11 @@
             
         }];
         
-        self.videoButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        self.videoButton = [UIButton new];
+        [self.videoButton setBackgroundImage:IMAGE(@"景点详情_播放") forState:UIControlStateNormal];
         [self addSubview:self.videoButton];
         [self.videoButton mas_makeConstraints:^(MASConstraintMaker* make){
-            make.height.width.equalTo(@50);
+            make.height.width.mas_equalTo(AutoSize(50));
             make.center.equalTo(ws.bgImageView);
         }];
         
@@ -190,15 +192,6 @@
     [self.item2.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
     [self.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
     [self.item1.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
-    
-}
-
-+(CGFloat)getCellHeight{
-    
-    CGFloat height = 0;
-    height = DeviceWidth * 3.5/5;
-   // NSLog(@"getCellHeight:%f",height);
-    return height;
     
 }
 

@@ -24,13 +24,13 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        [self.contentView setBackgroundColor:ColorWhite];
         self.bgImageView = [UIImageView new];
         [self.contentView addSubview:self.bgImageView];
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.left.right.equalTo(ws.contentView);
-            make.top.equalTo(ws.contentView);
+            make.top.equalTo(ws.contentView).offset(12);
             make.height.mas_equalTo(AutoSize(320/2));
         }];
         
@@ -245,7 +245,7 @@
         [self.contentView addSubview:sep2];
         [sep2 mas_makeConstraints:^(MASConstraintMaker* make){
             make.bottom.left.right.equalTo(ws.contentView);
-            make.height.mas_equalTo(1.5);
+            make.height.mas_equalTo(SeparateLineWidth);
         }];
         
     }
@@ -258,15 +258,6 @@
     [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg"] placeholderImage:IMAGE(@"poohtest")];
 
-}
-
-+(CGFloat)getCellHeight{
-    
-    CGFloat height = 0;
-    height = DeviceWidth * 3/4;
-   // NSLog(@"getCellHeight:%f",height);
-    return height;
-    
 }
 
 

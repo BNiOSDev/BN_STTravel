@@ -41,7 +41,7 @@
         [self.contentView addSubview:sep];
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.left.right.equalTo(ws.contentView);
-            make.height.mas_equalTo(1.5);
+            make.height.mas_equalTo(SeparateLineWidth);
         }];
         
         UIView* sep1 = [UIView new];

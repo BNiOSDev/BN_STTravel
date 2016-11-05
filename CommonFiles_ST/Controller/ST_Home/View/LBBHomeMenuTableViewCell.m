@@ -49,8 +49,14 @@
             [btn mas_makeConstraints:^(MASConstraintMaker* make){
 
                 make.left.equalTo(ws.contentView).offset(i*(width+margineLeft)+margineLeft);
-                make.width.height.mas_equalTo(width);
+                make.width.mas_equalTo(width);
+                make.height.mas_equalTo(AutoSize(76/2));
                 make.centerY.equalTo(ws.contentView);
+                make.top.equalTo(ws.contentView).offset(margineLeft/2);
+                make.bottom.equalTo(ws.contentView).offset(-margineLeft/2);
+                if (i == count - 1) {
+                    make.right.equalTo(ws.contentView).offset(-margineLeft);
+                }
             }];
             [self.contentView layoutSubviews];//it must to be done to layouts subviews
             [btn bk_addEventHandler:^(LBBPoohVerticalButton* sender){
@@ -88,14 +94,6 @@
         
     }
     return self;
-}
-
-
-
-+(CGFloat)getCellHeight{
-    
-    CGFloat height = AutoSize(116/2);
-    return height;
 }
 
 

@@ -30,7 +30,6 @@
 @property(nonatomic, retain)UIView* sep;
 
 @property(nonatomic, retain)id model;
-+(CGFloat)getCellHeight;
 
 
 @end

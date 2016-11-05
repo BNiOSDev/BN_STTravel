@@ -318,7 +318,9 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             }
             else if (indexPath.row == 1){
 
-                height = [LBBHomeMenuTableViewCell getCellHeight];
+                return [tableView fd_heightForCellWithIdentifier:@"LBBHomeMenuTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeMenuTableViewCell* cell){
+                    
+                }];
             }
             else{
                 height = [LBBHomeAnnouncementTableViewCell getCellHeight];
@@ -351,7 +353,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             return [tableView fd_heightForCellWithIdentifier:@"LBBHomeTravelRecommendTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeTravelRecommendTableViewCell* cell){
             
             }];
-           // height = [LBBHomeTravelRecommendTableViewCell getCellHeight];
         }
             break;
         case LBBHomeSectionVipRecommendType:
@@ -366,7 +367,9 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
             break;
         case LBBHomeSectionSquareCenterType:
         {
-            height = [LBBHomeSquareCenterTableViewCell getCellHeight];
+            return [tableView fd_heightForCellWithIdentifier:@"LBBHomeSquareCenterTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeSquareCenterTableViewCell* cell){
+                
+            }];
         }
             break;
         case LBBHomeSectionTravelProductType:
