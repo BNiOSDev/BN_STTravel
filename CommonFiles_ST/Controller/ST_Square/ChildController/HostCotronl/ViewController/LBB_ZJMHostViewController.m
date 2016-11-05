@@ -32,9 +32,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self initData];
 
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - AUTO(40) - 64 - AUTO(44))];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 64 - AUTO(44))];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -126,7 +127,7 @@
         UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(25))];
         footView.backgroundColor = BACKVIEWCOLOR;
         
-        UIButton *moreBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth,footView.height - 10)];
+        UIButton *moreBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth,AUTO(20))];
         LRViewBorderRadius(moreBtn, 0, 0.5, LINECOLOR);
         moreBtn.backgroundColor = WHITECOLOR;
         [moreBtn setTitle:@"查看更多" forState:0];
@@ -163,6 +164,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"xuanzhong");
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section == 0)
     {
         LBBFriendViewController   *vc = [[LBBFriendViewController alloc]init];
