@@ -13,6 +13,32 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.userNameLabel.textColor = ColorBlack;
+    self.phoneNumLabel.textColor = ColorBlack;
+    self.adressLabel.textColor = ColorBlack;
+    self.streetLabel.textColor = ColorBlack;
+    self.defaultLabel.textColor = ColorRed;
+    self.defaultLabel.backgroundColor = ColorLightGray;
+    self.defaultLabel.layer.borderColor = ColorRed.CGColor;
+    self.defaultLabel.layer.cornerRadius = self.defaultLabel.frame.size.height/2.0;
+    
+    self.userNameLabel.font = Font14;
+    self.phoneNumLabel.font = Font14;
+    self.adressLabel.font = Font12;
+    self.streetLabel.font = Font12;
+    self.defaultLabel.font = Font12;
+    self.defaultLabel.font = Font14;
+   
+    self.defaultBtn.backgroundColor = [UIColor clearColor];
+    [self.defaultBtn setBackgroundImage:[UIImage createImageWithColor:ColorGray] forState:UIControlStateNormal];
+    self.editBtn.backgroundColor = [UIColor clearColor];
+    [self.editBtn setBackgroundImage:[UIImage createImageWithColor:ColorBtnYellow] forState:UIControlStateNormal];
+    self.deleteBtn.backgroundColor = [UIColor clearColor];
+    [self.deleteBtn setBackgroundImage:[UIImage createImageWithColor:ColorLightGray] forState:UIControlStateNormal];
+    
+    [self.defaultBtn.titleLabel setFont:Font13];
+    [self.editBtn.titleLabel setFont:Font13];
+    [self.deleteBtn.titleLabel setFont:Font13];
 }
 
 - (void)prepareForReuse{

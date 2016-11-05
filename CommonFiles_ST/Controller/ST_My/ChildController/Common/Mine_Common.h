@@ -2,7 +2,7 @@
 //  Mine_Common.h
 //  ST_Travel
 //
-//  Created by dhxiang on 16/10/30.
+//  Created by Diana on 16/10/30.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -19,6 +19,11 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     eCheckPhoneNum,//验证手机号
     eAddress, //收货地址
     eAddAddress, //新建收货地址
+    eLogin ,//登录
+    eResgister,//注册
+    eFindPassword,//找回密码
+    eResetPassword,//设置密码
+    
     eBalance, //我的余额
     eBalanceExtract, //余额提现
     eExtractVerification,//提现验证
@@ -34,6 +39,7 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     eTicket_WaitGetTicket,//我的门票_待取票
     eTicket_WaitComment,//我的门票_待评价
     eTicket_Refund,  //我的门票_退款
+    eTicket_Coment,//我的门票-待评价门票详情-立即评价
     eOrder,//我的订单
     eOrder_WaitPay,  //我的订单_待付款
     eOrder_WaitGetTicket,//我的订单_待取票
@@ -82,5 +88,12 @@ typedef NS_ENUM(NSInteger,TicketClickType)
     eShowDetail  //查看详情
 };
 
+typedef NS_ENUM(NSInteger,MessageCenterSquareTravelType)
+{
+    eMessageFollow = 0,//关注
+    eMessageLike,//点赞
+    eMessageComment,//评论
+    eMessageCollection //收藏
+};
 
 #endif /* Mine_Common_h */

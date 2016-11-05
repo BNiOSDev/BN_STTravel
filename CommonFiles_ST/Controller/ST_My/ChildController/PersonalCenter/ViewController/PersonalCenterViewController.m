@@ -11,6 +11,8 @@
 #import "LBB_AddressPickerView.h"
 #import "ActionSheetDatePicker.h"
 #import "ChangePhoneNumViewController.h"
+#import "LBB_ImagePickerViewController.h"
+#import "LBB_LoginViewController.h"
 
 typedef NS_ENUM(NSInteger,PersonalInfoType) {
     eUserHead = 1000,//头像
@@ -31,6 +33,7 @@ UITableViewDataSource
 @property (strong, nonatomic) LBB_AddressPickerView *addressPicker;
 @property (strong, nonatomic) ActionSheetDatePicker *datePicker;
 @property (strong, nonatomic) UIView *exitLoginView;
+@property (nonatomic,strong) LBB_ImagePickerViewController *imagePicker;
 
 @end
 
@@ -58,7 +61,7 @@ UITableViewDataSource
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                                                    @{@"Title": NSLocalizedString(@"头像",nil),
-                                                                     @"Image" : @"19.pic.jpg",
+                                                                     @"Image" : IMAGE(@"19.pic.jpg"),
                                                                      @"Action":@"showHeadImagePickerMenu:",
                                                                      @"ActionSender" : [NSNumber numberWithInt:eUserHead]},
                                                                    @{@"Title": NSLocalizedString(@"用户名",nil),
@@ -142,8 +145,9 @@ UITableViewDataSource
         self.exitLoginView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, 100)];
         UIButton *exitBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 30, DeviceWidth - 60, 50)];
         [exitBtn setTitle:NSLocalizedString(@"退 出 登 录", nil) forState:UIControlStateNormal];
-        [exitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [exitBtn setBackgroundColor:RGBAHEX(0xCC9749, 1.0)];
+        [exitBtn setTitleColor:ColorWhite forState:UIControlStateNormal];
+        [exitBtn setBackgroundImage:[UIImage createImageWithColor:ColorBtnYellow] forState:UIControlStateNormal];
+        [exitBtn.titleLabel setFont:Font15];
         [exitBtn addTarget:self
                     action:@selector(exitLogin:)
           forControlEvents:UIControlEventTouchUpInside];
@@ -170,7 +174,7 @@ UITableViewDataSource
     cell.accessoryView =  nil;
     if (indexPath.row == 0) {
        cell.backgroundColor = RGBAHEX(0xEBEBF1, 1.0);
-       [cell.rightImgView setImage:[UIImage imageNamed:[cellDict objectForKey:@"Image"]]];
+       [cell.rightImgView setImage:[cellDict objectForKey:@"Image"]];
         cell.rightLabel.text = @"";
     }else{
         cell.backgroundColor = RGBAHEX(0xFFFFFF, 1.0);
@@ -198,7 +202,53 @@ UITableViewDataSource
 
 - (void)showHeadImagePickerMenu:(id)sender
 {
+    NSString *cameraStr = NSLocalizedString(@"相机", nil);
+    NSString *albumStr = NSLocalizedString(@"相册", nil);
     
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换封面图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    // Create the actions.
+    UIAlertAction *camraAction = [UIAlertAction actionWithTitle:cameraStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self showImagePickerView:UIImagePickerControllerSourceTypeCamera];
+    }];
+    
+    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:albumStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self showImagePickerView:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+    }]; 
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+       
+    }];
+    
+    // Add the actions.
+    [alertController addAction:camraAction];
+    [alertController addAction:albumAction];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)showImagePickerView:(UIImagePickerControllerSourceType)sourceType
+{
+    self.imagePicker = nil;
+
+    self.imagePicker = [[LBB_ImagePickerViewController alloc] initPickerWithType:sourceType Parent:self];
+    
+    __weak typeof (self) weakSelf = self;
+    [self.imagePicker showPicker:^(UIImage *resultImage){
+        NSLog(@"%d",resultImage == nil);
+        [weakSelf reSetDataSource:resultImage];
+    }];
+}
+
+- (void)reSetDataSource:(UIImage*)userImage
+{
+    if (userImage) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:[self.dataSourceArray objectAtIndex:0]];
+        [dict setObject:userImage forKey:@"Image"];
+        [self.dataSourceArray replaceObjectAtIndex:0 withObject:dict];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)showTextFieldView:(id)sender
@@ -324,6 +374,12 @@ UITableViewDataSource
 #pragma mark - 退出登录
 - (void)exitLogin:(id)sender
 {
+    [self performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
+//    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+//    LBB_LoginViewController *loginVC = [main instantiateViewControllerWithIdentifier:@"LBB_LoginViewController"];
+//    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:loginVC];
+//    [self presentViewController:navi animated:YES completion:nil];
+    
     NSLog(@"\n 退出登录");
 }
 

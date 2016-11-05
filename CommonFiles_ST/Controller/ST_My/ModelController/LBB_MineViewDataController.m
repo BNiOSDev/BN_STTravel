@@ -2,7 +2,7 @@
 //  LBB_MineViewDataController.m
 //  ST_Travel
 //
-//  Created by dhxiang on 16/10/28.
+//  Created by Diana on 16/10/28.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -18,14 +18,14 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
 }
 
 - (void)initDataSource
 {
     self.arr = [[NSMutableArray alloc] initWithCapacity:10];
     [self.arr addObject:@{@"Header" :
-                               @{@"Title" : @"用户头像"}}];
+                               @{@"Title" : @"用户头像",
+                                 @"Image" : IMAGE(@"IMG_0848.JPG")}}];
     [self.arr addObject:@{@"Header" :
                               @{@"Title" : @"我的订单",
                                 @"Desc":@"查看全部",
@@ -156,6 +156,19 @@
     }
     return cellInfo;
 }
+#pragma mark - 共有
+- (void)replaceUserHeadImage:(UIImage*)converPicture
+{
+    if (converPicture) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:[self.arr objectAtIndex:0]];
+        NSMutableDictionary *userDict = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:@"Header"]];
+        [userDict setObject:converPicture forKey:@"Image"];
+        [dict setObject:userDict forKey:@"Header"];
+        [self.arr replaceObjectAtIndex:0 withObject:dict];
+        [self.collectionView reloadData];
+    }
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return self.arr.count;
@@ -197,6 +210,8 @@
             LBB_MyUserHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LBB_MyUserHeaderView" forIndexPath:indexPath];
             view.delegate = self.userHeaderDelegate;
             reusable = view;
+            NSDictionary *userHeadInfo = [self.arr objectAtIndex:0];
+            [view setUserInfo:userHeadInfo];
         }else {
             LBB_MySectionHeadViewCell *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LBB_MySectionHeadViewCell" forIndexPath:indexPath];
             if (indexPath.section < self.arr.count) {
@@ -252,6 +267,7 @@
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    
     return UIEdgeInsetsMake(1,20,1,20);
 }
 

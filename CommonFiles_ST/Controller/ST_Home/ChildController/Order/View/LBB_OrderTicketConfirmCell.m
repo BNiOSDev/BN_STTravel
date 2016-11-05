@@ -139,6 +139,11 @@
         {
             self.leftButton.hidden = YES;
             [self.rightButton setTitle:@"立即评价" forState:UIControlStateNormal];
+            [self.rightButton bk_addEventHandler:^(id sender){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"TicketCommentNotification"
+                                                                object:@{@"TicketState" : @(LBBPoohTicketStatusCollected)}];
+                
+            } forControlEvents:UIControlEventTouchUpInside];
         }
             
             break;

@@ -8,6 +8,6 @@
 
 #import "MineBaseViewController.h"
 
-@interface ChangePasswordViewController : UIViewController
+@interface ChangePasswordViewController : MineBaseViewController
 
 @end

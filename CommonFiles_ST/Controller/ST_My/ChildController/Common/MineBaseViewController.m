@@ -20,18 +20,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadCustomNavigationButton];
+    self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
+    
+    self.bottomViewBottomContraint.constant = -TabHeight;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)buildControls
-{
-    self.bottomViewBottomContraint.constant = TabHeight;
-}
-
+ 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -75,6 +73,26 @@
         case eAddAddress://新建收货地址
         {
             self.navigationItem.title = NSLocalizedString(@"新建收货地址", nil);
+        }
+            break;
+        case eLogin: //登录
+        {
+            self.navigationItem.title = NSLocalizedString(@"登录", nil);
+        }
+            break;
+        case eResgister://注册
+        {
+            self.navigationItem.title = NSLocalizedString(@"注册", nil);
+        }
+            break;
+        case eFindPassword://找回密码
+        {
+            self.navigationItem.title = NSLocalizedString(@"找回密码", nil);
+        }
+            break;
+        case eResetPassword://设置密码
+        {
+            self.navigationItem.title = NSLocalizedString(@"设置密码", nil);
         }
             break;
         case eBalance://我的余额:
@@ -139,6 +157,12 @@
             self.navigationItem.title = NSLocalizedString(@"我的门票", nil);
         }
             break;
+        case eTicket_Coment: //我的门票-待评价门票详情-立即评价
+        {
+            self.navigationItem.title = NSLocalizedString(@"立即评价", nil);
+        }
+            break;
+            
         case eFavorite://我的收藏
         {
             self.navigationItem.title = NSLocalizedString(@"我的收藏", nil);
