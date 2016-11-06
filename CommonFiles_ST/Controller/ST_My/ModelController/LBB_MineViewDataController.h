@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LBB_MySectionHeadViewCell.h"
 #import "LBB_MyUserHeaderView.h"
-
+#import "LBB_MineModel.h"
 
 @interface LBB_MineViewDataController : NSObject<
 UICollectionViewDelegate,
@@ -19,11 +19,14 @@ LBB_MySectionHeadViewDelegate
 >
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong,nonatomic) NSMutableArray *arr;
+
 
 @property (nonatomic,weak) id<LBB_MySectionHeadViewDelegate> cellDelegate;
 @property (nonatomic,weak) id<LBB_MyUserHeaderViewDelegate> userHeaderDelegate;
 @property (nonatomic,strong) id userInfo;
+@property (nonatomic,strong) LBB_MineModel *model;
+@property (strong,nonatomic) LBB_MineModelData *modelData;
+@property (strong,nonatomic) NSMutableArray *arr;
 
 - (void)initDataSource;
 

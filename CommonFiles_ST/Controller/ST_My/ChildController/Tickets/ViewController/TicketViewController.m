@@ -13,18 +13,19 @@
 #import "LBB_TicketFooterView.h"
 #import "LBB_TicketHeaderView.h"
 #import "LBB_OrderWaitPayViewController.h"
+#import "LBB_TicketModel.h"
 
 @interface TicketViewController ()
 <UITableViewDataSource,
 UITableViewDelegate,
 TicketFooterViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSMutableArray *dataSourceArray;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong,nonatomic) NSArray *dataSourceArray;
 @property (weak, nonatomic) IBOutlet UIView *segmentBgView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *segmentBgViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
+@property (strong,nonatomic) LBB_TicketModel *ticketModel;
 @end
 
 @implementation TicketViewController
@@ -47,6 +48,21 @@ TicketFooterViewDelegate>
     [self initTableview];
 }
 
+#pragma mark - public
+- (void)reloadAllData
+{
+    
+}
+
+//初始化数据类型
+- (void)initDataSourceWithType:(NSInteger)stateType
+{
+    if (!self.ticketModel) {
+        self.ticketModel = [[LBB_TicketModel alloc] init];
+    }
+    self.dataSourceArray = [self.ticketModel getDataWithType:stateType];
+}
+
 - (void)initSegmentControll
 {
     self.tableViewTopConstraint.constant = self.segmentBgViewHeightConstraint.constant;
@@ -56,7 +72,7 @@ TicketFooterViewDelegate>
                                                                                                NSLocalizedString(@"待评价", nil),
                                                                                                NSLocalizedString(@"退款", nil)]];
     segmentedControl.selectionIndicatorHeight = 3.0f;  // 线的高度
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Marion-Italic" size:15.0],
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font16,
                                              NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6]};
    
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
@@ -105,77 +121,6 @@ TicketFooterViewDelegate>
     [self initDataSourceWithType:self.baseViewType];
 }
 
-- (void)initDataSourceWithType:(NSInteger)stateType
-{
-    if (stateType == eTickets) {
-        self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
-                                                                       @{@"TicketNum": NSLocalizedString(@"123456",nil),
-                                                                         @"GoogNum":@"共1件商品",
-                                                                         @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInteger:eTicket_WaitPay],
-                                                                         @"GoodList" : [self goodList:1]},
-                                                                       @{@"TicketNum": NSLocalizedString(@"123456",nil),
-                                                                         @"GoogNum":@"共3件商品",
-                                                                         @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInteger:eTicket_WaitGetTicket],
-                                                                         @"GoodList" : [self goodList:2]},
-                                                                       @{@"TicketNum": NSLocalizedString(@"123456",nil),
-                                                                         @"GoogNum":@"共6件商品",
-                                                                         @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInteger:eTicket_WaitComment],
-                                                                         @"GoodList" : [self goodList:3]},
-                                                                       @{@"TicketNum": NSLocalizedString(@"123456",nil),
-                                                                         @"GoogNum":@"共3件商品",
-                                                                         @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInteger:eTicket_Refund],
-                                                                         @"GoodList" : [self goodList:2]}
-                                                                       ]];
-    }else {
-        self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
-                                                                       @{@"TicketNum": NSLocalizedString(@"123456",nil),
-                                                                         @"GoogNum":@"共1件商品",
-                                                                         @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInteger:stateType],
-                                                                         @"GoodList" : [self goodList:1]},
-                                                                       @{@"TicketNum": NSLocalizedString(@"123456",nil),
-                                                                         @"GoogNum":@"共3件商品",
-                                                                         @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInteger:stateType],
-                                                                         @"GoodList" : [self goodList:2]},
-                                                                       @{@"TicketNum": NSLocalizedString(@"123456",nil),
-                                                                         @"GoogNum":@"共6件商品",
-                                                                         @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInteger:stateType],
-                                                                         @"GoodList" : [self goodList:3]},
-                                                                       @{@"TicketNum": NSLocalizedString(@"123456",nil),
-                                                                         @"GoogNum":@"共3件商品",
-                                                                         @"TotalMonney":@"￥200",
-                                                                         @"TicketState":[NSNumber numberWithInteger:stateType],
-                                                                         @"GoodList" : [self goodList:2]}
-                                                                       ]];
-    }
-}
-
-- (NSArray*)goodList:(int)count
-{
-    NSMutableArray *goodArray = [[NSMutableArray alloc] initWithCapacity:0];
-    for (int i = 0; i < count; i++) {
-        if (i%2 == 0) {
-            [goodArray addObject:@{@"Title": NSLocalizedString(@"鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿鼓浪屿",nil),
-                                   @"Image" : @"19.pic.jpg",
-                                   @"Type":@"成人票",
-                                   @"Money" : @"￥58",
-                                   @"Num":[NSString stringWithFormat:@"x%@",@(i+1)]}];
-        }else {
-           [goodArray addObject:@{@"Title": NSLocalizedString(@"中山街",nil),
-                                  @"Image" : @"19.pic.jpg",
-                                  @"Type":@"儿童票",
-                                  @"Money" : @"￥29",
-                                  @"Num":[NSString stringWithFormat:@"x%@",@(i+1)]}];
-        }
-    }
-    return goodArray;
-}
 
 #pragma mark - tableView delegate
 
@@ -198,7 +143,7 @@ TicketFooterViewDelegate>
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     return [tableView fd_heightForCellWithIdentifier:@"TicketDetailViewCell" configuration:^(TicketDetailViewCell *cell) {
-         NSDictionary *cellDict = [self getCellInfo:indexPath];
+         LBB_TicketModelDetail *cellDict = [self getCellInfo:indexPath];
          [cell setCellInfo:cellDict];
     }];
 }
@@ -225,7 +170,7 @@ TicketFooterViewDelegate>
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.accessoryView =  nil;
     
-    NSDictionary *cellDict = [self getCellInfo:indexPath];
+    LBB_TicketModelDetail *cellDict = [self getCellInfo:indexPath];
     if (cellDict) {
        [cell setCellInfo:cellDict];
     }
@@ -271,11 +216,11 @@ TicketFooterViewDelegate>
     [self showTicketDetailView:[self.dataSourceArray objectAtIndex:indexPath.row]];
 }
 
-- (void)showTicketDetailView:(NSDictionary*)ticketInfo
+- (void)showTicketDetailView:(LBB_TicketModelData*)ticketInfo
 {
     LBB_OrderWaitPayViewController *vc = [[LBB_OrderWaitPayViewController alloc] init];
 
-    NSInteger ticketState = [[ticketInfo objectForKey:@"TicketState"] integerValue];
+    NSInteger ticketState = ticketInfo.ticketState;
     switch (ticketState) {
         case eTicket_WaitPay://我的门票_待付款
             vc.ticketStatus = LBBPoohTicketStatusWaitPay;
@@ -298,26 +243,26 @@ TicketFooterViewDelegate>
 
 #pragma mark - private cell Info
 
-- (NSDictionary*)getCellInfo:(NSIndexPath*)indexPath
+- (LBB_TicketModelDetail*)getCellInfo:(NSIndexPath*)indexPath
 {
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
-    NSArray *goodList = [cellDict objectForKey:@"GoodList"];
-    if (goodList.count > indexPath.row) {
-        NSDictionary *cellDict =  [goodList objectAtIndex:indexPath.row];
-        return  cellDict;
+    if (indexPath.section < self.dataSourceArray.count) {
+         LBB_TicketModelData *data = [self.dataSourceArray objectAtIndex:indexPath.section];
+        if (indexPath.row < data.detailArray.count) {
+            return [data.detailArray objectAtIndex:indexPath.row];
+        }
     }
+   
     return nil;
 }
 
 - (NSInteger)numberOfRows:(NSInteger)section
 {
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:section];
-    NSArray *goodList = [cellDict objectForKey:@"GoodList"];
-    return goodList.count;
+    LBB_TicketModelData *data = [self.dataSourceArray objectAtIndex:section];
+    return data.detailArray.count;
 }
 
 #pragma mark - 取消订单 立即支付 立即取票 查看详情
-- (void)cellBtnClickDelegate:(NSDictionary*)cellInfo
+- (void)cellBtnClickDelegate:(LBB_TicketModelData*)cellInfo
                    StateType:(MineBaseViewType)type
              TicketClickType:(TicketClickType)clickType
 {

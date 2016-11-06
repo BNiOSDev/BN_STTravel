@@ -18,20 +18,20 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.numTipsLabel.textColor = ColorBlack;
-    self.numLabel.textColor = ColorBlack;
+    self.numTipsLabel.textColor = ColorGray;
+    self.numLabel.textColor = ColorGray;
     self.stateLabel.textColor = ColorBtnYellow;
     
-    self.numTipsLabel.font = Font13;
-    self.numLabel.font = Font13;
-    self.stateLabel.font = Font13;
+    self.numTipsLabel.font = Font15;
+    self.numLabel.font = Font15;
+    self.stateLabel.font = Font15;
     self.lineView.backgroundColor = ColorLine;
 }
 
-- (void)setCellInfo:(NSDictionary*)cellInfo
+- (void)setCellInfo:(LBB_TicketModelData*)cellInfo
 {
-    self.numLabel.text = [cellInfo objectForKey:@"TicketNum"];
-    self.stateType = [[cellInfo objectForKey:@"TicketState"] intValue];
+    self.numLabel.text = cellInfo.ticketID;
+    self.stateType = cellInfo.ticketState;
     
     switch (self.stateType) {
         case eTicket_WaitPay://待付款

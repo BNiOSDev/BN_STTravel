@@ -13,6 +13,7 @@
 #import "LBB_MyUserHeaderView.h"
 #import "MineBaseViewController.h"
 
+
 @implementation LBB_MineViewDataController
 
 - (void)awakeFromNib
@@ -22,100 +23,104 @@
 
 - (void)initDataSource
 {
-    self.arr = [[NSMutableArray alloc] initWithCapacity:10];
-    [self.arr addObject:@{@"Header" :
-                               @{@"Title" : @"用户头像",
-                                 @"Image" : IMAGE(@"IMG_0848.JPG")}}];
-    [self.arr addObject:@{@"Header" :
-                              @{@"Title" : @"我的订单",
-                                @"Desc":@"查看全部",
-                                @"ActionType" : [NSNumber numberWithInt:eOrder]},
-                          @"Content" : @[@{@"Title":@"待付款",
-                                           @"Image" : @"待付款-订单.png",
-                                           @"NewNum" : @"11",
-                                           @"ActionType" : [NSNumber numberWithInt:eOrder_WaitPay]},
-                                         @{@"Title":@"待收货",
-                                           @"Image" : @"待收货-订单.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eOrder_WaitGetTicket]},
-                                         @{@"Title":@"待评价",
-                                           @"Image" : @"待评价-订单.png",
-                                           @"NewNum" : @"9",
-                                          @"ActionType" : [NSNumber numberWithInt:eOrder_WaitComment]},
-                                         @{@"Title":@"售后",
-                                           @"Image" : @"售后.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eOrder_AfterAales]}]}];
-    [self.arr addObject:@{@"Header" :
-                              @{@"Title" : @"我的门票",
-                                @"Desc":@"查看全部",
-                                @"ActionType" : [NSNumber numberWithInt:eTickets]},
-                          @"Content" : @[@{@"Title":@"待付款",
-                                           @"Image" : @"待付款-门票.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eTicket_WaitPay]},
-                                         @{@"Title":@"待取票",
-                                           @"Image" : @"待取票.png",
-                                           @"NewNum" : @"8",
-                                           @"ActionType" : [NSNumber numberWithInt:eTicket_WaitGetTicket]},
-                                         @{@"Title":@"待评价",
-                                           @"Image" : @"待评价-门票.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eTicket_WaitComment]},
-                                         @{@"Title":@"退款",
-                                           @"Image" : @"退票.png",
-                                           @"NewNum" : @"99",
-                                           @"ActionType" : [NSNumber numberWithInt:eTicket_Refund]}]}];
-    [self.arr addObject:@{@"Header" :
-                              @{@"Title" : @"我的广场"},
-                          @"Content" : @[@{@"Title":@"照片",
-                                           @"Image" : @"照片.png",
-                                           @"ActionType" : [NSNumber numberWithInt:ePhoto]},
-                                         @{@"Title":@"视频",
-                                           @"Image" : @"视频.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eVideo]},
-                                         @{@"Title":@"游记",
-                                           @"Image" : @"游记.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eTravels]},
-                                         @{@"Title":@"关注",
-                                           @"Image" : @"关注.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eLove]}]}];
-    [self.arr addObject:@{@"Header" :
-                              @{@"Title" : @"我的收藏"},
-                          @"Content" : @[@{@"Title":@"广场",
-                                           @"Image" : @"广场.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eSquare]},
-                                         @{@"Title":@"景点",
-                                           @"Image" : @"景点.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eScenicSpot]},
-                                         @{@"Title":@"美食",
-                                           @"Image" : @"美食.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eFood]},
-                                         @{@"Title":@"民宿",
-                                           @"Image" : @"民宿.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eHalls]},
-                                         @{@"Title":@"商品",
-                                           @"Image" : @"商品.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eGoods]},
-                                         @{@"Title":@"限时抢购",
-                                           @"Image" : @"限时抢购.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eFlashSale]},
-                                         @{@"Title":@"伴手礼专题",
-                                           @"Image" : @"伴手礼专题.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eHandSpecial]},
-                                         @{@"Title":@"攻略",
-                                           @"Image" : @"攻略.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eTravelGuide]}]}];
-    [self.arr addObject:@{@"Header" :
-                              @{@"Title" : @""},
-                          @"Content" : @[@{@"Title":@"积分",
-                                           @"Image" : @"积分.png",
-                                           @"ActionType" : [NSNumber numberWithInt:ePoints]},
-                                         @{@"Title":@"下载",
-                                           @"Image" : @"下载.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eDownload]},
-                                         @{@"Title":@"定制路线",
-                                           @"Image" : @"下载.png",
-                                          @"ActionType" : [NSNumber numberWithInt:eRoute]},
-                                         @{@"Title":@"设置",
-                                           @"Image" : @"设置.png",
-                                           @"ActionType" : [NSNumber numberWithInt:eSetting]}]}];
+    self.model = [[LBB_MineModel alloc] init];
+    self.modelData = [self.model getData];
+    self.arr = self.modelData.sectionInfo;
+    
+//    self.arr = [[NSMutableArray alloc] initWithCapacity:10];
+//    [self.arr addObject:@{@"Header" :
+//                               @{@"Title" : @"用户头像",
+//                                 @"Image" : IMAGE(@"IMG_0848.JPG")}}];
+//    [self.arr addObject:@{@"Header" :
+//                              @{@"Title" : @"我的订单",
+//                                @"Desc":@"查看全部",
+//                                @"ActionType" : [NSNumber numberWithInt:eOrder]},
+//                          @"Content" : @[@{@"Title":@"待付款",
+//                                           @"Image" : @"待付款-订单.png",
+//                                           @"NewNum" : @"11",
+//                                           @"ActionType" : [NSNumber numberWithInt:eOrder_WaitPay]},
+//                                         @{@"Title":@"待收货",
+//                                           @"Image" : @"待收货-订单.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eOrder_WaitGetTicket]},
+//                                         @{@"Title":@"待评价",
+//                                           @"Image" : @"待评价-订单.png",
+//                                           @"NewNum" : @"9",
+//                                          @"ActionType" : [NSNumber numberWithInt:eOrder_WaitComment]},
+//                                         @{@"Title":@"售后",
+//                                           @"Image" : @"售后.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eOrder_AfterAales]}]}];
+//    [self.arr addObject:@{@"Header" :
+//                              @{@"Title" : @"我的门票",
+//                                @"Desc":@"查看全部",
+//                                @"ActionType" : [NSNumber numberWithInt:eTickets]},
+//                          @"Content" : @[@{@"Title":@"待付款",
+//                                           @"Image" : @"待付款-门票.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eTicket_WaitPay]},
+//                                         @{@"Title":@"待取票",
+//                                           @"Image" : @"待取票.png",
+//                                           @"NewNum" : @"8",
+//                                           @"ActionType" : [NSNumber numberWithInt:eTicket_WaitGetTicket]},
+//                                         @{@"Title":@"待评价",
+//                                           @"Image" : @"待评价-门票.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eTicket_WaitComment]},
+//                                         @{@"Title":@"退款",
+//                                           @"Image" : @"退票.png",
+//                                           @"NewNum" : @"99",
+//                                           @"ActionType" : [NSNumber numberWithInt:eTicket_Refund]}]}];
+//    [self.arr addObject:@{@"Header" :
+//                              @{@"Title" : @"我的广场"},
+//                          @"Content" : @[@{@"Title":@"照片",
+//                                           @"Image" : @"照片.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:ePhoto]},
+//                                         @{@"Title":@"视频",
+//                                           @"Image" : @"视频.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eVideo]},
+//                                         @{@"Title":@"游记",
+//                                           @"Image" : @"游记.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eTravels]},
+//                                         @{@"Title":@"关注",
+//                                           @"Image" : @"关注.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eLove]}]}];
+//    [self.arr addObject:@{@"Header" :
+//                              @{@"Title" : @"我的收藏"},
+//                          @"Content" : @[@{@"Title":@"广场",
+//                                           @"Image" : @"广场.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eSquare]},
+//                                         @{@"Title":@"景点",
+//                                           @"Image" : @"景点.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eScenicSpot]},
+//                                         @{@"Title":@"美食",
+//                                           @"Image" : @"美食.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eFood]},
+//                                         @{@"Title":@"民宿",
+//                                           @"Image" : @"民宿.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eHalls]},
+//                                         @{@"Title":@"商品",
+//                                           @"Image" : @"商品.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eGoods]},
+//                                         @{@"Title":@"限时抢购",
+//                                           @"Image" : @"限时抢购.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eFlashSale]},
+//                                         @{@"Title":@"伴手礼专题",
+//                                           @"Image" : @"伴手礼专题.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eHandSpecial]},
+//                                         @{@"Title":@"攻略",
+//                                           @"Image" : @"攻略.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eTravelGuide]}]}];
+//    [self.arr addObject:@{@"Header" :
+//                              @{@"Title" : @""},
+//                          @"Content" : @[@{@"Title":@"积分",
+//                                           @"Image" : @"积分.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:ePoints]},
+//                                         @{@"Title":@"下载",
+//                                           @"Image" : @"下载.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eDownload]},
+//                                         @{@"Title":@"定制路线",
+//                                           @"Image" : @"下载.png",
+//                                          @"ActionType" : [NSNumber numberWithInt:eRoute]},
+//                                         @{@"Title":@"设置",
+//                                           @"Image" : @"设置.png",
+//                                           @"ActionType" : [NSNumber numberWithInt:eSetting]}]}];
     
     //进行CollectionView和Cell的绑定
     UINib *nib = [UINib nibWithNibName:@"LBB_MyViewCell" bundle:nil];
@@ -142,15 +147,15 @@
     
 }
 
-- (NSDictionary*)getCellInfo:(NSIndexPath*)indexPath
+- (LBB_MineDetaiInfo*)getCellInfo:(NSIndexPath*)indexPath
 {
-    NSDictionary *cellInfo = nil;
-    if (indexPath.section < self.arr.count) {
-        NSDictionary *cellDict = [self.arr objectAtIndex:indexPath.section];
-        NSArray *contentArray = [cellDict valueForKey:@"Content"];
+    LBB_MineDetaiInfo *cellInfo = nil;
+    if ((indexPath.section - 1) < self.arr.count) {
+        LBB_MineSectionInfo *sectionInfo = [self.arr objectAtIndex:indexPath.section -1];
+        NSArray *contentArray = sectionInfo.detailArary;
         if (contentArray && [contentArray isKindOfClass:[NSArray class]]) {
-            NSDictionary *infoDict = [contentArray objectAtIndex:indexPath.row];
-            cellInfo = infoDict;
+            LBB_MineDetaiInfo *detailInfo = [contentArray objectAtIndex:indexPath.row];
+            cellInfo = detailInfo;
         }
         
     }
@@ -160,23 +165,23 @@
 - (void)replaceUserHeadImage:(UIImage*)converPicture
 {
     if (converPicture) {
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:[self.arr objectAtIndex:0]];
-        NSMutableDictionary *userDict = [[NSMutableDictionary alloc] initWithDictionary:[dict objectForKey:@"Header"]];
-        [userDict setObject:converPicture forKey:@"Image"];
-        [dict setObject:userDict forKey:@"Header"];
-        [self.arr replaceObjectAtIndex:0 withObject:dict];
+        LBB_MineUserInfo *userInfo = self.modelData.userInfo;
+        userInfo.coverPicturePath = converPicture;
         [self.collectionView reloadData];
     }
 }
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return self.arr.count;
+    return self.arr.count + 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    NSDictionary *cellDict = [self.arr objectAtIndex:section];
-    NSArray *contentArray = [cellDict valueForKey:@"Content"];
+    if (section == 0) {
+        return 0;
+    }
+    LBB_MineSectionInfo *cellnfo = [self.arr objectAtIndex:section - 1];
+    NSArray *contentArray = cellnfo.detailArary;
     if (contentArray && [contentArray isKindOfClass:[NSArray class]]) {
         return [contentArray count];
     }
@@ -187,11 +192,11 @@
     
     static NSString *CellIdentifier = @"LBB_MyViewCell";
     LBB_MyViewCell *cell =  (LBB_MyViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSDictionary *infoDict = [self getCellInfo:indexPath];
-    if (infoDict) {
-        cell.imgView.image = IMAGE([infoDict objectForKey:@"Image"]);
-        cell.label.text = [infoDict objectForKey:@"Title"];
-        NSString *numStr = [infoDict objectForKey:@"NewNum"];
+    LBB_MineDetaiInfo *cellInfo = [self getCellInfo:indexPath];
+    if (cellInfo) {
+        cell.imgView.image = IMAGE(cellInfo.detailImage);
+        cell.label.text = cellInfo.detailContent;
+        NSString *numStr = cellInfo.newNum ? [NSString stringWithFormat:@"%@",@(cellInfo.newNum)] : nil;
         if (numStr && [numStr intValue] > 0) {
             cell.numLabel.hidden = NO;
             cell.numLabel.text = numStr;
@@ -210,25 +215,21 @@
             LBB_MyUserHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LBB_MyUserHeaderView" forIndexPath:indexPath];
             view.delegate = self.userHeaderDelegate;
             reusable = view;
-            NSDictionary *userHeadInfo = [self.arr objectAtIndex:0];
+            LBB_MineUserInfo *userHeadInfo = self.modelData.userInfo;
             [view setUserInfo:userHeadInfo];
         }else {
             LBB_MySectionHeadViewCell *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LBB_MySectionHeadViewCell" forIndexPath:indexPath];
-            if (indexPath.section < self.arr.count) {
-                NSDictionary *sectionDict = [self.arr objectAtIndex:indexPath.section];
-                NSDictionary *infoDict = [sectionDict objectForKey:@"Header"];
-                view.titleLabel.text = [infoDict objectForKey:@"Title"];
-                view.userInfo = infoDict;
-                view.viewType = [[infoDict objectForKey:@"ActionType"] intValue];
+            if ((indexPath.section - 1) < self.arr.count) {
+                LBB_MineSectionInfo *sectionInfo = [self.arr objectAtIndex:indexPath.section - 1];
+                view.titleLabel.text = sectionInfo.sectionContent;
+                view.userInfo = sectionInfo;
+                view.viewType = sectionInfo.setcionType;
                 view.delegate = self.cellDelegate;
-                NSString *btnTitle = [infoDict objectForKey:@"Desc"];
-                if (btnTitle && [btnTitle length]) {
-                    [view.rightBtn setTitle:btnTitle forState:UIControlStateNormal];
-                }else {
-                    [view.rightBtn setTitle:nil forState:UIControlStateNormal];
+                if (!sectionInfo.needCheckAll) {
+                    view.rightBtn.hidden = YES;
                     view.arrowImgView.hidden = YES;
                 }
-                if ((indexPath.section == (self.arr.count - 1)) || (indexPath.section == 0)) {
+                if ((indexPath.section == self.arr.count) || (indexPath.section == 0)) {
                     view.lineView.hidden = YES;
                 }else {
                     view.lineView.hidden = NO;
@@ -252,11 +253,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     if (self.cellDelegate && [self.cellDelegate respondsToSelector:@selector(didClickDetailActionDelegate:)]) {
-        NSDictionary *infoDict = [self getCellInfo:indexPath];
-        if (infoDict && [infoDict objectForKey:@"ActionType"]) {
-            NSInteger viewType =  [[infoDict objectForKey:@"ActionType"] intValue];
-            [self.cellDelegate didClickDetailActionDelegate:viewType];
-        } 
+        LBB_MineDetaiInfo *cellInfo = [self getCellInfo:indexPath];
+        [self.cellDelegate didClickDetailActionDelegate:cellInfo.detailType];
     }
 }
 
@@ -274,7 +272,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return CGSizeMake(self.collectionView.frame.size.width, self.collectionView.frame.size.width * (283.f/475.f));
-    }else if (section == (self.arr.count - 1)) {
+    }else if (section == (self.arr.count)) {
          return CGSizeMake(self.collectionView.frame.size.width, 0.001f);
     }
     return CGSizeMake(self.collectionView.frame.size.width, 40.f);

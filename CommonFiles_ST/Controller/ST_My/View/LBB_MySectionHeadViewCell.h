@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBB_MineModel.h"
 
 @protocol LBB_MySectionHeadViewDelegate <NSObject>
 
@@ -24,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 
 @property (nonatomic,weak) id<LBB_MySectionHeadViewDelegate> delegate;
-@property (nonatomic,strong) id userInfo;
+@property (nonatomic,strong) LBB_MineSectionInfo* userInfo;
 @property (nonatomic,assign) NSInteger viewType;
 
 @end

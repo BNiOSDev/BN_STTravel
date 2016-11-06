@@ -10,4 +10,8 @@
 
 @interface TicketViewController : MineBaseViewController
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *segmentBgViewHeightConstraint;
+
+- (void)reloadAllData;
+
 @end

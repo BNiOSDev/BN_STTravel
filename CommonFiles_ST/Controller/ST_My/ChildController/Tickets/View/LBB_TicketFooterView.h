@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Mine_Common.h"
+#import "LBB_TicketModel.h"
 
 @protocol TicketFooterViewDelegate <NSObject>
 
@@ -32,6 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIView *topLine;
 @property (weak, nonatomic) id<TicketFooterViewDelegate> mDelegate;
 
-@property(nonatomic,strong) NSDictionary* cellInfo;
+@property(nonatomic,strong) LBB_TicketModelData* cellInfo;
 
 @end

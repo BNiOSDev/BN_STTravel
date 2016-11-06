@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBB_TicketModel.h"
 
 @interface TicketDetailViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
@@ -15,7 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *monneyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numLabel;
 @property (weak, nonatomic) IBOutlet UIView *lineView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidthContraint;
 
-@property(nonatomic,strong) NSDictionary* cellInfo;
+@property(nonatomic,strong) LBB_TicketModelDetail* cellInfo;
 
 @end

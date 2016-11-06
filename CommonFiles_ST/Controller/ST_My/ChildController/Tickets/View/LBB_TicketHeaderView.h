@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBB_TicketModel.h"
 
 @interface LBB_TicketHeaderView : UIView
 
@@ -15,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet UIView  *lineView;
 
-@property(nonatomic,strong) NSDictionary* cellInfo;
+@property(nonatomic,strong) LBB_TicketModelData* cellInfo;
 
 
 @end

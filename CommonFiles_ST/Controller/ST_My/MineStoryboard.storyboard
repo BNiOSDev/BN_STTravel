@@ -3033,10 +3033,10 @@
     </scenes>
     <resources>
         <image name="19.pic.jpg" width="200" height="200"/>
-        <image name="我的登录_QQ登录" width="58" height="57"/>
-        <image name="我的登录_密码" width="47" height="57"/>
-        <image name="我的登录_微信登录" width="58" height="57"/>
-        <image name="我的登录_手机号" width="47" height="57"/>
+        <image name="我的登录_QQ登录" width="29" height="28"/>
+        <image name="我的登录_密码" width="23" height="28"/>
+        <image name="我的登录_微信登录" width="29" height="28"/>
+        <image name="我的登录_手机号" width="23" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="evJ-Py-Of1"/>
