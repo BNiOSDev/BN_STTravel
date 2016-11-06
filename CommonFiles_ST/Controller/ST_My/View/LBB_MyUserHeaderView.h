@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBB_MineModel.h"
 
 @protocol LBB_MyUserHeaderViewDelegate <NSObject>
 
@@ -21,6 +22,6 @@
 @interface LBB_MyUserHeaderView : UICollectionReusableView
 
 @property (nonatomic,weak) id<LBB_MyUserHeaderViewDelegate> delegate;
-@property (nonatomic,strong) NSDictionary* userInfo;
+@property (nonatomic,strong) LBB_MineUserInfo* userInfo;
 
 @end

@@ -9,9 +9,17 @@
 #ifndef Mine_Common_h
 #define Mine_Common_h
 
+//屏幕适配
+#define FB_FIX_SIZE_WIDTH(w) (((w) / 320.0) * DeviceWidth)
+//获取当前app版本
+#define APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
+//获取适配后的数据大小
+#define AutoSize(num)  num * (DeviceWidth /320.0)
+#define AUTO(num)  num * SET_FIX_SIZE_WIDTH
 
 typedef NS_ENUM(NSInteger,MineBaseViewType) {
-    eWallet = 0,//我的钱包
+    eTypeNone = 0, //
+    eWallet,//我的钱包
     ePersonalCenter, //个人中心
     eEditUserName, //用户名
     eEditUserSignature,//用户签名

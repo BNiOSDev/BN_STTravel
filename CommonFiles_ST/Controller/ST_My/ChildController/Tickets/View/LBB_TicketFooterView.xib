@@ -30,8 +30,8 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3Q-vj-Qcd">
                     <color key="backgroundColor" red="0.80000000000000004" green="0.59215686270000001" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="27" id="hAi-tZ-FSf"/>
-                        <constraint firstAttribute="width" constant="65" id="l9Z-rc-iQc"/>
+                        <constraint firstAttribute="height" constant="30" id="hAi-tZ-FSf"/>
+                        <constraint firstAttribute="width" constant="90" id="l9Z-rc-iQc"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="立即支付">
@@ -102,7 +102,7 @@
                 <constraint firstItem="Iie-qz-S2m" firstAttribute="height" secondItem="k3Q-vj-Qcd" secondAttribute="height" id="dcW-8r-hgU"/>
                 <constraint firstItem="k3Q-vj-Qcd" firstAttribute="leading" secondItem="Iie-qz-S2m" secondAttribute="trailing" constant="15" id="eYY-Q8-CgG"/>
                 <constraint firstItem="afr-Xq-c8A" firstAttribute="centerY" secondItem="5CG-K3-Zou" secondAttribute="centerY" id="lXW-gD-XrD"/>
-                <constraint firstAttribute="trailing" secondItem="5CG-K3-Zou" secondAttribute="trailing" constant="20" id="opo-t2-Afw"/>
+                <constraint firstAttribute="trailing" secondItem="5CG-K3-Zou" secondAttribute="trailing" constant="15" id="opo-t2-Afw"/>
                 <constraint firstItem="k3Q-vj-Qcd" firstAttribute="top" secondItem="5CG-K3-Zou" secondAttribute="bottom" constant="10" id="w3a-gf-jC0"/>
                 <constraint firstItem="JAG-lu-oSx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ziH-Ss-bvw"/>
             </constraints>
