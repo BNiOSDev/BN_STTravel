@@ -1,15 +1,15 @@
 //
-//  ZJMTravelsViewController.h
+//  LBB_DownloadTravelsViewController.h
 //  ST_Travel
 //
-//  Created by dawei che on 2016/10/21.
+//  Created by 晨曦 on 16/11/6.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
 #import "ZJMBaseViewController.h"
 #import "Header.h"
 
-@interface ZJMTravelsViewController : ZJMBaseViewController
+@interface LBB_DownloadTravelsViewController : ZJMBaseViewController
 
 @property(nonatomic,assign)TravelsViewType viewType;
 

@@ -2,8 +2,8 @@
 //  LBB_TicketCommentViewController.m
 //  Textdd
 //
-//  Created by dhxiang on 16/11/1.
-//  Copyright © 2016年 Dianar. All rights reserved.
+//  Created by 晨曦 on 16/11/1.
+//  Copyright © 2016年 晨曦. All rights reserved.
 //
 
 #import "LBB_TicketCommentViewController.h"

@@ -2,7 +2,7 @@
 //  LBB_MineViewDataController.h
 //  ST_Travel
 //
-//  Created by Diana on 16/10/28.
+//  Created by 晨曦 on 16/10/28.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 

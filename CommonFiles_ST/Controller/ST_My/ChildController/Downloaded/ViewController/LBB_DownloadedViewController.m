@@ -1,88 +1,70 @@
 //
-//  ST_HomeViewController.m
+//  LBB_DownloadedViewController.m
 //  ST_Travel
 //
-//  Created by newman on 16/10/1.
+//  Created by 晨曦 on 16/11/5.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
-//ScrollView高度
-#define LG_scrollViewH 220
-//Segment高度
-#define LG_segmentH 30
-#define LG_segmentW AUTO(190)
+
+#import "LBB_DownloadedViewController.h"
 #import "ST_SquareViewController.h"
 #import "ST_TabBarController.h"
 #import "ZJMSearchBar.h"
 #import "ZJScrollPageView.h"
 #import "Header.h"
-#import "ZJMTravelsViewController.h"
-//#import "ZJMHostViewController.h"
-#import "LBBVideoViewController.h"
-#import "LBB_ZJMHostViewController.h"
+#import "LBB_DownloadTravelsViewController.h"
 
-@interface ST_SquareViewController ()<UISearchBarDelegate,UIScrollViewDelegate>
+#define LG_scrollViewH 220
+#define LG_segmentH 30
+#define LG_segmentW AUTO(190)
+
+@interface LBB_DownloadedViewController ()<UIScrollViewDelegate>
 @property(nonatomic, weak)UISearchBar         *JMSearchBar;
 @property (nonatomic, strong) UIScrollView      *scrollView;
-@property(nonatomic, strong)ZJMTravelsViewController    *travelContrller;
+@property(nonatomic, strong)LBB_DownloadTravelsViewController    *travelContrller;
+
 @end
 
-@implementation ST_SquareViewController
+@implementation LBB_DownloadedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = NSLocalizedString(@"我的下载", nil);
+    self.view.backgroundColor = ColorBackground;
     
-    [self  initNaviStyle];
     //加载Segment
     [self setSegment];
     //加载ViewController
     [self addChildViewController];
     //加载ScrollView
     [self setContentScrollView];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [(ST_TabBarController*)self.tabBarController setTabBarHidden:NO animated:YES];
+    [(ST_TabBarController*)self.tabBarController setTabBarHidden:YES animated:YES];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage createImageWithColor:[UIColor clearColor]]];
-
+    
 }
 
-/**
- *  初始化nav
- */
-- (void)initNaviStyle
-{
-    //将搜索条放在一个UIView上
-    ZJMSearchBar *searchBar = [[ZJMSearchBar alloc]initWithFrame:CGRectMake(0, 0, 0, 40)];
-    searchBar.placeholder = @"请搜索 标签 用户";
-    searchBar.delegate = self;
-    searchBar.layer.borderWidth = AUTO(0.5);
-    searchBar.layer.borderColor = ColorBlack.CGColor;
-    searchBar.layer.cornerRadius = 20.0;
-    _JMSearchBar = searchBar;
-    self.navigationItem.titleView = searchBar;
-    
-    //ios7以后设置UISearchBar内部编辑框的背景颜色
-    UIView *searchTextField = nil;
-    _JMSearchBar.barTintColor = [UIColor clearColor];//必须先设置barTintColor才能获取得到searchTextField
-    searchTextField = [[[_JMSearchBar.subviews firstObject] subviews] lastObject];
-    searchTextField.backgroundColor = [UIColor whiteColor];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(void)setSegment {
     
-    _buttonList = [[NSMutableArray alloc]init];
+    _buttonList = [[NSMutableArray alloc] init];
     //初始化
-    LGSegment *segment = [[LGSegment alloc]initWithFrame:CGRectMake((DeviceWidth - LG_segmentW)/ 2 , 5, LG_segmentW , LG_segmentH)];
+    LGSegment *segment = [[LGSegment alloc] initWithFrame:CGRectMake((DeviceWidth - LG_segmentW)/ 2 , 5, LG_segmentW , LG_segmentH)];
     segment.backgroundColor = [UIColor whiteColor];
     segment.delegate = self;
     self.segment = segment;
-    [_buttonList addObject:@"主页"];
+    segment.backgroundColor = ColorBackground;
     [_buttonList addObject:@"游记"];
-    [_buttonList addObject:@"视频"];
+    [_buttonList addObject:@"攻略"];
     self.segment.buttonList = self.buttonList;
     [self.segment commonInit];
     [self.view addSubview:segment];
@@ -113,25 +95,17 @@
     sv.contentSize = CGSizeMake(_buttonList.count * DeviceWidth, 0);
     self.contentScrollView = sv;
 }
-//加载3个ViewController
+
+//加载2个ViewController
 -(void)addChildViewController{
-    //LBB_ZJMHostViewController
-//    ZJMHostViewController * vc1 = [[ZJMHostViewController alloc]init];
-//    vc1.jumpBlock = ^(id obj,id pargram){
-//        [self.navigationController pushViewController:obj animated:YES];
-//    };
-//    [self addChildViewController:vc1];
     
-    LBB_ZJMHostViewController *vc1 = [[LBB_ZJMHostViewController alloc]init];
+    LBB_DownloadTravelsViewController *vc1 = [[LBB_DownloadTravelsViewController alloc]init];
+    vc1.viewType = TravelsViewDownloaed;
     [self addChildViewController:vc1];
     
-    ZJMTravelsViewController *viewVC = [[ZJMTravelsViewController alloc]init];
-    viewVC.viewType = TravelsViewMainSqure;
+    LBB_DownloadTravelsViewController *viewVC = [[LBB_DownloadTravelsViewController alloc]init];
+    viewVC.viewType = TravelsViewGuide;
     [self addChildViewController:viewVC];
-    
-    LBBVideoViewController * vc3 = [[LBBVideoViewController alloc]init];
-    [self addChildViewController:vc3];
-    
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -150,11 +124,8 @@
     //计算当前index
     int  pageIndex = (int)(scrollView.contentOffset.x / DeviceWidth);
     NSLog(@"%d",(int)(scrollView.contentOffset.x / DeviceWidth));
-    //滑动更改self.segment颜色和cylayer的位置
-//    [self.segment moveToOffsetX:offsetX AndIndex:(int)(scrollView.contentOffset.x / LG_segmentW)];
     [self scrollToPage:pageIndex];//修复页面自动滚动偏差
 }
-
 
 
 @end

@@ -20,7 +20,16 @@ typedef NS_ENUM(NSInteger, UITableViewCellViewSignal)
     UITableViewCellCollect,             //收藏
     UITableViewCellConment,         //评论
     UITableViewCellFocus,               //关注
-    UITableViewCellSendMessage   //发送评论
+    UITableViewCellSendMessage,   //发送评论
+    UITableViewCellDelete        //删除
+};
+
+typedef NS_ENUM(NSInteger, TravelsViewType)
+{
+    TravelsViewMainSqure = 0,       //广场-游记
+    TravelsViewDownloaed, //我的-下载-游记
+    TravelsViewGuide, //我的-下载-攻略
+    TravelsViewRoute, //我的-下载-定制路线
 };
 
 //使用宏定义16进制颜色值

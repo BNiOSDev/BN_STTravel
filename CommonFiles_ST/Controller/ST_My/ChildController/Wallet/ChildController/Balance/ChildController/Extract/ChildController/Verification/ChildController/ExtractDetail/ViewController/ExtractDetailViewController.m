@@ -2,7 +2,7 @@
 //  ExtractDetailViewController.m
 //  ST_Travel
 //
-//  Created by Diana on 16/10/19.
+//  Created by 晨曦 on 16/10/19.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
