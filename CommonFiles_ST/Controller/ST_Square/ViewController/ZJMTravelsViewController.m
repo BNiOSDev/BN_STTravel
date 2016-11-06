@@ -79,7 +79,7 @@
         [self dealCellSignal:signal withIndex:indexPath];
     };
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    
+    cell.viewType = _viewType;
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
    
@@ -121,7 +121,6 @@
             
         }
             break;
-        
         default:
             break;
     }

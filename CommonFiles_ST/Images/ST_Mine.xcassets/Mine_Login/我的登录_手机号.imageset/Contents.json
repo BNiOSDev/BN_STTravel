@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "我的登录_手机号.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "我的登录_手机号@2x.png",
       "scale" : "2x"
     },
     {

@@ -2,7 +2,7 @@
 //  LBB_LoginViewController.h
 //  ST_Travel
 //
-//  Created by Diana on 16/11/1.
+//  Created by 晨曦 on 16/11/1.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
