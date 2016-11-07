@@ -11,6 +11,7 @@
 #import "ST_SquareViewController.h"
 #import "ST_MallViewController.h"
 #import "MineViewController.h"
+#import "LBB_PublishTravel_Controller.h"
 
 @interface ST_TabBarController ()<UITabBarControllerDelegate>
 {
@@ -18,8 +19,9 @@
     UINavigationController *navigationControllerMy;
     UINavigationController *navigationControllerSquare;
     UINavigationController *navigationControllerMall;
-    
+    UINavigationController *navigationControllerPublish;
     UIButton *centerBtn;
+    LBB_PublishTravel_Controller   *viewController5;
 }
 @end
 
@@ -66,10 +68,13 @@
     Base_BaseViewController *viewController1        = [[ST_HomeViewController alloc]init];
     Base_BaseViewController *viewController2        = [[ST_SquareViewController alloc]init];
     Base_BaseViewController *viewController3        = [[ST_MallViewController alloc]init];
+    
 
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
     Base_BaseViewController *viewController4 = [main instantiateViewControllerWithIdentifier:@"MineViewController"];
-    UIViewController *viewController5        = [[UIViewController alloc]init];
+    viewController5        = [[LBB_PublishTravel_Controller alloc]init];
+    viewController5.view.backgroundColor = [UIColor whiteColor];
+//    navigationControllerPublish = [[UINavigationController alloc]initWithRootViewController:viewController5];
 
     navigationControllerHome          = [[UINavigationController alloc]initWithRootViewController:viewController1];
     navigationControllerHome.title    = @"首页";
@@ -120,7 +125,8 @@
 
 -(void)buttonAction:(UIButton*)button
 {
-    
+    LBB_PublishTravel_Controller *VC = [[LBB_PublishTravel_Controller alloc]init];
+    [self presentViewController:VC animated:YES completion:nil];
 }
 
 - (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated

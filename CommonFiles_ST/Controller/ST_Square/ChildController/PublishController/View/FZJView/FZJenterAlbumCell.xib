@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="enterCell" rowHeight="72" id="KGk-i7-Jjw" customClass="FZJenterAlbumCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="375" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LEX-mw-hX2">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="Dre-2f-A43"/>
+                            <constraint firstAttribute="width" constant="80" id="GYa-hX-eBL"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="相册名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzA-bU-Zrb">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="RKT-PQ-YdE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vQG-XK-PbI">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="8US-aA-XeQ"/>
+                            <constraint firstAttribute="height" constant="30" id="E7D-kx-wn1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aM6-A1-y5T">
+                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="4QA-bs-vWF"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uzA-bU-Zrb" firstAttribute="leading" secondItem="LEX-mw-hX2" secondAttribute="trailing" constant="10" id="IGd-Zj-5kZ"/>
+                    <constraint firstItem="vQG-XK-PbI" firstAttribute="leading" secondItem="LEX-mw-hX2" secondAttribute="trailing" constant="10" id="cmW-Zf-UUx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="uzA-bU-Zrb" firstAttribute="top" secondItem="KGk-i7-Jjw" secondAttribute="top" constant="10" id="CR2-ju-ZNz"/>
+                <constraint firstAttribute="trailing" secondItem="aM6-A1-y5T" secondAttribute="trailing" id="GJL-Hw-nhk"/>
+                <constraint firstItem="LEX-mw-hX2" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" constant="10" id="J4C-zU-19H"/>
+                <constraint firstItem="aM6-A1-y5T" firstAttribute="leading" secondItem="KGk-i7-Jjw" secondAttribute="leading" id="L3M-tq-1MB"/>
+                <constraint firstAttribute="trailing" secondItem="uzA-bU-Zrb" secondAttribute="trailing" constant="20" id="MDT-2c-GA8"/>
+                <constraint firstAttribute="bottom" secondItem="vQG-XK-PbI" secondAttribute="bottom" constant="10" id="WPF-bj-whw"/>
+                <constraint firstItem="LEX-mw-hX2" firstAttribute="top" secondItem="KGk-i7-Jjw" secondAttribute="top" constant="10" id="czw-YA-SJf"/>
+                <constraint firstAttribute="bottom" secondItem="aM6-A1-y5T" secondAttribute="bottom" id="eqV-Cp-3u0"/>
+            </constraints>
+            <connections>
+                <outlet property="albumName" destination="uzA-bU-Zrb" id="1bP-Dz-7rX"/>
+                <outlet property="albumNumber" destination="vQG-XK-PbI" id="Q0C-jn-RVE"/>
+                <outlet property="iconImageView" destination="LEX-mw-hX2" id="fgp-sh-brt"/>
+            </connections>
+            <point key="canvasLocation" x="329" y="166"/>
+        </tableViewCell>
+    </objects>
+</document>

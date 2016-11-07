@@ -90,6 +90,20 @@
 		1D12FA961DC6E97700ACD462 /* ST_HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D12FA431DC6E97700ACD462 /* ST_HomeViewController.xib */; };
 		1D12FA971DC6E97700ACD462 /* ST_TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12FA451DC6E97700ACD462 /* ST_TabBarController.m */; };
 		1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */; };
+		3C7086481DCC291700EE8F62 /* LBB_ImagePick_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7086471DCC291700EE8F62 /* LBB_ImagePick_ViewController.m */; };
+		3C98142B1DCAE75E00442633 /* LBB_PublishTravel_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C98142A1DCAE75E00442633 /* LBB_PublishTravel_Controller.m */; };
+		3C98142F1DCB195E00442633 /* LBB_SelectImages_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C98142E1DCB195E00442633 /* LBB_SelectImages_ViewController.m */; };
+		3CAFF3571DCC7D95001C86F7 /* LBB_ZJMPhotoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAFF3561DCC7D95001C86F7 /* LBB_ZJMPhotoList.m */; };
+		3CAFF35A1DCC868B001C86F7 /* LBB_ImageCollect_TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAFF3591DCC868B001C86F7 /* LBB_ImageCollect_TableViewCell.m */; };
+		3CAFF3701DCC8D3D001C86F7 /* UIButtonExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAFF35D1DCC8D3D001C86F7 /* UIButtonExt.m */; };
+		3CAFF3711DCC8D3D001C86F7 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAFF35F1DCC8D3D001C86F7 /* UIViewExt.m */; };
+		3CAFF3721DCC8D3D001C86F7 /* FZJPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAFF3621DCC8D3D001C86F7 /* FZJPhotoModel.m */; };
+		3CAFF3741DCC8D3D001C86F7 /* FZJBigPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAFF3681DCC8D3D001C86F7 /* FZJBigPhotoCell.m */; };
+		3CAFF3751DCC8D3D001C86F7 /* FZJBigPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CAFF3691DCC8D3D001C86F7 /* FZJBigPhotoCell.xib */; };
+		3CAFF3761DCC8D3D001C86F7 /* FZJenterAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAFF36B1DCC8D3D001C86F7 /* FZJenterAlbumCell.m */; };
+		3CAFF3771DCC8D3D001C86F7 /* FZJenterAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CAFF36C1DCC8D3D001C86F7 /* FZJenterAlbumCell.xib */; };
+		3CAFF3781DCC8D3D001C86F7 /* FZJSmallPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CAFF36E1DCC8D3D001C86F7 /* FZJSmallPhotoCell.m */; };
+		3CAFF3791DCC8D3D001C86F7 /* FZJSmallPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CAFF36F1DCC8D3D001C86F7 /* FZJSmallPhotoCell.xib */; };
 		8400138F1DC62C3200BD6297 /* ConvertiblePointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840013851DC62C3200BD6297 /* ConvertiblePointsViewController.m */; };
 		840013901DC62C3200BD6297 /* PointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8400138E1DC62C3200BD6297 /* PointsViewController.m */; };
 		8402FB771DC5F1CC0064E0FC /* LBB_NoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8402FB761DC5F1CC0064E0FC /* LBB_NoticeViewController.m */; };
@@ -507,6 +521,31 @@
 		1D12FA451DC6E97700ACD462 /* ST_TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ST_TabBarController.m; sourceTree = "<group>"; };
 		1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
+		3C7086461DCC291700EE8F62 /* LBB_ImagePick_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ImagePick_ViewController.h; sourceTree = "<group>"; };
+		3C7086471DCC291700EE8F62 /* LBB_ImagePick_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ImagePick_ViewController.m; sourceTree = "<group>"; };
+		3C9814291DCAE75E00442633 /* LBB_PublishTravel_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PublishTravel_Controller.h; sourceTree = "<group>"; };
+		3C98142A1DCAE75E00442633 /* LBB_PublishTravel_Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PublishTravel_Controller.m; sourceTree = "<group>"; };
+		3C98142D1DCB195E00442633 /* LBB_SelectImages_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SelectImages_ViewController.h; sourceTree = "<group>"; };
+		3C98142E1DCB195E00442633 /* LBB_SelectImages_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SelectImages_ViewController.m; sourceTree = "<group>"; };
+		3CAFF3551DCC7D95001C86F7 /* LBB_ZJMPhotoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ZJMPhotoList.h; sourceTree = "<group>"; };
+		3CAFF3561DCC7D95001C86F7 /* LBB_ZJMPhotoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ZJMPhotoList.m; sourceTree = "<group>"; };
+		3CAFF3581DCC868B001C86F7 /* LBB_ImageCollect_TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ImageCollect_TableViewCell.h; sourceTree = "<group>"; };
+		3CAFF3591DCC868B001C86F7 /* LBB_ImageCollect_TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ImageCollect_TableViewCell.m; sourceTree = "<group>"; };
+		3CAFF35C1DCC8D3D001C86F7 /* UIButtonExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonExt.h; sourceTree = "<group>"; };
+		3CAFF35D1DCC8D3D001C86F7 /* UIButtonExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonExt.m; sourceTree = "<group>"; };
+		3CAFF35E1DCC8D3D001C86F7 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		3CAFF35F1DCC8D3D001C86F7 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		3CAFF3611DCC8D3D001C86F7 /* FZJPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZJPhotoModel.h; sourceTree = "<group>"; };
+		3CAFF3621DCC8D3D001C86F7 /* FZJPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZJPhotoModel.m; sourceTree = "<group>"; };
+		3CAFF3671DCC8D3D001C86F7 /* FZJBigPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZJBigPhotoCell.h; sourceTree = "<group>"; };
+		3CAFF3681DCC8D3D001C86F7 /* FZJBigPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZJBigPhotoCell.m; sourceTree = "<group>"; };
+		3CAFF3691DCC8D3D001C86F7 /* FZJBigPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FZJBigPhotoCell.xib; sourceTree = "<group>"; };
+		3CAFF36A1DCC8D3D001C86F7 /* FZJenterAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZJenterAlbumCell.h; sourceTree = "<group>"; };
+		3CAFF36B1DCC8D3D001C86F7 /* FZJenterAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZJenterAlbumCell.m; sourceTree = "<group>"; };
+		3CAFF36C1DCC8D3D001C86F7 /* FZJenterAlbumCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FZJenterAlbumCell.xib; sourceTree = "<group>"; };
+		3CAFF36D1DCC8D3D001C86F7 /* FZJSmallPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FZJSmallPhotoCell.h; sourceTree = "<group>"; };
+		3CAFF36E1DCC8D3D001C86F7 /* FZJSmallPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FZJSmallPhotoCell.m; sourceTree = "<group>"; };
+		3CAFF36F1DCC8D3D001C86F7 /* FZJSmallPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FZJSmallPhotoCell.xib; sourceTree = "<group>"; };
 		8400137D1DC62AC000BD6297 /* Mine_Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mine_Common.h; sourceTree = "<group>"; };
 		840013841DC62C3200BD6297 /* ConvertiblePointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertiblePointsViewController.h; sourceTree = "<group>"; };
 		840013851DC62C3200BD6297 /* ConvertiblePointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertiblePointsViewController.m; sourceTree = "<group>"; };
@@ -1482,6 +1521,84 @@
 				84F6B9131DC6E3D1009ED8DF /* LBBFriendViewController.m */,
 			);
 			path = ViewContrl;
+			sourceTree = "<group>";
+		};
+		3C9814261DCACDC300442633 /* PublishController */ = {
+			isa = PBXGroup;
+			children = (
+				3C98142C1DCB192D00442633 /* ChildViewControl */,
+				3C9814281DCAE73800442633 /* View */,
+				3C9814271DCAE72E00442633 /* ViewControl */,
+			);
+			path = PublishController;
+			sourceTree = "<group>";
+		};
+		3C9814271DCAE72E00442633 /* ViewControl */ = {
+			isa = PBXGroup;
+			children = (
+				3C9814291DCAE75E00442633 /* LBB_PublishTravel_Controller.h */,
+				3C98142A1DCAE75E00442633 /* LBB_PublishTravel_Controller.m */,
+			);
+			path = ViewControl;
+			sourceTree = "<group>";
+		};
+		3C9814281DCAE73800442633 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3CAFF35B1DCC8D3D001C86F7 /* FZJCategory */,
+				3CAFF3601DCC8D3D001C86F7 /* FZJModel */,
+				3CAFF3661DCC8D3D001C86F7 /* FZJView */,
+				3CAFF3581DCC868B001C86F7 /* LBB_ImageCollect_TableViewCell.h */,
+				3CAFF3591DCC868B001C86F7 /* LBB_ImageCollect_TableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C98142C1DCB192D00442633 /* ChildViewControl */ = {
+			isa = PBXGroup;
+			children = (
+				3C98142D1DCB195E00442633 /* LBB_SelectImages_ViewController.h */,
+				3C98142E1DCB195E00442633 /* LBB_SelectImages_ViewController.m */,
+				3C7086461DCC291700EE8F62 /* LBB_ImagePick_ViewController.h */,
+				3C7086471DCC291700EE8F62 /* LBB_ImagePick_ViewController.m */,
+			);
+			path = ChildViewControl;
+			sourceTree = "<group>";
+		};
+		3CAFF35B1DCC8D3D001C86F7 /* FZJCategory */ = {
+			isa = PBXGroup;
+			children = (
+				3CAFF35C1DCC8D3D001C86F7 /* UIButtonExt.h */,
+				3CAFF35D1DCC8D3D001C86F7 /* UIButtonExt.m */,
+				3CAFF35E1DCC8D3D001C86F7 /* UIViewExt.h */,
+				3CAFF35F1DCC8D3D001C86F7 /* UIViewExt.m */,
+			);
+			path = FZJCategory;
+			sourceTree = "<group>";
+		};
+		3CAFF3601DCC8D3D001C86F7 /* FZJModel */ = {
+			isa = PBXGroup;
+			children = (
+				3CAFF3611DCC8D3D001C86F7 /* FZJPhotoModel.h */,
+				3CAFF3621DCC8D3D001C86F7 /* FZJPhotoModel.m */,
+			);
+			path = FZJModel;
+			sourceTree = "<group>";
+		};
+		3CAFF3661DCC8D3D001C86F7 /* FZJView */ = {
+			isa = PBXGroup;
+			children = (
+				3CAFF3671DCC8D3D001C86F7 /* FZJBigPhotoCell.h */,
+				3CAFF3681DCC8D3D001C86F7 /* FZJBigPhotoCell.m */,
+				3CAFF3691DCC8D3D001C86F7 /* FZJBigPhotoCell.xib */,
+				3CAFF36A1DCC8D3D001C86F7 /* FZJenterAlbumCell.h */,
+				3CAFF36B1DCC8D3D001C86F7 /* FZJenterAlbumCell.m */,
+				3CAFF36C1DCC8D3D001C86F7 /* FZJenterAlbumCell.xib */,
+				3CAFF36D1DCC8D3D001C86F7 /* FZJSmallPhotoCell.h */,
+				3CAFF36E1DCC8D3D001C86F7 /* FZJSmallPhotoCell.m */,
+				3CAFF36F1DCC8D3D001C86F7 /* FZJSmallPhotoCell.xib */,
+			);
+			path = FZJView;
 			sourceTree = "<group>";
 		};
 		8400137E1DC62C3200BD6297 /* Points */ = {
@@ -2853,6 +2970,7 @@
 		84F6B8A61DC6E3D0009ED8DF /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				3C9814261DCACDC300442633 /* PublishController */,
 				3C41EC141DC7392D003F146F /* FriendControl */,
 				3C41EC101DC7391E003F146F /* VideoControl */,
 				84F6B8AB1DC6E3D0009ED8DF /* EditShopRecoder */,
@@ -2882,6 +3000,8 @@
 			children = (
 				84F6B8A91DC6E3D0009ED8DF /* NSArray+Sudoku.h */,
 				84F6B8AA1DC6E3D0009ED8DF /* NSArray+Sudoku.m */,
+				3CAFF3551DCC7D95001C86F7 /* LBB_ZJMPhotoList.h */,
+				3CAFF3561DCC7D95001C86F7 /* LBB_ZJMPhotoList.m */,
 			);
 			path = CustomAllQueenView;
 			sourceTree = "<group>";
@@ -3678,7 +3798,7 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8NT4E7BWNP;
+						DevelopmentTeam = C98HGZ34YB;
 						ProvisioningStyle = Automatic;
 					};
 					C9C0E9641D9948F300575A7C = {
@@ -3770,6 +3890,7 @@
 				84F6B9E41DC6E3D1009ED8DF /* zjmtranported@2x.png in Resources */,
 				84F6B9F31DC6E3D1009ED8DF /* zjmmenpiaoed@2x.png in Resources */,
 				84F6B9EF1DC6E3D1009ED8DF /* zjmhouse@2x.png in Resources */,
+				3CAFF3751DCC8D3D001C86F7 /* FZJBigPhotoCell.xib in Resources */,
 				C9C0E95C1D9948F200575A7C /* Assets.xcassets in Resources */,
 				84299B031DC43DF9005943FF /* LBB_MySectionFooterViewCell.xib in Resources */,
 				84F6B9F71DC6E3D1009ED8DF /* zjmshop@2x.png in Resources */,
@@ -3811,6 +3932,8 @@
 				84F6B9FA1DC6E3D1009ED8DF /* zjmtranpord@2x.png in Resources */,
 				C9C0E95A1D9948F100575A7C /* Main.storyboard in Resources */,
 				84F6B9C91DC6E3D1009ED8DF /* zjmdianzaned@2x.png in Resources */,
+				3CAFF3771DCC8D3D001C86F7 /* FZJenterAlbumCell.xib in Resources */,
+				3CAFF3791DCC8D3D001C86F7 /* FZJSmallPhotoCell.xib in Resources */,
 				84F6B9D91DC6E3D1009ED8DF /* zjmtime@2x.png in Resources */,
 				84B377DF1DC4539D0078397C /* ST_Mine.xcassets in Resources */,
 				84F6B9E91DC6E3D1009ED8DF /* zjmbeauty@2x.png in Resources */,
@@ -3898,6 +4021,7 @@
 				8430120B1DBF861200F5316A /* PersonalInfoCell.m in Sources */,
 				8430120D1DBF861200F5316A /* PersonalCenterViewController.m in Sources */,
 				84F6BA211DC6E3D1009ED8DF /* JHRingChart.m in Sources */,
+				3C98142F1DCB195E00442633 /* LBB_SelectImages_ViewController.m in Sources */,
 				1D12FA4D1DC6E97700ACD462 /* LBB_PoohPlusMinTextField.m in Sources */,
 				1D12FA5E1DC6E97700ACD462 /* LBB_DiscoveryMainViewController.m in Sources */,
 				843012121DBF861200F5316A /* SettingPrivaceViewController.m in Sources */,
@@ -3952,6 +4076,7 @@
 				84F6BA191DC6E3D1009ED8DF /* ZJMHostModel.m in Sources */,
 				8402FB7A1DC5F3450064E0FC /* LBB_SquareTravelViewController.m in Sources */,
 				84F6B9B41DC6E3D1009ED8DF /* LBB_ShopCatgory_View.m in Sources */,
+				3CAFF3741DCC8D3D001C86F7 /* FZJBigPhotoCell.m in Sources */,
 				1D12FA5F1DC6E97700ACD462 /* LBB_FoodsMainMenuCell.m in Sources */,
 				8429261E1DC0CED900B8D259 /* LBB_SquareNotificationViewCell.m in Sources */,
 				1D12FA861DC6E97700ACD462 /* NSObject+PoohCommon.m in Sources */,
@@ -3961,6 +4086,7 @@
 				84F6BA111DC6E3D1009ED8DF /* LBB_TravelDetailContentView.m in Sources */,
 				84F6B9BB1DC6E3D1009ED8DF /* LBB_HostDetailHeadView.m in Sources */,
 				1D12FA7C1DC6E97700ACD462 /* LBB_ScenicDetailSubjectLableCell.m in Sources */,
+				3CAFF3571DCC7D95001C86F7 /* LBB_ZJMPhotoList.m in Sources */,
 				1D12FA681DC6E97700ACD462 /* LBB_OrderTicketConfirmCell.m in Sources */,
 				1D12FA521DC6E97700ACD462 /* LBBPoohCycleScrollCell.m in Sources */,
 				1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */,
@@ -4018,6 +4144,7 @@
 				1D12FA781DC6E97700ACD462 /* LBB_ScenicDetailVipMPaiCell.m in Sources */,
 				1D12FA531DC6E97700ACD462 /* LBBPoohGreatItemView.m in Sources */,
 				1D12FA671DC6E97700ACD462 /* LBB_OrderTicketCell.m in Sources */,
+				3C7086481DCC291700EE8F62 /* LBB_ImagePick_ViewController.m in Sources */,
 				84F6BA431DC6E3D1009ED8DF /* ZJMBaseViewController.m in Sources */,
 				1D12FA971DC6E97700ACD462 /* ST_TabBarController.m in Sources */,
 				8430120E1DBF861200F5316A /* LBB_RouteViewController.m in Sources */,
@@ -4031,6 +4158,7 @@
 				84F6BA151DC6E3D1009ED8DF /* CommentModel.m in Sources */,
 				1D12FA731DC6E97700ACD462 /* LBB_ScenicDetailEquipmentCell.m in Sources */,
 				843012151DBF861200F5316A /* TicketDetailViewCell.m in Sources */,
+				3CAFF3721DCC8D3D001C86F7 /* FZJPhotoModel.m in Sources */,
 				84F6BA0F1DC6E3D1009ED8DF /* LBB_PraiseWithCommentView.m in Sources */,
 				84F6B9B81DC6E3D1009ED8DF /* LBB_CommentView.m in Sources */,
 				84F6BA341DC6E3D1009ED8DF /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
@@ -4052,6 +4180,7 @@
 				843011FE1DBF861200F5316A /* MineBaseViewController.m in Sources */,
 				8405D8C61DC583B8005A5CE5 /* LBB_MyUserHeaderView.m in Sources */,
 				84F6BA1C1DC6E3D1009ED8DF /* JHColumnChart.m in Sources */,
+				3CAFF3711DCC8D3D001C86F7 /* UIViewExt.m in Sources */,
 				1D12FA701DC6E97700ACD462 /* LBB_ScenicDetailAddressCell.m in Sources */,
 				84F6BA3E1DC6E3D1009ED8DF /* LBBVideoViewController.m in Sources */,
 				84F6B9B71DC6E3D1009ED8DF /* LBB_CommentTextField.m in Sources */,
@@ -4061,11 +4190,13 @@
 				84F6BA051DC6E3D1009ED8DF /* LBBHostDetailViewController.m in Sources */,
 				84F6BA1D1DC6E3D1009ED8DF /* JHLineChart.m in Sources */,
 				1D12FA651DC6E97700ACD462 /* LBB_OrderPayWayCell.m in Sources */,
+				3CAFF35A1DCC868B001C86F7 /* LBB_ImageCollect_TableViewCell.m in Sources */,
 				1D12FA621DC6E97700ACD462 /* LBBNearbyMenuListTableViewCell.m in Sources */,
 				1D12FA741DC6E97700ACD462 /* LBB_ScenicDetailOrderConfirmView.m in Sources */,
 				1D12FA6D1DC6E97700ACD462 /* LBB_OrderPayWayViewController.m in Sources */,
 				1D12FA581DC6E97700ACD462 /* LBB_StarRatingViewController.m in Sources */,
 				84F6BA311DC6E3D1009ED8DF /* ContentImageView.m in Sources */,
+				3CAFF3701DCC8D3D001C86F7 /* UIButtonExt.m in Sources */,
 				84F6BA201DC6E3D1009ED8DF /* JHPieItemsView.m in Sources */,
 				1D12FA5B1DC6E97700ACD462 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
 				1D12FA561DC6E97700ACD462 /* LBB_AddressAddViewController.m in Sources */,
@@ -4074,6 +4205,7 @@
 				84F6BA331DC6E3D1009ED8DF /* ZJMCommentView.m in Sources */,
 				843012091DBF861200F5316A /* ReceiptAddressViewController.m in Sources */,
 				1D12FA7F1DC6E97700ACD462 /* LBB_ScenicMainViewController.m in Sources */,
+				3CAFF3761DCC8D3D001C86F7 /* FZJenterAlbumCell.m in Sources */,
 				8430121C1DBF861200F5316A /* BalanceExtractViewController.m in Sources */,
 				843012071DBF861200F5316A /* ReceiptAddressViewCell.m in Sources */,
 				8430121D1DBF861200F5316A /* BalanceViewController.m in Sources */,
@@ -4086,8 +4218,10 @@
 				1D12FA4B1DC6E97700ACD462 /* GYChangeTextView.m in Sources */,
 				84F6BA321DC6E3D1009ED8DF /* PraiseView.m in Sources */,
 				C91F61551D9F96CA004FE75C /* ST_MallViewController.m in Sources */,
+				3C98142B1DCAE75E00442633 /* LBB_PublishTravel_Controller.m in Sources */,
 				1D12FA871DC6E97700ACD462 /* NSString+PoohCommon.m in Sources */,
 				843012291DBF861200F5316A /* WalletViewController.m in Sources */,
+				3CAFF3781DCC8D3D001C86F7 /* FZJSmallPhotoCell.m in Sources */,
 				84F6BA2A1DC6E3D1009ED8DF /* ZJContentView.m in Sources */,
 				84F6BA2D1DC6E3D1009ED8DF /* ZJScrollSegmentView.m in Sources */,
 				84F6BA231DC6E3D1009ED8DF /* JHWaveChart.m in Sources */,
@@ -4250,14 +4384,16 @@
 			baseConfigurationReference = A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = C98HGZ34YB;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.commsource.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fourdesigns.lkin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -4267,14 +4403,16 @@
 			baseConfigurationReference = 8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = C98HGZ34YB;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.commsource.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fourdesigns.lkin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ab71d52a-54ad-4148-a1ab-4c42cca58c19";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
