@@ -8,6 +8,7 @@
 
 #import "LBB_SignInRankListViewController.h"
 #import "LBB_SignInListCell.h"
+#import "LBB_SquareSnsFollowViewController.h"
 
 @interface LBB_SignInRankListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -128,5 +129,11 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc] init];
+    [self.navigationController pushViewController:dest animated:YES];
+}
 
 @end

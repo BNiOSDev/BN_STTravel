@@ -12,17 +12,13 @@
 #import "LBBNearbyMenuListTableViewCell.h"
 #import "LBB_ScenicDetailViewController.h"
 
-typedef NS_ENUM(NSInteger, LBB_NearbyMenuType) {
-    LBB_NearbyMenuScenicType = 0,//景点
-    LBB_NearbyMenuFoodsType,//美食
-    LBB_NearbyMenuHostelType,//民宿
-};
+
 
 @interface LBBNearbyMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UIView* mapView;
 @property (nonatomic, retain) UITableView* tableView;
-@property(nonatomic, assign)  LBB_NearbyMenuType selectType;
+@property(nonatomic, assign)  LBBPoohSegmCtrlType selectType;
 
 @end
 
@@ -189,13 +185,13 @@ typedef NS_ENUM(NSInteger, LBB_NearbyMenuType) {
     
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
     switch (self.selectType) {
-        case LBB_NearbyMenuScenicType://景点
+        case LBBPoohSegmCtrlScenicType://景点
             dest.homeType = LBBPoohHomeTypeScenic;
             break;
-        case LBB_NearbyMenuFoodsType://美食
+        case LBBPoohSegmCtrlFoodsType://美食
             dest.homeType = LBBPoohHomeTypeFoods;
             break;
-        case LBB_NearbyMenuHostelType://民宿
+        case LBBPoohSegmCtrlHostelType://民宿
             dest.homeType = LBBPoohHomeTypeHostel;
             break;
     }

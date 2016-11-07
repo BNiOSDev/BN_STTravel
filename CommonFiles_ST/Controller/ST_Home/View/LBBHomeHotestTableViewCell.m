@@ -8,8 +8,8 @@
 
 #import "LBBHomeHotestTableViewCell.h"
 #import "LBBHomeHotestTableViewCellItem.h"
+#import "LBB_ScenicDetailViewController.h"
 @interface LBBHomeHotestTableViewCell()<UICollectionViewDelegate, UICollectionViewDataSource>
-
 
 
 @end
@@ -39,6 +39,7 @@
                                                  NSForegroundColorAttributeName:ColorLightGray};
         segmentedControl.selectionIndicatorColor = ColorLightGray;
         segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+        segmentedControl.selectedSegmentIndex = self.selectType;
         [self.contentView addSubview:segmentedControl];
         [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.centerX.equalTo(ws.contentView);
@@ -47,6 +48,7 @@
         }];
 
         self.pagerView = segmentedControl;
+        
         segmentedControl.indexChangeBlock = ^(NSInteger index){
             NSLog(@"segmentedControl select:%ld",index);
         };
@@ -112,6 +114,31 @@
     
     return cell;
 }
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (self.isMarket) {
+        return;
+    }
+    
+    LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
+    switch (self.selectType) {
+        case LBBPoohSegmCtrlScenicType://景点
+            dest.homeType = LBBPoohHomeTypeScenic;
+            break;
+        case LBBPoohSegmCtrlFoodsType://美食
+            dest.homeType = LBBPoohHomeTypeFoods;
+            break;
+        case LBBPoohSegmCtrlHostelType://民宿
+            dest.homeType = LBBPoohHomeTypeHostel;
+            break;
+    }
+    if (dest) {
+        [[self getViewController].navigationController pushViewController:dest animated:YES];
+    }
+    
+}
+
 
 //- (CGSize)horizontalCellContentsView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 //    CGSize itemSize = CGSizeMake(200, 80);

@@ -268,7 +268,7 @@
 
 #pragma  //热门推荐
 -(UITableViewCell*)tableView:(UITableView *)tableView hotSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     if (indexPath.row == 0) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
@@ -280,7 +280,14 @@
         }
         [cell setCycleScrollViewHeight:AutoSize(380/2)];
         [cell setCycleScrollViewUrls:nil];
-        
+        [cell setEnableBlock:YES];
+        cell.click = ^(NSNumber* index){
+            
+            //  NSInteger num = [index integerValue];
+            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
+            [ws.parentViewController.navigationController pushViewController:dest animated:YES];
+            
+        };
         return cell;
     }
     else if (indexPath.row == 1){
@@ -388,7 +395,7 @@
 
 #pragma    //伴手礼推荐
 -(UITableViewCell*)tableView:(UITableView *)tableView travelProductCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     if (indexPath.row == 0) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
@@ -400,6 +407,14 @@
         }
         [cell setCycleScrollViewHeight:AutoSize(390/2)];
         [cell setCycleScrollViewUrls:nil];
+        [cell setEnableBlock:YES];
+        cell.click = ^(NSNumber* index){
+            
+            //  NSInteger num = [index integerValue];
+            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
+            [ws.parentViewController.navigationController pushViewController:dest animated:YES];
+            
+        };
         
         return cell;
     }
@@ -411,6 +426,7 @@
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
         [cell setPagerViewHidden:NO];
+        cell.isMarket = YES;
         return cell;
     }
     else{

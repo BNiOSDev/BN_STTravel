@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, retain) HMSegmentedControl* pagerView;
 -(void)setPagerViewHidden:(BOOL)isHidden;
+@property(nonatomic, assign)LBBPoohSegmCtrlType selectType;
 
+@property(nonatomic, assign)BOOL isMarket;
 
 @end

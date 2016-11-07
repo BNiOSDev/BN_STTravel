@@ -8,6 +8,6 @@
 
 #import "PoohBaseViewController.h"
 
-@interface LBB_SquareSnsFollowViewController : PoohBaseViewController
+@interface LBB_SquareSnsFollowViewController : Base_BaseViewController
 
 @end

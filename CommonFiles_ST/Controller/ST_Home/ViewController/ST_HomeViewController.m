@@ -239,6 +239,16 @@
     
         NSLog(@"touch section header");
         
+        if (section == LBBHomeSectionTravelRecommendType) {//游记推荐，跳转到游记
+            [self.tabBarController setSelectedIndex:1];
+        }
+        else if (section == LBBHomeSectionSquareCenterType) {//广场中心，跳转到广场主页
+            [self.tabBarController setSelectedIndex:1];
+        }
+        else if (section == LBBHomeSectionTravelProductType) {//旅游产品，跳转到商场主页
+            [self.tabBarController setSelectedIndex:3];
+        }
+        
     } forControlEvents:UIControlEventTouchUpInside];
 
     

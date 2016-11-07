@@ -66,5 +66,10 @@ typedef NS_ENUM(NSInteger, LBBPoohHomeType) {
 
 };
 
+typedef NS_ENUM(NSInteger, LBBPoohSegmCtrlType) {
+    LBBPoohSegmCtrlScenicType = 0,//景点
+    LBBPoohSegmCtrlFoodsType,//美食
+    LBBPoohSegmCtrlHostelType,//民宿
+};
 
 #endif /* PoohCommon_h */

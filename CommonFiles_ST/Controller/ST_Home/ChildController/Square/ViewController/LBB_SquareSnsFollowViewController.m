@@ -133,8 +133,8 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     segmentedControl.selectionIndicatorColor = ColorBtnYellow;
     segmentedControl.verticalDividerWidth = SeparateLineWidth;
     segmentedControl.verticalDividerColor = ColorLightGray;
-    //  segmentedControl.layer.borderWidth = 1;
-    // segmentedControl.layer.borderColor = ColorLine.CGColor;
+    segmentedControl.layer.borderWidth = 1;
+    segmentedControl.layer.borderColor = ColorLine.CGColor;
     segmentedControl.selectedSegmentIndex = self.selectType;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     [v addSubview:segmentedControl];

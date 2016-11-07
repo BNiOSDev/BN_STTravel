@@ -8,6 +8,7 @@
 
 #import "LBBHomeTravelRecommendTableViewCell.h"
 #import "LBB_LabelDetailViewController.h"
+#import "LBB_SquareSnsFollowViewController.h"
 
 @implementation LBBHomeTravelRecommendTableViewCell
 
@@ -57,6 +58,7 @@
             make.width.height.mas_equalTo(AutoSize(35));
             make.top.equalTo(ws.bgImageView.mas_bottom).offset(-45.0/2);
         }];
+        [self.portraitImageView setUserInteractionEnabled:YES];
         
         self.userLable = [UILabel new];
         [self.userLable setText:@"梁晓欣"];
@@ -255,9 +257,17 @@
 
 -(void)setModel:(id)model{
     
+    WS(ws);
     [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg"] placeholderImage:IMAGE(@"poohtest")];
 
+    [self.portraitImageView bk_whenTapped:^{
+        
+        LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
+        [[ws getViewController].navigationController pushViewController:dest animated:YES];
+        
+    }];
+    
 }
 
 

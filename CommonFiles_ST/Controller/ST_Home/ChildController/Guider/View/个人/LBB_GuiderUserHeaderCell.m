@@ -144,7 +144,7 @@
         }];
         
         self.vImageView = [UIImageView new];
-        [self.vImageView setImage:IMAGE(@"导游_导游V")];
+        [self.vImageView setImage:IMAGE(@"导游_V")];
         [self.contentView addSubview:self.vImageView];
         [self.vImageView mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -187,7 +187,7 @@
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.bottom.width.equalTo(ws.contentView);
             make.height.mas_equalTo(SeparateLineWidth);
-            make.top.equalTo(ws.portraitImageView.mas_bottom).offset(2*margin);
+            make.top.equalTo(ws.portraitImageView.mas_bottom).offset(margin);
         }];
     }
     return self;
