@@ -61,7 +61,6 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
  */
 
 -(void)loadCustomNavigationButton{
-    WS(ws);
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     UIButton *share = [[UIButton alloc] init];
     [share setBackgroundImage:IMAGE(@"景点详情_分享") forState:UIControlStateNormal];

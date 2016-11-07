@@ -11,11 +11,15 @@
 @interface LBB_OrderTicketConfirmCell : LBBPoohBaseTableViewCell
 
 
-@property(nonatomic,retain)UILabel* titleLabel;
-@property(nonatomic,retain)UILabel* timeLabel;
+@property(nonatomic, retain)UILabel* titleLabel;
+@property(nonatomic, retain)UILabel* timeLabel;
 
-@property(nonatomic,retain)UIButton* deleteButton;
+@property(nonatomic, retain)UIButton* leftButton;
 
-@property(nonatomic,retain)UIButton* payButton;
+@property(nonatomic, retain)UIButton* rightButton;
+
+@property(nonatomic, assign)LBBPoohTicketStatus ticketStatus;
+
+@property(nonatomic, retain)id model;
 
 @end

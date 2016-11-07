@@ -72,15 +72,16 @@
             make.height.equalTo(@15);
         }];
         
-        self.addMoreView = [[LBBPoohGreatItemView alloc]init];
-        [self.addMoreView.iconView setImage:IMAGE(@"ST_Discovery_Add")];
-        [self.addMoreView.desLabel setText:@"添加更多景点"];
-        [self.addMoreView.desLabel setTextColor:ColorLightGray];
-        [self.addMoreView.desLabel setFont:Font13];
+        self.addMoreView = [[UIButton alloc]init];
+        [self.addMoreView setImage:IMAGE(@"ST_Discovery_Add") forState:UIControlStateNormal];
+        [self.addMoreView setTitle:@"添加更多景点" forState:UIControlStateNormal];
+        [self.addMoreView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.addMoreView.titleLabel setFont:Font13];
+        [self.addMoreView setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
         [self.bgCtrlView addSubview:self.addMoreView];
         [self.addMoreView mas_makeConstraints:^(MASConstraintMaker* make){
             make.center.equalTo(ws.bgCtrlView);
-            make.height.equalTo(@20);
+           // make.height.equalTo(@20);
         }];
         self.addMoreView.hidden = YES;
         self.addMoreView.userInteractionEnabled = NO;

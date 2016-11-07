@@ -10,7 +10,7 @@
 
 @interface SwitchViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
+@property (weak, nonatomic) IBOutlet UIButton *switchBtn;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 
 @end

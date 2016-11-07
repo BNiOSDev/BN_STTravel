@@ -28,6 +28,7 @@
         
         self.textLabel1 = [UILabel new];
         [self.textLabel1 setFont:Font15];
+        [self.textLabel1 setTextColor:ColorGray];
         [self.contentView addSubview:self.textLabel1];
         [self.textLabel1 mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
@@ -40,6 +41,7 @@
         
         self.textLabel2 = [UILabel new];
         [self.textLabel2 setFont:Font15];
+        [self.textLabel2 setTextColor:ColorGray];
         [self.contentView addSubview:self.textLabel2];
         [self.textLabel2 mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
@@ -85,10 +87,49 @@
 
 -(void)setModel:(id)model{
 
-    [self.textLabel1 setText:@"门票编号"];
-    [self.textLabel2 setText:@"123456789"];
-    [self.textLabel3 setText:@"待支付"];
-
+    
+    switch (self.ticketStatus) {
+        case LBBPoohTicketStatusWaitPay:
+            [self.textLabel3 setText:@"待支付"];
+            
+            break;
+        case LBBPoohTicketStatusWaitCollect:
+            [self.textLabel3 setText:@"待取票"];
+            
+            break;
+        case LBBPoohTicketStatusCollected:
+            [self.textLabel3 setText:@"已取票"];
+            
+            break;
+        case LBBPoohTicketStatusRefunded:
+            [self.textLabel3 setText:@"已退款"];
+            break;
+    }
+    
+    switch (self.indexPath.row) {
+        case 0:
+        {
+            [self.textLabel1 setText:@"门票编号"];
+            [self.textLabel2 setText:@"123456789"];
+        }
+            break;
+        case 1:
+        {
+            [self.textLabel1 setText:@"取票人信息"];
+            [self.textLabel2 setText:@""];
+            [self.textLabel3 setText:@""];
+        }
+            
+            break;
+        case 2:
+        {
+            [self.textLabel1 setText:@"王大锤"];
+            [self.textLabel2 setText:@"186***12736"];
+            [self.textLabel3 setText:@""];
+        }
+            
+            break;
+    }
 }
 
 @end

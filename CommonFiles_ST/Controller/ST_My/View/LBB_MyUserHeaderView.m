@@ -2,7 +2,7 @@
 //  LBB_MyUserHeaderView.m
 //  ST_Travel
 //
-//  Created by dhxiang on 16/10/30.
+//  Created by Diana on 16/10/30.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -12,8 +12,8 @@
 @interface LBB_MyUserHeaderView()
 
 @property (weak, nonatomic) IBOutlet UIButton *userHeadBtn;
-@property (weak, nonatomic) IBOutlet UIButton *setBtn;
-@property (weak, nonatomic) IBOutlet UIButton *messageBtn;
+@property (weak, nonatomic) IBOutlet EnlargeButton *setBtn;
+@property (weak, nonatomic) IBOutlet EnlargeButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *backImgView;
 @property (weak, nonatomic) IBOutlet UILabel *signatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *guideImgView;
 @property (weak, nonatomic) IBOutlet UILabel *guideLabel;
 @property (weak, nonatomic) IBOutlet UIView *levelGuideBgView;
+@property (weak, nonatomic) IBOutlet UIButton *coverPictureBtn;
 
 @end
 
@@ -39,11 +40,24 @@
     self.levelLabel.font = Font12;
     self.guideLabel.font = Font12;
     self.signatureLabel.font = Font12;
+    
+    self.coverPictureBtn.exclusiveTouch = YES;
+    self.userHeadBtn.exclusiveTouch = YES;
+    self.setBtn.exclusiveTouch = YES;
+    self.messageBtn.exclusiveTouch = YES;
+    
+    self.backImgView.contentMode = UIViewContentModeScaleAspectFill;
+    self.setBtn.enlargeInset = UIEdgeInsetsMake(10, 10, 40, 40);
+    self.messageBtn.enlargeInset = UIEdgeInsetsMake(10, 40, 40, 10);
 }
 
-- (void)setUserInfo:(id)userInfo
+- (void)setUserInfo:(NSDictionary*)userInfo
 {
     _userInfo = userInfo;
+    NSDictionary *detailDict = [_userInfo objectForKey:@"Header"];
+    UIImage *image = [detailDict objectForKey:@"Image"];
+    self.backImgView.image = image;
+    
 }
 
 - (IBAction)setBtnClickEvent:(id)sender {
@@ -64,5 +78,10 @@
     }
 }
 
+- (IBAction)converPictureClickEvent:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickConverPicture:)]) {
+        [self.delegate didClickConverPicture:self.userInfo];
+    }
+}
 
 @end

@@ -10,6 +10,8 @@
 #import "SDCycleScrollView.h"
 #import "LBB_DiscoveryMainTableViewCell.h"
 #import "LBB_DiscoveryCustomizedViewController.h"
+#import "LBB_DiscoveryDetailViewController.h"
+
 static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
 
@@ -210,7 +212,8 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     
     UILabel* l = [UILabel new];
     [l setText:@"推荐线路攻略"];
-    [l setFont:Font12];
+    [l setTextColor:ColorGray];
+    [l setFont:Font15];
     [v addSubview:l];
     [l mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(v);
@@ -249,7 +252,13 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     return cell;
     
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
+    LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]init];
+    
+    [self.navigationController pushViewController:dest animated:YES];
+}
 
 
 @end

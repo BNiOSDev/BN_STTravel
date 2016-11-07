@@ -7,7 +7,6 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-#import "LBBPoohGreatItemView.h"
 @interface LBB_ScenicDetailCommentsCell : LBBPoohBaseTableViewCell
 
 @property(nonatomic,retain)UIImageView* portraitImageView;
@@ -22,8 +21,8 @@
 
 @property(nonatomic,retain)UILabel* timeLabel;
 
-@property(nonatomic, retain)LBBPoohGreatItemView* commentsView;
-@property(nonatomic, retain)LBBPoohGreatItemView* greetView;
+@property(nonatomic, retain)UIButton* commentsView;
+@property(nonatomic, retain)UIButton* greetView;
 
 @property(nonatomic, retain)UIButton* commentsButton;
 

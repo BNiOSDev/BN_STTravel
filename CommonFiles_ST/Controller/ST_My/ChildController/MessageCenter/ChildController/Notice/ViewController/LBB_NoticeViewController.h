@@ -2,7 +2,7 @@
 //  LBB_NoticeViewController.h
 //  ST_Travel
 //
-//  Created by dhxiang on 16/10/30.
+//  Created by Diana on 16/10/30.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 

@@ -10,4 +10,6 @@
 
 @interface LBB_OrderWaitPayViewController : Base_BaseViewController
 
+@property(nonatomic, assign)LBBPoohTicketStatus ticketStatus;
+
 @end

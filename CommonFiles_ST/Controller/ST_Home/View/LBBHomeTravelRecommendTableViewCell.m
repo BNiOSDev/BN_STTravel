@@ -7,6 +7,7 @@
 //
 
 #import "LBBHomeTravelRecommendTableViewCell.h"
+#import "LBB_LabelDetailViewController.h"
 
 @implementation LBBHomeTravelRecommendTableViewCell
 
@@ -77,15 +78,17 @@
             make.height.greaterThanOrEqualTo(@15);
         }];
         
-        self.commentsView = [[LBBPoohGreatItemView alloc]init];
-        [self.commentsView.iconView setImage:IMAGE(@"ST_Home_Comments")];
-        [self.commentsView.desLabel setText:@"1000"];
+        self.commentsView = [[UIButton alloc]init];
+        [self.commentsView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
+        [self.commentsView setTitle:@"1000" forState:UIControlStateNormal];
+        [self.commentsView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.commentsView.titleLabel setFont:Font12];
         [self.contentView addSubview:self.commentsView];
         [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.equalTo(ws.contentView).offset(-8);
             make.top.equalTo(ws.bgImageView.mas_bottom).offset(5);
-            make.height.equalTo(@16);
+          //  make.height.equalTo(@16);
         }];
         
         [self.commentsView bk_whenTapped:^{
@@ -95,9 +98,11 @@
         }];
         
         
-        self.greetView = [[LBBPoohGreatItemView alloc]init];
-        [self.greetView.iconView setImage:IMAGE(@"ST_Home_Great")];
-        [self.greetView.desLabel setText:@"190"];
+        self.greetView = [[UIButton alloc]init];
+        [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        [self.greetView setTitle:@"1000" forState:UIControlStateNormal];
+        [self.greetView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.greetView.titleLabel setFont:Font12];
         [self.contentView addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -112,34 +117,40 @@
         
         //specialLabelButton
         self.specialLabelButton1 = [UIButton new];
-        [self.specialLabelButton1 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+        [self.specialLabelButton1 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.specialLabelButton1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton1.titleLabel setFont:Font14];
+        [self.specialLabelButton1.titleLabel setFont:Font13];
         
         self.specialLabelButton2 = [UIButton new];
-        [self.specialLabelButton2 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+        [self.specialLabelButton2 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.specialLabelButton2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton2.titleLabel setFont:Font14];
+        [self.specialLabelButton2.titleLabel setFont:Font13];
         
         self.specialLabelButton3 = [UIButton new];
-        [self.specialLabelButton3 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+        [self.specialLabelButton3 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.specialLabelButton3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton3.titleLabel setFont:Font14];
+        [self.specialLabelButton3.titleLabel setFont:Font13];
         
         self.specialLabelButton4 = [UIButton new];
-        [self.specialLabelButton4 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+        [self.specialLabelButton4 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.specialLabelButton4 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton4.titleLabel setFont:Font14];
+        [self.specialLabelButton4.titleLabel setFont:Font13];
         
         self.specialLabelButton5 = [UIButton new];
-        [self.specialLabelButton5 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+        [self.specialLabelButton5 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.specialLabelButton5 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton5 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton5.titleLabel setFont:Font14];
+        [self.specialLabelButton5.titleLabel setFont:Font13];
         
         self.specialLabelButton6 = [UIButton new];
-        [self.specialLabelButton6 setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
+        [self.specialLabelButton6 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.specialLabelButton6 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton6 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton6.titleLabel setFont:Font14];
+        [self.specialLabelButton6.titleLabel setFont:Font13];
         
         [self.contentView addSubview:self.specialLabelButton1];
         [self.contentView addSubview:self.specialLabelButton2];
@@ -157,8 +168,8 @@
 
         
         CGFloat interval = 8;
-        CGFloat width = 100;
-        CGFloat height = 30;
+        CGFloat width = AutoSize(156/2);
+        CGFloat height = AutoSize(36/2);
 
         [self.specialLabelButton1 mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -171,28 +182,28 @@
         [self.specialLabelButton2 mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton1.mas_top).offset(-interval);
+            make.bottom.equalTo(ws.specialLabelButton1.mas_top).offset(-interval/2);
         }];
         
         [self.specialLabelButton3 mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton2.mas_top).offset(-interval);
+            make.bottom.equalTo(ws.specialLabelButton2.mas_top).offset(-interval/2);
         }];
         [self.specialLabelButton4 mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton3.mas_top).offset(-interval);
+            make.bottom.equalTo(ws.specialLabelButton3.mas_top).offset(-interval/2);
         }];
         [self.specialLabelButton5 mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton4.mas_top).offset(-interval);
+            make.bottom.equalTo(ws.specialLabelButton4.mas_top).offset(-interval/2);
         }];
         [self.specialLabelButton6 mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton5.mas_top).offset(-interval);
+            make.bottom.equalTo(ws.specialLabelButton5.mas_top).offset(-interval/2);
         }];
         
         [self.specialLabelButton6 setHidden:YES];
@@ -203,6 +214,8 @@
         [self.specialLabelButton1 bk_addEventHandler:^(id sender){
         
             NSLog(@"specialLabelButton1 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         [self.specialLabelButton2 bk_addEventHandler:^(id sender){
             

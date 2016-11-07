@@ -7,7 +7,6 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-#import "LBBPoohGreatItemView.h"
 
 @interface LBB_ScenicMainTableViewCell : LBBPoohBaseTableViewCell
 
@@ -23,8 +22,8 @@
 
 @property(nonatomic, retain)UIButton* favoriteButton;
 
-@property(nonatomic, retain)LBBPoohGreatItemView* commentsView;
-@property(nonatomic, retain)LBBPoohGreatItemView* greetView;
+@property(nonatomic, retain)UIButton* commentsButton;
+@property(nonatomic, retain)UIButton* greatButton;
 
 @property(nonatomic, retain)id model;
 

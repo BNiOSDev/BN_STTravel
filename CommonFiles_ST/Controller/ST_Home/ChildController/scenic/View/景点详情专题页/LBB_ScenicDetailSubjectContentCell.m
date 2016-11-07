@@ -57,15 +57,17 @@
             make.top.equalTo(ws.subTitleLabel.mas_bottom).offset(margin);
         }];
         
-        self.greatView = [[LBBPoohGreatItemView alloc]init];
-        [self.greatView.iconView setImage:IMAGE(@"景点专题_点赞")];
-        [self.greatView.desLabel setText:@"190"];
-        [self.greatView.desLabel setTextColor:ColorLightGray];
+        self.greatView = [[UIButton alloc]init];
+        [self.greatView setImage:IMAGE(@"景点专题_点赞") forState:UIControlStateNormal];
+        [self.greatView setTitle:@"190" forState:UIControlStateNormal];
+        [self.greatView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.greatView.titleLabel setFont:Font12];
+        [self.greatView setTitleEdgeInsets:UIEdgeInsetsMake(0, 1, 0, -1)];
         [v addSubview:self.greatView];
         [self.greatView mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.left.top.bottom.equalTo(v);
-            make.height.mas_equalTo(@15);
+           // make.height.mas_equalTo(@15);
         }];
         [self.greatView bk_whenTapped:^{
             
@@ -73,14 +75,16 @@
             
         }];
         
-        self.commentsView = [[LBBPoohGreatItemView alloc]init];
-        [ self.commentsView.iconView setImage:IMAGE(@"景点专题_评论")];
-        [ self.commentsView.desLabel setText:@"1000"];
-        [ self.commentsView.desLabel setTextColor:ColorLightGray];
+        self.commentsView = [[UIButton alloc]init];
+        [self.commentsView setImage:IMAGE(@"景点专题_评论") forState:UIControlStateNormal];
+        [self.commentsView setTitle:@"190" forState:UIControlStateNormal];
+        [self.commentsView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.commentsView.titleLabel setFont:Font12];
+        [self.commentsView setTitleEdgeInsets:UIEdgeInsetsMake(0, 1, 0, -1)];
         [v addSubview: self.commentsView];
         [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.greatView.mas_right).offset(margin/2);
+            make.left.equalTo(ws.greatView.mas_right).offset(margin);
             make.centerY.height.equalTo(ws.greatView);
         }];
         
@@ -88,14 +92,16 @@
             
         }];
         
-        self.favoriteView = [[LBBPoohGreatItemView alloc]init];
-        [ self.favoriteView.iconView setImage:IMAGE(@"景点专题_小收藏")];
-        [ self.favoriteView.desLabel setText:@"1000"];
-        [ self.favoriteView.desLabel setTextColor:ColorLightGray];
+        self.favoriteView = [[UIButton alloc]init];
+        [self.favoriteView setImage:IMAGE(@"景点专题_小收藏") forState:UIControlStateNormal];
+        [self.favoriteView setTitle:@"190" forState:UIControlStateNormal];
+        [self.favoriteView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.favoriteView.titleLabel setFont:Font12];
+        [self.favoriteView setTitleEdgeInsets:UIEdgeInsetsMake(0, 1, 0, -1)];
         [v addSubview: self.favoriteView];
         [self.favoriteView mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.commentsView.mas_right).offset(margin/2);
+            make.left.equalTo(ws.commentsView.mas_right).offset(margin);
             make.centerY.height.equalTo(ws.greatView);
             make.right.equalTo(v);
         }];

@@ -49,6 +49,7 @@
         
         self.nameLabel = [UILabel new];
         [self.nameLabel setNumberOfLines:0];
+        [self.nameLabel setTextColor:ColorGray];
         [self.nameLabel setFont:Font15];
         [self.contentView addSubview:self.nameLabel];
         [self.nameLabel mas_makeConstraints:^(MASConstraintMaker* make){

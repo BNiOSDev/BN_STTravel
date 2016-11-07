@@ -70,15 +70,18 @@
         }];
 
         
-        self.commentsView = [[LBBPoohGreatItemView alloc]init];
-        [self.commentsView.iconView setImage:IMAGE(@"ST_Home_Comments")];
-        [self.commentsView.desLabel setText:@"32"];
+        self.commentsView = [[UIButton alloc]init];
+        [self.commentsView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
+        [self.commentsView setTitle:@"32" forState:UIControlStateNormal];
+        [self.commentsView.titleLabel setFont:Font12];
+        [self.commentsView setTitleColor:ColorGray forState:UIControlStateNormal];
+        [self.commentsView setTitleEdgeInsets:UIEdgeInsetsMake(0, 1, 0, -1)];
         [sub addSubview:self.commentsView];
         [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.equalTo(sub).offset(-3);
             make.centerY.equalTo(ws.portraitImageView);
-            make.height.equalTo(@15);
+          //  make.height.equalTo(@15);
         }];
         
         [self.commentsView bk_whenTapped:^{
@@ -88,13 +91,16 @@
         }];
         
         
-        self.greetView = [[LBBPoohGreatItemView alloc]init];
-        [self.greetView.iconView setImage:IMAGE(@"ST_Home_Great")];
-        [self.greetView.desLabel setText:@"10"];
+        self.greetView = [[UIButton alloc]init];
+        [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        [self.greetView setTitle:@"32" forState:UIControlStateNormal];
+        [self.greetView.titleLabel setFont:Font12];
+        [self.greetView setTitleColor:ColorGray forState:UIControlStateNormal];
+        [self.greetView setTitleEdgeInsets:UIEdgeInsetsMake(0, 1, 0, -1)];
         [sub addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.equalTo(ws.commentsView.mas_left).offset(-3);
+            make.right.equalTo(ws.commentsView.mas_left).offset(-8);
             make.centerY.height.equalTo(ws.commentsView);
         }];
         [self.greetView bk_whenTapped:^{

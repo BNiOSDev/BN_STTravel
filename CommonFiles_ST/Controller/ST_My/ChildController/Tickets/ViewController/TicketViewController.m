@@ -12,6 +12,7 @@
 #import "TicketDetailViewCell.h"
 #import "LBB_TicketFooterView.h"
 #import "LBB_TicketHeaderView.h"
+#import "LBB_OrderWaitPayViewController.h"
 
 @interface TicketViewController ()
 <UITableViewDataSource,
@@ -28,20 +29,26 @@ TicketFooterViewDelegate>
 
 @implementation TicketViewController
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadViewControllerWithInfo:) name:@"TicketCommentNotification" object:nil];
 }
 
 - (void)buildControls
 {
     [self initSegmentControll];
-    [self initData];
+    [self initTableview];
 }
 
 - (void)initSegmentControll
 {
-    
     self.tableViewTopConstraint.constant = self.segmentBgViewHeightConstraint.constant;
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[NSLocalizedString(@"全部", nil),
                                                                                                NSLocalizedString(@"待付款", nil),
@@ -90,7 +97,7 @@ TicketFooterViewDelegate>
   
 }
 
-- (void)initData
+- (void)initTableview
 {
     UINib *nib = [UINib nibWithNibName:@"TicketDetailViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"TicketDetailViewCell"];
@@ -261,8 +268,34 @@ TicketFooterViewDelegate>
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    [self showTicketDetailView:[self.dataSourceArray objectAtIndex:indexPath.row]];
 }
+
+- (void)showTicketDetailView:(NSDictionary*)ticketInfo
+{
+    LBB_OrderWaitPayViewController *vc = [[LBB_OrderWaitPayViewController alloc] init];
+
+    NSInteger ticketState = [[ticketInfo objectForKey:@"TicketState"] integerValue];
+    switch (ticketState) {
+        case eTicket_WaitPay://我的门票_待付款
+            vc.ticketStatus = LBBPoohTicketStatusWaitPay;
+            break;
+        case eTicket_WaitGetTicket://我的门票_待取票
+            vc.ticketStatus = LBBPoohTicketStatusWaitCollect;
+            break;
+        case eTicket_WaitComment://我的门票_待评价
+            vc.ticketStatus = LBBPoohTicketStatusCollected;
+            break;
+        case eTicket_Refund://我的门票_退款
+            vc.ticketStatus = LBBPoohTicketStatusRefunded;
+            break;
+        default:
+            break;
+    }
+    
+    [self.navigationController pushViewController:vc  animated:YES];
+}
+
 #pragma mark - private cell Info
 
 - (NSDictionary*)getCellInfo:(NSIndexPath*)indexPath
@@ -283,11 +316,34 @@ TicketFooterViewDelegate>
     return goodList.count;
 }
 
-#pragma mark - cell delegate
+#pragma mark - 取消订单 立即支付 立即取票 查看详情
 - (void)cellBtnClickDelegate:(NSDictionary*)cellInfo
                    StateType:(MineBaseViewType)type
              TicketClickType:(TicketClickType)clickType
 {
+    switch (clickType) {
+        case eCancelTicket: //取消订单
+        {
+            
+        }
+            break;
+       case eTicketPay: //立即支付
+       case eGetTicket://立即取票
+       case eShowDetail://查看详情
+        {
+            [self showTicketDetailView:cellInfo];
+        }
+            break;
+        case eComment://立即评价
+        {
+            [self performSegueWithIdentifier:@"LBB_TicketCommentViewController" sender:nil];
+        }
+            break;
+            
+        default:
+            break;
+    }
+   
    NSLog(@"%@,%@",@(type),@(clickType));
 }
 
@@ -319,4 +375,12 @@ TicketFooterViewDelegate>
     [self.tableView reloadData];
 }
 
+#pragma mark - 被通知所调用的函数
+- (void)loadViewControllerWithInfo:(id)info
+{
+//    NSNotification *notification = info;
+    
+    [self performSegueWithIdentifier:@"LBB_TicketCommentViewController" sender:nil];
+    
+}
 @end

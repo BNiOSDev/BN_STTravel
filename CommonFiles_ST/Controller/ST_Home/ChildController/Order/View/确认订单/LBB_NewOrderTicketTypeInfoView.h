@@ -9,6 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "LBB_PoohPlusMinTextField.h"
 
+@interface LBB_NewOrderTicketTypeInfoBaseView : UIView
+
+@property(nonatomic, retain)UILabel* typeLabel;
+@property(nonatomic, retain)LBB_PoohPlusMinTextField* textField;
+@property(nonatomic, retain)UILabel* priceLabel;
+
+
+@end
+
+
 @interface LBB_NewOrderTicketTypeInfoView : UIView
+
+@property(nonatomic, retain)UIView* ticketContentView;
+-(void)setTicketInfo:(NSArray*)arrayInfo;
+
 
 @end

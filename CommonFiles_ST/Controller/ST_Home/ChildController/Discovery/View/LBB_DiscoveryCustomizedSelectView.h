@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LBBPoohGreatItemView.h"
 
 @interface LBB_DiscoveryCustomizedSelectView : UIView
 
@@ -15,7 +14,7 @@
 @property(nonatomic, retain)UITextField* bgCtrlView;
 @property(nonatomic, retain)UILabel* contentLable;
 @property(nonatomic, retain)UIImageView* arrowImageView;
-@property(nonatomic, retain)LBBPoohGreatItemView* addMoreView;
+@property(nonatomic, retain)UIButton* addMoreView;
 
 -(void)setContentLableText:(NSString *)content;
 -(void)showAddMoreView:(BOOL)show;

@@ -38,10 +38,10 @@
         [self.contentView addSubview:self.portraitImageView];
         [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
-            make.left.equalTo(ws.contentView).offset(2*interval);
-            make.top.equalTo(ws.contentView).offset(1.5*interval);
-            make.bottom.equalTo(ws.contentView).offset(-1.5*interval);
-            make.width.equalTo(ws.portraitImageView.mas_height);
+            make.left.equalTo(ws.contentView).offset(1.5*interval);
+            make.top.equalTo(ws.contentView).offset(interval);
+            make.bottom.equalTo(ws.contentView).offset(-interval);
+            make.width.height.mas_equalTo(AutoSize(90/2));
         }];
         self.portraitImageView.layer.cornerRadius = 5;
         self.portraitImageView.layer.masksToBounds = YES;
@@ -58,7 +58,7 @@
         }];
         
         self.subTitleLabel = [UILabel new];
-        [self.subTitleLabel setFont:Font8];
+        [self.subTitleLabel setFont:Font13];
         [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];
@@ -73,7 +73,7 @@
         [self.signinButton setBackgroundColor:ColorBtnYellow];
         [self.signinButton setTitle:@"已签到" forState:UIControlStateNormal];
         [self.signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.signinButton.titleLabel setFont:Font8];
+        [self.signinButton.titleLabel setFont:Font13];
         [self.contentView addSubview:self.signinButton];
         [self.signinButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
@@ -83,7 +83,7 @@
         }];
         
         self.rankLabel = [UILabel new];
-        [self.rankLabel setFont:Font8];
+        [self.rankLabel setFont:Font12];
         [self.rankLabel setTextColor:ColorLightGray];
         [self.rankLabel setText:@"第一名"];
         [self.contentView addSubview:self.rankLabel];
@@ -118,7 +118,7 @@
         [self.contentView addSubview:self.sep];
         [self.sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.bottom.equalTo(ws.contentView);
-            make.height.equalTo(@1.5);
+            make.height.mas_equalTo(SeparateLineWidth);
         }];
         
         [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];

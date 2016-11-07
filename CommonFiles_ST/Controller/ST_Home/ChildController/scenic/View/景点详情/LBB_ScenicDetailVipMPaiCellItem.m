@@ -60,34 +60,39 @@
             make.top.equalTo(ws.mainImageView.mas_bottom).offset(2);
         }];
         
-        self.commentsView = [[LBBPoohGreatItemView alloc]init];
-        [self.commentsView.iconView setImage:IMAGE(@"景区列表_评论")];
-        [self.commentsView.desLabel setText:@"1000"];
-        [self.contentView addSubview:self.commentsView];
-        [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
+        self.commentsButton = [[UIButton alloc]init];
+        [self.commentsButton setImage:IMAGE(@"景区列表_评论")forState:UIControlStateNormal];
+        [self.commentsButton setTitle:@"1000" forState:UIControlStateNormal];
+        [self.commentsButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.commentsButton.titleLabel setFont:Font12];
+        [self.contentView addSubview:self.commentsButton];
+        [self.commentsButton mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.equalTo(ws.contentView).offset(-3);
             make.top.equalTo(ws.mainImageView.mas_bottom).offset(3);
-            make.height.equalTo(@15);
+           // make.height.equalTo(@15);
         }];
         
-        [self.commentsView bk_whenTapped:^{
+        [self.commentsButton bk_whenTapped:^{
             
             NSLog(@"disView touch");
             
         }];
         
         
-        self.greetView = [[LBBPoohGreatItemView alloc]init];
-        [self.greetView.iconView setImage:IMAGE(@"景区列表_点赞")];
-        [self.greetView.desLabel setText:@"190"];
-        [self.contentView addSubview:self.greetView];
-        [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
+        self.greatButton = [[UIButton alloc]init];
+
+        [self.greatButton setImage:IMAGE(@"景区列表_点赞")forState:UIControlStateNormal];
+        [self.greatButton setTitle:@"1000" forState:UIControlStateNormal];
+        [self.greatButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.greatButton.titleLabel setFont:Font12];
+        [self.contentView addSubview:self.greatButton];
+        [self.greatButton mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.equalTo(ws.commentsView.mas_left).offset(-3);
-            make.centerY.height.equalTo(ws.commentsView);
+            make.right.equalTo(ws.commentsButton.mas_left).offset(-5);
+            make.centerY.height.equalTo(ws.commentsButton);
         }];
-        [self.greetView bk_whenTapped:^{
+        [self.greatButton bk_whenTapped:^{
             
             NSLog(@"greetView touch");
             

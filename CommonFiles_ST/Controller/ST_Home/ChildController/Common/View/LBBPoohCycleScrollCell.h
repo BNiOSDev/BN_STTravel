@@ -18,4 +18,6 @@
 
 @property(nonatomic,strong)ClickBlock click;
 
+@property(nonatomic,assign)BOOL enableBlock;
+
 @end

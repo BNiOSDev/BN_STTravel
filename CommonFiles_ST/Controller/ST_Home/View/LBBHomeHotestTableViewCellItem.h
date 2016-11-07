@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LBBPoohGreatItemView.h"
 
 @interface LBBHomeHotestTableViewCellItem : UICollectionViewCell
 
 @property(nonatomic, retain)UIImageView* mainImageView;
 @property(nonatomic, retain)UILabel* titleLabel;
-@property(nonatomic, retain)LBBPoohGreatItemView* disView;
-@property(nonatomic, retain)LBBPoohGreatItemView* greetView;
+@property(nonatomic, retain)UIButton* disView;
+@property(nonatomic, retain)UIButton* greetView;
 @property(nonatomic, retain)UILabel* priceLabel;
 @property(nonatomic, retain)UIButton* favoriteButton;
 

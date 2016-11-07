@@ -12,6 +12,7 @@
 #import "LBB_ScenicMainViewController.h"
 #import "LBB_HostelMainViewController.h"
 #import "LBB_FoodsMainViewController.h"
+#import "LBB_GuiderMainViewController.h"
 
 @implementation LBBHomeMenuTableViewCell
 
@@ -66,6 +67,7 @@
                         dest = [[LBB_ScenicMainViewController alloc] init];
                         break;
                     case 2://导游
+                        dest = [[LBB_GuiderMainViewController alloc]init];
                         break;
                     case 3://美食
                         dest = [[LBB_FoodsMainViewController alloc] init];

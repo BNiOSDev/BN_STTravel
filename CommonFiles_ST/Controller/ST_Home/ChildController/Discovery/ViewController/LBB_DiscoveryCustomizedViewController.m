@@ -20,9 +20,9 @@
 @property(nonatomic, retain)LBB_DiscoveryCustomizedSelectView* areaSelectView;
 @property(nonatomic, retain)LBB_DiscoveryCustomizedSelectView* addMoreAreaView;
 
-@property(nonatomic, retain)LBBPoohGreatItemView* tag1;
-@property(nonatomic, retain)LBBPoohGreatItemView* tag2;
-@property(nonatomic, retain)LBBPoohGreatItemView* tag3;
+@property(nonatomic, retain)UIButton* tag1;
+@property(nonatomic, retain)UIButton* tag2;
+@property(nonatomic, retain)UIButton* tag3;
 
 @property(nonatomic, assign)NSInteger tagIndex;
 
@@ -125,30 +125,37 @@
         make.width.equalTo(@100);
     }];
     
-    self.tag1 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag1.desLabel setFont:Font8];
-    [self.tag1.iconView setImage:IMAGE(@"ST_Discovery_Select")];
-    [self.tag1.desLabel setText:@"我是吃货"];
+    self.tag1 = [[UIButton alloc]init];
+    [self.tag1.titleLabel setFont:Font13];
+    [self.tag1 setImage:IMAGE(@"ST_Discovery_Select") forState:UIControlStateNormal];
+    [self.tag1 setTitle:@"我是吃货" forState:UIControlStateNormal];
+    [self.tag1 setTitleColor:ColorBlack forState:UIControlStateNormal];
+    [self.tag1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
     [tagView addSubview:self.tag1];
     
-    self.tag2 = [[LBBPoohGreatItemView alloc]init];
-    [self.tag2.desLabel setFont:Font8];
-    [self.tag2.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
-    [self.tag2.desLabel setText:@"潮男潮女"];
+    self.tag2 = [[UIButton alloc]init];
+    [self.tag2.titleLabel setFont:Font13];
+    [self.tag2 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
+    [self.tag2 setTitle:@"潮男潮女" forState:UIControlStateNormal];
+    [self.tag2 setTitleColor:ColorBlack forState:UIControlStateNormal];
+    [self.tag2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
     [tagView addSubview:self.tag2];
     
-    self.tag3 = [[LBBPoohGreatItemView alloc]init];
+    self.tag3 = [[UIButton alloc]init];
 
-    [self.tag3.desLabel setFont:Font8];
-    [self.tag3.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
-    [self.tag3.desLabel setText:@"运动达人"];
+    [self.tag3.titleLabel setFont:Font13];
+    [self.tag3 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
+    [self.tag3 setTitle:@"运动达人" forState:UIControlStateNormal];
+    [self.tag3 setTitleColor:ColorBlack forState:UIControlStateNormal];
+    [self.tag3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
     [tagView addSubview:self.tag3];
     
     
     [self.tag1 mas_makeConstraints:^(MASConstraintMaker* make){
-        make.centerY.equalTo(tagView);
+        make.centerY.top.bottom.equalTo(tagView);
         make.left.equalTo(l.mas_right);
-        make.height.equalTo(@18);
+       // make.height.equalTo(@18);
+        
     }];
     [self.tag2 mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(tagView);
@@ -195,18 +202,18 @@
     @weakify(self);
     [RACObserve(self, tagIndex) subscribeNext:^(NSNumber* index) {
         @strongify(self);
-        [self.tag1.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
-        [self.tag2.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
-        [self.tag3.iconView setImage:IMAGE(@"ST_Discovery_DeSelect")];
+        [self.tag1 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
+        [self.tag2 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
+        [self.tag3 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
         switch ([index integerValue]) {
             case 0:
-                [self.tag1.iconView setImage:IMAGE(@"ST_Discovery_Select")];
+                [self.tag1 setImage:IMAGE(@"ST_Discovery_Select") forState:UIControlStateNormal];
                 break;
             case 1:
-                [self.tag2.iconView setImage:IMAGE(@"ST_Discovery_Select")];
+                [self.tag2 setImage:IMAGE(@"ST_Discovery_Select") forState:UIControlStateNormal];
                 break;
             case 2:
-                [self.tag3.iconView setImage:IMAGE(@"ST_Discovery_Select")];
+                [self.tag3 setImage:IMAGE(@"ST_Discovery_Select") forState:UIControlStateNormal];
                 break;
             default:
                 break;

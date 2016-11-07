@@ -139,4 +139,18 @@
     return self;
 }
 
+-(void)setTextNum:(NSInteger)num{
+    
+    if (self.maxNum > 0) {
+        
+        if (num < self.maxNum) {
+
+            self.inputNum = self.maxNum;
+        }
+    }
+    else{
+        self.inputNum = num;
+    }
+}
+
 @end
