@@ -37,6 +37,10 @@
 		1D11B0AD1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B0AC1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.m */; };
 		1D11B0B01DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B0AF1DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.m */; };
 		1D11B1DB1DCD70E4008610CB /* LBB_HomeTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B1DA1DCD70E4008610CB /* LBB_HomeTableViewDataSource.m */; };
+		1D11B22C1DD024DA008610CB /* LBB_SquareSnsFollowDynamicDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B2241DD024DA008610CB /* LBB_SquareSnsFollowDynamicDataSource.m */; };
+		1D11B22D1DD024DA008610CB /* LBB_SquareSnsFollowFavoriteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B2261DD024DA008610CB /* LBB_SquareSnsFollowFavoriteDataSource.m */; };
+		1D11B22E1DD024DA008610CB /* LBB_SquareSnsFollowFunsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B2281DD024DA008610CB /* LBB_SquareSnsFollowFunsDataSource.m */; };
+		1D11B22F1DD024DA008610CB /* LBB_SquareSnsFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11B22B1DD024DA008610CB /* LBB_SquareSnsFollowViewController.m */; };
 		1D12FA461DC6E97700ACD462 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */; };
 		1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12F97E1DC6E97700ACD462 /* PoohBaseViewController.m */; };
 		1D12FA481DC6E97700ACD462 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D12F9841DC6E97700ACD462 /* b27_icon_star_gray@2x.png */; };
@@ -455,6 +459,14 @@
 		1D11B0AF1DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderUserFunsDataSource.m; sourceTree = "<group>"; };
 		1D11B1D91DCD70E4008610CB /* LBB_HomeTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeTableViewDataSource.h; sourceTree = "<group>"; };
 		1D11B1DA1DCD70E4008610CB /* LBB_HomeTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeTableViewDataSource.m; sourceTree = "<group>"; };
+		1D11B2231DD024DA008610CB /* LBB_SquareSnsFollowDynamicDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareSnsFollowDynamicDataSource.h; sourceTree = "<group>"; };
+		1D11B2241DD024DA008610CB /* LBB_SquareSnsFollowDynamicDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareSnsFollowDynamicDataSource.m; sourceTree = "<group>"; };
+		1D11B2251DD024DA008610CB /* LBB_SquareSnsFollowFavoriteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareSnsFollowFavoriteDataSource.h; sourceTree = "<group>"; };
+		1D11B2261DD024DA008610CB /* LBB_SquareSnsFollowFavoriteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareSnsFollowFavoriteDataSource.m; sourceTree = "<group>"; };
+		1D11B2271DD024DA008610CB /* LBB_SquareSnsFollowFunsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareSnsFollowFunsDataSource.h; sourceTree = "<group>"; };
+		1D11B2281DD024DA008610CB /* LBB_SquareSnsFollowFunsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareSnsFollowFunsDataSource.m; sourceTree = "<group>"; };
+		1D11B22A1DD024DA008610CB /* LBB_SquareSnsFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareSnsFollowViewController.h; sourceTree = "<group>"; };
+		1D11B22B1DD024DA008610CB /* LBB_SquareSnsFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareSnsFollowViewController.m; sourceTree = "<group>"; };
 		1D12F97B1DC6E97700ACD462 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		1D12F97C1DC6E97700ACD462 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		1D12F97D1DC6E97700ACD462 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -1175,6 +1187,37 @@
 			path = "个人";
 			sourceTree = "<group>";
 		};
+		1D11B2211DD024DA008610CB /* Square */ = {
+			isa = PBXGroup;
+			children = (
+				1D11B2221DD024DA008610CB /* View */,
+				1D11B2291DD024DA008610CB /* ViewController */,
+			);
+			path = Square;
+			sourceTree = "<group>";
+		};
+		1D11B2221DD024DA008610CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D11B2231DD024DA008610CB /* LBB_SquareSnsFollowDynamicDataSource.h */,
+				1D11B2241DD024DA008610CB /* LBB_SquareSnsFollowDynamicDataSource.m */,
+				1D11B2251DD024DA008610CB /* LBB_SquareSnsFollowFavoriteDataSource.h */,
+				1D11B2261DD024DA008610CB /* LBB_SquareSnsFollowFavoriteDataSource.m */,
+				1D11B2271DD024DA008610CB /* LBB_SquareSnsFollowFunsDataSource.h */,
+				1D11B2281DD024DA008610CB /* LBB_SquareSnsFollowFunsDataSource.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1D11B2291DD024DA008610CB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D11B22A1DD024DA008610CB /* LBB_SquareSnsFollowViewController.h */,
+				1D11B22B1DD024DA008610CB /* LBB_SquareSnsFollowViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1D12F9791DC6E97700ACD462 /* ST_Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1202,6 +1245,7 @@
 		1D12F97F1DC6E97700ACD462 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				1D11B2211DD024DA008610CB /* Square */,
 				1D0F48BE1DC9C2F500A37DE2 /* Guider */,
 				1D0F489A1DC8CB9400A37DE2 /* LabelDetail */,
 				1D12F9801DC6E97700ACD462 /* Common */,
@@ -4384,6 +4428,7 @@
 				842BCDF81DCD79E300A16788 /* LBB_Travel_Bill_ViewController.m in Sources */,
 				842BCC621DCD792500A16788 /* PersonalCenterViewController.m in Sources */,
 				1D0F48A11DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.m in Sources */,
+				1D11B22C1DD024DA008610CB /* LBB_SquareSnsFollowDynamicDataSource.m in Sources */,
 				1D12FA711DC6E97700ACD462 /* LBB_ScenicDetailBookStatusCell.m in Sources */,
 				842BCC6C1DCD792500A16788 /* SettingPrivaceViewController.m in Sources */,
 				842BCDF01DCD79E300A16788 /* LBBFriendViewController.m in Sources */,
@@ -4446,14 +4491,10 @@
 				842BCC881DCD792500A16788 /* CardViewController.m in Sources */,
 				1D12FA851DC6E97700ACD462 /* NSDictionary+PoohCommon.m in Sources */,
 				1D11B0AA1DCC2386008610CB /* LBB_GuiderUserFunsListCell.m in Sources */,
-
-				84F6BA2E1DC6E3D1009ED8DF /* ZJSegmentStyle.m in Sources */,
 				1D11B1DB1DCD70E4008610CB /* LBB_HomeTableViewDataSource.m in Sources */,
-
 				842BCDFA1DCD79E400A16788 /* LBB_AddressTipView.m in Sources */,
 				842BCDA01DCD79E300A16788 /* NSArray+Sudoku.m in Sources */,
 				842BCE1A1DCD79E400A16788 /* CommentView.m in Sources */,
-
 				1D12FA771DC6E97700ACD462 /* LBB_ScenicDetailVipFavoriteCell.m in Sources */,
 				1D12FA7E1DC6E97700ACD462 /* LBB_ScenicDetailViewController.m in Sources */,
 				1D12FA691DC6E97700ACD462 /* LBB_OrderTicketPriceCell.m in Sources */,
@@ -4466,6 +4507,7 @@
 				1D12FA4E1DC6E97700ACD462 /* LBB_ScenicSearchCollectionReusableView.m in Sources */,
 				842BCE221DCD79E400A16788 /* ZJMHostTableViewCell.m in Sources */,
 				1D12FA931DC6E97700ACD462 /* LBBHomeTravelRecommendTableViewCell.m in Sources */,
+				1D11B22D1DD024DA008610CB /* LBB_SquareSnsFollowFavoriteDataSource.m in Sources */,
 				842BCC7F1DCD792500A16788 /* ExtractDetailViewController.m in Sources */,
 				1D12FA7D1DC6E97700ACD462 /* LBB_ScenicDetailSubjectViewController.m in Sources */,
 				842BCE181DCD79E400A16788 /* ZJSegmentStyle.m in Sources */,
@@ -4577,10 +4619,12 @@
 				842BCC541DCD792500A16788 /* LBB_ResgisterViewController.m in Sources */,
 				842BCC671DCD792500A16788 /* SwitchViewCell.m in Sources */,
 				1D0F48E01DCAE7FC00A37DE2 /* LBB_GuiderApplyResultViewController.m in Sources */,
+				1D11B22F1DD024DA008610CB /* LBB_SquareSnsFollowViewController.m in Sources */,
 				842BCC831DCD792500A16788 /* BalanceDetailViewCell.m in Sources */,
 				1D12FA7A1DC6E97700ACD462 /* LBB_ScenicTextTableViewCell.m in Sources */,
 				842BCE271DCD79E400A16788 /* LBBTravelContentImage.m in Sources */,
 				842BCE281DCD79E400A16788 /* LBBVideoViewController.m in Sources */,
+				1D11B22E1DD024DA008610CB /* LBB_SquareSnsFollowFunsDataSource.m in Sources */,
 				842BCE061DCD79E400A16788 /* ZJMTravelModel.m in Sources */,
 				842BCDF11DCD79E300A16788 /* LBBHostDetailViewController.m in Sources */,
 				1D12FA8F1DC6E97700ACD462 /* LBBHomeHotestTableViewCell.m in Sources */,

@@ -10,10 +10,19 @@
 #import "KSViewPagerView.h"
 #import "LBBPoohCycleScrollCell.h"
 #import "LBBNearbyMenuListTableViewCell.h"
+#import "LBB_ScenicDetailViewController.h"
+
+typedef NS_ENUM(NSInteger, LBB_NearbyMenuType) {
+    LBB_NearbyMenuScenicType = 0,//景点
+    LBB_NearbyMenuFoodsType,//美食
+    LBB_NearbyMenuHostelType,//民宿
+};
+
 @interface LBBNearbyMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UIView* mapView;
 @property (nonatomic, retain) UITableView* tableView;
+@property(nonatomic, assign)  LBB_NearbyMenuType selectType;
 
 @end
 
@@ -105,13 +114,16 @@
     segmentedControl.verticalDividerWidth = SeparateLineWidth;
     segmentedControl.verticalDividerColor = ColorLightGray;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    segmentedControl.selectedSegmentIndex = self.selectType;
     [v addSubview:segmentedControl];
     [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.width.height.equalTo(v);
     }];
+    WS(ws);
     segmentedControl.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
-
+        ws.selectType = index;
+        [ws.tableView reloadData];
     };
 
     return v;
@@ -164,12 +176,33 @@
         cell.portraitImageView.layer.cornerRadius = 5;
         cell.portraitImageView.layer.masksToBounds = YES;
         [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/h%3D200/sign=5c00db24cd95d143c576e32343f18296/03087bf40ad162d9ec74553b14dfa9ec8a13cd7a.jpg"] placeholderImage:IMAGE(@"poohtest")];
-
         
         return cell;
     }
     
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
+    switch (self.selectType) {
+        case LBB_NearbyMenuScenicType://景点
+            dest.homeType = LBBPoohHomeTypeScenic;
+            break;
+        case LBB_NearbyMenuFoodsType://美食
+            dest.homeType = LBBPoohHomeTypeFoods;
+            break;
+        case LBB_NearbyMenuHostelType://民宿
+            dest.homeType = LBBPoohHomeTypeHostel;
+            break;
+    }
+    if (dest) {
+        [self.navigationController pushViewController:dest animated:YES];
+    }
+    
+}
 
 @end

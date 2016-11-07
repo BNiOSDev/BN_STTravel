@@ -93,33 +93,8 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    UIControl* ctr1 = [UIControl new];
-    UIControl* ctr2 = [UIControl new];
     UIView* sep = [UIView new];
-    [sep setBackgroundColor:ColorLine];
-    
-    [self.view addSubview:ctr1];
-    [self.view addSubview:ctr2];
-    [self.view addSubview:sep];
 
-    [ctr1 mas_makeConstraints:^(MASConstraintMaker* make){
-        make.left.top.equalTo(ws.view);
-        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
-    }];
-    
-    [sep mas_makeConstraints:^(MASConstraintMaker* make){
-        make.centerY.equalTo(ctr1);
-        make.width.mas_equalTo(SeparateLineWidth);
-        make.height.equalTo(@30);
-        make.left.equalTo(ctr1.mas_right);
-    }];
-    [ctr2 mas_makeConstraints:^(MASConstraintMaker* make){
-        make.right.top.equalTo(ws.view);
-        make.height.width.equalTo(ctr1);
-        make.left.equalTo(sep.mas_right);
-    }];
-    
-    
     UIButton *signList = [[UIButton alloc] init];
     [signList setImage:IMAGE(@"ST_Sign_signList") forState:UIControlStateNormal];
     [signList setTitle:@"签到列表" forState:UIControlStateNormal];
@@ -134,19 +109,31 @@
     [signRank.titleLabel setFont:Font15];
     [signRank setTitleColor:ColorGray forState:UIControlStateNormal];
     [signRank setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
+    
+    [sep setBackgroundColor:ColorLine];
+    
+    [self.view addSubview:signList];
+    [self.view addSubview:signRank];
+    [self.view addSubview:sep];
 
-    [ctr1 addSubview:signList];
     [signList mas_makeConstraints:^(MASConstraintMaker* make){
-        make.center.equalTo(ctr1);
-       // make.height.equalTo(@18);
+        make.left.top.equalTo(ws.view);
+        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
     }];
     
-    [ctr2 addSubview:signRank];
+    [sep mas_makeConstraints:^(MASConstraintMaker* make){
+        make.centerY.equalTo(signList);
+        make.width.mas_equalTo(SeparateLineWidth);
+        make.height.equalTo(@30);
+        make.left.equalTo(signList.mas_right);
+    }];
     [signRank mas_makeConstraints:^(MASConstraintMaker* make){
-        make.center.equalTo(ctr2);
-      //  make.height.equalTo(signList);
+        make.right.top.equalTo(ws.view);
+        make.height.width.equalTo(signList);
+        make.left.equalTo(sep.mas_right);
     }];
     
+
     
     //map
     self.mapView = [UIView new];
@@ -155,7 +142,7 @@
     [self.mapView mas_makeConstraints:^(MASConstraintMaker* make){
         
         make.centerX.width.equalTo(ws.view);
-        make.top.equalTo(ctr1.mas_bottom);
+        make.top.equalTo(signList.mas_bottom);
         make.height.mas_equalTo(DeviceWidth*3/2);
     }];
     
@@ -172,15 +159,19 @@
     }];
 
     
-    [ctr1 bk_whenTapped:^{
+    [signList bk_addEventHandler:^(id sender){
+    
         LBB_SignInListViewController* v = [[LBB_SignInListViewController alloc]init];
         [ws.navigationController pushViewController:v animated:YES];
-    }];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
     
-    
-    [ctr2 bk_whenTapped:^{
+    [signRank bk_addEventHandler:^(id sender){
+        
         LBB_SignInRankListViewController* v = [[LBB_SignInRankListViewController alloc]init];
         [ws.navigationController pushViewController:v animated:YES];
-    }];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
+    
 }
 @end
