@@ -212,21 +212,27 @@
         [self.specialLabelButton5 setHidden:YES];
         [self.specialLabelButton4 setHidden:YES];
 
-        
-        [self.specialLabelButton1 bk_addEventHandler:^(id sender){
-        
+     /*   [self.specialLabelButton1 bk_addEventHandler:^(id sender){
+            
             NSLog(@"specialLabelButton1 touch");
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
+        */
         [self.specialLabelButton2 bk_addEventHandler:^(id sender){
             
             NSLog(@"specialLabelButton2 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
+        
         [self.specialLabelButton3 bk_addEventHandler:^(id sender){
             
             NSLog(@"specialLabelButton3 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
+        
         [self.specialLabelButton4 bk_addEventHandler:^(id sender){
             
             NSLog(@"specialLabelButton4 touch");
@@ -268,6 +274,14 @@
         
     }];
     
+    [self.specialLabelButton1 bk_whenTapped:^{
+        
+        NSLog(@"specialLabelButton1 touch");
+        LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+        [[ws getViewController].navigationController pushViewController:dest animated:YES];
+        
+    }];
+
 }
 
 

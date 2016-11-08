@@ -7,7 +7,7 @@
 //
 
 #import "LBB_GuiderUserHeaderCell.h"
-
+#import "LBB_LabelDetailViewController.h"
 @implementation LBB_GuiderUserHeaderCell
 
 /*
@@ -194,9 +194,26 @@
 }
 
 -(void)setModel:(id)model{
+    
+    WS(ws);
+    
     [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
 
+    [self.labelButton1 bk_whenTapped:^{
+        NSLog(@"labelButton1 touch");
+        LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+        [[ws getViewController].navigationController pushViewController:dest animated:YES];
+        
+    }];
+    
+    [self.labelButton2 bk_whenTapped:^{
+        NSLog(@"labelButton2 touch");
+        LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+        [[ws getViewController].navigationController pushViewController:dest animated:YES];
+        
+    }];
+    
 }
 
 @end

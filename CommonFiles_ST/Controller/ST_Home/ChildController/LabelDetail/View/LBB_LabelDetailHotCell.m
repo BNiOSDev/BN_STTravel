@@ -70,7 +70,8 @@
             make.left.equalTo(ws.contentView).offset(interval);
             make.top.equalTo(ws.contentView).offset(interval);
             make.bottom.equalTo(ws.contentView);
-            make.height.mas_equalTo(AutoSize(380/2));
+           // make.height.mas_equalTo(AutoSize(380/2));
+            make.height.equalTo(ws.item1.mas_width);
         }];
         
         [self.item2 mas_makeConstraints:^(MASConstraintMaker* make){

@@ -48,7 +48,8 @@
             make.top.equalTo(ws.portraitImageView);
             make.left.equalTo(ws.portraitImageView.mas_right).offset(margin);
         }];
-        
+        [self.nameLabel setUserInteractionEnabled:YES];
+
         self.vImageView = [UIImageView new];
         [self.vImageView setImage:IMAGE(@"导游_导游V")];
         [self.contentView addSubview:self.vImageView];
@@ -234,6 +235,12 @@
 
     [self.portraitImageView bk_whenTapped:^{
         
+        LBB_GuiderUserViewController* dest = [[LBB_GuiderUserViewController alloc]init];
+        [[ws getViewController].navigationController pushViewController:dest animated:YES];
+    }];
+    
+    
+    [self.nameLabel bk_whenTapped:^{
         LBB_GuiderUserViewController* dest = [[LBB_GuiderUserViewController alloc]init];
         [[ws getViewController].navigationController pushViewController:dest animated:YES];
     }];

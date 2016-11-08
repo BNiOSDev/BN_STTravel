@@ -41,25 +41,25 @@
 
 -(void)loadCustomNavigationButton{
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+    UIButton *download = [[UIButton alloc] init];
+    [download setImage:IMAGE(@"ST_Discovery_Download") forState:UIControlStateNormal];
+    download.frame = CGRectMake(0, 0, 45, 45);
+    [download bk_addEventHandler:^(id sender){
+        
+    }forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *downloadItem = [[UIBarButtonItem alloc] initWithCustomView:download];
+    
     UIButton *share = [[UIButton alloc] init];
-    [share setBackgroundImage:IMAGE(@"景点详情_分享") forState:UIControlStateNormal];
-    share.frame = CGRectMake(0, 0, 27, 27);
+    [share setImage:IMAGE(@"导游_分享") forState:UIControlStateNormal];
+    share.frame = CGRectMake(0, 0, 45, 45);
     [share bk_addEventHandler:^(id sender){
         
     }forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithCustomView:share];
+    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:share];
     
-    UIButton *favorite = [[UIButton alloc] init];
-    [favorite setBackgroundImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
-    favorite.frame = CGRectMake(0, 0, 27, 27);
-    [favorite bk_addEventHandler:^(id sender){
-        
-    }forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *favoriteItem = [[UIBarButtonItem alloc] initWithCustomView:favorite];
-    
-    self.navigationItem.rightBarButtonItems = @[searchItem,favoriteItem];
+    self.navigationItem.rightBarButtonItems = @[shareItem,downloadItem];
 }
 
 /*

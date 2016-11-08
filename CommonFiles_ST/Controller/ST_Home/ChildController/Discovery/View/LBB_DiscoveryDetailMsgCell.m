@@ -8,6 +8,8 @@
 
 #import "LBB_DiscoveryDetailMsgCell.h"
 #import "PoohCommon.h"
+#import "LBB_StarRatingViewController.h"
+
 @implementation LBB_DiscoveryDetailMsgCell
 
 /*
@@ -105,6 +107,9 @@
         
         [self.commentsButton bk_whenTapped:^{
             
+            LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc] init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
         }];
         
         self.favoriteButton = [[UIButton alloc]init];
@@ -122,6 +127,8 @@
         }];
         
         [self.favoriteButton bk_whenTapped:^{
+            
+            
             
         }];
         
