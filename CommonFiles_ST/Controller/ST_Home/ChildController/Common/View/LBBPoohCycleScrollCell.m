@@ -12,6 +12,7 @@
 @interface LBBPoohCycleScrollCell()<SDCycleScrollViewDelegate>{
 
     SDCycleScrollView *cycleScrollView;
+    UIView* orderView;
 }
 
 @end
@@ -48,6 +49,45 @@
         [cycleScrollView mas_makeConstraints:^(MASConstraintMaker* make){
             make.center.width.height.equalTo(ws.contentView);
         }];
+        
+        
+        //描绘左侧的订单信息
+        orderView = [UIView new];
+        [orderView setBackgroundColor:[UIColor colorWithRGB:0xa9a9a9]];
+        CGFloat height = AutoSize(36/2);
+        [self.contentView addSubview:orderView];
+        [orderView mas_makeConstraints:^(MASConstraintMaker* make){
+            make.top.equalTo(ws.contentView).offset(AutoSize(110/2));
+            make.left.equalTo(ws.contentView).offset(AutoSize(20));
+            make.height.mas_equalTo(height);
+        }];
+        orderView.layer.cornerRadius = height/2;
+        orderView.layer.masksToBounds = YES;
+        orderView.hidden = YES;
+        //订单头像
+        CGFloat margin = 3;
+        self.orderPortraitImageView = [UIImageView new];
+        [orderView addSubview:self.orderPortraitImageView];
+        [self.orderPortraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(orderView).offset(margin);
+            make.top.equalTo(orderView).offset(margin);
+            make.bottom.equalTo(orderView).offset(-margin);
+            make.width.equalTo(ws.orderPortraitImageView.mas_height);
+        }];
+        self.orderPortraitImageView.layer.cornerRadius = (height - 2*margin)/2;
+        self.orderPortraitImageView.layer.masksToBounds = YES;
+        
+        //订单信息
+        self.orderNewMessageLabel = [UILabel new];
+        [self.orderNewMessageLabel setFont:Font10];
+        [self.orderNewMessageLabel setTextColor:ColorWhite];
+        [orderView addSubview:self.orderNewMessageLabel];
+        [self.orderNewMessageLabel mas_makeConstraints:^(MASConstraintMaker* make){
+            make.centerY.equalTo(orderView);
+            make.left.equalTo(ws.orderPortraitImageView.mas_right).offset(margin);
+            make.right.equalTo(orderView).offset(-margin);
+        }];
+        
     }
     return self;
 }
@@ -88,6 +128,16 @@
         self.click(@(index));
     }
 }
+
+//显示订单信息
+-(void)showOrderMessage{
+
+    [orderView setHidden:NO];
+    [self.orderPortraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.orderNewMessageLabel setText:@"最新订单来自杭州的百小小. 3秒前"];
+    
+}
+
 
 
 @end

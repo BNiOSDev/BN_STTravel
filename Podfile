@@ -13,5 +13,6 @@ pod 'CocoaLumberjack'
 pod 'GLPubSub'
 pod 'SWTableViewCell'
 pod 'ASIHTTPRequest'
+pod 'AutoScrollLabel'
 
 end

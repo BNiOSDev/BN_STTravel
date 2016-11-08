@@ -7,16 +7,22 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import <AutoScrollLabel/CBAutoScrollLabel.h>
+
+
 
 @interface LBBPoohCycleScrollCell : LBBPoohBaseTableViewCell
 
 -(void)setCycleScrollViewUrls:(NSArray*)urlArray;
 
-
 -(void)setCycleScrollViewHeight:(CGFloat)height;
 
-@property(nonatomic,strong)ClickBlock click;
+@property(nonatomic, strong)ClickBlock click;
 
-@property(nonatomic,assign)BOOL enableBlock;
+@property(nonatomic, assign)BOOL enableBlock;
 
+//详情页的订单信息
+@property(nonatomic, retain)UIImageView* orderPortraitImageView;
+@property(nonatomic, retain)UILabel* orderNewMessageLabel;
+-(void)showOrderMessage;
 @end

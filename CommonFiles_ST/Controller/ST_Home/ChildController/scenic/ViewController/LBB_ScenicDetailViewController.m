@@ -424,8 +424,9 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
         }
-       // [cell setCycleScrollViewHeight:AutoSize(386/2)];
+        [cell setCycleScrollViewHeight:AutoSize(386/2)];
         [cell setCycleScrollViewUrls:nil];
+        [cell showOrderMessage];
         return cell;
         
     }
