@@ -2,7 +2,7 @@
 //  LBB_ImagePickerViewController.h
 //  ST_Travel
 //
-//  Created by Diana on 16/10/31.
+//  Created by 晨曦 on 16/10/31.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 

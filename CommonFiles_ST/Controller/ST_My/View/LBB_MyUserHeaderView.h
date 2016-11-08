@@ -2,11 +2,12 @@
 //  LBB_MyUserHeaderView.h
 //  ST_Travel
 //
-//  Created by Diana on 16/10/30.
+//  Created by 晨曦 on 16/10/30.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "LBB_MineModel.h"
 
 @protocol LBB_MyUserHeaderViewDelegate <NSObject>
 
@@ -21,6 +22,6 @@
 @interface LBB_MyUserHeaderView : UICollectionReusableView
 
 @property (nonatomic,weak) id<LBB_MyUserHeaderViewDelegate> delegate;
-@property (nonatomic,strong) NSDictionary* userInfo;
+@property (nonatomic,strong) LBB_MineUserInfo* userInfo;
 
 @end

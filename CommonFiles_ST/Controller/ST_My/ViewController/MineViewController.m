@@ -2,8 +2,8 @@
 //  MineViewController.m
 //  LUBABA
 //
-//  Created by Dianar on 16/10/8.
-//  Copyright © 2016年 Dianar. All rights reserved.
+//  Created by 晨曦 on 16/10/8.
+//  Copyright © 2016年 晨曦. All rights reserved.
 //
 
 #import "MineViewController.h"
@@ -14,6 +14,8 @@
 #import "MineBaseViewController.h"
 #import "LBB_MineViewDataController.h"
 #import "LBB_ImagePickerViewController.h"
+#import "LBB_DownloadedViewController.h"
+#import "LBB_RouteViewController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -185,10 +187,16 @@ LBB_MySectionHeadViewDelegate
              [self performSegueWithIdentifier:@"PointsViewController" sender:[NSNumber numberWithInteger:viewType]];
             break;
         case eDownload://我的下载
-           
+        {
+            LBB_DownloadedViewController *vc = [[LBB_DownloadedViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case eRoute://定制线路
-            
+        {
+            LBB_RouteViewController *vc = [[LBB_RouteViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case eSetting: //我的设置
              [self performSegueWithIdentifier:@"SettingViewController" sender:[NSNumber numberWithInteger:viewType]];

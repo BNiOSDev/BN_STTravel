@@ -2,7 +2,7 @@
 //  LBB_MyUserHeaderView.m
 //  ST_Travel
 //
-//  Created by Diana on 16/10/30.
+//  Created by 晨曦 on 16/10/30.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -51,13 +51,17 @@
     self.messageBtn.enlargeInset = UIEdgeInsetsMake(10, 40, 40, 10);
 }
 
-- (void)setUserInfo:(NSDictionary*)userInfo
+- (void)setUserInfo:(LBB_MineUserInfo*)userInfo
 {
     _userInfo = userInfo;
-    NSDictionary *detailDict = [_userInfo objectForKey:@"Header"];
-    UIImage *image = [detailDict objectForKey:@"Image"];
-    self.backImgView.image = image;
-    
+    UIImage *image = IMAGE(userInfo.userImagePath);
+    [self.userHeadBtn setImage:image forState:UIControlStateNormal];
+    self.backImgView.image = userInfo.coverPicturePath;
+    self.userNameLabel.text = userInfo.userName;
+    self.levelLabel.text = [NSString stringWithFormat:@"lv %@",@(userInfo.lvLevel)];
+    self.guideImgView.hidden = !userInfo.isGuideAuth;
+    self.guideLabel.hidden = !userInfo.isGuideAuth;
+    self.signatureLabel.text = userInfo.signature;
 }
 
 - (IBAction)setBtnClickEvent:(id)sender {

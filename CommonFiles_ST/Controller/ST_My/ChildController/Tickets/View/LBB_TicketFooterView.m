@@ -2,7 +2,7 @@
 //  LBB_TicketFooterView.m
 //  ST_Travel
 //
-//  Created by Diana on 16/10/26.
+//  Created by 晨曦 on 16/10/26.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -19,18 +19,20 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.goodNumLabel.textColor = ColorBlack;
-    self.totoalTipLabel.textColor = ColorBlack;
+    self.goodNumLabel.textColor = ColorGray;
+    self.totoalTipLabel.textColor = ColorGray;
     self.goodMoneyLabel.textColor = ColorRed;
     
-    self.goodNumLabel.font = Font13;
-    self.totoalTipLabel.font = Font13;
-    self.goodMoneyLabel.font = Font13;
+    self.goodNumLabel.font = Font15;
+    self.totoalTipLabel.font = Font15;
+    self.goodMoneyLabel.font = Font15;
     
-    self.leftBtn.backgroundColor = ColorGray;
+    self.leftBtn.backgroundColor = ColorLightGray;
     self.rightBtn.backgroundColor = ColorBtnYellow;
     [self.leftBtn setTitleColor:ColorWhite forState:UIControlStateNormal];
     [self.rightBtn setTitleColor:ColorWhite forState:UIControlStateNormal];
+    [self.leftBtn.titleLabel setFont:Font15];
+    [self.rightBtn.titleLabel setFont:Font15];
     
     self.bgView.backgroundColor = ColorBackground;
     self.topLine.backgroundColor = ColorLine;
@@ -38,12 +40,12 @@
     self.bgLine2.backgroundColor = ColorLine;
 }
 
-- (void)setCellInfo:(NSDictionary*)cellInfo
+- (void)setCellInfo:(LBB_TicketModelData*)cellInfo
 {
     _cellInfo = cellInfo;
-    self.goodNumLabel.text = [cellInfo objectForKey:@"GoogNum"];
-    self.goodMoneyLabel.text = [cellInfo objectForKey:@"TotalMonney"];
-    self.stateType = [[cellInfo objectForKey:@"TicketState"] intValue];
+    self.goodNumLabel.text = [NSString stringWithFormat:@"共%@件商品",@(cellInfo.totalNum)];
+    self.goodMoneyLabel.text = [NSString stringWithFormat:@"￥%@",@(cellInfo.totalMoney)];
+    self.stateType = cellInfo.ticketState;
     switch (self.stateType) {
         case eTicket_WaitPay://待付款
         {

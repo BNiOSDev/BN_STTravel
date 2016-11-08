@@ -363,8 +363,12 @@
 		842BCE2A1DCD79E400A16788 /* ST_SquareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842BCD981DCD79E300A16788 /* ST_SquareViewController.xib */; };
 		842BCE2B1DCD79E400A16788 /* ZJMTravelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BCD9A1DCD79E300A16788 /* ZJMTravelsViewController.m */; };
 		842BCE2C1DCD79E400A16788 /* ZJMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BCD9F1DCD79E300A16788 /* ZJMBaseViewController.m */; };
+		842BCE331DCD7D7300A16788 /* LBB_DownloadedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BCE321DCD7D7300A16788 /* LBB_DownloadedViewController.m */; };
 		84B377DF1DC4539D0078397C /* ST_Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B377DE1DC4539D0078397C /* ST_Mine.xcassets */; };
+		84D154741DCF26C500CAE93E /* LBB_MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D154731DCF26C500CAE93E /* LBB_MineModel.m */; };
 		84F6B8141DC6E277009ED8DF /* (null) in Sources */ = {isa = PBXBuildFile; };
+		84F87EE41DCED489009EFCFD /* LBB_DownloadTravelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F87EE31DCED489009EFCFD /* LBB_DownloadTravelsViewController.m */; };
+		84F87EE71DCF035E009EFCFD /* LBB_TicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F87EE61DCF035E009EFCFD /* LBB_TicketModel.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -1013,7 +1017,15 @@
 		842BCD9D1DCD79E300A16788 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		842BCD9E1DCD79E300A16788 /* ZJMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMBaseViewController.h; sourceTree = "<group>"; };
 		842BCD9F1DCD79E300A16788 /* ZJMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMBaseViewController.m; sourceTree = "<group>"; };
+		842BCE311DCD7D7300A16788 /* LBB_DownloadedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DownloadedViewController.h; sourceTree = "<group>"; };
+		842BCE321DCD7D7300A16788 /* LBB_DownloadedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DownloadedViewController.m; sourceTree = "<group>"; };
 		84B377DE1DC4539D0078397C /* ST_Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Mine.xcassets; sourceTree = "<group>"; };
+		84D154721DCF26C500CAE93E /* LBB_MineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MineModel.h; sourceTree = "<group>"; };
+		84D154731DCF26C500CAE93E /* LBB_MineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MineModel.m; sourceTree = "<group>"; };
+		84F87EE21DCED489009EFCFD /* LBB_DownloadTravelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DownloadTravelsViewController.h; sourceTree = "<group>"; };
+		84F87EE31DCED489009EFCFD /* LBB_DownloadTravelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DownloadTravelsViewController.m; sourceTree = "<group>"; };
+		84F87EE51DCF035E009EFCFD /* LBB_TicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketModel.h; sourceTree = "<group>"; };
+		84F87EE61DCF035E009EFCFD /* LBB_TicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketModel.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -1761,6 +1773,7 @@
 		842BCAE91DCD792500A16788 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				842BCE2D1DCD7D2400A16788 /* Downloaded */,
 				842BCAEA1DCD792500A16788 /* Common */,
 				842BCAEE1DCD792500A16788 /* Favorite */,
 				842BCAF31DCD792500A16788 /* FightGroups */,
@@ -2835,6 +2848,8 @@
 		842BCBC91DCD792500A16788 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84F87EE51DCF035E009EFCFD /* LBB_TicketModel.h */,
+				84F87EE61DCF035E009EFCFD /* LBB_TicketModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3288,6 +3303,8 @@
 		842BCC291DCD792500A16788 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84D154721DCF26C500CAE93E /* LBB_MineModel.h */,
+				84D154731DCF26C500CAE93E /* LBB_MineModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3917,6 +3934,41 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		842BCE2D1DCD7D2400A16788 /* Downloaded */ = {
+			isa = PBXGroup;
+			children = (
+				842BCE2E1DCD7D2400A16788 /* Model */,
+				842BCE2F1DCD7D2400A16788 /* View */,
+				842BCE301DCD7D2400A16788 /* ViewController */,
+			);
+			path = Downloaded;
+			sourceTree = "<group>";
+		};
+		842BCE2E1DCD7D2400A16788 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		842BCE2F1DCD7D2400A16788 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		842BCE301DCD7D2400A16788 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				842BCE311DCD7D7300A16788 /* LBB_DownloadedViewController.h */,
+				842BCE321DCD7D7300A16788 /* LBB_DownloadedViewController.m */,
+				84F87EE21DCED489009EFCFD /* LBB_DownloadTravelsViewController.h */,
+				84F87EE31DCED489009EFCFD /* LBB_DownloadTravelsViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		C91F613A1D9F96CA004FE75C /* ST_Mall */ = {
 			isa = PBXGroup;
 			children = (
@@ -4472,6 +4524,7 @@
 				842BCDF21DCD79E300A16788 /* LBB_ShopRecoder_Cell.m in Sources */,
 				842BCC401DCD792500A16788 /* LBB_CustomerViewController.m in Sources */,
 				842BCE091DCD79E400A16788 /* JHLineChart.m in Sources */,
+				84F87EE41DCED489009EFCFD /* LBB_DownloadTravelsViewController.m in Sources */,
 				1D12FA831DC6E97700ACD462 /* LBB_SignInRankListViewController.m in Sources */,
 				842BCDA71DCD79E300A16788 /* LBB_HostDetailHeadView.m in Sources */,
 				1D12FA7C1DC6E97700ACD462 /* LBB_ScenicDetailSubjectLableCell.m in Sources */,
@@ -4514,6 +4567,7 @@
 				1D12FA911DC6E97700ACD462 /* LBBHomeMenuTableViewCell.m in Sources */,
 				842BCDF31DCD79E300A16788 /* LBB_ShopRecoder_Controller.m in Sources */,
 				842BCDFE1DCD79E400A16788 /* LBB_TravelDetailHeadView.m in Sources */,
+				84D154741DCF26C500CAE93E /* LBB_MineModel.m in Sources */,
 				1D12FA6B1DC6E97700ACD462 /* LBB_NewOrderTicketTypeInfoView.m in Sources */,
 				1D0F48C91DC9DC8100A37DE2 /* LBB_GuiderApplyTextField.m in Sources */,
 				1D12FA641DC6E97700ACD462 /* LBB_OrderContactCustomerServiceCell.m in Sources */,
@@ -4565,6 +4619,7 @@
 				842BCDF61DCD79E300A16788 /* LBB_Travel_Bill_Account_TableViewCell.m in Sources */,
 				1D12FA8C1DC6E97700ACD462 /* PoohAppHelper.m in Sources */,
 				1D12FA801DC6E97700ACD462 /* LBB_SignInListCell.m in Sources */,
+				84F87EE71DCF035E009EFCFD /* LBB_TicketModel.m in Sources */,
 				1D12FA751DC6E97700ACD462 /* LBB_ScenicDetailPriceMsgCell.m in Sources */,
 				1D12FA631DC6E97700ACD462 /* LBBNearbyMainViewController.m in Sources */,
 				1D12FA821DC6E97700ACD462 /* LBB_SignInListViewController.m in Sources */,
@@ -4598,6 +4653,7 @@
 				842BCE231DCD79E400A16788 /* LBB_TravelCommentCell.m in Sources */,
 				1D12FA581DC6E97700ACD462 /* LBB_StarRatingViewController.m in Sources */,
 				842BCC771DCD792500A16788 /* LBB_TicketFooterView.m in Sources */,
+				842BCE331DCD7D7300A16788 /* LBB_DownloadedViewController.m in Sources */,
 				1D12FA5B1DC6E97700ACD462 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
 				842BCE2C1DCD79E400A16788 /* ZJMBaseViewController.m in Sources */,
 				842BCE1E1DCD79E400A16788 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,

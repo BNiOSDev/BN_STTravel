@@ -2,26 +2,28 @@
 //  TicketDetailViewCell.m
 //  LUBABA
 //
-//  Created by Diana on 16/10/12.
-//  Copyright © 2016年 Diana. All rights reserved.
+//  Created by 晨曦 on 16/10/12.
+//  Copyright © 2016年 晨曦. All rights reserved.
 //
 
 #import "TicketDetailViewCell.h"
+#import "Mine_Common.h"
 
 @implementation TicketDetailViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.nameLabel.textColor = ColorBlack;
-    self.typeLabel.textColor = ColorBlack;
+    self.nameLabel.textColor = ColorGray;
+    self.typeLabel.textColor = ColorGray;
     self.monneyLabel.textColor = ColorRed;
-    self.numLabel.textColor = ColorBlack;
+    self.numLabel.textColor = ColorGray;
     
-    self.nameLabel.font = Font12;
-    self.typeLabel.font = Font12;
-    self.monneyLabel.font = Font12;
-    self.numLabel.font = Font12;
+    self.nameLabel.font = Font15;
+    self.typeLabel.font = Font13;
+    self.monneyLabel.font = Font15;
+    self.numLabel.font = Font15;
+    self.imageWidthContraint.constant = AutoSize(80.f);
 }
 
 - (void)prepareForReuse
@@ -32,15 +34,15 @@
     self.typeLabel.text = @"";
 }
 
-- (void)setCellInfo:(NSDictionary*)cellInfo
+- (void)setCellInfo:(LBB_TicketModelDetail*)cellInfo
 {
     self.accessoryType = UITableViewCellAccessoryNone;
     self.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
-    self.nameLabel.text = [cellInfo objectForKey:@"Title"];
-    self.typeLabel.text = [cellInfo objectForKey:@"Type"];
-    self.monneyLabel.text = [cellInfo objectForKey:@"Money"];
-    self.numLabel.text = [cellInfo objectForKey:@"Num"];
-    self.imgView.image = [UIImage imageNamed:[cellInfo objectForKey:@"Image"]];
+    self.nameLabel.text = cellInfo.content;
+    self.typeLabel.text = cellInfo.typeContent;
+    self.monneyLabel.text = [NSString stringWithFormat:@"￥%@",@(cellInfo.money)];
+    self.numLabel.text = [NSString stringWithFormat:@"x %@",@(cellInfo.num)];
+    self.imgView.image = IMAGE(cellInfo.ticketImagePath);
     self.accessoryView =  nil;
 }
 

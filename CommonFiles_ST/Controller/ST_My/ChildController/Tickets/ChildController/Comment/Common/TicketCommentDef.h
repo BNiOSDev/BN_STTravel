@@ -2,7 +2,7 @@
 //  TicketCommentDef.h
 //  ST_Travel
 //
-//  Created by dhxiang on 16/11/2.
+//  Created by 晨曦 on 16/11/2.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 

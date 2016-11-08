@@ -33,7 +33,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥58" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On4-L7-Ota">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$58" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On4-L7-Ota">
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="29.5" id="dSQ-ff-lFx"/>
                         </constraints>
@@ -54,25 +54,25 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="tRP-fS-qhB" firstAttribute="top" secondItem="g6e-q7-h9K" secondAttribute="bottom" constant="13" id="0DC-ey-r3b"/>
+                    <constraint firstItem="g6e-q7-h9K" firstAttribute="bottom" secondItem="qht-HH-dQy" secondAttribute="bottom" id="0F8-6c-NBW"/>
                     <constraint firstItem="Hjb-Z9-72d" firstAttribute="leading" secondItem="eDI-Nu-mUp" secondAttribute="leading" id="28u-pn-h2f"/>
-                    <constraint firstItem="Hjb-Z9-72d" firstAttribute="top" secondItem="eDI-Nu-mUp" secondAttribute="bottom" constant="6" id="7AN-9f-PFN"/>
-                    <constraint firstItem="eDI-Nu-mUp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5.5" id="8Gb-Oz-mtb"/>
+                    <constraint firstItem="eDI-Nu-mUp" firstAttribute="top" secondItem="qht-HH-dQy" secondAttribute="top" id="6X7-Km-mti"/>
+                    <constraint firstItem="eDI-Nu-mUp" firstAttribute="leading" secondItem="qht-HH-dQy" secondAttribute="trailing" constant="15" id="8m2-kQ-Br4"/>
                     <constraint firstItem="tRP-fS-qhB" firstAttribute="leading" secondItem="qht-HH-dQy" secondAttribute="leading" id="Df8-Jh-lXb"/>
                     <constraint firstAttribute="trailing" secondItem="On4-L7-Ota" secondAttribute="trailing" constant="15" id="KkA-u7-0DI"/>
                     <constraint firstItem="qht-HH-dQy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5.5" id="Lo2-dP-GOE"/>
                     <constraint firstItem="g6e-q7-h9K" firstAttribute="trailing" secondItem="On4-L7-Ota" secondAttribute="trailing" id="YUY-6L-fnO"/>
-                    <constraint firstAttribute="bottom" secondItem="g6e-q7-h9K" secondAttribute="bottom" constant="8" id="byl-Y0-Dwd"/>
                     <constraint firstItem="On4-L7-Ota" firstAttribute="top" secondItem="eDI-Nu-mUp" secondAttribute="top" id="dmg-lQ-Pil"/>
                     <constraint firstItem="On4-L7-Ota" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eDI-Nu-mUp" secondAttribute="trailing" constant="20" id="eD6-Cc-Xn7"/>
                     <constraint firstItem="qht-HH-dQy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="fZO-NO-3ug"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Hjb-Z9-72d" secondAttribute="bottom" constant="32" id="iQ8-bx-sDS"/>
-                    <constraint firstItem="g6e-q7-h9K" firstAttribute="top" secondItem="qht-HH-dQy" secondAttribute="bottom" constant="-8" id="pD8-aJ-c9S"/>
                     <constraint firstAttribute="bottom" secondItem="tRP-fS-qhB" secondAttribute="bottom" id="rp3-i2-eaR"/>
                     <constraint firstItem="tRP-fS-qhB" firstAttribute="trailing" secondItem="g6e-q7-h9K" secondAttribute="trailing" id="tBp-YI-CT8"/>
-                    <constraint firstItem="eDI-Nu-mUp" firstAttribute="leading" secondItem="qht-HH-dQy" secondAttribute="trailing" constant="15" id="ta9-vY-7PQ"/>
+                    <constraint firstItem="Hjb-Z9-72d" firstAttribute="top" secondItem="eDI-Nu-mUp" secondAttribute="bottom" constant="10" id="tZp-mm-SHH"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="imageWidthContraint" destination="GIv-Ck-5eD" id="Gtx-ga-1fR"/>
                 <outlet property="imgView" destination="qht-HH-dQy" id="Mby-OQ-MCH"/>
                 <outlet property="lineView" destination="tRP-fS-qhB" id="bQm-T1-UV6"/>
                 <outlet property="monneyLabel" destination="On4-L7-Ota" id="K0i-7L-TLo"/>

@@ -7,7 +7,10 @@
 //
 
 #import "ZJMBaseViewController.h"
+#import "Header.h"
 
 @interface ZJMTravelsViewController : ZJMBaseViewController
+
+@property(nonatomic,assign)TravelsViewType viewType;
 
 @end
