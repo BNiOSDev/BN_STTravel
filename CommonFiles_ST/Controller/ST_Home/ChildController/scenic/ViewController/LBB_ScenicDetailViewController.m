@@ -73,8 +73,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 -(void)loadCustomNavigationButton{
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     UIButton *share = [[UIButton alloc] init];
-    [share setBackgroundImage:IMAGE(@"景点详情_分享") forState:UIControlStateNormal];
-    share.frame = CGRectMake(0, 0, 27, 27);
+    [share setImage:IMAGE(@"景点详情_分享") forState:UIControlStateNormal];
+    share.frame = CGRectMake(0, 0, 45, 45);
     [share bk_addEventHandler:^(id sender){
 
     }forControlEvents:UIControlEventTouchUpInside];
@@ -82,8 +82,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithCustomView:share];
     
     UIButton *favorite = [[UIButton alloc] init];
-    [favorite setBackgroundImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
-    favorite.frame = CGRectMake(0, 0, 27, 27);
+    [favorite setImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
+    favorite.frame = CGRectMake(0, 0, 45, 45);
     [favorite bk_addEventHandler:^(id sender){
         
     }forControlEvents:UIControlEventTouchUpInside];
@@ -397,6 +397,16 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         default:
             return [self tableView:tableView cellForHeaderSectionRowAtIndexPath:indexPath];
             break;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == LBBScenicDetailSectionTravelRecommendType) {//周边推荐
+        LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
+        dest.homeType = LBBPoohHomeTypeScenic;
+        [self.navigationController pushViewController:dest animated:YES];
+        
     }
 }
 

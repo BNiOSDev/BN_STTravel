@@ -33,6 +33,13 @@ static const NSInteger kPictureInterval = 10;
 
 @implementation LBB_StarRatingViewController
 
+-(id)init{
+    if (self = [super init]) {
+        self.themeTitle = @"景点评价";
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -112,7 +119,7 @@ static const NSInteger kPictureInterval = 10;
     
     //评论描述
     UILabel* l2 = [UILabel new];
-    [l2 setText:@"景点评价 "];
+    [l2 setText:self.themeTitle];
     [l2 setFont:Font15];
     [self.mainScrollView addSubview:l2];
     [l2 mas_makeConstraints:^(MASConstraintMaker* make){

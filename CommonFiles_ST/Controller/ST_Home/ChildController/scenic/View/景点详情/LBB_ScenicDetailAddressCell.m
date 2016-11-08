@@ -81,6 +81,28 @@
             make.height.mas_equalTo(SeparateLineWidth);
             make.top.equalTo(ws.addressLable.mas_bottom).offset(2*margin);
         }];
+        
+        [self.telButton bk_whenTapped:^{
+            Base_BaseViewController* curVC = (Base_BaseViewController*)[ws getViewController];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"" message:@"4008-910-654" preferredStyle:UIAlertControllerStyleActionSheet];
+            
+            
+            UIAlertAction* call = [UIAlertAction actionWithTitle:@"直接拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
+                
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://4008-910-654"]];
+                
+            }];
+            UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
+            
+            }];
+            [alert addAction:call];
+            [alert addAction:cancel];
+            [curVC presentViewController:alert animated:YES completion:nil];
+            
+        
+        }];
+
+        
     }
     return self;
 }

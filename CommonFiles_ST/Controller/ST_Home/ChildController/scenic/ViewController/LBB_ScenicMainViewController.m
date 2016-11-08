@@ -52,10 +52,10 @@
     search.titleLabel.font = Font14;
    // [search setTitle:@"搜索" forState:UIControlStateNormal];
    // [search setImage:IMAGE(@"景区列表_搜索") forState:UIControlStateNormal];
-    [search setBackgroundImage:IMAGE(@"景区列表_搜索") forState:UIControlStateNormal];
+    [search setImage:IMAGE(@"景区列表_搜索") forState:UIControlStateNormal];
 
     [search setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    search.frame = CGRectMake(0, 0, 25, 25);
+    search.frame = CGRectMake(0, 0, 45, 45);
     [search bk_addEventHandler:^(id sender){
         
         LBB_ScenicSearchViewController* dest = [[LBB_ScenicSearchViewController alloc]init];

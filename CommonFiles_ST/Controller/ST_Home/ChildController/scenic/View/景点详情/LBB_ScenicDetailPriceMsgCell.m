@@ -8,6 +8,7 @@
 
 #import "LBB_ScenicDetailPriceMsgCell.h"
 #import "PoohCommon.h"
+#import "LBB_StarRatingViewController.h"
 @implementation LBB_ScenicDetailPriceMsgCell
 
 /*
@@ -60,6 +61,12 @@
             make.right.equalTo(ws.contentView).offset(-2*margin);
             make.width.height.mas_equalTo(AutoSize(22));
         }];
+        [self.signButton bk_whenTapped:^{
+            
+            Base_BaseViewController* curVC = (Base_BaseViewController*)[ws getViewController];
+            [curVC showHudPrompt:@"已签到"];
+        }];
+        
         
         self.signLabel = [UILabel new];
         [self.signLabel setText:@"签到"];
@@ -109,7 +116,11 @@
             make.centerY.height.equalTo(ws.greatView);
         }];
         
+
         [self.commentsView bk_whenTapped:^{
+            
+            LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc] init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
         

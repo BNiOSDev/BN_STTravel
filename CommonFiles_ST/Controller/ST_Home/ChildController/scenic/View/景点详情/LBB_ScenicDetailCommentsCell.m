@@ -7,6 +7,7 @@
 //
 
 #import "LBB_ScenicDetailCommentsCell.h"
+#import "LBB_StarRatingViewController.h"
 
 @implementation LBB_ScenicDetailCommentsCell
 
@@ -185,6 +186,13 @@
 
         [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
 
+        
+        [self.commentsButton bk_whenTapped:^{
+        
+            LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+        
     }
     return self;
 }

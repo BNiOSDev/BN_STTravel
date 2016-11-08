@@ -10,4 +10,6 @@
 
 @interface LBB_StarRatingViewController : Base_BaseViewController
 
+@property(nonatomic, retain)NSString* themeTitle;
+
 @end

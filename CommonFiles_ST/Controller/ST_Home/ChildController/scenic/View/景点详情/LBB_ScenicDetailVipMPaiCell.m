@@ -7,6 +7,7 @@
 //
 
 #import "LBB_ScenicDetailVipMPaiCell.h"
+#import "LBB_TravelCommentController.h"
 @interface LBB_ScenicDetailVipMPaiCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end
@@ -97,5 +98,12 @@
     return cell;
 }
 
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
+    [[self getViewController].navigationController pushViewController:dest animated:YES];
+        
+}
 
 @end
