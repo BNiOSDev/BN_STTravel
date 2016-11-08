@@ -16,4 +16,8 @@
 
 -(void)showRightButton:(BOOL)show;
 
+
+-(void)setCutDown:(NSTimeInterval)interval;
+
+
 @end

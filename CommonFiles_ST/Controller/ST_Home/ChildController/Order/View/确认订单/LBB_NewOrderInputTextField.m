@@ -8,6 +8,14 @@
 
 #import "LBB_NewOrderInputTextField.h"
 #import "PoohCommon.h"
+
+@interface LBB_NewOrderInputTextField()
+
+@property(nonatomic, retain)NSTimer* countDownTimer;
+@property(nonatomic, assign)NSInteger secondsCountDown;
+
+@end
+
 @implementation LBB_NewOrderInputTextField
 
 /*
@@ -78,11 +86,14 @@
             make.bottom.equalTo(ws);
         }];
         
+        [self setRightButtonCountDown];//倒计时的检测
         [self layoutSubviews];
         
     }
     return self;
 }
+
+
 
 -(void)showRightButton:(BOOL)show{
 
@@ -129,7 +140,45 @@
         }];
         
     }
+}
+
+-(void)setCutDown:(NSTimeInterval)interval{
+
+    //设置倒计时总时长
+    self.secondsCountDown = interval;
+    //开始倒计时
+    self.countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeFireMethod) userInfo:nil repeats:YES]; //启动倒计时后会每秒钟调用一次方法 timeFireMethod
     
+    //设置倒计时显示的时间
+}
+-(void)timeFireMethod{
+    //倒计时-1
+    self.secondsCountDown--;
+    //修改倒计时标签现实内容
+    //当倒计时到0时，做需要的操作，比如验证码过期不能提交
+    if(self.secondsCountDown == 0){
+        [self.countDownTimer invalidate];
+    }
+}
+
+-(void)setRightButtonCountDown{
+    
+    @weakify (self);
+    
+    [RACObserve(self, secondsCountDown) subscribeNext:^(NSNumber* index) {
+        @strongify(self);
+        
+        if (self.secondsCountDown <= 0) {
+
+            self.rightButton.enabled = YES;
+            [self.rightButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+            
+        }
+        else{
+            self.rightButton.enabled = NO;
+            [self.rightButton setTitle:[NSString stringWithFormat:@"%lds",self.secondsCountDown] forState:UIControlStateNormal];
+        }
+    }];
 }
 
 @end

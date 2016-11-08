@@ -196,6 +196,11 @@
         make.top.equalTo(telField.mas_bottom);
     }];
     self.verCodeField = verCodeField;
+    
+    [self.verCodeField.rightButton bk_whenTapped:^{//60s倒计时
+        [ws.verCodeField setCutDown:60];
+    }];
+    
    
     UIView* sep1 = [UIView new];
     [sep1 setBackgroundColor:ColorLine];
