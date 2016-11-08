@@ -175,7 +175,7 @@
     [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1478007203&di=a3c6cc46c613fc8dff8bef3d33a28e64&src=http://f.hiphotos.baidu.com/image/pic/item/5ab5c9ea15ce36d358d27ee43ef33a87e850b114.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1478007203&di=a3c6cc46c613fc8dff8bef3d33a28e64&src=http://f.hiphotos.baidu.com/image/pic/item/5ab5c9ea15ce36d358d27ee43ef33a87e850b114.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
     
-    
+   
     [self.labelButton1 bk_whenTapped:^{
         NSLog(@"labelButton1 touch");
         

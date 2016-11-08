@@ -225,6 +225,17 @@
         }];
         
         
+        [self.portraitImageView bk_whenTapped:^{
+            
+            LBB_GuiderUserViewController* dest = [[LBB_GuiderUserViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+        
+        
+        [self.nameLabel bk_whenTapped:^{
+            LBB_GuiderUserViewController* dest = [[LBB_GuiderUserViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+        }];
     }
     return self;
 }
@@ -233,17 +244,6 @@
     WS(ws);
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
 
-    [self.portraitImageView bk_whenTapped:^{
-        
-        LBB_GuiderUserViewController* dest = [[LBB_GuiderUserViewController alloc]init];
-        [[ws getViewController].navigationController pushViewController:dest animated:YES];
-    }];
-    
-    
-    [self.nameLabel bk_whenTapped:^{
-        LBB_GuiderUserViewController* dest = [[LBB_GuiderUserViewController alloc]init];
-        [[ws getViewController].navigationController pushViewController:dest animated:YES];
-    }];
     
 }
 @end

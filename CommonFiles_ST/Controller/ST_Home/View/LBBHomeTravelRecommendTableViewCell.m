@@ -256,6 +256,21 @@
             make.height.mas_equalTo(SeparateLineWidth);
         }];
         
+        [self.portraitImageView bk_whenTapped:^{
+            
+            LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        
+        [self.specialLabelButton1 bk_whenTapped:^{
+            
+            NSLog(@"specialLabelButton1 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        
     }
     return self;
 }
@@ -267,20 +282,7 @@
     [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg"] placeholderImage:IMAGE(@"poohtest")];
 
-    [self.portraitImageView bk_whenTapped:^{
-        
-        LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
-        [[ws getViewController].navigationController pushViewController:dest animated:YES];
-        
-    }];
-    
-    [self.specialLabelButton1 bk_whenTapped:^{
-        
-        NSLog(@"specialLabelButton1 touch");
-        LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-        [[ws getViewController].navigationController pushViewController:dest animated:YES];
-        
-    }];
+
 
 }
 

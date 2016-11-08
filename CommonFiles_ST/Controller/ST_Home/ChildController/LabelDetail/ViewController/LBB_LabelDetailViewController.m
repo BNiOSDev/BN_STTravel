@@ -91,6 +91,8 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
     self.hotDataSource = [[LBB_LabelDetailHotDataSource alloc] initWithTableView:self.tableView];
     self.timeDataSource = [[LBB_LabelDetailHotDataSource alloc] initWithTableView:self.tableView];
     self.userDataSource = [[LBB_LabelDetailUserDataSource alloc] initWithTableView:self.tableView];
+    self.userDataSource.parentViewController = self;
+    
     [self.view addSubview:self.tableView];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = self.headerView;

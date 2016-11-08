@@ -182,6 +182,19 @@
             make.top.equalTo(ws.item1.mas_bottom).offset(2*interval);
         }];
         
+        [self.item1 bk_whenTapped:^{
+            
+            LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        [self.item2 bk_whenTapped:^{
+            
+            LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        
     }
     return self;
 }
@@ -196,18 +209,7 @@
     [self.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
     [self.item1.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
     
-    [self.item1 bk_whenTapped:^{
-        
-        LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
-        [[ws getViewController].navigationController pushViewController:dest animated:YES];
-        
-    }];
-    [self.item2 bk_whenTapped:^{
-        
-        LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
-        [[ws getViewController].navigationController pushViewController:dest animated:YES];
-        
-    }];
+
     
 }
 

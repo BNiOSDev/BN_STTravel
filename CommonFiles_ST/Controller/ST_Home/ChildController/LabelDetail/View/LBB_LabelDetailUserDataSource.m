@@ -8,6 +8,7 @@
 
 #import "LBB_LabelDetailUserDataSource.h"
 #import "LBB_LabelDetailUserCell.h"
+#import "LBB_SquareSnsFollowViewController.h"
 
 @interface LBB_LabelDetailUserDataSource()
 
@@ -54,6 +55,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
+    [self.parentViewController.navigationController pushViewController:dest animated:YES];
 }
 
 @end

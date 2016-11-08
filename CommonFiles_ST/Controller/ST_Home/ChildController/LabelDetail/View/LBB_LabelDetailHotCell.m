@@ -7,7 +7,7 @@
 //
 
 #import "LBB_LabelDetailHotCell.h"
-
+#import "LBB_TravelCommentController.h"
 @implementation LBB_LabelDetailHotCellItem
 
 -(id)init{
@@ -82,6 +82,19 @@
             make.width.height.equalTo(ws.item1);
         }];
         
+        [self.item1 bk_whenTapped:^{
+            NSLog(@"item1 tap");
+            LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        [self.item2 bk_whenTapped:^{
+            NSLog(@"item2 tap");
+            LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        
     }
     return self;
 }
@@ -89,6 +102,9 @@
 -(void)setModel:(id)model{
     [self.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
     [self.item2.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
+
+
+
 }
 
 @end

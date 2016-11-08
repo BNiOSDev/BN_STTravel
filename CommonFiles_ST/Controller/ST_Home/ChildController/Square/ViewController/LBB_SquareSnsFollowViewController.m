@@ -59,7 +59,20 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
 
 -(void)loadCustomNavigationButton{
     
+    WS(ws);
+    UIButton *shareButton = [[UIButton alloc] init];
+    shareButton.titleLabel.font = Font14;
+    [shareButton setImage:IMAGE(@"标签详情_分享") forState:UIControlStateNormal];
+    [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    shareButton.frame = CGRectMake(0, 0, 45, 45);
+    [shareButton bk_addEventHandler:^(id sender){
+        
+        
+        
+    }forControlEvents:UIControlEventTouchUpInside];
     
+    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
+    self.navigationItem.rightBarButtonItem = shareItem;
 }
 
 

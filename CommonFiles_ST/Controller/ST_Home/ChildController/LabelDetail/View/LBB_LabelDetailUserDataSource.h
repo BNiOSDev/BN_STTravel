@@ -12,4 +12,7 @@
 
 - (id)initWithTableView:(UITableView *)tableView;
 
+@property(nonatomic, weak) UIViewController* parentViewController;
+
+
 @end
