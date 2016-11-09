@@ -360,6 +360,10 @@
 		842BCE2B1DCD79E400A16788 /* ZJMTravelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BCD9A1DCD79E300A16788 /* ZJMTravelsViewController.m */; };
 		842BCE2C1DCD79E400A16788 /* ZJMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BCD9F1DCD79E300A16788 /* ZJMBaseViewController.m */; };
 		842BCE331DCD7D7300A16788 /* LBB_DownloadedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BCE321DCD7D7300A16788 /* LBB_DownloadedViewController.m */; };
+		84462E971DD2F36A000652E6 /* LBB_NoticeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84462E951DD2F36A000652E6 /* LBB_NoticeViewCell.m */; };
+		84462E981DD2F36A000652E6 /* LBB_NoticeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84462E961DD2F36A000652E6 /* LBB_NoticeViewCell.xib */; };
+		84462E9B1DD2F744000652E6 /* LBB_NoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84462E9A1DD2F744000652E6 /* LBB_NoticeModel.m */; };
+		84462E9E1DD30816000652E6 /* LBB_WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84462E9D1DD30816000652E6 /* LBB_WebViewController.m */; };
 		84B377DF1DC4539D0078397C /* ST_Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B377DE1DC4539D0078397C /* ST_Mine.xcassets */; };
 		84D154741DCF26C500CAE93E /* LBB_MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D154731DCF26C500CAE93E /* LBB_MineModel.m */; };
 		84F6B8141DC6E277009ED8DF /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -1007,6 +1011,13 @@
 		842BCD9F1DCD79E300A16788 /* ZJMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMBaseViewController.m; sourceTree = "<group>"; };
 		842BCE311DCD7D7300A16788 /* LBB_DownloadedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DownloadedViewController.h; sourceTree = "<group>"; };
 		842BCE321DCD7D7300A16788 /* LBB_DownloadedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DownloadedViewController.m; sourceTree = "<group>"; };
+		84462E941DD2F36A000652E6 /* LBB_NoticeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NoticeViewCell.h; sourceTree = "<group>"; };
+		84462E951DD2F36A000652E6 /* LBB_NoticeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NoticeViewCell.m; sourceTree = "<group>"; };
+		84462E961DD2F36A000652E6 /* LBB_NoticeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_NoticeViewCell.xib; sourceTree = "<group>"; };
+		84462E991DD2F744000652E6 /* LBB_NoticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NoticeModel.h; sourceTree = "<group>"; };
+		84462E9A1DD2F744000652E6 /* LBB_NoticeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NoticeModel.m; sourceTree = "<group>"; };
+		84462E9C1DD30816000652E6 /* LBB_WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_WebViewController.h; sourceTree = "<group>"; };
+		84462E9D1DD30816000652E6 /* LBB_WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_WebViewController.m; sourceTree = "<group>"; };
 		84B377DE1DC4539D0078397C /* ST_Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Mine.xcassets; sourceTree = "<group>"; };
 		84D154721DCF26C500CAE93E /* LBB_MineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MineModel.h; sourceTree = "<group>"; };
 		84D154731DCF26C500CAE93E /* LBB_MineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MineModel.m; sourceTree = "<group>"; };
@@ -1750,6 +1761,8 @@
 				842BCAEB1DCD792500A16788 /* Mine_Common.h */,
 				842BCAEC1DCD792500A16788 /* MineBaseViewController.h */,
 				842BCAED1DCD792500A16788 /* MineBaseViewController.m */,
+				84462E9C1DD30816000652E6 /* LBB_WebViewController.h */,
+				84462E9D1DD30816000652E6 /* LBB_WebViewController.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1927,6 +1940,8 @@
 		842BCB0D1DCD792500A16788 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84462E991DD2F744000652E6 /* LBB_NoticeModel.h */,
+				84462E9A1DD2F744000652E6 /* LBB_NoticeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1934,6 +1949,9 @@
 		842BCB0E1DCD792500A16788 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84462E941DD2F36A000652E6 /* LBB_NoticeViewCell.h */,
+				84462E951DD2F36A000652E6 /* LBB_NoticeViewCell.m */,
+				84462E961DD2F36A000652E6 /* LBB_NoticeViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4176,7 +4194,7 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8NT4E7BWNP;
+						DevelopmentTeam = 2V3T4T4V4S;
 						ProvisioningStyle = Automatic;
 					};
 					C9C0E9641D9948F300575A7C = {
@@ -4235,6 +4253,7 @@
 				842BCC711DCD792500A16788 /* LBB_TicketCommentPicturViewCell.xib in Resources */,
 				842BCC5D1DCD792500A16788 /* ReceiptAddressViewCell.xib in Resources */,
 				842BCC751DCD792500A16788 /* LBB_TicketCommentTagViewCell.xib in Resources */,
+				84462E981DD2F36A000652E6 /* LBB_NoticeViewCell.xib in Resources */,
 				842BCDDD1DCD79E300A16788 /* zjmhuangtime@2x.png in Resources */,
 				C9C0E95F1D9948F200575A7C /* LaunchScreen.storyboard in Resources */,
 				842BCC681DCD792500A16788 /* SwitchViewCell.xib in Resources */,
@@ -4421,6 +4440,7 @@
 				1D12FA4F1DC6E97700ACD462 /* LBB_SceninSearchCollectionViewCell.m in Sources */,
 				842BCC6F1DCD792500A16788 /* SettingViewController.m in Sources */,
 				842BCC5F1DCD792500A16788 /* LBB_UserNameViewController.m in Sources */,
+				84462E9E1DD30816000652E6 /* LBB_WebViewController.m in Sources */,
 				842BCE0A1DCD79E400A16788 /* JHPieChart.m in Sources */,
 				1D12FA8D1DC6E97700ACD462 /* IConstants.m in Sources */,
 				842BCE0E1DCD79E400A16788 /* JHShowInfoView.m in Sources */,
@@ -4446,6 +4466,7 @@
 				1D12FA4C1DC6E97700ACD462 /* KSViewPagerView.m in Sources */,
 				842BCE001DCD79E400A16788 /* LBB_TravelDetailViewController.m in Sources */,
 				1D12FA921DC6E97700ACD462 /* LBBHomeSquareCenterTableViewCell.m in Sources */,
+				84462E971DD2F36A000652E6 /* LBB_NoticeViewCell.m in Sources */,
 				1D0F48841DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m in Sources */,
 				842BCE101DCD79E400A16788 /* LGSegment.m in Sources */,
 				842BCC6B1DCD792500A16788 /* LBB_InviteFriendsViewController.m in Sources */,
@@ -4499,14 +4520,10 @@
 				842BCC881DCD792500A16788 /* CardViewController.m in Sources */,
 				1D12FA851DC6E97700ACD462 /* NSDictionary+PoohCommon.m in Sources */,
 				1D11B0AA1DCC2386008610CB /* LBB_GuiderUserFunsListCell.m in Sources */,
-
-				84F6BA2E1DC6E3D1009ED8DF /* ZJSegmentStyle.m in Sources */,
 				1D11B1DB1DCD70E4008610CB /* LBB_HomeTableViewDataSource.m in Sources */,
-
 				842BCDFA1DCD79E400A16788 /* LBB_AddressTipView.m in Sources */,
 				842BCDA01DCD79E300A16788 /* NSArray+Sudoku.m in Sources */,
 				842BCE1A1DCD79E400A16788 /* CommentView.m in Sources */,
-
 				1D12FA771DC6E97700ACD462 /* LBB_ScenicDetailVipFavoriteCell.m in Sources */,
 				1D12FA7E1DC6E97700ACD462 /* LBB_ScenicDetailViewController.m in Sources */,
 				1D12FA691DC6E97700ACD462 /* LBB_OrderTicketPriceCell.m in Sources */,
@@ -4647,6 +4664,7 @@
 				1D12FA4B1DC6E97700ACD462 /* GYChangeTextView.m in Sources */,
 				842BCE0D1DCD79E400A16788 /* JHRingChart.m in Sources */,
 				C91F61551D9F96CA004FE75C /* ST_MallViewController.m in Sources */,
+				84462E9B1DD2F744000652E6 /* LBB_NoticeModel.m in Sources */,
 				1D12FA871DC6E97700ACD462 /* NSString+PoohCommon.m in Sources */,
 				842BCC5C1DCD792500A16788 /* ReceiptAddressViewCell.m in Sources */,
 				842BCC581DCD792500A16788 /* AddAddressViewController.m in Sources */,
@@ -4808,7 +4826,7 @@
 			baseConfigurationReference = A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				DEVELOPMENT_TEAM = 2V3T4T4V4S;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -4825,7 +4843,7 @@
 			baseConfigurationReference = 8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				DEVELOPMENT_TEAM = 2V3T4T4V4S;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;

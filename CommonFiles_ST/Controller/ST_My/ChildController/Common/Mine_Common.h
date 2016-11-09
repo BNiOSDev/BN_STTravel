@@ -78,11 +78,14 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     
     eSettingPush,//推送消息
     eSettingPrivace, //隐私
+    
+    /* 消息中心 */
     eMessageCenter,//消息中心
     ePromotions,// 优惠促销（消息中心）
     eCustomer,//我的客服（消息中心）
     ePurchageNotifion,//购买通知（消息中心）
     eNotice,//鹭爸公告
+    eNoticeDetail,//公告详情
     eMyProperty,//我的资产（消息中心）
     eSquareTravel, //广场游记（消息中心）
 };

@@ -231,6 +231,11 @@
             self.navigationItem.title = NSLocalizedString(@"鹭爸公告", nil);
         }
             break;
+        case eNoticeDetail://消息中心-鹭爸公告-公告详情
+        {
+            self.navigationItem.title = NSLocalizedString(@"公告详情", nil);
+        }
+            break;
         case eSquareTravel://消息中心-广场游记
         {
             self.navigationItem.title = NSLocalizedString(@"广场游记", nil);
