@@ -16,6 +16,7 @@
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, retain) UITableView* tableView;
 
+
 @end
 
 @implementation LBB_GuiderMainViewController

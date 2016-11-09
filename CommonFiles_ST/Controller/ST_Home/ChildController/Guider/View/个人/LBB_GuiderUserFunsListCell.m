@@ -82,6 +82,46 @@
             make.height.mas_equalTo(SeparateLineWidth);
         //    make.top.equalTo(ws.portraitImageView.mas_bottom).offset(interval);
         }];
+        
+        //搜索页面用
+        self.vImageView = [UIImageView new];
+        [self.vImageView setImage:IMAGE(@"导游_V")];
+        [self.contentView addSubview:self.vImageView];
+        [self.vImageView mas_makeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(ws.titleLabel);
+            make.left.equalTo(ws.titleLabel.mas_right).offset(3);
+        }];
+        
+        self.levelButton = [UIButton new];
+        [self.levelButton setTitle:@"Lv.29" forState:UIControlStateNormal];
+        [self.levelButton setBackgroundColor:ColorBtnYellow];
+        [self.levelButton setTitleColor:ColorWhite forState:UIControlStateNormal];
+        [self.levelButton.titleLabel setFont:Font10];
+        [self.contentView addSubview:self.levelButton];
+        [self.levelButton mas_makeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(ws.titleLabel);
+            make.left.equalTo(ws.vImageView.mas_right).offset(3);
+            make.height.mas_equalTo(AutoSize(12));
+        }];
+        self.levelButton.layer.cornerRadius = 12/2;
+        self.levelButton.layer.masksToBounds = YES;
+        
+        self.identityLable = [UILabel new];
+        [self.identityLable setFont:Font13];
+        [self.identityLable setTextColor:ColorBtnYellow];
+        [self.identityLable setText:@"健康导游"];
+        [self.contentView addSubview:self.identityLable];
+        [self.identityLable mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.levelButton.mas_right).offset(3);
+            make.centerY.equalTo(ws.titleLabel);
+        }];
+        
+        self.vImageView.hidden = YES;
+        self.levelButton.hidden = YES;
+        self.identityLable.hidden = YES;
+        
     }
     return self;
 }

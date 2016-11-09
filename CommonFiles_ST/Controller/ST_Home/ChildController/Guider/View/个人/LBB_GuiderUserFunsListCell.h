@@ -15,6 +15,11 @@
 @property(nonatomic, retain)UILabel* subTitleLabel;
 @property(nonatomic, retain)UIButton* rightButton;
 
+//主页搜索页面，类型为用户时使用
+@property(nonatomic, retain)UIImageView* vImageView;
+@property(nonatomic, retain)UIButton* levelButton;
+@property(nonatomic, retain)UILabel* identityLable;//认证
+
 
 @property(nonatomic, retain)id model;
 

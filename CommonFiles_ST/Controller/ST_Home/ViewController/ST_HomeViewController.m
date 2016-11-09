@@ -18,10 +18,9 @@
 #import "LBB_ScenicDetailSubjectViewController.h"
 
 #import "LBBPoohBaseTableSectionHeaderView.h"
-
-
 #import "LBB_HomeTableViewDataSource.h"
 
+#import "LBB_HomeSearchViewController.h"
 
 
 
@@ -146,6 +145,7 @@
                           ];
     
     WS(ws);
+    self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     
     self.dataSource = [[LBB_HomeTableViewDataSource alloc] initWithTableView:self.tableView];
@@ -156,10 +156,10 @@
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.width.left.right.equalTo(ws.view);
-        make.top.equalTo(ws.view.mas_top);
-        make.bottom.equalTo(ws.view);
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(ws.view);
+        make.top.equalTo(ws.view);
+        make.bottom.equalTo(ws.view).offset(-IAppTabBarHeight);
     }];
     
  
@@ -170,13 +170,26 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
     NSLog(@"searchBarSearchButtonClicked");
-
 }
 
-- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    [self.searchBar becomeFirstResponder];
-    return YES;
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+
+    LBB_HomeSearchViewController* searchVC = [[LBB_HomeSearchViewController alloc]init];
+    /*
+     typedef NS_ENUM(NSInteger, LBBPoohHomeSearchType) {
+     LBBPoohHomeSearchTypeGift = 0,//伴手礼
+     ,//美食
+     ,//民宿
+     LBBPoohHomeSearchTypeUser,//用户
+     ,//广场
+     ,//游记
+     };
+     */
+    searchVC.searchType = LBBPoohHomeSearchTypeSquare;
+    [self.navigationController pushViewController:searchVC animated:YES];
+    return NO;
 }
+
 
 
 #pragma tableView Delegate

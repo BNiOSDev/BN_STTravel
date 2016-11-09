@@ -25,6 +25,7 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "PoohAppHelper.h"
 
+
 #import "NSString+PoohCommon.h"
 #import "UIColor+PoohCommon.h"
 #import "NSObject+PoohCommon.h"
@@ -63,8 +64,9 @@ typedef NS_ENUM(NSInteger, LBBPoohHomeType) {
     LBBPoohHomeTypeGuide,//导游
     LBBPoohHomeTypeFoods,//美食
     LBBPoohHomeTypeHostel,//民宿
-
 };
+
+
 
 typedef NS_ENUM(NSInteger, LBBPoohSegmCtrlType) {
     LBBPoohSegmCtrlScenicType = 0,//景点
