@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     eSetting, //我的设置
     ePointConvert ,//积分兑换
     ePointDetail, //积分明细
-    
+    ePointConvertDesc, //积分兑换说明
     
     eSettingPush,//推送消息
     eSettingPrivace, //隐私
