@@ -63,6 +63,7 @@ typedef NS_ENUM(NSUInteger, GYTitlePosition) {
 }
 
 - (void)startAnimation {
+  //  self.shouldStop = NO;//pooh add
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 delay:self.needDealy options:UIViewAnimationOptionCurveEaseInOut animations:^{
         if ([weakSelf currentTitlePosition] == GYTitlePositionMiddle) {

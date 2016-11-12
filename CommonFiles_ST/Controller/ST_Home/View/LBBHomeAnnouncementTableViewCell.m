@@ -14,7 +14,9 @@
     UILabel* label;
     
     GYChangeTextView *tView;
-
+    
+    UIView* sepLine2;
+    UILabel* title;
 }
 
 @end
@@ -65,7 +67,7 @@
             make.bottom.equalTo(ws.contentView).offset(-8);
         }];
         
-        UILabel* title = [UILabel new];
+        title = [UILabel new];
         [title setText:@"鹭爸公告"];
         [title setTextColor:[UIColor blackColor]];
         [title setFont:Font15];
@@ -86,6 +88,7 @@
             make.left.equalTo(title.mas_right).offset(20);
         }];
         
+        sepLine2 = sep2;
         CGFloat x = 3 + 20 + 20 + title.frame.size.width + 25;
 
         tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x+40, 0, DeviceWidth-40-x, AutoSize(35))];
@@ -98,6 +101,10 @@
             make.right.equalTo(ws.contentView).offset(-2);
             make.top.bottom.equalTo(ws.contentView);
         }];
+        NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
+
+        [tView animationWithTexts:array/*[NSArray arrayWithObjects:@"这是第1条",@"这是第2条",@"这是第3条", nil]*/];
+
         
     }
     return self;
@@ -106,7 +113,29 @@
 
 -(void)setScrollTextArray:(NSArray*)array{
 
-    [tView animationWithTexts:array/*[NSArray arrayWithObjects:@"这是第1条",@"这是第2条",@"这是第3条", nil]*/];
+    WS(ws);
+    NSLog(@"setScrollTextArray:%@",array);
+    
+    if (tView) {
+        [tView removeFromSuperview];
+        tView = nil;
+    }
+    
+    CGFloat x = 3 + 20 + 20 + title.frame.size.width + 25;
+    
+    tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x+40, 0, DeviceWidth-40-x, AutoSize(35))];
+    tView.delegate = self;
+    [self.contentView addSubview:tView];
+    [tView mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.centerY.equalTo(ws.contentView);
+        make.left.equalTo(sepLine2.mas_right).offset(5);
+        make.right.equalTo(ws.contentView).offset(-2);
+        make.top.bottom.equalTo(ws.contentView);
+    }];
+    
+    [tView animationWithTexts:array];
+
 
 }
 

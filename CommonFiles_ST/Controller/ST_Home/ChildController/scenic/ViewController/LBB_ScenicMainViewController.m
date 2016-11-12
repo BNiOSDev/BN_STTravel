@@ -84,7 +84,27 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     NSArray* segmentArray = @[@"景点类别",@"排序",@"标签"];
     
+    BN_FilterMenu* segmentedControl = [[BN_FilterMenu alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, AutoSize(TopSegmmentControlHeight))];;
+    [segmentedControl setTextColor:ColorGray];
+    [segmentedControl setSelectedTextColor:ColorBtnYellow];
+    segmentedControl.layer.borderWidth = 1;
+    segmentedControl.layer.borderColor = ColorLine.CGColor;
+    segmentedControl.menuArray = segmentArray;
+    [self.view addSubview:segmentedControl];
+    [segmentedControl getMenuDataArrayBlock:^NSArray *(NSInteger index, NSString *title) {
+        return @[title,@"111",@"222",@"333",@"333",@"333",@"333",@"333",@"333"];
+    }];
     
+    [segmentedControl heightForRowInBlock:^CGFloat(NSInteger index, NSIndexPath *indexPath, id data) {
+        return 70;
+    }];
+    
+    [segmentedControl didDeselectRowAtIndexPathBlock:^(NSInteger index, NSIndexPath *indexPath, id data) {
+        NSLog(@"index:%ld,选择 %@",index,data);
+        [segmentedControl closeMenu];
+    }];
+    
+    /*
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
     segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
     segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
@@ -106,7 +126,7 @@
     }];
     segmentedControl.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
-    };
+    };*/
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
@@ -121,9 +141,6 @@
         make.width.centerX.equalTo(ws.view);
         make.bottom.equalTo(ws.view);
     }];
-    
-
-    
 }
 
 
