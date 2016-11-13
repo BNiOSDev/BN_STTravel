@@ -374,6 +374,7 @@
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
 		C91F61551D9F96CA004FE75C /* ST_MallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F61401D9F96CA004FE75C /* ST_MallViewController.m */; };
 		C91F61561D9F96CA004FE75C /* ST_MallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91F61411D9F96CA004FE75C /* ST_MallViewController.xib */; };
+		C970D1491DD89E9E00E6CAEB /* LBB_HomeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C970D1481DD89E9E00E6CAEB /* LBB_HomeViewModel.m */; };
 		C9C0E9511D9948F100575A7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C0E9501D9948F100575A7C /* main.m */; };
 		C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C0E9531D9948F100575A7C /* AppDelegate.m */; };
 		C9C0E9571D9948F100575A7C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C0E9561D9948F100575A7C /* ViewController.m */; };
@@ -1034,6 +1035,9 @@
 		C91F613F1D9F96CA004FE75C /* ST_MallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ST_MallViewController.h; sourceTree = "<group>"; };
 		C91F61401D9F96CA004FE75C /* ST_MallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ST_MallViewController.m; sourceTree = "<group>"; };
 		C91F61411D9F96CA004FE75C /* ST_MallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ST_MallViewController.xib; sourceTree = "<group>"; };
+		C970D1471DD89E9E00E6CAEB /* LBB_HomeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeViewModel.h; sourceTree = "<group>"; };
+		C970D1481DD89E9E00E6CAEB /* LBB_HomeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeViewModel.m; sourceTree = "<group>"; };
+		C970D14A1DD89FD900E6CAEB /* LBB_Public.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_Public.h; path = CommonFiles_ST/Controller/ST_Home/viewModel/LBB_Public.h; sourceTree = SOURCE_ROOT; };
 		C9C0E94C1D9948F100575A7C /* ST_Travel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ST_Travel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C0E9501D9948F100575A7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9C0E9521D9948F100575A7C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1233,6 +1237,7 @@
 		1D12F9791DC6E97700ACD462 /* ST_Home */ = {
 			isa = PBXGroup;
 			children = (
+				C970D1461DD89E4100E6CAEB /* viewModel */,
 				1D12F97A1DC6E97700ACD462 /* BaseController */,
 				1D12F97F1DC6E97700ACD462 /* ChildController */,
 				1D12FA191DC6E97700ACD462 /* Model */,
@@ -4019,6 +4024,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		C970D1461DD89E4100E6CAEB /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C970D1471DD89E9E00E6CAEB /* LBB_HomeViewModel.h */,
+				C970D1481DD89E9E00E6CAEB /* LBB_HomeViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		C9C0E9431D9948F100575A7C = {
 			isa = PBXGroup;
 			children = (
@@ -4136,6 +4150,7 @@
 		C9C0E9A91D99687100575A7C /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				C970D14A1DD89FD900E6CAEB /* LBB_Public.h */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -4403,7 +4418,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
@@ -4444,6 +4459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				842BCE1F1DCD79E400A16788 /* UIView+SDAutoLayout.m in Sources */,
+				C970D1491DD89E9E00E6CAEB /* LBB_HomeViewModel.m in Sources */,
 				1D11B0A41DCC1F04008610CB /* LBB_GuiderUserDynamicCell.m in Sources */,
 				842BCE151DCD79E400A16788 /* ZJCustomLabel.m in Sources */,
 				842BCE021DCD79E400A16788 /* HostModel.m in Sources */,
