@@ -13,12 +13,12 @@
 @property(nonatomic, retain)UILabel* titleLabel;
 @property(nonatomic, retain)UITextField* bgCtrlView;
 @property(nonatomic, retain)UILabel* contentLable;
-@property(nonatomic, retain)UIImageView* arrowImageView;
+@property(nonatomic, retain)UIButton* rightButton;
 @property(nonatomic, retain)UIButton* addMoreView;
 
 -(void)setContentLableText:(NSString *)content;
 -(void)showAddMoreView:(BOOL)show;
 
-
+-(void)showDeleteImageView:(BOOL)show;
 
 @end

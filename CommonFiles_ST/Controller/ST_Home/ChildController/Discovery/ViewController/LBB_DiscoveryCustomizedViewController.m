@@ -13,10 +13,13 @@
 #import "UITextField+TPCategory.h"
 #import "LBB_DiscoveryCustomizedPopView.h"
 
+static CGFloat margin = 8;
+static CGFloat height = 45;
+
+
 @interface LBB_DiscoveryCustomizedViewController ()
 
 @property(nonatomic, retain)LBB_DiscoveryCustomizedSelectView* startTimeSelectView;
-@property(nonatomic, retain)LBB_DiscoveryCustomizedSelectView* endTimeSelectView;
 @property(nonatomic, retain)LBB_DiscoveryCustomizedSelectView* areaSelectView;
 @property(nonatomic, retain)LBB_DiscoveryCustomizedSelectView* addMoreAreaView;
 
@@ -28,6 +31,10 @@
 
 @property(nonatomic, retain)LBB_DiscoveryCustomizedPopView* popView;
 
+@property(nonatomic, retain)NSMutableArray* dataArray;
+@property(nonatomic, retain)UIView* scenicPanel;
+@property(nonatomic, retain) UIScrollView *mainScrollView;
+@property(nonatomic, retain)UIButton* submitButton;
 
 @end
 
@@ -41,6 +48,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    CGFloat height = self.submitButton.frame.origin.y + self.submitButton.size.height + 30;
+    if (height <= DeviceHeight) {
+        height = DeviceHeight;
+    }
+    [self.mainScrollView setContentSize:CGSizeMake(0, height)];
 }
 
 /*
@@ -68,48 +84,62 @@
     WS(ws);
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    CGFloat margin = 8;
-    self.startTimeSelectView = [[LBB_DiscoveryCustomizedSelectView alloc]init];
-    [self.startTimeSelectView.titleLabel setText:@"出发时间"];
-    [self.view addSubview:self.startTimeSelectView];
-    [self.startTimeSelectView mas_makeConstraints:^(MASConstraintMaker* make){
-        make.top.equalTo(ws.view).offset(2*margin);
-        make.centerX.width.equalTo(ws.view);
-        make.height.equalTo(@45);
+    self.dataArray = [NSMutableArray new];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.mainScrollView = [UIScrollView new];
+    [self.mainScrollView setBackgroundColor:[UIColor whiteColor]];
+    [self.mainScrollView setContentSize:CGSizeMake(0, UISCREEN_HEIGTH)];
+    [self.mainScrollView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:self.mainScrollView];
+    [self.mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(ws.view);
+        make.width.height.centerX.equalTo(ws.view);
     }];
     
-    self.endTimeSelectView = [[LBB_DiscoveryCustomizedSelectView alloc]init];
-    [self.endTimeSelectView.titleLabel setText:@"结束时间"];
-    [self.view addSubview:self.endTimeSelectView];
-    [self.endTimeSelectView mas_makeConstraints:^(MASConstraintMaker* make){
+    self.startTimeSelectView = [[LBB_DiscoveryCustomizedSelectView alloc]init];
+    [self.startTimeSelectView.titleLabel setText:@"行程时间"];
+    [self.mainScrollView addSubview:self.startTimeSelectView];
+    [self.startTimeSelectView mas_makeConstraints:^(MASConstraintMaker* make){
+        make.top.equalTo(ws.mainScrollView).offset(2*margin);
+        make.centerX.width.equalTo(ws.mainScrollView);
+        make.height.mas_equalTo(height);
+
+        
+    }];
+
+    
+    self.areaSelectView = [[LBB_DiscoveryCustomizedSelectView alloc]init];
+    [self.areaSelectView.titleLabel setText:@"选择景点"];
+    [self.mainScrollView addSubview:self.areaSelectView];
+    [self.areaSelectView mas_makeConstraints:^(MASConstraintMaker* make){
         make.top.equalTo(ws.startTimeSelectView.mas_bottom).offset(2*margin);
         make.centerX.width.equalTo(ws.startTimeSelectView);
         make.height.equalTo(ws.startTimeSelectView);
     }];
-    
-    self.areaSelectView = [[LBB_DiscoveryCustomizedSelectView alloc]init];
-    [self.areaSelectView.titleLabel setText:@"选择景点"];
-    [self.view addSubview:self.areaSelectView];
-    [self.areaSelectView mas_makeConstraints:^(MASConstraintMaker* make){
-        make.top.equalTo(ws.endTimeSelectView.mas_bottom).offset(2*margin);
-        make.centerX.width.equalTo(ws.startTimeSelectView);
-        make.height.equalTo(ws.startTimeSelectView);
-    }];
   
+    
+    self.scenicPanel = [UIView new];
+    [self.mainScrollView addSubview:self.scenicPanel];
+    [self.scenicPanel mas_makeConstraints:^(MASConstraintMaker* make){
+        make.top.equalTo(ws.areaSelectView.mas_bottom).offset(2*margin);
+        make.centerX.width.equalTo(ws.startTimeSelectView);
+    }];
+    
     self.addMoreAreaView = [[LBB_DiscoveryCustomizedSelectView alloc]init];
     [self.addMoreAreaView.titleLabel setText:@""];
     [self.addMoreAreaView.bgCtrlView setPlaceholder:@""];
     [self.addMoreAreaView showAddMoreView:YES];
-    [self.view addSubview:self.addMoreAreaView];
+    [self.mainScrollView addSubview:self.addMoreAreaView];
     [self.addMoreAreaView mas_makeConstraints:^(MASConstraintMaker* make){
-        make.top.equalTo(ws.areaSelectView.mas_bottom).offset(2*margin);
+        make.top.equalTo(ws.scenicPanel.mas_bottom);
         make.centerX.width.equalTo(ws.startTimeSelectView);
         make.height.equalTo(ws.startTimeSelectView);
     }];
     
     //config tag
     UIView* tagView = [UIView new];
-    [self.view addSubview:tagView];
+    [self.mainScrollView addSubview:tagView];
     [tagView mas_makeConstraints:^(MASConstraintMaker* make){
         
         make.top.equalTo(ws.addMoreAreaView.mas_bottom).offset(2*margin);
@@ -171,7 +201,7 @@
     
     UIView* sep = [UIView new];
     [sep setBackgroundColor:ColorLine];
-    [self.view addSubview:sep];
+    [self.mainScrollView addSubview:sep];
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.equalTo(ws.view);
         make.height.mas_equalTo(SeparateLineWidth);
@@ -187,7 +217,7 @@
     [submit.titleLabel setFont:Font15];
     [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [submit setBackgroundColor:ColorBtnYellow];
-    [self.view addSubview:submit];
+    [self.mainScrollView addSubview:submit];
     [submit mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.equalTo(ws.view);
         make.top.equalTo(sep.mas_bottom).offset(margin);
@@ -195,7 +225,7 @@
         make.height.mas_equalTo(AutoSize(77/2));
         make.width.mas_equalTo(AutoSize(400/2));
     }];
-    
+    self.submitButton = submit;
     
 #pragma action
     
@@ -230,12 +260,46 @@
         ws.tagIndex = 2;
     }];
     
-    
-    [self.startTimeSelectView.bgCtrlView useDateKeyboard:@"yyyy-MM-dd hh:mm"];
-    [self.endTimeSelectView.bgCtrlView useDateKeyboard:@"yyyy-MM-dd hh:mm"];
-    self.startTimeSelectView.bgCtrlView.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-    self.endTimeSelectView.bgCtrlView.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
 
+    self.startTimeSelectView.bgCtrlView.bk_shouldBeginEditingBlock = ^(UITextField* text){
+        
+        UIAlertController *c = [UIAlertController alertControllerWithTitle:@"请选择行程时间" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+
+        UIAlertAction *oneDayAction = [UIAlertAction actionWithTitle:@"1天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+            [text setText:@"1天"];
+        }];
+        UIAlertAction *twoDayAction = [UIAlertAction actionWithTitle:@"2天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [text setText:@"2天"];
+
+        }];
+        UIAlertAction *threeDayAction = [UIAlertAction actionWithTitle:@"3天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [text setText:@"3天"];
+
+        }];
+        UIAlertAction *fourDayAction = [UIAlertAction actionWithTitle:@"4天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [text setText:@"4天"];
+
+        }];
+        UIAlertAction *manyDayAction = [UIAlertAction actionWithTitle:@"5-7天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [text setText:@"5-7天"];
+
+        }];
+        
+        UIAlertAction *oneWeekAction = [UIAlertAction actionWithTitle:@"一周" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [text setText:@"一周"];
+
+        }];
+        [c addAction:oneDayAction];
+        [c addAction:twoDayAction];
+        [c addAction:threeDayAction];
+        [c addAction:fourDayAction];
+        [c addAction:manyDayAction];
+        [c addAction:oneWeekAction];
+        [ws presentViewController:c animated:YES completion:nil];
+
+        return NO;
+    };
     self.areaSelectView.bgCtrlView.bk_shouldBeginEditingBlock = ^(UITextField* text){
     
         
@@ -243,7 +307,8 @@
         LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
         dest.click = ^(LBB_AddressAddViewController* add,NSNumber* index){
             NSLog(@"回调地址:%ld",[index integerValue]);
-            [text setText:[NSString stringWithFormat:@"%ld",[index integerValue]]];
+            [ws.dataArray addObject:index];//回调回来数据
+            [ws refreshScenicPanel];
             [add.navigationController popViewControllerAnimated:YES];
         };
         [ws.navigationController pushViewController:dest animated:YES];
@@ -256,7 +321,9 @@
         LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
         dest.click = ^(LBB_AddressAddViewController* add,NSNumber* index){
             NSLog(@"回调地址:%ld",[index integerValue]);
-            [text setText:[NSString stringWithFormat:@"%ld",[index integerValue]]];
+         //   [text setText:[NSString stringWithFormat:@"%ld",[index integerValue]]];
+            [ws.dataArray addObject:index];//回调回来数据
+            [ws refreshScenicPanel];
             [add.navigationController popViewControllerAnimated:YES];
         };
         [ws.navigationController pushViewController:dest animated:YES];
@@ -283,6 +350,52 @@
     
 }
 
+//刷新选择的景点的数据
+-(void)refreshScenicPanel{
 
+    WS(ws);
+    [self.scenicPanel removeAllSubviews];
+    
+    NSInteger count = self.dataArray.count;
+    for (int i = 0; i < count; i++) {
+        
+        NSNumber* num = [self.dataArray objectAtIndex:i];
+        LBB_DiscoveryCustomizedSelectView* scenic = [[LBB_DiscoveryCustomizedSelectView alloc]init];
+        [scenic showDeleteImageView:YES];
+        [scenic.bgCtrlView setText:[NSString stringWithFormat:@"%ld",[num integerValue]]];
+        [scenic.bgCtrlView setPlaceholder:@""];
+        [scenic setTag:i];
+        [self.scenicPanel addSubview:scenic];
+        [scenic mas_makeConstraints:^(MASConstraintMaker* make){
+            make.top.equalTo(ws.scenicPanel).offset(i*(height+margin));
+            make.centerX.width.equalTo(ws.scenicPanel);
+            make.height.mas_equalTo(height);
+            if (i == count - 1) {
+                make.bottom.equalTo(ws.scenicPanel);
+            }
+        }];
+        [scenic.rightButton bk_addEventHandler:^(id sender){
+            NSLog(@"arrowImageView tab");
+            [ws.dataArray removeObjectAtIndex:i];
+            [ws refreshScenicPanel];
+        } forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+
+    
+    [self.addMoreAreaView mas_remakeConstraints:^(MASConstraintMaker* make){
+        if (count > 0) {
+            make.top.equalTo(ws.scenicPanel.mas_bottom).offset(2*margin);
+        }
+        else{
+            make.top.equalTo(ws.scenicPanel.mas_bottom);
+        }
+        make.centerX.width.equalTo(ws.startTimeSelectView);
+        make.height.equalTo(ws.startTimeSelectView);
+    }];
+    
+    [self.mainScrollView layoutSubviews];
+    
+}
 
 @end

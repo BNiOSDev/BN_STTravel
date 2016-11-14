@@ -62,14 +62,14 @@
             make.left.equalTo(ws.bgCtrlView).offset(margin);
         }];
         
-        self.arrowImageView = [UIImageView new];
-        [self.arrowImageView setImage:IMAGE(@"ST_Home_Arrow")];
-        [self.bgCtrlView addSubview:self.arrowImageView];
-        [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker* make){
+        self.rightButton = [UIButton new];
+        [self.rightButton setImage:IMAGE(@"ST_Home_Arrow") forState:UIControlStateNormal];
+        [self addSubview:self.rightButton];
+        [self.rightButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.bgCtrlView);
             make.right.equalTo(ws.bgCtrlView).offset(-margin);
-            make.width.mas_equalTo(10);
-            make.height.equalTo(@15);
+          //  make.width.mas_equalTo(10);
+          //  make.height.equalTo(@15);
         }];
         
         self.addMoreView = [[UIButton alloc]init];
@@ -85,7 +85,6 @@
         }];
         self.addMoreView.hidden = YES;
         self.addMoreView.userInteractionEnabled = NO;
-        
     }
     
     return self;
@@ -102,12 +101,20 @@
     
     if (show) {
         self.addMoreView.hidden = NO;
-        self.arrowImageView.hidden = YES;
+        self.rightButton.hidden = YES;
         self.contentLable.hidden = YES;
     }
 }
 
-    
+-(void)showDeleteImageView:(BOOL)show{
+    if (show) {
+        self.addMoreView.hidden = YES;
+        self.rightButton.hidden = NO;
+        self.contentLable.hidden = YES;
+        [self.rightButton setImage:IMAGE(@"ST_Discovery_Delete") forState:UIControlStateNormal];
+        self.bgCtrlView.userInteractionEnabled = NO;
+    }
+}
 
 
 @end

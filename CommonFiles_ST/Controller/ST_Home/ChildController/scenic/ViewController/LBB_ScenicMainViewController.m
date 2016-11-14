@@ -91,7 +91,7 @@
     segmentedControl.layer.borderColor = ColorLine.CGColor;
     segmentedControl.menuArray = segmentArray;
     [self.view addSubview:segmentedControl];
-    [segmentedControl getMenuDataArrayBlock:^NSArray *(NSInteger index, NSString *title) {
+  /*  [segmentedControl getMenuDataArrayBlock:^NSArray *(NSInteger index, NSString *title) {
         return @[title,@"111",@"222",@"333",@"333",@"333",@"333",@"333",@"333"];
     }];
     
@@ -103,7 +103,7 @@
         NSLog(@"index:%ld,选择 %@",index,data);
         [segmentedControl closeMenu];
     }];
-    
+    */
     /*
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
     segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
