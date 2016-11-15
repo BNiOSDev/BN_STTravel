@@ -13,6 +13,7 @@
 #import "LBB_ScenicDetailSubjectViewController.h"
 #import "LBBPoohCycleScrollCell.h"
 #import "LBB_FoodsMainMenuCell.h"
+#import "LBB_FilterTableViewCell.h"
 @interface LBB_FoodsMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
@@ -130,38 +131,201 @@
     if (section == 0) {
         return [UIView new];
     }
-    
-    UIView* v = [UIView new];
-    [v setBackgroundColor:[UIColor whiteColor]];
+
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
-    [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
-    
     NSArray* segmentArray = @[@"附近",@"类别",@"智能排序",@"标签"];
     
+    BN_FilterMenu* segmentedControl = [[BN_FilterMenu alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];
+    [segmentedControl setBackgroundColor:ColorWhite];
     
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
-    segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
-                                             NSForegroundColorAttributeName:ColorLightGray};
-    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
-                                                     NSForegroundColorAttributeName:ColorBtnYellow};
-    segmentedControl.selectionIndicatorColor = [UIColor clearColor];
-    segmentedControl.verticalDividerWidth = SeparateLineWidth;
-    segmentedControl.verticalDividerColor = ColorLightGray;
+    [segmentedControl setTextColor:ColorGray];
+    [segmentedControl setSelectedTextColor:ColorBtnYellow];
     segmentedControl.layer.borderWidth = 1;
     segmentedControl.layer.borderColor = ColorLine.CGColor;
+    segmentedControl.menuArray = segmentArray;
     
-    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    [v addSubview:segmentedControl];
-    [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.top.bottom.width.equalTo(v);
-        make.height.mas_equalTo(AutoSize(TopSegmmentControlHeight));
+    //返回section数组
+    [segmentedControl getMenuDataSectionArrayInBlock:^NSArray*(NSInteger index, NSString *title){
+        if (index == 2) {
+            return @[
+                     @[@"热门推荐",@"景区标签_热门"],
+                     @[@"标签",@"景区标签_标签"],
+                     @[@"价格",@"景区标签_价格"],
+                     ];
+        }
+        return @[@""];
     }];
-    segmentedControl.indexChangeBlock = ^(NSInteger index){
-        NSLog(@"segmentedControl select:%ld",index);
-    };
+    [segmentedControl getSectionInBlock:^UIView*(NSInteger index, NSInteger section, id data){
+        
+        if (index == 2) {
+            CGFloat height = AutoSize(56/2);
+            CGFloat margin = 10;
+            UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, height)];
+            [view setBackgroundColor:ColorWhite];
+            NSString* title = [data objectAtIndex:0];
+            NSString* imageName = [data objectAtIndex:1];
+            
+            UIImageView* imageView = [UIImageView new];
+            [imageView setImage:IMAGE(imageName)];
+            [view addSubview:imageView];
+            [imageView mas_makeConstraints:^(MASConstraintMaker* make){
+                
+                make.centerY.equalTo(view);
+                make.left.equalTo(view).offset(margin);
+            }];
+            
+            UILabel* titleLabel = [UILabel new];
+            [titleLabel setFont:Font15];
+            [titleLabel setTextColor:ColorGray];
+            [titleLabel setText:title];
+            [view addSubview:titleLabel];
+            [titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
+                
+                make.centerY.equalTo(view);
+                make.left.equalTo(imageView.mas_right).offset(margin/3);
+            }];
+            
+            return view;
+        }
+        return [UIView new];
+    }];
+    [segmentedControl heightForSectionInBlock:^CGFloat(NSInteger index, NSInteger section,id data){
+        if (index == 2) {
+            return AutoSize(56/2);
+        }
+        return 0;
+    }];
+    //返回数据数组
+    [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
+        
+        if (index == 0) {
+            return @[@"全部美食",@"厦门特色小吃",@"台湾特色小吃",@"福建特色小吃",@"海鲜",@"咖啡"];
+        }
+        else if (index == 1){
+            return @[@"全部美食",@"厦门特色小吃",@"台湾特色小吃",@"福建特色小吃",@"海鲜",@"咖啡"];
+        }
+        else{
+            if (section == 0) {
+                return @[
+                         @[@"不限",@"鼓浪屿",@"南普陀",@"演武大桥",@"厦门大学",@"厦大白城"]
+                         ];
+            }
+            else if (section == 1){
+                return @[
+                         @[@"不限",@"好玩",@"浪漫",@"海边沙滩",@"环境好",@"美丽",@"不限",@"好玩",@"浪漫",@"海边沙滩"]
+                         ];
+            }
+            else{
+                return @[
+                         @[@"不限",@"100以下",@"100-200",@"200-300",@"300-500",@"500以上"]
+                         ];
+            }
+        }
+    }];
+    //返回每行的高度
+    [segmentedControl heightForRowInBlock:^CGFloat(NSInteger index, NSIndexPath *indexPath, id data) {
+        if (index < 2) {
+            return [LBB_FilterTableViewCell getCellHeight:data];
+        }
+        return AutoSize(40);
+    }];
+    //返回cell
+    [segmentedControl getCellInBlock:^UITableViewCell*(NSInteger index, NSIndexPath *indexPath, id data) {
+        NSLog(@"getCellInBlock data:%@",data);
+        
+        if (index < 2) {
+            static NSString *cellIdentifier = @"UITableViewCell";
+            UITableViewCell* cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            
+            NSString* title = data;
+
+            [cell.textLabel setText:title];
+            [cell.textLabel setFont:Font15];
+            [cell.textLabel setTextColor:ColorGray];
+            cell.tintColor = ColorBtnYellow;
+            
+            if (indexPath.row == 1) {
+                [cell.textLabel setTextColor:ColorBtnYellow];
+                UIImageView* accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize(13), AutoSize(11))];
+                [accessoryView setImage:IMAGE(@"景区排序_打钩")];
+                cell.accessoryView = accessoryView;
+            }
+            
+            return cell;
+        }
+        else{
+            static NSString *cellIdentifier = @"LBB_FilterTableViewCell";
+            LBB_FilterTableViewCell* cell = [[LBB_FilterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            
+            cell.bottomMargin = AutoSize(15);
+            cell.selectIndex = 0;
+            [cell configContentView:data];
+            
+            cell.click = ^(NSNumber* num){
+                
+                [segmentedControl reloadData];
+                
+            };
+            return cell;
+        }
+        
+    }];
+    //cell的选中动作
+    [segmentedControl didDeselectRowAtIndexPathBlock:^(NSInteger index, NSIndexPath *indexPath, id data) {
+        NSLog(@"index:%ld,选择 %@",index,data);
+        if (index != 2) {
+            [segmentedControl closeMenu];
+        }
+    }];
     
-    return v;
+    //返回bottomView
+    [segmentedControl getMenuBottomViewInBlock:^UIView*(NSInteger index, NSString *title){
+        
+        if (index < 2) {
+            return nil;
+        }
+        
+        UIView* bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, AutoSize(70/2))];
+        
+        CGFloat width = DeviceWidth* 220/640;
+        
+        UIButton* cancelButton = [UIButton new];
+        [cancelButton setBackgroundColor:ColorWhite];
+        [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        [cancelButton.titleLabel setFont:Font13];
+        [cancelButton setTitleColor:ColorBtnYellow forState:UIControlStateNormal];
+        [bottomView addSubview:cancelButton];
+        
+        UIButton* confirmButton = [UIButton new];
+        [confirmButton setBackgroundColor:ColorBtnYellow];
+        [confirmButton setTitle:@"确定" forState:UIControlStateNormal];
+        [confirmButton.titleLabel setFont:Font13];
+        [confirmButton setTitleColor:ColorWhite forState:UIControlStateNormal];
+        [bottomView addSubview:confirmButton];
+        
+        [cancelButton mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.top.bottom.equalTo(bottomView);
+            make.width.mas_equalTo(width);
+        }];
+        
+        [confirmButton mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(cancelButton.mas_right);
+            make.top.bottom.right.equalTo(bottomView);
+        }];
+        
+        [cancelButton bk_whenTapped:^{
+            [segmentedControl closeMenu];
+        }];
+        
+        
+        [confirmButton bk_whenTapped:^{
+            [segmentedControl closeMenu];
+        }];
+        
+        return bottomView;
+        
+    }];
+    return segmentedControl;
 
 }
 
