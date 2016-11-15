@@ -15,6 +15,15 @@
     // Initialization code
     self.contentLabel.adjustsFontSizeToFitWidth = YES;
     self.numLabel.adjustsFontSizeToFitWidth = YES;
+    self.contentLabel.textColor = ColorBlack;
+    self.numLabel.textColor = ColorBlack;
+    self.contentLabel.font = Font14;
+    self.numLabel.font = Font14;
+}
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
 }
 
 @end

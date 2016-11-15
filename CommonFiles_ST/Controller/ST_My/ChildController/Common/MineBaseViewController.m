@@ -151,6 +151,12 @@
             self.navigationItem.title = NSLocalizedString(@"积分明细", nil);
         }
             break;
+            
+        case ePointConvertDesc://积分兑换说明
+        {
+            self.navigationItem.title = NSLocalizedString(@"积分兑换说明", nil);
+        }
+            break;
         case eTickets://查看全部-门票
         case eTicket_WaitPay: //我的门票_待付款
         case eTicket_WaitGetTicket: //我的门票_待取票
@@ -229,6 +235,11 @@
         case eNotice://消息中心-鹭爸公告
         {
             self.navigationItem.title = NSLocalizedString(@"鹭爸公告", nil);
+        }
+            break;
+        case eNoticeDetail://消息中心-鹭爸公告-公告详情
+        {
+            self.navigationItem.title = NSLocalizedString(@"公告详情", nil);
         }
             break;
         case eSquareTravel://消息中心-广场游记
