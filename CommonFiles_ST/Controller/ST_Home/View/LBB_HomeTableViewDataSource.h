@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LBB_HomeViewModel.h"
 
 typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     LBBHomeSectionMenuType = 0,//入口
@@ -22,5 +23,6 @@ typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
 - (id)initWithTableView:(UITableView *)tableView;
 
 @property(nonatomic, weak) UIViewController* parentViewController;
+@property(nonatomic, retain)LBB_HomeViewModel* viewModel;//数据模型
 
 @end

@@ -202,7 +202,14 @@
             
         }
         [cell setCycleScrollViewHeight:AutoSize(370/2)];
-        [cell setCycleScrollViewUrls:nil];
+        
+        NSMutableArray* urls = [NSMutableArray new];
+        for (BN_HomeAdvertisement* obj in self.viewModel.advertisementArray) {
+            
+            [urls addObject:obj.picUrl];
+        }
+        
+        [cell setCycleScrollViewUrls:urls];
         [cell setEnableBlock:YES];
         cell.click = ^(NSNumber* index){
             

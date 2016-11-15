@@ -33,6 +33,7 @@
 
 @property(nonatomic, retain)LBB_HomeTableViewDataSource* dataSource;
 
+@property(nonatomic, retain)LBB_HomeViewModel* viewModel;//数据模型
 
 @end
 
@@ -151,6 +152,8 @@
     self.dataSource = [[LBB_HomeTableViewDataSource alloc] initWithTableView:self.tableView];
     self.dataSource.parentViewController = self;
 
+    [self initViewModel];
+    
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -161,10 +164,118 @@
         make.top.equalTo(ws.view);
         make.bottom.equalTo(ws.view).offset(-IAppTabBarHeight);
     }];
-    
- 
-
 }
+
+
+/*
+ *  init view Model
+ */
+-(void)initViewModel{
+    
+    self.viewModel = [[LBB_HomeViewModel alloc]init];
+    
+    /**
+     3.1.2 广告轮播 1.首页最顶部
+     
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getAdvertisementListArrayClearData:NO];
+    
+    //1.监听数据，用来刷新数据，数据变化才会调用
+    WS(ws);
+    [self.viewModel.advertisementArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+    
+    //2.0响应的view，网络状态变化时的再刷新动作
+    [RACObserve(self.viewModel.advertisementArray.loadSupport, loadEvent) subscribeNext:^(NSNumber* x) {
+        //刷新view的状态
+      //  [ws.tableView loadingState:ws.viewModel.advertisementArray.loadSupport.loadEvent data:ws.viewModel.advertisementArray];
+    }];
+    
+  /*
+   //不是数组的情况下的数据数据绑定
+   [RACObserve(self.viewModel, modelEvent) subscribeNext:^(NSNumber* x) {
+        //刷新view的状态
+        [ws.tableView loadingState:ws.viewModel.modelEvent data:ws.viewModel.model];
+    }];
+    */
+    
+    //2.1点击刷新
+    [ws.tableView setRefreshBlock:^{
+        [ws.viewModel getAdvertisementListArrayClearData:NO];
+    }];
+    
+    //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
+    [self.tableView setTableViewData:self.viewModel.advertisementArray];
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.viewModel getAdvertisementListArrayClearData:YES];//取数据
+    } footerRefreshDatablock:^{
+        [ws.viewModel getAdvertisementListArrayClearData:NO];
+    }];
+    
+    
+    
+    
+    
+    /**
+     3.1.2 广告轮播 5.首页热门推荐
+     
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getSpotAdvertisementListArrayClearData:NO];
+
+    /**
+     3.1.3 公告轮播
+     
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getNoticesArrayClearData:NO];
+
+    /**
+     3.1.4 热门推荐
+     
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getSpotsArrayClearData:NO];
+
+    
+    /**
+     3.1.7 游记推荐
+     
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getTravelNotesArrayClearData:NO];
+
+    
+    /**
+     3.1.8 达人推荐
+     
+     @param Type 1.景点 2.美食 3.民宿
+     */
+    [self.viewModel getSpotsArrayWithType:1];
+
+    
+    /**
+     3.1.9 广场中心
+     
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getUgcArrayClearData:NO];
+
+    //数据赋值为dataSource
+    self.dataSource.viewModel = self.viewModel;
+    
+    
+    @weakify(self);
+    [RACObserve(self, viewModel) subscribeNext:^(id model) {
+        @strongify(self);
+        [self.tableView reloadData];
+    }];
+    
+}
+
 
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -175,16 +286,6 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
 
     LBB_HomeSearchViewController* searchVC = [[LBB_HomeSearchViewController alloc]init];
-    /*
-     typedef NS_ENUM(NSInteger, LBBPoohHomeSearchType) {
-     LBBPoohHomeSearchTypeGift = 0,//伴手礼
-     ,//美食
-     ,//民宿
-     LBBPoohHomeSearchTypeUser,//用户
-     ,//广场
-     ,//游记
-     };
-     */
     searchVC.searchType = LBBPoohHomeSearchTypeSquare;
     [self.navigationController pushViewController:searchVC animated:YES];
     return NO;
