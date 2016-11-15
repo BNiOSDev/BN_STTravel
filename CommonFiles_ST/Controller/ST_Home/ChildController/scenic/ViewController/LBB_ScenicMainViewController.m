@@ -199,7 +199,7 @@
         return AutoSize(40);
     }];
     //返回cell
-    [segmentedControl getCellInBlock:^UITableViewCell*(NSInteger index, NSIndexPath *indexPath, NSArray* data) {
+    [segmentedControl getCellInBlock:^UITableViewCell*(NSInteger index, NSIndexPath *indexPath, id data) {
         NSLog(@"data:%@",data);
         
         if (index < 2) {

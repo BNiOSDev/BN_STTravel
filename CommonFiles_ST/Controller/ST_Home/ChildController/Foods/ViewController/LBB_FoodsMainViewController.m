@@ -199,10 +199,10 @@
     [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
         
         if (index == 0) {
-            return @[@"全部美食",@"厦门特色小吃",@"台湾特色小吃",@"福建特色小吃",@"海鲜",@"咖啡"];
+            return @[@[@"全部美食"],@[@"厦门特色小吃"],@[@"台湾特色小吃"],@[@"福建特色小吃"],@[@"海鲜"],@[@"咖啡"]];
         }
         else if (index == 1){
-            return @[@"全部美食",@"厦门特色小吃",@"台湾特色小吃",@"福建特色小吃",@"海鲜",@"咖啡"];
+            return @[@[@"全部美食"],@[@"厦门特色小吃"],@[@"台湾特色小吃"],@[@"福建特色小吃"],@[@"海鲜"],@[@"咖啡"]];
         }
         else{
             if (section == 0) {
@@ -237,7 +237,7 @@
             static NSString *cellIdentifier = @"UITableViewCell";
             UITableViewCell* cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             
-            NSString* title = data;
+            NSString* title = [data objectAtIndex:0];
 
             [cell.textLabel setText:title];
             [cell.textLabel setFont:Font15];
