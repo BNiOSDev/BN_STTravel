@@ -216,19 +216,19 @@
             case eVideo:
             {
                 detailInfo.detailImage = @"视频.png";
-                detailInfo.detailContent = @"照片";
+                detailInfo.detailContent = @"视频";
             }
                 break;
             case eTravels:
             {
                 detailInfo.detailImage = @"游记.png";
-                detailInfo.detailContent = @"照片";
+                detailInfo.detailContent = @"游记";
             }
                 break;
             case eLove:
             {
                 detailInfo.detailImage = @"关注.png";
-                detailInfo.detailContent = @"照片";
+                detailInfo.detailContent = @"关注";
             }
                 break;
             default:
@@ -248,19 +248,19 @@
         switch (i) {
             case eSquare:
             {
-                detailInfo.detailImage = @"照片.png";
+                detailInfo.detailImage = @"广场.png";
                 detailInfo.detailContent = @"广场";
             }
                 break;
             case eScenicSpot:
             {
-                detailInfo.detailImage = @"视频.png";
+                detailInfo.detailImage = @"景点.png";
                 detailInfo.detailContent = @"景点";
             }
                 break;
             case eFood:
             {
-                detailInfo.detailImage = @"游记.png";
+                detailInfo.detailImage = @"美食.png";
                 detailInfo.detailContent = @"美食";
             }
                 break;
