@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D01A4CE1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D01A4CD1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m */; };
+		1D01A4D41DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D01A4D31DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m */; };
 		1D0F487E1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F487D1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m */; };
 		1D0F48811DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48801DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m */; };
 		1D0F48841DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */; };
@@ -411,6 +412,8 @@
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D01A4CC1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_FilterTableViewCell.h; sourceTree = "<group>"; };
 		1D01A4CD1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_FilterTableViewCell.m; sourceTree = "<group>"; };
+		1D01A4D21DDBED1F0026CA9B /* LBB_FilterListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_FilterListTableViewCell.h; sourceTree = "<group>"; };
+		1D01A4D31DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_FilterListTableViewCell.m; sourceTree = "<group>"; };
 		1D0F487C1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryDetailViewController.h; sourceTree = "<group>"; };
 		1D0F487D1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryDetailViewController.m; sourceTree = "<group>"; };
 		1D0F487F1DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryDetailMsgCell.h; sourceTree = "<group>"; };
@@ -1340,6 +1343,8 @@
 				1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */,
 				1D01A4CC1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.h */,
 				1D01A4CD1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m */,
+				1D01A4D21DDBED1F0026CA9B /* LBB_FilterListTableViewCell.h */,
+				1D01A4D31DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4682,6 +4687,7 @@
 				842BCC4C1DCD792500A16788 /* LBB_SquareTravelModel.m in Sources */,
 				842BCC691DCD792500A16788 /* LBB_InviteViewCell.m in Sources */,
 				842BCC891DCD792500A16788 /* VerificationViewController.m in Sources */,
+				1D01A4D41DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m in Sources */,
 				1D12FA571DC6E97700ACD462 /* LBB_ScenicSearchViewController.m in Sources */,
 				842BCDF61DCD79E300A16788 /* LBB_Travel_Bill_Account_TableViewCell.m in Sources */,
 				1D12FA8C1DC6E97700ACD462 /* PoohAppHelper.m in Sources */,

@@ -13,6 +13,7 @@
 #import "LBB_ScenicDetailViewController.h"
 #import "LBB_ScenicDetailSubjectViewController.h"
 #import "LBB_FilterTableViewCell.h"
+#import "LBB_FilterListTableViewCell.h"
 
 @interface LBB_ScenicMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -203,8 +204,8 @@
         NSLog(@"data:%@",data);
         
         if (index < 2) {
-            static NSString *cellIdentifier = @"UITableViewCell";
-            UITableViewCell* cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            static NSString *cellIdentifier = @"LBB_FilterListTableViewCell";
+            LBB_FilterListTableViewCell* cell = [[LBB_FilterListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             
             NSString* title = [data objectAtIndex:0];
             NSString* imageName = [data objectAtIndex:1];

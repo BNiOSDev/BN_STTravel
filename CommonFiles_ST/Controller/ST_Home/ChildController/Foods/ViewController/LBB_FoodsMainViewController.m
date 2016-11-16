@@ -14,6 +14,7 @@
 #import "LBBPoohCycleScrollCell.h"
 #import "LBB_FoodsMainMenuCell.h"
 #import "LBB_FilterTableViewCell.h"
+#import "LBB_FilterListTableViewCell.h"
 @interface LBB_FoodsMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
@@ -146,7 +147,7 @@
     
     //返回section数组
     [segmentedControl getMenuDataSectionArrayInBlock:^NSArray*(NSInteger index, NSString *title){
-        if (index == 2) {
+        if (index == 3) {
             return @[
                      @[@"热门推荐",@"景区标签_热门"],
                      @[@"标签",@"景区标签_标签"],
@@ -155,9 +156,64 @@
         }
         return @[@""];
     }];
+    //返回section的高度和内容
+    [segmentedControl heightForSectionInBlock:^CGFloat(NSInteger index, NSInteger section,id data){
+        if (index == 3) {//标签
+            return AutoSize(56/2);
+        }
+        if (index == 0) {//附近
+            return AutoSize(84/2);
+        }
+        return 0;
+    }];
     [segmentedControl getSectionInBlock:^UIView*(NSInteger index, NSInteger section, id data){
         
-        if (index == 2) {
+        if (index == 0) {//附近
+            CGFloat height = AutoSize(84/2);
+            CGFloat margin = 10;
+            UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, height)];
+            [view setBackgroundColor:ColorWhite];
+            
+            UIView* subSupView = [UIView new];
+            [view addSubview:subSupView];
+            
+            UIView* subSecondView = [UIView new];
+            [view addSubview:subSecondView];
+            
+            [subSupView mas_makeConstraints:^(MASConstraintMaker* make){
+                make.left.top.bottom.equalTo(view);
+            }];
+            [subSecondView mas_makeConstraints:^(MASConstraintMaker* make){
+                make.right.top.bottom.equalTo(view);
+                make.left.equalTo(subSupView.mas_right);
+                make.width.equalTo(subSupView);
+            }];
+            
+            UILabel* titleLabel = [UILabel new];
+            [titleLabel setFont:Font15];
+            [titleLabel setTextColor:ColorGray];
+            [titleLabel setText:@"附近"];
+            [subSupView addSubview:titleLabel];
+            [titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
+                
+                make.centerY.equalTo(subSupView);
+                make.left.equalTo(subSupView).offset(AutoSize(margin));
+            }];
+
+            UILabel* subTitleLabel = [UILabel new];
+            [subTitleLabel setFont:Font15];
+            [subTitleLabel setTextColor:ColorBtnYellow];
+            [subTitleLabel setText:@"附近(智能商圈)"];
+            [subSecondView addSubview:subTitleLabel];
+            [subTitleLabel mas_makeConstraints:^(MASConstraintMaker* make){
+                
+                make.center.equalTo(subSecondView);
+            }];
+            
+            return view;
+        }
+        
+        if (index == 3) {//标签
             CGFloat height = AutoSize(56/2);
             CGFloat margin = 10;
             UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, height)];
@@ -189,22 +245,25 @@
         }
         return [UIView new];
     }];
-    [segmentedControl heightForSectionInBlock:^CGFloat(NSInteger index, NSInteger section,id data){
-        if (index == 2) {
-            return AutoSize(56/2);
-        }
-        return 0;
-    }];
+
     //返回数据数组
     [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
         
-        if (index == 0) {
+        if (index == 0) {//附近
+            return @[@[@"热门商圈"],@[@"思明区"],@[@"湖里区"],@[@"集美区"],@[@"海沧区"],@[@"同安区"],@[@"翔安区"],@[@"鼓浪屿"]];
+        }
+        else if (index == 1){//类别
             return @[@[@"全部美食"],@[@"厦门特色小吃"],@[@"台湾特色小吃"],@[@"福建特色小吃"],@[@"海鲜"],@[@"咖啡"]];
         }
-        else if (index == 1){
-            return @[@[@"全部美食"],@[@"厦门特色小吃"],@[@"台湾特色小吃"],@[@"福建特色小吃"],@[@"海鲜"],@[@"咖啡"]];
+        else if (index == 2){//智能排序
+            return @[
+                     @[@"智能排序",@"景区排序_智能排序",@"景区排序_智能排序HL"],
+                     @[@"价格最低",@"美食首页_价格排序",@"美食首页_价格排序HL"],
+                     @[@"价格最高",@"美食首页_价格排序",@"美食首页_价格排序HL"],
+                     @[@"评价最高",@"景区排序_评价最高",@"景区排序_评价最高HL"],
+                     ];
         }
-        else{
+        else{//标签
             if (section == 0) {
                 return @[
                          @[@"不限",@"鼓浪屿",@"南普陀",@"演武大桥",@"厦门大学",@"厦大白城"]
@@ -224,7 +283,7 @@
     }];
     //返回每行的高度
     [segmentedControl heightForRowInBlock:^CGFloat(NSInteger index, NSIndexPath *indexPath, id data) {
-        if (index < 2) {
+        if (index == 3) {//标签
             return [LBB_FilterTableViewCell getCellHeight:data];
         }
         return AutoSize(40);
@@ -233,25 +292,51 @@
     [segmentedControl getCellInBlock:^UITableViewCell*(NSInteger index, NSIndexPath *indexPath, id data) {
         NSLog(@"getCellInBlock data:%@",data);
         
-        if (index < 2) {
-            static NSString *cellIdentifier = @"UITableViewCell";
-            UITableViewCell* cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        if (index < 3) {
+            static NSString *cellIdentifier = @"LBB_FilterListTableViewCell";
+            LBB_FilterListTableViewCell* cell = [[LBB_FilterListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             
-            NSString* title = [data objectAtIndex:0];
-
-            [cell.textLabel setText:title];
-            [cell.textLabel setFont:Font15];
-            [cell.textLabel setTextColor:ColorGray];
-            cell.tintColor = ColorBtnYellow;
-            
-            if (indexPath.row == 1) {
-                [cell.textLabel setTextColor:ColorBtnYellow];
-                UIImageView* accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize(13), AutoSize(11))];
-                [accessoryView setImage:IMAGE(@"景区排序_打钩")];
-                cell.accessoryView = accessoryView;
+            if (index == 2) {//智能排序
+                NSString* title = [data objectAtIndex:0];
+                NSString* imageName = [data objectAtIndex:1];
+                NSString* imageNameHL = [data objectAtIndex:2];
+                [cell.imageView setImage:IMAGE(imageName)];
+                [cell.textLabel setText:title];
+                [cell.textLabel setFont:Font15];
+                [cell.textLabel setTextColor:ColorGray];
+                cell.tintColor = ColorBtnYellow;
+                
+                if (indexPath.row == 1) {//类别
+                    [cell.imageView setImage:IMAGE(imageNameHL)];
+                    [cell.textLabel setTextColor:ColorBtnYellow];
+                    UIImageView* accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize(13), AutoSize(11))];
+                    [accessoryView setImage:IMAGE(@"景区排序_打钩")];
+                    cell.accessoryView = accessoryView;
+                }
+                return cell;
             }
-            
-            return cell;
+            else{
+                NSString* title = [data objectAtIndex:0];
+                [cell.textLabel setText:title];
+                [cell.textLabel setFont:Font15];
+                [cell.textLabel setTextColor:ColorGray];
+                cell.tintColor = ColorBtnYellow;
+                
+                if (index == 0) {//附近
+                    [cell showSepLineView:NO];//不展示分割线
+                    [cell setBackgroundColor:[UIColor colorWithRGB:0xeaeaea]];
+                }
+                
+                if (indexPath.row == 1) {//选中行高亮
+                    [cell.textLabel setTextColor:ColorBtnYellow];
+                    [cell setBackgroundColor:ColorWhite];
+                    UIImageView* accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize(13), AutoSize(11))];
+                    [accessoryView setImage:IMAGE(@"景区排序_打钩")];
+                    cell.accessoryView = accessoryView;
+                }
+    
+                return cell;
+            }
         }
         else{
             static NSString *cellIdentifier = @"LBB_FilterTableViewCell";
@@ -273,7 +358,7 @@
     //cell的选中动作
     [segmentedControl didDeselectRowAtIndexPathBlock:^(NSInteger index, NSIndexPath *indexPath, id data) {
         NSLog(@"index:%ld,选择 %@",index,data);
-        if (index != 2) {
+        if (index != 3) {
             [segmentedControl closeMenu];
         }
     }];
@@ -281,7 +366,7 @@
     //返回bottomView
     [segmentedControl getMenuBottomViewInBlock:^UIView*(NSInteger index, NSString *title){
         
-        if (index < 2) {
+        if (index < 3) {
             return nil;
         }
         
@@ -325,6 +410,62 @@
         return bottomView;
         
     }];
+    
+    //设置是否有二级菜单
+    //- (void)haveSubFilterInBlock:(BOOL (^)(NSInteger index, NSString *title))block;
+    [segmentedControl haveSubFilterInBlock:^BOOL(NSInteger index, NSString *title){
+        
+        if (index == 0) {
+            return YES;
+        }
+        return NO;
+    }];
+    
+    //对应选项的子菜单数组
+    [segmentedControl.subFilterView getMenuDataRowArrayInBlock:^NSArray *(NSInteger SupIndex, id SupData) {
+        //return @[SupData,@"222",@"333"];
+        return @[@[@"100m"],@[@"200m"],@[@"300m"],@[@"福建特色小吃"],@[@"海鲜"],@[@"咖啡"]];
+
+    }];
+    
+    //子菜单点击事件
+    [segmentedControl.subFilterView didDeselectRowAtIndexPathBlock:^(NSInteger SupIndex, NSIndexPath *indexPath, id SupData, id data) {
+        [segmentedControl closeMenu];
+    }];
+    
+    //子菜单行高
+    [segmentedControl.subFilterView heightForRowInBlock:^CGFloat(NSInteger SupIndex, NSIndexPath *indexPath, id SupData, id data) {
+        return AutoSize(40);
+    }];
+    //子菜单的cell
+    //返回cell
+    [segmentedControl.subFilterView getCellInBlock:^UITableViewCell*(NSInteger SupIndex, NSIndexPath *indexPath, id SupData, id data) {
+        NSLog(@"subFilterView getCellInBlock data:%@",data);
+        NSLog(@"subFilterView getCellInBlock SupData:%@",data);
+
+        
+        static NSString *cellIdentifier = @"LBB_FilterListTableViewCell";
+        LBB_FilterListTableViewCell* cell = [[LBB_FilterListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        
+            NSString* title = [data objectAtIndex:0];
+            [cell.textLabel setText:title];
+            [cell.textLabel setFont:Font15];
+            [cell.textLabel setTextColor:ColorGray];
+            cell.tintColor = ColorBtnYellow;
+            
+            if (indexPath.row == 1) {
+                [cell.textLabel setTextColor:ColorBtnYellow];
+                UIImageView* accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize(13), AutoSize(11))];
+                [accessoryView setImage:IMAGE(@"景区排序_打钩")];
+                cell.accessoryView = accessoryView;
+            }
+            
+            return cell;
+     
+    }];
+
+    
+    
     return segmentedControl;
 
 }
