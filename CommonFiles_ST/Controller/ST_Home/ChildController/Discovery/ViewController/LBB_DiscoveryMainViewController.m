@@ -11,7 +11,7 @@
 #import "LBB_DiscoveryMainTableViewCell.h"
 #import "LBB_DiscoveryCustomizedViewController.h"
 #import "LBB_DiscoveryDetailViewController.h"
-
+#import "LBB_FilterTableViewCell.h"
 static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
 
@@ -220,8 +220,168 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
         make.left.equalTo(sep.mas_right).offset(2);
     }];
     
-    return v;
+    NSArray* segmentArray = @[@""];
     
+    BN_FilterMenu* segmentedControl = [[BN_FilterMenu alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];;
+    [segmentedControl setTextColor:ColorGray];
+    [segmentedControl setSelectedTextColor:ColorBtnYellow];
+    segmentedControl.layer.borderWidth = 1;
+    segmentedControl.layer.borderColor = ColorLine.CGColor;
+    segmentedControl.menuArray = segmentArray;
+    [v addSubview:segmentedControl];
+    
+    UILabel* titleLabel = [UILabel new];
+    [titleLabel setText:@"筛选"];
+    [titleLabel setFont:Font15];
+    [titleLabel setTextAlignment:NSTextAlignmentRight];
+    [v addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
+        make.centerY.equalTo(v);
+        make.right.equalTo(v).offset(-AutoSize(24));
+    }];
+    
+    
+    //返回section数组
+    [segmentedControl getMenuDataSectionArrayInBlock:^NSArray*(NSInteger index, NSString *title){
+            return @[
+                     @[@"时间选择",@"ST_Discovery_TimeSL"],
+                     @[@"区域选择",@"ST_Discovery_AreaSL"],
+                     @[@"爱好选择",@"ST_Discovery_FavoriteWhite"],
+                     ];
+
+    }];
+    [segmentedControl getSectionInBlock:^UIView*(NSInteger index, NSInteger section, id data){
+        
+        CGFloat height = AutoSize(56/2);
+        CGFloat margin = 10;
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, height)];
+        [view setBackgroundColor:ColorWhite];
+        NSString* title = [data objectAtIndex:0];
+        NSString* imageName = [data objectAtIndex:1];
+        
+        UIImageView* imageView = [UIImageView new];
+        [imageView setImage:IMAGE(imageName)];
+        [view addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(view);
+            make.left.equalTo(view).offset(margin);
+        }];
+        
+        UILabel* titleLabel = [UILabel new];
+        [titleLabel setFont:Font15];
+        [titleLabel setTextColor:ColorGray];
+        [titleLabel setText:title];
+        [view addSubview:titleLabel];
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(view);
+            make.left.equalTo(imageView.mas_right).offset(margin/3);
+        }];
+        
+        return view;
+    }];
+    [segmentedControl heightForSectionInBlock:^CGFloat(NSInteger index, NSInteger section,id data){
+        return AutoSize(56/2);
+
+    }];
+    //返回数据数组
+    [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
+        
+            if (section == 0) {
+                return @[
+                         @[@"1日游",@"2日游",@"3日游",@"3-5日游",@"5-7日游",@"其他"]
+                         ];
+            }
+            else if (section == 1){
+                return @[
+                         @[@"岛内",@"岛内-岛外",@"厦门周边"]
+                         ];
+            }
+            else{
+                return @[
+                         @[@"我是吃货",@"运动达人",@"文艺小资"]
+                         ];
+            }
+            
+        
+    }];
+    //返回每行的高度
+    [segmentedControl heightForRowInBlock:^CGFloat(NSInteger index, NSIndexPath *indexPath, id data) {
+        return [LBB_FilterTableViewCell getCellHeight:data];
+
+    }];
+    //返回cell
+    [segmentedControl getCellInBlock:^UITableViewCell*(NSInteger index, NSIndexPath *indexPath, NSArray* data) {
+        NSLog(@"data:%@",data);
+        
+            static NSString *cellIdentifier = @"LBB_FilterTableViewCell";
+            LBB_FilterTableViewCell* cell = [[LBB_FilterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            
+            cell.bottomMargin = AutoSize(15);
+            cell.selectIndex = 0;
+            [cell configContentView:data];
+            
+            cell.click = ^(NSNumber* num){
+                
+                [segmentedControl reloadData];
+                
+            };
+            return cell;
+        
+        
+    }];
+    //cell的选中动作
+    [segmentedControl didDeselectRowAtIndexPathBlock:^(NSInteger index, NSIndexPath *indexPath, id data) {
+        NSLog(@"index:%ld,选择 %@",index,data);
+
+    }];
+    
+    //返回bottomView
+    [segmentedControl getMenuBottomViewInBlock:^UIView*(NSInteger index, NSString *title){
+        
+        UIView* bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, AutoSize(70/2))];
+        
+        CGFloat width = DeviceWidth* 220/640;
+        
+        UIButton* cancelButton = [UIButton new];
+        [cancelButton setBackgroundColor:ColorWhite];
+        [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        [cancelButton.titleLabel setFont:Font13];
+        [cancelButton setTitleColor:ColorBtnYellow forState:UIControlStateNormal];
+        [bottomView addSubview:cancelButton];
+        
+        UIButton* confirmButton = [UIButton new];
+        [confirmButton setBackgroundColor:ColorBtnYellow];
+        [confirmButton setTitle:@"确定" forState:UIControlStateNormal];
+        [confirmButton.titleLabel setFont:Font13];
+        [confirmButton setTitleColor:ColorWhite forState:UIControlStateNormal];
+        [bottomView addSubview:confirmButton];
+        
+        [cancelButton mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.top.bottom.equalTo(bottomView);
+            make.width.mas_equalTo(width);
+        }];
+        
+        [confirmButton mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(cancelButton.mas_right);
+            make.top.bottom.right.equalTo(bottomView);
+        }];
+        
+        [cancelButton bk_whenTapped:^{
+            [segmentedControl closeMenu];
+        }];
+        
+        
+        [confirmButton bk_whenTapped:^{
+            [segmentedControl closeMenu];
+        }];
+        
+        return bottomView;
+        
+    }];
+
+    return v;
 }
 
 
