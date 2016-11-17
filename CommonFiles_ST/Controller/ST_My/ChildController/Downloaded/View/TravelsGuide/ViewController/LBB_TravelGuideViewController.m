@@ -12,6 +12,8 @@
 #import "ZJMTravelModel.h"
 #import "LBB_MyTravelTableViewCell.h"
 #import "Header.h"
+#import "LBB_DiscoveryDetailViewController.h"
+#import "LBB_StarRatingViewController.h"
 
 #define MyTravelNormal  @"LBB_MyTravelTableViewCell"
 
@@ -94,6 +96,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]init];
+    
+    [self.navigationController pushViewController:dest animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,7 +120,8 @@
             break;
         case UITableViewCellConment:
         {
-            
+            LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc] init];
+            [self.navigationController pushViewController:dest animated:YES];
         }
             break;
         case UITableViewCellPraise:

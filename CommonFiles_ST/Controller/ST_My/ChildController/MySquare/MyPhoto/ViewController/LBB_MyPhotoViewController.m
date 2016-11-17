@@ -9,6 +9,7 @@
 #import "LBB_MyPhotoViewController.h"
 #import "LBB_MyPhotoViewCell.h"
 #import "Header.h" 
+#import "LBB_TravelDetailViewController.h"
 
 @interface LBB_MyPhotoViewController ()<
 UICollectionViewDelegate,
@@ -78,7 +79,7 @@ UICollectionViewDelegateFlowLayout>
     return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)sgection{
     
    return self.arr.count;
 }
@@ -97,7 +98,9 @@ UICollectionViewDelegateFlowLayout>
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+   
+    LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

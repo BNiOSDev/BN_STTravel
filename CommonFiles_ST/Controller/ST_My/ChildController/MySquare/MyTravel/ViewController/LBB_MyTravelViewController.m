@@ -94,6 +94,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
