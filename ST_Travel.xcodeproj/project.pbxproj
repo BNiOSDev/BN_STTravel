@@ -377,13 +377,6 @@
 		845CB20D1DDDC24900C02DC2 /* LBB_TicketCommentTagViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB1441DDDC24900C02DC2 /* LBB_TicketCommentTagViewCell.xib */; };
 		845CB20E1DDDC24900C02DC2 /* LBB_TicketCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1471DDDC24900C02DC2 /* LBB_TicketCommentViewController.m */; };
 		845CB20F1DDDC24900C02DC2 /* LBB_TicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB14A1DDDC24900C02DC2 /* LBB_TicketModel.m */; };
-		845CB2101DDDC24900C02DC2 /* LBB_TicketFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB14D1DDDC24900C02DC2 /* LBB_TicketFooterView.m */; };
-		845CB2111DDDC24900C02DC2 /* LBB_TicketFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB14E1DDDC24900C02DC2 /* LBB_TicketFooterView.xib */; };
-		845CB2121DDDC24900C02DC2 /* LBB_TicketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1501DDDC24900C02DC2 /* LBB_TicketHeaderView.m */; };
-		845CB2131DDDC24900C02DC2 /* LBB_TicketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB1511DDDC24900C02DC2 /* LBB_TicketHeaderView.xib */; };
-		845CB2141DDDC24900C02DC2 /* TicketDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1531DDDC24900C02DC2 /* TicketDetailViewCell.m */; };
-		845CB2151DDDC24900C02DC2 /* TicketDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB1541DDDC24900C02DC2 /* TicketDetailViewCell.xib */; };
-		845CB2161DDDC24900C02DC2 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1571DDDC24900C02DC2 /* TicketViewController.m */; };
 		845CB2171DDDC24900C02DC2 /* ExtractDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1661DDDC24900C02DC2 /* ExtractDetailViewController.m */; };
 		845CB2181DDDC24900C02DC2 /* BalanceExtractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB16D1DDDC24900C02DC2 /* BalanceExtractViewController.m */; };
 		845CB2191DDDC24900C02DC2 /* BalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1721DDDC24900C02DC2 /* BalanceViewController.m */; };
@@ -412,6 +405,14 @@
 		845CB2301DDDC24900C02DC2 /* LBB_MyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1B21DDDC24900C02DC2 /* LBB_MyViewCell.m */; };
 		845CB2311DDDC24900C02DC2 /* LBB_MyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB1B31DDDC24900C02DC2 /* LBB_MyViewCell.xib */; };
 		845CB2321DDDC24900C02DC2 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1B61DDDC24900C02DC2 /* MineViewController.m */; };
+		845CB2351DDDCB4B00C02DC2 /* LBB_TicketModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB2341DDDCB4B00C02DC2 /* LBB_TicketModuleViewController.m */; };
+		845CB2421DDDCFDC00C02DC2 /* LBB_TicketFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB2381DDDCFDC00C02DC2 /* LBB_TicketFooterView.m */; };
+		845CB2431DDDCFDC00C02DC2 /* LBB_TicketFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB2391DDDCFDC00C02DC2 /* LBB_TicketFooterView.xib */; };
+		845CB2441DDDCFDC00C02DC2 /* LBB_TicketHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB23B1DDDCFDC00C02DC2 /* LBB_TicketHeaderView.m */; };
+		845CB2451DDDCFDC00C02DC2 /* LBB_TicketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB23C1DDDCFDC00C02DC2 /* LBB_TicketHeaderView.xib */; };
+		845CB2461DDDCFDC00C02DC2 /* TicketDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB23E1DDDCFDC00C02DC2 /* TicketDetailViewCell.m */; };
+		845CB2471DDDCFDC00C02DC2 /* TicketDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB23F1DDDCFDC00C02DC2 /* TicketDetailViewCell.xib */; };
+		845CB2481DDDCFDC00C02DC2 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB2411DDDCFDC00C02DC2 /* TicketViewController.m */; };
 		84B377DF1DC4539D0078397C /* ST_Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B377DE1DC4539D0078397C /* ST_Mine.xcassets */; };
 		84F6B8141DC6E277009ED8DF /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
@@ -1080,17 +1081,6 @@
 		845CB1471DDDC24900C02DC2 /* LBB_TicketCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketCommentViewController.m; sourceTree = "<group>"; };
 		845CB1491DDDC24900C02DC2 /* LBB_TicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketModel.h; sourceTree = "<group>"; };
 		845CB14A1DDDC24900C02DC2 /* LBB_TicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketModel.m; sourceTree = "<group>"; };
-		845CB14C1DDDC24900C02DC2 /* LBB_TicketFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketFooterView.h; sourceTree = "<group>"; };
-		845CB14D1DDDC24900C02DC2 /* LBB_TicketFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketFooterView.m; sourceTree = "<group>"; };
-		845CB14E1DDDC24900C02DC2 /* LBB_TicketFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_TicketFooterView.xib; sourceTree = "<group>"; };
-		845CB14F1DDDC24900C02DC2 /* LBB_TicketHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketHeaderView.h; sourceTree = "<group>"; };
-		845CB1501DDDC24900C02DC2 /* LBB_TicketHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketHeaderView.m; sourceTree = "<group>"; };
-		845CB1511DDDC24900C02DC2 /* LBB_TicketHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_TicketHeaderView.xib; sourceTree = "<group>"; };
-		845CB1521DDDC24900C02DC2 /* TicketDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailViewCell.h; sourceTree = "<group>"; };
-		845CB1531DDDC24900C02DC2 /* TicketDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailViewCell.m; sourceTree = "<group>"; };
-		845CB1541DDDC24900C02DC2 /* TicketDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketDetailViewCell.xib; sourceTree = "<group>"; };
-		845CB1561DDDC24900C02DC2 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
-		845CB1571DDDC24900C02DC2 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
 		845CB1651DDDC24900C02DC2 /* ExtractDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtractDetailViewController.h; sourceTree = "<group>"; };
 		845CB1661DDDC24900C02DC2 /* ExtractDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtractDetailViewController.m; sourceTree = "<group>"; };
 		845CB16C1DDDC24900C02DC2 /* BalanceExtractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalanceExtractViewController.h; sourceTree = "<group>"; };
@@ -1137,6 +1127,19 @@
 		845CB1B31DDDC24900C02DC2 /* LBB_MyViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_MyViewCell.xib; sourceTree = "<group>"; };
 		845CB1B51DDDC24900C02DC2 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		845CB1B61DDDC24900C02DC2 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
+		845CB2331DDDCB4B00C02DC2 /* LBB_TicketModuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketModuleViewController.h; sourceTree = "<group>"; };
+		845CB2341DDDCB4B00C02DC2 /* LBB_TicketModuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketModuleViewController.m; sourceTree = "<group>"; };
+		845CB2371DDDCFDC00C02DC2 /* LBB_TicketFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketFooterView.h; sourceTree = "<group>"; };
+		845CB2381DDDCFDC00C02DC2 /* LBB_TicketFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketFooterView.m; sourceTree = "<group>"; };
+		845CB2391DDDCFDC00C02DC2 /* LBB_TicketFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_TicketFooterView.xib; sourceTree = "<group>"; };
+		845CB23A1DDDCFDC00C02DC2 /* LBB_TicketHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TicketHeaderView.h; sourceTree = "<group>"; };
+		845CB23B1DDDCFDC00C02DC2 /* LBB_TicketHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TicketHeaderView.m; sourceTree = "<group>"; };
+		845CB23C1DDDCFDC00C02DC2 /* LBB_TicketHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_TicketHeaderView.xib; sourceTree = "<group>"; };
+		845CB23D1DDDCFDC00C02DC2 /* TicketDetailViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketDetailViewCell.h; sourceTree = "<group>"; };
+		845CB23E1DDDCFDC00C02DC2 /* TicketDetailViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketDetailViewCell.m; sourceTree = "<group>"; };
+		845CB23F1DDDCFDC00C02DC2 /* TicketDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketDetailViewCell.xib; sourceTree = "<group>"; };
+		845CB2401DDDCFDC00C02DC2 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
+		845CB2411DDDCFDC00C02DC2 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
 		84B377DE1DC4539D0078397C /* ST_Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Mine.xcassets; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3995,15 +3998,9 @@
 		845CB14B1DDDC24900C02DC2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				845CB14C1DDDC24900C02DC2 /* LBB_TicketFooterView.h */,
-				845CB14D1DDDC24900C02DC2 /* LBB_TicketFooterView.m */,
-				845CB14E1DDDC24900C02DC2 /* LBB_TicketFooterView.xib */,
-				845CB14F1DDDC24900C02DC2 /* LBB_TicketHeaderView.h */,
-				845CB1501DDDC24900C02DC2 /* LBB_TicketHeaderView.m */,
-				845CB1511DDDC24900C02DC2 /* LBB_TicketHeaderView.xib */,
-				845CB1521DDDC24900C02DC2 /* TicketDetailViewCell.h */,
-				845CB1531DDDC24900C02DC2 /* TicketDetailViewCell.m */,
-				845CB1541DDDC24900C02DC2 /* TicketDetailViewCell.xib */,
+				845CB2361DDDCFDC00C02DC2 /* BaseView */,
+				845CB2401DDDCFDC00C02DC2 /* TicketViewController.h */,
+				845CB2411DDDCFDC00C02DC2 /* TicketViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4011,8 +4008,8 @@
 		845CB1551DDDC24900C02DC2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				845CB1561DDDC24900C02DC2 /* TicketViewController.h */,
-				845CB1571DDDC24900C02DC2 /* TicketViewController.m */,
+				845CB2331DDDCB4B00C02DC2 /* LBB_TicketModuleViewController.h */,
+				845CB2341DDDCB4B00C02DC2 /* LBB_TicketModuleViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -4447,6 +4444,22 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		845CB2361DDDCFDC00C02DC2 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				845CB2371DDDCFDC00C02DC2 /* LBB_TicketFooterView.h */,
+				845CB2381DDDCFDC00C02DC2 /* LBB_TicketFooterView.m */,
+				845CB2391DDDCFDC00C02DC2 /* LBB_TicketFooterView.xib */,
+				845CB23A1DDDCFDC00C02DC2 /* LBB_TicketHeaderView.h */,
+				845CB23B1DDDCFDC00C02DC2 /* LBB_TicketHeaderView.m */,
+				845CB23C1DDDCFDC00C02DC2 /* LBB_TicketHeaderView.xib */,
+				845CB23D1DDDCFDC00C02DC2 /* TicketDetailViewCell.h */,
+				845CB23E1DDDCFDC00C02DC2 /* TicketDetailViewCell.m */,
+				845CB23F1DDDCFDC00C02DC2 /* TicketDetailViewCell.xib */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
 		C91F613A1D9F96CA004FE75C /* ST_Mall */ = {
 			isa = PBXGroup;
 			children = (
@@ -4750,6 +4763,7 @@
 			files = (
 				842BCDC91DCD79E300A16788 /* zjmmenpiao@2x.png in Resources */,
 				845CB1F01DDDC24900C02DC2 /* ReceiptAddressViewCell.xib in Resources */,
+				845CB2471DDDCFDC00C02DC2 /* TicketDetailViewCell.xib in Resources */,
 				842BCDC01DCD79E300A16788 /* zjmshare@2x.png in Resources */,
 				845CB1EC1DDDC24900C02DC2 /* address.json in Resources */,
 				845CB2091DDDC24900C02DC2 /* LBB_TicketCommentPicturViewCell.xib in Resources */,
@@ -4762,6 +4776,7 @@
 				845CB2021DDDC24900C02DC2 /* LBB_InviteViewCell.xib in Resources */,
 				842BCDEE1DCD79E300A16788 /* zjmyule@2x.png in Resources */,
 				842BCDB81DCD79E300A16788 /* zjmfocus@2x.png in Resources */,
+				845CB2451DDDCFDC00C02DC2 /* LBB_TicketHeaderView.xib in Resources */,
 				845CB1F91DDDC24900C02DC2 /* BalanceDetailViewCell.xib in Resources */,
 				842BCDC41DCD79E300A16788 /* zjmtakephotoing@2x.png in Resources */,
 				845CB1D71DDDC24900C02DC2 /* LBB_ChatViewCell.xib.zip in Resources */,
@@ -4774,13 +4789,11 @@
 				842BCDC21DCD79E300A16788 /* zjmtakephoto.png in Resources */,
 				842BCDB61DCD79E300A16788 /* zjmdown@2x.png in Resources */,
 				845CB1DB1DDDC24900C02DC2 /* LBB_FollowViewCell.xib in Resources */,
-				845CB2111DDDC24900C02DC2 /* LBB_TicketFooterView.xib in Resources */,
 				842BCDAB1DCD79E300A16788 /* praiseComment@2x.png in Resources */,
 				842BCDE21DCD79E300A16788 /* zjmshare@2x.png in Resources */,
 				845CB1C11DDDC24900C02DC2 /* LBB_MyPropertyViewCell.xib.zip in Resources */,
 				842BCDBB1DCD79E300A16788 /* zjmmengban@2x.png in Resources */,
 				842BCDCA1DCD79E300A16788 /* zjmmenpiaoed@2x.png in Resources */,
-				845CB2131DDDC24900C02DC2 /* LBB_TicketHeaderView.xib in Resources */,
 				842BCDAE1DCD79E300A16788 /* zjmaddress@2x.png in Resources */,
 				842BCDAA1DCD79E300A16788 /* morearrow@2x.png in Resources */,
 				842BCDB11DCD79E300A16788 /* zjmbackwhite@2x.png in Resources */,
@@ -4801,6 +4814,7 @@
 				845CB1D21DDDC24900C02DC2 /* LBB_MessageCenterViewCell.xib in Resources */,
 				842BCDBD1DCD79E300A16788 /* zjmpraise@2x.png in Resources */,
 				1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */,
+				845CB2431DDDCFDC00C02DC2 /* LBB_TicketFooterView.xib in Resources */,
 				842BCDB21DCD79E300A16788 /* zjmcomment@2x.png in Resources */,
 				845CB2311DDDC24900C02DC2 /* LBB_MyViewCell.xib in Resources */,
 				842BCDE81DCD79E300A16788 /* zjmtravelarrow@2x.png in Resources */,
@@ -4849,7 +4863,6 @@
 				842BCDC31DCD79E300A16788 /* zjmtakephotoed@2x.png in Resources */,
 				842BCDED1DCD79E300A16788 /* zjmxiaofei@2x.png in Resources */,
 				842BCDBA1DCD79E300A16788 /* zjmlittlecollect_no@2x.png in Resources */,
-				845CB2151DDDC24900C02DC2 /* TicketDetailViewCell.xib in Resources */,
 				842BCDDE1DCD79E300A16788 /* zjmmenpiao@2x.png in Resources */,
 				845CB1F41DDDC24900C02DC2 /* PersonalInfoCell.xib in Resources */,
 				845CB2241DDDC24900C02DC2 /* 19.pic.jpg in Resources */,
@@ -4990,7 +5003,6 @@
 				842BCDFB1DCD79E400A16788 /* LBB_PraiseWithCommentView.m in Sources */,
 				845CB1CC1DDDC24900C02DC2 /* LBB_PurchaseNotificationViewController.m in Sources */,
 				842BCE1D1DCD79E400A16788 /* ZJMCommentView.m in Sources */,
-				845CB2121DDDC24900C02DC2 /* LBB_TicketHeaderView.m in Sources */,
 				1D12FA941DC6E97700ACD462 /* LBBHomeSearchResultViewController.m in Sources */,
 				1D12FA791DC6E97700ACD462 /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */,
 				1D0F48DD1DCAD04400A37DE2 /* LBB_GuiderIdentityCardSelectView.m in Sources */,
@@ -5004,6 +5016,7 @@
 				1D12FA501DC6E97700ACD462 /* LBBPoohBaseTableSectionHeaderView.m in Sources */,
 				845CB1D91DDDC24900C02DC2 /* LBB_FollowModel.m in Sources */,
 				842BCE201DCD79E400A16788 /* LBB_HostTableViewCell.m in Sources */,
+				845CB2481DDDCFDC00C02DC2 /* TicketViewController.m in Sources */,
 				845CB20C1DDDC24900C02DC2 /* LBB_TicketCommentTagViewCell.m in Sources */,
 				845CB2191DDDC24900C02DC2 /* BalanceViewController.m in Sources */,
 				842BCDA41DCD79E300A16788 /* LBB_CommentTextField.m in Sources */,
@@ -5030,6 +5043,7 @@
 				1D12FA521DC6E97700ACD462 /* LBBPoohCycleScrollCell.m in Sources */,
 				1D12FA471DC6E97700ACD462 /* PoohBaseViewController.m in Sources */,
 				1D12FA891DC6E97700ACD462 /* UIImage+animatedGIF.m in Sources */,
+				845CB2461DDDCFDC00C02DC2 /* TicketDetailViewCell.m in Sources */,
 				842BCE241DCD79E400A16788 /* LBBTravelTableViewCell.m in Sources */,
 				1D12FA511DC6E97700ACD462 /* LBBPoohBaseTableViewCell.m in Sources */,
 				1D12FA851DC6E97700ACD462 /* NSDictionary+PoohCommon.m in Sources */,
@@ -5078,7 +5092,6 @@
 				1D12FA641DC6E97700ACD462 /* LBB_OrderContactCustomerServiceCell.m in Sources */,
 				842BCE171DCD79E400A16788 /* ZJScrollSegmentView.m in Sources */,
 				842BCE1C1DCD79E400A16788 /* PraiseView.m in Sources */,
-				845CB2141DDDC24900C02DC2 /* TicketDetailViewCell.m in Sources */,
 				845CB1FB1DDDC24900C02DC2 /* LBB_PointsModel.m in Sources */,
 				842BCDF91DCD79E400A16788 /* LBB_TravelCommentController.m in Sources */,
 				1D12FA9A1DC713AE00ACD462 /* LBB_NewOrderIntegralView.m in Sources */,
@@ -5132,12 +5145,12 @@
 				842BCC691DCD792500A16788 /* (null) in Sources */,
 				842BCC891DCD792500A16788 /* (null) in Sources */,
 				1D01A4D41DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m in Sources */,
+				845CB2351DDDCB4B00C02DC2 /* LBB_TicketModuleViewController.m in Sources */,
 				1D12FA571DC6E97700ACD462 /* LBB_ScenicSearchViewController.m in Sources */,
 				845CB1BA1DDDC24900C02DC2 /* LBB_TravelGuideViewController.m in Sources */,
 				842BCDF61DCD79E300A16788 /* LBB_Travel_Bill_Account_TableViewCell.m in Sources */,
 				845CB1EA1DDDC24900C02DC2 /* ChangePhoneNumViewController.m in Sources */,
 				845CB1F61DDDC24900C02DC2 /* ConvertiblePointsViewController.m in Sources */,
-				845CB2101DDDC24900C02DC2 /* LBB_TicketFooterView.m in Sources */,
 				845CB2081DDDC24900C02DC2 /* LBB_TicketCommentPicturViewCell.m in Sources */,
 				1D12FA8C1DC6E97700ACD462 /* PoohAppHelper.m in Sources */,
 				1D12FA801DC6E97700ACD462 /* LBB_SignInListCell.m in Sources */,
@@ -5153,7 +5166,6 @@
 				1D0F48D61DC9EE6200A37DE2 /* SKTagButton.m in Sources */,
 				845CB1B71DDDC24900C02DC2 /* LBB_WebViewController.m in Sources */,
 				842BCE131DCD79E400A16788 /* UIView+ZJFrame.m in Sources */,
-				845CB2161DDDC24900C02DC2 /* TicketViewController.m in Sources */,
 				845CB1D41DDDC24900C02DC2 /* LBB_ChatModel.m in Sources */,
 				845CB2181DDDC24900C02DC2 /* BalanceExtractViewController.m in Sources */,
 				1D0F48AB1DC8EB9800A37DE2 /* LBB_LabelDetailUserDataSource.m in Sources */,
@@ -5163,6 +5175,7 @@
 				845CB2201DDDC24900C02DC2 /* WalletViewCell.m in Sources */,
 				1D0F48D71DC9EE6200A37DE2 /* SKTagView.m in Sources */,
 				845CB1C41DDDC24900C02DC2 /* LBB_NoticeViewCell.m in Sources */,
+				845CB2441DDDCFDC00C02DC2 /* LBB_TicketHeaderView.m in Sources */,
 				842BCDFF1DCD79E400A16788 /* LBB_TravelDetailViewCell.m in Sources */,
 				842BCDA31DCD79E300A16788 /* ImageContentView.m in Sources */,
 				842BCE051DCD79E400A16788 /* ZJMHostModel.m in Sources */,
@@ -5233,6 +5246,7 @@
 				845CB1D31DDDC24900C02DC2 /* LBB_MessageCenterViewController.m in Sources */,
 				1D12FA841DC6E97700ACD462 /* LBBSigninMainViewController.m in Sources */,
 				1D12FA9D1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m in Sources */,
+				845CB2421DDDCFDC00C02DC2 /* LBB_TicketFooterView.m in Sources */,
 				1D12FA6C1DC6E97700ACD462 /* LBB_NewOrderViewController.m in Sources */,
 				842BCE211DCD79E400A16788 /* LBBFriendTableViewCell.m in Sources */,
 				1D12FA8E1DC6E97700ACD462 /* LBBHomeAnnouncementTableViewCell.m in Sources */,

@@ -22,11 +22,8 @@ TicketFooterViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSArray *dataSourceArray;
-@property (weak, nonatomic) IBOutlet UIView *segmentBgView;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
 @property (strong,nonatomic) LBB_TicketModel *ticketModel;
-@property (strong,nonatomic) HMSegmentedControl *segmentedControl;
 
 @end
 
@@ -46,7 +43,6 @@ TicketFooterViewDelegate>
 
 - (void)buildControls
 {
-    [self initSegmentControll];
     [self initTableview];
 }
 
@@ -65,54 +61,6 @@ TicketFooterViewDelegate>
     self.dataSourceArray = [self.ticketModel getDataWithType:stateType];
 }
 
--(void)setSegment {
-    
-    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部",@"代付款",@"待取票",@"待评价",@"退款"]];
-    _segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
-    _segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
-                                              NSForegroundColorAttributeName:ColorLightGray};
-    _segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
-                                                      NSForegroundColorAttributeName:ColorBtnYellow};
-    _segmentedControl.selectionIndicatorColor = ColorBtnYellow;
-    _segmentedControl.verticalDividerWidth = 1.0;
-    _segmentedControl.verticalDividerColor = ColorLightGray;
-    _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    _segmentedControl.layer.borderColor = [ColorLine CGColor];
-    _segmentedControl.layer.borderWidth = 1.0;
-    _segmentedControl.frame = CGRectMake(0, 0, DeviceWidth, TopSegmmentControlHeight);
-    
-    [_segmentedControl addTarget:self
-                          action:@selector(segmentedControlChangedValue:)
-                forControlEvents:UIControlEventValueChanged];
-    
-    [self.view addSubview:_segmentedControl];
-}
-
-- (void)initSegmentControll
-{
-    [self setSegment];
-    self.tableViewTopConstraint.constant = TopSegmmentControlHeight;
-    switch (self.baseViewType) {
-        case eTickets://查看全部-门票
-            [_segmentedControl setSelectedSegmentIndex:0];
-            break;
-        case eTicket_WaitPay: //我的门票_待付款
-            [_segmentedControl setSelectedSegmentIndex:1];
-             break;
-        case eTicket_WaitGetTicket: //我的门票_待取票
-            [_segmentedControl setSelectedSegmentIndex:2];
-             break;
-        case eTicket_WaitComment: //我的门票_待评价
-            [_segmentedControl setSelectedSegmentIndex:3];
-             break;
-        case eTicket_Refund: //我的门票_退款;
-            [_segmentedControl setSelectedSegmentIndex:4];
-             break;
-            
-        default:
-            break;
-    }
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -122,6 +70,7 @@ TicketFooterViewDelegate>
 
 - (void)initTableview
 {
+    self.tableViewTopConstraint.constant = 0.f;
     UINib *nib = [UINib nibWithNibName:@"TicketDetailViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"TicketDetailViewCell"];
     self.automaticallyAdjustsScrollViewInsets = NO;

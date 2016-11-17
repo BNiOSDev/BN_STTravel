@@ -21,6 +21,7 @@
 #import "LBB_MyVideoViewController.h"
 #import "LBB_MyFollowViewController.h"
 #import "LBB_PoohMyFavoriteViewController.h"
+#import "LBB_TicketModuleViewController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -146,7 +147,11 @@ LBB_MySectionHeadViewDelegate
         case eTicket_WaitGetTicket: //我的门票_待取票
         case eTicket_WaitComment: //我的门票_待评价
         case eTicket_Refund: //我的门票_退款
-             [self performSegueWithIdentifier:@"TicketViewController" sender:[NSNumber numberWithInteger:viewType]];
+        {
+            LBB_TicketModuleViewController *ticketVC = [[LBB_TicketModuleViewController alloc] init];
+            ticketVC.baseViewType = viewType;
+            [self.navigationController pushViewController:ticketVC animated:YES];
+        } 
             break;
       
 /* 我的广场 */
