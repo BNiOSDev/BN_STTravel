@@ -115,7 +115,7 @@
                                   @"http://upload.sanqin.com/2014/0820/1408524577544.jpg",
                                   ];
   //  imagesURLStrings = @[@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg" ];
-    cycleScrollView.imageURLStringsGroup = imagesURLStrings;
+    cycleScrollView.imageURLStringsGroup = urlArray;
 
 }
 

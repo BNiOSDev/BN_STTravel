@@ -223,7 +223,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getAdvertisementListArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
             
@@ -244,6 +244,8 @@
         
         temp.advertisementArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getAdvertisementListArrayClearData失败  %@",error.domain);
+
         temp.advertisementArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
@@ -273,7 +275,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getSpotAdvertisementListArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
             
@@ -292,6 +294,8 @@
         
         temp.spotAdvertisementArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getSpotAdvertisementListArrayClearData失败  %@",error.domain);
+
         temp.spotAdvertisementArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
@@ -318,7 +322,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getNoticesArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
             
@@ -337,6 +341,7 @@
         
         temp.noticesArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getNoticesArrayClearData失败  %@",error.domain);
         temp.noticesArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
@@ -363,7 +368,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getSpotsArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeSpotsList mj_objectArrayWithKeyValuesArray:array];
             
@@ -382,6 +387,8 @@
         
         temp.spotsArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getSpotsArrayClearData失败  %@",error.domain);
+
         temp.spotsArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
@@ -408,7 +415,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getTravelNotesArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeTravelNotes mj_objectArrayWithKeyValuesArray:array];
             
@@ -427,6 +434,8 @@
         
         temp.travelNotesArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getTravelNotesArrayClearData失败  %@",error.domain);
+
         temp.travelNotesArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
@@ -465,7 +474,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getSpotsArrayWithType成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeSpotsList mj_objectArrayWithKeyValuesArray:array];
             
@@ -481,6 +490,7 @@
         
         spotsArray_block.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getSpotsArrayWithType失败  %@",error.domain);
         spotsArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
@@ -507,7 +517,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeUgcList mj_objectArrayWithKeyValuesArray:array];
             
@@ -526,6 +536,8 @@
         
         temp.ugcArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getUgcArrayClearData失败  %@",error.domain);
+
         temp.ugcArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
