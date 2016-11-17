@@ -13,9 +13,22 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.numLabel.adjustsFontSizeToFitWidth = YES;
+    self.describeLabel.textColor = ColorBlack;
+    self.timeLabel.textColor = ColorLightGray;
+    self.numLabel.textColor = ColorRed;
+    self.describeLabel.font = Font15;
+    self.timeLabel.font = Font13;
+    self.numLabel.font = Font15;
+    self.describeLabel.numberOfLines = 0;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.describeLabel.text = nil;
+    self.timeLabel.text = nil;
+    self.numLabel.text = nil;
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

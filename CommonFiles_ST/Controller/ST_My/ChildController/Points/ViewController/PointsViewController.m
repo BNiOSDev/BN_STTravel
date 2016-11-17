@@ -9,6 +9,8 @@
 #import "PointsViewController.h"
 #import "WalletViewCell.h"
 #import "BalanceDetailViewController.h"
+#import "LBB_PointsModel.h"
+#import "LBB_WebViewController.h"
 
 @interface PointsViewController ()<
 UICollectionViewDelegate,
@@ -24,6 +26,16 @@ UICollectionViewDelegateFlowLayout
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *balanceViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIButton *pointsRedeemedBtn;
 @property (weak, nonatomic) IBOutlet UIButton *pointsDetailBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *myPointsImgView;
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pointsTipLabel;
+@property (weak, nonatomic) IBOutlet UIView *middleBgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleBgViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *detailDescBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailDescBtnBottomContraint;
+
+@property (strong,nonatomic) LBB_PointsModel *pointModel;
+@property (strong,nonatomic) LBB_PointsDetailModel *detailModel;
 
 @end
 
@@ -33,25 +45,47 @@ UICollectionViewDelegateFlowLayout
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType =  ePoints;
+    [self initUI];
+}
+
+- (void)buildControls
+{
+    if (!self.pointModel) {
+        self.pointModel = [[LBB_PointsModel alloc] init];
+    }
     [self initData];
 }
+
+- (void)initUI
+{
+    self.middleBgView.backgroundColor = ColorBackground;
+    [self.detailDescBtn setTitleColor:ColorLightGray forState:UIControlStateNormal];
+    self.pointsLabel.font = [UIFont systemFontOfSize:24];
+    self.pointsLabel.textColor = ColorBlack;
+    self.pointsTipLabel.font = Font14;
+    self.pointsTipLabel.textColor = ColorBlack;
+    self.detailDescBtnBottomContraint.constant = -TabHeight + 30.f;
+    self.pointsDetailBtn.backgroundColor = ColorBtnYellow;
+    self.pointsRedeemedBtn.backgroundColor = ColorGray;
+    self.pointsRedeemedBtn.hidden = YES;
     
+}
+
 - (void)initData
 {
+    self.detailModel = [self.pointModel getData];
+    
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
-                                                                   @{@"Title": NSLocalizedString(@"可兑换积分",nil),
-                                                                     @"Image" : @"19.pic.jpg",
-                                                                     @"Num": NSLocalizedString(@"2000",nil),
-                                                                     @"Action":@"balance"},
-                                                                   @{@"Title": NSLocalizedString(@"已兑换积分",nil),
-                                                                     @"Image" : @"19.pic.jpg",
-                                                                     @"Num": NSLocalizedString(@"2000",nil),
-                                                                     @"Action":@"bandCard"},
-                                                                   @{@"Title": NSLocalizedString(@"累计总积分",nil),
-                                                                     @"Image" : @"19.pic.jpg",
-                                                                     @"Num": NSLocalizedString(@"2000",nil),
-                                                                     @"Action":@"integral"}
-                                                                   ]];
+                                       @{@"Title": NSLocalizedString(@"可兑换积分",nil),
+                                         @"Image" : @"我的_积分2",
+                                         @"Num": [NSString stringWithFormat:@"%@",@(self.detailModel.convertiblePoints)]},
+                                       @{@"Title": NSLocalizedString(@"已兑换积分",nil),
+                                         @"Image" : @"我的_积分3",
+                                         @"Num":[NSString stringWithFormat:@"%@",@(self.detailModel.haveConvertedPoints)]},
+                                       @{@"Title": NSLocalizedString(@"累计总积分",nil),
+                                         @"Image" : @"我的_积分4",
+                                         @"Num": [NSString stringWithFormat:@"%@",@(self.detailModel.totalPoints)]}
+                                    ]];
     
 }
 
@@ -110,6 +144,15 @@ UICollectionViewDelegateFlowLayout
     [self performSegueWithIdentifier:@"Points_DetailViewController" sender:nil];
 }
 
+//积分兑换说明
+- (IBAction)detailDescBtnClickAction:(id)sender {
+    
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
+    vc.baseViewType = ePointConvertDesc;
+    vc.webViewURL = self.detailModel.descURL;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark - Navigation
 

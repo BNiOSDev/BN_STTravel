@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="281" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="281" height="63"/>
+                <frame key="frameInset" width="281" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="余额提现" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMN-KJ-3ma">
@@ -31,13 +32,15 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZHv-Zd-mZn" firstAttribute="centerY" secondItem="vrT-1m-ey9" secondAttribute="centerY" id="1f2-ro-PM9"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RMN-KJ-3ma" secondAttribute="trailing" constant="70" id="0AK-Mj-rLD"/>
                     <constraint firstItem="RMN-KJ-3ma" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="2R9-OP-Qvc"/>
                     <constraint firstItem="vrT-1m-ey9" firstAttribute="leading" secondItem="RMN-KJ-3ma" secondAttribute="leading" id="C1h-tP-cuo"/>
                     <constraint firstItem="vrT-1m-ey9" firstAttribute="top" secondItem="RMN-KJ-3ma" secondAttribute="bottom" constant="5" id="Ela-cC-Vs0"/>
                     <constraint firstItem="ZHv-Zd-mZn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vrT-1m-ey9" secondAttribute="trailing" constant="10" id="abQ-t5-WI3"/>
-                    <constraint firstItem="RMN-KJ-3ma" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-10" id="pHU-Fi-Zt8"/>
+                    <constraint firstItem="RMN-KJ-3ma" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="b2P-dU-F3z"/>
                     <constraint firstAttribute="trailing" secondItem="ZHv-Zd-mZn" secondAttribute="trailing" constant="15" id="saN-L1-GAg"/>
+                    <constraint firstItem="vrT-1m-ey9" firstAttribute="top" secondItem="ZHv-Zd-mZn" secondAttribute="bottom" constant="-10" id="thn-dX-YzR"/>
+                    <constraint firstAttribute="bottom" secondItem="vrT-1m-ey9" secondAttribute="bottom" constant="14.5" id="v7c-Nc-tzK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
