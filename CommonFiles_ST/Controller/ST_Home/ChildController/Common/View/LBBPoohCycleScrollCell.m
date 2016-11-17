@@ -115,7 +115,7 @@
                                   @"http://upload.sanqin.com/2014/0820/1408524577544.jpg",
                                   ];
   //  imagesURLStrings = @[@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg" ];
-    cycleScrollView.imageURLStringsGroup = urlArray;
+    cycleScrollView.imageURLStringsGroup = imagesURLStrings;
 
 }
 
@@ -135,7 +135,6 @@
     [orderView setHidden:NO];
     [self.orderPortraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
     [self.orderNewMessageLabel setText:@"最新订单来自杭州的百小小. 3秒前"];
-    
 }
 
 

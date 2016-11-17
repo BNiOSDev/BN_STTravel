@@ -19,8 +19,6 @@
 @implementation PoohBaseViewController
 
 
-
-
 - (void)viewDidLoad{
     [super viewDidLoad];
     WS(ws);

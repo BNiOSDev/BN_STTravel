@@ -15,15 +15,25 @@
 #import "LBB_GuiderUserFunsListCell.h"//用户
 #import "LBB_HomeSearchGoodsCell.h"//商品
 
+#import <BN_FilterMenu.h>
+#import "LBB_FilterListTableViewCell.h"
+#import "XDPopupListView.h"
 
+static const NSInteger kSearchButtonMarginRight = -10;
+static const NSInteger kButtonWidth = 45;
 
-@interface LBB_HomeSearchViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface LBB_HomeSearchViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,XDPopupListViewDataSource, XDPopupListViewDelegate>
 
 @property(nonatomic, retain)UISearchBar* searchBar;
 @property(nonatomic, retain)UITableView* tableView;
 
 @property(nonatomic, assign)LBBPoohHomeSearchType showType;
 
+@property(nonatomic, retain)UIButton *filterMenuButton;
+
+@property(nonatomic, retain)XDPopupListView *mDropDownListView;
+
+@property(nonatomic, retain)NSArray* menuArray;
 
 @end
 
@@ -32,6 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +50,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setNavigationBarHidden:YES];
+}
+    
+    
 /*
 #pragma mark - Navigation
 
@@ -51,47 +68,8 @@
 
 
 -(void)loadCustomNavigationButton{
-    WS(ws);
     
     //  self.title = @"取消";
-    UIButton *cancel = [[UIButton alloc] init];
-    cancel.titleLabel.font = Font14;
-    [cancel setTitle:@"取消" forState:UIControlStateNormal];
-    [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    cancel.frame = CGRectMake(0, 0, 45, 45);
-    [cancel bk_addEventHandler:^(id sender){
-        
-        [ws.navigationController popViewControllerAnimated:YES];
-        
-    }forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithCustomView:cancel];
-    self.navigationItem.rightBarButtonItem = cancelItem;
-    
-    
-    CGFloat height = NavHeight - 10;
-    CGFloat width = DeviceWidth - 45 - 15;
-    
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];//allocate titleView
-    UISearchBar *bar = [UISearchBar new];
-    bar.barStyle = UIBarStyleDefault;
-    
-    bar.layer.borderColor = ColorLine.CGColor;
-    bar.layer.borderWidth = 0.8;
-    bar.layer.masksToBounds = YES;
-    [bar setBackgroundImage:[UIImage new]];
-    bar.delegate = self;
-    bar.placeholder = @"请选择分类进行搜索";//@"输入关键字搜索景点";
-    [bar setContentMode:UIViewContentModeLeft];
-    self.searchBar = bar;
-    [titleView addSubview:bar];
-    [bar mas_makeConstraints:^(MASConstraintMaker* make){
-        make.center.width.height.equalTo(titleView);
-    }];
-    
-    [self.navigationItem.titleView sizeToFit];
-    self.navigationItem.titleView = titleView;
-    
 }
 
 #pragma mark - UISearchBarDelegate
@@ -124,6 +102,67 @@
     
     WS(ws);
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
+    [self.view setBackgroundColor:ColorWhite];
+    
+    self.menuArray = @[@"伴手礼",@"景点",@"美食",@"民宿",@"用户",@"广场",@"游记"];
+    
+    //自定义左侧的删选栏
+    //CGFloat IAppNavigationBarHeight = 44.0f;
+    // CGFloat IAppStatusBarHeight = 20.0f;
+    self.filterMenuButton = [[UIButton alloc]initWithFrame:CGRectMake(15, IAppStatusBarHeight, AutoSize(150/2), IAppNavigationBarHeight-10)];
+    [self.filterMenuButton setTitle:[self.menuArray objectAtIndex:0] forState:UIControlStateNormal];
+    [self.filterMenuButton setImage:IMAGE(@"搜索_下拉") forState:UIControlStateNormal];
+    [self.filterMenuButton setImageEdgeInsets:UIEdgeInsetsMake(0, AutoSize(35), 0, AutoSize(-35))];
+    [self.filterMenuButton setTitleEdgeInsets:UIEdgeInsetsMake(0, AutoSize(-10), 0, AutoSize(10))];
+    [self.filterMenuButton setBackgroundColor:ColorBtnYellow];
+    [self.filterMenuButton.titleLabel setFont:Font13];
+    [self.view addSubview:self.filterMenuButton];
+    self.mDropDownListView = [[XDPopupListView alloc] initWithBoundView:self.filterMenuButton dataSource:self delegate:self popupType:XDPopupListViewDropDown];
+    [self.mDropDownListView.tableView setBounces:NO];
+    
+    [self.filterMenuButton bk_whenTapped:^{
+        [ws.mDropDownListView show];
+    }];
+    
+    
+    
+    UISearchBar *bar = [UISearchBar new];
+    bar.barStyle = UIBarStyleDefault;
+    
+    bar.layer.borderColor = ColorLine.CGColor;
+    bar.layer.borderWidth = 0.8;
+    bar.layer.masksToBounds = YES;
+    [bar setBackgroundImage:[UIImage new]];
+    bar.delegate = self;
+    bar.placeholder = @"请选择分类进行搜索";//@"输入关键字搜索景点";
+    [bar setContentMode:UIViewContentModeLeft];
+    self.searchBar = bar;
+    [self.view addSubview:bar];
+    [bar mas_makeConstraints:^(MASConstraintMaker* make){
+        make.height.centerY.equalTo(ws.filterMenuButton);
+        make.left.equalTo(ws.filterMenuButton.mas_right);
+    }];
+    
+    UIButton *cancel = [[UIButton alloc] init];
+    cancel.titleLabel.font = Font14;
+    [cancel setTitle:@"取消" forState:UIControlStateNormal];
+    [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cancel bk_addEventHandler:^(id sender){
+        
+        [ws.navigationController popViewControllerAnimated:YES];
+        
+    }forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:cancel];
+    [cancel mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.height.width.mas_equalTo(kButtonWidth);
+        make.centerY.equalTo(ws.filterMenuButton);
+        make.right.equalTo(ws.view).offset(kSearchButtonMarginRight);
+        make.left.equalTo(bar.mas_right).offset(10);
+    }];
+    
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self loadCustomCell];
     [self.view addSubview:self.tableView];
@@ -134,7 +173,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(ws.view);
-        make.top.equalTo(ws.view);
+        make.top.equalTo(ws.filterMenuButton.mas_bottom).offset(10);
         make.bottom.equalTo(ws.view);
     }];
     
@@ -163,9 +202,60 @@
 
 }
 
+
+#pragma mark - XDPopupListViewDataSource & XDPopupListViewDelegate
+
+- (NSInteger)numberOfRowsInSection:(NSInteger)section
+{
+    return self.menuArray.count;
+}
+- (CGFloat)itemCellHeight:(NSIndexPath *)indexPath
+{
+    return AutoSize(35);
+}
+- (void)clickedListViewAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"clickedListViewAtIndexPath : %ld", indexPath.row);
+    [self.filterMenuButton setTitle:[self.menuArray objectAtIndex:indexPath.row] forState:UIControlStateNormal];
+    self.searchType = indexPath.row;
+    self.showType = self.searchType;
+    [self.tableView reloadData];
+}
+- (UITableViewCell *)itemCell:(NSIndexPath *)indexPath
+{
+    
+    static NSString *identifier = @"itemCell";
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    [cell.contentView setBackgroundColor:ColorBtnYellow];
+    
+    UILabel* titleLabel = [UILabel new];
+    [titleLabel setFont:Font13];
+    [titleLabel setTextColor:ColorWhite];
+    [titleLabel setText:[self.menuArray objectAtIndex:indexPath.row]];
+    [titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [cell.contentView addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.center.equalTo(cell.contentView);
+    }];
+    
+    if (indexPath.row != self.menuArray.count-1) {
+        UIView* sepLineView = [UIView new];
+        [sepLineView setBackgroundColor:ColorWhite];
+        [cell.contentView addSubview:sepLineView];
+        [sepLineView mas_makeConstraints:^(MASConstraintMaker* make){
+            make.centerX.bottom.equalTo(cell.contentView);
+            make.height.mas_equalTo(SeparateLineWidth);
+            make.left.equalTo(cell.contentView).offset(8);
+            make.right.equalTo(cell.contentView).offset(-8);
+        }];
+    }
+    
+    return cell;
+}
+
+
 #pragma tableView Delegate
-
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     if ([self.searchBar.text length] <= 0) {
@@ -426,7 +516,9 @@
         self.showType = self.searchType;
         [self.tableView reloadData];
     }
-    
 }
 
+
+
+    
 @end

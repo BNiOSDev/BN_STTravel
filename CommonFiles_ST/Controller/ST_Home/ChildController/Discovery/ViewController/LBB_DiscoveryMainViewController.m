@@ -279,6 +279,14 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
             make.left.equalTo(imageView.mas_right).offset(margin/3);
         }];
         
+        UIImageView* arrowView = [UIImageView new];
+        [arrowView setImage:IMAGE(@"景点专题_箭头Down")];
+        [view addSubview:arrowView];
+        [arrowView mas_makeConstraints:^(MASConstraintMaker* make){
+            make.centerY.equalTo(view);
+            make.right.equalTo(view).offset(-20);
+        }];
+        
         return view;
     }];
     [segmentedControl heightForSectionInBlock:^CGFloat(NSInteger index, NSInteger section,id data){

@@ -186,37 +186,25 @@
     [self.viewModel.advertisementArray.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];//data reload
     }];
-    
+   
     //2.0响应的view，网络状态变化时的再刷新动作
-    [RACObserve(self.viewModel.advertisementArray.loadSupport, loadEvent) subscribeNext:^(NSNumber* x) {
-        //刷新view的状态
-      //  [ws.tableView loadingState:ws.viewModel.advertisementArray.loadSupport.loadEvent data:ws.viewModel.advertisementArray];
-    }];
-    
-  /*
-   //不是数组的情况下的数据数据绑定
-   [RACObserve(self.viewModel, modelEvent) subscribeNext:^(NSNumber* x) {
-        //刷新view的状态
-        [ws.tableView loadingState:ws.viewModel.modelEvent data:ws.viewModel.model];
-    }];
-    */
-    
+  //  [self.tableView setTableViewData:self.viewModel.advertisementArray];
     //2.1点击刷新
-    [ws.tableView setRefreshBlock:^{
+   /* [ws.tableView setRefreshBlock:^{
         [ws.viewModel getAdvertisementListArrayClearData:NO];
     }];
-    
+    */
     //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
     [self.tableView setTableViewData:self.viewModel.advertisementArray];
     //3.1上拉和下拉的动作
     [self.tableView setHeaderRefreshDatablock:^{
+        [ws.tableView.mj_header endRefreshing];
         [ws.viewModel getAdvertisementListArrayClearData:YES];//取数据
     } footerRefreshDatablock:^{
-        [ws.viewModel getAdvertisementListArrayClearData:NO];
+       // [ws.viewModel getAdvertisementListArrayClearData:NO];
+       // [ws.tableView.mj_footer endRefreshing];
+
     }];
-    
-    
-    
     
     
     /**
@@ -267,12 +255,6 @@
     //数据赋值为dataSource
     self.dataSource.viewModel = self.viewModel;
     
-    
-    @weakify(self);
-    [RACObserve(self, viewModel) subscribeNext:^(id model) {
-        @strongify(self);
-        [self.tableView reloadData];
-    }];
     
 }
 

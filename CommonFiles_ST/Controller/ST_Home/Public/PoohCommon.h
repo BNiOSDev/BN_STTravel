@@ -26,7 +26,7 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import "PoohAppHelper.h"
 
 #import <BN_FilterMenu.h>
-
+#import <MJRefresh/MJRefresh.h>
 #import "NSString+PoohCommon.h"
 #import "UIColor+PoohCommon.h"
 #import "NSObject+PoohCommon.h"

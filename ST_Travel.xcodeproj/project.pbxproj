@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D01A4CE1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D01A4CD1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m */; };
 		1D01A4D41DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D01A4D31DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m */; };
+		1D01A9CA1DDC8D010026CA9B /* XDPopupListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D01A9C91DDC8D010026CA9B /* XDPopupListView.m */; };
 		1D0F487E1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F487D1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m */; };
 		1D0F48811DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48801DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.m */; };
 		1D0F48841DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F48831DC8817C00A37DE2 /* LBB_PoohAttributedTextCell.m */; };
@@ -414,6 +415,8 @@
 		1D01A4CD1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_FilterTableViewCell.m; sourceTree = "<group>"; };
 		1D01A4D21DDBED1F0026CA9B /* LBB_FilterListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_FilterListTableViewCell.h; sourceTree = "<group>"; };
 		1D01A4D31DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_FilterListTableViewCell.m; sourceTree = "<group>"; };
+		1D01A9C81DDC8D010026CA9B /* XDPopupListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDPopupListView.h; sourceTree = "<group>"; };
+		1D01A9C91DDC8D010026CA9B /* XDPopupListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDPopupListView.m; sourceTree = "<group>"; };
 		1D0F487C1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryDetailViewController.h; sourceTree = "<group>"; };
 		1D0F487D1DC8787900A37DE2 /* LBB_DiscoveryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryDetailViewController.m; sourceTree = "<group>"; };
 		1D0F487F1DC87AEB00A37DE2 /* LBB_DiscoveryDetailMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryDetailMsgCell.h; sourceTree = "<group>"; };
@@ -1110,6 +1113,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1D01A9C71DDC8D010026CA9B /* XDPopupListView */ = {
+			isa = PBXGroup;
+			children = (
+				1D01A9C81DDC8D010026CA9B /* XDPopupListView.h */,
+				1D01A9C91DDC8D010026CA9B /* XDPopupListView.m */,
+			);
+			path = XDPopupListView;
+			sourceTree = "<group>";
+		};
 		1D0F489A1DC8CB9400A37DE2 /* LabelDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1316,6 +1328,7 @@
 		1D12F9821DC6E97700ACD462 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D01A9C71DDC8D010026CA9B /* XDPopupListView */,
 				1D0F48CE1DC9EE6200A37DE2 /* SKTag */,
 				1D12F9831DC6E97700ACD462 /* CWStarRateView */,
 				1D12F9881DC6E97700ACD462 /* GYChangeTextView */,
@@ -4675,6 +4688,7 @@
 				842BCE2B1DCD79E400A16788 /* ZJMTravelsViewController.m in Sources */,
 				842BCE291DCD79E400A16788 /* ST_SquareViewController.m in Sources */,
 				842BCDA51DCD79E300A16788 /* LBB_CommentView.m in Sources */,
+				1D01A9CA1DDC8D010026CA9B /* XDPopupListView.m in Sources */,
 				842BCE011DCD79E400A16788 /* CommentModel.m in Sources */,
 				1D12FA8B1DC6E97700ACD462 /* UILabel+Common.m in Sources */,
 				1D12FA731DC6E97700ACD462 /* LBB_ScenicDetailEquipmentCell.m in Sources */,
