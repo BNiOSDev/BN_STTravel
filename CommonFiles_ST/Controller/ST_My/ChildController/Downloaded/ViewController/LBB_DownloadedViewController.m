@@ -1,7 +1,7 @@
 //
 //  LBB_DownloadedViewController.m
 //  ST_Travel
-//
+//  我的-下载
 //  Created by 晨曦 on 16/11/5.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
@@ -13,6 +13,7 @@
 #import "ZJScrollPageView.h"
 #import "Header.h"
 #import "LBB_DownloadTravelsViewController.h"
+#import "LBB_TravelGuideViewController.h"
 
 #define LG_scrollViewH 220
 #define LG_segmentH 30
@@ -21,7 +22,8 @@
 @interface LBB_DownloadedViewController ()<UIScrollViewDelegate>
 @property(nonatomic, weak)UISearchBar         *JMSearchBar;
 @property (nonatomic, strong) UIScrollView      *scrollView;
-@property(nonatomic, strong)LBB_DownloadTravelsViewController    *travelContrller;
+@property(nonatomic, strong)LBB_DownloadTravelsViewController  *travelContrller;//游记
+@property(nonatomic,strong) LBB_TravelGuideViewController *travelGuideController;//攻略
 
 @end
 
@@ -89,7 +91,6 @@
         UIViewController * vc = self.childViewControllers[i];
         vc.view.frame = CGRectMake(i * DeviceWidth, 0, DeviceWidth, self.view.frame.size.height);
         [sv addSubview:vc.view];
-        
     }
     
     sv.contentSize = CGSizeMake(_buttonList.count * DeviceWidth, 0);
@@ -99,13 +100,13 @@
 //加载2个ViewController
 -(void)addChildViewController{
     
-    LBB_DownloadTravelsViewController *vc1 = [[LBB_DownloadTravelsViewController alloc]init];
-    vc1.viewType = TravelsViewDownloaed;
-    [self addChildViewController:vc1];
+    LBB_DownloadTravelsViewController *travelVC = [[LBB_DownloadTravelsViewController alloc]init];
+    travelVC.viewType = TravelsViewDownloaed;
+    [self addChildViewController:travelVC];
     
-    LBB_DownloadTravelsViewController *viewVC = [[LBB_DownloadTravelsViewController alloc]init];
-    viewVC.viewType = TravelsViewGuide;
-    [self addChildViewController:viewVC];
+    LBB_TravelGuideViewController *travelGuideVC = [[LBB_TravelGuideViewController alloc]init];
+    travelGuideVC.viewType = TravelsViewGuide;
+    [self addChildViewController:travelGuideVC];
 }
 
 #pragma mark - UIScrollViewDelegate

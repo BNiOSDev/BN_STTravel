@@ -1,8 +1,8 @@
 //
-//  LBBTravelTableViewCell.h
+//  LBB_MyTravelTableViewCell.h
 //  ST_Travel
 //
-//  Created by dawei che on 2016/10/23.
+//  Created by dhxiang on 16/11/17.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -10,10 +10,11 @@
 #import "ZJMTravelModel.h"
 #import "Header.h"
 
-@interface LBBTravelTableViewCell : UITableViewCell
+
+@interface LBB_MyTravelTableViewCell : UITableViewCell
+
 @property(nonatomic,strong)ZJMTravelModel       *model;
 @property(nonatomic,strong)CellBlockVIew         cellBlock;
 @property(nonatomic,assign)TravelsViewType viewType;
-
 
 @end

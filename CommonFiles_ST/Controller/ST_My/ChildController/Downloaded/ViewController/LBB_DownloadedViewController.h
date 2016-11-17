@@ -9,7 +9,7 @@
 #import "Base_BaseViewController.h"
 #import "LGSegment.h"
 
-@interface LBB_DownloadedViewController :  Base_BaseViewController<SegmentDelegate>
+@interface LBB_DownloadedViewController : Base_BaseViewController<SegmentDelegate>
 
 @property (nonatomic, strong) UIScrollView *contentScrollView;
 @property(nonatomic,strong)NSMutableArray *buttonList;
