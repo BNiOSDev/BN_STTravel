@@ -11,5 +11,6 @@
 @interface LBB_MyTravelViewController : MineBaseViewController
 
 @property(nonatomic,assign)MyTravelsViewType travelviewType;
+@property(nonatomic,assign)MySquareViewType squareType;
 
 @end

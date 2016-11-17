@@ -1,34 +1,36 @@
 //
-//  LBB_DownloadedViewController.m
+//  LBB_MyFavoriteSquareViewController.m
 //  ST_Travel
-//  我的-下载
-//  Created by 晨曦 on 16/11/5.
+//
+//  Created by dhxiang on 16/11/17.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBB_DownloadedViewController.h"
+#import "LBB_MyFavoriteSquareViewController.h"
 #import "ST_SquareViewController.h"
 #import "LBB_MyTravelViewController.h"
-#import "LBB_TravelGuideViewController.h"
+#import "LBB_MyVideoViewController.h"
 #import "HMSegmentedControl.h"
+#import "LBB_MyPhotoViewController.h"
 
+#define ViewNum 3
 
-#define ViewNum 2
-
-@interface LBB_DownloadedViewController ()<UIScrollViewDelegate>
+@interface LBB_MyFavoriteSquareViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *contentScrollView;
 @property(nonatomic, strong) LBB_MyTravelViewController  *travelContrller;//游记
-@property(nonatomic,strong) LBB_TravelGuideViewController *travelGuideController;//攻略
+@property(nonatomic,strong) LBB_MyVideoViewController *videoController;//视频
+@property(nonatomic,strong) LBB_MyPhotoViewController *photoControllerll;//照片
+
 @property(nonatomic,strong) HMSegmentedControl *segmentedControl;
 
 @end
 
-@implementation LBB_DownloadedViewController
+@implementation LBB_MyFavoriteSquareViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = NSLocalizedString(@"我的下载", nil);
+    self.navigationItem.title = NSLocalizedString(@"广场", nil);
     self.view.backgroundColor = ColorBackground;
     
     //加载Segment
@@ -51,7 +53,7 @@
 
 -(void)setSegment {
     
-    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"游记",@"攻略"]];
+    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"照片",@"视频",@"游记"]];
     _segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
     _segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
                                               NSForegroundColorAttributeName:ColorLightGray};
@@ -99,13 +101,19 @@
 //加载2个ViewController
 -(void)addChildViewController{
     
-    LBB_MyTravelViewController *travelVC = [[LBB_MyTravelViewController alloc]init];
-    travelVC.travelviewType = MyTravelsViewDownloaed;
-    [self addChildViewController:travelVC];
+    self.photoControllerll = [[LBB_MyPhotoViewController alloc]init];
+    self.photoControllerll.squareType = MySquarePhotoViewFravorite;
+    [self addChildViewController:self.photoControllerll];
     
-    LBB_TravelGuideViewController *travelGuideVC = [[LBB_TravelGuideViewController alloc]init];
-    travelGuideVC.travelviewType =  MyTravelsViewGuide;
-    [self addChildViewController:travelGuideVC];
+    self.videoController = [[LBB_MyVideoViewController alloc]init];
+    self.videoController.squareType = MySquareVideoViewFravorite;
+    [self addChildViewController:self.videoController];
+    
+    
+    self.travelContrller = [[LBB_MyTravelViewController alloc]init];
+    self.travelContrller.travelviewType = MyTravelsViewDownloaed;
+    self.travelContrller.squareType = MySquareViewFravorite;
+    [self addChildViewController:self.travelContrller];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -132,6 +140,5 @@
     NSLog(@"%d",(int)(scrollView.contentOffset.x / DeviceWidth));
     [self scrollToPage:pageIndex];//修复页面自动滚动偏差
 }
-
 
 @end

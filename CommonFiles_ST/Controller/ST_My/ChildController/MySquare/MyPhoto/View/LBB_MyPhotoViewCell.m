@@ -38,6 +38,11 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+}
+
 - (void)setup
 {
     contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
@@ -95,6 +100,27 @@
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
+}
+
+- (void)setSquareType:(MySquareViewType)squareType
+{
+    _squareType = squareType;
+    switch (_squareType) {
+        case MySquarePhotoView:
+        {
+            
+        }
+            break;
+        case MySquarePhotoViewFravorite:
+        {
+            deleteBtn.hidden = YES;
+            pinBtn.hidden = YES;
+            zanBtn.hidden = YES;
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)btnFunc:(UIButton *)btn

@@ -9,5 +9,6 @@
 #import "MineBaseViewController.h"
 
 @interface LBB_MyPhotoViewController : MineBaseViewController
+@property(nonatomic,assign)MySquareViewType squareType;
 
 @end

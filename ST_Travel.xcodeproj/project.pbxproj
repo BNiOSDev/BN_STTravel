@@ -411,6 +411,7 @@
 		845CB2461DDDCFDC00C02DC2 /* TicketDetailViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB23E1DDDCFDC00C02DC2 /* TicketDetailViewCell.m */; };
 		845CB2471DDDCFDC00C02DC2 /* TicketDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB23F1DDDCFDC00C02DC2 /* TicketDetailViewCell.xib */; };
 		845CB2481DDDCFDC00C02DC2 /* TicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB2411DDDCFDC00C02DC2 /* TicketViewController.m */; };
+		845CB2541DDDE0B700C02DC2 /* LBB_MyFavoriteSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB2531DDDE0B700C02DC2 /* LBB_MyFavoriteSquareViewController.m */; };
 		84B377DF1DC4539D0078397C /* ST_Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B377DE1DC4539D0078397C /* ST_Mine.xcassets */; };
 		84F6B8141DC6E277009ED8DF /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
@@ -1134,6 +1135,8 @@
 		845CB23F1DDDCFDC00C02DC2 /* TicketDetailViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TicketDetailViewCell.xib; sourceTree = "<group>"; };
 		845CB2401DDDCFDC00C02DC2 /* TicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketViewController.h; sourceTree = "<group>"; };
 		845CB2411DDDCFDC00C02DC2 /* TicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketViewController.m; sourceTree = "<group>"; };
+		845CB2521DDDE0B700C02DC2 /* LBB_MyFavoriteSquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MyFavoriteSquareViewController.h; sourceTree = "<group>"; };
+		845CB2531DDDE0B700C02DC2 /* LBB_MyFavoriteSquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MyFavoriteSquareViewController.m; sourceTree = "<group>"; };
 		84B377DE1DC4539D0078397C /* ST_Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Mine.xcassets; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2550,6 +2553,7 @@
 		845CB00B1DDDC24800C02DC2 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				845CB2501DDDE0A200C02DC2 /* FavoriteSquare */,
 				845CB00C1DDDC24800C02DC2 /* Common */,
 				845CB0121DDDC24800C02DC2 /* Downloaded */,
 				845CB0271DDDC24800C02DC2 /* FightGroups */,
@@ -4402,6 +4406,23 @@
 			path = BaseView;
 			sourceTree = "<group>";
 		};
+		845CB2501DDDE0A200C02DC2 /* FavoriteSquare */ = {
+			isa = PBXGroup;
+			children = (
+				845CB2511DDDE0A200C02DC2 /* ViewController */,
+			);
+			path = FavoriteSquare;
+			sourceTree = "<group>";
+		};
+		845CB2511DDDE0A200C02DC2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				845CB2521DDDE0B700C02DC2 /* LBB_MyFavoriteSquareViewController.h */,
+				845CB2531DDDE0B700C02DC2 /* LBB_MyFavoriteSquareViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		C91F613A1D9F96CA004FE75C /* ST_Mall */ = {
 			isa = PBXGroup;
 			children = (
@@ -5140,6 +5161,7 @@
 				845CB1B81DDDC24900C02DC2 /* MineBaseViewController.m in Sources */,
 				842BCE1E1DCD79E400A16788 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1D0F48A81DC8E10400A37DE2 /* LBB_LabelDetailHotCell.m in Sources */,
+				845CB2541DDDE0B700C02DC2 /* LBB_MyFavoriteSquareViewController.m in Sources */,
 				845CB1DC1DDDC24900C02DC2 /* LBB_FollowViewController.m in Sources */,
 				1D12FA561DC6E97700ACD462 /* LBB_AddressAddViewController.m in Sources */,
 				845CB1F71DDDC24900C02DC2 /* LBB_BalanceDetailModel.m in Sources */,

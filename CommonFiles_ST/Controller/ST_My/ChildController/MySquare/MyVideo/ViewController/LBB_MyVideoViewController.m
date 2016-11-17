@@ -40,13 +40,20 @@ UICollectionViewDelegateFlowLayout>
 {
     UICollectionViewFlowLayout *horizontalCellLayout = [UICollectionViewFlowLayout new];
     horizontalCellLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    horizontalCellLayout.sectionInset = UIEdgeInsetsMake(15, 15, 15, 9);
+    horizontalCellLayout.sectionInset = UIEdgeInsetsMake(3, 15, 15, 9);
     horizontalCellLayout.minimumInteritemSpacing = 1;
     horizontalCellLayout.minimumLineSpacing = 1;
     horizontalCellLayout.itemSize = CGSizeMake(AUTO(150), AUTO(170));
     
+    if (self.squareType == MySquareVideoViewFravorite) {
+        horizontalCellLayout.itemSize = CGSizeMake(AUTO(150), AUTO(150));
+    }
+    
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:horizontalCellLayout];
     self.view .autoresizesSubviews = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+    if (self.squareType == MySquareVideoViewFravorite) {
+        _collectionView.frame = CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64);
+    }
     _collectionView.backgroundColor = ColorBackground;
     _collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.alwaysBounceHorizontal = NO;
@@ -87,6 +94,7 @@ UICollectionViewDelegateFlowLayout>
     
     static NSString *CellIdentifier = @"LBB_MyVideoViewCell";
     LBB_MyVideoViewCell *cell =  (LBB_MyVideoViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.squareType = _squareType;
     LBB_MyVideoModel *cellInfo = [self.arr objectAtIndex:indexPath.row];
     if (cellInfo) {
         [cell setModel:cellInfo];

@@ -108,6 +108,31 @@
     }
 }
 
+- (void)setSquareType:(MySquareViewType)squareType
+{
+    _squareType = squareType;
+    switch (_squareType) {
+        case MySquareView:
+        {
+            deleteBtn.hidden = NO;
+            pinBtn.hidden = NO;
+            zanBtn.hidden = NO;
+            heartBtn.hidden = NO;
+        }
+            break;
+        case MySquareViewFravorite:
+        {
+            deleteBtn.hidden = YES;
+            pinBtn.hidden = YES;
+            zanBtn.hidden = YES;
+            heartBtn.hidden = YES;
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)setModel:(ZJMTravelModel *)model
 {
     _model = model;

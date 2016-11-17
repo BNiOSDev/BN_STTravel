@@ -98,9 +98,9 @@
     };
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     cell.viewType = _travelviewType;
+    cell.squareType = _squareType;
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-    
-    
+
     cell.model = self.dataArray[indexPath.row];
     return cell;
 }

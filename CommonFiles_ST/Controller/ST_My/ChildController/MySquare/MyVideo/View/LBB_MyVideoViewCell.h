@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Mine_Common.h"
 #import "LBB_MyVideoModel.h"
+#import "Mine_Common.h"
 
 @interface LBB_MyVideoViewCell : UICollectionViewCell
 
 @property(nonatomic,strong)LBB_MyVideoModel       *model;
 @property(nonatomic,strong)CollectionViewCellBlock cellBlock;
+@property(nonatomic,assign)MySquareViewType squareType;
 
 @end

@@ -23,7 +23,7 @@
 #import "LBB_PoohMyFavoriteViewController.h"
 #import "LBB_TicketModuleViewController.h"
 #import "LBB_TravelGuideViewController.h"
-
+#import "LBB_MyFavoriteSquareViewController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -160,12 +160,14 @@ LBB_MySectionHeadViewDelegate
         case  ePhoto: //照片
         {
             LBB_MyPhotoViewController *photoVC = [[LBB_MyPhotoViewController alloc] init];
+            photoVC.squareType = MySquarePhotoView;
             [self.navigationController pushViewController:photoVC animated:YES];
         }
             break;
         case   eVideo://视频
         {
             LBB_MyVideoViewController *videoVC = [[LBB_MyVideoViewController alloc] init];
+            videoVC.squareType = MySquareVideoView;
             [self.navigationController pushViewController:videoVC animated:YES];
         }
             break;
@@ -184,7 +186,10 @@ LBB_MySectionHeadViewDelegate
             break;
 /* 我的收藏 */
         case eSquare://广场
-            
+        {
+            LBB_MyFavoriteSquareViewController *favoriteSquare = [[LBB_MyFavoriteSquareViewController alloc] init];
+            [self.navigationController pushViewController:favoriteSquare animated:YES];
+        }
             break;
         case eScenicSpot://景点
         {

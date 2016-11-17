@@ -17,5 +17,6 @@
 @property(nonatomic,strong)ZJMTravelModel       *model;
 @property(nonatomic,strong)CellBlockVIew     cellBlock;
 @property(nonatomic,assign)MyTravelsViewType viewType;
+@property(nonatomic,assign)MySquareViewType squareType;
 
 @end

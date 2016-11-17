@@ -103,6 +103,29 @@
     
 }
 
+- (void)setSquareType:(MySquareViewType)squareType
+{
+    _squareType = squareType;
+    switch (_squareType) {
+        case MySquareVideoView:
+        {
+            deleteBtn.hidden = NO;
+            pinBtn.hidden = NO;
+            zanBtn.hidden = NO;
+        }
+            break;
+        case MySquareVideoViewFravorite:
+        {
+            deleteBtn.hidden = YES;
+            pinBtn.hidden = YES;
+            zanBtn.hidden = YES;
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)btnFunc:(UIButton *)btn
 {
     if (self.cellBlock) {

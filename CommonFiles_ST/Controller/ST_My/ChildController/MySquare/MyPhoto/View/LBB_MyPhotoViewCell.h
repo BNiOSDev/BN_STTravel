@@ -14,5 +14,5 @@
 
 @property(nonatomic,strong)LBB_MyPhotoModel       *model;
 @property(nonatomic,strong)CollectionViewCellBlock cellBlock;
-
+@property(nonatomic,assign)MySquareViewType squareType;
 @end

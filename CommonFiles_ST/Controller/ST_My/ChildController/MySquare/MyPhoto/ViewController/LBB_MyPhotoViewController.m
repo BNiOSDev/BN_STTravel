@@ -41,13 +41,16 @@ UICollectionViewDelegateFlowLayout>
 {
     UICollectionViewFlowLayout *horizontalCellLayout = [UICollectionViewFlowLayout new];
     horizontalCellLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    horizontalCellLayout.sectionInset = UIEdgeInsetsMake(15, 15, 15, 9);
+    horizontalCellLayout.sectionInset = UIEdgeInsetsMake(3, 15, 15, 9);
     horizontalCellLayout.minimumInteritemSpacing = 1;
     horizontalCellLayout.minimumLineSpacing = 1;
     horizontalCellLayout.itemSize = CGSizeMake(AUTO(150), AUTO(170));
     
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:horizontalCellLayout];
     self.view .autoresizesSubviews = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+    if (self.squareType == MySquarePhotoViewFravorite) {
+        horizontalCellLayout.itemSize = CGSizeMake(AUTO(150), AUTO(150));
+    }
     _collectionView.backgroundColor = ColorBackground;
     _collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.alwaysBounceHorizontal = NO;
@@ -88,6 +91,7 @@ UICollectionViewDelegateFlowLayout>
     
     static NSString *CellIdentifier = @"LBB_MyPhotoViewCell";
     LBB_MyPhotoViewCell *cell =  (LBB_MyPhotoViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.squareType = _squareType;
     LBB_MyPhotoModel *cellInfo = [self.arr objectAtIndex:indexPath.row];
     if (cellInfo) {
         [cell setModel:cellInfo];

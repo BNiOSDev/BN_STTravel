@@ -125,6 +125,16 @@ typedef NS_ENUM(NSInteger, MyTravelsViewType)
     MyTravelsViewFravorite, //我的-收藏-游记
 };
 
+typedef NS_ENUM(NSInteger, MySquareViewType)
+{
+    MySquarePhotoView = 0, //我的-广场-照片
+    MySquareVideoView, //我的-广场-视频
+    MySquareView, //我的-收藏-游记
+    MySquarePhotoViewFravorite, //我的-收藏-照片
+    MySquareVideoViewFravorite, //我的-收藏-视频
+    MySquareViewFravorite, //我的-收藏-游记
+
+};
 
 typedef void(^CollectionViewCellBlock)(id object,UICollectionViewCellSignal signal);
 
