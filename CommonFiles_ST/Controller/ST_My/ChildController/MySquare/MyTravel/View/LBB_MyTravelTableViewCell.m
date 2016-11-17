@@ -77,22 +77,30 @@
     zanBtn.exclusiveTouch = YES;
 }
 
-- (void)setViewType:(TravelsViewType)viewType
+- (void)setViewType:(MyTravelsViewType)viewType
 {
     _viewType = viewType;
     switch (_viewType) {
-        case TravelsViewDownloaed://我的下载-游记
-        case TravelsViewGuide: //我的下载-攻略
+        case MyTravelsViewDownloaed://我的下载-游记
+        case MyTravelsViewGuide: //我的下载-攻略
         {
             deleteBtn.hidden = NO;
         }
             break;
-        case TravelsViewRoute:
+        case MyTravelsViewRoute:
         {
             zanBtn.hidden = YES;
             pinBtn.hidden = YES;
             heartBtn.hidden = YES;
             deleteBtn.hidden = NO;
+        }
+            break;
+        case MyTravelsGuideViewFravorite:
+        {
+            zanBtn.hidden = NO;
+            pinBtn.hidden = NO;
+            heartBtn.hidden = NO;
+            deleteBtn.hidden = YES;
         }
             break;
         default:
@@ -114,6 +122,10 @@
     [deleteBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [deleteBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
+    if (self.viewType == MyTravelsGuideViewFravorite) {
+        deleteWidth = 0;
+        deleteBtn.hidden = YES;
+    }
     [heartBtn setTitle:model.collectNum forState:0];
     heartBtn.width = [self getWidthWithContent:model.collectNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     heartBtn.left = DeviceWidth - 10 - heartBtn.width - deleteWidth;

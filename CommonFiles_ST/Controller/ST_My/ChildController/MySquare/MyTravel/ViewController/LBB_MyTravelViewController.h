@@ -6,12 +6,10 @@
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "ZJMBaseViewController.h"
-#import "Header.h"
+#import "MineBaseViewController.h"
 
-@interface LBB_MyTravelViewController : ZJMBaseViewController
+@interface LBB_MyTravelViewController : MineBaseViewController
 
-@property(nonatomic,assign)TravelsViewType viewType; 
+@property(nonatomic,assign)MyTravelsViewType travelviewType;
 
 @end

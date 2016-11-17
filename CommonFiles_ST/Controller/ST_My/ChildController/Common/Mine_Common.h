@@ -115,6 +115,17 @@ typedef NS_ENUM(NSInteger, UICollectionViewCellSignal)
     UICollectionViewCellDelete        //删除
 };
 
+
+typedef NS_ENUM(NSInteger, MyTravelsViewType)
+{
+    MyTravelsViewDownloaed = 0, //我的-下载-游记
+    MyTravelsViewGuide, //我的-下载-攻略
+    MyTravelsViewRoute, //我的-下载-定制路线
+    MyTravelsGuideViewFravorite, //我的-收藏-攻略
+    MyTravelsViewFravorite, //我的-收藏-游记
+};
+
+
 typedef void(^CollectionViewCellBlock)(id object,UICollectionViewCellSignal signal);
 
 #endif /* Mine_Common_h */

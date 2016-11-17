@@ -22,6 +22,8 @@
 #import "LBB_MyFollowViewController.h"
 #import "LBB_PoohMyFavoriteViewController.h"
 #import "LBB_TicketModuleViewController.h"
+#import "LBB_TravelGuideViewController.h"
+
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -170,6 +172,7 @@ LBB_MySectionHeadViewDelegate
         case  eTravels://我的游记
         {
             LBB_MyTravelViewController *myTravel = [[LBB_MyTravelViewController alloc] init];
+            myTravel.travelviewType = MyTravelsViewFravorite;
             [self.navigationController pushViewController:myTravel animated:YES];
         }
            break;
@@ -214,7 +217,11 @@ LBB_MySectionHeadViewDelegate
             
             break;
         case eTravelGuide://攻略
-            
+        {
+            LBB_TravelGuideViewController *travelVC = [[LBB_TravelGuideViewController alloc] init];
+            travelVC.travelviewType =  MyTravelsGuideViewFravorite;
+            [self.navigationController pushViewController:travelVC animated:YES];
+        }
             break;
 /* 我的积分 */
         case ePoints://积分

@@ -7,10 +7,10 @@
 //
 
 #import "ZJMBaseViewController.h"
-#import "Header.h"
+#import "Mine_Common.h"
 
 @interface LBB_TravelGuideViewController : ZJMBaseViewController
 
-@property(nonatomic,assign)TravelsViewType viewType;
+@property(nonatomic,assign)MyTravelsViewType travelviewType;
 
 @end

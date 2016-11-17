@@ -61,7 +61,11 @@
 - (void)createTable
 {
     _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:0];
-    _mTableView.height = _mTableView.height - AUTO(40) - 64;
+    _mTableView.height = _mTableView.height - TopSegmmentControlHeight - 64;
+    if(self.travelviewType == MyTravelsGuideViewFravorite) {
+        _mTableView.height = DeviceHeight - 64;
+        self.navigationItem.title = NSLocalizedString(@"攻略", nil);
+    }
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
     _mTableView.backgroundColor = [UIColor whiteColor];
@@ -85,7 +89,7 @@
         [self dealCellSignal:signal withIndex:indexPath];
     };
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    cell.viewType = _viewType;
+    cell.viewType = _travelviewType;
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     

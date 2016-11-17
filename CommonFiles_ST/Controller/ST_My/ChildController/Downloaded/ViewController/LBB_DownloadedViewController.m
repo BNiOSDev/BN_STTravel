@@ -12,7 +12,7 @@
 #import "ZJMSearchBar.h"
 #import "ZJScrollPageView.h"
 #import "Header.h"
-#import "LBB_DownloadTravelsViewController.h"
+#import "LBB_MyTravelViewController.h"
 #import "LBB_TravelGuideViewController.h"
 #import "HMSegmentedControl.h"
 
@@ -23,9 +23,9 @@
 #define ViewNum 2
 
 @interface LBB_DownloadedViewController ()<UIScrollViewDelegate>
-@property(nonatomic, weak)UISearchBar         *JMSearchBar;
-@property (nonatomic, strong) UIScrollView      *scrollView;
-@property(nonatomic, strong)LBB_DownloadTravelsViewController  *travelContrller;//游记
+
+@property (nonatomic, strong) UIScrollView *contentScrollView;
+@property(nonatomic, strong) LBB_MyTravelViewController  *travelContrller;//游记
 @property(nonatomic,strong) LBB_TravelGuideViewController *travelGuideController;//攻略
 @property(nonatomic,strong) HMSegmentedControl *segmentedControl;
 
@@ -110,12 +110,12 @@
 //加载2个ViewController
 -(void)addChildViewController{
     
-    LBB_DownloadTravelsViewController *travelVC = [[LBB_DownloadTravelsViewController alloc]init];
-    travelVC.viewType = TravelsViewDownloaed;
+    LBB_MyTravelViewController *travelVC = [[LBB_MyTravelViewController alloc]init];
+    travelVC.travelviewType = MyTravelsViewDownloaed;
     [self addChildViewController:travelVC];
     
     LBB_TravelGuideViewController *travelGuideVC = [[LBB_TravelGuideViewController alloc]init];
-    travelGuideVC.viewType = TravelsViewGuide;
+    travelGuideVC.travelviewType =  MyTravelsViewGuide;
     [self addChildViewController:travelGuideVC];
 }
 

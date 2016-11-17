@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "ZJMTravelModel.h"
 #import "Header.h"
+#import "Mine_Common.h"
 
 
 @interface LBB_MyTravelTableViewCell : UITableViewCell
 
 @property(nonatomic,strong)ZJMTravelModel       *model;
-@property(nonatomic,strong)CellBlockVIew         cellBlock;
-@property(nonatomic,assign)TravelsViewType viewType;
+@property(nonatomic,strong)CellBlockVIew     cellBlock;
+@property(nonatomic,assign)MyTravelsViewType viewType;
 
 @end
