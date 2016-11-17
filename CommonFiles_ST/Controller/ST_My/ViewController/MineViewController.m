@@ -20,6 +20,7 @@
 #import "LBB_MyPhotoViewController.h"
 #import "LBB_MyVideoViewController.h"
 #import "LBB_MyFollowViewController.h"
+#import "LBB_PoohMyFavoriteViewController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -178,13 +179,25 @@ LBB_MySectionHeadViewDelegate
             
             break;
         case eScenicSpot://景点
-            
+        {
+            LBB_PoohMyFavoriteViewController *favoriteVC = [[LBB_PoohMyFavoriteViewController alloc] init];
+            favoriteVC.favoriteType = LBBPoohSegmCtrlScenicType;
+            [self.navigationController pushViewController:favoriteVC animated:YES];
+        }
             break;
         case eFood://美食
-            
+        {
+            LBB_PoohMyFavoriteViewController *favoriteVC = [[LBB_PoohMyFavoriteViewController alloc] init];
+            favoriteVC.favoriteType = LBBPoohSegmCtrlFoodsType;
+            [self.navigationController pushViewController:favoriteVC animated:YES];
+        }
             break;
         case eHalls://民宿
-            
+        {
+            LBB_PoohMyFavoriteViewController *favoriteVC = [[LBB_PoohMyFavoriteViewController alloc] init];
+            favoriteVC.favoriteType = LBBPoohSegmCtrlHostelType;
+            [self.navigationController pushViewController:favoriteVC animated:YES];
+        }
             break;
         case eGoods://商品
             

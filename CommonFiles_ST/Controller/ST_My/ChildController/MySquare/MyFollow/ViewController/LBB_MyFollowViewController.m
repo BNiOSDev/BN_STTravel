@@ -2,7 +2,7 @@
 //  LBB_MyFollowViewController.m
 //  ST_Travel
 //
-//  Created by dhxiang on 16/11/17.
+//  Created by 晨曦 on 16/11/17.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -12,7 +12,6 @@
 #import "LBB_FollowViewController.h"
 #import "LBB_MyChatViewController.h"
 #import "HMSegmentedControl.h"
-
 
 #define ViewNum   3
 
@@ -24,6 +23,8 @@
 @property(nonatomic,strong) LBB_MyChatViewController *chatVC;
 @property(nonatomic,strong) LBB_FollowViewController *followVC;
 @property(nonatomic,strong) LBB_FollowViewController *fansVC;
+@property(nonatomic,strong) HMSegmentedControl *segmentedControl;
+
 
 @end
 
@@ -58,20 +59,28 @@
 
 -(void)setSegment {
     
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"聊天",@"粉丝",@"关注"]];
-    segmentedControl.selectionIndicatorHeight = 3.0f;  // 线的高度
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font16,
-                                             NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6]};
+    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"聊天",@"粉丝",@"关注"]];
+    _segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+    _segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+                                             NSForegroundColorAttributeName:ColorLightGray};
+    _segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
+                                                     NSForegroundColorAttributeName:ColorBtnYellow};
+    _segmentedControl.selectionIndicatorColor = ColorBtnYellow;
+    _segmentedControl.verticalDividerWidth = 1.0;
+    _segmentedControl.verticalDividerColor = ColorLightGray;
+    _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    _segmentedControl.layer.borderColor = [ColorLine CGColor];
+    _segmentedControl.layer.borderWidth = 1.0;
+    _segmentedControl.frame = CGRectMake(0, 0, DeviceWidth, TopSegmmentControlHeight);
+
     
-    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    [segmentedControl setFrame:CGRectMake(0, 0, DeviceWidth,40)];
-    
-    [segmentedControl addTarget:self
+    [_segmentedControl addTarget:self
                          action:@selector(segmentedControlChangedValue:)
                forControlEvents:UIControlEventValueChanged];
     
-    [self.view addSubview:segmentedControl];
+    [self.view addSubview:_segmentedControl];
 }
+
 //加载ScrollView
 -(void)setContentScrollView {
     

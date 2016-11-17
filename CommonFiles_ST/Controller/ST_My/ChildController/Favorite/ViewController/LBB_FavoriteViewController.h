@@ -10,4 +10,5 @@
 
 @interface LBB_FavoriteViewController : MineBaseViewController
 
+
 @end

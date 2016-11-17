@@ -26,6 +26,8 @@ TicketFooterViewDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
 @property (strong,nonatomic) LBB_TicketModel *ticketModel;
+@property (strong,nonatomic) HMSegmentedControl *segmentedControl;
+
 @end
 
 @implementation TicketViewController
@@ -63,43 +65,48 @@ TicketFooterViewDelegate>
     self.dataSourceArray = [self.ticketModel getDataWithType:stateType];
 }
 
+-(void)setSegment {
+    
+    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"全部",@"代付款",@"待取票",@"待评价",@"退款"]];
+    _segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+    _segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+                                              NSForegroundColorAttributeName:ColorLightGray};
+    _segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
+                                                      NSForegroundColorAttributeName:ColorBtnYellow};
+    _segmentedControl.selectionIndicatorColor = ColorBtnYellow;
+    _segmentedControl.verticalDividerWidth = 1.0;
+    _segmentedControl.verticalDividerColor = ColorLightGray;
+    _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    _segmentedControl.layer.borderColor = [ColorLine CGColor];
+    _segmentedControl.layer.borderWidth = 1.0;
+    _segmentedControl.frame = CGRectMake(0, 0, DeviceWidth, TopSegmmentControlHeight);
+    
+    [_segmentedControl addTarget:self
+                          action:@selector(segmentedControlChangedValue:)
+                forControlEvents:UIControlEventValueChanged];
+    
+    [self.view addSubview:_segmentedControl];
+}
+
 - (void)initSegmentControll
 {
-    self.tableViewTopConstraint.constant = self.segmentBgViewHeightConstraint.constant;
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[NSLocalizedString(@"全部", nil),
-                                                                                               NSLocalizedString(@"待付款", nil),
-                                                                                               NSLocalizedString(@"待取票", nil),
-                                                                                               NSLocalizedString(@"待评价", nil),
-                                                                                               NSLocalizedString(@"退款", nil)]];
-    segmentedControl.selectionIndicatorHeight = 3.0f;  // 线的高度
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font16,
-                                             NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6]};
-   
-    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    [segmentedControl setFrame:CGRectMake(0, 0, DeviceWidth, self.segmentBgViewHeightConstraint.constant)];
-    
-    [segmentedControl addTarget:self
-                         action:@selector(segmentedControlChangedValue:)
-                        forControlEvents:UIControlEventValueChanged];
-    
-    [self.view addSubview:segmentedControl];
-    [self.view bringSubviewToFront:self.lineView];
-    
+    [self setSegment];
+    self.tableViewTopConstraint.constant = TopSegmmentControlHeight;
     switch (self.baseViewType) {
         case eTickets://查看全部-门票
-            [segmentedControl setSelectedSegmentIndex:0];
+            [_segmentedControl setSelectedSegmentIndex:0];
             break;
         case eTicket_WaitPay: //我的门票_待付款
-            [segmentedControl setSelectedSegmentIndex:1];
+            [_segmentedControl setSelectedSegmentIndex:1];
              break;
         case eTicket_WaitGetTicket: //我的门票_待取票
-            [segmentedControl setSelectedSegmentIndex:2];
+            [_segmentedControl setSelectedSegmentIndex:2];
              break;
         case eTicket_WaitComment: //我的门票_待评价
-            [segmentedControl setSelectedSegmentIndex:3];
+            [_segmentedControl setSelectedSegmentIndex:3];
              break;
         case eTicket_Refund: //我的门票_退款;
-            [segmentedControl setSelectedSegmentIndex:4];
+            [_segmentedControl setSelectedSegmentIndex:4];
              break;
             
         default:
