@@ -130,6 +130,9 @@
 		1D12FA9D1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12FA9C1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m */; };
 		1D12FAA01DC72E7300ACD462 /* LBB_NewOrderInputTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D12FA9F1DC72E7300ACD462 /* LBB_NewOrderInputTextField.m */; };
 		1D293BD01DB46BF700ED2CBB /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */; };
+		1D5757101DDD978C002BC247 /* LBB_PoohMyFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D57570F1DDD978C002BC247 /* LBB_PoohMyFavoriteViewController.m */; };
+		1D5757141DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5757131DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.m */; };
+		1D5757171DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5757161DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m */; };
 		1DF515CA1DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515C81DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m */; };
 		1DF515CD1DD2CAB500C26695 /* LBB_HomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515CB1DD2CAB500C26695 /* LBB_HomeSearchViewController.m */; };
 		1DF515D41DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515D31DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m */; };
@@ -654,6 +657,12 @@
 		1D12FA9E1DC72E7300ACD462 /* LBB_NewOrderInputTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NewOrderInputTextField.h; sourceTree = "<group>"; };
 		1D12FA9F1DC72E7300ACD462 /* LBB_NewOrderInputTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NewOrderInputTextField.m; sourceTree = "<group>"; };
 		1D293BCF1DB46BF700ED2CBB /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
+		1D57570E1DDD978C002BC247 /* LBB_PoohMyFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohMyFavoriteViewController.h; sourceTree = "<group>"; };
+		1D57570F1DDD978C002BC247 /* LBB_PoohMyFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohMyFavoriteViewController.m; sourceTree = "<group>"; };
+		1D5757121DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohMyFavoriteMainCell.h; sourceTree = "<group>"; };
+		1D5757131DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohMyFavoriteMainCell.m; sourceTree = "<group>"; };
+		1D5757151DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohMyFavoriteSubjectCell.h; sourceTree = "<group>"; };
+		1D5757161DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohMyFavoriteSubjectCell.m; sourceTree = "<group>"; };
 		1DF515C81DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchKeyWordCell.m; sourceTree = "<group>"; };
 		1DF515C91DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeSearchKeyWordCell.h; sourceTree = "<group>"; };
 		1DF515CB1DD2CAB500C26695 /* LBB_HomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchViewController.m; sourceTree = "<group>"; };
@@ -1292,6 +1301,7 @@
 		1D12F97F1DC6E97700ACD462 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				1D57570C1DDD978C002BC247 /* MyFavorite */,
 				1DF515C51DD2CA1E00C26695 /* Search */,
 				1D11B2211DD024DA008610CB /* Square */,
 				1D0F48BE1DC9C2F500A37DE2 /* Guider */,
@@ -1794,6 +1804,35 @@
 				1D12FA451DC6E97700ACD462 /* ST_TabBarController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1D57570C1DDD978C002BC247 /* MyFavorite */ = {
+			isa = PBXGroup;
+			children = (
+				1D5757111DDD979F002BC247 /* View */,
+				1D57570D1DDD978C002BC247 /* ViewController */,
+			);
+			path = MyFavorite;
+			sourceTree = "<group>";
+		};
+		1D57570D1DDD978C002BC247 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D57570E1DDD978C002BC247 /* LBB_PoohMyFavoriteViewController.h */,
+				1D57570F1DDD978C002BC247 /* LBB_PoohMyFavoriteViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1D5757111DDD979F002BC247 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D5757121DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.h */,
+				1D5757131DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.m */,
+				1D5757151DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.h */,
+				1D5757161DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1DF515C51DD2CA1E00C26695 /* Search */ = {
@@ -4551,6 +4590,7 @@
 				842BCE0A1DCD79E400A16788 /* JHPieChart.m in Sources */,
 				1D12FA8D1DC6E97700ACD462 /* IConstants.m in Sources */,
 				842BCE0E1DCD79E400A16788 /* JHShowInfoView.m in Sources */,
+				1D5757101DDD978C002BC247 /* LBB_PoohMyFavoriteViewController.m in Sources */,
 				C9C0E9571D9948F100575A7C /* ViewController.m in Sources */,
 				842BCC4F1DCD792500A16788 /* LBB_SquareTravelViewController.m in Sources */,
 				842BCE141DCD79E400A16788 /* ZJContentView.m in Sources */,
@@ -4640,6 +4680,7 @@
 				842BCC6D1DCD792500A16788 /* SettingPushViewController.m in Sources */,
 				1D12FA5D1DC6E97700ACD462 /* LBB_DiscoveryCustomizedViewController.m in Sources */,
 				842BCC441DCD792500A16788 /* LBB_MyPropertyViewController.m in Sources */,
+				1D5757171DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m in Sources */,
 				1D12FA761DC6E97700ACD462 /* LBB_ScenicDetailTravelRecommendCell.m in Sources */,
 				1D12FA4E1DC6E97700ACD462 /* LBB_ScenicSearchCollectionReusableView.m in Sources */,
 				842BCE221DCD79E400A16788 /* ZJMHostTableViewCell.m in Sources */,
@@ -4741,6 +4782,7 @@
 				842BCE231DCD79E400A16788 /* LBB_TravelCommentCell.m in Sources */,
 				1D12FA581DC6E97700ACD462 /* LBB_StarRatingViewController.m in Sources */,
 				842BCC771DCD792500A16788 /* LBB_TicketFooterView.m in Sources */,
+				1D5757141DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.m in Sources */,
 				842BCE331DCD7D7300A16788 /* LBB_DownloadedViewController.m in Sources */,
 				1D12FA5B1DC6E97700ACD462 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
 				842BCE2C1DCD79E400A16788 /* ZJMBaseViewController.m in Sources */,

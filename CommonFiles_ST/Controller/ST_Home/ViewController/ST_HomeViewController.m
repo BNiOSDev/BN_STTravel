@@ -22,6 +22,7 @@
 
 #import "LBB_HomeSearchViewController.h"
 
+#import "LBB_PoohMyFavoriteViewController.h"
 
 
 

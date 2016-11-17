@@ -36,12 +36,12 @@
         }];
         
         self.favoriteButton = [UIButton new];
-        [self.favoriteButton setBackgroundImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
+        [self.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
         [self.contentView addSubview:self.favoriteButton];
         [self.favoriteButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.equalTo(ws.contentView).offset(16);
             make.right.equalTo(ws.contentView).offset(-16);
-            make.height.width.mas_equalTo(20);
+          //  make.height.width.mas_equalTo(20);
         }];
         [self.favoriteButton bk_addEventHandler:^(id sender){
             

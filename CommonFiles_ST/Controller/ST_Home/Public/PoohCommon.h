@@ -61,8 +61,8 @@ typedef NS_ENUM(NSInteger, LBBPoohTicketStatus) {
 
 typedef NS_ENUM(NSInteger, LBBPoohHomeType) {
     LBBPoohHomeTypeDiscovery = 0,//攻略
-    LBBPoohHomeTypeScenic,//景点
     LBBPoohHomeTypeGuide,//导游
+    LBBPoohHomeTypeScenic,//景点
     LBBPoohHomeTypeFoods,//美食
     LBBPoohHomeTypeHostel,//民宿
 };
