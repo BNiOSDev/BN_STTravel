@@ -133,23 +133,23 @@
 -(void)addChildViewController{
     
     self.vc0 = [self getTicketViewController];
-    self.baseViewType  = eTickets;
+    self.vc0.baseViewType  = eTickets;
     [self addChildViewController:self.vc0];
     
     self.vc1 = [self getTicketViewController];
-    self.baseViewType  = eTicket_WaitPay;
+    self.vc1.baseViewType  = eTicket_WaitPay;
     [self addChildViewController:self.vc1];
     
     self.vc2 = [self getTicketViewController];
-    self.baseViewType  = eTicket_WaitGetTicket;
+    self.vc2.baseViewType  = eTicket_WaitGetTicket;
     [self addChildViewController:self.vc2];
     
     self.vc3 = [self getTicketViewController];
-    self.baseViewType  = eTicket_WaitComment;
+    self.vc3.baseViewType  = eTicket_WaitComment;
     [self addChildViewController:self.vc3];
     
     self.vc4 = [self getTicketViewController];
-    self.baseViewType  = eTicket_Refund;
+    self.vc4.baseViewType  = eTicket_Refund;
     [self addChildViewController:self.vc4];
 }
 
