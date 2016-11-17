@@ -1,12 +1,12 @@
 //
-//  LBB_RouteViewController.m
+//  LBB_TravelGuideViewController.m
 //  ST_Travel
-//
-//  Created by 晨曦 on 16/10/16.
+//  我的-下载-攻略
+//  Created by dhxiang on 16/11/17.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBB_RouteViewController.h"
+#import "LBB_TravelGuideViewController.h"
 #import "SDAutoLayout.h"
 #import "ZJMTravelCell.h"
 #import "ZJMTravelModel.h"
@@ -15,12 +15,12 @@
 
 #define MyTravelNormal  @"LBB_MyTravelTableViewCell"
 
-@interface LBB_RouteViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LBB_TravelGuideViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong)UITableView    *mTableView;
 @property(nonatomic, strong)NSMutableArray   *dataArray;
 @end
 
-@implementation LBB_RouteViewController
+@implementation LBB_TravelGuideViewController
 
 
 - (void)didReceiveMemoryWarning {
@@ -31,9 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.viewType = TravelsViewRoute;
-    self.navigationItem.title = NSLocalizedString(@"定制路线", nil);
-    self.view.backgroundColor = ColorBackground;
     _dataArray = [[NSMutableArray alloc]init];
     for (int i = 0; i <= 9; i++) {
         ZJMTravelModel  *model = [[ZJMTravelModel alloc]init];
@@ -61,11 +58,11 @@
 
 - (void)createTable
 {
-    _mTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:0];
-    _mTableView.height = _mTableView.height - AUTO(10) - 64;
+    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:0];
+    _mTableView.height = _mTableView.height - AUTO(40) - 64;
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
-    _mTableView.backgroundColor = ColorBackground;
+    _mTableView.backgroundColor = [UIColor whiteColor];
     
     [self.mTableView registerClass:[LBB_MyTravelTableViewCell class] forCellReuseIdentifier:MyTravelNormal];
     
@@ -96,7 +93,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,6 +108,21 @@
 {
     NSLog(@"indexPath = %ld",(long)indexPath.row);
     switch (signel) {
+        case UITableViewCellCollect:
+        {
+            
+        }
+            break;
+        case UITableViewCellConment:
+        {
+            
+        }
+            break;
+        case UITableViewCellPraise:
+        {
+            
+        }
+            break;
         case UITableViewCellDelete://删除
         {
             

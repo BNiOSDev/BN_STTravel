@@ -107,4 +107,14 @@ typedef NS_ENUM(NSInteger,MessageCenterSquareTravelType)
     eMessageCollection //收藏
 };
 
+typedef NS_ENUM(NSInteger, UICollectionViewCellSignal)
+{
+    UICollectionViewCellPraise = 0,  //赞
+    UICollectionViewCellConment,         //评论
+    UICollectionViewCellFocus,               //关注
+    UICollectionViewCellDelete        //删除
+};
+
+typedef void(^CollectionViewCellBlock)(id object,UICollectionViewCellSignal signal);
+
 #endif /* Mine_Common_h */

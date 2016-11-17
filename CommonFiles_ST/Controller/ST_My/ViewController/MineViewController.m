@@ -16,6 +16,10 @@
 #import "LBB_ImagePickerViewController.h"
 #import "LBB_DownloadedViewController.h"
 #import "LBB_RouteViewController.h"
+#import "LBB_MyTravelViewController.h"
+#import "LBB_MyPhotoViewController.h"
+#import "LBB_MyVideoViewController.h"
+#import "LBB_MyFollowViewController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -146,16 +150,28 @@ LBB_MySectionHeadViewDelegate
       
 /* 我的广场 */
         case  ePhoto: //照片
-            
+        {
+            LBB_MyPhotoViewController *photoVC = [[LBB_MyPhotoViewController alloc] init];
+            [self.navigationController pushViewController:photoVC animated:YES];
+        }
             break;
         case   eVideo://视频
-            
+        {
+            LBB_MyVideoViewController *videoVC = [[LBB_MyVideoViewController alloc] init];
+            [self.navigationController pushViewController:videoVC animated:YES];
+        }
             break;
         case  eTravels://我的游记
-            
+        {
+            LBB_MyTravelViewController *myTravel = [[LBB_MyTravelViewController alloc] init];
+            [self.navigationController pushViewController:myTravel animated:YES];
+        }
            break;
         case  eLove://关注
-            
+        {
+            LBB_MyFollowViewController *followVC = [[LBB_MyFollowViewController alloc] init];
+            [self.navigationController pushViewController:followVC animated:YES];
+        }
             break;
 /* 我的收藏 */
         case eSquare://广场

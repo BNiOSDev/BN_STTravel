@@ -1,28 +1,28 @@
 //
-//  LBB_DownloadTravelsViewController.m
+//  LBB_MyTravelViewController.m
 //  ST_Travel
 //
-//  Created by 晨曦 on 16/11/6.
+//  Created by dhxiang on 16/11/17.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBB_DownloadTravelsViewController.h"
+#import "LBB_MyTravelViewController.h"
 #import "SDAutoLayout.h"
 #import "ZJMTravelCell.h"
 #import "ZJMTravelModel.h"
-#import "LBBTravelTableViewCell.h"
+#import "LBB_MyTravelTableViewCell.h"
 #import "Header.h"
 #import "LBB_TravelCommentController.h"
 #import "LBB_TravelDetailViewController.h"
 
-#define ZJMTravelNormal  @"ZJMTravelCell"
+#define MyTravelNormal  @"LBB_MyTravelTableViewCell"
 
-@interface LBB_DownloadTravelsViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LBB_MyTravelViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong)UITableView    *mTableView;
 @property(nonatomic, strong)NSMutableArray   *dataArray;
 @end
 
-@implementation LBB_DownloadTravelsViewController
+@implementation LBB_MyTravelViewController
 
 
 - (void)didReceiveMemoryWarning {
@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"游记";
     _dataArray = [[NSMutableArray alloc]init];
     for (int i = 0; i <= 9; i++) {
         ZJMTravelModel  *model = [[ZJMTravelModel alloc]init];
@@ -66,10 +67,8 @@
     _mTableView.dataSource = self;
     _mTableView.backgroundColor = [UIColor whiteColor];
     
-    [self.mTableView registerClass:[LBBTravelTableViewCell class] forCellReuseIdentifier:ZJMTravelNormal];
-    
+    [self.mTableView registerClass:[LBB_MyTravelTableViewCell class] forCellReuseIdentifier:MyTravelNormal];
     [self.view  addSubview:_mTableView];
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -80,7 +79,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LBBTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZJMTravelNormal];
+    LBB_MyTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyTravelNormal];
     cell.cellBlock = ^(id view,UITableViewCellViewSignal signal){
         [self dealCellSignal:signal withIndex:indexPath];
     };
