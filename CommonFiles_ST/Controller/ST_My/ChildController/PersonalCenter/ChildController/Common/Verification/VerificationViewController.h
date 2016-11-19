@@ -1,7 +1,7 @@
 //
 //  VerificationViewController.h
 //  ST_Travel
-//  余额提现
+//  获取验证码
 //  Created by 晨曦 on 16/10/19.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //

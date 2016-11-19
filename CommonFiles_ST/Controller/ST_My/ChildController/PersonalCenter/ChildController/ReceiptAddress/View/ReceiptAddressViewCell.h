@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBB_AddressModel.h"
 
 @protocol ReceiptAddressViewCellDelegate <NSObject>
 
@@ -26,8 +27,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *editBtn;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 @property (weak, nonatomic) IBOutlet UIButton *defaultBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *defaultImgView;
 
-@property (nonatomic,strong) NSDictionary *cellInfo;
+@property (nonatomic,strong) LBB_AddressModel *cellInfo;
 @property (nonatomic,weak)id<ReceiptAddressViewCellDelegate> delegate;
 
 @end

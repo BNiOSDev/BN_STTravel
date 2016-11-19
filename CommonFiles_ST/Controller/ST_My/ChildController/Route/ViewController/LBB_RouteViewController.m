@@ -11,7 +11,8 @@
 #import "ZJMTravelCell.h"
 #import "ZJMTravelModel.h"
 #import "LBB_MyTravelTableViewCell.h"
-#import "Header.h"
+#import "LBB_DiscoveryDetailViewController.h"
+
 
 #define MyTravelNormal  @"LBB_MyTravelTableViewCell"
 
@@ -31,7 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.viewType = TravelsViewRoute;
     self.navigationItem.title = NSLocalizedString(@"定制路线", nil);
     self.view.backgroundColor = ColorBackground;
     _dataArray = [[NSMutableArray alloc]init];
@@ -52,13 +52,6 @@
     [self createTable];
 }
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [(ST_TabBarController*)self.tabBarController setTabBarHidden:YES animated:YES];
-}
-
 - (void)createTable
 {
     _mTableView = [[UITableView alloc]initWithFrame:self.view.bounds style:0];
@@ -70,7 +63,6 @@
     [self.mTableView registerClass:[LBB_MyTravelTableViewCell class] forCellReuseIdentifier:MyTravelNormal];
     
     [self.view  addSubview:_mTableView];
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -86,7 +78,7 @@
         [self dealCellSignal:signal withIndex:indexPath];
     };
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    cell.viewType = _viewType;
+    cell.viewType = MyTravelsViewRoute;
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     
@@ -97,6 +89,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]init];
+    
+    [self.navigationController pushViewController:dest animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
