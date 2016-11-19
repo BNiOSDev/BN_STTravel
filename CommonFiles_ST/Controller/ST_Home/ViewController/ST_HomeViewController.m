@@ -180,7 +180,7 @@
      
      @param clear 是否清空原数据
      */
-    [self.viewModel getAdvertisementListArrayClearData:NO];
+    [self.viewModel getAdvertisementListArrayClearData:YES];
     
     //1.监听数据，用来刷新数据，数据变化才会调用
     WS(ws);
@@ -196,7 +196,7 @@
     }];
     */
     //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
-    [self.tableView setTableViewData:self.viewModel.advertisementArray];
+   // [self.tableView setTableViewData:self.viewModel.advertisementArray];
     //3.1上拉和下拉的动作
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.tableView.mj_header endRefreshing];
@@ -210,48 +210,42 @@
     
     /**
      3.1.2 广告轮播 5.首页热门推荐
-     
      @param clear 是否清空原数据
      */
-    [self.viewModel getSpotAdvertisementListArrayClearData:NO];
+  //  [self.viewModel getSpotAdvertisementListArrayClearData:YES];
 
     /**
      3.1.3 公告轮播
-     
      @param clear 是否清空原数据
      */
-    [self.viewModel getNoticesArrayClearData:NO];
+ //   [self.viewModel getNoticesArrayClearData:YES];
 
     /**
      3.1.4 热门推荐
-     
      @param clear 是否清空原数据
      */
-    [self.viewModel getSpotsArrayClearData:NO];
+  //  [self.viewModel getSpotsArrayClearData:YES];
 
     
     /**
      3.1.7 游记推荐
-     
      @param clear 是否清空原数据
      */
-    [self.viewModel getTravelNotesArrayClearData:NO];
+   // [self.viewModel getTravelNotesArrayClearData:YES];
 
     
     /**
      3.1.8 达人推荐
-     
      @param Type 1.景点 2.美食 3.民宿
      */
-    [self.viewModel getSpotsArrayWithType:1];
+   // [self.viewModel getSpotsArrayWithType:1];
 
     
     /**
      3.1.9 广场中心
-     
      @param clear 是否清空原数据
      */
-    [self.viewModel getUgcArrayClearData:NO];
+  //  [self.viewModel getUgcArrayClearData:YES];
 
     //数据赋值为dataSource
     self.dataSource.viewModel = self.viewModel;

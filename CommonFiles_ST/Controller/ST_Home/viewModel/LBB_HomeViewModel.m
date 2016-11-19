@@ -214,7 +214,7 @@
                               @"position":@(1)
                               };
     
-    NSString *url = [NSString stringWithFormat:@"%@/lbb-app/homePage/advertisementList",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/advertisementList",BASEURL];
     __weak typeof(self) temp = self;
     self.advertisementArray.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -266,7 +266,7 @@
                               @"position":@(1)
                               };
     
-    NSString *url = [NSString stringWithFormat:@"%@/lbb-app/homePage/advertisementList",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/advertisementList",BASEURL];
     __weak typeof(self) temp = self;
     self.spotAdvertisementArray.loadSupport.loadEvent = NetLoadingEvent;
     

@@ -203,13 +203,10 @@
         }
         [cell setCycleScrollViewHeight:AutoSize(370/2)];
         
-        NSMutableArray* urls = [NSMutableArray new];
-        for (BN_HomeAdvertisement* obj in self.viewModel.advertisementArray) {
-            
-            [urls addObject:obj.picUrl];
-        }
+
+        [cell setAdModelArray:self.viewModel.advertisementArray];//设置model。首页广告的数据
         
-        [cell setCycleScrollViewUrls:urls];
+       /* [cell setCycleScrollViewUrls:urls];
         [cell setEnableBlock:YES];
         cell.click = ^(NSNumber* index){
             
@@ -217,7 +214,7 @@
             LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
             [ws.parentViewController.navigationController pushViewController:dest animated:YES];
             
-        };
+        };*/
         return cell;
     }
     else if (indexPath.row == 1){

@@ -8,6 +8,11 @@
 
 #import "LBBPoohCycleScrollCell.h"
 #import "SDCycleScrollView.h"
+#import "LBB_ScenicMainViewController.h"
+#import "LBB_HostelMainViewController.h"
+#import "LBB_FoodsMainViewController.h"
+
+#import "LBB_ScenicDetailViewController.h"
 
 @interface LBBPoohCycleScrollCell()<SDCycleScrollViewDelegate>{
 
@@ -119,6 +124,20 @@
 
 }
 
+-(void)setAdModelArray:(NSMutableArray<BN_HomeAdvertisement *> *)adModelArray{
+    
+    _adModelArray = adModelArray;
+    NSMutableArray* urls = [NSMutableArray new];
+    for (BN_HomeAdvertisement* obj in adModelArray) {
+        
+        [urls addObject:obj.picUrl];
+    }
+    NSLog(@"urls:%@",urls);
+    [self setCycleScrollViewUrls:urls];//设置展示的广告图片
+
+}
+
+
 #pragma mark - SDCycleScrollViewDelegate
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
@@ -126,6 +145,80 @@
     NSLog(@"cycleScrollView didSelectItemAtIndex:%ld",index);
     if (self.enableBlock) {
         self.click(@(index));
+    }
+    else{
+    
+        /*
+         @interface BN_HomeAdvertisement : NSObject
+         @property (nonatomic, assign)int classes;//广告类型1 外部连接 2 列表 3 详情
+         @property (nonatomic, assign)int type;//1.美食 2.民宿  3.景点 4伴手礼
+         @property (nonatomic, strong)NSString *hrefUrl;//跳转地址（当是外部链接的时候有值）
+         @property (nonatomic, assign)long objId;//跳转主键（当是跳转到原生的时候有值）
+         
+         @end
+         */
+        BN_HomeAdvertisement* model = [self.adModelArray objectAtIndex:index];
+        NSLog(@"cycleScrollView didSelect :%@",model);
+
+        switch (model.classes) {
+            case 1://外部链接
+            {
+                TOWebViewController *webViewController = [[TOWebViewController alloc]init];
+                webViewController.url = [NSURL URLWithString:model.hrefUrl];
+                [[self getViewController].navigationController pushViewController:webViewController animated:YES];
+            }
+                break;
+            case 2://列表
+            {
+                UIViewController* dest;
+                switch (model.type) {
+                    case 1://美食
+                        dest = [[LBB_FoodsMainViewController alloc] init];
+                        break;
+                    case 2://民宿
+                        dest = [[LBB_HostelMainViewController alloc] init];
+                        break;
+                    case 3://景点
+                        dest = [[LBB_ScenicMainViewController alloc] init];
+                        break;
+                    case 4://伴手礼
+                        break;
+                    default:
+                        break;
+                }
+                if (dest) {
+                    [[self getViewController].navigationController pushViewController:dest animated:YES];
+                }
+
+            }
+                break;
+            case 3://详情
+            {
+                LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc] init];
+                switch (model.type) {
+                    case 1://美食
+                        dest.homeType = LBBPoohHomeTypeFoods;
+                        break;
+                    case 2://民宿
+                        dest.homeType = LBBPoohHomeTypeHostel;
+                        break;
+                    case 3://景点
+                        dest.homeType = LBBPoohHomeTypeScenic;
+                        break;
+                    case 4://伴手礼
+                        break;
+                    default:
+                        break;
+                }
+                if (dest) {
+                    [[self getViewController].navigationController pushViewController:dest animated:YES];
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 
