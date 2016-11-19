@@ -10,10 +10,10 @@
 #import "SDAutoLayout.h"
 #import "ZJMTravelCell.h"
 #import "ZJMTravelModel.h"
-#import "LBBTravelTableViewCell.h"
+#import "LBB_MyTravelTableViewCell.h"
 #import "Header.h"
 
-#define ZJMTravelNormal  @"ZJMTravelCell"
+#define MyTravelNormal  @"LBB_MyTravelTableViewCell"
 
 @interface LBB_RouteViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong)UITableView    *mTableView;
@@ -67,7 +67,7 @@
     _mTableView.dataSource = self;
     _mTableView.backgroundColor = ColorBackground;
     
-    [self.mTableView registerClass:[LBBTravelTableViewCell class] forCellReuseIdentifier:ZJMTravelNormal];
+    [self.mTableView registerClass:[LBB_MyTravelTableViewCell class] forCellReuseIdentifier:MyTravelNormal];
     
     [self.view  addSubview:_mTableView];
     
@@ -81,7 +81,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LBBTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZJMTravelNormal];
+    LBB_MyTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyTravelNormal];
     cell.cellBlock = ^(id view,UITableViewCellViewSignal signal){
         [self dealCellSignal:signal withIndex:indexPath];
     };

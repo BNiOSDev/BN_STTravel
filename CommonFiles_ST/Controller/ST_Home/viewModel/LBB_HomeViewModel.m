@@ -263,7 +263,7 @@
 //                              @"pageNum":[NSNumber numberWithInt:10],
 //                              };
     NSDictionary *paraDic = @{
-                              @"position":@(1)
+                              @"position":@(5)
                               };
     
     NSString *url = [NSString stringWithFormat:@"%@/homePage/advertisementList",BASEURL];
@@ -359,7 +359,7 @@
     //                              @"pageNum":[NSNumber numberWithInt:10],
     //                              };
     
-    NSString *url = [NSString stringWithFormat:@"%@/hot/spotsList",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/hot/spotsList",BASEURL];
     __weak typeof(self) temp = self;
     self.spotsArray.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -447,7 +447,7 @@
  */
 - (void)getSpotsArrayWithType:(NSInteger)Type
 {
-    NSString *url = [NSString stringWithFormat:@"%@/hot/spotsList",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/master/spotsList",BASEURL];
     
     NSMutableArray *spotsArray = nil;
     switch (Type) {

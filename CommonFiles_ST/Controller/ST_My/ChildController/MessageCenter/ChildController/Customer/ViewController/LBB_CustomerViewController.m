@@ -125,7 +125,6 @@ UITableViewDataSource
     cell.iconImgView.image = IMAGE([cellDict objectForKey:@"UserImage"]);
     //todo
     [cell.imageView sd_cancelCurrentImageLoad];
-//    cell.iconImgView sd_setImageWithURL:<#(NSURL *)#> placeholderImage:<#(UIImage *)#>
 }
 
 

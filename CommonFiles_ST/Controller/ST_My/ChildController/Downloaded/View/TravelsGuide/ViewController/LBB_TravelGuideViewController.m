@@ -1,28 +1,28 @@
 //
-//  LBB_DownloadTravelsViewController.m
+//  LBB_TravelGuideViewController.m
 //  ST_Travel
-//
-//  Created by 晨曦 on 16/11/6.
+//  我的-下载-攻略
+//  Created by 晨曦 on 16/11/17.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBB_DownloadTravelsViewController.h"
+#import "LBB_TravelGuideViewController.h"
 #import "SDAutoLayout.h"
 #import "ZJMTravelCell.h"
 #import "ZJMTravelModel.h"
-#import "LBBTravelTableViewCell.h"
+#import "LBB_MyTravelTableViewCell.h"
 #import "Header.h"
-#import "LBB_TravelCommentController.h"
-#import "LBB_TravelDetailViewController.h"
+#import "LBB_DiscoveryDetailViewController.h"
+#import "LBB_StarRatingViewController.h"
 
-#define ZJMTravelNormal  @"ZJMTravelCell"
+#define MyTravelNormal  @"LBB_MyTravelTableViewCell"
 
-@interface LBB_DownloadTravelsViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LBB_TravelGuideViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong)UITableView    *mTableView;
 @property(nonatomic, strong)NSMutableArray   *dataArray;
 @end
 
-@implementation LBB_DownloadTravelsViewController
+@implementation LBB_TravelGuideViewController
 
 
 - (void)didReceiveMemoryWarning {
@@ -61,12 +61,16 @@
 - (void)createTable
 {
     _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:0];
-    _mTableView.height = _mTableView.height - AUTO(40) - 64;
+    _mTableView.height = _mTableView.height - TopSegmmentControlHeight - 64;
+    if(self.travelviewType == MyTravelsGuideViewFravorite) {
+        _mTableView.height = DeviceHeight - 64;
+        self.navigationItem.title = NSLocalizedString(@"攻略", nil);
+    }
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
     _mTableView.backgroundColor = [UIColor whiteColor];
     
-    [self.mTableView registerClass:[LBBTravelTableViewCell class] forCellReuseIdentifier:ZJMTravelNormal];
+    [self.mTableView registerClass:[LBB_MyTravelTableViewCell class] forCellReuseIdentifier:MyTravelNormal];
     
     [self.view  addSubview:_mTableView];
     
@@ -80,12 +84,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LBBTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZJMTravelNormal];
+    LBB_MyTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyTravelNormal];
     cell.cellBlock = ^(id view,UITableViewCellViewSignal signal){
         [self dealCellSignal:signal withIndex:indexPath];
     };
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    cell.viewType = _viewType;
+    cell.viewType = _travelviewType;
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     
@@ -95,8 +99,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]init];
+    
+    [self.navigationController pushViewController:dest animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,8 +124,8 @@
             break;
         case UITableViewCellConment:
         {
-            LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+            LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc] init];
+            [self.navigationController pushViewController:dest animated:YES];
         }
             break;
         case UITableViewCellPraise:
@@ -136,6 +142,5 @@
             break;
     }
 }
-
 
 @end

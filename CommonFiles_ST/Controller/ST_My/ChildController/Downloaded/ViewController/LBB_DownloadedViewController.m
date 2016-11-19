@@ -1,27 +1,26 @@
 //
 //  LBB_DownloadedViewController.m
 //  ST_Travel
-//
+//  我的-下载
 //  Created by 晨曦 on 16/11/5.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
 #import "LBB_DownloadedViewController.h"
 #import "ST_SquareViewController.h"
-#import "ST_TabBarController.h"
-#import "ZJMSearchBar.h"
-#import "ZJScrollPageView.h"
-#import "Header.h"
-#import "LBB_DownloadTravelsViewController.h"
+#import "LBB_MyTravelViewController.h"
+#import "LBB_TravelGuideViewController.h"
+#import "HMSegmentedControl.h"
 
-#define LG_scrollViewH 220
-#define LG_segmentH 30
-#define LG_segmentW AUTO(190)
+
+#define ViewNum 2
 
 @interface LBB_DownloadedViewController ()<UIScrollViewDelegate>
-@property(nonatomic, weak)UISearchBar         *JMSearchBar;
-@property (nonatomic, strong) UIScrollView      *scrollView;
-@property(nonatomic, strong)LBB_DownloadTravelsViewController    *travelContrller;
+
+@property (nonatomic, strong) UIScrollView *contentScrollView;
+@property(nonatomic, strong) LBB_MyTravelViewController  *travelContrller;//游记
+@property(nonatomic,strong) LBB_TravelGuideViewController *travelGuideController;//攻略
+@property(nonatomic,strong) HMSegmentedControl *segmentedControl;
 
 @end
 
@@ -43,10 +42,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [(ST_TabBarController*)self.tabBarController setTabBarHidden:YES animated:YES];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage createImageWithColor:[UIColor clearColor]]];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,21 +51,27 @@
 
 -(void)setSegment {
     
-    _buttonList = [[NSMutableArray alloc] init];
-    //初始化
-    LGSegment *segment = [[LGSegment alloc] initWithFrame:CGRectMake((DeviceWidth - LG_segmentW)/ 2 , 5, LG_segmentW , LG_segmentH)];
-    segment.backgroundColor = [UIColor whiteColor];
-    segment.delegate = self;
-    self.segment = segment;
-    segment.backgroundColor = ColorBackground;
-    [_buttonList addObject:@"游记"];
-    [_buttonList addObject:@"攻略"];
-    self.segment.buttonList = self.buttonList;
-    [self.segment commonInit];
-    [self.view addSubview:segment];
-    self.LGLayer = segment.LGLayer;
+    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"游记",@"攻略"]];
+    _segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+    _segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+                                              NSForegroundColorAttributeName:ColorLightGray};
+    _segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
+                                                      NSForegroundColorAttributeName:ColorBtnYellow};
+    _segmentedControl.selectionIndicatorColor = ColorBtnYellow;
+    _segmentedControl.verticalDividerWidth = 1.0;
+    _segmentedControl.verticalDividerColor = ColorLightGray;
+    _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+    _segmentedControl.layer.borderColor = [ColorLine CGColor];
+    _segmentedControl.layer.borderWidth = 1.0;
+    _segmentedControl.frame = CGRectMake(0, 0, DeviceWidth, TopSegmmentControlHeight);
     
+    [_segmentedControl addTarget:self
+                          action:@selector(segmentedControlChangedValue:)
+                forControlEvents:UIControlEventValueChanged];
+    
+    [self.view addSubview:_segmentedControl];
 }
+
 //加载ScrollView
 -(void)setContentScrollView {
     
@@ -89,27 +90,32 @@
         UIViewController * vc = self.childViewControllers[i];
         vc.view.frame = CGRectMake(i * DeviceWidth, 0, DeviceWidth, self.view.frame.size.height);
         [sv addSubview:vc.view];
-        
     }
     
-    sv.contentSize = CGSizeMake(_buttonList.count * DeviceWidth, 0);
+    sv.contentSize = CGSizeMake(ViewNum * DeviceWidth, 0);
     self.contentScrollView = sv;
 }
 
 //加载2个ViewController
 -(void)addChildViewController{
     
-    LBB_DownloadTravelsViewController *vc1 = [[LBB_DownloadTravelsViewController alloc]init];
-    vc1.viewType = TravelsViewDownloaed;
-    [self addChildViewController:vc1];
+    LBB_MyTravelViewController *travelVC = [[LBB_MyTravelViewController alloc]init];
+    travelVC.travelviewType = MyTravelsViewDownloaed;
+    [self addChildViewController:travelVC];
     
-    LBB_DownloadTravelsViewController *viewVC = [[LBB_DownloadTravelsViewController alloc]init];
-    viewVC.viewType = TravelsViewGuide;
-    [self addChildViewController:viewVC];
+    LBB_TravelGuideViewController *travelGuideVC = [[LBB_TravelGuideViewController alloc]init];
+    travelGuideVC.travelviewType =  MyTravelsViewGuide;
+    [self addChildViewController:travelGuideVC];
 }
 
 #pragma mark - UIScrollViewDelegate
-//实现LGSegment代理方法
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl*)segmentControl
+{
+    NSInteger selectIndex = segmentControl.selectedSegmentIndex;
+    [self scrollToPage:(int)selectIndex];
+}
+
 -(void)scrollToPage:(int)Page {
     CGPoint offset = self.contentScrollView.contentOffset;
     offset.x = self.view.frame.size.width * Page;

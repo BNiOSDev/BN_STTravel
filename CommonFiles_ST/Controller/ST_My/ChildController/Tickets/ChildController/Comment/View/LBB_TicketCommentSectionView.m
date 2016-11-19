@@ -54,7 +54,7 @@ UITextViewDelegate
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"LBB_TicketCommentTagViewCell"];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.showsVerticalScrollIndicator = NO;
-    
+    self.collectionView.scrollEnabled = NO;
     for (int i = 1; i <= 5; i++) {
         UIButton *starBtn = [self.starBgView viewWithTag:i];
         if (starBtn) {

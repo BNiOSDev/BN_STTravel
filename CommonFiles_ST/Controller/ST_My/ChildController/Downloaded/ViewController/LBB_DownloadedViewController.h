@@ -6,14 +6,10 @@
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "Base_BaseViewController.h"
-#import "LGSegment.h"
+#import "MineBaseViewController.h"
 
-@interface LBB_DownloadedViewController :  Base_BaseViewController<SegmentDelegate>
+@interface LBB_DownloadedViewController : MineBaseViewController
 
-@property (nonatomic, strong) UIScrollView *contentScrollView;
-@property(nonatomic,strong)NSMutableArray *buttonList;
-@property (nonatomic, weak)LGSegment *segment;
-@property(nonatomic,weak)CALayer *LGLayer;
+
 
 @end

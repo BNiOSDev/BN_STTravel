@@ -267,7 +267,7 @@
             case eHalls:
             {
                 detailInfo.detailImage = @"民宿.png";
-                detailInfo.detailContent = @"照片";
+                detailInfo.detailContent = @"民宿";
             }
                 break;
                 

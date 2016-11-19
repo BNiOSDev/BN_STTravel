@@ -12,7 +12,7 @@
 
 @interface LBBTravelTableViewCell : UITableViewCell
 @property(nonatomic,strong)ZJMTravelModel       *model;
-@property(nonatomic,strong)CellBlockVIew           cellBlock;
+@property(nonatomic,strong)CellBlockVIew         cellBlock;
 @property(nonatomic,assign)TravelsViewType viewType;
 
 

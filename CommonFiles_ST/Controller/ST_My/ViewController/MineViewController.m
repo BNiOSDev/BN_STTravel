@@ -16,6 +16,14 @@
 #import "LBB_ImagePickerViewController.h"
 #import "LBB_DownloadedViewController.h"
 #import "LBB_RouteViewController.h"
+#import "LBB_MyTravelViewController.h"
+#import "LBB_MyPhotoViewController.h"
+#import "LBB_MyVideoViewController.h"
+#import "LBB_MyFollowViewController.h"
+#import "LBB_PoohMyFavoriteViewController.h"
+#import "LBB_TicketModuleViewController.h"
+#import "LBB_TravelGuideViewController.h"
+#import "LBB_MyFavoriteSquareViewController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -141,34 +149,68 @@ LBB_MySectionHeadViewDelegate
         case eTicket_WaitGetTicket: //我的门票_待取票
         case eTicket_WaitComment: //我的门票_待评价
         case eTicket_Refund: //我的门票_退款
-             [self performSegueWithIdentifier:@"TicketViewController" sender:[NSNumber numberWithInteger:viewType]];
+        {
+            LBB_TicketModuleViewController *ticketVC = [[LBB_TicketModuleViewController alloc] init];
+            ticketVC.baseViewType = viewType;
+            [self.navigationController pushViewController:ticketVC animated:YES];
+        } 
             break;
       
 /* 我的广场 */
         case  ePhoto: //照片
-            
+        {
+            LBB_MyPhotoViewController *photoVC = [[LBB_MyPhotoViewController alloc] init];
+            photoVC.squareType = MySquarePhotoView;
+            [self.navigationController pushViewController:photoVC animated:YES];
+        }
             break;
         case   eVideo://视频
-            
+        {
+            LBB_MyVideoViewController *videoVC = [[LBB_MyVideoViewController alloc] init];
+            videoVC.squareType = MySquareVideoView;
+            [self.navigationController pushViewController:videoVC animated:YES];
+        }
             break;
         case  eTravels://我的游记
-            
+        {
+            LBB_MyTravelViewController *myTravel = [[LBB_MyTravelViewController alloc] init];
+            myTravel.travelviewType = MyTravelsViewFravorite;
+            [self.navigationController pushViewController:myTravel animated:YES];
+        }
            break;
         case  eLove://关注
-            
+        {
+            LBB_MyFollowViewController *followVC = [[LBB_MyFollowViewController alloc] init];
+            [self.navigationController pushViewController:followVC animated:YES];
+        }
             break;
 /* 我的收藏 */
         case eSquare://广场
-            
+        {
+            LBB_MyFavoriteSquareViewController *favoriteSquare = [[LBB_MyFavoriteSquareViewController alloc] init];
+            [self.navigationController pushViewController:favoriteSquare animated:YES];
+        }
             break;
         case eScenicSpot://景点
-            
+        {
+            LBB_PoohMyFavoriteViewController *favoriteVC = [[LBB_PoohMyFavoriteViewController alloc] init];
+            favoriteVC.favoriteType = LBBPoohSegmCtrlScenicType;
+            [self.navigationController pushViewController:favoriteVC animated:YES];
+        }
             break;
         case eFood://美食
-            
+        {
+            LBB_PoohMyFavoriteViewController *favoriteVC = [[LBB_PoohMyFavoriteViewController alloc] init];
+            favoriteVC.favoriteType = LBBPoohSegmCtrlFoodsType;
+            [self.navigationController pushViewController:favoriteVC animated:YES];
+        }
             break;
         case eHalls://民宿
-            
+        {
+            LBB_PoohMyFavoriteViewController *favoriteVC = [[LBB_PoohMyFavoriteViewController alloc] init];
+            favoriteVC.favoriteType = LBBPoohSegmCtrlHostelType;
+            [self.navigationController pushViewController:favoriteVC animated:YES];
+        }
             break;
         case eGoods://商品
             
@@ -180,7 +222,11 @@ LBB_MySectionHeadViewDelegate
             
             break;
         case eTravelGuide://攻略
-            
+        {
+            LBB_TravelGuideViewController *travelVC = [[LBB_TravelGuideViewController alloc] init];
+            travelVC.travelviewType =  MyTravelsGuideViewFravorite;
+            [self.navigationController pushViewController:travelVC animated:YES];
+        }
             break;
 /* 我的积分 */
         case ePoints://积分
