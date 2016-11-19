@@ -144,6 +144,7 @@
 		8414A2001DE054E1000F93BD /* LBB_SquareTravelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A1FF1DE054E1000F93BD /* LBB_SquareTravelViewController.m */; };
 		8414A2031DE0552A000F93BD /* LBB_PurchaseModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A2021DE0552A000F93BD /* LBB_PurchaseModuleViewController.m */; };
 		8414A2061DE0574F000F93BD /* LBB_PurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A2051DE0574F000F93BD /* LBB_PurchaseModel.m */; };
+		8414A2091DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A2081DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.m */; };
 		842BCC441DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC4C1DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC581DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -314,7 +315,6 @@
 		845CB1C91DDDC24900C02DC2 /* LBB_PromotionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0571DDDC24800C02DC2 /* LBB_PromotionsViewController.m */; };
 		845CB1CA1DDDC24900C02DC2 /* LBB_SquareNotificationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB05C1DDDC24800C02DC2 /* LBB_SquareNotificationViewCell.m */; };
 		845CB1CB1DDDC24900C02DC2 /* LBB_SquareNotificationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB05D1DDDC24800C02DC2 /* LBB_SquareNotificationViewCell.xib */; };
-		845CB1CC1DDDC24900C02DC2 /* LBB_PurchaseNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0601DDDC24800C02DC2 /* LBB_PurchaseNotificationViewController.m */; };
 		845CB1CD1DDDC24900C02DC2 /* LBB_SquareTravelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0641DDDC24800C02DC2 /* LBB_SquareTravelModel.m */; };
 		845CB1CE1DDDC24900C02DC2 /* LBB_SquareTravelViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0671DDDC24800C02DC2 /* LBB_SquareTravelViewCell.m */; };
 		845CB1CF1DDDC24900C02DC2 /* LBB_SquareTravelViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB0681DDDC24800C02DC2 /* LBB_SquareTravelViewCell.xib */; };
@@ -725,6 +725,8 @@
 		8414A2021DE0552A000F93BD /* LBB_PurchaseModuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PurchaseModuleViewController.m; sourceTree = "<group>"; };
 		8414A2041DE0574F000F93BD /* LBB_PurchaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PurchaseModel.h; sourceTree = "<group>"; };
 		8414A2051DE0574F000F93BD /* LBB_PurchaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PurchaseModel.m; sourceTree = "<group>"; };
+		8414A2071DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PurchaseNotificationViewController.h; sourceTree = "<group>"; };
+		8414A2081DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PurchaseNotificationViewController.m; sourceTree = "<group>"; };
 		842BCCA01DCD79E300A16788 /* NSArray+Sudoku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Sudoku.h"; sourceTree = "<group>"; };
 		842BCCA11DCD79E300A16788 /* NSArray+Sudoku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sudoku.m"; sourceTree = "<group>"; };
 		842BCCA41DCD79E300A16788 /* LBB_ShopCatgory_View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ShopCatgory_View.h; sourceTree = "<group>"; };
@@ -972,8 +974,6 @@
 		845CB05B1DDDC24800C02DC2 /* LBB_SquareNotificationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareNotificationViewCell.h; sourceTree = "<group>"; };
 		845CB05C1DDDC24800C02DC2 /* LBB_SquareNotificationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareNotificationViewCell.m; sourceTree = "<group>"; };
 		845CB05D1DDDC24800C02DC2 /* LBB_SquareNotificationViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_SquareNotificationViewCell.xib; sourceTree = "<group>"; };
-		845CB05F1DDDC24800C02DC2 /* LBB_PurchaseNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PurchaseNotificationViewController.h; sourceTree = "<group>"; };
-		845CB0601DDDC24800C02DC2 /* LBB_PurchaseNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PurchaseNotificationViewController.m; sourceTree = "<group>"; };
 		845CB0631DDDC24800C02DC2 /* LBB_SquareTravelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareTravelModel.h; sourceTree = "<group>"; };
 		845CB0641DDDC24800C02DC2 /* LBB_SquareTravelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareTravelModel.m; sourceTree = "<group>"; };
 		845CB0661DDDC24800C02DC2 /* LBB_SquareTravelViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareTravelViewCell.h; sourceTree = "<group>"; };
@@ -2965,6 +2965,8 @@
 		845CB05A1DDDC24800C02DC2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8414A2071DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.h */,
+				8414A2081DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.m */,
 				845CB05B1DDDC24800C02DC2 /* LBB_SquareNotificationViewCell.h */,
 				845CB05C1DDDC24800C02DC2 /* LBB_SquareNotificationViewCell.m */,
 				845CB05D1DDDC24800C02DC2 /* LBB_SquareNotificationViewCell.xib */,
@@ -2975,8 +2977,6 @@
 		845CB05E1DDDC24800C02DC2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				845CB05F1DDDC24800C02DC2 /* LBB_PurchaseNotificationViewController.h */,
-				845CB0601DDDC24800C02DC2 /* LBB_PurchaseNotificationViewController.m */,
 				8414A2011DE0552A000F93BD /* LBB_PurchaseModuleViewController.h */,
 				8414A2021DE0552A000F93BD /* LBB_PurchaseModuleViewController.m */,
 			);
@@ -4994,7 +4994,6 @@
 				842BCE101DCD79E400A16788 /* LGSegment.m in Sources */,
 				1D11B0A11DCB310B008610CB /* LBB_GuiderUserDeatilMsgCell.m in Sources */,
 				842BCDFB1DCD79E400A16788 /* LBB_PraiseWithCommentView.m in Sources */,
-				845CB1CC1DDDC24900C02DC2 /* LBB_PurchaseNotificationViewController.m in Sources */,
 				842BCE1D1DCD79E400A16788 /* ZJMCommentView.m in Sources */,
 				1D12FA941DC6E97700ACD462 /* LBBHomeSearchResultViewController.m in Sources */,
 				1D12FA791DC6E97700ACD462 /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */,
@@ -5099,6 +5098,7 @@
 				845CB1C21DDDC24900C02DC2 /* LBB_MyPropertyViewController.m in Sources */,
 				1D11B09D1DCB2247008610CB /* LBB_GuiderUserHeaderCell.m in Sources */,
 				845CB1DE1DDDC24900C02DC2 /* LBB_MyPhotoModel.m in Sources */,
+				8414A2091DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.m in Sources */,
 				1D12FA781DC6E97700ACD462 /* LBB_ScenicDetailVipMPaiCell.m in Sources */,
 				845CB1ED1DDDC24900C02DC2 /* LBB_AddressPickerView.m in Sources */,
 				845CB1E91DDDC24900C02DC2 /* LBB_LoginViewController.m in Sources */,
