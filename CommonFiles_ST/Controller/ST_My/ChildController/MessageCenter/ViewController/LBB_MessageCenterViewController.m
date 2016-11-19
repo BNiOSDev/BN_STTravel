@@ -10,8 +10,9 @@
 #import "LBB_MessageCenterViewCell.h"
 #import "LBB_PromotionsViewController.h"
 #import "LBB_CustomerViewController.h"
-#import "LBB_PurchaseNotificationViewController.h"
+#import "LBB_PurchaseModuleViewController.h"
 #import "LBB_MyPropertyViewController.h"
+#import "LBB_MessageSquareViewController.h"
 
 @interface LBB_MessageCenterViewController ()
 <UITableViewDelegate,
@@ -183,7 +184,8 @@ UITableViewDataSource
             break;
         case ePurchageNotifion://购买通知
         {
-            [self performSegueWithIdentifier:@"LBB_PurchaseNotificationViewController" sender:[NSNumber numberWithInt:ePurchageNotifion]];
+            LBB_PurchaseModuleViewController *vc = [[LBB_PurchaseModuleViewController alloc] init];
+            [self.navigationController pushViewController:vc  animated:YES];
         }
             break;
         case eNotice://鹭爸公告
@@ -193,7 +195,8 @@ UITableViewDataSource
             break;
         case eSquareTravel://广场游记
         {
-            [self performSegueWithIdentifier:@"LBB_SquareTravelViewController" sender:nil];
+            LBB_MessageSquareViewController *messageSquareVC = [[LBB_MessageSquareViewController alloc] init];
+            [self.navigationController pushViewController:messageSquareVC animated:YES];
         }
             break;
         default:
@@ -214,12 +217,8 @@ UITableViewDataSource
         
     }else if([dstVC isKindOfClass:NSClassFromString(@"LBB_CustomerViewController")]) {//我的客服
         
-    }else if([dstVC isKindOfClass:NSClassFromString(@"LBB_PurchaseNotificationViewController")]) {//购买通知
-        
     }else if([dstVC isKindOfClass:NSClassFromString(@"LBB_MyPropertyViewController")]) {//我的资产
         
-    }else{
-        //广场游记调用API
     }
 }
 

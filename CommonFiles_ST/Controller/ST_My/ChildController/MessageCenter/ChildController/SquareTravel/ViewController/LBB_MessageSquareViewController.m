@@ -1,37 +1,37 @@
 //
-//  LBB_MyFavoriteSquareViewController.m
+//  LBB_MessageSquareViewController.m
 //  ST_Travel
 //
-//  Created by 晨曦 on 16/11/17.
+//  Created by 晨曦 on 16/11/19.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBB_MyFavoriteSquareViewController.h"
-#import "ST_SquareViewController.h"
-#import "LBB_MyTravelViewController.h"
-#import "LBB_MyVideoViewController.h"
+#import "LBB_MessageSquareViewController.h"
+#import "LBB_SquareTravelViewController.h"
 #import "HMSegmentedControl.h"
-#import "LBB_MyPhotoViewController.h"
 
-#define ViewNum 3
 
-@interface LBB_MyFavoriteSquareViewController ()<UIScrollViewDelegate>
+#define ViewNum 4
+
+@interface LBB_MessageSquareViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *contentScrollView;
-@property(nonatomic, strong) LBB_MyTravelViewController  *travelContrller;//游记
-@property(nonatomic,strong) LBB_MyVideoViewController *videoController;//视频
-@property(nonatomic,strong) LBB_MyPhotoViewController *photoControllerll;//照片
+@property(nonatomic, strong) LBB_SquareTravelViewController  *followVC;//关注
+@property(nonatomic,strong) LBB_SquareTravelViewController *zanVC;//点赞
+@property(nonatomic, strong) LBB_SquareTravelViewController  *commentVC;//评论
+@property(nonatomic,strong) LBB_SquareTravelViewController *collectVC;//收藏
 
 @property(nonatomic,strong) HMSegmentedControl *segmentedControl;
 
 @end
 
-@implementation LBB_MyFavoriteSquareViewController
+@implementation LBB_MessageSquareViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = NSLocalizedString(@"广场", nil);
+    self.navigationItem.title = NSLocalizedString(@"广场游记", nil);
     self.view.backgroundColor = ColorBackground;
+    self.baseViewType = eSquareTravel;
     
     //加载Segment
     [self setSegment];
@@ -53,7 +53,7 @@
 
 -(void)setSegment {
     
-    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"照片",@"视频",@"游记"]];
+    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"关注",@"点赞",@"评论",@"收藏"]];
     _segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
     _segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
                                               NSForegroundColorAttributeName:ColorLightGray};
@@ -98,23 +98,35 @@
     self.contentScrollView = sv;
 }
 
-//加载2个ViewController
+//加载4个ViewController
 -(void)addChildViewController{
     
-    self.photoControllerll = [[LBB_MyPhotoViewController alloc]init];
-    self.photoControllerll.squareType = MySquarePhotoViewFravorite;
-    [self addChildViewController:self.photoControllerll];
+    self.followVC = [self getChildVC];
+    self.followVC.messgeType = eMessageFollow;
+    [self addChildViewController:self.followVC];
     
-    self.videoController = [[LBB_MyVideoViewController alloc]init];
-    self.videoController.squareType = MySquareVideoViewFravorite;
-    [self addChildViewController:self.videoController];
+    self.zanVC = [self getChildVC];
+    self.zanVC.messgeType = eMessageLike;
+    [self addChildViewController:self.zanVC];
     
+    self.commentVC = [self getChildVC];
+    self.commentVC.messgeType = eMessageComment;
+    [self addChildViewController:self.commentVC];
     
-    self.travelContrller = [[LBB_MyTravelViewController alloc]init];
-    self.travelContrller.travelviewType = MyTravelsViewDownloaed;
-    self.travelContrller.squareType = MySquareViewFravorite;
-    [self addChildViewController:self.travelContrller];
+    self.commentVC = [self getChildVC];
+    self.commentVC.messgeType = eMessageCollection;
+    [self addChildViewController:self.commentVC];
 }
+
+
+- (LBB_SquareTravelViewController *)getChildVC
+{
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    LBB_SquareTravelViewController  *vc  = [main instantiateViewControllerWithIdentifier:@"LBB_SquareTravelViewController"];
+    
+    return vc ;
+}
+
 
 #pragma mark - UIScrollViewDelegate
 
@@ -140,5 +152,6 @@
     NSLog(@"%d",(int)(scrollView.contentOffset.x / DeviceWidth));
     [self scrollToPage:pageIndex];//修复页面自动滚动偏差
 }
+
 
 @end

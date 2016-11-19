@@ -7,19 +7,20 @@
 //
 
 #import "LBB_PurchaseNotificationViewController.h"
+#import "UIImageView+WebCache.h"
 #import "LBB_SquareNotificationViewCell.h"
 #import "HMSegmentedControl.h"
 #import "CommonFunc.h"
+#import "LBB_PurchaseModel.h"
 
 @interface LBB_PurchaseNotificationViewController ()
 <UITableViewDataSource,
 UITableViewDelegate
 >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSMutableArray *dataSourceArray;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *segmentBgViewHeightConstraint;
+@property (strong,nonatomic) NSMutableArray *dataSourceArray; 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
-@property (weak,nonatomic) IBOutlet UIView *segmentBgView;
+@property (nonatomic,strong) LBB_PurchaseDataModel *dataModel;
 
 @end
 
@@ -30,7 +31,7 @@ UITableViewDelegate
     // Do any additional setup after loading the view.
     self.view.backgroundColor = ColorBackground;
     self.tableView.backgroundColor = ColorBackground;
-   
+    self.tableViewTopConstraint.constant = 0.f;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,77 +43,14 @@ UITableViewDelegate
 
 - (void)buildControls
 {
-    [self initSegmentControll];
-    [self setTableViewNib];
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[@{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"喜迎国庆,全场8折优惠（最新活动）喜迎国庆,全场8折优惠（最新活动）喜迎国庆,全场8折优惠（最新活动）喜迎国庆,全场8折优惠（最新活动）",
-                                                                     @"Date":@"07-17"
-                                                                     },
-                                                                   @{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"点击查看您的最新客服会话记录",
-                                                                     @"Date":@"07-17"
-                                                                     },
-                                                                   @{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"已发货，您2016-07-16购买黑蒜...",
-                                                                     @"Date":@"07-17"
-                                                                     },
-                                                                   @{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"提现成功，您2016-07-12申请100...",
-                                                                     @"Date":@"07-17"
-                                                                     },
-                                                                   @{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"您发布的游记XX被点赞了，快去看...",
-                                                                     @"Date":@"07-17"
-                                                                     }
-                                                                   ]];
-}
-
-- (void)initSegmentControll
-{
-    self.segmentBgViewHeightConstraint.constant = 30.f;
-    self.tableViewTopConstraint.constant = self.segmentBgViewHeightConstraint.constant;
-    
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[NSLocalizedString(@"商城通知", nil),
-                                                                                               NSLocalizedString(@"门票通知", nil)]];
-    segmentedControl.selectionIndicatorHeight = 3.0f;  // 线的高度
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"Marion-Italic" size:15.0],
-                                             NSForegroundColorAttributeName:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6]};
-    
-    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    [segmentedControl setFrame:CGRectMake(0, 0, DeviceWidth, self.segmentBgViewHeightConstraint.constant)];
-    
-    [segmentedControl addTarget:self
-                         action:@selector(segmentedControlChangedValue:)
-               forControlEvents:UIControlEventValueChanged];
-    
-    [self.view addSubview:segmentedControl];
-    [self.view bringSubviewToFront:self.lineView];
-}
-
-- (void)setTableViewNib
-{
     UINib *nib = [UINib nibWithNibName:@"LBB_SquareNotificationViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"LBB_SquareNotificationViewCell"];
+    
+    if (!self.dataModel) {
+        self.dataModel = [[LBB_PurchaseDataModel alloc] init];
+    }
+    self.dataSourceArray = [self.dataModel getData];
 }
-
-
-#pragma mark - segmentedControlChangedValue
-- (void)segmentedControlChangedValue:(HMSegmentedControl*)segmentControll
-{
-    NSInteger selectIndex = segmentControll.selectedSegmentIndex;
-//    if (selectIndex == 1) {
-//        self.tableView.hidden = YES;//门票通知
-//    }else {
-//        self.tableView.hidden = NO; //商城通知
-//    }
-}
-
 
 #pragma mark - tableView delegate
 
@@ -140,7 +78,7 @@ UITableViewDelegate
 {
     CGFloat height = [tableView fd_heightForCellWithIdentifier:@"LBB_SquareNotificationViewCell"
                                                  configuration:^(LBB_SquareNotificationViewCell *cell) {
-                                                     NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
+                                                     LBB_PurchaseModel *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
                                                      [self configCell:cell Model:cellDict];
                                                  }];
     return height;
@@ -155,8 +93,8 @@ UITableViewDelegate
     timeLabel.font = Font12;
     timeLabel.textAlignment = NSTextAlignmentCenter;
     timeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:section];
-    timeLabel.text = [cellDict objectForKey:@"Date"];
+    LBB_PurchaseModel *cellDict = [self.dataSourceArray objectAtIndex:section];
+    timeLabel.text = cellDict.dateStr;
     timeLabel.backgroundColor = [UIColor clearColor];
     
     return timeLabel;
@@ -168,7 +106,7 @@ UITableViewDelegate
     static NSString *CellIdentifier = @"LBB_SquareNotificationViewCell";
     LBB_SquareNotificationViewCell *cell = nil;
     
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
+    LBB_PurchaseModel *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[LBB_SquareNotificationViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -180,12 +118,12 @@ UITableViewDelegate
     return cell;
 }
 
-- (void)configCell:(LBB_SquareNotificationViewCell*)cell Model:(NSDictionary*)cellDict
+- (void)configCell:(LBB_SquareNotificationViewCell*)cell Model:(LBB_PurchaseModel*)cellDict
 {
-    cell.iconImgView.image = IMAGE([cellDict objectForKey:@"Image"]);
-    cell.titleLabel.text = [cellDict objectForKey:@"Title"];
-    cell.contentLabel.text = [cellDict objectForKey:@"Content"];
-    cell.dateLabel.text = [cellDict objectForKey:@"Date"];
+   [cell.iconImgView  sd_setImageWithURL:[NSURL URLWithString:cellDict.imageURL] placeholderImage:nil];;
+    cell.titleLabel.text = cellDict.title;
+    cell.contentLabel.text = cellDict.content;
+    cell.dateLabel.text = cellDict.dateStr;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

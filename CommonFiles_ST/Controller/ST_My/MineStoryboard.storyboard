@@ -2958,18 +2958,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gq7-6S-qm1">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="pdF-ZP-ifC"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUM-R9-Qng">
-                                <color key="backgroundColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="Kfy-Ej-slK"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="r5O-vf-mDz">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
@@ -2980,24 +2968,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gq7-6S-qm1" firstAttribute="top" secondItem="GgY-gb-xC6" secondAttribute="bottom" id="0Gn-c4-gjm"/>
                             <constraint firstAttribute="trailing" secondItem="r5O-vf-mDz" secondAttribute="trailing" constant="30" id="H9Q-s6-oP1"/>
-                            <constraint firstAttribute="trailing" secondItem="gq7-6S-qm1" secondAttribute="trailing" id="Jma-KJ-zmQ"/>
-                            <constraint firstItem="eUM-R9-Qng" firstAttribute="bottom" secondItem="gq7-6S-qm1" secondAttribute="bottom" id="VWl-MH-X30"/>
-                            <constraint firstItem="r5O-vf-mDz" firstAttribute="top" secondItem="gq7-6S-qm1" secondAttribute="bottom" id="Ybp-E5-iml"/>
-                            <constraint firstAttribute="trailing" secondItem="eUM-R9-Qng" secondAttribute="trailing" id="exJ-Qk-a4b"/>
+                            <constraint firstItem="r5O-vf-mDz" firstAttribute="top" secondItem="GgY-gb-xC6" secondAttribute="bottom" id="L5K-EN-xUX"/>
                             <constraint firstItem="RtK-Sl-xUx" firstAttribute="top" secondItem="r5O-vf-mDz" secondAttribute="bottom" constant="-49" id="qfQ-ha-C4F"/>
-                            <constraint firstItem="eUM-R9-Qng" firstAttribute="leading" secondItem="BhD-LT-e6f" secondAttribute="leading" id="sFu-HY-upW"/>
-                            <constraint firstItem="gq7-6S-qm1" firstAttribute="leading" secondItem="BhD-LT-e6f" secondAttribute="leading" id="sSK-D7-rNh"/>
                             <constraint firstItem="r5O-vf-mDz" firstAttribute="leading" secondItem="BhD-LT-e6f" secondAttribute="leading" constant="30" id="vai-Fy-BLy"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomViewBottomContraint" destination="qfQ-ha-C4F" id="zHQ-ib-4NO"/>
-                        <outlet property="lineView" destination="eUM-R9-Qng" id="pqv-Nc-nkT"/>
-                        <outlet property="segmentBgView" destination="gq7-6S-qm1" id="fq9-WN-riA"/>
-                        <outlet property="segmentBgViewHeightConstraint" destination="pdF-ZP-ifC" id="gSL-00-e9f"/>
+                        <outlet property="bottomViewBottomContraint" destination="qfQ-ha-C4F" id="hXp-n5-8bW"/>
                         <outlet property="tableView" destination="r5O-vf-mDz" id="AC7-SH-FMd"/>
+                        <outlet property="tableViewTopConstraint" destination="L5K-EN-xUX" id="78n-BR-nJU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ub4-NC-XTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
