@@ -138,6 +138,7 @@
 		1DF515D41DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515D31DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m */; };
 		1DF515D71DD2FE9E00C26695 /* LBB_HomeSearchGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515D61DD2FE9E00C26695 /* LBB_HomeSearchGoodsCell.m */; };
 		8414A1EE1DDFFB2D000F93BD /* LBB_AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A1ED1DDFFB2D000F93BD /* LBB_AddressModel.m */; };
+		8414A1F31DE03E0E000F93BD /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A1F21DE03E0E000F93BD /* VerificationViewController.m */; };
 		842BCC441DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC4C1DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC581DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -334,7 +335,6 @@
 		845CB1E31DDDC24900C02DC2 /* LBB_MyVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0A61DDDC24900C02DC2 /* LBB_MyVideoModel.m */; };
 		845CB1E41DDDC24900C02DC2 /* LBB_MyVideoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0A91DDDC24900C02DC2 /* LBB_MyVideoViewCell.m */; };
 		845CB1E51DDDC24900C02DC2 /* LBB_MyVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0AC1DDDC24900C02DC2 /* LBB_MyVideoViewController.m */; };
-		845CB1E61DDDC24900C02DC2 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0B41DDDC24900C02DC2 /* ChangePasswordViewController.m */; };
 		845CB1E71DDDC24900C02DC2 /* LBB_ResgisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0C01DDDC24900C02DC2 /* LBB_ResgisterViewController.m */; };
 		845CB1E81DDDC24900C02DC2 /* LBB_LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0C31DDDC24900C02DC2 /* LBB_LoginManager.m */; };
 		845CB1E91DDDC24900C02DC2 /* LBB_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0C71DDDC24900C02DC2 /* LBB_LoginViewController.m */; };
@@ -384,7 +384,6 @@
 		845CB21C1DDDC24900C02DC2 /* CardViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1881DDDC24900C02DC2 /* CardViewCell.m */; };
 		845CB21D1DDDC24900C02DC2 /* CardViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB1891DDDC24900C02DC2 /* CardViewCell.xib */; };
 		845CB21E1DDDC24900C02DC2 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB18C1DDDC24900C02DC2 /* CardViewController.m */; };
-		845CB21F1DDDC24900C02DC2 /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB18F1DDDC24900C02DC2 /* VerificationViewController.m */; };
 		845CB2201DDDC24900C02DC2 /* WalletViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1931DDDC24900C02DC2 /* WalletViewCell.m */; };
 		845CB2211DDDC24900C02DC2 /* WalletViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845CB1941DDDC24900C02DC2 /* WalletViewCell.xib */; };
 		845CB2221DDDC24900C02DC2 /* WalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB1971DDDC24900C02DC2 /* WalletViewController.m */; };
@@ -710,6 +709,8 @@
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
 		8414A1EC1DDFFB2D000F93BD /* LBB_AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_AddressModel.h; sourceTree = "<group>"; };
 		8414A1ED1DDFFB2D000F93BD /* LBB_AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AddressModel.m; sourceTree = "<group>"; };
+		8414A1F11DE03E0E000F93BD /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
+		8414A1F21DE03E0E000F93BD /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
 		842BCCA01DCD79E300A16788 /* NSArray+Sudoku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Sudoku.h"; sourceTree = "<group>"; };
 		842BCCA11DCD79E300A16788 /* NSArray+Sudoku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sudoku.m"; sourceTree = "<group>"; };
 		842BCCA41DCD79E300A16788 /* LBB_ShopCatgory_View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ShopCatgory_View.h; sourceTree = "<group>"; };
@@ -1004,8 +1005,6 @@
 		845CB0A91DDDC24900C02DC2 /* LBB_MyVideoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MyVideoViewCell.m; sourceTree = "<group>"; };
 		845CB0AB1DDDC24900C02DC2 /* LBB_MyVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MyVideoViewController.h; sourceTree = "<group>"; };
 		845CB0AC1DDDC24900C02DC2 /* LBB_MyVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MyVideoViewController.m; sourceTree = "<group>"; };
-		845CB0B31DDDC24900C02DC2 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
-		845CB0B41DDDC24900C02DC2 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		845CB0BF1DDDC24900C02DC2 /* LBB_ResgisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ResgisterViewController.h; sourceTree = "<group>"; };
 		845CB0C01DDDC24900C02DC2 /* LBB_ResgisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ResgisterViewController.m; sourceTree = "<group>"; };
 		845CB0C21DDDC24900C02DC2 /* LBB_LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LoginManager.h; sourceTree = "<group>"; };
@@ -1094,8 +1093,6 @@
 		845CB1891DDDC24900C02DC2 /* CardViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardViewCell.xib; sourceTree = "<group>"; };
 		845CB18B1DDDC24900C02DC2 /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
 		845CB18C1DDDC24900C02DC2 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
-		845CB18E1DDDC24900C02DC2 /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
-		845CB18F1DDDC24900C02DC2 /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
 		845CB1921DDDC24900C02DC2 /* WalletViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletViewCell.h; sourceTree = "<group>"; };
 		845CB1931DDDC24900C02DC2 /* WalletViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletViewCell.m; sourceTree = "<group>"; };
 		845CB1941DDDC24900C02DC2 /* WalletViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletViewCell.xib; sourceTree = "<group>"; };
@@ -1948,6 +1945,23 @@
 				1DF515CC1DD2CAB500C26695 /* LBB_HomeSearchViewController.h */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8414A1EF1DE03E0E000F93BD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8414A1F01DE03E0E000F93BD /* Verification */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		8414A1F01DE03E0E000F93BD /* Verification */ = {
+			isa = PBXGroup;
+			children = (
+				8414A1F11DE03E0E000F93BD /* VerificationViewController.h */,
+				8414A1F21DE03E0E000F93BD /* VerificationViewController.m */,
+			);
+			path = Verification;
 			sourceTree = "<group>";
 		};
 		842BCC9C1DCD79E300A16788 /* ST_Square */ = {
@@ -3222,46 +3236,13 @@
 		845CB0AE1DDDC24900C02DC2 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
-				845CB0AF1DDDC24900C02DC2 /* ChangePassword */,
+				8414A1EF1DE03E0E000F93BD /* Common */,
 				845CB0B51DDDC24900C02DC2 /* Login */,
 				845CB0C81DDDC24900C02DC2 /* PhoneNum */,
 				845CB0CE1DDDC24900C02DC2 /* ReceiptAddress */,
 				845CB0E21DDDC24900C02DC2 /* UserNameAndSignature */,
 			);
 			path = ChildController;
-			sourceTree = "<group>";
-		};
-		845CB0AF1DDDC24900C02DC2 /* ChangePassword */ = {
-			isa = PBXGroup;
-			children = (
-				845CB0B01DDDC24900C02DC2 /* Model */,
-				845CB0B11DDDC24900C02DC2 /* View */,
-				845CB0B21DDDC24900C02DC2 /* ViewController */,
-			);
-			path = ChangePassword;
-			sourceTree = "<group>";
-		};
-		845CB0B01DDDC24900C02DC2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		845CB0B11DDDC24900C02DC2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		845CB0B21DDDC24900C02DC2 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				845CB0B31DDDC24900C02DC2 /* ChangePasswordViewController.h */,
-				845CB0B41DDDC24900C02DC2 /* ChangePasswordViewController.m */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		845CB0B51DDDC24900C02DC2 /* Login */ = {
@@ -3981,7 +3962,6 @@
 			children = (
 				845CB15A1DDDC24900C02DC2 /* Balance */,
 				845CB1731DDDC24900C02DC2 /* BankCard */,
-				845CB18D1DDDC24900C02DC2 /* Verification */,
 			);
 			path = ChildController;
 			sourceTree = "<group>";
@@ -4285,15 +4265,6 @@
 				845CB18C1DDDC24900C02DC2 /* CardViewController.m */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		845CB18D1DDDC24900C02DC2 /* Verification */ = {
-			isa = PBXGroup;
-			children = (
-				845CB18E1DDDC24900C02DC2 /* VerificationViewController.h */,
-				845CB18F1DDDC24900C02DC2 /* VerificationViewController.m */,
-			);
-			path = Verification;
 			sourceTree = "<group>";
 		};
 		845CB1901DDDC24900C02DC2 /* Model */ = {
@@ -5034,7 +5005,6 @@
 				845CB1EF1DDDC24900C02DC2 /* ReceiptAddressViewCell.m in Sources */,
 				C9C0E9541D9948F100575A7C /* AppDelegate.m in Sources */,
 				845CB1EB1DDDC24900C02DC2 /* AddAddressViewController.m in Sources */,
-				845CB21F1DDDC24900C02DC2 /* VerificationViewController.m in Sources */,
 				1D12FA5D1DC6E97700ACD462 /* LBB_DiscoveryCustomizedViewController.m in Sources */,
 				842BCC441DCD792500A16788 /* (null) in Sources */,
 				1D5757171DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m in Sources */,
@@ -5172,7 +5142,6 @@
 				1D12FA561DC6E97700ACD462 /* LBB_AddressAddViewController.m in Sources */,
 				845CB1F71DDDC24900C02DC2 /* LBB_BalanceDetailModel.m in Sources */,
 				C9C0E9511D9948F100575A7C /* main.m in Sources */,
-				845CB1E61DDDC24900C02DC2 /* ChangePasswordViewController.m in Sources */,
 				1D0F48A51DC8DFF400A37DE2 /* LBB_LabelDetailHotDataSource.m in Sources */,
 				842BCE0F1DCD79E400A16788 /* JHWaveChart.m in Sources */,
 				1D11B0B01DCC24DC008610CB /* LBB_GuiderUserFunsDataSource.m in Sources */,
@@ -5214,6 +5183,7 @@
 				845CB1D31DDDC24900C02DC2 /* LBB_MessageCenterViewController.m in Sources */,
 				1D12FA841DC6E97700ACD462 /* LBBSigninMainViewController.m in Sources */,
 				1D12FA9D1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m in Sources */,
+				8414A1F31DE03E0E000F93BD /* VerificationViewController.m in Sources */,
 				845CB2421DDDCFDC00C02DC2 /* LBB_TicketFooterView.m in Sources */,
 				1D12FA6C1DC6E97700ACD462 /* LBB_NewOrderViewController.m in Sources */,
 				842BCE211DCD79E400A16788 /* LBBFriendTableViewCell.m in Sources */,
