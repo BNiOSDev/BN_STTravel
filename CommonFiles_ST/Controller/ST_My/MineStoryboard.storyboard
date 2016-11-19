@@ -885,6 +885,7 @@
                         <outlet property="phoneTipLabel" destination="MyL-a6-4Mx" id="K9T-cn-EcT"/>
                         <outlet property="textField" destination="UxS-yj-dsr" id="Oog-CR-rPk"/>
                         <outlet property="tipBgView" destination="G5c-5Y-YZY" id="2jd-hh-o76"/>
+                        <outlet property="tipBgViewHeightContraint" destination="RsU-Th-Sd4" id="ZNv-Do-uvw"/>
                         <outlet property="tipLabel" destination="Dnf-Un-eow" id="2s6-zC-S4j"/>
                         <segue destination="Xjk-qk-Sxf" kind="show" identifier="ExtractDetailViewController" id="UfS-Dj-u74"/>
                     </connections>
