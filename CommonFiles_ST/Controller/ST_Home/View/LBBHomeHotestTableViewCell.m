@@ -49,10 +49,6 @@
 
         self.pagerView = segmentedControl;
         
-        segmentedControl.indexChangeBlock = ^(NSInteger index){
-            NSLog(@"segmentedControl select:%ld",index);
-        };
-        
         UICollectionViewFlowLayout *horizontalCellLayout = [UICollectionViewFlowLayout new];
         horizontalCellLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right)

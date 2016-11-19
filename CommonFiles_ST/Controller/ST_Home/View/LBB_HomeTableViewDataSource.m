@@ -18,6 +18,8 @@
 @interface LBB_HomeTableViewDataSource()
 
 @property (nonatomic, strong) UITableView *tableView;
+@property(nonatomic, assign)LBBPoohSegmCtrlType vipRecommendType;//达人推荐
+@property(nonatomic, assign)LBBPoohSegmCtrlType giftRecommendType;//伴手礼推荐
 
 @end
 
@@ -340,6 +342,7 @@
 #pragma  //达人推荐
 -(UITableViewCell*)tableView:(UITableView *)tableView vipRecommendCellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    WS(ws);
     static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
     LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
@@ -347,6 +350,11 @@
         NSLog(@"LBBHomeHotestTableViewCell nil");
     }
     [cell setPagerViewHidden:NO];
+    [cell.pagerView setSelectedSegmentIndex:self.vipRecommendType];
+    cell.pagerView.indexChangeBlock = ^(NSInteger index){
+        NSLog(@"segmentedControl select:%ld",index);
+        ws.vipRecommendType = index;
+    };
     return cell;
     
 }
@@ -415,6 +423,11 @@
         }
         [cell setPagerViewHidden:NO];
         cell.isMarket = YES;
+        [cell.pagerView setSelectedSegmentIndex:self.giftRecommendType];
+        cell.pagerView.indexChangeBlock = ^(NSInteger index){
+            NSLog(@"segmentedControl select:%ld",index);
+            ws.giftRecommendType = index;
+        };
         return cell;
     }
     else{
