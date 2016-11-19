@@ -78,7 +78,6 @@
         @strongify(self);
         self.postNum = self.postalNumTextFiled.text;
     }];
-    
 }
 
 - (void)initUI

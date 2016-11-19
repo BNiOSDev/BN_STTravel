@@ -139,6 +139,7 @@
 		1DF515D71DD2FE9E00C26695 /* LBB_HomeSearchGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515D61DD2FE9E00C26695 /* LBB_HomeSearchGoodsCell.m */; };
 		8414A1EE1DDFFB2D000F93BD /* LBB_AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A1ED1DDFFB2D000F93BD /* LBB_AddressModel.m */; };
 		8414A1F31DE03E0E000F93BD /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A1F21DE03E0E000F93BD /* VerificationViewController.m */; };
+		8414A1FA1DE04487000F93BD /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A1F91DE04487000F93BD /* ChangePasswordViewController.m */; };
 		842BCC441DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC4C1DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC581DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -711,6 +712,8 @@
 		8414A1ED1DDFFB2D000F93BD /* LBB_AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AddressModel.m; sourceTree = "<group>"; };
 		8414A1F11DE03E0E000F93BD /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
 		8414A1F21DE03E0E000F93BD /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
+		8414A1F81DE04487000F93BD /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		8414A1F91DE04487000F93BD /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		842BCCA01DCD79E300A16788 /* NSArray+Sudoku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Sudoku.h"; sourceTree = "<group>"; };
 		842BCCA11DCD79E300A16788 /* NSArray+Sudoku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sudoku.m"; sourceTree = "<group>"; };
 		842BCCA41DCD79E300A16788 /* LBB_ShopCatgory_View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ShopCatgory_View.h; sourceTree = "<group>"; };
@@ -1962,6 +1965,39 @@
 				8414A1F21DE03E0E000F93BD /* VerificationViewController.m */,
 			);
 			path = Verification;
+			sourceTree = "<group>";
+		};
+		8414A1F41DE04487000F93BD /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				8414A1F51DE04487000F93BD /* Model */,
+				8414A1F61DE04487000F93BD /* View */,
+				8414A1F71DE04487000F93BD /* ViewController */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
+		8414A1F51DE04487000F93BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8414A1F61DE04487000F93BD /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8414A1F71DE04487000F93BD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8414A1F81DE04487000F93BD /* ChangePasswordViewController.h */,
+				8414A1F91DE04487000F93BD /* ChangePasswordViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		842BCC9C1DCD79E300A16788 /* ST_Square */ = {
@@ -3236,6 +3272,7 @@
 		845CB0AE1DDDC24900C02DC2 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				8414A1F41DE04487000F93BD /* ChangePassword */,
 				8414A1EF1DE03E0E000F93BD /* Common */,
 				845CB0B51DDDC24900C02DC2 /* Login */,
 				845CB0C81DDDC24900C02DC2 /* PhoneNum */,
@@ -5032,6 +5069,7 @@
 				842BCE1C1DCD79E400A16788 /* PraiseView.m in Sources */,
 				845CB1FB1DDDC24900C02DC2 /* LBB_PointsModel.m in Sources */,
 				842BCDF91DCD79E400A16788 /* LBB_TravelCommentController.m in Sources */,
+				8414A1FA1DE04487000F93BD /* ChangePasswordViewController.m in Sources */,
 				1D12FA9A1DC713AE00ACD462 /* LBB_NewOrderIntegralView.m in Sources */,
 				842BCDF71DCD79E300A16788 /* LBB_Travel_Bill_Cell.m in Sources */,
 				1D12FA7B1DC6E97700ACD462 /* LBB_ScenicDetailSubjectContentCell.m in Sources */,
