@@ -230,15 +230,25 @@
      3.1.8 达人推荐
      @param Type 1.景点 2.美食 3.民宿
      */
-   // [self.viewModel getSpotsArrayWithType:1];
-
-    
+    [self.viewModel getSpotsArrayWithType:3];
+    [self.viewModel.scenicSpotsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+    [self.viewModel.footSpotsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+    [self.viewModel.liveSpotsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
     /**
      3.1.9 广场中心
      @param clear 是否清空原数据
      */
-  //  [self.viewModel getUgcArrayClearData:YES];
-
+#pragma 数据获取失败
+    [self.viewModel getUgcArrayClearData:YES];
+    [self.viewModel.ugcArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
     
 #pragma 响应处理
     //2.0响应的view，网络状态变化时的再刷新动作
@@ -253,20 +263,25 @@
     //3.1上拉和下拉的动作
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.tableView.mj_header endRefreshing];
-        [ws.viewModel getAdvertisementListArrayClearData:YES];//取数据     3.1.2 广告轮播 1.首页最顶部
-        [ws.viewModel getSpotAdvertisementListArrayClearData:YES];//3.1.2 广告轮播 5.首页热门推荐
+
+        [ws.viewModel getAdvertisementListArrayClearData:YES];//  3.1.2 广告轮播 1.首页最顶部
+        [ws.viewModel getSpotAdvertisementListArrayClearData:YES];// 3.1.2 广告轮播 5.首页热门推荐
+        [ws.viewModel getNoticesArrayClearData:YES];//3.1.3 公告轮播
+        [ws.viewModel getSpotsArrayClearData:YES];//3.1.4 热门推荐
+        [ws.viewModel getTravelNotesArrayClearData:YES];//3.1.7 游记推荐
+        [ws.viewModel getSpotsArrayWithType:1];//3.1.8 达人推荐 1.景点
+        [ws.viewModel getSpotsArrayWithType:2];//3.1.8 达人推荐 2.美食
+        [ws.viewModel getSpotsArrayWithType:3];//3.1.8 达人推荐 3.民宿
+        [ws.viewModel getUgcArrayClearData:YES];//3.1.9 广场中心
+
         
     } footerRefreshDatablock:^{
         // [ws.viewModel getAdvertisementListArrayClearData:NO];
         // [ws.tableView.mj_footer endRefreshing];
-        
     }];
-    
     
     //数据赋值为dataSource
     self.dataSource.viewModel = self.viewModel;
-    
-    
 }
 
 
