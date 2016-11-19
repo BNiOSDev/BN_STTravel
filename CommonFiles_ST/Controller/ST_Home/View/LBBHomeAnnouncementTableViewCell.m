@@ -134,9 +134,12 @@
         make.top.bottom.equalTo(ws.contentView);
     }];
     
-    [tView animationWithTexts:array];
-
-
+    if (array.count <= 0) {
+        [tView animationWithTexts:@[@"暂无公告信息"]];
+    }
+    else{
+        [tView animationWithTexts:array];
+    }
 }
 
 

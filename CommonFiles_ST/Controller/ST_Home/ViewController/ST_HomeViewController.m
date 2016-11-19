@@ -177,7 +177,6 @@
     
     /**
      3.1.2 广告轮播 1.首页最顶部
-     
      @param clear 是否清空原数据
      */
     [self.viewModel getAdvertisementListArrayClearData:YES];
@@ -188,51 +187,44 @@
         [ws.tableView reloadData];//data reload
     }];
    
-    //2.0响应的view，网络状态变化时的再刷新动作
-  //  [self.tableView setTableViewData:self.viewModel.advertisementArray];
-    //2.1点击刷新
-   /* [ws.tableView setRefreshBlock:^{
-        [ws.viewModel getAdvertisementListArrayClearData:NO];
-    }];
-    */
-    //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
-   // [self.tableView setTableViewData:self.viewModel.advertisementArray];
-    //3.1上拉和下拉的动作
-    [self.tableView setHeaderRefreshDatablock:^{
-        [ws.tableView.mj_header endRefreshing];
-        [ws.viewModel getAdvertisementListArrayClearData:YES];//取数据
-    } footerRefreshDatablock:^{
-       // [ws.viewModel getAdvertisementListArrayClearData:NO];
-       // [ws.tableView.mj_footer endRefreshing];
-
-    }];
-    
     
     /**
      3.1.2 广告轮播 5.首页热门推荐
      @param clear 是否清空原数据
      */
-  //  [self.viewModel getSpotAdvertisementListArrayClearData:YES];
-
+    [self.viewModel getSpotAdvertisementListArrayClearData:YES];
+    [self.viewModel.spotAdvertisementArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+    
+    
     /**
      3.1.3 公告轮播
      @param clear 是否清空原数据
      */
- //   [self.viewModel getNoticesArrayClearData:YES];
+    [self.viewModel getNoticesArrayClearData:YES];
+    [self.viewModel.noticesArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
 
     /**
      3.1.4 热门推荐
      @param clear 是否清空原数据
      */
-  //  [self.viewModel getSpotsArrayClearData:YES];
-
+#pragma 数据获取失败
+    [self.viewModel getSpotsArrayClearData:YES];
+    [self.viewModel.spotsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
     
     /**
      3.1.7 游记推荐
      @param clear 是否清空原数据
      */
-   // [self.viewModel getTravelNotesArrayClearData:YES];
-
+    [self.viewModel getTravelNotesArrayClearData:YES];
+    [self.viewModel.travelNotesArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
     
     /**
      3.1.8 达人推荐
@@ -247,6 +239,30 @@
      */
   //  [self.viewModel getUgcArrayClearData:YES];
 
+    
+#pragma 响应处理
+    //2.0响应的view，网络状态变化时的再刷新动作
+    //  [self.tableView setTableViewData:self.viewModel.advertisementArray];
+    //2.1点击刷新
+    /* [ws.tableView setRefreshBlock:^{
+     [ws.viewModel getAdvertisementListArrayClearData:NO];
+     }];
+     */
+    //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
+    // [self.tableView setTableViewData:self.viewModel.advertisementArray];
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.tableView.mj_header endRefreshing];
+        [ws.viewModel getAdvertisementListArrayClearData:YES];//取数据     3.1.2 广告轮播 1.首页最顶部
+        [ws.viewModel getSpotAdvertisementListArrayClearData:YES];//3.1.2 广告轮播 5.首页热门推荐
+        
+    } footerRefreshDatablock:^{
+        // [ws.viewModel getAdvertisementListArrayClearData:NO];
+        // [ws.tableView.mj_footer endRefreshing];
+        
+    }];
+    
+    
     //数据赋值为dataSource
     self.dataSource.viewModel = self.viewModel;
     

@@ -60,7 +60,7 @@
             break;
         case LBBHomeSectionTravelRecommendType:
         {
-            return 2;
+            return self.viewModel.travelNotesArray.count;
         }
             break;
         case LBBHomeSectionVipRecommendType:
@@ -205,16 +205,6 @@
         
 
         [cell setAdModelArray:self.viewModel.advertisementArray];//设置model。首页广告的数据
-        
-       /* [cell setCycleScrollViewUrls:urls];
-        [cell setEnableBlock:YES];
-        cell.click = ^(NSNumber* index){
-            
-            //  NSInteger num = [index integerValue];
-            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
-            [ws.parentViewController.navigationController pushViewController:dest animated:YES];
-            
-        };*/
         return cell;
     }
     else if (indexPath.row == 1){
@@ -236,8 +226,8 @@
             NSLog(@"LBBHomeAnnouncementTableViewCell nil");
             
         }
-        NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
-        [cell setScrollTextArray:array];
+       // NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
+        [cell setScrollTextArray:self.viewModel.noticesArray];
         
         return cell;
     }
@@ -283,15 +273,9 @@
             
         }
         [cell setCycleScrollViewHeight:AutoSize(380/2)];
-        [cell setCycleScrollViewUrls:nil];
-        [cell setEnableBlock:YES];
-        cell.click = ^(NSNumber* index){
-            
-            //  NSInteger num = [index integerValue];
-            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
-            [ws.parentViewController.navigationController pushViewController:dest animated:YES];
-            
-        };
+        
+        [cell setAdModelArray:self.viewModel.spotAdvertisementArray];//设置model。热门推荐广告的数据
+
         return cell;
     }
     else if (indexPath.row == 1){
@@ -339,7 +323,7 @@
         
     }
     
-    [cell setModel:nil];
+    [cell setModel:[self.viewModel.travelNotesArray objectAtIndex:indexPath.row]];
     
     return cell;
     
