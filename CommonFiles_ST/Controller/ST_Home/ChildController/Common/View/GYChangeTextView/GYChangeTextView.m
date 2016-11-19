@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, GYTitlePosition) {
 
 - (void)animationWithTexts:(NSArray *)textAry {
     self.contentsAry = textAry;
-    self.textLabel.text = [textAry objectAtIndex:0];
+//    self.textLabel.text = [textAry objectAtIndex:0];
     [self startAnimation];
 }
 
@@ -76,7 +76,7 @@ typedef NS_ENUM(NSUInteger, GYTitlePosition) {
             weakSelf.textLabel.layer.position = weakSelf.bottomPosition;
             weakSelf.needDealy = DEALY_WHEN_TITLE_IN_BOTTOM;
             weakSelf.currentIndex ++;
-            weakSelf.textLabel.text = [weakSelf.contentsAry objectAtIndex:[weakSelf realCurrentIndex]];
+//            weakSelf.textLabel.text = [weakSelf.contentsAry objectAtIndex:[weakSelf realCurrentIndex]];
         } else {
             weakSelf.needDealy = DEALY_WHEN_TITLE_IN_MIDDLE;
         }
