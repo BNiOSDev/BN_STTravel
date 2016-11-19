@@ -18,27 +18,12 @@
     self.adressLabel.textColor = ColorBlack;
     self.streetLabel.textColor = ColorBlack;
     self.defaultLabel.textColor = ColorRed;
-    self.defaultLabel.backgroundColor = ColorLightGray;
-    self.defaultLabel.layer.borderColor = ColorRed.CGColor;
-    self.defaultLabel.layer.cornerRadius = self.defaultLabel.frame.size.height/2.0;
     
-    self.userNameLabel.font = Font14;
+    self.userNameLabel.font = Font15;
     self.phoneNumLabel.font = Font14;
-    self.adressLabel.font = Font12;
-    self.streetLabel.font = Font12;
-    self.defaultLabel.font = Font12;
-    self.defaultLabel.font = Font14;
-   
-    self.defaultBtn.backgroundColor = [UIColor clearColor];
-    [self.defaultBtn setBackgroundImage:[UIImage createImageWithColor:ColorGray] forState:UIControlStateNormal];
-    self.editBtn.backgroundColor = [UIColor clearColor];
-    [self.editBtn setBackgroundImage:[UIImage createImageWithColor:ColorBtnYellow] forState:UIControlStateNormal];
-    self.deleteBtn.backgroundColor = [UIColor clearColor];
-    [self.deleteBtn setBackgroundImage:[UIImage createImageWithColor:ColorLightGray] forState:UIControlStateNormal];
-    
+    self.adressLabel.font = Font13;
+    self.streetLabel.font = Font13;
     [self.defaultBtn.titleLabel setFont:Font13];
-    [self.editBtn.titleLabel setFont:Font13];
-    [self.deleteBtn.titleLabel setFont:Font13];
 }
 
 - (void)prepareForReuse{
@@ -47,7 +32,6 @@
     self.phoneNumLabel.text = nil;
     self.adressLabel.text = nil;
     self.streetLabel.text = nil;
-    self.defaultLabel.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -56,18 +40,20 @@
     // Configure the view for the selected state
 }
 
-- (void)setCellInfo:(NSDictionary *)cellInfo
+- (void)setCellInfo:(LBB_AddressModel *)cellInfo
 {
     _cellInfo = cellInfo;
-    self.userNameLabel.text = [cellInfo objectForKey:@"UserName"];
-    self.phoneNumLabel.text = [cellInfo objectForKey:@"PhoneNum"];
-    self.adressLabel.text = [cellInfo objectForKey:@"Address"];
-    self.streetLabel.text = [cellInfo objectForKey:@"Street"];
-    if ([cellInfo objectForKey:@"DefautAdress"]) {
-        NSString *show = [cellInfo objectForKey:@"DefautAdress"];
-        self.defaultLabel.hidden = ![show boolValue];;
-    }else{
-        self.defaultLabel.hidden  = YES;
+    self.userNameLabel.text = _cellInfo.userName;
+    self.phoneNumLabel.text = _cellInfo.phoneNum;
+    self.adressLabel.text = _cellInfo.adress;
+    self.streetLabel.text = _cellInfo.street;
+    self.defaultImgView.hidden = !_cellInfo.isDefault;
+    if (_cellInfo.isDefault) {
+        self.defaultBtn.backgroundColor = ColorBtnYellow;
+        [self.defaultBtn setTitle:@"默认地址" forState:UIControlStateNormal];
+    }else {
+        self.defaultBtn.backgroundColor = ColorGray;
+        [self.defaultBtn setTitle:@"设为默认" forState:UIControlStateNormal];
     }
 }
 

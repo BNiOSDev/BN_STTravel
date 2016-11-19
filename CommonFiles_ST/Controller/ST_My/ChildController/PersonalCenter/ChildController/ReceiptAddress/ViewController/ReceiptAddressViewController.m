@@ -9,6 +9,7 @@
 #import "ReceiptAddressViewController.h"
 #import "ReceiptAddressViewCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "LBB_AddressModel.h"
 
 @interface ReceiptAddressViewController ()<
 ReceiptAddressViewCellDelegate
@@ -16,7 +17,8 @@ ReceiptAddressViewCellDelegate
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
-
+@property (strong,nonatomic) LBB_AddressDataModel *dataModel;
+@property (strong, nonatomic) UIView *addNewAddressView;
 @end
 
 @implementation ReceiptAddressViewController
@@ -25,63 +27,24 @@ ReceiptAddressViewCellDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = eAddress;
-    [self initData];
-    [self loadRightBarItem];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 }
-- (void)loadRightBarItem {
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ST_TabImage1"]
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:self
-                                                                      action:@selector(addAddressAction:)];
-    
-    
-    rightBarButton.tintColor = [UIColor colorWithRed:0.0 green:0.1176 blue:0.4549 alpha:1.0];
-    
-    self.navigationItem.rightBarButtonItem = rightBarButton;
-}
+
 #pragma mark - private
-- (void)initData
+- (void)buildControls
 {
     UINib *nib = [UINib nibWithNibName:@"ReceiptAddressViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"ReceiptAddressViewCell"];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
-                                                                   @{@"ID" : @"1",
-                                                                     @"UserName": NSLocalizedString(@"王大锤",nil),
-                                                                     @"PhoneNum" : @"186****9876",
-                                                                     @"Address" : @"福建省 厦门市 思明区",
-                                                                     @"Street" : @"软件园望海路59号楼1号楼鑫海科技"},
-                                                                   @{
-                                                                    @"ID" : @"2",
-                                                                    @"UserName": NSLocalizedString(@"董美丽名字很长的很长的很长的很长的很长的",nil),
-                                                                     @"PhoneNum" : @"186****9876",
-                                                                     @"Address" : @"福建省 厦门市 思明区",
-                                                                     @"Street" : @"软件园望海路59号楼1号楼鑫海科技",
-                                                                     @"DefautAdress":@"1"},
-                                                                   @{@"ID" : @"3",
-                                                                    @"UserName": NSLocalizedString(@"王大锤",nil),
-                                                                     @"PhoneNum" : @"186****9876",
-                                                                     @"Address" : @"福建省 厦门市 思明区 福建省 厦门市 思明区 福建省 厦门市 思明区",
-                                                                     @"Street" : @"软件园望海路59号楼1号楼鑫海科技"},
-                                                                   @{@"ID" : @"4",
-                                                                     @"UserName": NSLocalizedString(@"马云",nil),
-                                                                     @"PhoneNum" : @"186****9876",
-                                                                     @"Address" : @"福建省 厦门市 思明区 福建省 厦门市 思明区 福建省 厦门市 思明区",
-                                                                     @"Street" : @"软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技软件园望海路59号楼1号楼鑫海科技"},
-                                                                   @{@"ID" : @"5",
-                                                                     @"UserName": NSLocalizedString(@"王健林",nil),
-                                                                     @"PhoneNum" : @"186****9876",
-                                                                     @"Address" : @"福建省 厦门市 思明区",
-                                                                     @"Street" : @"软件园望海路59号楼1号楼鑫海科技是在软件园哪个角落"},
-                                                                   ]];
-    
+    if (!self.dataModel) {
+        self.dataModel = [[LBB_AddressDataModel alloc] init];
+    }
+    self.dataSourceArray = [self.dataModel getData];
 }
+
 
 #pragma mark - tableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -98,8 +61,8 @@ ReceiptAddressViewCellDelegate
     
     CGFloat height = [tableView fd_heightForCellWithIdentifier:@"ReceiptAddressViewCell"
                                                  configuration:^(ReceiptAddressViewCell *cell) {
-                                                     NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath row]];
-                                                     [cell setCellInfo:cellDict];
+                                                    LBB_AddressModel *cellModel = [self.dataSourceArray objectAtIndex:[indexPath row]];
+                                                     [cell setCellInfo:cellModel];
                                                  }];
     
     return height;
@@ -120,7 +83,7 @@ ReceiptAddressViewCellDelegate
     static NSString *CellIdentifier = @"ReceiptAddressViewCell";
     ReceiptAddressViewCell *cell = nil;
     
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath row]];
+    LBB_AddressModel *cellModel = [self.dataSourceArray objectAtIndex:[indexPath row]];
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[ReceiptAddressViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -129,9 +92,31 @@ ReceiptAddressViewCellDelegate
     cell.accessoryView =  nil;
     cell.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
     cell.delegate = self;
-    [cell setCellInfo:cellDict];
+    [cell setCellInfo:cellModel];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 100.f;
+}
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (!self.addNewAddressView) {
+        self.addNewAddressView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, 100)];
+        UIButton *exitBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, 30, DeviceWidth - 60, 50)];
+        [exitBtn setTitle:NSLocalizedString(@"新建收货地址", nil) forState:UIControlStateNormal];
+        [exitBtn setTitleColor:ColorWhite forState:UIControlStateNormal];
+        [exitBtn setBackgroundImage:[UIImage createImageWithColor:ColorBtnYellow] forState:UIControlStateNormal];
+        [exitBtn.titleLabel setFont:Font15];
+        [exitBtn addTarget:self
+                    action:@selector(addAddressAction:)
+          forControlEvents:UIControlEventTouchUpInside];
+        [self.addNewAddressView addSubview:exitBtn];
+        
+    }
+    return self.addNewAddressView;
 }
 
 #pragma mark - add Adress
@@ -153,18 +138,15 @@ ReceiptAddressViewCellDelegate
 
 - (void)setDefautlCellAdress:(id)cellInfo
 {
-    NSDictionary *cellDict = (NSDictionary*)cellInfo;
+    LBB_AddressModel *cellModel = (LBB_AddressModel*)cellInfo;
     
     for (NSInteger i = 0; i < self.dataSourceArray.count; i++) {
-        NSDictionary *tmpDict = (NSDictionary*)[self.dataSourceArray objectAtIndex:i];
-        NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithObjects:[tmpDict allValues]
-                                                                          forKeys:[tmpDict allKeys]];
-        if ([[tmpDict objectForKey:@"ID"] isEqualToString:[cellDict objectForKey:@"ID"]]) {
-            [newDict setObject:@"1" forKey:@"DefautAdress"];
+        LBB_AddressModel *tmpModel = (LBB_AddressModel*)[self.dataSourceArray objectAtIndex:i];
+        if ([tmpModel.addressId isEqualToString:cellModel.addressId]) {
+            tmpModel.isDefault = YES;
         }else{
-            [newDict setObject:@"0" forKey:@"DefautAdress"];
+            tmpModel.isDefault = NO;
         }
-        [self.dataSourceArray replaceObjectAtIndex:i  withObject:newDict];
     }
     
     [self.tableView reloadData];

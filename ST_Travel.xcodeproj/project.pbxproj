@@ -137,6 +137,7 @@
 		1DF515CD1DD2CAB500C26695 /* LBB_HomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515CB1DD2CAB500C26695 /* LBB_HomeSearchViewController.m */; };
 		1DF515D41DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515D31DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m */; };
 		1DF515D71DD2FE9E00C26695 /* LBB_HomeSearchGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515D61DD2FE9E00C26695 /* LBB_HomeSearchGoodsCell.m */; };
+		8414A1EE1DDFFB2D000F93BD /* LBB_AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A1ED1DDFFB2D000F93BD /* LBB_AddressModel.m */; };
 		842BCC441DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC4C1DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC581DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -707,6 +708,8 @@
 		1DF515D51DD2FE9E00C26695 /* LBB_HomeSearchGoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeSearchGoodsCell.h; sourceTree = "<group>"; };
 		1DF515D61DD2FE9E00C26695 /* LBB_HomeSearchGoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchGoodsCell.m; sourceTree = "<group>"; };
 		3C0FC2D61DBB492A00A71D16 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
+		8414A1EC1DDFFB2D000F93BD /* LBB_AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_AddressModel.h; sourceTree = "<group>"; };
+		8414A1ED1DDFFB2D000F93BD /* LBB_AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AddressModel.m; sourceTree = "<group>"; };
 		842BCCA01DCD79E300A16788 /* NSArray+Sudoku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Sudoku.h"; sourceTree = "<group>"; };
 		842BCCA11DCD79E300A16788 /* NSArray+Sudoku.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sudoku.m"; sourceTree = "<group>"; };
 		842BCCA41DCD79E300A16788 /* LBB_ShopCatgory_View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ShopCatgory_View.h; sourceTree = "<group>"; };
@@ -3450,6 +3453,8 @@
 		845CB0D51DDDC24900C02DC2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8414A1EC1DDFFB2D000F93BD /* LBB_AddressModel.h */,
+				8414A1ED1DDFFB2D000F93BD /* LBB_AddressModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4929,6 +4934,7 @@
 				1D0F48DA1DC9F15200A37DE2 /* LBB_GuiderApplyLabelSelectView.m in Sources */,
 				1D0F48C51DC9C2F500A37DE2 /* LBB_GuiderMainCell.m in Sources */,
 				842BCE071DCD79E400A16788 /* JHChart.m in Sources */,
+				8414A1EE1DDFFB2D000F93BD /* LBB_AddressModel.m in Sources */,
 				842BCDF51DCD79E300A16788 /* LBB_Tarvel_Bill_Free_Cell.m in Sources */,
 				1D12FA6E1DC6E97700ACD462 /* LBB_OrderWaitPayViewController.m in Sources */,
 				845CB1E11DDDC24900C02DC2 /* LBB_MyTravelTableViewCell.m in Sources */,
