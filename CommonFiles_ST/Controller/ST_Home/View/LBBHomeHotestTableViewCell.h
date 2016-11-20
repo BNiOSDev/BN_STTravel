@@ -9,7 +9,7 @@
 #import "LBBPoohBaseTableViewCell.h"
 #import "KSViewPagerView.h"
 #import "HMSegmentedControl.h"
-
+#import "LBB_HomeViewModel.h"
 
 @interface LBBHomeHotestTableViewCell : LBBPoohBaseTableViewCell
 
@@ -17,8 +17,18 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, retain) HMSegmentedControl* pagerView;
 -(void)setPagerViewHidden:(BOOL)isHidden;
-@property(nonatomic, assign)LBBPoohSegmCtrlType selectType;
 
 @property(nonatomic, assign)BOOL isMarket;
+
+
+//热门推荐
+@property (nonatomic, strong)NSMutableArray<BN_HomeSpotsList*> *spotsArray;
+
+//达人景点推荐
+@property (nonatomic, strong)NSMutableArray<BN_HomeSpotsList*> *scenicSpotsArray;
+//达人美食推荐
+@property (nonatomic, strong)NSMutableArray<BN_HomeSpotsList*> *footSpotsArray;
+//达人民宿推荐
+@property (nonatomic, strong)NSMutableArray<BN_HomeSpotsList*> *liveSpotsArray;
 
 @end

@@ -85,6 +85,7 @@
         [self.commentsView setTitle:@"1000" forState:UIControlStateNormal];
         [self.commentsView setTitleColor:ColorLightGray forState:UIControlStateNormal];
         [self.commentsView.titleLabel setFont:Font12];
+        [self.commentsView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [self.contentView addSubview:self.commentsView];
         [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -105,11 +106,12 @@
         [self.greetView setTitle:@"1000" forState:UIControlStateNormal];
         [self.greetView setTitleColor:ColorLightGray forState:UIControlStateNormal];
         [self.greetView.titleLabel setFont:Font12];
+        [self.greetView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [self.contentView addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.equalTo(ws.commentsView.mas_left).offset(-3);
-            make.centerY.height.equalTo(ws.commentsView);
+            make.right.equalTo(ws.commentsView.mas_left).offset(-8);
+            make.centerY.equalTo(ws.commentsView);
         }];
         [self.greetView bk_whenTapped:^{
             
@@ -211,42 +213,11 @@
         [self.specialLabelButton6 setHidden:YES];
         [self.specialLabelButton5 setHidden:YES];
         [self.specialLabelButton4 setHidden:YES];
+        [self.specialLabelButton3 setHidden:YES];
+        [self.specialLabelButton2 setHidden:YES];
+        [self.specialLabelButton1 setHidden:YES];
 
-     /*   [self.specialLabelButton1 bk_addEventHandler:^(id sender){
-            
-            NSLog(@"specialLabelButton1 touch");
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            [[ws getViewController].navigationController pushViewController:dest animated:YES];
-        } forControlEvents:UIControlEventTouchUpInside];
-        */
-        [self.specialLabelButton2 bk_addEventHandler:^(id sender){
-            
-            NSLog(@"specialLabelButton2 touch");
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            [[ws getViewController].navigationController pushViewController:dest animated:YES];
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.specialLabelButton3 bk_addEventHandler:^(id sender){
-            
-            NSLog(@"specialLabelButton3 touch");
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            [[ws getViewController].navigationController pushViewController:dest animated:YES];
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.specialLabelButton4 bk_addEventHandler:^(id sender){
-            
-            NSLog(@"specialLabelButton4 touch");
-        } forControlEvents:UIControlEventTouchUpInside];
-        [self.specialLabelButton5 bk_addEventHandler:^(id sender){
-            
-            NSLog(@"specialLabelButton5 touch");
-        } forControlEvents:UIControlEventTouchUpInside];
-        [self.specialLabelButton6 bk_addEventHandler:^(id sender){
-            
-            NSLog(@"specialLabelButton6 touch");
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-        
+     
         
         UIView* sep2 = [UIView new];
         [sep2 setBackgroundColor:ColorLine];
@@ -255,36 +226,128 @@
             make.bottom.left.right.equalTo(ws.contentView);
             make.height.mas_equalTo(SeparateLineWidth);
         }];
+    
         
-        [self.portraitImageView bk_whenTapped:^{
-            
-            LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
-            [[ws getViewController].navigationController pushViewController:dest animated:YES];
-            
-        }];
-        
-        [self.specialLabelButton1 bk_whenTapped:^{
-            
-            NSLog(@"specialLabelButton1 touch");
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            [[ws getViewController].navigationController pushViewController:dest animated:YES];
-            
-        }];
-        
+        [self blindData];
     }
     return self;
 }
 
 
--(void)setModel:(id)model{
+-(void)blindData{
+
+    @weakify (self);
+    [RACObserve(self, model) subscribeNext:^(BN_HomeTravelNotes* model) {
+        @strongify(self);
+        
+        [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.travelNotesPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//游记标题
+        [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//用户头像
+        [self.portraitImageView bk_whenTapped:^{
+            
+            LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
+            [[self getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+        
+        [self.travlTitleLable setText:model.travelNotesName];//游记标题
+        [self.userLable setText:model.userName];//用户名
+        
+        [self.greetView setTitle:[NSString stringWithFormat:@"%d",model.likeNum] forState:UIControlStateNormal];//收藏数
+        [self.commentsView setTitle:[NSString stringWithFormat:@"%d",model.commentsNum] forState:UIControlStateNormal];//评论条数
+        
+        //点赞次数
+        if (!model.isLiked) {
+            [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        }
+        else{
+            [self.greetView setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
+        }
+        
+        //是否收藏
+        if (!model.isCollected) {
+            [self.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
+        }
+        else{
+            [self.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
+        }
+
+        //标签
+        self.specialLabelButton1.hidden = YES;
+        self.specialLabelButton2.hidden = YES;
+        self.specialLabelButton3.hidden = YES;
+        self.specialLabelButton4.hidden = YES;
+        self.specialLabelButton5.hidden = YES;
+        self.specialLabelButton6.hidden = YES;
+        
+        NSInteger count = model.tags.count;
+        if (count > 0) {
+            self.specialLabelButton1.hidden = NO;
+            BN_HomeTag* tag = [model.tags objectAtIndex:0];
+            [self.specialLabelButton1 setTitle:tag.tagName forState:UIControlStateNormal];
+            [self.specialLabelButton1 bk_whenTapped:^{
+                
+                NSLog(@"specialLabelButton1 touch");
+                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+                [[self getViewController].navigationController pushViewController:dest animated:YES];
+            }];
+        }
+        if (count > 1){
+            self.specialLabelButton2.hidden = NO;
+            BN_HomeTag* tag = [model.tags objectAtIndex:1];
+            [self.specialLabelButton2 setTitle:tag.tagName forState:UIControlStateNormal];
+            [self.specialLabelButton2 bk_whenTapped:^{
+                
+                NSLog(@"specialLabelButton1 touch");
+                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+                [[self getViewController].navigationController pushViewController:dest animated:YES];
+            }];
+        }
+        if (count > 2){
+            self.specialLabelButton3.hidden = NO;
+            BN_HomeTag* tag = [model.tags objectAtIndex:2];
+            [self.specialLabelButton3 setTitle:tag.tagName forState:UIControlStateNormal];
+            [self.specialLabelButton3 bk_whenTapped:^{
+                
+                NSLog(@"specialLabelButton1 touch");
+                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+                [[self getViewController].navigationController pushViewController:dest animated:YES];
+            }];
+        }
+        if (count > 3){
+            self.specialLabelButton4.hidden = NO;
+            BN_HomeTag* tag = [model.tags objectAtIndex:3];
+            [self.specialLabelButton4 setTitle:tag.tagName forState:UIControlStateNormal];
+            [self.specialLabelButton4 bk_whenTapped:^{
+                
+                NSLog(@"specialLabelButton1 touch");
+                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+                [[self getViewController].navigationController pushViewController:dest animated:YES];
+            }];
+        }
+        if (count > 4){
+            self.specialLabelButton5.hidden = NO;
+            BN_HomeTag* tag = [model.tags objectAtIndex:4];
+            [self.specialLabelButton5 setTitle:tag.tagName forState:UIControlStateNormal];
+            [self.specialLabelButton5 bk_whenTapped:^{
+                
+                NSLog(@"specialLabelButton1 touch");
+                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+                [[self getViewController].navigationController pushViewController:dest animated:YES];
+            }];
+        }
+        if (count > 5){
+            self.specialLabelButton6.hidden = NO;
+            BN_HomeTag* tag = [model.tags objectAtIndex:5];
+            [self.specialLabelButton6 setTitle:tag.tagName forState:UIControlStateNormal];
+            [self.specialLabelButton6 bk_whenTapped:^{
+                
+                NSLog(@"specialLabelButton1 touch");
+                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+                [[self getViewController].navigationController pushViewController:dest animated:YES];
+            }];
+        }
+        
+    }];
     
-    WS(ws);
-    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
-    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg"] placeholderImage:IMAGE(@"poohtest")];
-
-
-
 }
-
 
 @end

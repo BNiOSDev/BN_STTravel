@@ -20,9 +20,14 @@ UITextFieldDelegate
 @property (weak, nonatomic) IBOutlet UITextField *secondTextField;
 @property (weak, nonatomic) IBOutlet UITextField *comfirTextField;
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;
-@property (weak, nonatomic)  UIView *line1;
-@property (weak, nonatomic)  UIView *line2;
-@property (weak, nonatomic)  UIView *line3;
+@property (weak, nonatomic) IBOutlet UIView *line1;
+@property (weak, nonatomic) IBOutlet UIView *line2;
+@property (weak, nonatomic) IBOutlet UIView *line3;
+
+@property(nonatomic,copy) NSString *orignPassword;
+@property(nonatomic, copy) NSString *secondPassword;
+@property(nonatomic, copy) NSString *comfirPassword;
+
 
 @end
 
@@ -31,9 +36,29 @@ UITextFieldDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self initUI];
 }
 
 - (void)buildControls
+{
+    @weakify(self);
+    [self.orignTextField.rac_textSignal subscribeNext:^(id x) {
+        @strongify(self);
+        self.orignPassword = self.orignTextField.text;
+    }];
+    
+    [self.secondTextField.rac_textSignal subscribeNext:^(id x) {
+        @strongify(self);
+        self.secondPassword = self.secondTextField.text;
+    }];
+    
+    [self.comfirTextField.rac_textSignal subscribeNext:^(id x) {
+        @strongify(self);
+        self.comfirPassword = self.comfirTextField.text;
+    }];
+}
+
+- (void)initUI
 {
     self.orignLabel.textColor = ColorBlack;
     self.newpLabel.textColor = ColorBlack;
@@ -44,15 +69,15 @@ UITextFieldDelegate
     self.line2.backgroundColor = ColorLine;
     self.line3.backgroundColor = ColorLine;
     
-    self.orignLabel.font = Font14;
-    self.newpLabel.font = Font14;
-    self.comfirLabel.font = Font14;
+    self.orignLabel.font = Font16;
+    self.newpLabel.font = Font16;
+    self.comfirLabel.font = Font16;
     self.tipLabel.font = Font14;
 
     self.saveBtn.backgroundColor = [UIColor clearColor];
     [self.saveBtn setBackgroundImage:[UIImage createImageWithColor:ColorBtnYellow] forState:UIControlStateNormal];
     [self.saveBtn setTitleColor:ColorWhite forState:UIControlStateNormal];
-    [self.saveBtn.titleLabel setFont:Font15];
+    [self.saveBtn.titleLabel setFont:Font16];
     
     [self setTextFieldBackImage:self.orignTextField];
     [self setTextFieldBackImage:self.secondTextField];

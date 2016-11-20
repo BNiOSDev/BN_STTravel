@@ -13,6 +13,7 @@
 #import "ChangePhoneNumViewController.h"
 #import "LBB_ImagePickerViewController.h"
 #import "LBB_LoginViewController.h"
+#import "VerificationViewController.h"
 
 typedef NS_ENUM(NSInteger,PersonalInfoType) {
     eUserHead = 1000,//头像
@@ -258,7 +259,10 @@ UITableViewDataSource
 
 - (void)showChangePhoneNum:(id)sender
 {
-    [self performSegueWithIdentifier:@"ChangePhoneNumViewController" sender:nil];
+        UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+        VerificationViewController* vc = [main instantiateViewControllerWithIdentifier:@"VerificationViewController"];
+        vc.baseViewType = eChangePhoneNum;
+        [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showAddressPickerMenu:(id)sender
@@ -324,6 +328,7 @@ UITableViewDataSource
 
 - (void)changePassword:(id)sender
 {
+    
     [self performSegueWithIdentifier:@"ChangePasswordViewController" sender:sender];
 }
 

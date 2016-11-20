@@ -111,6 +111,19 @@
 }
 
 
+-(void)setNoticesArray:(NSMutableArray<BN_HomeNotices *> *)noticesArray{
+    
+    NSLog(@"setNoticesArray:%@",noticesArray);
+
+    _noticesArray = noticesArray;
+    NSMutableArray* texts = [NSMutableArray new];
+    for (BN_HomeNotices* obj in noticesArray) {
+        
+        [texts addObject:obj.content?obj.content:@""];
+    }
+    [self setScrollTextArray:texts];
+}
+
 -(void)setScrollTextArray:(NSArray*)array{
 
     WS(ws);
@@ -134,9 +147,12 @@
         make.top.bottom.equalTo(ws.contentView);
     }];
     
-    [tView animationWithTexts:array];
-
-
+    if (array.count <= 0) {
+        [tView animationWithTexts:@[@"暂无公告信息"]];
+    }
+    else{
+        [tView animationWithTexts:array];
+    }
 }
 
 

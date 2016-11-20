@@ -7,7 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-
+#import "LBB_HomeViewModel.h"
 @interface LBBHomeTravelRecommendTableViewCell : LBBPoohBaseTableViewCell
 
 @property(nonatomic, retain)UIImageView* bgImageView;
@@ -25,6 +25,6 @@
 @property(nonatomic, retain)UIButton* specialLabelButton5;
 @property(nonatomic, retain)UIButton* specialLabelButton6;
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)BN_HomeTravelNotes* model;
 
 @end

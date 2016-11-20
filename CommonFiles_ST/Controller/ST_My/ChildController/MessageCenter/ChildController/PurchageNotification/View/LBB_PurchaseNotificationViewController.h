@@ -10,4 +10,6 @@
 
 @interface LBB_PurchaseNotificationViewController : MineBaseViewController
 
+@property(nonatomic,assign) PurchaseNotificationType notificationType;
+
 @end

@@ -324,7 +324,7 @@
         {
             NSLog(@"getNoticesArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
-            NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
+            NSArray *returnArray = [BN_HomeNotices mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
             {

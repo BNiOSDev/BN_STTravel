@@ -107,6 +107,13 @@ typedef NS_ENUM(NSInteger,MessageCenterSquareTravelType)
     eMessageCollection //收藏
 };
 
+
+typedef NS_ENUM(NSInteger,PurchaseNotificationType)
+{
+    eMall = 0,//商城通知
+    eTicket,//门票通知
+};
+
 typedef NS_ENUM(NSInteger, UICollectionViewCellSignal)
 {
     UICollectionViewCellPraise = 0,  //赞
@@ -133,7 +140,6 @@ typedef NS_ENUM(NSInteger, MySquareViewType)
     MySquarePhotoViewFravorite, //我的-收藏-照片
     MySquareVideoViewFravorite, //我的-收藏-视频
     MySquareViewFravorite, //我的-收藏-游记
-
 };
 
 typedef void(^CollectionViewCellBlock)(id object,UICollectionViewCellSignal signal);

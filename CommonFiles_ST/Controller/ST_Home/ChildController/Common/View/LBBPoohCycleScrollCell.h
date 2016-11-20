@@ -8,6 +8,7 @@
 
 #import "LBBPoohBaseTableViewCell.h"
 #import <AutoScrollLabel/CBAutoScrollLabel.h>
+#import "LBB_HomeViewModel.h"
 
 
 
@@ -25,4 +26,7 @@
 @property(nonatomic, retain)UIImageView* orderPortraitImageView;
 @property(nonatomic, retain)UILabel* orderNewMessageLabel;
 -(void)showOrderMessage;
+
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *adModelArray;
+
 @end

@@ -1,37 +1,35 @@
 //
-//  LBB_MyFavoriteSquareViewController.m
+//  LBB_PurchaseModuleViewController.m
 //  ST_Travel
 //
-//  Created by 晨曦 on 16/11/17.
+//  Created by 晨曦 on 16/11/19.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBB_MyFavoriteSquareViewController.h"
-#import "ST_SquareViewController.h"
-#import "LBB_MyTravelViewController.h"
-#import "LBB_MyVideoViewController.h"
+#import "LBB_PurchaseModuleViewController.h"
+#import "LBB_PurchaseNotificationViewController.h"
 #import "HMSegmentedControl.h"
-#import "LBB_MyPhotoViewController.h"
 
-#define ViewNum 3
 
-@interface LBB_MyFavoriteSquareViewController ()<UIScrollViewDelegate>
+#define ViewNum 2
+
+@interface LBB_PurchaseModuleViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *contentScrollView;
-@property(nonatomic, strong) LBB_MyTravelViewController  *travelContrller;//游记
-@property(nonatomic,strong) LBB_MyVideoViewController *videoController;//视频
-@property(nonatomic,strong) LBB_MyPhotoViewController *photoControllerll;//照片
+@property(nonatomic, strong) LBB_PurchaseNotificationViewController *mallVC;//商城通知
+@property(nonatomic,strong) LBB_PurchaseNotificationViewController *ticketVC;//门票通知
 
 @property(nonatomic,strong) HMSegmentedControl *segmentedControl;
 
 @end
 
-@implementation LBB_MyFavoriteSquareViewController
+@implementation LBB_PurchaseModuleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = NSLocalizedString(@"广场", nil);
+    self.navigationItem.title = NSLocalizedString(@"购买通知", nil);
     self.view.backgroundColor = ColorBackground;
+    self.baseViewType = ePurchageNotifion;
     
     //加载Segment
     [self setSegment];
@@ -53,7 +51,7 @@
 
 -(void)setSegment {
     
-    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"照片",@"视频",@"游记"]];
+    _segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"商城通知",@"门票通知"]];
     _segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
     _segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
                                               NSForegroundColorAttributeName:ColorLightGray};
@@ -98,23 +96,27 @@
     self.contentScrollView = sv;
 }
 
-//加载2个ViewController
+//加载4个ViewController
 -(void)addChildViewController{
     
-    self.photoControllerll = [[LBB_MyPhotoViewController alloc]init];
-    self.photoControllerll.squareType = MySquarePhotoViewFravorite;
-    [self addChildViewController:self.photoControllerll];
+    self.mallVC = [self getChildVC];
+    self.mallVC.notificationType = eMall;
+    [self addChildViewController:self.mallVC];
     
-    self.videoController = [[LBB_MyVideoViewController alloc]init];
-    self.videoController.squareType = MySquareVideoViewFravorite;
-    [self addChildViewController:self.videoController];
-    
-    
-    self.travelContrller = [[LBB_MyTravelViewController alloc]init];
-    self.travelContrller.travelviewType = MyTravelsViewDownloaed;
-    self.travelContrller.squareType = MySquareViewFravorite;
-    [self addChildViewController:self.travelContrller];
+    self.ticketVC = [self getChildVC];
+    self.ticketVC.notificationType = eTicket;
+    [self addChildViewController:self.ticketVC];
 }
+
+
+- (LBB_PurchaseNotificationViewController *)getChildVC
+{
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    LBB_PurchaseNotificationViewController  *vc  = [main instantiateViewControllerWithIdentifier:@"LBB_PurchaseNotificationViewController"];
+    
+    return vc ;
+}
+
 
 #pragma mark - UIScrollViewDelegate
 
@@ -140,5 +142,6 @@
     NSLog(@"%d",(int)(scrollView.contentOffset.x / DeviceWidth));
     [self scrollToPage:pageIndex];//修复页面自动滚动偏差
 }
+
 
 @end

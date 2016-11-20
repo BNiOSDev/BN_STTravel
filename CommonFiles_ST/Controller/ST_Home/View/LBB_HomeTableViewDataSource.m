@@ -18,6 +18,8 @@
 @interface LBB_HomeTableViewDataSource()
 
 @property (nonatomic, strong) UITableView *tableView;
+@property(nonatomic, assign)LBBPoohSegmCtrlType vipRecommendType;//达人推荐
+@property(nonatomic, assign)LBBPoohSegmCtrlType giftRecommendType;//伴手礼推荐
 
 @end
 
@@ -60,7 +62,7 @@
             break;
         case LBBHomeSectionTravelRecommendType:
         {
-            return 2;
+            return self.viewModel.travelNotesArray.count;
         }
             break;
         case LBBHomeSectionVipRecommendType:
@@ -203,21 +205,8 @@
         }
         [cell setCycleScrollViewHeight:AutoSize(370/2)];
         
-        NSMutableArray* urls = [NSMutableArray new];
-        for (BN_HomeAdvertisement* obj in self.viewModel.advertisementArray) {
-            
-            [urls addObject:obj.picUrl];
-        }
-        
-        [cell setCycleScrollViewUrls:urls];
-        [cell setEnableBlock:YES];
-        cell.click = ^(NSNumber* index){
-            
-            //  NSInteger num = [index integerValue];
-            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
-            [ws.parentViewController.navigationController pushViewController:dest animated:YES];
-            
-        };
+
+        [cell setAdModelArray:self.viewModel.advertisementArray];//设置model。首页广告的数据
         return cell;
     }
     else if (indexPath.row == 1){
@@ -239,8 +228,8 @@
             NSLog(@"LBBHomeAnnouncementTableViewCell nil");
             
         }
-        NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
-        [cell setScrollTextArray:array];
+       // NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
+        [cell setNoticesArray:self.viewModel.noticesArray];
         
         return cell;
     }
@@ -286,15 +275,9 @@
             
         }
         [cell setCycleScrollViewHeight:AutoSize(380/2)];
-        [cell setCycleScrollViewUrls:nil];
-        [cell setEnableBlock:YES];
-        cell.click = ^(NSNumber* index){
-            
-            //  NSInteger num = [index integerValue];
-            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
-            [ws.parentViewController.navigationController pushViewController:dest animated:YES];
-            
-        };
+        
+        [cell setAdModelArray:self.viewModel.spotAdvertisementArray];//设置model。热门推荐广告的数据
+
         return cell;
     }
     else if (indexPath.row == 1){
@@ -305,6 +288,7 @@
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
         [cell setPagerViewHidden:YES];
+        [cell setSpotsArray:self.viewModel.spotsArray];
         return cell;
     }
     else{
@@ -342,7 +326,7 @@
         
     }
     
-    [cell setModel:nil];
+    [cell setModel:[self.viewModel.travelNotesArray objectAtIndex:indexPath.row]];
     
     return cell;
     
@@ -359,6 +343,7 @@
 #pragma  //达人推荐
 -(UITableViewCell*)tableView:(UITableView *)tableView vipRecommendCellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    WS(ws);
     static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
     LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
@@ -366,6 +351,28 @@
         NSLog(@"LBBHomeHotestTableViewCell nil");
     }
     [cell setPagerViewHidden:NO];
+    [cell.pagerView setSelectedSegmentIndex:self.vipRecommendType];
+    cell.pagerView.indexChangeBlock = ^(NSInteger index){
+        NSLog(@"segmentedControl select:%ld",index);
+        ws.vipRecommendType = index;
+        [ws.tableView reloadData];
+    };
+    
+    switch (self.vipRecommendType) {
+        case LBBPoohSegmCtrlFoodsType:
+            [cell setFootSpotsArray:self.viewModel.footSpotsArray];
+            break;
+        case LBBPoohSegmCtrlHostelType:
+            [cell setLiveSpotsArray:self.viewModel.liveSpotsArray];
+            break;
+        case LBBPoohSegmCtrlScenicType:
+            [cell setScenicSpotsArray:self.viewModel.scenicSpotsArray];
+            break;
+            
+        default:
+            break;
+    }
+    
     return cell;
     
 }
@@ -434,6 +441,11 @@
         }
         [cell setPagerViewHidden:NO];
         cell.isMarket = YES;
+        [cell.pagerView setSelectedSegmentIndex:self.giftRecommendType];
+        cell.pagerView.indexChangeBlock = ^(NSInteger index){
+            NSLog(@"segmentedControl select:%ld",index);
+            ws.giftRecommendType = index;
+        };
         return cell;
     }
     else{
