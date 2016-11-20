@@ -9,7 +9,7 @@
 #import "LBB_MyTravelViewController.h"
 #import "SDAutoLayout.h"
 #import "ZJMTravelCell.h"
-#import "ZJMTravelModel.h"
+#import "LBB_TravelModel.h"
 #import "LBB_MyTravelTableViewCell.h"
 #import "Header.h"
 #import "LBB_TravelCommentController.h"
@@ -44,7 +44,7 @@
     // Do any additional setup after loading the view.
     _dataArray = [[NSMutableArray alloc]init];
     for (int i = 0; i <= 9; i++) {
-        ZJMTravelModel  *model = [[ZJMTravelModel alloc]init];
+        LBB_TravelModel  *model = [[LBB_TravelModel alloc]init];
         model.iconName = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
         model.imageUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
         model.name = @"钟爱SD的男人";
@@ -93,8 +93,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LBB_MyTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyTravelNormal];
-    cell.cellBlock = ^(id view,UITableViewCellViewSignal signal){
-        [self dealCellSignal:signal withIndex:indexPath];
+    cell.cellBlock = ^(id info,UICollectionViewCellSignal signal){
+        [self dealCellSignal:signal withIndex:indexPath Object:info];
     };
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     cell.viewType = _travelviewType;
@@ -118,29 +118,33 @@
     return AUTO(215);
 }
 
-
 #pragma mark 处理点击cell上面的按钮
-- (void)dealCellSignal:(UITableViewCellViewSignal)signel  withIndex:(NSIndexPath *)indexPath
+- (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject
 {
     NSLog(@"indexPath = %ld",(long)indexPath.row);
     switch (signel) {
-        case UITableViewCellCollect:
+        case UICollectionViewCellPraise://赞
         {
             
         }
             break;
-        case UITableViewCellConment:
+        case UICollectionViewCellComment://评论
         {
             LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case UITableViewCellPraise:
+        case UICollectionViewCellHeart://爱心
         {
             
         }
             break;
-        case UITableViewCellDelete://删除
+        case UICollectionViewCellDelete://删除
+        {
+            
+        }
+            break;
+        case UICollectionViewCellCollection://收藏
         {
             
         }

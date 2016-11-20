@@ -9,7 +9,9 @@
 #import "LBB_MyVideoViewController.h"
 #import "LBB_MyVideoViewCell.h"
 #import "Header.h"
- 
+#import "LBB_TravelCommentController.h"
+#import "LBB_TravelDetailViewController.h"
+
 
 @interface LBB_MyVideoViewController ()
 <
@@ -95,18 +97,52 @@ UICollectionViewDelegateFlowLayout>
     static NSString *CellIdentifier = @"LBB_MyVideoViewCell";
     LBB_MyVideoViewCell *cell =  (LBB_MyVideoViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.squareType = _squareType;
-    LBB_MyVideoModel *cellInfo = [self.arr objectAtIndex:indexPath.row];
-    if (cellInfo) {
-        [cell setModel:cellInfo];
-    }
+    cell.cellBlock = ^(id info,UICollectionViewCellSignal signal){
+        [self dealCellSignal:signal withIndex:indexPath Object:info];
+    };
+    [cell setModel:[self.arr objectAtIndex:indexPath.row]];
+   
     return cell;
 }
 
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+
+    LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
+#pragma mark 处理点击cell上面的按钮
+- (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject
+{
+    NSLog(@"indexPath = %ld",(long)indexPath.row);
+    switch (signel) {
+        case UICollectionViewCellPraise://赞
+        {
+            
+        }
+            break;
+        case UICollectionViewCellComment://评论
+        {
+            LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case UICollectionViewCellDelete://删除
+        {
+            
+        }
+            break;
+        case UICollectionViewCellCollection://收藏
+        {
+            
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 @end

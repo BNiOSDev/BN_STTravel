@@ -118,9 +118,10 @@ typedef NS_ENUM(NSInteger,PurchaseNotificationType)
 typedef NS_ENUM(NSInteger, UICollectionViewCellSignal)
 {
     UICollectionViewCellPraise = 0,  //赞
-    UICollectionViewCellConment,         //评论
-    UICollectionViewCellFocus,               //关注
-    UICollectionViewCellDelete        //删除
+    UICollectionViewCellComment,    //评论
+    UICollectionViewCellHeart,    //爱心
+    UICollectionViewCellDelete,     //删除
+    UICollectionViewCellCollection   //收藏
 };
 
 

@@ -95,16 +95,19 @@
     [self.checkTextField.rac_textSignal subscribeNext:^(id x) {
         @strongify(self);
         self.checkNum = self.checkTextField.text;
-    }];
-    
-    self.accountTextField.text = @"13338274336";
-    
+    }]; 
 }
 
 
 #pragma mark - UI Action
 - (IBAction)getCheckNumBtnClickAction:(id)sender
 {
+    self.account = [self.account Trim];
+    if (![self.account validateMobile]) {
+        [self showHudPrompt:@"手机号输入错误，请重新输入"];
+        return;
+    }
+    
     [[LBB_LoginManager shareInstance] getVerificationCode:self.account Type:1];
 }
 
