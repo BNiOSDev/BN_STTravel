@@ -169,11 +169,25 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 }
 
 /*
- * 获取验证码
+ *  3.1.12获取验证码
+  1:注册短信2.服务通知类短信3营销类短信4修改密码5:修改手机号码
  */
-- (void)getVerificationCode:(NSString*)phoneNum
+- (void)getVerificationCode:(NSString*)phoneNum Type:(int)type
 {
     self.account = phoneNum;
+    NSDictionary *paraDic = @{
+                              @"phoneNum":self.account,
+                              @"type":@(type)
+                              };
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/smsVerifyCode",BASEURL];
+ 
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic
+                                 success:^(NSURLSessionDataTask *operation, id responseObject){
+                                     NSLog(@"responseObject = %@",responseObject);
+                                     
+                                 } failure:^(NSURLSessionDataTask *operation, NSError *error){
+                                    NSLog(@"error = %@",error);
+                                 }];
 }
 
 /*

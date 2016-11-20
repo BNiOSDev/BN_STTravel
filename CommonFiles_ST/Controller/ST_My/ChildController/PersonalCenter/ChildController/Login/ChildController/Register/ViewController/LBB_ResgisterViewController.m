@@ -96,13 +96,16 @@
         @strongify(self);
         self.checkNum = self.checkTextField.text;
     }];
+    
+    self.accountTextField.text = @"13338274336";
+    
 }
 
 
 #pragma mark - UI Action
 - (IBAction)getCheckNumBtnClickAction:(id)sender
 {
-    
+    [[LBB_LoginManager shareInstance] getVerificationCode:self.account Type:1];
 }
 
 - (IBAction)resgisterBtnClickAction:(id)sender

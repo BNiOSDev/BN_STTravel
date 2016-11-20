@@ -65,8 +65,9 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 
 /*
  * 获取验证码
+ 1:注册短信2.服务通知类短信3营销类短信4修改密码5:修改手机号码
  */
-- (void)getVerificationCode:(NSString*)phoneNum;
+- (void)getVerificationCode:(NSString*)phoneNum Type:(int)type;
 
 /*
  * 找回密码

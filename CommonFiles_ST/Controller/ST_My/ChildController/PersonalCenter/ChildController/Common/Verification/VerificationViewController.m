@@ -121,7 +121,11 @@ UITextFieldDelegate
         [alertView show];
         return;
     }
-    [[LBB_LoginManager shareInstance] getVerificationCode:self.phoneNum];
+    int type = 4;
+    if (self.baseViewType == eCheckPhoneNum) {
+        type = 5;
+    }
+    [[LBB_LoginManager shareInstance] getVerificationCode:self.phoneNum Type:4];
 }
 
 - (IBAction)startVerificatiteAction:(id)sender {
