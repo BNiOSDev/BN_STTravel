@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^LoginBlock)(NSString *userID,BOOL result);
-typedef void(^RegisterBlock)(BOOL result);
+//userToken 用户token或者 手机号
+typedef void(^LoginBlock)(NSString *userToken,BOOL result);
+
 
 typedef NS_ENUM(NSInteger,LoginType)
 {
@@ -23,7 +24,13 @@ typedef NS_ENUM(NSInteger,LoginType)
 //登录完成回调 返回是否成功和失败信息
 @property (nonatomic,copy) LoginBlock loginCompleteBlock;
 //注册完成回调，返回是否注册成功
-@property (nonatomic,copy) RegisterBlock resgisterCompleteBlock;
+@property (nonatomic,copy) LoginBlock resgisterCompleteBlock;
+//退出登录回调，返回是否退出成功
+@property (nonatomic,copy) LoginBlock logoutCompleteBlock;
+//找回密码回调
+@property (nonatomic,copy) LoginBlock findPSCompleteBlock;
+//设置密码回调
+@property (nonatomic,copy) LoginBlock setPSCompleteBlock;
 
 /*
  * 获取登录实例
@@ -39,20 +46,41 @@ typedef NS_ENUM(NSInteger,LoginType)
           Password:(NSString*)password
           CheckNum:(NSString*)checkNum
                Sex:(NSInteger)sex
-           Address:(NSString*)address;
+           Address:(NSString*)address
+     CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 
 /*
  * 登录
  */
 - (void)login:(LoginType)loginType
       Account:(NSString*)account
-     Password:(NSString*)password;
+     Password:(NSString*)password
+CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 
 
 /*
  * 退出登录
  */
-- (void)logout;
+- (void)logout:(void (^)(NSString *userToken,BOOL result))completeBlock;
+
+/*
+ * 获取验证码
+ */
+- (void)getVerificationCode:(NSString*)phoneNum;
+
+/*
+ * 找回密码
+ */
+- (void)findPassword:(NSString*)phoneNum
+            CheckNum:(NSString*)checkNum
+CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
+
+/*
+ * 找回密码
+ */
+- (void)setPassword:(NSString*)phoneNum
+            Password:(NSString*)password
+       CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 
 /*
  * 判断是否登录
@@ -60,8 +88,9 @@ typedef NS_ENUM(NSInteger,LoginType)
 - (BOOL)isLogin;
 
 /*
- * 获取用户ID
+ * 获取用户Token
  */
-- (NSString *)userID;
+- (NSString *)userToken;
+
 
 @end

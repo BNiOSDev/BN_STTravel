@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     eCheckPhoneNum,//验证手机号
     eAddress, //收货地址
     eAddAddress, //新建收货地址
+    eChangePassword, //修改密码
     eLogin ,//登录
     eResgister,//注册
     eFindPassword,//找回密码
