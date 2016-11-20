@@ -212,7 +212,6 @@
      3.1.4 热门推荐
      @param clear 是否清空原数据
      */
-#pragma 数据获取失败
     [self.viewModel getSpotsArrayClearData:YES];
     [self.viewModel.spotsArray.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];//data reload
@@ -231,7 +230,10 @@
      3.1.8 达人推荐
      @param Type 1.景点 2.美食 3.民宿
      */
+    [self.viewModel getSpotsArrayWithType:1];
+    [self.viewModel getSpotsArrayWithType:2];
     [self.viewModel getSpotsArrayWithType:3];
+
     [self.viewModel.scenicSpotsArray.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];//data reload
     }];

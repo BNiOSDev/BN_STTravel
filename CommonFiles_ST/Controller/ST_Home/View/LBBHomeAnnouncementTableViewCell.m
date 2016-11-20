@@ -111,6 +111,19 @@
 }
 
 
+-(void)setNoticesArray:(NSMutableArray<BN_HomeNotices *> *)noticesArray{
+    
+    NSLog(@"setNoticesArray:%@",noticesArray);
+
+    _noticesArray = noticesArray;
+    NSMutableArray* texts = [NSMutableArray new];
+    for (BN_HomeNotices* obj in noticesArray) {
+        
+        [texts addObject:obj.content?obj.content:@""];
+    }
+    [self setScrollTextArray:texts];
+}
+
 -(void)setScrollTextArray:(NSArray*)array{
 
     WS(ws);

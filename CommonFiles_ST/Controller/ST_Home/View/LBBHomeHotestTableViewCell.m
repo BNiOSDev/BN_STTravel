@@ -11,6 +11,7 @@
 #import "LBB_ScenicDetailViewController.h"
 @interface LBBHomeHotestTableViewCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property(nonatomic, retain)BN_HomeSpotsList* curObj;
 
 @end
 
@@ -39,7 +40,6 @@
                                                  NSForegroundColorAttributeName:ColorLightGray};
         segmentedControl.selectionIndicatorColor = ColorLightGray;
         segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        segmentedControl.selectedSegmentIndex = self.selectType;
         [self.contentView addSubview:segmentedControl];
         [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.centerX.equalTo(ws.contentView);
@@ -95,10 +95,33 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    if (self.spotsArray) {
+        return self.spotsArray.count;
+    }
+    else{
+        switch (self.pagerView.selectedSegmentIndex) {
+            case LBBPoohSegmCtrlFoodsType:
+                return self.footSpotsArray.count;
+                break;
+            case LBBPoohSegmCtrlHostelType:
+                return self.liveSpotsArray.count;
+                break;
+            case LBBPoohSegmCtrlScenicType:
+                return self.scenicSpotsArray.count;
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
     return 8;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    WS(ws);
     LBBHomeHotestTableViewCellItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBBHomeHotestTableViewCellItem"forIndexPath:indexPath];
     
     [cell sizeToFit];
@@ -106,7 +129,76 @@
         NSLog(@"无法创建LBBHomeHotestTableViewCellItem时打印，自定义的cell就不可能进来了。");
     }
     
-    [cell.mainImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(@"poohtest")];
+    BN_HomeSpotsList* obj;
+    if (self.spotsArray) {
+        obj = [self.spotsArray objectAtIndex:indexPath.row];
+    }
+    else{
+        switch (self.pagerView.selectedSegmentIndex) {
+            case LBBPoohSegmCtrlFoodsType:
+                obj = [self.footSpotsArray objectAtIndex:indexPath.row];
+                break;
+            case LBBPoohSegmCtrlHostelType:
+                obj = [self.liveSpotsArray objectAtIndex:indexPath.row];
+                break;
+            case LBBPoohSegmCtrlScenicType:
+                obj = [self.scenicSpotsArray objectAtIndex:indexPath.row];
+                break;
+        }
+    }
+    self.curObj = obj;
+   
+    [cell.mainImageView sd_setImageWithURL:[NSURL URLWithString:obj.allSpotsPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//场景图片
+    [cell.titleLabel setText:obj.allSpotsName];//场景名称
+    [cell.disView setTitle:[NSString stringWithFormat:@"%d",obj.commentsNum] forState:UIControlStateNormal];//评论条数
+    [cell.greetView setTitle:[NSString stringWithFormat:@"%d",obj.likeNum] forState:UIControlStateNormal];//点赞次数
+    [cell.priceLabel setText:[NSString stringWithFormat:@"%@元起/人",obj.price]];//价格
+    
+    @weakify (self);
+    [RACObserve(self, curObj) subscribeNext:^(BN_HomeTravelNotes* model) {
+        @strongify(self);
+        
+        if (model.isCollected) {
+            [cell.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
+        }
+        else{
+            [cell.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
+        }
+
+        if (model.isLiked) {
+            [cell.greetView setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
+        }
+        else{
+            [cell.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        }
+        
+    }];
+
+    
+    [cell.greetView bk_whenTapped:^{
+        
+        NSLog(@"greetView touch");
+        [ws.curObj like:^(NSError* error){
+            NSLog(@"like error:%@",error);
+
+        }];
+    }];
+    
+    [cell.disView bk_whenTapped:^{
+        
+        NSLog(@"disView touch");
+        
+    }];
+    [cell.favoriteButton bk_addEventHandler:^(id sender){
+        
+        NSLog(@"favoriteButton touch");
+        [ws.curObj collecte:^(NSError* error){
+            NSLog(@"collecte error:%@",error);
+        }];
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+
+    
     
     return cell;
 }
@@ -117,16 +209,36 @@
         return;
     }
     
+    BN_HomeSpotsList* obj;
+    if (self.spotsArray) {
+        obj = [self.spotsArray objectAtIndex:indexPath.row];
+    }
+    else{
+        switch (self.pagerView.selectedSegmentIndex) {
+            case LBBPoohSegmCtrlFoodsType:
+                obj = [self.footSpotsArray objectAtIndex:indexPath.row];
+                break;
+            case LBBPoohSegmCtrlHostelType:
+                obj = [self.liveSpotsArray objectAtIndex:indexPath.row];
+                break;
+            case LBBPoohSegmCtrlScenicType:
+                obj = [self.scenicSpotsArray objectAtIndex:indexPath.row];
+                break;
+        }
+    }
+    self.curObj = obj;
+    
+    
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
-    switch (self.selectType) {
-        case LBBPoohSegmCtrlScenicType://景点
-            dest.homeType = LBBPoohHomeTypeScenic;
-            break;
-        case LBBPoohSegmCtrlFoodsType://美食
+    switch (self.curObj.allSpotsType) {//	1.美食 2.民宿 3景点
+        case 1://美食
             dest.homeType = LBBPoohHomeTypeFoods;
             break;
-        case LBBPoohSegmCtrlHostelType://民宿
+        case 2://民宿
             dest.homeType = LBBPoohHomeTypeHostel;
+            break;
+        case 3://景点
+            dest.homeType = LBBPoohHomeTypeScenic;
             break;
     }
     if (dest) {
@@ -177,6 +289,18 @@
 
 
 
+-(void)setScenicSpotsArray:(NSMutableArray<BN_HomeSpotsList *> *)scenicSpotsArray{
+    _scenicSpotsArray = scenicSpotsArray;
+    [self.collectionView reloadData];
+}
 
+-(void)setFootSpotsArray:(NSMutableArray<BN_HomeSpotsList *> *)footSpotsArray{
 
+    _footSpotsArray = footSpotsArray;
+    [self.collectionView reloadData];
+}
+-(void)setLiveSpotsArray:(NSMutableArray<BN_HomeSpotsList *> *)liveSpotsArray{
+    _liveSpotsArray = liveSpotsArray;
+    [self.collectionView reloadData];
+}
 @end

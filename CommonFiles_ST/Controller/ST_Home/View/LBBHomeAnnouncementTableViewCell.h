@@ -7,10 +7,10 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_HomeViewModel.h"
 
 @interface LBBHomeAnnouncementTableViewCell : LBBPoohBaseTableViewCell
 
--(void)setScrollTextArray:(NSArray*)array;
-
+@property (nonatomic, strong)NSMutableArray<BN_HomeNotices*> *noticesArray;
 
 @end

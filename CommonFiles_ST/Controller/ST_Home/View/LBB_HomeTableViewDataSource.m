@@ -229,7 +229,7 @@
             
         }
        // NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
-        [cell setScrollTextArray:self.viewModel.noticesArray];
+        [cell setNoticesArray:self.viewModel.noticesArray];
         
         return cell;
     }
@@ -288,6 +288,7 @@
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
         [cell setPagerViewHidden:YES];
+        [cell setSpotsArray:self.viewModel.spotsArray];
         return cell;
     }
     else{
@@ -354,7 +355,24 @@
     cell.pagerView.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
         ws.vipRecommendType = index;
+        [ws.tableView reloadData];
     };
+    
+    switch (self.vipRecommendType) {
+        case LBBPoohSegmCtrlFoodsType:
+            [cell setFootSpotsArray:self.viewModel.footSpotsArray];
+            break;
+        case LBBPoohSegmCtrlHostelType:
+            [cell setLiveSpotsArray:self.viewModel.liveSpotsArray];
+            break;
+        case LBBPoohSegmCtrlScenicType:
+            [cell setScenicSpotsArray:self.viewModel.scenicSpotsArray];
+            break;
+            
+        default:
+            break;
+    }
+    
     return cell;
     
 }

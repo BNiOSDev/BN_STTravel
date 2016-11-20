@@ -33,13 +33,7 @@
             make.right.equalTo(ws.contentView).offset(-5);
            // make.height.width.mas_equalTo(25);
         }];
-        [self.favoriteButton bk_addEventHandler:^(id sender){
-        
-            NSLog(@"favoriteButton touch");
-            
-        } forControlEvents:UIControlEventTouchUpInside];
-        
-        
+
         
         self.titleLabel = [UILabel new];
 
@@ -64,13 +58,7 @@
             make.bottom.equalTo(ws.contentView).offset(-3);
           //  make.height.equalTo(@16);
         }];
-        
-        [self.disView bk_whenTapped:^{
-            
-            NSLog(@"disView touch");
-            
-        }];
-        
+
         
         self.greetView = [[UIButton alloc]init];
         [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
@@ -83,12 +71,6 @@
             make.left.equalTo(ws.disView.mas_right).offset(8);
             make.centerY.height.equalTo(ws.disView);
         }];
-        [self.greetView bk_whenTapped:^{
-            
-            NSLog(@"greetView touch");
-            
-        }];
-        
         
         self.priceLabel = [UILabel new];
         [self.priceLabel setText:@"120元起/人"];
