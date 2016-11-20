@@ -10,4 +10,6 @@
 
 @interface LBB_SquareTravelViewController : MineBaseViewController
 
+@property(nonatomic,assign) MessageCenterSquareTravelType messgeType;
+
 @end
