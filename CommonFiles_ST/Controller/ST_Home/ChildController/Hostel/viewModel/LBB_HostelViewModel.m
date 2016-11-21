@@ -85,6 +85,8 @@
         if(codeNumber.intValue == 0)
         {
             [temp.hostelCondition mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getHostelCondition 成功  %@",[dic objectForKey:@"result"]);
+
         }
         else
         {
@@ -142,7 +144,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getHostelArrayLongitude成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SpotModel mj_objectArrayWithKeyValuesArray:array];
             
@@ -161,7 +163,7 @@
         
         temp.hostelArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getUgcArrayClearData失败  %@",error.domain);
+        NSLog(@"getHostelArrayLongitude失败  %@",error.domain);
         
         temp.hostelArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];

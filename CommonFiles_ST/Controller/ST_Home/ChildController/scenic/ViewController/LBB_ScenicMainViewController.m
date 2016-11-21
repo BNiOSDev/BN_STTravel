@@ -174,8 +174,8 @@
     NSLog(@"纬度latitude:%f",self.locationManager.locManager.location.coordinate.latitude);
     NSLog(@"经度longitude:%f",self.locationManager.locManager.location.coordinate.longitude);
 
-    [self.viewModel getSpotArrayLongitude:@""
-                           dimensionality:@""
+    [self.viewModel getSpotArrayLongitude:@"126"//精度
+                           dimensionality:@"46"//维度
                                   typeKey:typeKey
                                  orderKey:orderKey
                           hotRecommendKey:hotRecommendKey
@@ -311,15 +311,6 @@
         return 0;
     }];
     //返回数据数组
-    
-    /*
-     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *type;//类别
-     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *order;//排序
-     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *hotRecommend;//热门推荐
-     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *tags;//标签
-     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *price;//价格
-     */
-    
     [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
     
         if (index == 0) {//类别
@@ -330,14 +321,23 @@
         }
         else{//标签
             if (section == 0) {//热门推荐
+                if (ws.viewModel.scenicSpotCondition.price.count <= 0) {
+                    return @[];
+                }
                 return @[ws.viewModel.scenicSpotCondition.hotRecommend];
 
             }
             else if (section == 1){//标签
+                if (ws.viewModel.scenicSpotCondition.price.count <= 0) {
+                    return @[];
+                }
                 return @[ws.viewModel.scenicSpotCondition.tags];
 
             }
             else{//价格
+                if (ws.viewModel.scenicSpotCondition.price.count <= 0) {
+                    return @[];
+                }
                 return @[ws.viewModel.scenicSpotCondition.price];
 
             }

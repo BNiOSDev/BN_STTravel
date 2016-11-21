@@ -142,7 +142,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getSpotArrayLongitude成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SpotModel mj_objectArrayWithKeyValuesArray:array];
             
