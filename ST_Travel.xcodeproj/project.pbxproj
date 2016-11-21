@@ -137,6 +137,10 @@
 		1D5757101DDD978C002BC247 /* LBB_PoohMyFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D57570F1DDD978C002BC247 /* LBB_PoohMyFavoriteViewController.m */; };
 		1D5757141DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5757131DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.m */; };
 		1D5757171DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D5757161DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m */; };
+		1DAC47C81DE29CA7001443DE /* LBB_HomeCommonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAC47C71DE29CA7001443DE /* LBB_HomeCommonModel.m */; };
+		1DAC47CB1DE2B070001443DE /* LBB_PoohCoreLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAC47CA1DE2B070001443DE /* LBB_PoohCoreLocationManager.m */; };
+		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
+		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DF515CA1DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515C81DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m */; };
 		1DF515CD1DD2CAB500C26695 /* LBB_HomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515CB1DD2CAB500C26695 /* LBB_HomeSearchViewController.m */; };
 		1DF515D41DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515D31DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m */; };
@@ -714,6 +718,12 @@
 		1D5757131DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohMyFavoriteMainCell.m; sourceTree = "<group>"; };
 		1D5757151DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohMyFavoriteSubjectCell.h; sourceTree = "<group>"; };
 		1D5757161DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohMyFavoriteSubjectCell.m; sourceTree = "<group>"; };
+		1DAC47C61DE29CA7001443DE /* LBB_HomeCommonModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeCommonModel.h; sourceTree = "<group>"; };
+		1DAC47C71DE29CA7001443DE /* LBB_HomeCommonModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeCommonModel.m; sourceTree = "<group>"; };
+		1DAC47C91DE2B070001443DE /* LBB_PoohCoreLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohCoreLocationManager.h; sourceTree = "<group>"; };
+		1DAC47CA1DE2B070001443DE /* LBB_PoohCoreLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohCoreLocationManager.m; sourceTree = "<group>"; };
+		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DF515C81DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchKeyWordCell.m; sourceTree = "<group>"; };
 		1DF515C91DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeSearchKeyWordCell.h; sourceTree = "<group>"; };
 		1DF515CB1DD2CAB500C26695 /* LBB_HomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchViewController.m; sourceTree = "<group>"; };
@@ -1196,6 +1206,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */,
+				1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */,
 				C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */,
 				B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */,
 			);
@@ -1221,6 +1233,8 @@
 		04A976604EE4577D70DCD075 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1DAC47CE1DE2B25F001443DE /* MapKit.framework */,
+				1DAC47CC1DE2B259001443DE /* CoreLocation.framework */,
 				C91F610B1D9F559C004FE75C /* QuartzCore.framework */,
 				0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */,
 			);
@@ -1893,6 +1907,8 @@
 			children = (
 				1D12FA2B1DC6E97700ACD462 /* PoohAppHelper.h */,
 				1D12FA2C1DC6E97700ACD462 /* PoohAppHelper.m */,
+				1DAC47C91DE2B070001443DE /* LBB_PoohCoreLocationManager.h */,
+				1DAC47CA1DE2B070001443DE /* LBB_PoohCoreLocationManager.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -4550,6 +4566,8 @@
 				C970D1481DD89E9E00E6CAEB /* LBB_HomeViewModel.m */,
 				1B93B32E1DE13B3F00AEF514 /* LBB_SpotDetailsViewModel.h */,
 				1B93B32F1DE13B3F00AEF514 /* LBB_SpotDetailsViewModel.m */,
+				1DAC47C61DE29CA7001443DE /* LBB_HomeCommonModel.h */,
+				1DAC47C71DE29CA7001443DE /* LBB_HomeCommonModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -5097,6 +5115,7 @@
 				1D12FA7E1DC6E97700ACD462 /* LBB_ScenicDetailViewController.m in Sources */,
 				845CB1F51DDDC24900C02DC2 /* PersonalCenterViewController.m in Sources */,
 				845CB1D11DDDC24900C02DC2 /* LBB_MessageCenterViewCell.m in Sources */,
+				1DAC47CB1DE2B070001443DE /* LBB_PoohCoreLocationManager.m in Sources */,
 				1D12FA691DC6E97700ACD462 /* LBB_OrderTicketPriceCell.m in Sources */,
 				1D12FA591DC6E97700ACD462 /* LBB_DiscoveryMainModel.m in Sources */,
 				845CB1EF1DDDC24900C02DC2 /* ReceiptAddressViewCell.m in Sources */,
@@ -5158,6 +5177,7 @@
 				842BCE161DCD79E400A16788 /* ZJScrollPageView.m in Sources */,
 				1D12FA5C1DC6E97700ACD462 /* LBB_DiscoveryMainTableViewCell.m in Sources */,
 				842BCE2B1DCD79E400A16788 /* ZJMTravelsViewController.m in Sources */,
+				1DAC47C81DE29CA7001443DE /* LBB_HomeCommonModel.m in Sources */,
 				842BCE291DCD79E400A16788 /* ST_SquareViewController.m in Sources */,
 				842BCDA51DCD79E300A16788 /* LBB_CommentView.m in Sources */,
 				1D01A9CA1DDC8D010026CA9B /* XDPopupListView.m in Sources */,

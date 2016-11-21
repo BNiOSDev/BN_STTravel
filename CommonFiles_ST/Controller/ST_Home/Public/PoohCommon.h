@@ -39,6 +39,12 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import "UINavigationBar+Awesome.h"
 #import <TOWebViewController.h>
 
+//model
+#import "LBB_HomeCommonModel.h"
+#import "LBB_PoohCoreLocationManager.h"
+
+
+
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define UISCREEN_HEIGTH [UIScreen mainScreen].bounds.size.height
 

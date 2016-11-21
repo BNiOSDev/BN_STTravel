@@ -14,6 +14,8 @@
 #import "LBB_ScenicDetailSubjectViewController.h"
 #import "LBB_FilterTableViewCell.h"
 #import "LBB_FilterListTableViewCell.h"
+#import "LBB_ScenicViewModel.h"
+#import "LBB_PoohCoreLocationManager.h"
 
 @interface LBB_ScenicMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -24,7 +26,18 @@
 @property (nonatomic, retain) NSArray* categoryArray;//类别
 @property (nonatomic, retain) NSArray* sortArray;//排序
     
-    
+@property(nonatomic, retain)LBB_ScenicViewModel* viewModel;//数据模型
+
+//菜单选项的选择项
+@property (nonatomic,assign)NSInteger typeSelectIndex;//类别
+@property (nonatomic,assign)NSInteger orderSelectIndex;//排序
+@property (nonatomic,assign)NSInteger hotRecommendSelectIndex;//热门推荐
+@property (nonatomic,assign)NSInteger tagsSelectIndex;//标签
+@property (nonatomic,assign)NSInteger priceSelectIndex;//价格
+
+//地理位置管理
+@property (nonatomic,retain)LBB_PoohCoreLocationManager* locationManager;
+
 @end
 
 @implementation LBB_ScenicMainViewController
@@ -48,6 +61,131 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+/*
+ *  init view Model
+ */
+-(void)initViewModel{
+    WS(ws);
+
+    self.viewModel = [[LBB_ScenicViewModel alloc]init];
+    
+    /**
+     3.2.1	景点筛选条件(已测)
+     */
+#pragma 景点类别和标签的价格没有数据
+    [self.viewModel getSpotCondition];
+    [self.viewModel.scenicSpotCondition.loadSupport setDataRefreshblock:^{
+        [ws getSpotArrayLongitude:YES];
+    }];
+   
+
+    /**
+     3.1.2 广告轮播 4.景点页面最顶部
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getAdvertisementListArrayClearData:YES];
+    //1.监听数据，用来刷新数据，数据变化才会调用
+    [self.viewModel.advertisementArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+   
+    /**
+     3.2.4	景点列表(已测)
+     
+     @param longitude Y坐标
+     @param dimensionality Y坐标
+     @param typeKey 传入景点类型key
+     @param orderKey 传入排序key
+     @param hotRecommendKey 热门推荐key
+     @param tagsKey 标签key
+     @param priceKey 价格Key
+     */
+    [self.viewModel.spotArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+#pragma 响应处理
+    //2.0响应的view，网络状态变化时的再刷新动作
+    //  [self.tableView setTableViewData:self.viewModel.advertisementArray];
+    //2.1点击刷新
+    /* [ws.tableView setRefreshBlock:^{
+     [ws.viewModel getAdvertisementListArrayClearData:NO];
+     }];
+     */
+    //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
+    // [self.tableView setTableViewData:self.viewModel.advertisementArray];
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.tableView.mj_header endRefreshing];
+        
+        [ws.viewModel getAdvertisementListArrayClearData:YES];//       3.1.2 广告轮播 4.景点页面最顶部
+        [ws.viewModel getSpotCondition];// 3.2.1	景点筛选条件(已测)
+       
+    } footerRefreshDatablock:^{
+        // [ws.viewModel getAdvertisementListArrayClearData:NO];
+        // [ws.tableView.mj_footer endRefreshing];
+    }];
+}
+
+
+/**
+ 3.2.4	景点列表(已测)
+
+
+ @param clear 是否清空原数据
+ */
+-(void)getSpotArrayLongitude:(BOOL)clear{
+
+    int typeKey;//类别
+    int orderKey;//排序
+    int hotRecommendKey;//热门推荐
+    int tagsKey;//标签
+    int priceKey;//价格
+
+    
+    if (self.viewModel.scenicSpotCondition.type.count > 0) {
+        LBB_ScenicSpotConditionOption* typeObj = [self.viewModel.scenicSpotCondition.type objectAtIndex:self.typeSelectIndex];
+        typeKey = typeObj.key;
+    }
+    
+    if (self.viewModel.scenicSpotCondition.order.count > 0) {
+        LBB_ScenicSpotConditionOption* orderObj = [self.viewModel.scenicSpotCondition.order objectAtIndex:self.orderSelectIndex];
+        orderKey = orderObj.key;
+    }
+    
+    if (self.viewModel.scenicSpotCondition.hotRecommend.count > 0) {
+        LBB_ScenicSpotConditionOption* hotRecommendObj = [self.viewModel.scenicSpotCondition.hotRecommend objectAtIndex:self.hotRecommendSelectIndex];
+        hotRecommendKey = hotRecommendObj.key;
+    }
+    
+    if (self.viewModel.scenicSpotCondition.tags.count > 0) {
+        LBB_ScenicSpotConditionOption* tagsObj = [self.viewModel.scenicSpotCondition.tags objectAtIndex:self.tagsSelectIndex];
+        tagsKey = tagsObj.key;
+    }
+    
+    if (self.viewModel.scenicSpotCondition.price.count > 0) {
+        LBB_ScenicSpotConditionOption* priceObj = [self.viewModel.scenicSpotCondition.price objectAtIndex:self.priceSelectIndex];
+        priceKey = priceObj.key;
+    }
+    
+    
+    NSLog(@"纬度latitude:%f",self.locationManager.locManager.location.coordinate.latitude);
+    NSLog(@"经度longitude:%f",self.locationManager.locManager.location.coordinate.longitude);
+
+    [self.viewModel getSpotArrayLongitude:@""
+                           dimensionality:@""
+                                  typeKey:typeKey
+                                 orderKey:orderKey
+                          hotRecommendKey:hotRecommendKey
+                                  tagsKey:tagsKey
+                                 priceKey:priceKey
+                                clearData:clear];
+    
+}
+
+
 /*
  * setup Navigation UI
  */
@@ -173,29 +311,35 @@
         return 0;
     }];
     //返回数据数组
+    
+    /*
+     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *type;//类别
+     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *order;//排序
+     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *hotRecommend;//热门推荐
+     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *tags;//标签
+     @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *price;//价格
+     */
+    
     [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
     
-        if (index == 0) {
-            return ws.categoryArray;
+        if (index == 0) {//类别
+            return ws.viewModel.scenicSpotCondition.type;
         }
-        else if (index == 1){
-            return ws.sortArray;
+        else if (index == 1){//排序
+            return ws.viewModel.scenicSpotCondition.order;
         }
-        else{
-            if (section == 0) {
-                return @[
-                        @[@"不限",@"鼓浪屿",@"南普陀",@"演武大桥",@"厦门大学",@"厦大白城"]
-                        ];
+        else{//标签
+            if (section == 0) {//热门推荐
+                return @[ws.viewModel.scenicSpotCondition.hotRecommend];
+
             }
-            else if (section == 1){
-                return @[
-                         @[@"不限",@"好玩",@"浪漫",@"海边沙滩",@"环境好",@"美丽",@"不限",@"好玩",@"浪漫",@"海边沙滩"]
-                         ];
+            else if (section == 1){//标签
+                return @[ws.viewModel.scenicSpotCondition.tags];
+
             }
-            else{
-                return @[
-                         @[@"不限",@"100以下",@"100-200",@"200-300",@"300-500",@"500以上"]
-                         ];
+            else{//价格
+                return @[ws.viewModel.scenicSpotCondition.price];
+
             }
         
         }
@@ -215,16 +359,40 @@
             static NSString *cellIdentifier = @"LBB_FilterListTableViewCell";
             LBB_FilterListTableViewCell* cell = [[LBB_FilterListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             
-            NSString* title = [data objectAtIndex:0];
-            NSString* imageName = [data objectAtIndex:1];
-            NSString* imageNameHL = [data objectAtIndex:2];
+            LBB_ScenicSpotConditionOption* obj = (LBB_ScenicSpotConditionOption*)data;
+            NSLog(@"LBB_ScenicSpotConditionOption:%@",data);
+           // NSString* title = [data objectAtIndex:0];
+            NSString* imageName;
+            NSString* imageNameHL ;
+            NSInteger selectIndex = 0;
+            if (index == 0) {//类别
+                
+                NSInteger index = indexPath.row;
+                if (index >= ws.categoryArray.count) {
+                    index = ws.categoryArray.count - 1;
+                }
+                imageName = [[ws.categoryArray objectAtIndex:index] objectAtIndex:1];
+                imageNameHL = [[ws.categoryArray objectAtIndex:index] objectAtIndex:2];
+                selectIndex = ws.typeSelectIndex;
+            }
+            else{//排序
+                NSInteger index = indexPath.row;
+                if (index >= ws.sortArray.count) {
+                    index = ws.sortArray.count - 1;
+                }
+                imageName = [[ws.sortArray objectAtIndex:index] objectAtIndex:1];
+                imageNameHL = [[ws.sortArray objectAtIndex:index] objectAtIndex:2];
+                selectIndex = ws.orderSelectIndex;
+
+            }
+
             [cell.imageView setImage:IMAGE(imageName)];
-            [cell.textLabel setText:title];
+            [cell.textLabel setText:obj.name];
             [cell.textLabel setFont:Font15];
             [cell.textLabel setTextColor:ColorGray];
             cell.tintColor = ColorBtnYellow;
             
-            if (indexPath.row == 1) {
+            if (indexPath.row == selectIndex) {
                 [cell.imageView setImage:IMAGE(imageNameHL)];
                 [cell.textLabel setTextColor:ColorBtnYellow];
                 UIImageView* accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize(13), AutoSize(11))];
@@ -239,11 +407,37 @@
             LBB_FilterTableViewCell* cell = [[LBB_FilterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             
             cell.bottomMargin = AutoSize(15);
-            cell.selectIndex = 0;
-            [cell configContentView:data];
+            
+            NSLog(@"array:%@",data);
+          //  LBB_ScenicSpotConditionOption* obj = (LBB_ScenicSpotConditionOption*)data;
+
+            if (indexPath.section == 0) {//热门推荐
+                cell.selectIndex = ws.hotRecommendSelectIndex;
+            }
+            else if (indexPath.section == 1){//标签
+                cell.selectIndex = ws.tagsSelectIndex;
+            }
+            else{//价格
+                cell.selectIndex = ws.priceSelectIndex;
+            }
+            
+            NSArray* dataArray = [data map:^id(LBB_ScenicSpotConditionOption* model){
+                return model.name;
+            }];
+            NSLog(@"dataArray:%@",dataArray);
+
+            [cell configContentView:dataArray];
 
             cell.click = ^(NSNumber* num){
-                
+                if (indexPath.section == 0) {//热门推荐
+                   ws.hotRecommendSelectIndex = [num integerValue];
+                }
+                else if (indexPath.section == 1){//标签
+                    ws.tagsSelectIndex = [num integerValue];
+                }
+                else{//价格
+                    ws.priceSelectIndex = [num integerValue];
+                }
                 [segmentedControl reloadData];
 
             };
@@ -254,9 +448,17 @@
     //cell的选中动作
     [segmentedControl didDeselectRowAtIndexPathBlock:^(NSInteger index, NSIndexPath *indexPath, id data) {
         NSLog(@"index:%ld,选择 %@",index,data);
-        if (index != 2) {
+        
+        if (index == 0) {//类别
+            ws.typeSelectIndex = indexPath.row;
+            [segmentedControl closeMenu];
+
+        }
+        else if (index == 1){//排序
+            ws.orderSelectIndex = indexPath.row;
             [segmentedControl closeMenu];
         }
+ 
     }];
     
     //返回bottomView
@@ -307,7 +509,9 @@
         
     }];
     
+    self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
     
+    [self initViewModel];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
@@ -385,15 +589,7 @@
             NSLog(@"LBBPoohCycleScrollCell nil");
         }
         [cell setCycleScrollViewHeight:AutoSize(460/2)];
-        [cell setCycleScrollViewUrls:nil];
-        [cell setEnableBlock:YES];
-        cell.click = ^(NSNumber* index){
-            
-          //  NSInteger num = [index integerValue];
-            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
-            [ws.navigationController pushViewController:dest animated:YES];
-            
-        };
+        [cell setAdModelArray:self.viewModel.advertisementArray];//设置model。热门推荐广告的数据
         
         return cell;
     }

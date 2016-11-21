@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LBB_SpotDetailsViewModel.h"
-
+#import "LBB_HomeCommonModel.h"
 @interface LBB_HostelConditionOption : NSObject
 
 @property(nonatomic,assign)int key;//主键(字典表里面的key，到手根据key来定义规则)
@@ -35,7 +35,7 @@
 
 @property (nonatomic,strong)NSMutableArray<LBB_SpotModel *> *hostelArray;
 
-@property (nonatomic, strong)NSMutableArray<LBB_SportAdvertisement*> *advertisementArray;
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *advertisementArray;
 
 /**
  3.2.3	民宿筛选条件(已测)

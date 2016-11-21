@@ -175,9 +175,7 @@
 
 @end
 
-@implementation BN_HomeAdvertisement
 
-@end
 
 @implementation LBB_HomeViewModel
 

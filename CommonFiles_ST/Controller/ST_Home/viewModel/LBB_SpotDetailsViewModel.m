@@ -226,6 +226,3 @@
 
 @end
 
-@implementation LBB_SportAdvertisement
-
-@end

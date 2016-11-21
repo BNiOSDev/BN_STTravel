@@ -84,6 +84,8 @@
         if(codeNumber.intValue == 0)
         {
             [temp.scenicSpotCondition mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getSpotCondition成功  %@",[dic objectForKey:@"result"]);
+
         }
         else
         {
@@ -192,7 +194,7 @@
         {
             NSLog(@"getAdvertisementListArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
-            NSArray *returnArray = [LBB_SportAdvertisement mj_objectArrayWithKeyValuesArray:array];
+            NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
             {
