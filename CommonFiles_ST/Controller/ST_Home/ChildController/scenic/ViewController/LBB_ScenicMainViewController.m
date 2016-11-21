@@ -242,7 +242,7 @@
                            @[@"离我最近",@"景区排序_离我最近",@"景区排序_离我最近HL"],
                            @[@"评价最高",@"景区排序_评价最高",@"景区排序_评价最高HL"],
                            ];
-    
+
     BN_FilterMenu* segmentedControl = [[BN_FilterMenu alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, AutoSize(TopSegmmentControlHeight))];;
     [segmentedControl setTextColor:ColorGray];
     [segmentedControl setSelectedTextColor:ColorBtnYellow];
@@ -321,14 +321,14 @@
         }
         else{//标签
             if (section == 0) {//热门推荐
-                if (ws.viewModel.scenicSpotCondition.price.count <= 0) {
+                if (ws.viewModel.scenicSpotCondition.hotRecommend.count <= 0) {
                     return @[];
                 }
                 return @[ws.viewModel.scenicSpotCondition.hotRecommend];
 
             }
             else if (section == 1){//标签
-                if (ws.viewModel.scenicSpotCondition.price.count <= 0) {
+                if (ws.viewModel.scenicSpotCondition.tags.count <= 0) {
                     return @[];
                 }
                 return @[ws.viewModel.scenicSpotCondition.tags];

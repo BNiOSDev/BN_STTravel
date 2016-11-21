@@ -14,5 +14,4 @@ pod 'GLPubSub'
 pod 'SWTableViewCell'
 pod 'ASIHTTPRequest'
 pod 'AutoScrollLabel'
-pod 'TOWebViewController'
 end

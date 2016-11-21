@@ -141,6 +141,7 @@
 		1DAC47CB1DE2B070001443DE /* LBB_PoohCoreLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAC47CA1DE2B070001443DE /* LBB_PoohCoreLocationManager.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
+		1DAC47F91DE2E103001443DE /* LBB_ToWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAC47F81DE2E103001443DE /* LBB_ToWebViewController.m */; };
 		1DF515CA1DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515C81DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m */; };
 		1DF515CD1DD2CAB500C26695 /* LBB_HomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515CB1DD2CAB500C26695 /* LBB_HomeSearchViewController.m */; };
 		1DF515D41DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515D31DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m */; };
@@ -724,6 +725,8 @@
 		1DAC47CA1DE2B070001443DE /* LBB_PoohCoreLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohCoreLocationManager.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		1DAC47F71DE2E103001443DE /* LBB_ToWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ToWebViewController.h; sourceTree = "<group>"; };
+		1DAC47F81DE2E103001443DE /* LBB_ToWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ToWebViewController.m; sourceTree = "<group>"; };
 		1DF515C81DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchKeyWordCell.m; sourceTree = "<group>"; };
 		1DF515C91DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeSearchKeyWordCell.h; sourceTree = "<group>"; };
 		1DF515CB1DD2CAB500C26695 /* LBB_HomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchViewController.m; sourceTree = "<group>"; };
@@ -1514,6 +1517,8 @@
 				1D01A4CD1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m */,
 				1D01A4D21DDBED1F0026CA9B /* LBB_FilterListTableViewCell.h */,
 				1D01A4D31DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m */,
+				1DAC47F71DE2E103001443DE /* LBB_ToWebViewController.h */,
+				1DAC47F81DE2E103001443DE /* LBB_ToWebViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4796,6 +4801,17 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				es,
+				fr,
+				it,
+				ja,
+				ko,
+				pl,
+				ru,
+				uk,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = C9C0E9431D9948F100575A7C;
 			productRefGroup = C9C0E94D1D9948F100575A7C /* Products */;
@@ -4961,7 +4977,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
@@ -5128,6 +5144,7 @@
 				1D12FA4E1DC6E97700ACD462 /* LBB_ScenicSearchCollectionReusableView.m in Sources */,
 				845CB20F1DDDC24900C02DC2 /* LBB_TicketModel.m in Sources */,
 				845CB22A1DDDC24900C02DC2 /* LBB_MySectionFooterViewCell.m in Sources */,
+				1DAC47F91DE2E103001443DE /* LBB_ToWebViewController.m in Sources */,
 				842BCE221DCD79E400A16788 /* ZJMHostTableViewCell.m in Sources */,
 				1D12FA931DC6E97700ACD462 /* LBBHomeTravelRecommendTableViewCell.m in Sources */,
 				1D11B22D1DD024DA008610CB /* LBB_SquareSnsFollowFavoriteDataSource.m in Sources */,

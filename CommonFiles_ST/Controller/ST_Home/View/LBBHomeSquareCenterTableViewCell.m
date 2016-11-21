@@ -187,7 +187,7 @@
         [self.item1.videoButton bk_addEventHandler:^(id sender){
             
             NSLog(@"videoButton touch");
-            TOWebViewController *webViewController = [[TOWebViewController alloc]init];
+            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
             webViewController.url = [NSURL URLWithString:model1.ugcVideoUrl];
             [[self getViewController].navigationController pushViewController:webViewController animated:YES];
             
@@ -262,7 +262,7 @@
         [self.item2.videoButton bk_addEventHandler:^(id sender){
             
             NSLog(@"videoButton touch");
-            TOWebViewController *webViewController = [[TOWebViewController alloc]init];
+            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
             webViewController.url = [NSURL URLWithString:model2.ugcVideoUrl];
             [[self getViewController].navigationController pushViewController:webViewController animated:YES];
             
