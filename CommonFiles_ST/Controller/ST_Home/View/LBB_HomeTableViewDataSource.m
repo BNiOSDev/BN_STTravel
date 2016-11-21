@@ -72,7 +72,7 @@
             break;
         case LBBHomeSectionSquareCenterType:
         {
-            return 2;
+            return ceil(self.viewModel.ugcArray.count/2.0);
         }
             break;
         case LBBHomeSectionTravelProductType:
@@ -395,8 +395,20 @@
         cell = [[LBBHomeSquareCenterTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
     
-    [cell setModel:nil];
+    NSInteger idx1 = indexPath.row * 2;
+    NSInteger idx2 = indexPath.row * 2+1;
     
+    BN_HomeUgcList *obj1 = [self.viewModel.ugcArray objectAtIndex:idx1];
+    [cell setModel1:obj1];
+    
+    if (idx2 < self.viewModel.ugcArray.count) {
+        BN_HomeUgcList *obj2 = [self.viewModel.ugcArray objectAtIndex:idx2];
+        [cell setModel2:obj2];
+        cell.item2.hidden = NO;
+    }
+    else{
+        cell.item2.hidden = YES;
+    }
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForSquareCenterSectionRowAtIndexPath:(NSIndexPath *)indexPath{

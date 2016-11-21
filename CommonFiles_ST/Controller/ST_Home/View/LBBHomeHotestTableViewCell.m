@@ -154,18 +154,25 @@
     [cell.greetView setTitle:[NSString stringWithFormat:@"%d",obj.likeNum] forState:UIControlStateNormal];//点赞次数
     [cell.priceLabel setText:[NSString stringWithFormat:@"%@元起/人",obj.price]];//价格
     
-    @weakify (self);
-    [RACObserve(self, curObj) subscribeNext:^(BN_HomeTravelNotes* model) {
-        @strongify(self);
+   // @weakify (self);
+    [RACObserve(self.curObj, isCollected) subscribeNext:^(NSNumber* isCollected) {
+      //  @strongify(self);
         
-        if (model.isCollected) {
+        BOOL status = [isCollected boolValue];
+        
+        if (status) {
             [cell.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
         }
         else{
             [cell.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
         }
-
-        if (model.isLiked) {
+        
+    }];
+    
+    [RACObserve(self.curObj, isLiked) subscribeNext:^(NSNumber* isLiked) {
+      //  @strongify(self);
+        BOOL status = [isLiked boolValue];
+        if (status) {
             [cell.greetView setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
         }
         else{
@@ -173,7 +180,6 @@
         }
         
     }];
-
     
     [cell.greetView bk_whenTapped:^{
         

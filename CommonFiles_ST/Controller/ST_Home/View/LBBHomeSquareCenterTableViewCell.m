@@ -33,11 +33,6 @@
             make.right.equalTo(ws).offset(-10);
             make.height.width.mas_equalTo(20);
         }];
-        [self.favoriteButton bk_addEventHandler:^(id sender){
-            
-            NSLog(@"favoriteButton touch");
-            
-        } forControlEvents:UIControlEventTouchUpInside];
         
         
         UIView* sub = [UIView new];
@@ -60,7 +55,6 @@
         self.portraitImageView.layer.cornerRadius = 35/2;
         self.portraitImageView.layer.masksToBounds = YES;
         
-        
         self.userLable = [UILabel new];
         [self.userLable setText:@"梁晓欣"];
         [self.userLable setFont:Font12];
@@ -71,7 +65,6 @@
             make.centerY.equalTo(ws.portraitImageView);
         }];
 
-        
         self.commentsView = [[UIButton alloc]init];
         [self.commentsView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
         [self.commentsView setTitle:@"32" forState:UIControlStateNormal];
@@ -85,14 +78,6 @@
             make.centerY.equalTo(ws.portraitImageView);
           //  make.height.equalTo(@15);
         }];
-        
-        [self.commentsView bk_whenTapped:^{
-            
-            NSLog(@"commentsView touch");
-            
-        }];
-        
-        
         self.greetView = [[UIButton alloc]init];
         [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
         [self.greetView setTitle:@"32" forState:UIControlStateNormal];
@@ -105,11 +90,7 @@
             make.right.equalTo(ws.commentsView.mas_left).offset(-8);
             make.centerY.height.equalTo(ws.commentsView);
         }];
-        [self.greetView bk_whenTapped:^{
-            
-            NSLog(@"greetView touch");
-            
-        }];
+
         
         self.videoButton = [UIButton new];
         [self.videoButton setBackgroundImage:IMAGE(@"景点详情_播放") forState:UIControlStateNormal];
@@ -118,13 +99,6 @@
             make.height.width.mas_equalTo(AutoSize(50));
             make.center.equalTo(ws.bgImageView);
         }];
-        
-        [self.videoButton bk_addEventHandler:^(id sender){
-            
-            NSLog(@"videoButton touch");
-            
-        } forControlEvents:UIControlEventTouchUpInside];
-        
         
     }
     return self;
@@ -200,18 +174,155 @@
 }
 
 
--(void)setModel:(id)model{
+-(void)setModel1:(BN_HomeUgcList *)model1{
     
-    WS(ws);
+    _model1 = model1;
     
-    [self.item2.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
-    [self.item2.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
-    [self.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
-    [self.item1.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/pic/item/8c1001e93901213fcea979fb51e736d12f2e957a.jpg"] placeholderImage:IMAGE(@"poohtest")];
-    
+    [self.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:model1.ugcPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.item1.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model1.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.item1.userLable setText:model1.userName];
+    self.item1.videoButton.hidden = YES;
+    if (model1.ugcType == 2){//视频
+        self.item1.videoButton.hidden = NO;
+        [self.item1.videoButton bk_addEventHandler:^(id sender){
+            
+            NSLog(@"videoButton touch");
+            TOWebViewController *webViewController = [[TOWebViewController alloc]init];
+            webViewController.url = [NSURL URLWithString:model1.ugcVideoUrl];
+            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+    }
 
+    
+    @weakify(self);
+    [RACObserve(self.model1, likeNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        [self.item1.greetView setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
+    }];
+    
+    [RACObserve(self.model1, commentsNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        [self.item1.commentsView setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
+    }];
+    
+    [RACObserve(self.model1, isCollected) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        if ([num boolValue]) {
+            [self.item1.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.item1.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
+        }
+    }];
+    [RACObserve(self.model1, isLiked) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        if ([num boolValue]) {
+            [self.item1.greetView setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.item1.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        }
+    }];
+    
+    
+    [self.item1.greetView bk_whenTapped:^{
+        @strongify(self);
+
+        [self.model1 like:^(NSError* error){
+        
+        }];
+        NSLog(@"item1 greetView touch");
+    }];
+    [self.item1.favoriteButton bk_whenTapped:^{
+        @strongify(self);
+
+        NSLog(@"item1 favoriteButton touch");
+        [self.model1 collecte:^(NSError* error){
+            
+        }];
+        
+    }];
+    
     
 }
 
+-(void)setModel2:(BN_HomeUgcList *)model2{
+    
+    _model2 = model2;
+    [self.item2.bgImageView sd_setImageWithURL:[NSURL URLWithString:model2.ugcPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.item2.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model2.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.item2.userLable setText:model2.userName];
+    self.item2.videoButton.hidden = YES;
+    if (model2.ugcType == 2){//视频
+        self.item2.videoButton.hidden = NO;
+        [self.item2.videoButton bk_addEventHandler:^(id sender){
+            
+            NSLog(@"videoButton touch");
+            TOWebViewController *webViewController = [[TOWebViewController alloc]init];
+            webViewController.url = [NSURL URLWithString:model2.ugcVideoUrl];
+            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    
+    @weakify(self);
+    [RACObserve(self.model2, likeNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        [self.item2.greetView setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
+    }];
+    
+    [RACObserve(self.model2, commentsNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        [self.item2.commentsView setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
+    }];
+    
+    [RACObserve(self.model2, isCollected) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        if ([num boolValue]) {
+            [self.item2.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.item2.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
+        }
+    }];
+    [RACObserve(self.model2, isLiked) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        if ([num boolValue]) {
+            [self.item2.greetView setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.item2.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        }
+    }];
+    
+    
+    [self.item2.greetView bk_whenTapped:^{
+        @strongify(self);
+        
+        [self.model2 like:^(NSError* error){
+            
+        }];
+        NSLog(@"item2 greetView touch");
+    }];
+    [self.item2.favoriteButton bk_whenTapped:^{
+        @strongify(self);
+        
+        NSLog(@"item2 favoriteButton touch");
+        [self.model2 collecte:^(NSError* error){
+            
+        }];
+        
+    }];
+
+
+}
 
 @end

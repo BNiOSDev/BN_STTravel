@@ -7,6 +7,8 @@
 //
 
 #import "VerificationViewController.h"
+#import "LBB_LoginManager.h"
+#import "ChangePasswordViewController.h"
 
 @interface VerificationViewController ()<
 UITextFieldDelegate
@@ -50,7 +52,7 @@ UITextFieldDelegate
     
     [self.phoneTextFiled.rac_textSignal subscribeNext:^(id x) {
         @strongify(self)
-        self.checkNum = self.phoneTextFiled.text;
+        self.phoneNum = self.phoneTextFiled.text;
     }];
 }
 
@@ -73,6 +75,7 @@ UITextFieldDelegate
     self.line2.backgroundColor = ColorLine;
     self.nextBtn.backgroundColor = ColorBtnYellow;
     [self.nextBtn setTitleColor:ColorWhite forState:UIControlStateNormal];
+    [self.nextBtn.titleLabel setFont:Font16];
     
     //找回密码验证、修改手机号
    [self.nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
@@ -84,7 +87,6 @@ UITextFieldDelegate
             self.tipBgView.hidden = YES;
             self.middleViewTopContraint.constant = 0.f;
             self.navigationItem.title = @"找回密码";
-            self.phoneTextFiled.userInteractionEnabled = NO;
         }
             break;
         case eChangePhoneNum:
@@ -113,14 +115,20 @@ UITextFieldDelegate
 
 #pragma mark - UI Action
 - (IBAction)getVerificationNum:(id)sender {
-    
+    self.phoneNum = [self.phoneNum Trim];
+    if (![self.phoneNum validateMobile]) {
+        UIAlertView *alertView =  [[UIAlertView alloc] initWithTitle:@"手机号不对" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+    [[LBB_LoginManager shareInstance] getVerificationCode:self.phoneNum];
 }
 
 - (IBAction)startVerificatiteAction:(id)sender {
     switch (self.baseViewType) {
         case eFindPassword:
         {
-            
+            [self setPassword];
         }
             break;
         case eChangePhoneNum:
@@ -144,6 +152,22 @@ UITextFieldDelegate
    
 }
 
+- (void)setPassword
+{
+    self.phoneNum = [self.phoneNum Trim];
+    self.checkNum = [self.checkNum Trim];
+    if (![self.phoneNum validateMobile]) {
+        [self showHudPrompt:@"手机号不对"];
+        return;
+    }
+    if ([self.checkNum length] == 0) {
+        [self showHudPrompt:@"请输入验证码"];
+    }
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    ChangePasswordViewController  *vc  = [main instantiateViewControllerWithIdentifier:@"ChangePasswordViewController"];
+    vc.baseViewType = eResetPassword;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark - UITextFiled Delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     return YES;

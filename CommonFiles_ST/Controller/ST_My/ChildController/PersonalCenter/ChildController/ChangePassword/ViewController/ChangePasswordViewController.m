@@ -7,6 +7,7 @@
 //
 
 #import "ChangePasswordViewController.h"
+#import "LBB_LoginManager.h"
 
 @interface ChangePasswordViewController ()<
 UITextFieldDelegate
@@ -27,6 +28,8 @@ UITextFieldDelegate
 @property(nonatomic,copy) NSString *orignPassword;
 @property(nonatomic, copy) NSString *secondPassword;
 @property(nonatomic, copy) NSString *comfirPassword;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *orignBgViewHeightContraint;
 
 
 @end
@@ -63,7 +66,7 @@ UITextFieldDelegate
     self.orignLabel.textColor = ColorBlack;
     self.newpLabel.textColor = ColorBlack;
     self.comfirLabel.textColor = ColorBlack;
-    self.tipLabel.textColor = ColorBlack;
+    self.tipLabel.textColor = ColorLightGray;
     
     self.line1.backgroundColor = ColorLine;
     self.line2.backgroundColor = ColorLine;
@@ -74,14 +77,27 @@ UITextFieldDelegate
     self.comfirLabel.font = Font16;
     self.tipLabel.font = Font14;
 
-    self.saveBtn.backgroundColor = [UIColor clearColor];
-    [self.saveBtn setBackgroundImage:[UIImage createImageWithColor:ColorBtnYellow] forState:UIControlStateNormal];
-    [self.saveBtn setTitleColor:ColorWhite forState:UIControlStateNormal];
     [self.saveBtn.titleLabel setFont:Font16];
     
     [self setTextFieldBackImage:self.orignTextField];
     [self setTextFieldBackImage:self.secondTextField];
     [self setTextFieldBackImage:self.comfirTextField];
+    
+    switch (self.baseViewType) {
+        case eChangePassword:
+        {
+            
+        }
+            break;
+        case eResetPassword:
+        {
+            self.newpLabel.text = @"设置密码：";
+            self.orignBgViewHeightContraint.constant = 0.f;
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)setTextFieldBackImage:(UITextField*)textField
@@ -99,10 +115,56 @@ UITextFieldDelegate
 
 #pragma mark - UI Action
 - (IBAction)saveBtnClickAction:(id)sender {
-    //todo 保存新密码 tips 提示后跳转个人中心
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    self.orignPassword = [self.orignPassword Trim];
+    self.secondPassword = [self.secondPassword Trim];
+    self.comfirPassword = [self.comfirPassword Trim];
+    if (self.baseViewType == eChangePassword) {
+        if ([self.orignPassword length] == 0) {
+            [self showHudPrompt:@"请输入原密码"];
+            return;
+        }
+    }
+  
+    if (![self.secondPassword validatePassword]) {
+        [self showHudPrompt:@"密码输入错误，请重新输入"];
+        return;
+    }
+    
+    if (![self.secondPassword isEqualToString:self.comfirPassword]) {
+         [self showHudPrompt:@"请确认密码是否正确"];
+        return;
+    }
+    
+    __weak typeof (self) weakSelf = self;
+    switch (self.baseViewType) {
+        case eChangePassword://todo 保存新密码 tips 提示后跳转个人中心
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        case eResetPassword: //调回登录页面
+        {
+            LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
+            [loginManager setPassword:self.account
+                             Password:self.secondPassword
+                        CompleteBlock:^(NSString* userToken,BOOL result){
+                            if (result) {
+                                [weakSelf backToLoginView];
+                            }
+                        }];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
+- (void)backToLoginView
+{
+    NSArray *viewArray = self.navigationController.viewControllers;
+    [self.navigationController popToViewController:[viewArray objectAtIndex:(viewArray.count - 3)]animated:YES];
+}
 #pragma mark - textField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

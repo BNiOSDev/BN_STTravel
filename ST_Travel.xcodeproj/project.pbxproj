@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B72E6E81DE036B2009EAB67 /* LBB_ScenicViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E6E71DE036B2009EAB67 /* LBB_ScenicViewModel.m */; };
+		1B93B3291DE0A92400AEF514 /* LBB_FoodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B93B3281DE0A92400AEF514 /* LBB_FoodsViewModel.m */; };
+		1B93B32D1DE0AD9100AEF514 /* LBB_HostelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B93B32C1DE0AD9100AEF514 /* LBB_HostelViewModel.m */; };
+		1B93B3301DE13B3F00AEF514 /* LBB_SpotDetailsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B93B32F1DE13B3F00AEF514 /* LBB_SpotDetailsViewModel.m */; };
 		1D01A4CE1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D01A4CD1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m */; };
 		1D01A4D41DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D01A4D31DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m */; };
 		1D01A9CA1DDC8D010026CA9B /* XDPopupListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D01A9C91DDC8D010026CA9B /* XDPopupListView.m */; };
@@ -453,6 +457,14 @@
 
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B72E6E61DE036B2009EAB67 /* LBB_ScenicViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicViewModel.h; sourceTree = "<group>"; };
+		1B72E6E71DE036B2009EAB67 /* LBB_ScenicViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicViewModel.m; sourceTree = "<group>"; };
+		1B93B3271DE0A92400AEF514 /* LBB_FoodsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_FoodsViewModel.h; sourceTree = "<group>"; };
+		1B93B3281DE0A92400AEF514 /* LBB_FoodsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_FoodsViewModel.m; sourceTree = "<group>"; };
+		1B93B32B1DE0AD9100AEF514 /* LBB_HostelViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HostelViewModel.h; sourceTree = "<group>"; };
+		1B93B32C1DE0AD9100AEF514 /* LBB_HostelViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HostelViewModel.m; sourceTree = "<group>"; };
+		1B93B32E1DE13B3F00AEF514 /* LBB_SpotDetailsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SpotDetailsViewModel.h; sourceTree = "<group>"; };
+		1B93B32F1DE13B3F00AEF514 /* LBB_SpotDetailsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SpotDetailsViewModel.m; sourceTree = "<group>"; };
 		1D01A4CC1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_FilterTableViewCell.h; sourceTree = "<group>"; };
 		1D01A4CD1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_FilterTableViewCell.m; sourceTree = "<group>"; };
 		1D01A4D21DDBED1F0026CA9B /* LBB_FilterListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_FilterListTableViewCell.h; sourceTree = "<group>"; };
@@ -1215,6 +1227,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1B72E6E51DE0368C009EAB67 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B72E6E61DE036B2009EAB67 /* LBB_ScenicViewModel.h */,
+				1B72E6E71DE036B2009EAB67 /* LBB_ScenicViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		1B93B3261DE0A74500AEF514 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B93B3271DE0A92400AEF514 /* LBB_FoodsViewModel.h */,
+				1B93B3281DE0A92400AEF514 /* LBB_FoodsViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		1B93B32A1DE0AD7200AEF514 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B93B32B1DE0AD9100AEF514 /* LBB_HostelViewModel.h */,
+				1B93B32C1DE0AD9100AEF514 /* LBB_HostelViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		1D01A9C71DDC8D010026CA9B /* XDPopupListView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1548,6 +1587,7 @@
 		1D12F9B61DC6E97700ACD462 /* Foods */ = {
 			isa = PBXGroup;
 			children = (
+				1B93B3261DE0A74500AEF514 /* viewModel */,
 				1D12F9B71DC6E97700ACD462 /* View */,
 				1D12F9BA1DC6E97700ACD462 /* ViewController */,
 			);
@@ -1575,6 +1615,7 @@
 		1D12F9BD1DC6E97700ACD462 /* Hostel */ = {
 			isa = PBXGroup;
 			children = (
+				1B93B32A1DE0AD7200AEF514 /* viewModel */,
 				1D12F9BE1DC6E97700ACD462 /* ViewController */,
 			);
 			path = Hostel;
@@ -1688,6 +1729,7 @@
 		1D12F9E31DC6E97700ACD462 /* scenic */ = {
 			isa = PBXGroup;
 			children = (
+				1B72E6E51DE0368C009EAB67 /* viewModel */,
 				1D12F9E41DC6E97700ACD462 /* Model */,
 				1D12F9E51DC6E97700ACD462 /* View */,
 				1D12FA041DC6E97700ACD462 /* ViewController */,
@@ -4506,6 +4548,8 @@
 			children = (
 				C970D1471DD89E9E00E6CAEB /* LBB_HomeViewModel.h */,
 				C970D1481DD89E9E00E6CAEB /* LBB_HomeViewModel.m */,
+				1B93B32E1DE13B3F00AEF514 /* LBB_SpotDetailsViewModel.h */,
+				1B93B32F1DE13B3F00AEF514 /* LBB_SpotDetailsViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -4899,7 +4943,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
@@ -4978,6 +5022,7 @@
 				842BCDF81DCD79E300A16788 /* LBB_Travel_Bill_ViewController.m in Sources */,
 				845CB1CE1DDDC24900C02DC2 /* LBB_SquareTravelViewCell.m in Sources */,
 				1D0F48A11DC8CB9400A37DE2 /* LBB_LabelDetailHeaderView.m in Sources */,
+				1B93B3291DE0A92400AEF514 /* LBB_FoodsViewModel.m in Sources */,
 				1D11B22C1DD024DA008610CB /* LBB_SquareSnsFollowDynamicDataSource.m in Sources */,
 				1D12FA711DC6E97700ACD462 /* LBB_ScenicDetailBookStatusCell.m in Sources */,
 				842BCDF01DCD79E300A16788 /* LBBFriendViewController.m in Sources */,
@@ -5144,6 +5189,7 @@
 				845CB1F61DDDC24900C02DC2 /* ConvertiblePointsViewController.m in Sources */,
 				845CB2081DDDC24900C02DC2 /* LBB_TicketCommentPicturViewCell.m in Sources */,
 				1D12FA8C1DC6E97700ACD462 /* PoohAppHelper.m in Sources */,
+				1B93B32D1DE0AD9100AEF514 /* LBB_HostelViewModel.m in Sources */,
 				1D12FA801DC6E97700ACD462 /* LBB_SignInListCell.m in Sources */,
 				845CB2301DDDC24900C02DC2 /* LBB_MyViewCell.m in Sources */,
 				845CB1BF1DDDC24900C02DC2 /* LBB_MyPropertyViewCell.m in Sources */,
@@ -5179,6 +5225,7 @@
 				845CB1F21DDDC24900C02DC2 /* LBB_UserNameViewController.m in Sources */,
 				1D12FA741DC6E97700ACD462 /* LBB_ScenicDetailOrderConfirmView.m in Sources */,
 				845CB1C31DDDC24900C02DC2 /* LBB_NoticeModel.m in Sources */,
+				1B93B3301DE13B3F00AEF514 /* LBB_SpotDetailsViewModel.m in Sources */,
 				1D12FA6D1DC6E97700ACD462 /* LBB_OrderPayWayViewController.m in Sources */,
 				8414A1FD1DE0518E000F93BD /* LBB_MessageSquareViewController.m in Sources */,
 				842BCE231DCD79E400A16788 /* LBB_TravelCommentCell.m in Sources */,
@@ -5221,6 +5268,7 @@
 				845CB2031DDDC24900C02DC2 /* LBB_InviteFriendsViewController.m in Sources */,
 				842BCDA21DCD79E300A16788 /* LBB_EditShopRecoder_Controller.m in Sources */,
 				1D12FA901DC6E97700ACD462 /* LBBHomeHotestTableViewCellItem.m in Sources */,
+				1B72E6E81DE036B2009EAB67 /* LBB_ScenicViewModel.m in Sources */,
 				1D12FA5A1DC6E97700ACD462 /* LBB_DiscoveryCustomizedPopView.m in Sources */,
 				845CB1DD1DDDC24900C02DC2 /* LBB_MyFollowViewController.m in Sources */,
 				1D12FA4B1DC6E97700ACD462 /* GYChangeTextView.m in Sources */,
