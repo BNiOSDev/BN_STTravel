@@ -97,10 +97,10 @@
              if (weakSelf.resgisterCompleteBlock) {
                  weakSelf.resgisterCompleteBlock(token,YES);
              }
-          LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
-          loginCountInfo.account = weakSelf.account;
-          loginCountInfo.password = weakSelf.password;
-          [weakSelf saveLoginUserInfo:loginCountInfo];
+              LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
+              loginCountInfo.account = weakSelf.account;
+              loginCountInfo.password = weakSelf.password;
+              [weakSelf saveLoginUserInfo:loginCountInfo];
           }else{
               if (weakSelf.resgisterCompleteBlock) {
                   weakSelf.resgisterCompleteBlock(remark,NO);
@@ -186,6 +186,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
                                  success:^(NSURLSessionDataTask *operation, id responseObject){
+         
         weakSelf.isLogin = NO;
         weakSelf.userToken = nil;
         if (weakSelf.logoutCompleteBlock) {

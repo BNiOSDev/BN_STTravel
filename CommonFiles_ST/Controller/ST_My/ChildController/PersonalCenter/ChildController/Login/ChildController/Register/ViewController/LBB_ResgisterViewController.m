@@ -51,7 +51,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = eResgister;
-    
+#warning 测试数据
+    self.account = @"13338274336";
+    self.password = @"haha123456";
+    self.comfirmPassword = @"haha123456";
+    self.checkNum = @"8888";
+    self.accountTextField.text = self.account;
+    self.passwordTextField.text = @"haha123456";
+    self.comfirmTextField.text = @"haha123456";
+    self.checkTextField.text = self.checkNum;
+    ////warning 测试数据 end
 }
 
 - (void)didReceiveMemoryWarning {
@@ -154,7 +163,7 @@
                        if (result) {
                            [weakSelf.navigationController popViewControllerAnimated:YES];
                        }else {
-                           [weakSelf showHudPrompt:@"注册失败，请检查账号、密码、验证码是否正确"];
+                           [weakSelf showHudPrompt:userToken];
                        }
                    }];
     }else if([self.password isEqualToString:self.comfirmPassword]){

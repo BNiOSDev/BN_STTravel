@@ -119,7 +119,7 @@
                   if (result) {
                       [weakSelf dismissViewControllerAnimated:YES completion:nil];
                   }else {
-                      [weakSelf showHudPrompt:@"登录失败，请检查账号和密码是否正确"];
+                      [weakSelf showHudPrompt:userToken];
                   }
               }];
     }else{
