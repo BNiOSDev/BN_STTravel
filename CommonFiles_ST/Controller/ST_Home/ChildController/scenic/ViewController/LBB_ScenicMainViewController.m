@@ -621,6 +621,7 @@
   //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
     dest.homeType = LBBPoohHomeTypeScenic;
+    dest.spotModel = [self.viewModel.spotArray objectAtIndex:indexPath.section - 1];
     [self.navigationController pushViewController:dest animated:YES];
 }
 

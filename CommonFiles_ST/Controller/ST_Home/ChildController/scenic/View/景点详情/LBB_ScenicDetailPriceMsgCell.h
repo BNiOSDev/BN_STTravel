@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_SpotDetailsViewModel.h"
 @interface LBB_ScenicDetailPriceMsgCell : LBBPoohBaseTableViewCell
 
 
@@ -22,6 +23,6 @@
 @property(nonatomic, retain)UIButton* favoriteView;
 
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)LBB_SpotDetailsViewModel* model;
 
 @end

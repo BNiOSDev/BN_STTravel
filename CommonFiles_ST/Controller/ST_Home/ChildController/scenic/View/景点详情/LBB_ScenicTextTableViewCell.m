@@ -74,4 +74,10 @@
     [self.contentView layoutSubviews];
 }
 
+-(void)setContentLabelText:(NSString *)content{
+    
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    self.contentLabel.attributedText = attrStr;
+}
+
 @end

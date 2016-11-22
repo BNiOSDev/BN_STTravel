@@ -142,6 +142,7 @@
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DAC47F91DE2E103001443DE /* LBB_ToWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAC47F81DE2E103001443DE /* LBB_ToWebViewController.m */; };
+		1DF158F51DE4346F000BBDFE /* LBB_ScenicDetailADCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF158F41DE4346F000BBDFE /* LBB_ScenicDetailADCell.m */; };
 		1DF515CA1DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515C81DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m */; };
 		1DF515CD1DD2CAB500C26695 /* LBB_HomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515CB1DD2CAB500C26695 /* LBB_HomeSearchViewController.m */; };
 		1DF515D41DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF515D31DD2F3E100C26695 /* LBB_HomeSearchDefaultCell.m */; };
@@ -727,6 +728,8 @@
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DAC47F71DE2E103001443DE /* LBB_ToWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ToWebViewController.h; sourceTree = "<group>"; };
 		1DAC47F81DE2E103001443DE /* LBB_ToWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ToWebViewController.m; sourceTree = "<group>"; };
+		1DF158F31DE4346F000BBDFE /* LBB_ScenicDetailADCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicDetailADCell.h; sourceTree = "<group>"; };
+		1DF158F41DE4346F000BBDFE /* LBB_ScenicDetailADCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicDetailADCell.m; sourceTree = "<group>"; };
 		1DF515C81DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchKeyWordCell.m; sourceTree = "<group>"; };
 		1DF515C91DD2CAAD00C26695 /* LBB_HomeSearchKeyWordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeSearchKeyWordCell.h; sourceTree = "<group>"; };
 		1DF515CB1DD2CAB500C26695 /* LBB_HomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchViewController.m; sourceTree = "<group>"; };
@@ -1799,6 +1802,8 @@
 				1D12F9FC1DC6E97700ACD462 /* LBB_ScenicDetailVipMPaiCellItem.m */,
 				1D12F9FD1DC6E97700ACD462 /* LBB_ScenicTextTableViewCell.h */,
 				1D12F9FE1DC6E97700ACD462 /* LBB_ScenicTextTableViewCell.m */,
+				1DF158F31DE4346F000BBDFE /* LBB_ScenicDetailADCell.h */,
+				1DF158F41DE4346F000BBDFE /* LBB_ScenicDetailADCell.m */,
 			);
 			path = "景点详情";
 			sourceTree = "<group>";
@@ -5322,6 +5327,7 @@
 				842BCE111DCD79E400A16788 /* UILabel+AutoFit.m in Sources */,
 				1D12FA601DC6E97700ACD462 /* LBB_FoodsMainViewController.m in Sources */,
 				845CB1D31DDDC24900C02DC2 /* LBB_MessageCenterViewController.m in Sources */,
+				1DF158F51DE4346F000BBDFE /* LBB_ScenicDetailADCell.m in Sources */,
 				1D12FA841DC6E97700ACD462 /* LBBSigninMainViewController.m in Sources */,
 				1D12FA9D1DC72B8000ACD462 /* LBB_NewOrderModifyNoteView.m in Sources */,
 				8414A1F31DE03E0E000F93BD /* VerificationViewController.m in Sources */,

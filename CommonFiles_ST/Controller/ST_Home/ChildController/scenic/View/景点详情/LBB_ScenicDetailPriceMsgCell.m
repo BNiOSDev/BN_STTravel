@@ -63,8 +63,16 @@
         }];
         [self.signButton bk_whenTapped:^{
             
+            BOOL status = ws.model.isSigned;
             Base_BaseViewController* curVC = (Base_BaseViewController*)[ws getViewController];
-            [curVC showHudPrompt:@"已签到"];
+            if (status) {
+                [curVC showHudPrompt:@"已签到"];
+            }
+            else{
+                [curVC showHudPrompt:@"未签到"];
+            }
+            
+    
         }];
         
         
@@ -156,13 +164,47 @@
 }
 
 
--(void)setModel:(id)model{
+-(void)setModel:(LBB_SpotDetailsViewModel *)model{
     
-    NSInteger price = 120;
-    NSInteger num = 1;
+    _model = model;
+    
+    [self.titleLabel setText:model.allSpotsName];
+    
+    // 点赞标志 0未点赞 1：点赞
+    @weakify(self);
+    [RACObserve(self.model, isSigned) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        BOOL status = [num boolValue];
+        if (status) {
+            [self.greatView setImage:IMAGE(@"景点专题_点赞HL")forState:UIControlStateNormal];
+        }
+        else{
+            [self.greatView setImage:IMAGE(@"景点专题_点赞")forState:UIControlStateNormal];
+        }
+    }];
+    
+    // 点赞次数
+    [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        int likenum = [num intValue];
+        [self.greatView setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
+    }];
+    // 评论条数
+    [RACObserve(self.model, commentsNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        int likenum = [num intValue];
+        [self.commentsView setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
+    }];
+    // 收藏次数
+    [RACObserve(self.model, collecteNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        int likenum = [num intValue];
+        [self.favoriteView setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
+    }];
     
     //单价设置
-    NSString* strFormat1 = [NSString stringWithFormat:@"%ld元起/%ld人",price,num];
+    NSString* strFormat1 = [NSString stringWithFormat:@"%@元起/人",model.realPrice];
     NSString* strFormat2 = @"元";
     UIColor* fontColor = ColorBtnYellow;
     NSDictionary* attrsDic = @{NSForegroundColorAttributeName:fontColor,

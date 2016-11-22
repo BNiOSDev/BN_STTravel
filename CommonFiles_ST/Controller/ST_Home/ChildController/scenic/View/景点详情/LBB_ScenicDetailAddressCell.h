@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_SpotDetailsViewModel.h"
 
 @interface LBB_ScenicDetailAddressCell : LBBPoohBaseTableViewCell
 
@@ -16,6 +17,8 @@
 
 @property(nonatomic, retain)UILabel* addressLable;
 @property(nonatomic, retain)UIButton* addressButton;
+
+@property(nonatomic, retain)LBB_SpotDetailsViewModel* model;
 
 
 @end

@@ -31,12 +31,6 @@
             make.center.equalTo(ws.mainImageView);
             make.height.width.mas_equalTo(50);
         }];
-        [self.playButton bk_addEventHandler:^(id sender){
-            
-            NSLog(@"playButton touch");
-            
-        } forControlEvents:UIControlEventTouchUpInside];
-        
         
         CGFloat margin = 8;
         self.portraitImageView = [UIImageView new];
@@ -72,13 +66,7 @@
             make.top.equalTo(ws.mainImageView.mas_bottom).offset(3);
            // make.height.equalTo(@15);
         }];
-        
-        [self.commentsButton bk_whenTapped:^{
-            
-            NSLog(@"disView touch");
-            
-        }];
-        
+
         
         self.greatButton = [[UIButton alloc]init];
 
@@ -92,11 +80,7 @@
             make.right.equalTo(ws.commentsButton.mas_left).offset(-5);
             make.centerY.height.equalTo(ws.commentsButton);
         }];
-        [self.greatButton bk_whenTapped:^{
-            
-            NSLog(@"greetView touch");
-            
-        }];
+
     
         [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(PlaceHolderImage)];
         [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(PlaceHolderImage)];
