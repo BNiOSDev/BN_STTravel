@@ -79,7 +79,7 @@
     
     _spotDetailModel = spotDetailModel;
     
-    if (spotDetailModel.isAdvanceReturn) {// 是否提前1天退货 0：否 1：是
+    if (spotDetailModel.isAdvanceReturn == 1) {// 是否提前1天退货 0：否 1：是
         [self.status1View setImage:IMAGE(@"景点详情_选中HL") forState:UIControlStateNormal];
 
     }
@@ -88,12 +88,12 @@
 
     }
     
-    if (spotDetailModel.isMakeAppointment) {// 是否需要预约 0：否 1：是
+    if (spotDetailModel.isMakeAppointment == 1) {// 是否需要预约 0：否 1：是
         [self.status2View setImage:IMAGE(@"景点详情_选中HL") forState:UIControlStateNormal];
 
     }
     else{
-        [self.status2View setImage:IMAGE(@"景点详情_选中HL") forState:UIControlStateNormal];
+        [self.status2View setImage:IMAGE(@"景点详情_选中") forState:UIControlStateNormal];
 
     }
 }
