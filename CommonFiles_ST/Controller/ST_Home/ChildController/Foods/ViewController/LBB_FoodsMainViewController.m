@@ -38,7 +38,8 @@
 @property (nonatomic,assign)NSInteger tagsSelectIndex;//标签
 @property (nonatomic,assign)NSInteger priceSelectIndex;//价格
 
-
+//地理位置管理
+@property (nonatomic,retain)LBB_PoohCoreLocationManager* locationManager;
 
 @end
 
@@ -117,7 +118,7 @@
      }];
      */
     //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
-    // [self.tableView setTableViewData:self.viewModel.advertisementArray];
+    [self.tableView setTableViewData:self.viewModel.foodsArray];
     //3.1上拉和下拉的动作
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.tableView.mj_header endRefreshing];
@@ -126,8 +127,8 @@
         [ws.viewModel getFoodsCondition];// 3.2.1	景点筛选条件(已测)
         
     } footerRefreshDatablock:^{
-        // [ws.viewModel getAdvertisementListArrayClearData:NO];
-        // [ws.tableView.mj_footer endRefreshing];
+        [ws getSpotArrayLongitude:NO];
+        [ws.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -140,12 +141,13 @@
  */
 -(void)getSpotArrayLongitude:(BOOL)clear{
     
-    int typeKey;//类别
-    int orderKey;//排序
-    int hotRecommendKey;//热门推荐
-    int tagsKey;//标签
-    int priceKey;//价格
-    
+    int typeKey = -1;//类别
+    int orderKey = -1;//排序
+    int hotRecommendKey = -1;//热门推荐
+    int tagsKey = -1;//标签
+    int priceKey = -1;//价格
+    int areaKey = -1;//区域
+    int distanceKey = -1;//距离
     
     if (self.viewModel.foodsCondition.type.count > 0) {
         LBB_FoodsConditionOption* typeObj = [self.viewModel.foodsCondition.type objectAtIndex:self.typeSelectIndex];
@@ -172,12 +174,32 @@
         priceKey = priceObj.key;
     }
     
+    if (self.viewModel.foodsCondition.tradingArea.count > 0) {
+        LBB_FoodsConditionOption* areaObj = [self.viewModel.foodsCondition.tradingArea objectAtIndex:self.typeSelectIndex];
+        areaKey = areaObj.key;
+    }
     
+    if (self.viewModel.foodsCondition.distance.count > 0) {
+        LBB_FoodsConditionOption* distanceObj = [self.viewModel.foodsCondition.distance objectAtIndex:self.typeSelectIndex];
+        distanceKey = distanceObj.key;
+    }
+    
+    NSLog(@"纬度latitude:%@",self.locationManager.latitude);
+    NSLog(@"经度longitude:%@",self.locationManager.longitude);
+    
+#pragma 以下全部使用默认值，测试数据
+    typeKey = -1;//类别
+    orderKey = -1;//排序
+    hotRecommendKey = -1;//热门推荐
+    tagsKey = -1;//标签
+    priceKey = -1;//价格
+    areaKey = -1;//区域
+    distanceKey = -1;//距离
 
-    [self.viewModel getFoodsArrayLongitude:@"126"//精度
-                           dimensionality:@"46"//维度
-                            tradingAreaKey:1
-                                  distance:2
+    [self.viewModel getFoodsArrayLongitude:self.locationManager.longitude//精度
+                           dimensionality:self.locationManager.latitude//维度
+                            tradingAreaKey:areaKey
+                                  distance:distanceKey
                                   typeKey:typeKey
                                  orderKey:orderKey
                           hotRecommendKey:hotRecommendKey
@@ -227,6 +249,8 @@
 -(void)buildControls{
     
     WS(ws);
+    self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
+
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
@@ -683,11 +707,11 @@
     if (section == 0) {
         return 2;
     }
-    return 10;
+    return self.viewModel.foodsArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     if (indexPath.section == 0) {
         
         if (indexPath.row == 0) {
@@ -699,7 +723,6 @@
         }
         else{
             return [tableView fd_heightForCellWithIdentifier:@"LBB_FoodsMainMenuCell" cacheByIndexPath:indexPath configuration:^(LBB_FoodsMainMenuCell *cell) {
-                
             }];
         }
         
@@ -709,7 +732,7 @@
     return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicMainTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicMainTableViewCell *cell) {
         
         [cell showTopSepLine:YES];
-        [cell setModel:nil];
+        [cell setModel:[ws.viewModel.foodsArray objectAtIndex:indexPath.row]];
     }];
     
 }
@@ -754,7 +777,7 @@
         NSLog(@"LBB_ScenicMainTableViewCell nil");
     }
     [cell showTopSepLine:YES];
-    [cell setModel:nil];
+    [cell setModel:[self.viewModel.foodsArray objectAtIndex:indexPath.row]];
     return cell;
     
 }

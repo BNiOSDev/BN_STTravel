@@ -115,7 +115,7 @@
      }];
      */
     //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
-    // [self.tableView setTableViewData:self.viewModel.advertisementArray];
+     [self.tableView setTableViewData:self.viewModel.spotArray];
     //3.1上拉和下拉的动作
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.tableView.mj_header endRefreshing];
@@ -124,8 +124,8 @@
         [ws.viewModel getSpotCondition];// 3.2.1	景点筛选条件(已测)
        
     } footerRefreshDatablock:^{
-        // [ws.viewModel getAdvertisementListArrayClearData:NO];
-        // [ws.tableView.mj_footer endRefreshing];
+         [ws.tableView.mj_footer endRefreshing];
+        [ws getSpotArrayLongitude:NO];
     }];
 }
 
@@ -174,6 +174,14 @@
     NSLog(@"纬度latitude:%@",self.locationManager.latitude);
     NSLog(@"经度longitude:%@",self.locationManager.longitude);
 
+#pragma 以下全部使用默认值，测试数据
+     typeKey = -1;//类别
+     orderKey = -1;//排序
+     hotRecommendKey = -1;//热门推荐
+     tagsKey = -1;//标签
+     priceKey = -1;//价格
+    
+    
     [self.viewModel getSpotArrayLongitude:self.locationManager.longitude//精度
                            dimensionality:self.locationManager.latitude//维度
                                   typeKey:typeKey
@@ -555,7 +563,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return self.viewModel.spotArray.count + 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -563,7 +571,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     if (indexPath.section == 0) {
         return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell *cell) {
             
@@ -573,7 +581,7 @@
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicMainTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicMainTableViewCell *cell) {
             
-            [cell setModel:nil];
+            [cell setModel:[ws.viewModel.spotArray objectAtIndex:indexPath.section - 1]];
         }];
     }
     
@@ -602,7 +610,7 @@
             
             NSLog(@"LBB_ScenicMainTableViewCell nil");
         }
-        [cell setModel:nil];
+        [cell setModel:[self.viewModel.spotArray objectAtIndex:indexPath.section - 1]];
         return cell;
     }
     

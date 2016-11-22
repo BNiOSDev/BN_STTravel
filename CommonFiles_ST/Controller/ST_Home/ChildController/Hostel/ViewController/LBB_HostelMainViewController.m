@@ -112,7 +112,7 @@
      }];
      */
     //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
-    // [self.tableView setTableViewData:self.viewModel.advertisementArray];
+    [self.tableView setTableViewData:self.viewModel.hostelArray];
     //3.1上拉和下拉的动作
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.tableView.mj_header endRefreshing];
@@ -121,8 +121,9 @@
         [ws.viewModel getHostelCondition];// 3.2.1	景点筛选条件(已测)
         
     } footerRefreshDatablock:^{
-        // [ws.viewModel getAdvertisementListArrayClearData:NO];
-        // [ws.tableView.mj_footer endRefreshing];
+         [ws.tableView.mj_footer endRefreshing];
+        [ws getHostelArrayLongitude:NO];
+
     }];
 }
 
@@ -135,11 +136,11 @@
  */
 -(void)getHostelArrayLongitude:(BOOL)clear{
     
-    int typeKey;//类别
-    int orderKey;//排序
-    int hotRecommendKey;//热门推荐
-    int tagsKey;//标签
-    int priceKey;//价格
+    int typeKey = -1;//类别
+    int orderKey = -1;//排序
+    int hotRecommendKey = -1;//热门推荐
+    int tagsKey = -1;//标签
+    int priceKey = -1;//价格
     
     
     if (self.viewModel.hostelCondition.type.count > 0) {
@@ -168,11 +169,17 @@
     }
     
     
-    NSLog(@"纬度latitude:%f",self.locationManager.locManager.location.coordinate.latitude);
-    NSLog(@"经度longitude:%f",self.locationManager.locManager.location.coordinate.longitude);
+    NSLog(@"纬度latitude:%@",self.locationManager.latitude);
+    NSLog(@"经度longitude:%@",self.locationManager.longitude);
     
-    [self.viewModel getHostelArrayLongitude:@"126"//精度
-                           dimensionality:@"46"//维度
+#pragma 以下全部使用默认值，测试数据
+    typeKey = -1;//类别
+    orderKey = -1;//排序
+    hotRecommendKey = -1;//热门推荐
+    tagsKey = -1;//标签
+    priceKey = -1;//价格
+    [self.viewModel getHostelArrayLongitude:self.locationManager.longitude//精度
+                           dimensionality:self.locationManager.latitude//维度
                                   typeKey:typeKey
                                  orderKey:orderKey
                           hotRecommendKey:hotRecommendKey
@@ -503,6 +510,8 @@
         
     }];
 
+    self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
+
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
     [self.tableView registerClass:[LBB_ScenicMainTableViewCell class] forCellReuseIdentifier:@"LBB_ScenicMainTableViewCell"];
@@ -548,7 +557,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return self.viewModel.hostelArray.count + 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -556,7 +565,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     if (indexPath.section == 0) {
         return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell *cell) {
             
@@ -566,7 +575,7 @@
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicMainTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicMainTableViewCell *cell) {
             
-            [cell setModel:nil];
+            [cell setModel:[ws.viewModel.hostelArray objectAtIndex:indexPath.section - 1]];
         }];
     }
     
@@ -594,7 +603,7 @@
             
             NSLog(@"LBB_ScenicMainTableViewCell nil");
         }
-        [cell setModel:nil];
+        [cell setModel:[self.viewModel.hostelArray objectAtIndex:indexPath.section - 1]];
         return cell;
     }
     
