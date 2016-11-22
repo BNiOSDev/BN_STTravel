@@ -51,6 +51,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = eResgister;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,6 +64,8 @@
     self.accountTextField.borderStyle = UITextBorderStyleNone;
     self.passwordTextField.borderStyle = UITextBorderStyleNone;
     self.comfirmTextField.borderStyle = UITextBorderStyleNone;
+    self.passwordTextField.secureTextEntry = YES;
+    self.comfirmTextField.secureTextEntry = YES;
     self.line1.backgroundColor = ColorLine;
     self.line2.backgroundColor = ColorLine;
     self.line3.backgroundColor = ColorLine;

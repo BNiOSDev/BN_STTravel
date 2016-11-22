@@ -51,16 +51,34 @@
     self.baseViewType = eLogin;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self initLocalData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (void)initLocalData
+{
+    LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
+    LoginUserInfo *userInfo = [loginManager getLoginUserInfo];
+    if (userInfo) {
+        self.accountTextField.text = userInfo.account;
+        self.passwordTextField.text = userInfo.password;
+        self.account = userInfo.account;
+        self.password = userInfo.password;
+    }
+}
 
 - (void)buildControls
 {
     self.accountTextField.borderStyle = UITextBorderStyleNone;
     self.passwordTextField.borderStyle = UITextBorderStyleNone;
+    self.passwordTextField.secureTextEntry = YES;
     self.line1.backgroundColor = ColorLine;
     self.line2.backgroundColor = ColorLine;
     self.line3.backgroundColor = ColorLine;

@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@interface LoginUserInfo : NSObject
+
+@property(nonatomic,copy) NSString *account;//账号
+@property(nonatomic,copy) NSString *password;//密码
+
+@end
+
 //userToken 用户token或者 手机号
 typedef void(^LoginBlock)(NSString *userToken,BOOL result);
 
@@ -92,6 +99,11 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
  * 获取用户Token
  */
 - (NSString *)userToken;
+
+/*
+ * 获取本地缓存登录账号和密码
+ */
+- (LoginUserInfo*)getLoginUserInfo;
 
 
 @end
