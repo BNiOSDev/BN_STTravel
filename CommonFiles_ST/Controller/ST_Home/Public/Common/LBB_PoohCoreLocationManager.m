@@ -13,6 +13,7 @@
 -(id)init{
     
     if (self = [super init]) {
+        self.locManager = [[CLLocationManager alloc] init];
         self.locManager.delegate = self;
         self.locManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locManager.distanceFilter = 5.0;
@@ -29,6 +30,11 @@
 // 代理方法实现
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
     NSLog(@"locationManager didUpdateToLocation %f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
+    
+    self.longitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.longitude];
+    self.latitude = [NSString stringWithFormat:@"%f",newLocation.coordinate.latitude];
+
+    
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"locationManager didFailWithError%@",error);

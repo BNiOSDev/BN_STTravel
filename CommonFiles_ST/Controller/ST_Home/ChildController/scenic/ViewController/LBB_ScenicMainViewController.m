@@ -138,11 +138,11 @@
  */
 -(void)getSpotArrayLongitude:(BOOL)clear{
 
-    int typeKey;//类别
-    int orderKey;//排序
-    int hotRecommendKey;//热门推荐
-    int tagsKey;//标签
-    int priceKey;//价格
+    int typeKey = -1;//类别
+    int orderKey = -1;//排序
+    int hotRecommendKey = -1;//热门推荐
+    int tagsKey = -1;//标签
+    int priceKey = -1;//价格
 
     
     if (self.viewModel.scenicSpotCondition.type.count > 0) {
@@ -171,11 +171,11 @@
     }
     
     
-    NSLog(@"纬度latitude:%f",self.locationManager.locManager.location.coordinate.latitude);
-    NSLog(@"经度longitude:%f",self.locationManager.locManager.location.coordinate.longitude);
+    NSLog(@"纬度latitude:%@",self.locationManager.latitude);
+    NSLog(@"经度longitude:%@",self.locationManager.longitude);
 
-    [self.viewModel getSpotArrayLongitude:@"126"//精度
-                           dimensionality:@"46"//维度
+    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude//精度
+                           dimensionality:self.locationManager.latitude//维度
                                   typeKey:typeKey
                                  orderKey:orderKey
                           hotRecommendKey:hotRecommendKey

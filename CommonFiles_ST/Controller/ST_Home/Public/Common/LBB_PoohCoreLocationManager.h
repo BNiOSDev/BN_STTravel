@@ -13,4 +13,8 @@
 
 @property(nonatomic, strong)CLLocationManager* locManager;
 
+@property(nonatomic, copy)NSString* latitude;//纬度
+@property(nonatomic, copy)NSString* longitude;//经度
+
+
 @end

@@ -136,7 +136,8 @@
     NSString *url = [NSString stringWithFormat:@"%@/spot/list",BASEURL];
     __weak typeof(self) temp = self;
     self.spotArray.loadSupport.loadEvent = NetLoadingEvent;
-    
+    NSLog(@"getSpotArrayLongitude paraDic : %@",paraDic);
+
     [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];

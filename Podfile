@@ -14,4 +14,6 @@ pod 'GLPubSub'
 pod 'SWTableViewCell'
 pod 'ASIHTTPRequest'
 pod 'AutoScrollLabel'
+pod 'NJKWebViewProgress'
+
 end
