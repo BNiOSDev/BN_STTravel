@@ -15,11 +15,31 @@
 #import "LBB_FoodsMainMenuCell.h"
 #import "LBB_FilterTableViewCell.h"
 #import "LBB_FilterListTableViewCell.h"
+#import "LBB_FoodsViewModel.h"
+
 @interface LBB_FoodsMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, retain) UISearchBar *searchBar;
 
+//菜单选项
+@property (nonatomic, retain) NSArray* categoryArray;//类别
+@property (nonatomic, retain) NSArray* sortArray;//排序
+
+@property(nonatomic, retain)LBB_FoodsViewModel* viewModel;//数据模型
+
+//菜单选项的选择项
+@property (nonatomic,assign)NSInteger areaSelectIndex;//区域
+@property (nonatomic,assign)NSInteger distanceSelectIndex;//距离
+
+@property (nonatomic,assign)NSInteger typeSelectIndex;//类别
+@property (nonatomic,assign)NSInteger orderSelectIndex;//排序
+@property (nonatomic,assign)NSInteger hotRecommendSelectIndex;//热门推荐
+@property (nonatomic,assign)NSInteger tagsSelectIndex;//标签
+@property (nonatomic,assign)NSInteger priceSelectIndex;//价格
+
+//地理位置管理
+@property (nonatomic,retain)LBB_PoohCoreLocationManager* locationManager;
 
 @end
 
@@ -44,6 +64,152 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+
+
+/*
+ *  init view Model
+ */
+-(void)initViewModel{
+    WS(ws);
+    
+    self.viewModel = [[LBB_FoodsViewModel alloc]init];
+    
+    /**
+     3.2.1	景点筛选条件(已测)
+     */
+#pragma 景点类别和标签的价格没有数据
+    [self.viewModel getFoodsCondition];
+    [self.viewModel.foodsCondition.loadSupport setDataRefreshblock:^{
+        [ws getSpotArrayLongitude:YES];
+    }];
+    
+    
+    /**
+     3.1.2 广告轮播 4.景点页面最顶部
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getAdvertisementListArrayClearData:YES];
+    //1.监听数据，用来刷新数据，数据变化才会调用
+    [self.viewModel.advertisementArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+    
+    /**
+     3.2.4	景点列表(已测)
+     
+     @param longitude Y坐标
+     @param dimensionality Y坐标
+     @param typeKey 传入景点类型key
+     @param orderKey 传入排序key
+     @param hotRecommendKey 热门推荐key
+     @param tagsKey 标签key
+     @param priceKey 价格Key
+     */
+    [self.viewModel.foodsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+#pragma 响应处理
+    //2.0响应的view，网络状态变化时的再刷新动作
+    //  [self.tableView setTableViewData:self.viewModel.advertisementArray];
+    //2.1点击刷新
+    /* [ws.tableView setRefreshBlock:^{
+     [ws.viewModel getAdvertisementListArrayClearData:NO];
+     }];
+     */
+    //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
+    [self.tableView setTableViewData:self.viewModel.foodsArray];
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.tableView.mj_header endRefreshing];
+        
+        [ws.viewModel getAdvertisementListArrayClearData:YES];//       3.1.2 广告轮播 4.景点页面最顶部
+        [ws.viewModel getFoodsCondition];// 3.2.1	景点筛选条件(已测)
+        
+    } footerRefreshDatablock:^{
+        [ws getSpotArrayLongitude:NO];
+        [ws.tableView.mj_footer endRefreshing];
+    }];
+}
+
+
+/**
+ 3.2.4	景点列表(已测)
+ 
+ 
+ @param clear 是否清空原数据
+ */
+-(void)getSpotArrayLongitude:(BOOL)clear{
+    
+    int typeKey = -1;//类别
+    int orderKey = -1;//排序
+    int hotRecommendKey = -1;//热门推荐
+    int tagsKey = -1;//标签
+    int priceKey = -1;//价格
+    int areaKey = -1;//区域
+    int distanceKey = -1;//距离
+    
+    if (self.viewModel.foodsCondition.type.count > 0) {
+        LBB_FoodsConditionOption* typeObj = [self.viewModel.foodsCondition.type objectAtIndex:self.typeSelectIndex];
+        typeKey = typeObj.key;
+    }
+    
+    if (self.viewModel.foodsCondition.order.count > 0) {
+        LBB_FoodsConditionOption* orderObj = [self.viewModel.foodsCondition.order objectAtIndex:self.orderSelectIndex];
+        orderKey = orderObj.key;
+    }
+    
+    if (self.viewModel.foodsCondition.hotRecommend.count > 0) {
+        LBB_FoodsConditionOption* hotRecommendObj = [self.viewModel.foodsCondition.hotRecommend objectAtIndex:self.hotRecommendSelectIndex];
+        hotRecommendKey = hotRecommendObj.key;
+    }
+    
+    if (self.viewModel.foodsCondition.tags.count > 0) {
+        LBB_FoodsConditionOption* tagsObj = [self.viewModel.foodsCondition.tags objectAtIndex:self.tagsSelectIndex];
+        tagsKey = tagsObj.key;
+    }
+    
+    if (self.viewModel.foodsCondition.price.count > 0) {
+        LBB_FoodsConditionOption* priceObj = [self.viewModel.foodsCondition.price objectAtIndex:self.priceSelectIndex];
+        priceKey = priceObj.key;
+    }
+    
+    if (self.viewModel.foodsCondition.tradingArea.count > 0) {
+        LBB_FoodsConditionOption* areaObj = [self.viewModel.foodsCondition.tradingArea objectAtIndex:self.typeSelectIndex];
+        areaKey = areaObj.key;
+    }
+    
+    if (self.viewModel.foodsCondition.distance.count > 0) {
+        LBB_FoodsConditionOption* distanceObj = [self.viewModel.foodsCondition.distance objectAtIndex:self.typeSelectIndex];
+        distanceKey = distanceObj.key;
+    }
+    
+    NSLog(@"纬度latitude:%@",self.locationManager.latitude);
+    NSLog(@"经度longitude:%@",self.locationManager.longitude);
+    
+#pragma 以下全部使用默认值，测试数据
+    typeKey = -1;//类别
+    orderKey = -1;//排序
+    hotRecommendKey = -1;//热门推荐
+    tagsKey = -1;//标签
+    priceKey = -1;//价格
+    areaKey = -1;//区域
+    distanceKey = -1;//距离
+
+    [self.viewModel getFoodsArrayLongitude:self.locationManager.longitude//精度
+                           dimensionality:self.locationManager.latitude//维度
+                            tradingAreaKey:areaKey
+                                  distance:distanceKey
+                                  typeKey:typeKey
+                                 orderKey:orderKey
+                          hotRecommendKey:hotRecommendKey
+                                  tagsKey:tagsKey
+                                 priceKey:priceKey
+                                clearData:clear];
+    
+}
+
+
 /*
  * setup Navigation UI
  */
@@ -83,6 +249,8 @@
 -(void)buildControls{
     
     WS(ws);
+    self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
+
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
@@ -91,7 +259,7 @@
     [self.tableView registerClass:[LBB_FoodsMainMenuCell class] forCellReuseIdentifier:@"LBB_FoodsMainMenuCell"];
     [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
 
-    
+    [self initViewModel];
     
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
@@ -104,9 +272,6 @@
         make.width.centerX.equalTo(ws.view);
         make.bottom.equalTo(ws.view);
     }];
-    
-    
-    
 }
 
 
@@ -128,11 +293,12 @@
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
+    WS(ws);
+
     if (section == 0) {
         return [UIView new];
     }
-
+    
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     NSArray* segmentArray = @[@"附近",@"类别",@"智能排序",@"标签"];
     
@@ -258,34 +424,35 @@
     [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
         
         if (index == 0) {//附近
-            return @[@[@"热门商圈"],@[@"思明区"],@[@"湖里区"],@[@"集美区"],@[@"海沧区"],@[@"同安区"],@[@"翔安区"],@[@"鼓浪屿"]];
+            return self.viewModel.foodsCondition.tradingArea;
         }
         else if (index == 1){//类别
-            return @[@[@"全部美食"],@[@"厦门特色小吃"],@[@"台湾特色小吃"],@[@"福建特色小吃"],@[@"海鲜"],@[@"咖啡"]];
+            return self.viewModel.foodsCondition.type;
         }
         else if (index == 2){//智能排序
-            return @[
-                     @[@"智能排序",@"景区排序_智能排序",@"景区排序_智能排序HL"],
-                     @[@"价格最低",@"美食首页_价格排序",@"美食首页_价格排序HL"],
-                     @[@"价格最高",@"美食首页_价格排序",@"美食首页_价格排序HL"],
-                     @[@"评价最高",@"景区排序_评价最高",@"景区排序_评价最高HL"],
-                     ];
+            return self.viewModel.foodsCondition.order;
         }
         else{//标签
-            if (section == 0) {
-                return @[
-                         @[@"不限",@"鼓浪屿",@"南普陀",@"演武大桥",@"厦门大学",@"厦大白城"]
-                         ];
+            if (section == 0) {//热门推荐
+                if (ws.viewModel.foodsCondition.price.count <= 0) {
+                    return @[];
+                }
+                return @[ws.viewModel.foodsCondition.hotRecommend];
+                
             }
-            else if (section == 1){
-                return @[
-                         @[@"不限",@"好玩",@"浪漫",@"海边沙滩",@"环境好",@"美丽",@"不限",@"好玩",@"浪漫",@"海边沙滩"]
-                         ];
+            else if (section == 1){//标签
+                if (ws.viewModel.foodsCondition.price.count <= 0) {
+                    return @[];
+                }
+                return @[ws.viewModel.foodsCondition.tags];
+                
             }
-            else{
-                return @[
-                         @[@"不限",@"100以下",@"100-200",@"200-300",@"300-500",@"500以上"]
-                         ];
+            else{//价格
+                if (ws.viewModel.foodsCondition.price.count <= 0) {
+                    return @[];
+                }
+                return @[ws.viewModel.foodsCondition.price];
+                
             }
         }
     }];
@@ -305,16 +472,31 @@
             LBB_FilterListTableViewCell* cell = [[LBB_FilterListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             
             if (index == 2) {//智能排序
-                NSString* title = [data objectAtIndex:0];
-                NSString* imageName = [data objectAtIndex:1];
-                NSString* imageNameHL = [data objectAtIndex:2];
+                
+                NSArray* sortArray = @[
+                                   @[@"智能排序",@"景区排序_智能排序",@"景区排序_智能排序HL"],
+                                   @[@"价格最低",@"美食首页_价格排序",@"美食首页_价格排序HL"],
+                                   @[@"价格最高",@"美食首页_价格排序",@"美食首页_价格排序HL"],
+                                   @[@"评价最高",@"景区排序_评价最高",@"景区排序_评价最高HL"],
+                                   ];
+                
+                NSInteger index = indexPath.row;
+                if (index >= sortArray.count) {
+                    index = sortArray.count - 1;
+                }
+                NSString* imageName = [[sortArray objectAtIndex:index] objectAtIndex:1];
+                NSString* imageNameHL = [[sortArray objectAtIndex:index] objectAtIndex:2];
+                LBB_FoodsConditionOption* obj = (LBB_FoodsConditionOption*)data;
+
+                NSString* title = obj.name;
+
                 [cell.imageView setImage:IMAGE(imageName)];
                 [cell.textLabel setText:title];
                 [cell.textLabel setFont:Font15];
                 [cell.textLabel setTextColor:ColorGray];
                 cell.tintColor = ColorBtnYellow;
                 
-                if (indexPath.row == 1) {//类别
+                if (indexPath.row == ws.orderSelectIndex) {//类别
                     [cell.imageView setImage:IMAGE(imageNameHL)];
                     [cell.textLabel setTextColor:ColorBtnYellow];
                     UIImageView* accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize(13), AutoSize(11))];
@@ -324,18 +506,23 @@
                 return cell;
             }
             else{
-                NSString* title = [data objectAtIndex:0];
+                LBB_FoodsConditionOption* obj = (LBB_FoodsConditionOption*)data;
+                NSString* title = obj.name;
                 [cell.textLabel setText:title];
                 [cell.textLabel setFont:Font15];
                 [cell.textLabel setTextColor:ColorGray];
                 cell.tintColor = ColorBtnYellow;
                 
+                NSInteger selectIndex;
                 if (index == 0) {//附近
                     [cell showSepLineView:NO];//不展示分割线
                     [cell setBackgroundColor:[UIColor colorWithRGB:0xeaeaea]];
+                    selectIndex = ws.areaSelectIndex;
                 }
-                
-                if (indexPath.row == 1) {//选中行高亮
+                else{//类别
+                    selectIndex = ws.typeSelectIndex;
+                }
+                if (indexPath.row == selectIndex) {//选中行高亮
                     [cell.textLabel setTextColor:ColorBtnYellow];
                     [cell setBackgroundColor:ColorWhite];
                     UIImageView* accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize(13), AutoSize(11))];
@@ -351,24 +538,57 @@
             LBB_FilterTableViewCell* cell = [[LBB_FilterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             
             cell.bottomMargin = AutoSize(15);
-            cell.selectIndex = 0;
-            [cell configContentView:data];
+            if (indexPath.section == 0) {//热门推荐
+                cell.selectIndex = ws.hotRecommendSelectIndex;
+            }
+            else if (indexPath.section == 1){//标签
+                cell.selectIndex = ws.tagsSelectIndex;
+            }
+            else{//价格
+                cell.selectIndex = ws.priceSelectIndex;
+            }
+            
+            NSArray* dataArray = [data map:^id(LBB_FoodsConditionOption* model){
+                return model.name;
+            }];
+            NSLog(@"dataArray:%@",dataArray);
+            
+            [cell configContentView:dataArray];
             
             cell.click = ^(NSNumber* num){
-                
+                if (indexPath.section == 0) {//热门推荐
+                    ws.hotRecommendSelectIndex = [num integerValue];
+                }
+                else if (indexPath.section == 1){//标签
+                    ws.tagsSelectIndex = [num integerValue];
+                }
+                else{//价格
+                    ws.priceSelectIndex = [num integerValue];
+                }
                 [segmentedControl reloadData];
                 
             };
             return cell;
+
         }
         
     }];
     //cell的选中动作
     [segmentedControl didDeselectRowAtIndexPathBlock:^(NSInteger index, NSIndexPath *indexPath, id data) {
         NSLog(@"index:%ld,选择 %@",index,data);
-        if (index != 3) {
+        if (index == 0) {//附近
+            ws.areaSelectIndex = indexPath.row;
+           // [segmentedControl closeMenu];
+        }
+        else if (index == 1){//类别
+            ws.typeSelectIndex = indexPath.row;
             [segmentedControl closeMenu];
         }
+        else if(index == 2){//排序
+            ws.orderSelectIndex = indexPath.row;
+            [segmentedControl closeMenu];
+        }
+
     }];
     
     //返回bottomView
@@ -432,12 +652,13 @@
     //对应选项的子菜单数组
     [segmentedControl.subFilterView getMenuDataRowArrayInBlock:^NSArray *(NSInteger SupIndex, id SupData) {
         //return @[SupData,@"222",@"333"];
-        return @[@[@"100m"],@[@"200m"],@[@"300m"],@[@"福建特色小吃"],@[@"海鲜"],@[@"咖啡"]];
+        return self.viewModel.foodsCondition.distance;
 
     }];
     
     //子菜单点击事件
     [segmentedControl.subFilterView didDeselectRowAtIndexPathBlock:^(NSInteger SupIndex, NSIndexPath *indexPath, id SupData, id data) {
+        ws.distanceSelectIndex = indexPath.row;
         [segmentedControl closeMenu];
     }];
     
@@ -450,18 +671,18 @@
     [segmentedControl.subFilterView getCellInBlock:^UITableViewCell*(NSInteger SupIndex, NSIndexPath *indexPath, id SupData, id data) {
         NSLog(@"subFilterView getCellInBlock data:%@",data);
         NSLog(@"subFilterView getCellInBlock SupData:%@",data);
-
         
         static NSString *cellIdentifier = @"LBB_FilterListTableViewCell";
         LBB_FilterListTableViewCell* cell = [[LBB_FilterListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         
-            NSString* title = [data objectAtIndex:0];
+            LBB_FoodsConditionOption* obj = (LBB_FoodsConditionOption*)data;
+            NSString* title = obj.name;
             [cell.textLabel setText:title];
             [cell.textLabel setFont:Font15];
             [cell.textLabel setTextColor:ColorGray];
             cell.tintColor = ColorBtnYellow;
             
-            if (indexPath.row == 1) {
+            if (indexPath.row == ws.distanceSelectIndex) {
                 [cell.textLabel setTextColor:ColorBtnYellow];
                 UIImageView* accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, AutoSize(13), AutoSize(11))];
                 [accessoryView setImage:IMAGE(@"景区排序_打钩")];
@@ -486,11 +707,11 @@
     if (section == 0) {
         return 2;
     }
-    return 10;
+    return self.viewModel.foodsArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     if (indexPath.section == 0) {
         
         if (indexPath.row == 0) {
@@ -502,7 +723,6 @@
         }
         else{
             return [tableView fd_heightForCellWithIdentifier:@"LBB_FoodsMainMenuCell" cacheByIndexPath:indexPath configuration:^(LBB_FoodsMainMenuCell *cell) {
-                
             }];
         }
         
@@ -512,7 +732,7 @@
     return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicMainTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicMainTableViewCell *cell) {
         
         [cell showTopSepLine:YES];
-        [cell setModel:nil];
+        [cell setModel:[ws.viewModel.foodsArray objectAtIndex:indexPath.row]];
     }];
     
 }
@@ -531,15 +751,7 @@
                 NSLog(@"LBBPoohCycleScrollCell nil");
             }
             [cell setCycleScrollViewHeight:AutoSize(470/2)];
-            [cell setCycleScrollViewUrls:nil];
-            [cell setEnableBlock:YES];
-            cell.click = ^(NSNumber* index){
-                
-                //  NSInteger num = [index integerValue];
-                LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
-                [ws.navigationController pushViewController:dest animated:YES];
-                
-            };
+            [cell setAdModelArray:self.viewModel.advertisementArray];
             return cell;
         }
         else{
@@ -565,7 +777,7 @@
         NSLog(@"LBB_ScenicMainTableViewCell nil");
     }
     [cell showTopSepLine:YES];
-    [cell setModel:nil];
+    [cell setModel:[self.viewModel.foodsArray objectAtIndex:indexPath.row]];
     return cell;
     
 }
@@ -575,6 +787,7 @@
     //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
     dest.homeType = LBBPoohHomeTypeFoods;
+    dest.spotModel = [self.viewModel.foodsArray objectAtIndex:indexPath.section - 1];
 
     [self.navigationController pushViewController:dest animated:YES];
 }

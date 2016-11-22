@@ -9,6 +9,10 @@
 #import "LBB_PoohAttributedTextCell.h"
 #import "PoohCommon.h"
 
+@interface LBB_PoohAttributedTextCell()<UIWebViewDelegate>
+
+@end
+
 @implementation LBB_PoohAttributedTextCell
 
 /*
@@ -38,6 +42,7 @@
             make.bottom.equalTo(ws.contentView).offset(-margin);
             make.left.equalTo(ws.contentView).offset(2*margin);
             make.right.equalTo(ws.contentView).offset(-2*margin);
+          //  make.height.equalTo(@400);
             make.centerX.equalTo(ws.contentView);
         }];
     }
@@ -46,10 +51,39 @@
 
 -(void)setAttributedText:(NSString *)text{
 
-    NSString * htmlString = @"<html><body> Some html string \n <font size=\"13\" color=\"red\">This is some text!</font> </body></html>";
-    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    NSLog(@"setAttributedText:%@",text);
+    NSString* att = text;
+    if (!att) {
+        att = @"";
+    }
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[text dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     self.attributedTextLabel.attributedText = attrStr;
-    
+   /* [self.attributedTextLabel loadHTMLString:text baseURL:nil];
+    self.attributedTextLabel.delegate = self;
+    self.attributedTextLabel.scrollView.bounces = NO;
+    self.attributedTextLabel.scrollView.alwaysBounceVertical = NO;
+    self.attributedTextLabel.scrollView.alwaysBounceHorizontal = NO;
+*/
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    WS(ws);
+    CGFloat margin = 8;
+    NSLog(@"webViewDidFinishLoad");
+    CGFloat height = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+    NSLog(@"webViewDidFinishLoad height:%f",height);
+
+    [self.attributedTextLabel mas_remakeConstraints:^(MASConstraintMaker* make){
+        
+        make.top.equalTo(ws.contentView).offset(margin);
+        make.bottom.equalTo(ws.contentView).offset(-margin);
+        make.left.equalTo(ws.contentView).offset(2*margin);
+        make.right.equalTo(ws.contentView).offset(-2*margin);
+        make.height.mas_equalTo(height);
+        make.centerX.equalTo(ws.contentView);
+    }];
+    
+    [self.contentView layoutSubviews];
+}
 @end

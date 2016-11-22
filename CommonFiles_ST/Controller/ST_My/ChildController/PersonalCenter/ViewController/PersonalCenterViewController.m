@@ -14,6 +14,8 @@
 #import "LBB_ImagePickerViewController.h"
 #import "LBB_LoginViewController.h"
 #import "VerificationViewController.h"
+#import "LBB_LoginManager.h"
+#import "ChangePasswordViewController.h"
 
 typedef NS_ENUM(NSInteger,PersonalInfoType) {
     eUserHead = 1000,//头像
@@ -328,8 +330,10 @@ UITableViewDataSource
 
 - (void)changePassword:(id)sender
 {
-    
-    [self performSegueWithIdentifier:@"ChangePasswordViewController" sender:sender];
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    ChangePasswordViewController  *vc  = [main instantiateViewControllerWithIdentifier:@"ChangePasswordViewController"];
+    vc.baseViewType = eChangePassword;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)birthDatePickerMenu:(id)sender
@@ -380,10 +384,17 @@ UITableViewDataSource
 - (void)exitLogin:(id)sender
 {
     [self performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
-//    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
-//    LBB_LoginViewController *loginVC = [main instantiateViewControllerWithIdentifier:@"LBB_LoginViewController"];
-//    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:loginVC];
-//    [self presentViewController:navi animated:YES completion:nil];
+    return;
+    LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
+    __weak typeof (self) weakSelf = self;
+    
+    [loginManager logout:^(NSString *userToken,BOOL result){
+        if (result) {
+            [weakSelf performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
+        }else {
+            [weakSelf showHudPrompt:@"退出登录失败"];
+        }
+    }];
     
     NSLog(@"\n 退出登录");
 }

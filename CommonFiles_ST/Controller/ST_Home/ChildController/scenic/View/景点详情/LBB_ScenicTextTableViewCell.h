@@ -15,5 +15,6 @@
 @property(nonatomic,retain)UIView* sepLineView;
 
 -(void)setLineInset:(CGFloat)size andHeight:(CGFloat)height;
+-(void)setContentLabelText:(NSString *)content;
 
 @end

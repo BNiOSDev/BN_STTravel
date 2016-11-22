@@ -78,6 +78,11 @@
             self.navigationItem.title = NSLocalizedString(@"新建收货地址", nil);
         }
             break;
+        case eChangePassword://修改密码
+        {
+            self.navigationItem.title = NSLocalizedString(@"修改密码", nil);
+        }
+            break;
         case eLogin: //登录
         {
             self.navigationItem.title = NSLocalizedString(@"登录", nil);

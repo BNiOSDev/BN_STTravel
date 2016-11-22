@@ -163,7 +163,7 @@
         switch (model.classes) {
             case 1://外部链接
             {
-                TOWebViewController *webViewController = [[TOWebViewController alloc]init];
+                LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
                 webViewController.url = [NSURL URLWithString:model.hrefUrl];
                 [[self getViewController].navigationController pushViewController:webViewController animated:YES];
             }

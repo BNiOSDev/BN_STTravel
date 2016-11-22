@@ -79,7 +79,7 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 8;
+    return self.ugc.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,10 +90,78 @@
         NSLog(@"无法创建LBB_ScenicDetailVipMPaiCellItem时打印，自定义的cell就不可能进来了。");
     }
     
-    [cell.mainImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(PlaceHolderImage)];
-    [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(PlaceHolderImage)];
+    LBB_SpotsUgc* obj = [self.ugc objectAtIndex:indexPath.row];
+    
+    /*
+     @property(nonatomic, assign)int likeNum ;// 点赞次数
+     @property(nonatomic, assign)int commentsNum ;// 评论条数
+     @property(nonatomic, strong)NSString *userName ;// 发布者用户名称
+     
+     @property(nonatomic, strong)NSString *userPicUrl ;// 发布者头像URL
+     
+     
 
-    NSLog(@"LBB_ScenicDetailVipMPaiCellItem cellForItemAtIndexPath:%ld",indexPath.row);
+     */
+    
+    [cell.mainImageView sd_setImageWithURL:[NSURL URLWithString:obj.ugcPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [cell.nickNameLabel setText:obj.userName];// 发布者用户名称
+    [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:obj.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+
+    if (obj.ugcType == 1) {//照片
+        cell.playButton.hidden = YES;
+    }
+    else{//视频
+        cell.playButton.hidden = NO;
+        [cell.playButton bk_addEventHandler:^(id sender){
+            
+            //ugcVideoUrl ;// 视频地址
+            NSLog(@"playButton touch");
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    @weakify(self);
+    // 点赞次数
+    [RACObserve(obj, likeNum) subscribeNext:^(NSNumber* num) {
+        int likenum = [num intValue];
+        [cell.greatButton setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
+    }];
+    
+    // 评论条数
+    [RACObserve(obj, commentsNum) subscribeNext:^(NSNumber* num) {
+        int likenum = [num intValue];
+        [cell.commentsButton setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
+    }];
+ 
+ 
+    // 是否收藏 0否 1是
+    [RACObserve(obj, isCollected) subscribeNext:^(NSNumber* num) {
+        BOOL status = [num boolValue];
+     //   [cell.commentsButton setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
+    }];
+    
+    // 是否点赞 0否 1是
+    [RACObserve(obj, isLiked) subscribeNext:^(NSNumber* num) {
+        BOOL status = [num boolValue];
+        if (status) {
+            [cell.greatButton setImage:IMAGE(@"景区列表_点赞HL")forState:UIControlStateNormal];
+        }
+        else{
+            [cell.greatButton setImage:IMAGE(@"景区列表_点赞")forState:UIControlStateNormal];
+        }
+    }];
+    
+    [cell.commentsButton bk_whenTapped:^{
+        
+        NSLog(@"disView touch");
+        
+    }];
+    [cell.greatButton bk_whenTapped:^{
+        
+        NSLog(@"greetView touch");
+        
+    }];
+    
     
     return cell;
 }
@@ -104,6 +172,12 @@
     LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
     [[self getViewController].navigationController pushViewController:dest animated:YES];
         
+}
+
+-(void)setUgc:(NSMutableArray<LBB_SpotsUgc *> *)ugc{
+    
+    _ugc = ugc;
+    [self.collectionView reloadData];
 }
 
 @end

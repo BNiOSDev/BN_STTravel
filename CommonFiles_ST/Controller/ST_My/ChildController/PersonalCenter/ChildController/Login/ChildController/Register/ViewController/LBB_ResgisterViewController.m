@@ -112,46 +112,42 @@
     self.password = [self.password Trim];
     self.comfirmPassword = [self.comfirmPassword Trim];
     
-    if (![self.account isNumberString]) {
-        UIAlertView *alertView =  [[UIAlertView alloc] initWithTitle:@"手机号不对" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
-        [alertView show];
+    if (![self.account validateMobile]) {
+         [self showHudPrompt:@"手机号输入错误，请重新输入"];
         return;
     }
     
     if (![self.password validatePassword]) {
-        UIAlertView *alertView =  [[UIAlertView alloc] initWithTitle:@"密码不对" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
-        [alertView show];
+        [self showHudPrompt:@"密码输入错误，请重新输入"];
         return;
     }
     if (![self.password isEqualToString:self.comfirmPassword]) {
-        UIAlertView *alertView =  [[UIAlertView alloc] initWithTitle:@"请确认密码是否正确" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
-        [alertView show];
+        [self showHudPrompt:@"请确认密码是否正确"];
         return;
     }
     if ([self.checkNum length] == 0) {
-        UIAlertView *alertView =  [[UIAlertView alloc] initWithTitle:@"验证码不能为空" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
-        [alertView show];
+        [self showHudPrompt:@"验证码不能为空"];
         return;
     }
     
     if (self.account && self.password && self.comfirmPassword) {
         LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
         
+        __weak typeof (self) weakSelf = self;
         [loginManager registered:self.loignType
                    UserHeadImage:self.userHeadImage
                          Account:self.account
                         Password:self.password
                         CheckNum:self.checkNum
                              Sex:self.sex
-                         Address:self.address];
-        
-        loginManager.resgisterCompleteBlock = ^(BOOL result){
-            if (result) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }else {
-                [self showHudPrompt:@"注册失败，请检查账号、密码、验证码是否正确"];
-            }
-        };
+                         Address:self.address
+                   CompleteBlock:^(NSString *userToken,BOOL result){
+                       if (result) {
+                           [weakSelf.navigationController popViewControllerAnimated:YES];
+                       }else {
+                           [weakSelf showHudPrompt:@"注册失败，请检查账号、密码、验证码是否正确"];
+                       }
+                   }];
     }else if([self.password isEqualToString:self.comfirmPassword]){
         [self showHudPrompt:@"注册失败,请检查密码是否正确"];
     }else {

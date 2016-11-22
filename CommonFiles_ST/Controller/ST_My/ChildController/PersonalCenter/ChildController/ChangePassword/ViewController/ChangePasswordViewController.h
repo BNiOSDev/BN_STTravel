@@ -10,4 +10,7 @@
 
 @interface ChangePasswordViewController : MineBaseViewController
 
+//用户账号
+@property(nonatomic,copy) NSString *account;
+
 @end

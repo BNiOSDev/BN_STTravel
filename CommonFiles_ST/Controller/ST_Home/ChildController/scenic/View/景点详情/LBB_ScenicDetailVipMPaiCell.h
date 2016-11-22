@@ -8,10 +8,12 @@
 
 #import "LBBPoohBaseTableViewCell.h"
 #import "LBB_ScenicDetailVipMPaiCellItem.h"
+#import "LBB_SpotDetailsViewModel.h"
 
 @interface LBB_ScenicDetailVipMPaiCell : LBBPoohBaseTableViewCell
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsUgc*> *ugc ;// 视频记录
 
 
 @end

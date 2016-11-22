@@ -10,8 +10,9 @@
 
 @interface LBB_PoohAttributedTextCell : LBBPoohBaseTableViewCell
 
-@property(nonatomic, retain)UILabel* attributedTextLabel;
+//@property(nonatomic, retain)UILabel* attributedTextLabel;
 
 -(void)setAttributedText:(NSString *)text;
+@property(nonatomic, retain)UILabel* attributedTextLabel;
 
 @end

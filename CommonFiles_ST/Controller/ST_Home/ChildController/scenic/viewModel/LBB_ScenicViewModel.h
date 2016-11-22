@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LBB_SpotDetailsViewModel.h"
+#import "LBB_HomeCommonModel.h"
 
 @interface LBB_ScenicSpotConditionOption : NSObject
 
@@ -18,7 +19,7 @@
 
 @interface LBB_ScenicSpotCondition : BN_BaseDataModel
 
-@property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *type;//类别
+@property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *type;//类别 
 @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *order;//排序
 @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *hotRecommend;//热门推荐
 @property (nonatomic,strong)NSMutableArray<LBB_ScenicSpotConditionOption*> *tags;//标签
@@ -32,7 +33,7 @@
 
 @property (nonatomic,strong)NSMutableArray<LBB_SpotModel *> *spotArray;
 
-@property (nonatomic, strong)NSMutableArray<LBB_SportAdvertisement*> *advertisementArray;
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *advertisementArray;
 
 /**
  3.2.1	景点筛选条件(已测)

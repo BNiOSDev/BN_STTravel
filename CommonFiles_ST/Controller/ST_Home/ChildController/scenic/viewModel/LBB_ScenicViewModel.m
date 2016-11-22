@@ -84,6 +84,8 @@
         if(codeNumber.intValue == 0)
         {
             [temp.scenicSpotCondition mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getSpotCondition成功  %@",[dic objectForKey:@"result"]);
+
         }
         else
         {
@@ -134,13 +136,14 @@
     NSString *url = [NSString stringWithFormat:@"%@/spot/list",BASEURL];
     __weak typeof(self) temp = self;
     self.spotArray.loadSupport.loadEvent = NetLoadingEvent;
-    
+    NSLog(@"getSpotArrayLongitude paraDic : %@",paraDic);
+
     [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getSpotArrayLongitude成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SpotModel mj_objectArrayWithKeyValuesArray:array];
             
@@ -192,7 +195,7 @@
         {
             NSLog(@"getAdvertisementListArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
-            NSArray *returnArray = [LBB_SportAdvertisement mj_objectArrayWithKeyValuesArray:array];
+            NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
             {

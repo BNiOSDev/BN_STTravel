@@ -7,7 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-
+#import "LBB_SpotDetailsViewModel.h"
 @interface LBB_ScenicMainTableViewCell : LBBPoohBaseTableViewCell
 
 
@@ -25,7 +25,7 @@
 @property(nonatomic, retain)UIButton* commentsButton;
 @property(nonatomic, retain)UIButton* greatButton;
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)LBB_SpotModel* model;
 
 -(void)showTopSepLine:(BOOL)show;
 

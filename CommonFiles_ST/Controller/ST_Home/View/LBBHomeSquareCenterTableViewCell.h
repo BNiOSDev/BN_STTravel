@@ -7,7 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-
+#import "LBB_HomeViewModel.h"
 
 @interface LBBHomeSquareCenterTableViewCellItem : UIControl
 
@@ -29,7 +29,8 @@
 @property(nonatomic, retain)LBBHomeSquareCenterTableViewCellItem* item2;
 @property(nonatomic, retain)UIView* sep;
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)BN_HomeUgcList* model1;
+@property(nonatomic, retain)BN_HomeUgcList* model2;
 
 
 @end

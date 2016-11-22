@@ -102,6 +102,8 @@
         if(codeNumber.intValue == 0)
         {
             [temp.foodsCondition mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getFoodsCondition 成功  %@",[dic objectForKey:@"result"]);
+
         }
         else
         {
@@ -165,7 +167,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getFoodsArrayLongitude成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SpotModel mj_objectArrayWithKeyValuesArray:array];
             
@@ -184,7 +186,7 @@
         
         temp.foodsArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getUgcArrayClearData失败  %@",error.domain);
+        NSLog(@"getFoodsArrayLongitude失败  %@",error.domain);
         
         temp.foodsArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
@@ -217,7 +219,7 @@
         {
             NSLog(@"getAdvertisementListArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
-            NSArray *returnArray = [LBB_SportAdvertisement mj_objectArrayWithKeyValuesArray:array];
+            NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
             {

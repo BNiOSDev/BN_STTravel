@@ -38,12 +38,12 @@
         }];
         
         self.favoriteButton  = [UIButton new];
-        [self.favoriteButton setBackgroundImage:IMAGE(@"景点详情_收藏HL") forState:UIControlStateNormal];
+        [self.favoriteButton setImage:IMAGE(@"景点详情_收藏HL") forState:UIControlStateNormal];
         [self.contentView addSubview:self.favoriteButton];
         [self.favoriteButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.right.equalTo(ws.contentView).offset(-2*margin);
             make.top.equalTo(ws.bgImageView).offset(2*margin);
-            make.width.height.mas_equalTo(AutoSize(15));
+           // make.width.height.mas_equalTo(AutoSize(15));
         }];
         
         
@@ -70,7 +70,7 @@
         }];
         
         UIView* sep = [UIView new];
-        [sep setBackgroundColor:ColorLine];
+        [sep setBackgroundColor:[UIColor colorWithRGB:0x808080]];
         [self.contentView addSubview:sep];
         [sep mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -82,23 +82,27 @@
         
         self.streetLabel = [UILabel new];
         [self.streetLabel setFont:Font13];
-        [self.streetLabel setText:@"鼓浪屿景区"];
+        [self.streetLabel setText:@""];
         [self.streetLabel setTextColor:ColorLightGray];
         [self.contentView addSubview:self.streetLabel];
         [self.streetLabel mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(sep.mas_right).offset(3);
+            make.left.equalTo(sep.mas_right).offset(0);
             make.centerY.height.equalTo(ws.addressLabel);
         }];
+        [self.streetLabel setHidden:YES];
+
         UIView* sep1 = [UIView new];
         [sep1 setBackgroundColor:ColorLine];
         [self.contentView addSubview:sep1];
         [sep1 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.streetLabel.mas_right).offset(3);
+            make.left.equalTo(ws.streetLabel.mas_right).offset(0);
             make.centerY.equalTo(ws.addressLabel);
             make.height.width.equalTo(sep);
         }];
+        [sep1 setHidden:YES];
+
         self.distanceLabel = [UILabel new];
         [self.distanceLabel setFont:Font13];
         [self.distanceLabel setText:@"90km"];
@@ -203,13 +207,35 @@
     [self.contentView layoutSubviews];
 }
 
--(void)setModel:(id)model{
+-(void)setModel:(LBB_SpotModel*)model{
     
-    NSInteger price = 120;
-    NSInteger num = 1;
+    _model = model;
+    
+    [self.addressLabel setText:model.allSpotsName];
+    
+    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.titleLabel setText:model.picRemark];
+    
+    [self.distanceLabel setText:[NSString stringWithFormat:@"%.0fkm",model.distance]];
+    [self.greatButton setTitle:[NSString stringWithFormat:@"%d",model.likeNum] forState:UIControlStateNormal];
+    [self.commentsButton setTitle:[NSString stringWithFormat:@"%d",model.commentsNum] forState:UIControlStateNormal];
+
+    if (model.isCollected) {
+        [self.favoriteButton setImage:IMAGE(@"景点详情_收藏HL") forState:UIControlStateNormal];
+    }
+    else{
+        [self.favoriteButton setImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
+    }
+    
+    if (model.isLiked) {
+        [self.greatButton setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
+    }
+    else{
+        [self.greatButton setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+    }
     
     //单价设置
-    NSString* strFormat1 = [NSString stringWithFormat:@"%ld元起/%ld人",price,num];
+    NSString* strFormat1 = [NSString stringWithFormat:@"%@元起/人",model.realPrice];
     NSString* strFormat2 = @"元";
     UIColor* fontColor = ColorBtnYellow;
     NSDictionary* attrsDic = @{NSForegroundColorAttributeName:fontColor,
@@ -226,7 +252,9 @@
     self.priceLabel.attributedText = strAttr;
     
     //删除的价格设置
-    NSAttributedString *attrStr = [[NSAttributedString alloc]initWithString:@"130"
+    NSLog(@"model.standardPcice:%@",model.standardPcice);
+
+    NSAttributedString *attrStr = [[NSAttributedString alloc]initWithString:model.standardPcice?model.standardPcice:@""
                                   attributes:
        @{NSFontAttributeName:Font10,
     NSForegroundColorAttributeName:ColorLightGray,
@@ -235,7 +263,6 @@
     self.deletePriceLabel.attributedText = attrStr;
     
     
-    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://g.hiphotos.baidu.com/image/h%3D200/sign=5c00db24cd95d143c576e32343f18296/03087bf40ad162d9ec74553b14dfa9ec8a13cd7a.jpg"] placeholderImage:IMAGE(@"poohtest")];
 
 }
 

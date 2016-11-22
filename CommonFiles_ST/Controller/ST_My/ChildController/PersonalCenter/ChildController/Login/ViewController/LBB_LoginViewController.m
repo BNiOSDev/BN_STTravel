@@ -89,17 +89,21 @@
     self.loignType = eLoginTelePhone;
     self.account = [self.account Trim];
     self.password = [self.password Trim];
-  
-    if (self.account && self.password) {
+    
+    __weak typeof (self) weakSelf = self;
+    
+    if ([self.account length] && [self.password length]) {
         LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
-        [loginManager login:self.loignType Account:self.account Password:self.password];
-        loginManager.loginCompleteBlock = ^(NSString *userID,BOOL result){
-            if (result) {
-                [self dismissViewControllerAnimated:YES completion:nil];
-            }else {
-                [self showHudPrompt:@"登录失败，请检查账号和密码是否正确"];
-            }
-        };
+        [loginManager login:self.loignType
+                    Account:self.account
+                   Password:self.password
+              CompleteBlock:^(NSString *userToken,BOOL result){
+                  if (result) {
+                      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                  }else {
+                      [weakSelf showHudPrompt:@"登录失败，请检查账号和密码是否正确"];
+                  }
+              }];
     }else{
         [self showHudPrompt:@"请检查账号和密码是否正确"];
     }

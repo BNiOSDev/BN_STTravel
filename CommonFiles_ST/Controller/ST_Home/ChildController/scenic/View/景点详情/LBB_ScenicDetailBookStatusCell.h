@@ -7,11 +7,12 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-
+#import "LBB_SpotDetailsViewModel.h"
 @interface LBB_ScenicDetailBookStatusCell : LBBPoohBaseTableViewCell
 
 
 @property(nonatomic, retain)UIButton* status1View;
 @property(nonatomic, retain)UIButton* status2View;
+@property(nonatomic, retain)LBB_SpotDetailsViewModel* spotDetailModel;
 
 @end

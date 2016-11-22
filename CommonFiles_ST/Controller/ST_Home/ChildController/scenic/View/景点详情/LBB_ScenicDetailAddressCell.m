@@ -31,26 +31,34 @@
         
         CGFloat margin = 8;
         
+        self.telButton = [UIButton new];
+        [self.telButton setBackgroundImage:IMAGE(@"景点详情_电话") forState:UIControlStateNormal];
+        [self.contentView addSubview:self.telButton];
+        [self.telButton mas_makeConstraints:^(MASConstraintMaker* make){
+            make.right.equalTo(ws.contentView).offset(-2*margin);
+            make.width.height.mas_equalTo(AutoSize(22));
+            make.top.equalTo(ws.contentView).offset(2*margin);
+
+        }];
+        
         self.nameLable = [UILabel new];
         [self.nameLable setFont:Font13];
         [self.nameLable setText:@"厦门曾厝垵景区"];
         [self.contentView addSubview:self.nameLable];
         [self.nameLable mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.top.equalTo(ws.contentView).offset(2*margin);
+            make.centerY.equalTo(ws.telButton);
             make.left.equalTo(ws.contentView).offset(margin);
         }];
         
-        
-        self.telButton = [UIButton new];
-        [self.telButton setBackgroundImage:IMAGE(@"景点详情_电话") forState:UIControlStateNormal];
-        [self.contentView addSubview:self.telButton];
-        [self.telButton mas_makeConstraints:^(MASConstraintMaker* make){
-            make.centerY.equalTo(ws.nameLable);
-            make.right.equalTo(ws.contentView).offset(-2*margin);
-            make.width.height.mas_equalTo(AutoSize(22));
+        self.addressButton = [UIButton new];
+        [self.addressButton setBackgroundImage:IMAGE(@"景点详情_地址") forState:UIControlStateNormal];
+        [self.contentView addSubview:self.addressButton];
+        [self.addressButton mas_makeConstraints:^(MASConstraintMaker* make){
+            make.right.equalTo(ws.telButton);
+            make.width.height.equalTo(ws.telButton);
+            make.top.equalTo(ws.telButton.mas_bottom).offset(margin);
         }];
-        
         
         self.addressLable = [UILabel new];
         [self.addressLable setFont:Font13];
@@ -58,19 +66,14 @@
         [self.contentView addSubview:self.addressLable];
         [self.addressLable mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.top.equalTo(ws.nameLable.mas_bottom).offset(2*margin);
+         //   make.top.equalTo(ws.nameLable.mas_bottom).offset(2*margin);
             make.left.equalTo(ws.nameLable);
+            make.centerY.equalTo(ws.addressButton);
+
         }];
         
         
-        self.addressButton = [UIButton new];
-        [self.addressButton setBackgroundImage:IMAGE(@"景点详情_地址") forState:UIControlStateNormal];
-        [self.contentView addSubview:self.addressButton];
-        [self.addressButton mas_makeConstraints:^(MASConstraintMaker* make){
-            make.centerY.equalTo(ws.addressLable);
-            make.right.equalTo(ws.telButton);
-            make.width.height.equalTo(ws.telButton);
-        }];
+
        
         
         UIView* sep2 = [UIView new];
@@ -84,12 +87,14 @@
         
         [self.telButton bk_whenTapped:^{
             Base_BaseViewController* curVC = (Base_BaseViewController*)[ws getViewController];
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"" message:@"4008-910-654" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"" message:ws.model.phoneNo preferredStyle:UIAlertControllerStyleActionSheet];
             
             
             UIAlertAction* call = [UIAlertAction actionWithTitle:@"直接拨打" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
                 
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://4008-910-654"]];
+               // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://4008-910-654"]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",ws.model.phoneNo]]];
+
                 
             }];
             UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
@@ -107,5 +112,13 @@
     return self;
 }
 
+
+-(void)setModel:(LBB_SpotDetailsViewModel *)model{
+    
+    _model = model;
+    [self.nameLable setText:model.phoneNoRemark];
+    [self.addressLable setText:model.address];
+    
+}
 
 @end

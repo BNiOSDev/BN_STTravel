@@ -210,11 +210,13 @@
         if(codeNumber.intValue == 0)
         {
             [temp.spotDetails mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getSpotDetailsData 成功  %@",[dic objectForKey:@"result"]);
+
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            NSLog(@"失败  %@",errorStr);
+            NSLog(@"getSpotDetailsData 失败  %@",errorStr);
             
         }
         
@@ -226,6 +228,3 @@
 
 @end
 
-@implementation LBB_SportAdvertisement
-
-@end
