@@ -7,6 +7,13 @@
 //
 
 #import "LBB_LoginManager.h"
+#import <CommonCrypto/CommonDigest.h>
+
+@implementation LoginUserInfo
+
+
+@end
+
 
 @interface LBB_LoginManager()
 
@@ -58,7 +65,7 @@
     
     self.userHeadImage = headImage;
     self.account = account;
-    self.password = [password stringFromMD5];
+    self.password = password;
     self.loginType = loginType;
     self.checkNum = checkNum;
     self.resgisterCompleteBlock = completeBlock;
@@ -79,19 +86,29 @@
     
     NSString *url = [NSString stringWithFormat:@"%@/mime/register",BASEURL];
     __weak typeof(self) weakSelf = self;
- 
-    
+
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
                                  success:^(NSURLSessionDataTask *operation, id responseObject){
-        weakSelf.isLogin = YES;
-//        weakSelf.userToken = 
-        NSLog(@"responseObject = %@",responseObject);
-        if (weakSelf.resgisterCompleteBlock) {
-            weakSelf.resgisterCompleteBlock(weakSelf.userToken,YES);
-        }
+         NSDictionary *dict = (NSDictionary*)responseObject;
+         NSLog(@"responseObject = %@",dict);
+         int code = [[dict objectForKey:@"code"] intValue];
+         NSString *remark = [dict objectForKey:@"remark"];
+         NSString *token = [dict objectForKey:@"token"];
+          if (code == 0) {
+             if (weakSelf.resgisterCompleteBlock) {
+                 weakSelf.resgisterCompleteBlock(token,YES);
+             }
+              LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
+              loginCountInfo.account = weakSelf.account;
+              loginCountInfo.password = weakSelf.password;
+              [weakSelf saveLoginUserInfo:loginCountInfo];
+          }else{
+              if (weakSelf.resgisterCompleteBlock) {
+                  weakSelf.resgisterCompleteBlock(remark,NO);
+              }
+          }
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error){
-        weakSelf.isLogin = NO;
         if (weakSelf.resgisterCompleteBlock) {
             weakSelf.resgisterCompleteBlock(nil,NO);
         }
@@ -106,9 +123,9 @@
 CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 {
     self.account = account;
-    self.password = [password stringFromMD5];
+    self.password = password;
     self.loginType = loginType;
-    self.logoutCompleteBlock = completeBlock;
+    self.loginCompleteBlock = completeBlock;
     
     NSString *deviceID  =  [self uuid];
     //todo 调用登录接口，登录完成后回调登录block
@@ -125,11 +142,29 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
                                  success:^(NSURLSessionDataTask *operation, id responseObject){
         weakSelf.isLogin = YES;
-//                                     weakSelf.userToken = 
-        NSLog(@"responseObject = %@",responseObject);
-        if (weakSelf.loginCompleteBlock) {
-            weakSelf.loginCompleteBlock(weakSelf.userToken,YES);
-        }
+
+         NSDictionary *dict = (NSDictionary*)responseObject;
+         NSLog(@"responseObject = %@",dict);
+         int code = [[dict objectForKey:@"code"] intValue];
+         NSString *remark = [dict objectForKey:@"remark"];
+         weakSelf.userToken = [dict objectForKey:@"token"];
+         if (code == 0) {
+             if (weakSelf.loginCompleteBlock) {
+                 weakSelf.loginCompleteBlock(weakSelf.userToken,YES);
+             }
+             if (weakSelf.loginType == eLoginTelePhone) {
+                 LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
+                 loginCountInfo.account = weakSelf.account;
+                 loginCountInfo.password = weakSelf.password;
+                 [weakSelf saveLoginUserInfo:loginCountInfo];
+             }
+            
+         }else{
+             if (weakSelf.loginCompleteBlock) {
+                 weakSelf.loginCompleteBlock(remark,YES);
+             }
+         }
+
     } failure:^(NSURLSessionDataTask *operation, NSError *error){
         weakSelf.isLogin = NO;
         NSLog(@"error = %@",error);
@@ -138,6 +173,19 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
         }
     }];
 }
+
+- (NSString *) md5:(NSString *)str
+{
+      const char *cStr = [str UTF8String];
+   unsigned char result[16];
+     CC_MD5( cStr, strlen(cStr), result );
+    return [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                                             result[0], result[1], result[2], result[3],
+                                          result[4], result[5], result[6], result[7],
+                                              result[8], result[9], result[10], result[11],
+                                           result[12], result[13], result[14], result[15]
+                   ];
+    }
 
 - (void)logout:(void (^)(NSString *userToken,BOOL result))completeBlock;
 {
@@ -152,6 +200,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
                                  success:^(NSURLSessionDataTask *operation, id responseObject){
+         
         weakSelf.isLogin = NO;
         weakSelf.userToken = nil;
         if (weakSelf.logoutCompleteBlock) {
@@ -169,11 +218,25 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 }
 
 /*
- * 获取验证码
+ *  3.1.12获取验证码
+  1:注册短信2.服务通知类短信3营销类短信4修改密码5:修改手机号码
  */
-- (void)getVerificationCode:(NSString*)phoneNum
+- (void)getVerificationCode:(NSString*)phoneNum Type:(int)type
 {
     self.account = phoneNum;
+    NSDictionary *paraDic = @{
+                              @"phoneNum":self.account,
+                              @"type":@(type)
+                              };
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/smsVerifyCode",BASEURL];
+ 
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic
+                                 success:^(NSURLSessionDataTask *operation, id responseObject){
+                                     NSLog(@"responseObject = %@",responseObject);
+                                     
+                                 } failure:^(NSURLSessionDataTask *operation, NSError *error){
+                                    NSLog(@"error = %@",error);
+                                 }];
 }
 
 /*
@@ -268,6 +331,48 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     CFRelease(puuid);
     CFRelease(uuidString);
     return result;
+}
+
+
+/*
+ * 获取本地缓存登录账号和密码
+ */
+- (LoginUserInfo*)getLoginUserInfo
+{
+    NSArray *userList = [[NSUserDefaults standardUserDefaults] objectForKey:@"LocalUserList"];
+//    NSArray *userList = ditct ? ditct[@"LocalUserList"] : nil;
+    if (userList.count) {
+        id userCountInfo = [userList lastObject];
+        if ([userCountInfo isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *tmpDict = (NSDictionary*)userCountInfo;
+            LoginUserInfo *userInfo = [[LoginUserInfo alloc] init];
+            userInfo.account = [tmpDict objectForKey:@"account"];
+            userInfo.password = [tmpDict objectForKey:@"password"];
+            return userInfo;
+        }
+    }
+    return nil;
+}
+
+- (void)saveLoginUserInfo:(LoginUserInfo*)userInfo
+{
+    if (userInfo) {
+        NSArray *userList = [[NSUserDefaults standardUserDefaults] objectForKey:@"LocalUserList"];
+        NSMutableArray *newUserList = [[NSMutableArray alloc] init];
+        BOOL isExit = NO;
+        for (int i = 0; i < userList.count; i++) {
+            NSDictionary *accountInfo = userList[i];
+            if ([[accountInfo objectForKey:@"account"] isEqualToString:userInfo.account]) {
+                isExit = YES;
+            }
+            if (!isExit) {
+                [newUserList addObject:userList[i]];
+            }
+        }
+        [newUserList addObject:@{@"account":userInfo.account,@"password":userInfo.password}];
+        [[NSUserDefaults standardUserDefaults] setObject:newUserList forKey:@"LocalUserList"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 @end

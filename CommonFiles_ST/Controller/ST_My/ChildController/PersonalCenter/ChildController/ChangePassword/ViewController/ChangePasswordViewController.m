@@ -77,11 +77,11 @@ UITextFieldDelegate
     self.comfirLabel.font = Font16;
     self.tipLabel.font = Font14;
 
-    [self.saveBtn.titleLabel setFont:Font16];
+    self.orignTextField.secureTextEntry = YES;
+    self.secondTextField.secureTextEntry = YES;
+    self.comfirTextField.secureTextEntry = YES;
     
-    [self setTextFieldBackImage:self.orignTextField];
-    [self setTextFieldBackImage:self.secondTextField];
-    [self setTextFieldBackImage:self.comfirTextField];
+    [self.saveBtn.titleLabel setFont:Font16];
     
     switch (self.baseViewType) {
         case eChangePassword:

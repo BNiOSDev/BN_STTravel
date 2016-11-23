@@ -63,6 +63,8 @@
     self.accountTextField.borderStyle = UITextBorderStyleNone;
     self.passwordTextField.borderStyle = UITextBorderStyleNone;
     self.comfirmTextField.borderStyle = UITextBorderStyleNone;
+    self.passwordTextField.secureTextEntry = YES;
+    self.comfirmTextField.secureTextEntry = YES;
     self.line1.backgroundColor = ColorLine;
     self.line2.backgroundColor = ColorLine;
     self.line3.backgroundColor = ColorLine;
@@ -95,14 +97,20 @@
     [self.checkTextField.rac_textSignal subscribeNext:^(id x) {
         @strongify(self);
         self.checkNum = self.checkTextField.text;
-    }];
+    }]; 
 }
 
 
 #pragma mark - UI Action
 - (IBAction)getCheckNumBtnClickAction:(id)sender
 {
+    self.account = [self.account Trim];
+    if (![self.account validateMobile]) {
+        [self showHudPrompt:@"手机号输入错误，请重新输入"];
+        return;
+    }
     
+    [[LBB_LoginManager shareInstance] getVerificationCode:self.account Type:1];
 }
 
 - (IBAction)resgisterBtnClickAction:(id)sender
@@ -132,7 +140,7 @@
     
     if (self.account && self.password && self.comfirmPassword) {
         LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
-        
+        [self showHud:YES];
         __weak typeof (self) weakSelf = self;
         [loginManager registered:self.loignType
                    UserHeadImage:self.userHeadImage
@@ -142,10 +150,12 @@
                              Sex:self.sex
                          Address:self.address
                    CompleteBlock:^(NSString *userToken,BOOL result){
+                       
+                          [weakSelf showHud:YES];
                        if (result) {
                            [weakSelf.navigationController popViewControllerAnimated:YES];
                        }else {
-                           [weakSelf showHudPrompt:@"注册失败，请检查账号、密码、验证码是否正确"];
+                           [weakSelf showHudPrompt:userToken];
                        }
                    }];
     }else if([self.password isEqualToString:self.comfirmPassword]){
