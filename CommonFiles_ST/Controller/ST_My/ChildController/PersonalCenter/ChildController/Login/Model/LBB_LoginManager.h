@@ -38,7 +38,8 @@ typedef NS_ENUM(NSInteger,LoginType)
 @property (nonatomic,copy) LoginBlock findPSCompleteBlock;
 //设置密码回调
 @property (nonatomic,copy) LoginBlock setPSCompleteBlock;
-
+//修改（更新）密码回调
+@property (nonatomic,copy) LoginBlock changePSCompleteBlock;
 /*
  * 获取登录实例
  */
@@ -89,6 +90,14 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 - (void)setPassword:(NSString*)phoneNum
             Password:(NSString*)password
        CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
+
+/*
+ * 3.5.33 我的-密码修改（已测）
+ */
+- (void)changePassword:(NSString*)token
+           Password:(NSString*)oldPasswd
+        NewPassword:(NSString*)newPasswd
+      CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 
 /*
  * 判断是否登录

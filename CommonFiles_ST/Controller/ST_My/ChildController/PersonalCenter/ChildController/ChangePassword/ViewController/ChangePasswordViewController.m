@@ -145,12 +145,16 @@ UITextFieldDelegate
             break;
         case eResetPassword: //调回登录页面
         {
+            [self showHud:YES];
             LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
             [loginManager setPassword:self.account
                              Password:self.secondPassword
                         CompleteBlock:^(NSString* userToken,BOOL result){
+                            [weakSelf showHud:NO];
                             if (result) {
                                 [weakSelf backToLoginView];
+                            }else if(userToken){
+                                [weakSelf showHudPrompt:userToken];
                             }
                         }];
         }

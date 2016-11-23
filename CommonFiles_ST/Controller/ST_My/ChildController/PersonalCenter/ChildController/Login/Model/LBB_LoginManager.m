@@ -174,19 +174,6 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     }];
 }
 
-- (NSString *) md5:(NSString *)str
-{
-      const char *cStr = [str UTF8String];
-   unsigned char result[16];
-     CC_MD5( cStr, strlen(cStr), result );
-    return [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
-                                             result[0], result[1], result[2], result[3],
-                                          result[4], result[5], result[6], result[7],
-                                              result[8], result[9], result[10], result[11],
-                                           result[12], result[13], result[14], result[15]
-                   ];
-    }
-
 - (void)logout:(void (^)(NSString *userToken,BOOL result))completeBlock;
 {
     self.logoutCompleteBlock = completeBlock;
@@ -200,18 +187,27 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
                                  success:^(NSURLSessionDataTask *operation, id responseObject){
-         
-        weakSelf.isLogin = NO;
-        weakSelf.userToken = nil;
-        if (weakSelf.logoutCompleteBlock) {
-            weakSelf.logoutCompleteBlock(nil,YES);
-        }
-        NSLog(@"responseObject = %@",responseObject);
+                                     
+         NSDictionary *dict = (NSDictionary*)responseObject;
+         NSLog(@"responseObject = %@",dict);
+         int code = [[dict objectForKey:@"code"] intValue];
+         NSString *remark = [dict objectForKey:@"remark"];
+         if (code == 0) {
+             weakSelf.isLogin = NO;
+             weakSelf.userToken = nil;
+             if (weakSelf.logoutCompleteBlock) {
+                 weakSelf.logoutCompleteBlock(nil,YES);
+             }
+         }else {
+             if (weakSelf.logoutCompleteBlock) {
+                 weakSelf.logoutCompleteBlock(remark,YES);
+             }
+         }
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error){
         weakSelf.isLogin = NO;
         if (weakSelf.logoutCompleteBlock) {
-            weakSelf.logoutCompleteBlock(weakSelf.userToken,NO);
+            weakSelf.logoutCompleteBlock(@"请求异常",NO);
         }
         NSLog(@"error = %@",error);
     }];
@@ -259,18 +255,28 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
                                  success:^(NSURLSessionDataTask *operation, id responseObject){
-                                     weakSelf.isLogin = NO;
-//                                     self.account = 
-                                     if (weakSelf.findPSCompleteBlock) {
-//                                         self.account = 
-                                         weakSelf.findPSCompleteBlock(self.account,YES);
+                                     NSDictionary *dict = (NSDictionary*)responseObject;
+                                     NSLog(@"responseObject = %@",dict);
+                                     int code = [[dict objectForKey:@"code"] intValue];
+                                     NSString *remark = [dict objectForKey:@"remark"];
+                                     if (code == 0) {
+                                         
+                                         if (weakSelf.findPSCompleteBlock) {
+                                             weakSelf.findPSCompleteBlock(self.account,YES);
+                                         }
+                                         LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
+                                         loginCountInfo.account = weakSelf.account;
+                                         loginCountInfo.password = weakSelf.password;
+                                         [weakSelf saveLoginUserInfo:loginCountInfo];
+                                     }else {
+                                         if (weakSelf.findPSCompleteBlock) {
+                                             weakSelf.findPSCompleteBlock(remark,NO);
+                                         }
                                      }
-                                     NSLog(@"responseObject = %@",responseObject);
                                      
                                  } failure:^(NSURLSessionDataTask *operation, NSError *error){
-                                     weakSelf.isLogin = NO;
-                                     if (weakSelf.logoutCompleteBlock) {
-                                         weakSelf.logoutCompleteBlock(weakSelf.userToken,NO);
+                                     if (weakSelf.findPSCompleteBlock) {
+                                         weakSelf.findPSCompleteBlock(@"请求异常",NO);
                                      }
                                      NSLog(@"error = %@",error);
                                  }];
@@ -284,11 +290,12 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
       CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 {
     self.account = phoneNum;
-    self.password = [password stringFromMD5];
+    self.password = password;
     self.setPSCompleteBlock = completeBlock;
     NSDictionary *paraDic = @{
                               @"phoneNum":self.account,
-                              @"verifyCode":self.checkNum
+                              @"verifyCode":self.checkNum,
+                              @"passwd":self.password
                               };
     
     NSString *url = [NSString stringWithFormat:@"%@/mime/password/setting",BASEURL];
@@ -296,22 +303,79 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
                                  success:^(NSURLSessionDataTask *operation, id responseObject){
-                                     weakSelf.isLogin = NO;
-                                     if (weakSelf.setPSCompleteBlock) {
-                                         //正确返回token
-                                         weakSelf.setPSCompleteBlock(weakSelf.userToken,YES);
+                                     NSDictionary *dict = (NSDictionary*)responseObject;
+                                     NSLog(@"responseObject = %@",dict);
+                                     int code = [[dict objectForKey:@"code"] intValue];
+                                     NSString *remark = [dict objectForKey:@"remark"];
+                                     if (code == 0) {
+                                         if (weakSelf.setPSCompleteBlock) {
+                                             weakSelf.setPSCompleteBlock(weakSelf.userToken,YES);
+                                         }
+                                     }else {
+                                         if (weakSelf.setPSCompleteBlock) {
+                                             weakSelf.setPSCompleteBlock(remark,YES);
+                                         }
                                      }
-                                     NSLog(@"responseObject = %@",responseObject);
                                      
                                  } failure:^(NSURLSessionDataTask *operation, NSError *error){
-                                     weakSelf.isLogin = NO;
-                                     if (weakSelf.logoutCompleteBlock) {
-                                         weakSelf.logoutCompleteBlock(weakSelf.userToken,NO);
+                                     if (weakSelf.setPSCompleteBlock) {
+                                         weakSelf.setPSCompleteBlock(@"请求异常",NO);
                                      }
                                      NSLog(@"error = %@",error);
                                  }];
 }
 
+/*
+ * 3.5.33 我的-密码修改（已测）
+ */
+- (void)changePassword:(NSString*)token
+              Password:(NSString*)oldPasswd
+           NewPassword:(NSString*)newPasswd
+         CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
+{
+    self.changePSCompleteBlock = completeBlock;
+    NSDictionary *paraDic = @{
+                              @"Token":token,
+                              @"oldPasswd":oldPasswd,
+                              @"newPasswd":newPasswd
+                              };
+    
+    __block NSString *changeToken = token;
+    __block NSString *password = newPasswd;
+    
+    NSString *url = [NSString stringWithFormat:@"%@/mime/password/update",BASEURL];
+    __weak typeof(self) weakSelf = self;
+    
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
+                                 success:^(NSURLSessionDataTask *operation, id responseObject){
+                                     NSDictionary *dict = (NSDictionary*)responseObject;
+                                     NSLog(@"responseObject = %@",dict);
+                                     int code = [[dict objectForKey:@"code"] intValue];
+                                     NSString *remark = [dict objectForKey:@"remark"];
+                                     if (code == 0) {
+                                         if (weakSelf.changePSCompleteBlock) {
+                                             weakSelf.changePSCompleteBlock(weakSelf.userToken,YES);
+                                         }
+                                         if ([changeToken isEqualToString:weakSelf.userToken]) {
+                                             LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
+                                             loginCountInfo.account = weakSelf.account;
+                                             loginCountInfo.password = password;
+                                             [weakSelf saveLoginUserInfo:loginCountInfo];
+                                         }
+                                         
+                                     }else {
+                                         if (weakSelf.changePSCompleteBlock) {
+                                             weakSelf.changePSCompleteBlock(remark,YES);
+                                         }
+                                     }
+                                     
+                                 } failure:^(NSURLSessionDataTask *operation, NSError *error){
+                                     if (weakSelf.changePSCompleteBlock) {
+                                         weakSelf.changePSCompleteBlock(@"请求异常",NO);
+                                     }
+                                     NSLog(@"error = %@",error);
+                                 }];
+}
 
 - (BOOL)isLogin
 {
@@ -374,5 +438,20 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
+
+//
+//- (NSString *) md5:(NSString *)str
+//{
+//      const char *cStr = [str UTF8String];
+//   unsigned char result[16];
+//     CC_MD5( cStr, strlen(cStr), result );
+//    return [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+//                                             result[0], result[1], result[2], result[3],
+//                                          result[4], result[5], result[6], result[7],
+//                                              result[8], result[9], result[10], result[11],
+//                                           result[12], result[13], result[14], result[15]
+//                   ];
+//    }
+
 
 @end

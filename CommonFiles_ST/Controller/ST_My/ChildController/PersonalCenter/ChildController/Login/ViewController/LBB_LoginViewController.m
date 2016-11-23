@@ -49,8 +49,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = eLogin;
-    self.accountTextField.text = @"13489145937";
-    self.passwordTextField.text = @"123456";
     self.account = self.accountTextField.text;
     self.password = self.passwordTextField.text;
     
@@ -73,7 +71,7 @@
     LoginUserInfo *userInfo = [loginManager getLoginUserInfo];
     if (userInfo) {
         self.accountTextField.text = userInfo.account;
-        self.passwordTextField.text = userInfo.password;
+        //self.passwordTextField.text = userInfo.password;
         self.account = userInfo.account;
         self.password = userInfo.password;
     }
