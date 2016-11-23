@@ -49,6 +49,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = eLogin;
+    self.accountTextField.text = @"13489145937";
+    self.passwordTextField.text = @"123456";
+    self.account = self.accountTextField.text;
+    self.password = self.passwordTextField.text;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self initLocalData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,11 +67,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)initLocalData
+{
+    LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
+    LoginUserInfo *userInfo = [loginManager getLoginUserInfo];
+    if (userInfo) {
+        self.accountTextField.text = userInfo.account;
+        self.passwordTextField.text = userInfo.password;
+        self.account = userInfo.account;
+        self.password = userInfo.password;
+    }
+}
 
 - (void)buildControls
 {
     self.accountTextField.borderStyle = UITextBorderStyleNone;
     self.passwordTextField.borderStyle = UITextBorderStyleNone;
+    self.passwordTextField.secureTextEntry = YES;
     self.line1.backgroundColor = ColorLine;
     self.line2.backgroundColor = ColorLine;
     self.line3.backgroundColor = ColorLine;
@@ -93,15 +116,17 @@
     __weak typeof (self) weakSelf = self;
     
     if ([self.account length] && [self.password length]) {
+        [self showHud:YES];
         LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
         [loginManager login:self.loignType
                     Account:self.account
                    Password:self.password
               CompleteBlock:^(NSString *userToken,BOOL result){
+                  [weakSelf showHud:NO];
                   if (result) {
-                      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                      [weakSelf.navigationController popViewControllerAnimated:YES];
                   }else {
-                      [weakSelf showHudPrompt:@"登录失败，请检查账号和密码是否正确"];
+                      [weakSelf showHudPrompt:userToken];
                   }
               }];
     }else{

@@ -383,19 +383,19 @@ UITableViewDataSource
 #pragma mark - 退出登录
 - (void)exitLogin:(id)sender
 {
-    [self performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
-    return;
     LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
-    __weak typeof (self) weakSelf = self;
-    
-    [loginManager logout:^(NSString *userToken,BOOL result){
-        if (result) {
-            [weakSelf performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
-        }else {
-            [weakSelf showHudPrompt:@"退出登录失败"];
-        }
-    }];
-    
+    if (loginManager.isLogin) {
+        __weak typeof (self) weakSelf = self;
+        [loginManager logout:^(NSString *userToken,BOOL result){
+            if (result) {
+                [weakSelf performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
+            }else {
+                [weakSelf showHudPrompt:@"退出登录失败"];
+            }
+        }];
+    }else {
+        [self performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
+    } 
     NSLog(@"\n 退出登录");
 }
 

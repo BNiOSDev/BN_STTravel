@@ -17,6 +17,7 @@
     UIButton    *zanBtn;
     UIButton    *pinBtn;
     UIButton    *deleteBtn;
+    EnlargeButton    *collecdtionBtn;
 }
 
 @end
@@ -43,6 +44,17 @@
 {
     contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
     [self addSubview:contentImage];
+    
+    collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(self.width - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
+    collecdtionBtn.enlargeInset = UIEdgeInsetsMake(AUTO(10), AUTO(20), AUTO(15), AUTO(10));
+    collecdtionBtn.titleLabel.font = FONT(AUTO(11.0));
+    [collecdtionBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [collecdtionBtn setImage:IMAGE(@"我的_小收藏") forState:UIControlStateNormal];
+    [collecdtionBtn setImage:IMAGE(@"我的_小收藏-点击后") forState:UIControlStateSelected];
+    [self addSubview:collecdtionBtn];
+    [self bringSubviewToFront:collecdtionBtn];
+    collecdtionBtn.hidden = YES;
+
     
     UIImage *tmpImage = IMAGE(@"我的_播放");
     playImage = [[UIImageView alloc] initWithImage:tmpImage];
@@ -81,6 +93,7 @@
     _model = model;
     
     contentImage.imageUrl = model.imageUrl;
+    collecdtionBtn.selected = _model.isCollection;
     
     CGFloat deleteWidth = 0.f;
     
@@ -119,6 +132,7 @@
             deleteBtn.hidden = YES;
             pinBtn.hidden = YES;
             zanBtn.hidden = YES;
+            collecdtionBtn.hidden = NO;
         }
             break;
         default:
@@ -129,13 +143,14 @@
 - (void)btnFunc:(UIButton *)btn
 {
     if (self.cellBlock) {
-        if(btn == pinBtn)
-        {
-            self.cellBlock(btn,UICollectionViewCellConment);
+        if(btn == pinBtn){
+            self.cellBlock(self.model,UICollectionViewCellComment);
         }else if(btn == zanBtn){
-            self.cellBlock(btn,UICollectionViewCellPraise);
-        }else{
-            self.cellBlock(btn,UICollectionViewCellDelete);
+            self.cellBlock(self.model,UICollectionViewCellPraise);
+        }else if(btn == deleteBtn){
+            self.cellBlock(self.model,UICollectionViewCellDelete);
+        }else if(btn == collecdtionBtn){
+            self.cellBlock(self.model,UICollectionViewCellCollection);
         }
     }
 }

@@ -19,6 +19,7 @@
     UIButton    *pinBtn;
     UIButton    *heartBtn;
     UIButton    *deleteBtn;
+    EnlargeButton    *collecdtionBtn; //收藏
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -33,6 +34,16 @@
 {
     contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth,AUTO(180))];
     [self addSubview:contentImage];
+    
+    collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(self.width - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
+    collecdtionBtn.enlargeInset = UIEdgeInsetsMake(AUTO(10), AUTO(20), AUTO(15), AUTO(10));
+    collecdtionBtn.titleLabel.font = FONT(AUTO(11.0));
+    [collecdtionBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [collecdtionBtn setImage:IMAGE(@"我的_小收藏") forState:UIControlStateNormal];
+    [collecdtionBtn setImage:IMAGE(@"我的_小收藏-点击后") forState:UIControlStateSelected];
+    [self addSubview:collecdtionBtn];
+    [self bringSubviewToFront:collecdtionBtn];
+    collecdtionBtn.hidden = YES;
     
     contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, DeviceWidth - 40, AUTO(20))];
     contentLabel.textColor = [UIColor whiteColor];
@@ -68,7 +79,7 @@
     zanBtn.titleLabel.font = FONT(AUTO(11.0));
     [zanBtn setTitleColor:[UIColor grayColor] forState:0];
     [zanBtn setImage:IMAGE(@"zjmdianzan") forState:0];
-    [self addSubview:zanBtn];
+    [self addSubview:zanBtn];   
     
     //屏蔽两个按钮可以同时被点击
     deleteBtn.exclusiveTouch = YES;
@@ -126,6 +137,7 @@
             pinBtn.hidden = YES;
             zanBtn.hidden = YES;
             heartBtn.hidden = YES;
+            collecdtionBtn.hidden = YES;
         }
             break;
         default:
@@ -133,7 +145,7 @@
     }
 }
 
-- (void)setModel:(ZJMTravelModel *)model
+- (void)setModel:(LBB_TravelModel *)model
 {
     _model = model;
     contentImage.imageUrl = model.imageUrl;
@@ -141,6 +153,7 @@
     timeLabel.text = [NSString stringWithFormat:@"%@  %@   %@",model.timeStr,model.daysStr,model.vistNum];
     
     CGFloat deleteWidth = 0.f;
+    collecdtionBtn.selected = _model.isCollection;
     
     deleteBtn.left = DeviceWidth - 10 - deleteBtn.width;
     deleteWidth = deleteBtn.width;
@@ -176,14 +189,15 @@
 {
     if (self.cellBlock) {
         if (btn == heartBtn) {
-            self.cellBlock(btn,UITableViewCellCollect);
-        }else if(btn == pinBtn)
-        {
-            self.cellBlock(btn,UITableViewCellConment);
+            self.cellBlock(self.model,UICollectionViewCellHeart);
+        }else if(btn == pinBtn){
+            self.cellBlock(self.model,UICollectionViewCellComment);
         }else if(btn == zanBtn){
-            self.cellBlock(btn,UITableViewCellPraise);
-        }else{
-            self.cellBlock(btn,UITableViewCellDelete);
+            self.cellBlock(self.model,UICollectionViewCellPraise);
+        }else if(btn == deleteBtn){
+            self.cellBlock(self.model,UICollectionViewCellDelete);
+        }else if(btn == collecdtionBtn){
+            self.cellBlock(self.model,UICollectionViewCellCollection);
         }
     }
 }
