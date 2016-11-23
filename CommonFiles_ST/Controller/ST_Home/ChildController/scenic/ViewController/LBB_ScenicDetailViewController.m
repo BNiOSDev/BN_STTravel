@@ -598,6 +598,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             
             NSLog(@"LBB_ScenicDetailVipFavoriteCell nil");
         }
+        [cell setCollectedRecord:self.spotModel.spotDetails.collectedRecord];
         return cell;
     }
     else{

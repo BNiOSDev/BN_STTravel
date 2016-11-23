@@ -117,17 +117,60 @@
             make.height.mas_equalTo(SeparateLineWidth);
             make.bottom.equalTo(ws.contentView);
         }];
-     
-        
-        [self.favoriteImageView1 sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-        [self.favoriteImageView2 sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-        [self.favoriteImageView3 sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-        [self.favoriteImageView4 sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-        [self.favoriteImageView5 sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-        [self.favoriteImageView6 sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-
     }
     return self;
 }
+
+
+-(void)setCollectedRecord:(NSMutableArray<LBB_SpotsCollectedRecord *> *)collectedRecord{
+    
+    _collectedRecord = collectedRecord;
+    /*
+     @property(nonatomic, assign)long userId ;// 主键
+     @property(nonatomic, strong)NSString *userName ;// 收藏用户名称
+     @property(nonatomic, strong)NSString *userPicUrl ;// 收藏头像URL
+
+     */
+    //标签
+    self.favoriteImageView1.hidden = YES;
+    self.favoriteImageView2.hidden = YES;
+    self.favoriteImageView3.hidden = YES;
+    self.favoriteImageView4.hidden = YES;
+    self.favoriteImageView5.hidden = YES;
+    self.favoriteImageView6.hidden = YES;
+    
+    NSInteger count = collectedRecord.count;
+    if (count > 0) {
+        self.favoriteImageView1.hidden = NO;
+        LBB_SpotsCollectedRecord* tag = [collectedRecord objectAtIndex:0];
+        [self.favoriteImageView1 sd_setImageWithURL:[NSURL URLWithString:tag.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+    if (count > 1){
+        self.favoriteImageView2.hidden = NO;
+        LBB_SpotsCollectedRecord* tag = [collectedRecord objectAtIndex:1];
+        [self.favoriteImageView2 sd_setImageWithURL:[NSURL URLWithString:tag.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+    if (count > 2){
+        self.favoriteImageView3.hidden = NO;
+        LBB_SpotsCollectedRecord* tag = [collectedRecord objectAtIndex:2];
+        [self.favoriteImageView3 sd_setImageWithURL:[NSURL URLWithString:tag.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+    if (count > 3){
+        self.favoriteImageView4.hidden = NO;
+        LBB_SpotsCollectedRecord* tag = [collectedRecord objectAtIndex:3];
+        [self.favoriteImageView4 sd_setImageWithURL:[NSURL URLWithString:tag.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+    if (count > 4){
+        self.favoriteImageView5.hidden = NO;
+        LBB_SpotsCollectedRecord* tag = [collectedRecord objectAtIndex:4];
+        [self.favoriteImageView5 sd_setImageWithURL:[NSURL URLWithString:tag.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+    if (count > 5){
+        self.favoriteImageView6.hidden = NO;
+        LBB_SpotsCollectedRecord* tag = [collectedRecord objectAtIndex:5];
+        [self.favoriteImageView6 sd_setImageWithURL:[NSURL URLWithString:tag.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+}
+
 
 @end

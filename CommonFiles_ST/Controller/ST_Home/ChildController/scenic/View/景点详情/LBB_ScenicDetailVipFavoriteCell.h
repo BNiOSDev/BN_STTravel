@@ -7,7 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-
+#import "LBB_SpotDetailsViewModel.h"
 @interface LBB_ScenicDetailVipFavoriteCell : LBBPoohBaseTableViewCell
 
 @property(nonatomic,retain)UILabel* titleLable;
@@ -21,5 +21,6 @@
 @property(nonatomic,retain)UIImageView* favoriteImageView5;
 @property(nonatomic,retain)UIImageView* favoriteImageView6;
 
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsCollectedRecord*> *collectedRecord ;// 收藏记录（具体几个后台控制）
 
 @end
