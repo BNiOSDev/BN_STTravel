@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LBB_ImageCollect_TableViewCell : UITableViewCell
-@property(nonatomic,strong)UIImageView    *image;
+@property(nonatomic,strong)UIImageView     *image;
 @property(nonatomic,strong)UILabel              *collectName;
 @property(nonatomic,strong)UILabel              *number;
 @end

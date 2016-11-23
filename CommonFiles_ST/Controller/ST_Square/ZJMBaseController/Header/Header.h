@@ -23,6 +23,8 @@ typedef NS_ENUM(NSInteger, UITableViewCellViewSignal)
     UITableViewCellSendMessage   //发送评论
 };
 
+
+
 //使用宏定义16进制颜色值
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
@@ -53,7 +55,12 @@ typedef NS_ENUM(NSInteger, UITableViewCellViewSignal)
 #define WHITECOLOR                          UIColorFromRGB(0xffffff)
 #define BACKVIEWCOLOR                   UIColorFromRGB(0xf5f5f5)
 
+typedef void(^BtnFuncTion)(NSInteger tag);//按钮处理事件
 typedef void(^ClickBlockForControl)(id object, id param);
 typedef void(^CellBlockVIew)(id object,UITableViewCellViewSignal signal);
+typedef void(^BlockAddTip)(id object);
+typedef void(^hideBaseController)(id object);//控制器返回
+typedef void(^JumpToController)(UIViewController  *object);//控制器跳转
+typedef void(^BlockSelectVideo)(NSIndexPath *indexPath,BOOL  select,BOOL cancel);//选择视频回传选中的值
 
 #endif /* Header_h */

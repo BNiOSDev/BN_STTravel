@@ -17,9 +17,9 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vlc-m7-88M"/>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMC-oV-nMP" customClass="UIButtonExt">
-                        <state key="normal" image="No"/>
-                        <state key="selected" image="AssetsPickerChecked"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMC-oV-nMP" customClass="UIButtonExt">
+                        <state key="normal" image="zjmweixuanzhong.png"/>
+                        <state key="selected" image="zjmxuanzhong.png"/>
                     </button>
                 </subviews>
             </view>
@@ -42,7 +42,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="AssetsPickerChecked" width="31" height="31"/>
-        <image name="No" width="44" height="44"/>
+        <image name="zjmweixuanzhong.png" width="14" height="14"/>
+        <image name="zjmxuanzhong.png" width="14" height="14"/>
     </resources>
 </document>

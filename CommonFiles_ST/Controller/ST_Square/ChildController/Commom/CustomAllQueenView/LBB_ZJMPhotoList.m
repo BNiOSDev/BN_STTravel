@@ -147,4 +147,22 @@
     return arr;
 }
 
+#pragma mark   获取系统所有视频资源
+- (NSArray<PHAsset *> *)getAllAssetInVideoAblumWithAscending:(BOOL)ascending{
+    NSMutableArray<PHAsset *> *assets = [NSMutableArray array];
+    
+    PHFetchOptions *option = [[PHFetchOptions alloc] init];
+    //ascending 为YES时，按照照片的创建时间升序排列;为NO时，则降序排列
+    option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:ascending]];
+    
+    PHFetchResult *result = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeVideo options:option];
+    
+    [result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        PHAsset *asset = (PHAsset *)obj;
+        [assets addObject:asset];
+    }];
+    
+    return assets;
+}
+
 @end

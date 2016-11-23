@@ -27,13 +27,7 @@
  */
 @property(nonatomic,strong)PHAssetCollection * assetCollection;
 
-
-
-
 @end
-
-
-
 
 @interface FZJPhotoTool : NSObject
 
@@ -70,6 +64,8 @@
  *  获取指定相册内的所有图片
  */
 - (NSArray<PHAsset *> *)getAssetsInAssetCollection:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending;
+
+- (NSArray<PHAsset *> *)getAllAssetInVideoAblumWithAscending:(BOOL)ascending;
 
 
 @end

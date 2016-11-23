@@ -16,7 +16,7 @@
     if(self == [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
         _image = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 105, 70)];
-        _image.contentMode = UIViewContentModeScaleAspectFill;
+        _image.contentMode = UIViewContentModeScaleAspectFit | UIViewContentModeCenter;
         _image.clipsToBounds = YES;
         [self addSubview:_image];
         

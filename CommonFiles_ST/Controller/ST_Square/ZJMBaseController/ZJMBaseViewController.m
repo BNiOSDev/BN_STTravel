@@ -18,24 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
-//                                                         forBarMetrics:UIBarMetricsDefault];
-//    //    UIBarButtonItem
-//    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    //修改导航栏字体大小和颜色
-    [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor grayColor]}];
-//
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"zjmback"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
-    self.navigationItem.leftBarButtonItem = backBarButton;
-    
-//    manger = [ZYAFNetWorkingPostUrl initRequestDataSet];
-//    [self dealNetWorkChange];
-    
-
-    
+        
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle{

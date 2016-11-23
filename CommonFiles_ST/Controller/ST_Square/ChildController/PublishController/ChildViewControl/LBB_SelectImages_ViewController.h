@@ -8,6 +8,7 @@
 
 #import "Base_BaseViewController.h"
 #import "LBB_ZJMPhotoList.h"
+#import "Header.h"
 
 typedef void (^returnBackPhotoArr)(id data);
 
@@ -28,8 +29,8 @@ typedef void (^returnBackPhotoArr)(id data);
  */
 @property(nonatomic,assign)NSInteger addNum;
 
-@property(nonatomic,copy)returnBackPhotoArr returnBlock;
-
-
+@property(nonatomic,copy)returnBackPhotoArr     returnBlock;
+@property(nonatomic,strong)hideBaseController   _blockHideControl;
+@property(nonatomic,strong)JumpToController   _blockJumpControl;
 
 @end

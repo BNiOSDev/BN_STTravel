@@ -7,7 +7,8 @@
 //
 
 #import "Base_BaseViewController.h"
+#import "Header.h"
 
 @interface LBB_ImagePick_ViewController : Base_BaseViewController
-
+@property(nonatomic,strong)JumpToController   _blockJumpControl;
 @end
