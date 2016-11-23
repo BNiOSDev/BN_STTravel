@@ -64,7 +64,7 @@ UITableViewDataSource
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                                                    @{@"Title": NSLocalizedString(@"头像",nil),
-                                                                     @"Image" : IMAGE(@"19.pic.jpg"),
+                                                                     @"Image" : IMAGE(@"我的_未登录_头像.png"),
                                                                      @"Action":@"showHeadImagePickerMenu:",
                                                                      @"ActionSender" : [NSNumber numberWithInt:eUserHead]},
                                                                    @{@"Title": NSLocalizedString(@"用户名",nil),
