@@ -341,16 +341,16 @@
 		8414A2031DE0552A000F93BD /* LBB_PurchaseModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A2021DE0552A000F93BD /* LBB_PurchaseModuleViewController.m */; };
 		8414A2061DE0574F000F93BD /* LBB_PurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A2051DE0574F000F93BD /* LBB_PurchaseModel.m */; };
 		8414A2091DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8414A2081DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.m */; };
-		842BCC441DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		842BCC4C1DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		842BCC581DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		842BCC5C1DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		842BCC631DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		842BCC691DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		842BCC771DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		842BCC821DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		842BCC891DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		842BCC991DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		842BCC441DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		842BCC4C1DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		842BCC581DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		842BCC5C1DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		842BCC631DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		842BCC691DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		842BCC771DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		842BCC821DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		842BCC891DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		842BCC991DCD792500A16788 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		845CB1B71DDDC24900C02DC2 /* LBB_WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB00E1DDDC24800C02DC2 /* LBB_WebViewController.m */; };
 		845CB1B81DDDC24900C02DC2 /* MineBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB0111DDDC24800C02DC2 /* MineBaseViewController.m */; };
 		845CB1BA1DDDC24900C02DC2 /* LBB_TravelGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB01E1DDDC24800C02DC2 /* LBB_TravelGuideViewController.m */; };
@@ -473,7 +473,7 @@
 		845CB2541DDDE0B700C02DC2 /* LBB_MyFavoriteSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845CB2531DDDE0B700C02DC2 /* LBB_MyFavoriteSquareViewController.m */; };
 		84B377DF1DC4539D0078397C /* ST_Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B377DE1DC4539D0078397C /* ST_Mine.xcassets */; };
 		84CA60731DE1BB0700ECF89C /* LBB_TravelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA60721DE1BB0700ECF89C /* LBB_TravelModel.m */; };
-		84F6B8141DC6E277009ED8DF /* (null) in Sources */ = {isa = PBXBuildFile; };
+		84F6B8141DC6E277009ED8DF /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C91F61161D9F754F004FE75C /* ST_Home.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91F61151D9F754F004FE75C /* ST_Home.xcassets */; };
@@ -5374,7 +5374,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
@@ -5504,7 +5504,7 @@
 				1DF15E901DE54242000BBDFE /* LBB_PublishVideo_Contain_ViewController.m in Sources */,
 				1DF15EAB1DE54242000BBDFE /* LBB_Travel_Bill_Account_TableViewCell.m in Sources */,
 				1D12FA681DC6E97700ACD462 /* LBB_OrderTicketConfirmCell.m in Sources */,
-				842BCC631DCD792500A16788 /* (null) in Sources */,
+				842BCC631DCD792500A16788 /* BuildFile in Sources */,
 				1DF15EA51DE54242000BBDFE /* LBB_HistoryTipView.m in Sources */,
 				1DF15EB51DE54242000BBDFE /* LBB_TravelDetailViewController.m in Sources */,
 				1D01A4CE1DDAE2CC0026CA9B /* LBB_FilterTableViewCell.m in Sources */,
@@ -5544,7 +5544,7 @@
 				845CB1EB1DDDC24900C02DC2 /* AddAddressViewController.m in Sources */,
 				1D12FA5D1DC6E97700ACD462 /* LBB_DiscoveryCustomizedViewController.m in Sources */,
 				1DF15ECD1DE54242000BBDFE /* ZJSegmentStyle.m in Sources */,
-				842BCC441DCD792500A16788 /* (null) in Sources */,
+				842BCC441DCD792500A16788 /* BuildFile in Sources */,
 				1D5757171DDDA273002BC247 /* LBB_PoohMyFavoriteSubjectCell.m in Sources */,
 				1D12FA761DC6E97700ACD462 /* LBB_ScenicDetailTravelRecommendCell.m in Sources */,
 				1D12FA4E1DC6E97700ACD462 /* LBB_ScenicSearchCollectionReusableView.m in Sources */,
@@ -5578,12 +5578,12 @@
 				1D12FA7B1DC6E97700ACD462 /* LBB_ScenicDetailSubjectContentCell.m in Sources */,
 				1DF15ED31DE54242000BBDFE /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				845CB1C91DDDC24900C02DC2 /* LBB_PromotionsViewController.m in Sources */,
-				842BCC991DCD792500A16788 /* (null) in Sources */,
+				842BCC991DCD792500A16788 /* BuildFile in Sources */,
 				1DF15E311DE54242000BBDFE /* LBB_CommentView.m in Sources */,
 				1DF15E9B1DE54242000BBDFE /* LBB_ImageCollect_TableViewCell.m in Sources */,
 				1DF515CD1DD2CAB500C26695 /* LBB_HomeSearchViewController.m in Sources */,
 				1DF15E881DE54242000BBDFE /* LBBHostDetailViewController.m in Sources */,
-				84F6B8141DC6E277009ED8DF /* (null) in Sources */,
+				84F6B8141DC6E277009ED8DF /* BuildFile in Sources */,
 				1D11B0911DCB1133008610CB /* LBB_GuiderUserViewController.m in Sources */,
 				1DF15EB61DE54242000BBDFE /* CommentModel.m in Sources */,
 				1D0F48A21DC8CB9400A37DE2 /* LBB_LabelDetailViewController.m in Sources */,
@@ -5619,15 +5619,15 @@
 				845CB1FE1DDDC24900C02DC2 /* SetingSwitchBaseViewController.m in Sources */,
 				1D11B0AD1DCC24C3008610CB /* LBB_GuiderUserFavoriteDataSource.m in Sources */,
 				845CB1DF1DDDC24900C02DC2 /* LBB_MyPhotoViewCell.m in Sources */,
-				842BCC821DCD792500A16788 /* (null) in Sources */,
+				842BCC821DCD792500A16788 /* BuildFile in Sources */,
 				845CB1F31DDDC24900C02DC2 /* PersonalInfoCell.m in Sources */,
 				845CB1E71DDDC24900C02DC2 /* LBB_ResgisterViewController.m in Sources */,
-				842BCC4C1DCD792500A16788 /* (null) in Sources */,
+				842BCC4C1DCD792500A16788 /* BuildFile in Sources */,
 				845CB22C1DDDC24900C02DC2 /* LBB_MySectionHeadViewCell.m in Sources */,
 				845CB2321DDDC24900C02DC2 /* MineViewController.m in Sources */,
 				1DF15EA21DE54242000BBDFE /* LBB_TraveNoteHead_View.m in Sources */,
-				842BCC691DCD792500A16788 /* (null) in Sources */,
-				842BCC891DCD792500A16788 /* (null) in Sources */,
+				842BCC691DCD792500A16788 /* BuildFile in Sources */,
+				842BCC891DCD792500A16788 /* BuildFile in Sources */,
 				1D01A4D41DDBED1F0026CA9B /* LBB_FilterListTableViewCell.m in Sources */,
 				1DF15E8C1DE54242000BBDFE /* LBB_PulishContain_ViewController.m in Sources */,
 				845CB2351DDDCB4B00C02DC2 /* LBB_TicketModuleViewController.m in Sources */,
@@ -5695,7 +5695,7 @@
 				1D12FA581DC6E97700ACD462 /* LBB_StarRatingViewController.m in Sources */,
 				1DF15EB71DE54242000BBDFE /* HostModel.m in Sources */,
 				1DF15EBF1DE54242000BBDFE /* JHPieChart.m in Sources */,
-				842BCC771DCD792500A16788 /* (null) in Sources */,
+				842BCC771DCD792500A16788 /* BuildFile in Sources */,
 				1D5757141DDD9B81002BC247 /* LBB_PoohMyFavoriteMainCell.m in Sources */,
 				1D12FA5B1DC6E97700ACD462 /* LBB_DiscoveryCustomizedSelectView.m in Sources */,
 				845CB21B1DDDC24900C02DC2 /* CardDetailViewController.m in Sources */,
@@ -5745,8 +5745,8 @@
 				C91F61551D9F96CA004FE75C /* ST_MallViewController.m in Sources */,
 				845CB1CA1DDDC24900C02DC2 /* LBB_SquareNotificationViewCell.m in Sources */,
 				1D12FA871DC6E97700ACD462 /* NSString+PoohCommon.m in Sources */,
-				842BCC5C1DCD792500A16788 /* (null) in Sources */,
-				842BCC581DCD792500A16788 /* (null) in Sources */,
+				842BCC5C1DCD792500A16788 /* BuildFile in Sources */,
+				842BCC581DCD792500A16788 /* BuildFile in Sources */,
 				1DF15EB11DE54242000BBDFE /* LBB_ToolsBtnView.m in Sources */,
 				1DF515D71DD2FE9E00C26695 /* LBB_HomeSearchGoodsCell.m in Sources */,
 				1D12FA601DC6E97700ACD462 /* LBB_FoodsMainViewController.m in Sources */,
