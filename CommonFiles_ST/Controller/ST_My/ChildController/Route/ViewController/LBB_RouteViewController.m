@@ -8,7 +8,6 @@
 
 #import "LBB_RouteViewController.h"
 #import "SDAutoLayout.h"
-#import "ZJMTravelCell.h"
 #import "LBB_TravelModel.h"
 #import "LBB_MyTravelTableViewCell.h"
 #import "LBB_DiscoveryDetailViewController.h"

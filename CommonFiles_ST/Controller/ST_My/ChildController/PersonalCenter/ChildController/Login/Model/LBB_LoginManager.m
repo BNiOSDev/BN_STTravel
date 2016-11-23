@@ -7,6 +7,7 @@
 //
 
 #import "LBB_LoginManager.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation LoginUserInfo
 
@@ -77,7 +78,7 @@
     NSString *deviceID  =  [self uuid];
     NSDictionary *paraDic = @{
                               @"phoneNum":self.account,
-                              @"passwd":[self.password stringFromMD5],
+                              @"passwd":self.password,
                               @"deviceSystemType":@(2),
                               @"deviceId":deviceID,
                               @"verifyCode" : self.checkNum
@@ -124,13 +125,13 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     self.account = account;
     self.password = password;
     self.loginType = loginType;
-    self.logoutCompleteBlock = completeBlock;
+    self.loginCompleteBlock = completeBlock;
     
     NSString *deviceID  =  [self uuid];
     //todo 调用登录接口，登录完成后回调登录block
     NSDictionary *paraDic = @{
                               @"phoneNum":self.account,
-                              @"passwd":[password stringFromMD5],
+                              @"passwd":self.password,
                               @"deviceSystemType":@(2),
                               @"deviceId":deviceID,
                               };
@@ -172,6 +173,19 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
         }
     }];
 }
+
+- (NSString *) md5:(NSString *)str
+{
+      const char *cStr = [str UTF8String];
+   unsigned char result[16];
+     CC_MD5( cStr, strlen(cStr), result );
+    return [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
+                                             result[0], result[1], result[2], result[3],
+                                          result[4], result[5], result[6], result[7],
+                                              result[8], result[9], result[10], result[11],
+                                           result[12], result[13], result[14], result[15]
+                   ];
+    }
 
 - (void)logout:(void (^)(NSString *userToken,BOOL result))completeBlock;
 {
@@ -351,11 +365,11 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
             if ([[accountInfo objectForKey:@"account"] isEqualToString:userInfo.account]) {
                 isExit = YES;
             }
-            [newUserList addObject:userList[i]];
+            if (!isExit) {
+                [newUserList addObject:userList[i]];
+            }
         }
-        if (!isExit) {
-            [newUserList addObject:@{@"account":userInfo.account,@"password":userInfo.password}];
-        }
+        [newUserList addObject:@{@"account":userInfo.account,@"password":userInfo.password}];
         [[NSUserDefaults standardUserDefaults] setObject:newUserList forKey:@"LocalUserList"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }

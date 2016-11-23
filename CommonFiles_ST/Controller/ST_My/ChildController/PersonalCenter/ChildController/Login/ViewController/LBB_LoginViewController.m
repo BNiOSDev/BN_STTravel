@@ -49,6 +49,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = eLogin;
+    self.accountTextField.text = @"13489145937";
+    self.passwordTextField.text = @"123456";
+    self.account = self.accountTextField.text;
+    self.password = self.passwordTextField.text;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -111,13 +116,15 @@
     __weak typeof (self) weakSelf = self;
     
     if ([self.account length] && [self.password length]) {
+        [self showHud:YES];
         LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
         [loginManager login:self.loignType
                     Account:self.account
                    Password:self.password
               CompleteBlock:^(NSString *userToken,BOOL result){
+                  [weakSelf showHud:NO];
                   if (result) {
-                      [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                      [weakSelf.navigationController popViewControllerAnimated:YES];
                   }else {
                       [weakSelf showHudPrompt:userToken];
                   }

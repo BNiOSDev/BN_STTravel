@@ -51,16 +51,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = eResgister;
-#warning 测试数据
-    self.account = @"13338274336";
-    self.password = @"haha123456";
-    self.comfirmPassword = @"haha123456";
-    self.checkNum = @"8888";
-    self.accountTextField.text = self.account;
-    self.passwordTextField.text = @"haha123456";
-    self.comfirmTextField.text = @"haha123456";
-    self.checkTextField.text = self.checkNum;
-    ////warning 测试数据 end
 }
 
 - (void)didReceiveMemoryWarning {
@@ -150,7 +140,7 @@
     
     if (self.account && self.password && self.comfirmPassword) {
         LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
-        
+        [self showHud:YES];
         __weak typeof (self) weakSelf = self;
         [loginManager registered:self.loignType
                    UserHeadImage:self.userHeadImage
@@ -160,6 +150,8 @@
                              Sex:self.sex
                          Address:self.address
                    CompleteBlock:^(NSString *userToken,BOOL result){
+                       
+                          [weakSelf showHud:YES];
                        if (result) {
                            [weakSelf.navigationController popViewControllerAnimated:YES];
                        }else {
