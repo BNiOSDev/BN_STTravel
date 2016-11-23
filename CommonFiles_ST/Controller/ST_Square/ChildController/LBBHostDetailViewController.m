@@ -97,15 +97,12 @@
             model.imageArray = _imageArray2;
         }
         
-        
         model.praiseModelArray = _praiseArray;
         
         model.commentModelArray = _commentArray;
         
         [_dataArray addObject:model];
     }
-    
-    
 }
 
 #pragma mark -- TableViewDelegate

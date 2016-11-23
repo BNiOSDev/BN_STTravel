@@ -18,11 +18,11 @@
  *
  *  @param fixedItemWidth  固定宽度
  *  @param fixedItemHeight 固定高度
- *  @param warpCount       折行点
- *  @param topSpacing      顶间距
+ *  @param warpCount        折行点
+ *  @param topSpacing       顶间距
  *  @param bottomSpacing   底间距
- *  @param leadSpacing     左间距
- *  @param tailSpacing     右间距
+ *  @param leadSpacing          左间距
+ *  @param tailSpacing             右间距
  */
 - (void)mas_distributeSudokuViewsWithFixedItemWidth:(CGFloat)fixedItemWidth
                                     fixedItemHeight:(CGFloat)fixedItemHeight

@@ -22,7 +22,7 @@
 @property(nonatomic, assign) CGFloat maxWidth;
 @property(nonatomic,strong)NSMutableArray *titleList;
 @property(nonatomic,strong)NSMutableArray *buttonList;
-@property(nonatomic,weak) CALayer *LGLayer;
+@property(nonatomic,weak)CALayer *LGLayer;
 @property(nonatomic,assign)CGFloat bannerNowX;
 
 + (instancetype)initWithTitleList:(NSMutableArray *)titleList;
