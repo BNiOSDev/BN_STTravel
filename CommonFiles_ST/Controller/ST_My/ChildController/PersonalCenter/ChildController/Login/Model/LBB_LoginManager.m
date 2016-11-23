@@ -147,8 +147,11 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
          NSLog(@"responseObject = %@",dict);
          int code = [[dict objectForKey:@"code"] intValue];
          NSString *remark = [dict objectForKey:@"remark"];
-         weakSelf.userToken = [dict objectForKey:@"token"];
          if (code == 0) {
+             NSDictionary *result = [dict objectForKey:@"result"];
+             if (result && [result isKindOfClass:[NSDictionary class]]) {
+                  weakSelf.userToken = [result objectForKey:@"token"];
+             }
              if (weakSelf.loginCompleteBlock) {
                  weakSelf.loginCompleteBlock(weakSelf.userToken,YES);
              }

@@ -16,6 +16,7 @@
 #import "VerificationViewController.h"
 #import "LBB_LoginManager.h"
 #import "ChangePasswordViewController.h"
+#import "LBB_PersonalModel.h"
 
 typedef NS_ENUM(NSInteger,PersonalInfoType) {
     eUserHead = 1000,//头像
@@ -37,7 +38,7 @@ UITableViewDataSource
 @property (strong, nonatomic) ActionSheetDatePicker *datePicker;
 @property (strong, nonatomic) UIView *exitLoginView;
 @property (nonatomic,strong) LBB_ImagePickerViewController *imagePicker;
-
+@property (nonatomic,strong) LBB_PersonalModel *personalModel;
 @end
 
 @implementation PersonalCenterViewController
@@ -46,6 +47,7 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = ePersonalCenter;
+    self.personalModel = [[LBB_PersonalModel alloc] init];
     [self initData];
 }
 
@@ -54,6 +56,14 @@ UITableViewDataSource
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
+    if (loginManager.isLogin) {
+        [self.personalModel getPersonInfo:loginManager.userToken];
+    }
+}
 #pragma mark - private
 - (void)initData
 {
