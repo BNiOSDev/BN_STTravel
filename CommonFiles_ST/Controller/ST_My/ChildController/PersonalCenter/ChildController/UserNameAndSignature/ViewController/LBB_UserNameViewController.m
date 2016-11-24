@@ -25,9 +25,13 @@
 
 @implementation LBB_UserNameViewController
 
+- (void)dealloc
+{
+    self.personModel = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initConstraint];
 }
 
@@ -49,13 +53,16 @@
         self.tipBgView.backgroundColor = ColorBackground;
         self.tipLabel.textColor = ColorBlack;
         self.tipLabel.font = Font14;
+        self.textView.text = self.personModel.userName;
     }else {
         self.tipBgView.hidden = YES;
         self.tipLabelHeightConstraint.constant = 0.f;
         self.line1.hidden = YES;
         self.textView.placeholder = NSLocalizedString(@"请输个性签名", nil);
         self.textViewTopConstraint.constant = 0.f;
+        self.textView.text = self.personModel.signature;
     }
+    self.textContent = self.textView.text;
     self.textView.font = Font16;
     self.textView.textColor = ColorBlack;
     
@@ -72,22 +79,41 @@
     NSLog(@"点击保存按钮");
     
     self.textContent = [self.textContent Trim];
+    if ([self.textContent length] == 0) {
+        if (self.baseViewType == eEditUserName) {
+            [self showHudPrompt:@"请输入用户名"];
+        }else if(self.baseViewType == eEditUserSignature) {
+            [self showHudPrompt:@"请输入个人签名"];
+        }
+        return;
+    }
+    
+    if (self.baseViewType == eEditUserName && [self.textContent isEqualToString:self.personModel.userName]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
+    if (self.baseViewType == eEditUserSignature && [self.textContent isEqualToString:self.personModel.signature]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
     
     switch (self.baseViewType) {
         case eEditUserName: //用户名
         {
-            
+            [self.personModel updateUserName:self.textContent Token:self.userToken];
         }
             break;
         case eEditUserSignature://用户签名
         {
-            
+            [self.personModel updateSignature:self.textContent Token:self.userToken];
         }
             break;
             
         default:
             break;
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

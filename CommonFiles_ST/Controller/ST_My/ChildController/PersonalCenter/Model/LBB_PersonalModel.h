@@ -19,10 +19,48 @@
 @property(nonatomic,copy) NSString *birthDate;//出生日期
 @property(nonatomic,assign) long provId;//省份ID
 @property(nonatomic,assign) long cityId;//城市ID
+@property(nonatomic,copy) NSString *area;//地址区域名称
+@property(nonatomic,copy) NSString *address;//地址
+@property(nonatomic,assign) int  isUpdatePasswd;//0不可修改 1可修改
 
 /**
  3.5.21 我的-个人中心（已测）
  */
 - (void)getPersonInfo:(NSString*)userToken;
+
+/**
+3.5.22 我的-头像修改 （已测）
+ */
+- (void)updateUserPicture:(NSString*)imageUrl Token:(NSString*)userToken;
+
+/**
+ 3.5.23 我的-用户名修改（已测）
+ */
+- (void)updateUserName:(NSString*)userName Token:(NSString*)userToken;
+
+/**
+  3.5.24 我的-签名修改 （已测)
+ */
+- (void)updateSignature:(NSString*)signature Token:(NSString*)userToken;
+
+/**
+3.5.25 我的-手机号修改（已测)
+ */
+- (void)updatePhoneNum:(NSString*)phoneNum VerifyCode:(NSString*)verifyCode Token:(NSString*)userToken;
+
+/**
+  3.5.26 我的-性别修改（已测）
+ */
+- (void)updateGender:(int)gender Token:(NSString*)userToken;
+
+/**
+ 3.5.27 我的-出生日期修改（已测）
+ */
+- (void)updateBirthDate:(NSString*)birthDate Token:(NSString*)userToken;
+
+/**
+ 3.5.28 我的-地区修改（已测）
+ */
+- (void)updateArea:(int)provinceId CityId:(int)cityId Token:(NSString*)userToken;
 
 @end

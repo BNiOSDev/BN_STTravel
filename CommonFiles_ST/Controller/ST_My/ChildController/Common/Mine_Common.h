@@ -146,4 +146,6 @@ typedef NS_ENUM(NSInteger, MySquareViewType)
 
 typedef void(^CollectionViewCellBlock)(id object,UICollectionViewCellSignal signal);
 
+
+#define UnLoginDefaultImage IMAGE(@"我的_未登录_头像.png")
 #endif /* Mine_Common_h */

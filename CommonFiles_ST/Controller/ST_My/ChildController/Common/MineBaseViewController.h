@@ -8,6 +8,7 @@
 
 #import "Base_BaseViewController.h"
 #import "Mine_Common.h"
+#import "UIImageView+WebCache.h"
 
 @interface MineBaseViewController : Base_BaseViewController
     

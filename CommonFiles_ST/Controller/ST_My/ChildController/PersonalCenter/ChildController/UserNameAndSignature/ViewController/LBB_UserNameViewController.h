@@ -7,9 +7,11 @@
 //
 
 #import "MineBaseViewController.h"
-
+#import "LBB_PersonalModel.h"
 @interface LBB_UserNameViewController : MineBaseViewController<
 UITextFieldDelegate
 >
+@property(nonatomic,strong) LBB_PersonalModel *personModel;
+@property(nonatomic,copy) NSString *userToken;
 
 @end

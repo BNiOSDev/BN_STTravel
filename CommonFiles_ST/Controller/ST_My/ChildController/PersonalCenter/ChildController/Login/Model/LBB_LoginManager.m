@@ -31,6 +31,8 @@
 
 @implementation LBB_LoginManager
 
+@synthesize  userToken = _userToken;
+
 /*
  * 获取登录实例
  */
@@ -152,8 +154,10 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
              if (result && [result isKindOfClass:[NSDictionary class]]) {
                   weakSelf.userToken = [result objectForKey:@"token"];
              }
+             [BC_ToolRequest sharedManager].token = weakSelf.userToken;
              if (weakSelf.loginCompleteBlock) {
                  weakSelf.loginCompleteBlock(weakSelf.userToken,YES);
+                 weakSelf.loginCompleteBlock = nil;
              }
              if (weakSelf.loginType == eLoginTelePhone) {
                  LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
@@ -165,6 +169,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
          }else{
              if (weakSelf.loginCompleteBlock) {
                  weakSelf.loginCompleteBlock(remark,YES);
+                 weakSelf.loginCompleteBlock = nil;
              }
          }
 
@@ -173,6 +178,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
         NSLog(@"error = %@",error);
         if (weakSelf.loginCompleteBlock) {
             weakSelf.loginCompleteBlock(weakSelf.userToken,YES);
+            weakSelf.loginCompleteBlock = nil;
         }
     }];
 }
@@ -181,9 +187,13 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 {
     self.logoutCompleteBlock = completeBlock;
     
-    NSDictionary *paraDic = @{
-                              @"Token":self.userToken
-                              };
+    NSDictionary *paraDic = nil;
+    
+    if (self.userToken && [self.userToken length]) {
+        paraDic = @{
+                    @"Token":self.userToken
+                    };
+    }
     
     NSString *url = [NSString stringWithFormat:@"%@/mime/logout",BASEURL];
     __weak typeof(self) weakSelf = self;
@@ -198,12 +208,15 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
          if (code == 0) {
              weakSelf.isLogin = NO;
              weakSelf.userToken = nil;
+             [BC_ToolRequest sharedManager].token = nil;
              if (weakSelf.logoutCompleteBlock) {
                  weakSelf.logoutCompleteBlock(nil,YES);
+                 weakSelf.logoutCompleteBlock = nil;
              }
          }else {
              if (weakSelf.logoutCompleteBlock) {
                  weakSelf.logoutCompleteBlock(remark,YES);
+                 weakSelf.logoutCompleteBlock = nil;
              }
          }
         
@@ -211,6 +224,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
         weakSelf.isLogin = NO;
         if (weakSelf.logoutCompleteBlock) {
             weakSelf.logoutCompleteBlock(@"请求异常",NO);
+            weakSelf.logoutCompleteBlock = nil;
         }
         NSLog(@"error = %@",error);
     }];
@@ -266,6 +280,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                          
                                          if (weakSelf.findPSCompleteBlock) {
                                              weakSelf.findPSCompleteBlock(self.account,YES);
+                                             weakSelf.findPSCompleteBlock = nil;
                                          }
                                          LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
                                          loginCountInfo.account = weakSelf.account;
@@ -274,12 +289,14 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                      }else {
                                          if (weakSelf.findPSCompleteBlock) {
                                              weakSelf.findPSCompleteBlock(remark,NO);
+                                             weakSelf.findPSCompleteBlock = nil;
                                          }
                                      }
                                      
                                  } failure:^(NSURLSessionDataTask *operation, NSError *error){
                                      if (weakSelf.findPSCompleteBlock) {
                                          weakSelf.findPSCompleteBlock(@"请求异常",NO);
+                                         weakSelf.findPSCompleteBlock = nil;
                                      }
                                      NSLog(@"error = %@",error);
                                  }];
@@ -313,16 +330,19 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                      if (code == 0) {
                                          if (weakSelf.setPSCompleteBlock) {
                                              weakSelf.setPSCompleteBlock(weakSelf.userToken,YES);
+                                             weakSelf.setPSCompleteBlock = nil;
                                          }
                                      }else {
                                          if (weakSelf.setPSCompleteBlock) {
                                              weakSelf.setPSCompleteBlock(remark,YES);
+                                             weakSelf.setPSCompleteBlock = nil;
                                          }
                                      }
                                      
                                  } failure:^(NSURLSessionDataTask *operation, NSError *error){
                                      if (weakSelf.setPSCompleteBlock) {
                                          weakSelf.setPSCompleteBlock(@"请求异常",NO);
+                                         weakSelf.setPSCompleteBlock = nil;
                                      }
                                      NSLog(@"error = %@",error);
                                  }];
@@ -358,6 +378,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                      if (code == 0) {
                                          if (weakSelf.changePSCompleteBlock) {
                                              weakSelf.changePSCompleteBlock(weakSelf.userToken,YES);
+                                             weakSelf.changePSCompleteBlock = nil;
                                          }
                                          if ([changeToken isEqualToString:weakSelf.userToken]) {
                                              LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
@@ -369,12 +390,14 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                      }else {
                                          if (weakSelf.changePSCompleteBlock) {
                                              weakSelf.changePSCompleteBlock(remark,YES);
+                                             weakSelf.changePSCompleteBlock = nil;
                                          }
                                      }
                                      
                                  } failure:^(NSURLSessionDataTask *operation, NSError *error){
                                      if (weakSelf.changePSCompleteBlock) {
                                          weakSelf.changePSCompleteBlock(@"请求异常",NO);
+                                         weakSelf.changePSCompleteBlock = nil;
                                      }
                                      NSLog(@"error = %@",error);
                                  }];
@@ -387,7 +410,19 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 
 - (NSString *)userToken
 {
+    if (!_userToken) {
+        _userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"Login_UserToken"];
+    }
     return _userToken;
+}
+
+- (void)setUserToken:(NSString *)userToken
+{
+    _userToken = userToken;
+    if (!_userToken && [userToken length]) {
+        [[NSUserDefaults standardUserDefaults] setObject:_userToken forKey:@"Login_UserToken"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 -(NSString*) uuid

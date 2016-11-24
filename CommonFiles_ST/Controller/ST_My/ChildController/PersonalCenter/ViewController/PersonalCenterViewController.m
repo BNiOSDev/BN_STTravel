@@ -10,13 +10,13 @@
 #import "PersonalInfoCell.h"
 #import "LBB_AddressPickerView.h"
 #import "ActionSheetDatePicker.h"
-#import "ChangePhoneNumViewController.h"
 #import "LBB_ImagePickerViewController.h"
 #import "LBB_LoginViewController.h"
 #import "VerificationViewController.h"
 #import "LBB_LoginManager.h"
 #import "ChangePasswordViewController.h"
 #import "LBB_PersonalModel.h"
+#import "LBB_UserNameViewController.h"
 
 typedef NS_ENUM(NSInteger,PersonalInfoType) {
     eUserHead = 1000,//头像
@@ -47,8 +47,6 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = ePersonalCenter;
-    self.personalModel = [[LBB_PersonalModel alloc] init];
-    [self initData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,59 +57,95 @@ UITableViewDataSource
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-     LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
-    if (loginManager.isLogin) {
-        [self.personalModel getPersonInfo:loginManager.userToken];
-    }
+    [self.personalModel getPersonInfo:nil];
 }
+
 #pragma mark - private
-- (void)initData
+
+- (void)buildControls
 {
     UINib *nib = [UINib nibWithNibName:@"PersonalInfoCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"PersonalInfoCell"];
-//    [self.tableView registerNib:nib forCellReuseIdentifier:@"PersonalUserHeadCell"];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
-                                                                   @{@"Title": NSLocalizedString(@"头像",nil),
-                                                                     @"Image" : IMAGE(@"我的_未登录_头像.png"),
-                                                                     @"Action":@"showHeadImagePickerMenu:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:eUserHead]},
-                                                                   @{@"Title": NSLocalizedString(@"用户名",nil),
-                                                                     @"Desc" : @"王滨滨",
-                                                                     @"Action":@"showTextFieldView:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:eEditUserName]},
-                                                                   @{@"Title": NSLocalizedString(@"个人签名",nil),
-                                                                     @"Desc" : @"请填写",
-                                                                     @"Action":@"showTextFieldView:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:eEditUserSignature]},
-                                                                   @{@"Title": NSLocalizedString(@"手机号",nil),
-                                                                     @"Desc" : @"1234**901",
-                                                                     @"Action":@"showChangePhoneNum:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:ePhoneNum]},
-                                                                   @{@"Title": NSLocalizedString(@"性别",nil),
-                                                                     @"Desc" : @"美女",
-                                                                     @"Action":@"showSexPickerMenu:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:eSex]},
-                                                                   @{@"Title": NSLocalizedString(@"出生日期",nil),
-                                                                     @"Desc" : @"可设置出生日期",
-                                                                     @"Action":@"birthDatePickerMenu:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:eBirthDate]},
-                                                                   @{@"Title": NSLocalizedString(@"所在城市",nil),
-                                                                     @"Desc" : @"福建 厦门",
-                                                                     @"Action":@"showAddressPickerMenu:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:eCity]},
-                                                                   @{@"Title": NSLocalizedString(@"收货地址",nil),
-                                                                     @"Desc" : @"厦门市思明区莲前街道软件园二期望海路59号",
-                                                                     @"Action":@"showReceiptAddress:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:eAddress]},
-                                                                   @{@"Title": NSLocalizedString(@"修改密码",nil),
-                                                                     @"Desc" : @"可修改密码",
-                                                                     @"Action":@"changePassword:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:ePassword]}
-                                                                   ]];
+    self.personalModel = [[LBB_PersonalModel alloc] init];
+    [self updateData];
     
+    __weak typeof (self) weakSelf = self;
+    [self.personalModel.loadSupport setDataRefreshblock:^{
+        [weakSelf updateData];
+    }];
+    
+    [self.personalModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
+        [weakSelf showHudPrompt:remark];
+    }];
 }
+
+- (void)updateData
+{
+    self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
+                                                                       @{@"Title":@"",
+                                                                         @"Image" :[self anyValue:self.personalModel.userPicUrl],
+                                                                         @"Action":@"showHeadImagePickerMenu:",
+                                                                         @"ActionSender" : [NSNumber numberWithInt:eUserHead]},
+                                                                       @{@"Title": NSLocalizedString(@"用户名",nil),
+                                                                         @"Desc" : [self anyValue:self.personalModel.userName],
+                                                                         @"Action":@"showTextFieldView:",
+                                                                         @"ActionSender" : [NSNumber numberWithInt:eEditUserName]},
+                                                                       @{@"Title": NSLocalizedString(@"个人签名",nil),
+                                                                         @"Desc" : [self anyValue:self.personalModel.signature],
+                                                                         @"Action":@"showTextFieldView:",
+                                                                         @"ActionSender" : [NSNumber numberWithInt:eEditUserSignature]},
+                                                                       @{@"Title": NSLocalizedString(@"手机号",nil),
+                                                                         @"Desc" : [self anyValue:self.personalModel.phoneNum],
+                                                                         @"Action":@"showChangePhoneNum:",
+                                                                         @"ActionSender" : [NSNumber numberWithInt:ePhoneNum]},
+                                                                       @{@"Title": NSLocalizedString(@"性别",nil),
+                                                                         @"Desc" : [self sexStr:self.personalModel.gender],
+                                                                         @"Action":@"showSexPickerMenu:",
+                                                                         @"ActionSender" : [NSNumber numberWithInt:eSex]},
+                                                                       @{@"Title": NSLocalizedString(@"出生日期",nil),
+                                                                         @"Desc" : [self anyValue:self.personalModel.birthDate],
+                                                                         @"Action":@"birthDatePickerMenu:",
+                                                                         @"ActionSender" : [NSNumber numberWithInt:eBirthDate]},
+                                                                       @{@"Title": NSLocalizedString(@"所在城市",nil),
+                                                                         @"Desc" : [self anyValue:self.personalModel.area],
+                                                                         @"Action":@"showAddressPickerMenu:",
+                                                                         @"ActionSender" : [NSNumber numberWithInt:eCity]},
+                                                                       @{@"Title": NSLocalizedString(@"收货地址",nil),
+                                                                         @"Desc" :[self anyValue:self.personalModel.address],
+                                                                         @"Action":@"showReceiptAddress:",
+                                                                         @"ActionSender" : [NSNumber numberWithInt:eAddress]},
+                                                                       @{@"Title": NSLocalizedString(@"修改密码",nil),
+                                                                         @"Desc" : [self passwordTips:self.personalModel.isUpdatePasswd],
+                                                                         @"Action":@"changePassword:",
+                                                                         @"ActionSender" : [NSNumber numberWithInt:ePassword]}
+                                                                       ]];
+    [self.tableView reloadData];
+
+}
+
+- (NSString *)sexStr:(int)gender
+{
+    if(gender == 0) {
+        return @"女";
+    }else if(gender == 1){
+        return @"男";
+    }
+    return @"保密";
+}
+- (NSString*)passwordTips:(int)isUpdatePasswd
+{
+    return (isUpdatePasswd == 0) ? @"不可修改" : @"可修改";
+}
+
+- (NSString *)anyValue:(NSString*)orignValue
+{
+    if (!orignValue) {
+        return @"";
+    }
+    return orignValue;
+}
+
 - (void)reloadTableView:(NSInteger)type content:(NSString*)contentStr
 {
     for (NSInteger i = 0; i < self.dataSourceArray.count; i++)  {
@@ -124,7 +158,6 @@ UITableViewDataSource
             [self.tableView reloadData];
             break;
         }
-       
     }
 }
 
@@ -186,8 +219,15 @@ UITableViewDataSource
     cell.leftLabal.text = [cellDict objectForKey:@"Title"];
     cell.accessoryView =  nil;
     if (indexPath.row == 0) {
+//        IMAGE(@"我的_未登录_头像.png")
        cell.backgroundColor = RGBAHEX(0xEBEBF1, 1.0);
-       [cell.rightImgView setImage:[cellDict objectForKey:@"Image"]];
+        NSString *url = [cellDict objectForKey:@"Image"];
+        if (url && [url length]) {
+             [cell.rightImgView  sd_setImageWithURL:[NSURL URLWithString:[cellDict objectForKey:@"Image"]] placeholderImage:UnLoginDefaultImage];
+        }else{
+            cell.rightImgView.image = UnLoginDefaultImage;
+        }
+     
         cell.rightLabel.text = @"";
     }else{
         cell.backgroundColor = RGBAHEX(0xFFFFFF, 1.0);
@@ -218,7 +258,7 @@ UITableViewDataSource
     NSString *cameraStr = NSLocalizedString(@"相机", nil);
     NSString *albumStr = NSLocalizedString(@"相册", nil);
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换封面图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     // Create the actions.
     UIAlertAction *camraAction = [UIAlertAction actionWithTitle:cameraStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -271,10 +311,12 @@ UITableViewDataSource
 
 - (void)showChangePhoneNum:(id)sender
 {
-        UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
-        VerificationViewController* vc = [main instantiateViewControllerWithIdentifier:@"VerificationViewController"];
-        vc.baseViewType = eChangePhoneNum;
-        [self.navigationController pushViewController:vc animated:YES];
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    VerificationViewController* vc = [main instantiateViewControllerWithIdentifier:@"VerificationViewController"];
+    vc.baseViewType = eChangePhoneNum;
+    vc.mainPersonModel = self.personalModel;
+    vc.userToken = [LBB_LoginManager shareInstance].userToken;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showAddressPickerMenu:(id)sender
@@ -290,7 +332,8 @@ UITableViewDataSource
     __weak typeof (self) weakSelf = self;
     self.addressPicker.myBlock = ^(NSString *address,NSArray *selections){
         if (address && [address length]) {
-            [weakSelf reloadTableView:eCity content:address];
+            [weakSelf.personalModel updateArea:0 CityId:0 Token:nil];
+//            [weakSelf reloadTableView:eCity content:address];
         }
     };
 }
@@ -303,30 +346,36 @@ UITableViewDataSource
 - (void)showSexPickerMenu:(id)sender {
     NSString *title = NSLocalizedString(@"请选择", nil);
     NSString *cancelButtonTitle = NSLocalizedString(@"保密", nil);
-    NSString *otherButtonTitle = NSLocalizedString(@"帅哥", nil);
-    NSString *otherButtonTitle1 = NSLocalizedString(@"美女", nil);
+    NSString *otherButtonTitle = NSLocalizedString(@"男", nil);
+    NSString *otherButtonTitle1 = NSLocalizedString(@"女", nil);
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title
                                                                              message:nil
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
     
     // Create the actions.
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction *action) {
-        [self reloadTableView:eSex content:NSLocalizedString(@"保密", nil)];
     }];
+    
+    UIAlertAction *baomiAction = [UIAlertAction actionWithTitle:cancelButtonTitle
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction *action) {
+                                                             [self.personalModel updateGender:2 Token:nil];
+                                                         }];
+    
     
     UIAlertAction *otherAction = [UIAlertAction actionWithTitle:otherButtonTitle
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction *action) {
-         [self reloadTableView:eSex content:NSLocalizedString(@"帅哥", nil)];
+        [self.personalModel updateGender:1 Token:nil];
     }];
     
     UIAlertAction *otherAction1 = [UIAlertAction actionWithTitle:otherButtonTitle1
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
-       [self reloadTableView:eSex content:NSLocalizedString(@"美女", nil)];
+        [self.personalModel updateGender:0 Token:nil];
     }];
     
     
@@ -334,12 +383,13 @@ UITableViewDataSource
     [alertController addAction:cancelAction];
     [alertController addAction:otherAction];
     [alertController addAction:otherAction1];
+    [alertController addAction:baomiAction];
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)changePassword:(id)sender
-{
+{ 
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
     ChangePasswordViewController  *vc  = [main instantiateViewControllerWithIdentifier:@"ChangePasswordViewController"];
     vc.baseViewType = eChangePassword;
@@ -354,7 +404,9 @@ UITableViewDataSource
                                   selectedDate:[NSDate date]
                                      doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
                                          NSLog(@"selectedDate =  %@",selectedDate);
-                                         [weakSelf reloadTableView:eBirthDate content:[weakSelf stringFromDate:selectedDate]];
+                                         [weakSelf.personalModel updateBirthDate:[weakSelf stringFromDate:selectedDate] Token:nil];
+//                                         
+//                                         [weakSelf reloadTableView:eBirthDate content:[weakSelf stringFromDate:selectedDate]];
                                      }
                                    cancelBlock:^(ActionSheetDatePicker *picker){
                                        
@@ -376,36 +428,30 @@ UITableViewDataSource
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UIViewController *dstController =   segue.destinationViewController;
-    if ([dstController isKindOfClass:NSClassFromString(@"LBB_UserNameViewController")]){
+    if ([dstController isKindOfClass:NSClassFromString(@"MineBaseViewController")]){
         MineBaseViewController *baseVC = (MineBaseViewController*)dstController;
         if (sender && [sender isKindOfClass:[NSNumber class]]) {
             baseVC.baseViewType = [(NSNumber *)sender intValue];
         }
+    }
+    if ([dstController isKindOfClass:NSClassFromString(@"LBB_UserNameViewController")]){
+        LBB_UserNameViewController *baseVC = (LBB_UserNameViewController*)dstController;
+        baseVC.personModel = self.personalModel;
+        baseVC.userToken = [LBB_LoginManager shareInstance].userToken;
+        
     }else if([dstController isKindOfClass:NSClassFromString(@"ReceiptAddressViewController")]){
         
-    }else if([dstController isKindOfClass:NSClassFromString(@"ChangePhoneNumViewController")]){
-        ChangePhoneNumViewController *phoneVC = (ChangePhoneNumViewController*)dstController;
-        phoneVC.baseViewType = eChangePhoneNum;
     }
 }
-
 
 #pragma mark - 退出登录
 - (void)exitLogin:(id)sender
 {
+    __weak typeof (self) weakSelf = self;
     LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
-    if (loginManager.isLogin) {
-        __weak typeof (self) weakSelf = self;
-        [loginManager logout:^(NSString *userToken,BOOL result){
-            if (result) {
-                [weakSelf performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
-            }else {
-                [weakSelf showHudPrompt:@"退出登录失败"];
-            }
-        }];
-    }else {
-        [self performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
-    } 
+    [loginManager logout:^(NSString *userToken,BOOL result){
+        [weakSelf performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
+    }];
     NSLog(@"\n 退出登录");
 }
 
