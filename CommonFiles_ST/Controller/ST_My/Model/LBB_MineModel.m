@@ -397,4 +397,42 @@
     return detailArray;
 }
 
+/**
+ 3.5.2 我的-首页修改封面（已测）
+ */
+- (void)updateCover:(NSString*)coverURL Token:(NSString*)userToken
+{
+    NSString *url = [NSString stringWithFormat:@"%@/mime/cover/update",BASEURL];
+    if (!coverURL || [coverURL length] == 0) {
+        return;
+    }
+    
+    NSMutableDictionary *parames = [NSMutableDictionary dictionaryWithCapacity:0];
+    [parames setObject:coverURL forKey:@"coverImageUrl"];
+    if (!userToken) {
+        userToken = [LBB_LoginManager shareInstance].userToken;
+    }
+    if (userToken && [userToken length]) {
+        [parames setObject:userToken forKey:@"Token"];
+    }
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = (NSDictionary*)responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        NSLog(@"responseObject = %@",responseObject);
+        NSString *remark = [dic objectForKey:@"remark"];
+        if(codeNumber.intValue == 0)
+        {
+            weakSelf.coverImageUrl = coverURL;
+            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+        }else {
+            weakSelf.loadSupport.netRemark = remark;
+            weakSelf.loadSupport.loadFailEvent = codeNumber.intValue;
+        }
+        
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
 @end

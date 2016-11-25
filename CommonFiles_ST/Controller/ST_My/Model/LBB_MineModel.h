@@ -54,4 +54,9 @@
  */
 - (void)getMineInfo:(NSString*)userToken;
 
+/**
+ 3.5.2 我的-首页修改封面（已测）
+ */
+- (void)updateCover:(NSString*)coverURL Token:(NSString*)userToken;
+
 @end

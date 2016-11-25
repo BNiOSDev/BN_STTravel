@@ -91,7 +91,7 @@
 - (void)replaceUserHeadImage:(UIImage*)converPicture
 {
     if (converPicture) {
-        
+        [self.mineViewModel updateCover:@"http://oggvb32dz.bkt.clouddn.com/161120201117.jpg" Token:nil];
     }
 }
 
