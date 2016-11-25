@@ -10,6 +10,7 @@
 #import "LBB_AddressPickerView.h"
 
 @interface AddAddressViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
@@ -87,7 +88,7 @@
     self.addressTextField.borderStyle = UITextBorderStyleNone;
     self.streetTextField.borderStyle = UITextBorderStyleNone;
     self.postalNumTextFiled.borderStyle = UITextBorderStyleNone;
-    
+   
     self.userNameTextField.exclusiveTouch = YES;
     self.phoneNumTextField.exclusiveTouch = YES;
     self.addressTextField.exclusiveTouch = YES;
@@ -95,6 +96,7 @@
     self.postalNumTextFiled.exclusiveTouch = YES;
     self.saveBtn.exclusiveTouch = YES;
     self.showAddressBtn.exclusiveTouch = YES;
+    self.addressTextField.userInteractionEnabled = NO;
     
     self.line1.backgroundColor = ColorLine;
     self.line2.backgroundColor = ColorLine;
@@ -113,6 +115,18 @@
     self.postalNumLabel.textColor = ColorBlack;
     self.addressTextField.userInteractionEnabled = NO;
     
+    if (self.addressModel) {
+        self.phoneNumTextField.text = self.addressModel.phone;
+        self.userNameTextField.text = self.addressModel.name;
+        self.addressTextField.text = [NSString stringWithFormat:@"%@ %@",self.addressModel.provinceName,self.addressModel.cityName];
+        self.streetTextField.text = self.addressModel.address;
+        self.postalNumTextFiled.text = self.addressModel.zipcode;
+    }
+    self.phoneNum = self.phoneNumTextField.text;
+    self.userName = self.userNameTextField.text;
+    self.address = self.addressTextField.text;
+    self.street = self.streetTextField.text;
+    self.postNum = self.postalNumTextFiled.text;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -176,7 +190,9 @@
 - (IBAction)showAddressPickView:(id)sender {
     
     //隐藏键盘
-    [self.phoneNumTextField resignFirstResponder];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view endEditing:YES];
+    });
     
     if (!self.addressPicker) {
         self.addressPicker = [[LBB_AddressPickerView alloc] initWithTitle:NSLocalizedString(@"选择地址", nil)

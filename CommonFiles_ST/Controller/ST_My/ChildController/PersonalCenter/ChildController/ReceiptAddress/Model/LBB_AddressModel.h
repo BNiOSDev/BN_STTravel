@@ -20,8 +20,8 @@
 @property(nonatomic,assign) long cityId;//城市ID
 @property(nonatomic,copy) NSString *districtName;//县、区名称
 @property(nonatomic,assign) long  districtId;//县、区ID
-@property(nonatomic,assign) NSString  *address;//地址名称
-@property(nonatomic,assign) NSString  *zipcode;//地址名称
+@property(nonatomic,copy) NSString  *address;//地址名称
+@property(nonatomic,copy) NSString  *zipcode;//地址名称
 
 /**
  3.5.33 我的-收货地址修改/保存
@@ -32,6 +32,12 @@
  3.5.34 我的-收货地址设置默认（已测）
  */
 - (void)setDefaultAddress;
+
+/**
+ 3.5.35 我的-收货地址删除（已测）
+ */
+- (void)deleteAddress;
+
 
 @end
 
@@ -44,6 +50,6 @@
  3.5.32 我的-收货地址列表（已测）
  */
 
-- (void)getAddressList:(int)curPage PageNum:(int)pageNum IsClear:(BOOL)isClear;
+- (void)getAddressList:(BOOL)isClear;
 
 @end

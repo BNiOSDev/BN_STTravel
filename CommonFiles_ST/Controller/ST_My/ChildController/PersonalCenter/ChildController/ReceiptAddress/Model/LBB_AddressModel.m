@@ -56,13 +56,40 @@
 
 - (void)setDefaultAddress
 {
-    
     NSString *url = [NSString stringWithFormat:@"%@/mime/address/default/update",BASEURL];
     
     NSDictionary *parames = @{@"addressId" : @(self.addressId)};;
 
     __weak typeof(self) weakSelf = self;
     [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = (NSDictionary*)responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        NSString *remark = [dic objectForKey:@"remark"];
+        NSLog(@"responseObject = %@",responseObject);
+        if(codeNumber.intValue == 0)
+        {
+            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+        }else{
+            weakSelf.loadSupport.netRemark = remark;
+            weakSelf.loadSupport.loadFailEvent = codeNumber.intValue;
+        }
+        
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
+/**
+ 3.5.35 我的-收货地址删除（已测）
+ */
+- (void)deleteAddress
+{
+    NSString *url = [NSString stringWithFormat:@"%@/mime/address/delete",BASEURL];
+    
+    NSDictionary *parames = @{@"addressId" : @(self.addressId)};;
+    
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] GET:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = (NSDictionary*)responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         NSString *remark = [dic objectForKey:@"remark"];
@@ -95,13 +122,18 @@
     return self;
 }
 
-- (void)getAddressList:(int)curPage PageNum:(int)pageNum IsClear:(BOOL)isClear
+- (void)getAddressList:(BOOL)isClear
 {
+    
     NSString *url = [NSString stringWithFormat:@"%@/mime/address/list",BASEURL];
     
-    NSMutableDictionary *parames = [[NSMutableDictionary alloc] init];
-    [parames setObject:[NSNumber numberWithInt:curPage] forKey:@"curPage"];
-    [parames setObject:[NSNumber numberWithInt:pageNum] forKey:@"pageNum"];
+    int curPage = isClear == YES ? 0 : round(self.addressArray.count/10.0);
+
+    NSDictionary *parames = @{
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              };
+
     
     __weak typeof(self) weakSelf = self;
     [[BC_ToolRequest sharedManager] GET:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
@@ -116,11 +148,13 @@
             if (isClear) {
               [weakSelf.addressArray removeAllObjects];
             }
+           
             [weakSelf.addressArray addObjectsFromArray:returnArray];
-            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+            weakSelf.addressArray.networkTotal = [dic objectForKey:@"total"];
+            weakSelf.addressArray.loadSupport.loadEvent = codeNumber.intValue;
         }else{
-            weakSelf.loadSupport.netRemark = remark;
-            weakSelf.loadSupport.loadFailEvent = codeNumber.intValue;
+            weakSelf.addressArray.loadSupport.netRemark = remark;
+            weakSelf.addressArray.loadSupport.loadFailEvent = codeNumber.intValue;
         }
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
