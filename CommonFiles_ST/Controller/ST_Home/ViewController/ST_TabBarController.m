@@ -11,6 +11,7 @@
 #import "ST_SquareViewController.h"
 #import "ST_MallViewController.h"
 #import "MineViewController.h"
+#import "LBB_PublishTravel_Controller.h"
 
 @interface ST_TabBarController ()<UITabBarControllerDelegate>
 {
@@ -18,8 +19,9 @@
     UINavigationController *navigationControllerMy;
     UINavigationController *navigationControllerSquare;
     UINavigationController *navigationControllerMall;
-    
+    UINavigationController *navigationControllerPublish;
     UIButton *centerBtn;
+    LBB_PublishTravel_Controller   *viewController5;
 }
 @end
 
@@ -49,7 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
     centerBtn = [[UIButton alloc]initWithFrame:CGRectMake((DeviceWidth/2) - 22.5, DeviceHeight - 49 + 2, 45, 45)];
     [centerBtn setBackgroundImage:IMAGE(@"SJR_TabMiddleBtn") forState:UIControlStateNormal];
     [centerBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -66,11 +68,14 @@
     Base_BaseViewController *viewController1        = [[ST_HomeViewController alloc]init];
     Base_BaseViewController *viewController2        = [[ST_SquareViewController alloc]init];
     Base_BaseViewController *viewController3        = [[ST_MallViewController alloc]init];
-
+    
+    
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
     Base_BaseViewController *viewController4 = [main instantiateViewControllerWithIdentifier:@"MineViewController"];
-    UIViewController *viewController5        = [[UIViewController alloc]init];
-
+    viewController5        = [[LBB_PublishTravel_Controller alloc]init];
+    viewController5.view.backgroundColor = [UIColor whiteColor];
+    //    navigationControllerPublish = [[UINavigationController alloc]initWithRootViewController:viewController5];
+    
     navigationControllerHome          = [[UINavigationController alloc]initWithRootViewController:viewController1];
     navigationControllerHome.title    = @"首页";
     navigationControllerSquare            = [[UINavigationController alloc]initWithRootViewController:viewController2];
@@ -105,7 +110,7 @@
     viewController2.tabBarItem.imageInsets   = UIEdgeInsetsMake(0, -0, -0, 0);
     viewController3.tabBarItem.imageInsets   = UIEdgeInsetsMake(0,0, -0, -0);
     viewController4.tabBarItem.imageInsets   = UIEdgeInsetsMake(0, 0, -0, -0);
-
+    
     self.viewControllers = @[navigationControllerHome,navigationControllerSquare,viewController5,navigationControllerMall,navigationControllerMy];
     
     self.delegate = self;
@@ -120,7 +125,8 @@
 
 -(void)buttonAction:(UIButton*)button
 {
-    
+    LBB_PublishTravel_Controller *VC = [[LBB_PublishTravel_Controller alloc]init];
+    [self presentViewController:VC animated:YES completion:nil];
 }
 
 - (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated
@@ -140,13 +146,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

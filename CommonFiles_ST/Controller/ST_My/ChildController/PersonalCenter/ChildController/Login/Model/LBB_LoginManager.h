@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@interface LoginUserInfo : NSObject
+
+@property(nonatomic,copy) NSString *account;//账号
+@property(nonatomic,copy) NSString *password;//密码
+
+@end
+
 //userToken 用户token或者 手机号
 typedef void(^LoginBlock)(NSString *userToken,BOOL result);
 
@@ -31,7 +38,8 @@ typedef NS_ENUM(NSInteger,LoginType)
 @property (nonatomic,copy) LoginBlock findPSCompleteBlock;
 //设置密码回调
 @property (nonatomic,copy) LoginBlock setPSCompleteBlock;
-
+//修改（更新）密码回调
+@property (nonatomic,copy) LoginBlock changePSCompleteBlock;
 /*
  * 获取登录实例
  */
@@ -65,8 +73,9 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 
 /*
  * 获取验证码
+ 1:注册短信2.服务通知类短信3营销类短信4修改密码5:修改手机号码
  */
-- (void)getVerificationCode:(NSString*)phoneNum;
+- (void)getVerificationCode:(NSString*)phoneNum Type:(int)type;
 
 /*
  * 找回密码
@@ -83,6 +92,14 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
        CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 
 /*
+ * 3.5.33 我的-密码修改（已测）
+ */
+- (void)changePassword:(NSString*)token
+           Password:(NSString*)oldPasswd
+        NewPassword:(NSString*)newPasswd
+      CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
+
+/*
  * 判断是否登录
  */
 - (BOOL)isLogin;
@@ -91,6 +108,11 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
  * 获取用户Token
  */
 - (NSString *)userToken;
+
+/*
+ * 获取本地缓存登录账号和密码
+ */
+- (LoginUserInfo*)getLoginUserInfo;
 
 
 @end

@@ -127,15 +127,13 @@
 
 - (void)btnFunc:(UIButton *)btn
 {
-    if (self.cellBlock) {
-        if (btn == heartBtn) {
-            self.cellBlock(btn,UITableViewCellCollect);
-        }else if(btn == pinBtn)
-        {
-            self.cellBlock(btn,UITableViewCellConment);
-        }else {
-            self.cellBlock(btn,UITableViewCellPraise);
-        }
+    if (btn == heartBtn) {
+        self.cellBlock(btn,UITableViewCellCollect);
+    }else if(btn == pinBtn)
+    {
+        self.cellBlock(btn,UITableViewCellConment);
+    }else{
+        self.cellBlock(btn,UITableViewCellPraise);
     }
 }
 

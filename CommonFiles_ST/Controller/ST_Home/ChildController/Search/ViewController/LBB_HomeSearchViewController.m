@@ -468,7 +468,6 @@ static const NSInteger kButtonWidth = 45;
                 cell.cellBlock = ^(id view,UITableViewCellViewSignal signal){
                 };
                 ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-                cell.viewType = TravelsViewMainSqure;
                 [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
                 
                 ZJMTravelModel  *model = [[ZJMTravelModel alloc]init];

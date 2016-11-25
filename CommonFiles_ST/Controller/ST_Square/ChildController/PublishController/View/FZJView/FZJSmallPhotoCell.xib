@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SmallPhotoCell" id="gTV-IL-0wX" customClass="FZJSmallPhotoCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vlc-m7-88M"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMC-oV-nMP" customClass="UIButtonExt">
+                        <state key="normal" image="zjmweixuanzhong.png"/>
+                        <state key="selected" image="zjmxuanzhong.png"/>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="MMC-oV-nMP" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="2:10" id="60R-nm-8ns"/>
+                <constraint firstItem="MMC-oV-nMP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="MII-9b-JfA"/>
+                <constraint firstItem="Vlc-m7-88M" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kkF-6T-txk"/>
+                <constraint firstItem="MMC-oV-nMP" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="2:10" id="va6-iF-9EI"/>
+                <constraint firstAttribute="trailing" secondItem="MMC-oV-nMP" secondAttribute="trailing" constant="2" id="vhX-v2-xN8"/>
+                <constraint firstAttribute="bottom" secondItem="Vlc-m7-88M" secondAttribute="bottom" id="xln-0a-ent"/>
+                <constraint firstAttribute="trailing" secondItem="Vlc-m7-88M" secondAttribute="trailing" id="xoI-Ef-3SK"/>
+                <constraint firstItem="Vlc-m7-88M" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yF1-Hp-HEF"/>
+            </constraints>
+            <size key="customSize" width="50" height="108"/>
+            <connections>
+                <outlet property="ChooseBtn" destination="MMC-oV-nMP" id="NlU-jy-1cm"/>
+                <outlet property="ImageView" destination="Vlc-m7-88M" id="Fs8-48-bOn"/>
+            </connections>
+            <point key="canvasLocation" x="492" y="137"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="zjmweixuanzhong.png" width="14" height="14"/>
+        <image name="zjmxuanzhong.png" width="14" height="14"/>
+    </resources>
+</document>

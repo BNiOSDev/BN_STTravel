@@ -12,4 +12,6 @@
 @property (nonatomic, copy) NSString  *imageUrl;
 @property (nonatomic, copy) NSString    *praiseNum;//赞数
 @property (nonatomic, copy) NSString    *commentNum;//评论数
+@property (nonatomic, assign) BOOL       isCollection;//是否收藏
+
 @end

@@ -16,7 +16,6 @@
 #import "ZJScrollPageView.h"
 #import "Header.h"
 #import "ZJMTravelsViewController.h"
-//#import "ZJMHostViewController.h"
 #import "LBBVideoViewController.h"
 #import "LBB_ZJMHostViewController.h"
 
@@ -126,7 +125,6 @@
     [self addChildViewController:vc1];
     
     ZJMTravelsViewController *viewVC = [[ZJMTravelsViewController alloc]init];
-    viewVC.viewType = TravelsViewMainSqure;
     [self addChildViewController:viewVC];
     
     LBBVideoViewController * vc3 = [[LBBVideoViewController alloc]init];

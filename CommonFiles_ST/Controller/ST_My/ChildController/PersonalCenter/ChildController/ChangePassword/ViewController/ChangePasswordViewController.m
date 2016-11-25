@@ -77,11 +77,11 @@ UITextFieldDelegate
     self.comfirLabel.font = Font16;
     self.tipLabel.font = Font14;
 
-    [self.saveBtn.titleLabel setFont:Font16];
+    self.orignTextField.secureTextEntry = YES;
+    self.secondTextField.secureTextEntry = YES;
+    self.comfirTextField.secureTextEntry = YES;
     
-    [self setTextFieldBackImage:self.orignTextField];
-    [self setTextFieldBackImage:self.secondTextField];
-    [self setTextFieldBackImage:self.comfirTextField];
+    [self.saveBtn.titleLabel setFont:Font16];
     
     switch (self.baseViewType) {
         case eChangePassword:
@@ -145,12 +145,16 @@ UITextFieldDelegate
             break;
         case eResetPassword: //调回登录页面
         {
+            [self showHud:YES];
             LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
             [loginManager setPassword:self.account
                              Password:self.secondPassword
                         CompleteBlock:^(NSString* userToken,BOOL result){
+                            [weakSelf showHud:NO];
                             if (result) {
                                 [weakSelf backToLoginView];
+                            }else if(userToken){
+                                [weakSelf showHudPrompt:userToken];
                             }
                         }];
         }

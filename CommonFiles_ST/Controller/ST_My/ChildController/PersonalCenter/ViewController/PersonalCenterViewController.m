@@ -16,6 +16,7 @@
 #import "VerificationViewController.h"
 #import "LBB_LoginManager.h"
 #import "ChangePasswordViewController.h"
+#import "LBB_PersonalModel.h"
 
 typedef NS_ENUM(NSInteger,PersonalInfoType) {
     eUserHead = 1000,//头像
@@ -37,7 +38,7 @@ UITableViewDataSource
 @property (strong, nonatomic) ActionSheetDatePicker *datePicker;
 @property (strong, nonatomic) UIView *exitLoginView;
 @property (nonatomic,strong) LBB_ImagePickerViewController *imagePicker;
-
+@property (nonatomic,strong) LBB_PersonalModel *personalModel;
 @end
 
 @implementation PersonalCenterViewController
@@ -46,6 +47,7 @@ UITableViewDataSource
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = ePersonalCenter;
+    self.personalModel = [[LBB_PersonalModel alloc] init];
     [self initData];
 }
 
@@ -54,6 +56,14 @@ UITableViewDataSource
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
+    if (loginManager.isLogin) {
+        [self.personalModel getPersonInfo:loginManager.userToken];
+    }
+}
 #pragma mark - private
 - (void)initData
 {
@@ -64,7 +74,7 @@ UITableViewDataSource
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                                                    @{@"Title": NSLocalizedString(@"头像",nil),
-                                                                     @"Image" : IMAGE(@"19.pic.jpg"),
+                                                                     @"Image" : IMAGE(@"我的_未登录_头像.png"),
                                                                      @"Action":@"showHeadImagePickerMenu:",
                                                                      @"ActionSender" : [NSNumber numberWithInt:eUserHead]},
                                                                    @{@"Title": NSLocalizedString(@"用户名",nil),
@@ -383,19 +393,19 @@ UITableViewDataSource
 #pragma mark - 退出登录
 - (void)exitLogin:(id)sender
 {
-    [self performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
-    return;
     LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
-    __weak typeof (self) weakSelf = self;
-    
-    [loginManager logout:^(NSString *userToken,BOOL result){
-        if (result) {
-            [weakSelf performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
-        }else {
-            [weakSelf showHudPrompt:@"退出登录失败"];
-        }
-    }];
-    
+    if (loginManager.isLogin) {
+        __weak typeof (self) weakSelf = self;
+        [loginManager logout:^(NSString *userToken,BOOL result){
+            if (result) {
+                [weakSelf performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
+            }else {
+                [weakSelf showHudPrompt:@"退出登录失败"];
+            }
+        }];
+    }else {
+        [self performSegueWithIdentifier:@"LBB_LoginViewController" sender:nil];
+    } 
     NSLog(@"\n 退出登录");
 }
 
