@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B0211C11DE49EBC00AB39C6 /* LBB_UserShowViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0211C01DE49EBC00AB39C6 /* LBB_UserShowViewModel.m */; };
+		1B255F541DE5EA3600C76379 /* LBB_TagsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B255F531DE5EA3600C76379 /* LBB_TagsViewModel.m */; };
 		1B359FFD1DE4957A00A20461 /* LBB_SquareDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B359FFC1DE4957A00A20461 /* LBB_SquareDetailViewModel.m */; };
 		1B72E6E81DE036B2009EAB67 /* LBB_ScenicViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B72E6E71DE036B2009EAB67 /* LBB_ScenicViewModel.m */; };
 		1B93B3291DE0A92400AEF514 /* LBB_FoodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B93B3281DE0A92400AEF514 /* LBB_FoodsViewModel.m */; };
@@ -468,6 +469,8 @@
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B0211BF1DE49EBC00AB39C6 /* LBB_UserShowViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_UserShowViewModel.h; sourceTree = "<group>"; };
 		1B0211C01DE49EBC00AB39C6 /* LBB_UserShowViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_UserShowViewModel.m; sourceTree = "<group>"; };
+		1B255F521DE5EA3600C76379 /* LBB_TagsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TagsViewModel.h; sourceTree = "<group>"; };
+		1B255F531DE5EA3600C76379 /* LBB_TagsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TagsViewModel.m; sourceTree = "<group>"; };
 		1B359FFB1DE4957A00A20461 /* LBB_SquareDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareDetailViewModel.h; sourceTree = "<group>"; };
 		1B359FFC1DE4957A00A20461 /* LBB_SquareDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareDetailViewModel.m; sourceTree = "<group>"; };
 		1B72E6E61DE036B2009EAB67 /* LBB_ScenicViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicViewModel.h; sourceTree = "<group>"; };
@@ -1292,6 +1295,8 @@
 				1B359FFC1DE4957A00A20461 /* LBB_SquareDetailViewModel.m */,
 				1B0211BF1DE49EBC00AB39C6 /* LBB_UserShowViewModel.h */,
 				1B0211C01DE49EBC00AB39C6 /* LBB_UserShowViewModel.m */,
+				1B255F521DE5EA3600C76379 /* LBB_TagsViewModel.h */,
+				1B255F531DE5EA3600C76379 /* LBB_TagsViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -5207,6 +5212,7 @@
 				1D0F48A21DC8CB9400A37DE2 /* LBB_LabelDetailViewController.m in Sources */,
 				1D12FA6A1DC6E97700ACD462 /* LBB_NewOrderPlayTimeSelectView.m in Sources */,
 				845CB1C21DDDC24900C02DC2 /* LBB_MyPropertyViewController.m in Sources */,
+				1B255F541DE5EA3600C76379 /* LBB_TagsViewModel.m in Sources */,
 				1D11B09D1DCB2247008610CB /* LBB_GuiderUserHeaderCell.m in Sources */,
 				845CB1DE1DDDC24900C02DC2 /* LBB_MyPhotoModel.m in Sources */,
 				8414A2091DE05B7F000F93BD /* LBB_PurchaseNotificationViewController.m in Sources */,

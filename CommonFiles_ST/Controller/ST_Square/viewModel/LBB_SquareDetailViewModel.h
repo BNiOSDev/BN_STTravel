@@ -7,6 +7,7 @@
 //
 
 #import <BN_BaseDataModel.h>
+#import "LBB_UserShowViewModel.h"
 
 @interface LBB_SquareComments : BN_BaseDataModel
 
@@ -21,13 +22,6 @@
 @property (nonatomic, assign)long likeId ;// 标签ID
 @property (nonatomic, assign)long userId ;// 用户ID
 @property (nonatomic, strong)NSString *portrait ;// 头像
-
-@end
-
-@interface LBB_SquareTags : BN_BaseDataModel
-
-@property (nonatomic, assign)long tagId ;// 标签ID
-@property (nonatomic, strong)NSString *tagName ;// 标签名称
 
 @end
 

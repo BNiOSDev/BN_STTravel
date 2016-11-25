@@ -72,7 +72,9 @@
 
 @property (nonatomic, strong)LBB_SquareFriend *squareRecommend;
 @property (nonatomic, strong)NSMutableArray<LBB_SquareFriend*> *friendArray;
-@property (nonatomic, strong)NSMutableArray<LBB_SquareUgc*> *ugcArray;
+
+@property (nonatomic, strong)NSMutableArray<LBB_SquareUgc*> *ugcImageArray;
+@property (nonatomic, strong)NSMutableArray<LBB_SquareUgc*> *ugcVideoArray;
 
 /**
  3.4.1	广场-广场主页-好友推荐（已测）

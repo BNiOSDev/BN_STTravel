@@ -16,10 +16,6 @@
 
 @end
 
-@implementation LBB_SquareTags
-
-@end
-
 @implementation LBB_SquarePics
 
 @end
