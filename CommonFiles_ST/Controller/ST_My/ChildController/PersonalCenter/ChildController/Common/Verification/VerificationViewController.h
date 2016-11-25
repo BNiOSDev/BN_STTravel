@@ -14,5 +14,4 @@
 @property(nonatomic,copy) NSString *userToken;
 @property(nonatomic,strong) LBB_PersonalModel *mainPersonModel;
 
-
 @end

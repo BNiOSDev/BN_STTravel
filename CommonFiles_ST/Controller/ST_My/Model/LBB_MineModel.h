@@ -52,11 +52,11 @@
 /**
  3.5.1 我的-首页（已测）
  */
-- (void)getMineInfo:(NSString*)userToken;
+- (void)getMineInfo;
 
 /**
  3.5.2 我的-首页修改封面（已测）
  */
-- (void)updateCover:(NSString*)coverURL Token:(NSString*)userToken;
+- (void)updateCover:(NSString*)coverURL;
 
 @end

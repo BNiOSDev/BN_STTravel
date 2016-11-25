@@ -12,5 +12,6 @@
 
 //用户账号
 @property(nonatomic,copy) NSString *account;
+@property(nonatomic,copy) NSString *checkNum;
 
 @end

@@ -125,11 +125,14 @@ UITextFieldDelegate
             return;
         }
     }
-  
-    if (![self.secondPassword validatePassword]) {
-        [self showHudPrompt:@"密码输入错误，请重新输入"];
+    if (!([self.secondPassword length] >= 6 && [self.secondPassword length] <= 20)) {
+        [self showHudPrompt:@"密码格式输入错误，请重新输入"];
         return;
     }
+//    if (![self.secondPassword validatePassword]) {
+//        [self showHudPrompt:@"密码输入错误，请重新输入"];
+//        return;
+//    }
     
     if (![self.secondPassword isEqualToString:self.comfirPassword]) {
          [self showHudPrompt:@"请确认密码是否正确"];
@@ -140,6 +143,19 @@ UITextFieldDelegate
     switch (self.baseViewType) {
         case eChangePassword://todo 保存新密码 tips 提示后跳转个人中心
         {
+            LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
+            [loginManager changePassword:self.orignPassword
+                             NewPassword:self.secondPassword
+                           CompleteBlock:^(NSString* message,BOOL result){
+                               [weakSelf showHud:NO];
+                               if (result) {
+                                   [weakSelf backToLoginView];
+                               }else if(message){
+                                   [weakSelf showHudPrompt:message];
+                               }
+                           }];
+            
+            
             [self.navigationController popViewControllerAnimated:YES];
         }
             break;
@@ -147,7 +163,8 @@ UITextFieldDelegate
         {
             [self showHud:YES];
             LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
-            [loginManager setPassword:self.account
+            [loginManager findPassword:self.account
+                             CheckNum:self.checkNum
                              Password:self.secondPassword
                         CompleteBlock:^(NSString* userToken,BOOL result){
                             [weakSelf showHud:NO];

@@ -124,11 +124,15 @@
          [self showHudPrompt:@"手机号输入错误，请重新输入"];
         return;
     }
-    
-    if (![self.password validatePassword]) {
-        [self showHudPrompt:@"密码输入错误，请重新输入"];
+    if (!([self.password length] >= 6 && [self.password length] <= 20)) {
+        [self showHudPrompt:@"密码格式输入错误，请重新输入"];
         return;
     }
+    
+//    if (![self.password validatePassword]) {
+//        [self showHudPrompt:@"密码输入错误，请重新输入"];
+//        return;
+//    }
     if (![self.password isEqualToString:self.comfirmPassword]) {
         [self showHudPrompt:@"请确认密码是否正确"];
         return;

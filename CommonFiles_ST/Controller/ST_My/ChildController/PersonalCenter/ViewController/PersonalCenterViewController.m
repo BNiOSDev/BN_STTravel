@@ -57,7 +57,7 @@ UITableViewDataSource
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.personalModel getPersonInfo:nil];
+    [self.personalModel getPersonInfo];
 }
 
 #pragma mark - private
@@ -332,7 +332,7 @@ UITableViewDataSource
     __weak typeof (self) weakSelf = self;
     self.addressPicker.myBlock = ^(NSString *address,NSArray *selections){
         if (address && [address length]) {
-            [weakSelf.personalModel updateArea:1000 CityId:1 Token:nil];
+            [weakSelf.personalModel updateArea:1000 CityId:1];
         }
     };
 }
@@ -361,20 +361,20 @@ UITableViewDataSource
     UIAlertAction *baomiAction = [UIAlertAction actionWithTitle:cancelButtonTitle
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
-                                                             [self.personalModel updateGender:2 Token:nil];
+                                                             [self.personalModel updateGender:2];
                                                          }];
     
     
     UIAlertAction *otherAction = [UIAlertAction actionWithTitle:otherButtonTitle
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction *action) {
-        [self.personalModel updateGender:1 Token:nil];
+        [self.personalModel updateGender:1];
     }];
     
     UIAlertAction *otherAction1 = [UIAlertAction actionWithTitle:otherButtonTitle1
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
-        [self.personalModel updateGender:0 Token:nil];
+        [self.personalModel updateGender:0];
     }];
     
     
@@ -403,7 +403,7 @@ UITableViewDataSource
                                   selectedDate:[NSDate date]
                                      doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
                                          NSLog(@"selectedDate =  %@",selectedDate);
-                                         [weakSelf.personalModel updateBirthDate:[weakSelf stringFromDate:selectedDate] Token:nil];
+                                         [weakSelf.personalModel updateBirthDate:[weakSelf stringFromDate:selectedDate] ];
 //                                         
 //                                         [weakSelf reloadTableView:eBirthDate content:[weakSelf stringFromDate:selectedDate]];
                                      }

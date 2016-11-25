@@ -43,22 +43,14 @@
 /**
  3.5.1 我的-首页（已测）
  */
-- (void)getMineInfo:(NSString*)userToken
+- (void)getMineInfo
 {
     NSString *url = [NSString stringWithFormat:@"%@/mime/index",BASEURL];
     
     self.loadSupport.loadEvent = NetLoadingEvent;
-    NSDictionary *parames = nil;
-    if (!userToken) {
-        userToken = [LBB_LoginManager shareInstance].userToken;
-    }
-    if (userToken && [userToken length]) {
-        parames = @{
-                    @"Token":userToken
-                    };
-    }
+    
     __weak typeof(self) weakSelf = self;
-    [[BC_ToolRequest sharedManager] GET:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = (NSDictionary*)responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         NSLog(@"responseObject = %@",responseObject);
@@ -400,7 +392,7 @@
 /**
  3.5.2 我的-首页修改封面（已测）
  */
-- (void)updateCover:(NSString*)coverURL Token:(NSString*)userToken
+- (void)updateCover:(NSString*)coverURL
 {
     NSString *url = [NSString stringWithFormat:@"%@/mime/cover/update",BASEURL];
     if (!coverURL || [coverURL length] == 0) {
@@ -409,12 +401,7 @@
     
     NSMutableDictionary *parames = [NSMutableDictionary dictionaryWithCapacity:0];
     [parames setObject:coverURL forKey:@"coverImageUrl"];
-    if (!userToken) {
-        userToken = [LBB_LoginManager shareInstance].userToken;
-    }
-    if (userToken && [userToken length]) {
-        [parames setObject:userToken forKey:@"Token"];
-    }
+    
     __weak typeof(self) weakSelf = self;
     [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = (NSDictionary*)responseObject;

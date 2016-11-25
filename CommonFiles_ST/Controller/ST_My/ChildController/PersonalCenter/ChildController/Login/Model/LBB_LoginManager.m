@@ -253,18 +253,21 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 }
 
 /*
- * 找回密码
+ *3.5.22 我的-找回密码（已测）
  */
 - (void)findPassword:(NSString*)phoneNum
             CheckNum:(NSString*)checkNum
+            Password:(NSString*)password
        CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 {
     self.account = phoneNum;
     self.checkNum = checkNum;
+    self.password = password;
     self.findPSCompleteBlock = completeBlock;
     NSDictionary *paraDic = @{
                               @"phoneNum":self.account,
-                              @"verifyCode":self.checkNum
+                              @"verifyCode":self.checkNum,
+                              @"passwd":self.password
                               };
     
     NSString *url = [NSString stringWithFormat:@"%@/mime/password/retrieve",BASEURL];
@@ -303,68 +306,17 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 }
 
 /*
- * 设置密码
+ *3.5.36 我的-密码修改（已测）
  */
-- (void)setPassword:(NSString*)phoneNum
-           Password:(NSString*)password
-      CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
-{
-    self.account = phoneNum;
-    self.password = password;
-    self.setPSCompleteBlock = completeBlock;
-    NSDictionary *paraDic = @{
-                              @"phoneNum":self.account,
-                              @"verifyCode":self.checkNum,
-                              @"passwd":self.password
-                              };
-    
-    NSString *url = [NSString stringWithFormat:@"%@/mime/password/setting",BASEURL];
-    __weak typeof(self) weakSelf = self;
-    
-    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
-                                 success:^(NSURLSessionDataTask *operation, id responseObject){
-                                     NSDictionary *dict = (NSDictionary*)responseObject;
-                                     NSLog(@"responseObject = %@",dict);
-                                     int code = [[dict objectForKey:@"code"] intValue];
-                                     NSString *remark = [dict objectForKey:@"remark"];
-                                     if (code == 0) {
-                                         if (weakSelf.setPSCompleteBlock) {
-                                             weakSelf.setPSCompleteBlock(weakSelf.userToken,YES);
-                                             weakSelf.setPSCompleteBlock = nil;
-                                         }
-                                     }else {
-                                         if (weakSelf.setPSCompleteBlock) {
-                                             weakSelf.setPSCompleteBlock(remark,YES);
-                                             weakSelf.setPSCompleteBlock = nil;
-                                         }
-                                     }
-                                     
-                                 } failure:^(NSURLSessionDataTask *operation, NSError *error){
-                                     if (weakSelf.setPSCompleteBlock) {
-                                         weakSelf.setPSCompleteBlock(@"请求异常",NO);
-                                         weakSelf.setPSCompleteBlock = nil;
-                                     }
-                                     NSLog(@"error = %@",error);
-                                 }];
-}
-
-/*
- * 3.5.33 我的-密码修改（已测）
- */
-- (void)changePassword:(NSString*)token
-              Password:(NSString*)oldPasswd
+- (void)changePassword:(NSString*)oldPasswd
            NewPassword:(NSString*)newPasswd
          CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 {
     self.changePSCompleteBlock = completeBlock;
     NSDictionary *paraDic = @{
-                              @"Token":token,
                               @"oldPasswd":oldPasswd,
                               @"newPasswd":newPasswd
                               };
-    
-    __block NSString *changeToken = token;
-    __block NSString *password = newPasswd;
     
     NSString *url = [NSString stringWithFormat:@"%@/mime/password/update",BASEURL];
     __weak typeof(self) weakSelf = self;
@@ -380,13 +332,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                              weakSelf.changePSCompleteBlock(weakSelf.userToken,YES);
                                              weakSelf.changePSCompleteBlock = nil;
                                          }
-                                         if ([changeToken isEqualToString:weakSelf.userToken]) {
-                                             LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
-                                             loginCountInfo.account = weakSelf.account;
-                                             loginCountInfo.password = password;
-                                             [weakSelf saveLoginUserInfo:loginCountInfo];
-                                         }
-                                         
+  
                                      }else {
                                          if (weakSelf.changePSCompleteBlock) {
                                              weakSelf.changePSCompleteBlock(remark,YES);
