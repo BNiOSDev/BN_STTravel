@@ -14,18 +14,27 @@
             <rect key="frame" x="0.0" y="0.0" width="475" height="283"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0849.JPG" translatesAutoresizingMaskIntoConstraints="NO" id="zL4-UX-bdR"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zL4-UX-bdR">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTj-UL-7pg">
                     <connections>
                         <action selector="converPictureClickEvent:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="eXC-Nb-PNT"/>
                     </connections>
                 </button>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的_未登录_头像" translatesAutoresizingMaskIntoConstraints="NO" id="5ch-Lv-80r">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="q_CornerRadius">
+                            <integer key="value" value="35"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWK-6c-rLK">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="cWK-6c-rLK" secondAttribute="height" id="4FT-P4-UEx"/>
                         <constraint firstAttribute="width" constant="70" id="yYF-Fy-ALh"/>
                     </constraints>
-                    <state key="normal" image="19.pic.jpg"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="q_CornerRadius">
                             <integer key="value" value="35"/>
@@ -75,7 +84,7 @@
                         <constraint firstItem="i09-ls-xo4" firstAttribute="trailing" secondItem="Tg0-zM-dSI" secondAttribute="centerX" constant="-15" id="zxw-mi-RNz"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="要么读书，要么旅行，身体和思想总有一个在路上。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2J-1y-5Jt">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="要么读书，要么旅行，身体和思想总有一个在路上。" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2J-1y-5Jt">
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -86,6 +95,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="oTj-UL-7pg" firstAttribute="centerY" secondItem="zL4-UX-bdR" secondAttribute="centerY" id="1kf-iS-EBI"/>
                 <constraint firstItem="Tg0-zM-dSI" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="5uM-oJ-iZZ"/>
@@ -95,7 +105,11 @@
                 <constraint firstItem="zL4-UX-bdR" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="CzP-Cv-lEx"/>
                 <constraint firstItem="oTj-UL-7pg" firstAttribute="height" secondItem="zL4-UX-bdR" secondAttribute="height" id="J2h-bZ-nNA"/>
                 <constraint firstItem="Tg0-zM-dSI" firstAttribute="top" secondItem="aEw-Cu-s3c" secondAttribute="bottom" constant="5" id="MZx-OB-J7c"/>
+                <constraint firstItem="5ch-Lv-80r" firstAttribute="height" secondItem="cWK-6c-rLK" secondAttribute="height" id="NTx-Z6-Oez"/>
+                <constraint firstItem="5ch-Lv-80r" firstAttribute="centerY" secondItem="cWK-6c-rLK" secondAttribute="centerY" id="PDO-cO-81L"/>
+                <constraint firstItem="5ch-Lv-80r" firstAttribute="width" secondItem="cWK-6c-rLK" secondAttribute="width" id="Pos-kt-Pi3"/>
                 <constraint firstItem="aEw-Cu-s3c" firstAttribute="top" secondItem="cWK-6c-rLK" secondAttribute="bottom" constant="5" id="Qey-UZ-scf"/>
+                <constraint firstItem="5ch-Lv-80r" firstAttribute="centerX" secondItem="cWK-6c-rLK" secondAttribute="centerX" id="QqJ-8n-6Pb"/>
                 <constraint firstItem="cWK-6c-rLK" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="SXO-Ld-c7F"/>
                 <constraint firstItem="aEw-Cu-s3c" firstAttribute="centerX" secondItem="cWK-6c-rLK" secondAttribute="centerX" id="VxJ-21-Ixc"/>
                 <constraint firstItem="oTj-UL-7pg" firstAttribute="width" secondItem="zL4-UX-bdR" secondAttribute="width" id="g4r-aF-FTD"/>
@@ -108,6 +122,7 @@
                 <constraint firstAttribute="bottom" secondItem="zL4-UX-bdR" secondAttribute="bottom" id="nHA-zb-Ibh"/>
                 <constraint firstItem="JyT-l3-1jH" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="15" id="qaC-gq-wh6"/>
                 <constraint firstAttribute="trailing" secondItem="Tg0-zM-dSI" secondAttribute="trailing" id="uem-qA-efO"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="b2J-1y-5Jt" secondAttribute="bottom" constant="10" id="ybL-PL-26F"/>
                 <constraint firstItem="yCb-LA-ybJ" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="15" id="zM3-8q-bpZ"/>
             </constraints>
             <connections>
@@ -122,17 +137,17 @@
                 <outlet property="setBtn" destination="JyT-l3-1jH" id="ESj-NH-VVz"/>
                 <outlet property="signatureLabel" destination="b2J-1y-5Jt" id="oQy-fF-eWm"/>
                 <outlet property="userHeadBtn" destination="cWK-6c-rLK" id="LCU-Nx-dQM"/>
+                <outlet property="userHeadImgView" destination="5ch-Lv-80r" id="6r0-uW-RNt"/>
                 <outlet property="userNameLabel" destination="aEw-Cu-s3c" id="2bx-Td-C77"/>
             </connections>
             <point key="canvasLocation" x="97.5" y="44.5"/>
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="19.pic.jpg" width="200" height="200"/>
-        <image name="IMG_0849.JPG" width="3264" height="2448"/>
         <image name="头部消息" width="17" height="16"/>
         <image name="头部设置" width="17" height="18"/>
         <image name="导游认证" width="14" height="14"/>
+        <image name="我的_未登录_头像" width="60" height="61"/>
         <image name="达人认证" width="14" height="14"/>
     </resources>
 </document>

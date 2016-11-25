@@ -1,13 +1,12 @@
 //
-//  LBB_MineModel.h
+//  LBB_MineViewModel.h
 //  ST_Travel
 //
-//  Created by 晨曦 on 16/11/6.
+//  Created by dhxiang on 16/11/24.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "Mine_Common.h"
 
 @interface LBB_MineDetaiInfo : NSObject
 @property(nonatomic,assign) NSInteger detailType;//类型
@@ -26,8 +25,7 @@
 
 @end
 
-
-@interface LBB_MineViewModel :BN_BaseDataModel
+@interface LBB_MineViewModel : NSObject
 
 @property(nonatomic,copy) NSString *name;//用户名称
 @property(nonatomic,copy) NSString *portrait;//用户头像
@@ -47,7 +45,15 @@
 @property(nonatomic,assign) int  waitCommentTicketCount;//待评论门票数
 @property(nonatomic,assign) int  refundTicketCount;//售后订单
 
+@end
+
+
+
+@interface LBB_MineModelData : BN_BaseDataModel
+
+@property(nonatomic,strong)LBB_MineViewModel *userInfo;
 @property(nonatomic,strong) NSMutableArray<LBB_MineSectionInfo*> *sectionInfo;
+
 
 /**
  3.5.1 我的-首页（已测）
@@ -55,3 +61,6 @@
 - (void)getMineInfo:(NSString*)userToken;
 
 @end
+
+
+

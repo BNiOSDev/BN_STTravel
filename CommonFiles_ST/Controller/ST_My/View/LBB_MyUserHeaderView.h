@@ -22,6 +22,7 @@
 @interface LBB_MyUserHeaderView : UICollectionReusableView
 
 @property (nonatomic,weak) id<LBB_MyUserHeaderViewDelegate> delegate;
-@property (nonatomic,strong) LBB_MineUserInfo* userInfo;
+@property (nonatomic,strong) LBB_MineViewModel* viewModel;
+@property (nonatomic,assign) BOOL isLogin;
 
 @end

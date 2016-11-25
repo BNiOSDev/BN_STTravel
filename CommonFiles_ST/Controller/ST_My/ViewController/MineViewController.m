@@ -43,7 +43,6 @@ LBB_MySectionHeadViewDelegate
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadCustomNavigationButton];
-    [self.dataController initDataSource];
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
 }
 
@@ -55,6 +54,7 @@ LBB_MySectionHeadViewDelegate
 - (void)viewWillAppear:(BOOL)animated
 {
    [super viewWillAppear:animated];
+    [self.dataController initDataSource];
    [self setNavigationBarHidden:YES];
 }
     

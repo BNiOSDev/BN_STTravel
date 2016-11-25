@@ -9,6 +9,8 @@
 #ifndef Mine_Common_h
 #define Mine_Common_h
 
+#import "UIImageView+WebCache.h"
+
 //屏幕适配
 #define FB_FIX_SIZE_WIDTH(w) (((w) / 320.0) * DeviceWidth)
 //获取当前app版本

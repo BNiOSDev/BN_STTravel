@@ -7,20 +7,7 @@
 //
 
 #import "LBB_MineModel.h"
-
-
-@implementation LBB_MineUserInfo
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-       
-    }
-    
-    return self;
-}
-@end
+#import "LBB_LoginManager.h"
 
 
 @implementation LBB_MineDetaiInfo
@@ -43,26 +30,106 @@
 @end
 
 
-@implementation LBB_MineModelData
+@implementation LBB_MineViewModel
 
-
-@end
-
-
-@implementation LBB_MineModel
-
-- (LBB_MineModelData*)getData
+- (id)init
 {
-    LBB_MineModelData *modelData = [[LBB_MineModelData alloc] init];
+    self = [super init];
+    if (self ) {
+        [self initData];
+    }
+    return self;
+}
+/**
+ 3.5.1 我的-首页（已测）
+ */
+- (void)getMineInfo:(NSString*)userToken
+{
+    NSString *url = [NSString stringWithFormat:@"%@/mime/index",BASEURL];
     
-    LBB_MineUserInfo *userInfo = [[LBB_MineUserInfo alloc] init];
-    userInfo.userID = @"11ea";
-    userInfo.userImagePath = @"19.pic.jpg";
-    userInfo.coverPicturePath = IMAGE(@"IMG_0849.JPG");
-    userInfo.userName = @"滨滨";
-    userInfo.lvLevel = 10;
-    userInfo.isGuideAuth = YES;
-    userInfo.signature = @"要么读书，要么旅行，身体和思想总有一个在路上";
+    self.loadSupport.loadEvent = NetLoadingEvent;
+    NSDictionary *parames = nil;
+    if (!userToken) {
+        userToken = [LBB_LoginManager shareInstance].userToken;
+    }
+    if (userToken && [userToken length]) {
+        parames = @{
+                    @"Token":userToken
+                    };
+    }
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] GET:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = (NSDictionary*)responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        NSLog(@"responseObject = %@",responseObject);
+        NSString *remark = [dic objectForKey:@"remark"];
+        if(codeNumber.intValue == 0)
+        {
+            [weakSelf mj_setKeyValues:[dic objectForKey:@"result"]];
+            [weakSelf updateData];
+            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+        }else {
+              [weakSelf mj_setKeyValues:[dic objectForKey:@"result"]];
+            weakSelf.loadSupport.netRemark = remark;
+            weakSelf.loadSupport.loadFailEvent = codeNumber.intValue;
+        }
+        
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
+- (void)updateData
+{
+    //我的订单
+    LBB_MineSectionInfo *sectionInfo0 = self.sectionInfo[0];//订单信息
+    NSArray *ordertabArray = sectionInfo0.detailArary;
+    for (int i = 0; i < ordertabArray.count; i++) {
+        LBB_MineDetaiInfo *detailInfo = ordertabArray[i];
+        switch (i) {
+            case 0:
+                detailInfo.newNum = self.waitPayOrderCount;
+                break;
+            case 1:
+                detailInfo.newNum = self.waitTakeOrderCount;
+                break;
+            case 2:
+                detailInfo.newNum = self.waitCommentOrderCount;
+                break;
+            case 3:
+                detailInfo.newNum = self.afterSaleOrderCount;
+                break;
+            default:
+                break;
+        }
+    }
+    //我的门票
+    LBB_MineSectionInfo *sectionInfo1 = self.sectionInfo[1];//门票信息
+    NSArray *ticketArray = sectionInfo1.detailArary;
+    for (int i = 0; i < ticketArray.count; i++) {
+        LBB_MineDetaiInfo *detailInfo = ticketArray[i];
+        switch (i) {
+            case 0:
+                detailInfo.newNum = self.waitPayTicketCount;
+                break;
+            case 1:
+                detailInfo.newNum = self.waitTakeTicketCount;
+                break;
+            case 2:
+                detailInfo.newNum = self.waitCommentTicketCount;
+                break;
+            case 3:
+                detailInfo.newNum = self.refundTicketCount;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void)initData
+{
+    self.name = @"登录";
     
     NSMutableArray *sectionArary = [[NSMutableArray alloc] init];
     
@@ -98,12 +165,8 @@
     otherSectionInfo.detailArary = [self getOtherArray];
     [sectionArary addObject:otherSectionInfo];
     
-    modelData.userInfo = userInfo;
-    modelData.sectionInfo = sectionArary;
-    
-    return modelData;
+    self.sectionInfo = sectionArary; 
 }
-
 
 - (NSMutableArray *)getOrderArray
 {
@@ -116,7 +179,6 @@
             {
                 detailInfo.detailImage = @"待付款-订单.png";
                 detailInfo.detailContent = @"待付款";
-                detailInfo.newNum = 99;
             }
                 
                 break;
@@ -124,7 +186,6 @@
             {
                 detailInfo.detailImage = @"待收货-订单.png";
                 detailInfo.detailContent = @"待收货";
-                detailInfo.newNum = 0;
             }
                 
                 break;
@@ -132,7 +193,6 @@
             {
                 detailInfo.detailImage = @"待评价-订单.png";
                 detailInfo.detailContent = @"待评价";
-                detailInfo.newNum = 99;
             }
                 
                 break;
@@ -140,7 +200,6 @@
             {
                 detailInfo.detailImage = @"售后.png";
                 detailInfo.detailContent = @"售后";
-                detailInfo.newNum = 0;
             }
                
                 break;
@@ -163,7 +222,6 @@
             case eTicket_WaitPay:
             {
                detailInfo.detailImage = @"待付款-门票.png";
-               detailInfo.newNum = 3;
                detailInfo.detailContent = @"待付款";
             }
                 
@@ -171,7 +229,6 @@
             case eTicket_WaitGetTicket:
             {
                 detailInfo.detailImage = @"待取票.png";
-                detailInfo.newNum = 0;
                 detailInfo.detailContent = @"待取票";
             }
                 
@@ -179,7 +236,6 @@
             case eTicket_WaitComment:
             {
                 detailInfo.detailImage = @"待评价-门票.png";
-                detailInfo.newNum = 3;
                 detailInfo.detailContent = @"待评价";
             }
                 
@@ -187,7 +243,6 @@
             case eTicket_Refund:
             {
                 detailInfo.detailImage = @"退票.png";
-                detailInfo.newNum = 3;
                 detailInfo.detailContent = @"退票.";
             }
                 

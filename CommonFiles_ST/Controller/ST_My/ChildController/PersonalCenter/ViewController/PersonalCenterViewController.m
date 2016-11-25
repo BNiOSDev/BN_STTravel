@@ -76,7 +76,7 @@ UITableViewDataSource
     }];
     
     [self.personalModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
-        [weakSelf showHudPrompt:remark];
+//        [weakSelf showHudPrompt:remark];
     }];
 }
 

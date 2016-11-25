@@ -3036,7 +3036,6 @@
 		845CB00A1DDDC24800C02DC2 /* ST_My */ = {
 			isa = PBXGroup;
 			children = (
-				84CA60701DE1B03B00ECF89C /* ViewModel */,
 				845CB00B1DDDC24800C02DC2 /* ChildController */,
 				845CB1981DDDC24900C02DC2 /* Common */,
 				845CB19C1DDDC24900C02DC2 /* MineResource */,
@@ -4858,13 +4857,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		84CA60701DE1B03B00ECF89C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		C91F613A1D9F96CA004FE75C /* ST_Mall */ = {
 			isa = PBXGroup;
 			children = (
@@ -5130,7 +5122,6 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = PK4EEXA626;
 						ProvisioningStyle = Automatic;
 					};
 					C9C0E9641D9948F300575A7C = {
@@ -5877,7 +5868,7 @@
 			baseConfigurationReference = A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PK4EEXA626;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -5894,7 +5885,7 @@
 			baseConfigurationReference = 8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PK4EEXA626;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
