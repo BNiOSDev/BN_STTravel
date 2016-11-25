@@ -1430,7 +1430,6 @@
 				84E207B51DE869E300CD99F4 /* Guider */,
 				84E207D91DE869E300CD99F4 /* Hostel */,
 				84E207E01DE869E300CD99F4 /* LabelDetail */,
-				84E207EF1DE869E300CD99F4 /* ljdz */,
 				84E207F31DE869E300CD99F4 /* MyFavorite */,
 				84E207FC1DE869E300CD99F4 /* nearBy */,
 				84E208031DE869E300CD99F4 /* Order */,
@@ -1750,37 +1749,6 @@
 			children = (
 				84E207ED1DE869E300CD99F4 /* LBB_LabelDetailViewController.h */,
 				84E207EE1DE869E300CD99F4 /* LBB_LabelDetailViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		84E207EF1DE869E300CD99F4 /* ljdz */ = {
-			isa = PBXGroup;
-			children = (
-				84E207F01DE869E300CD99F4 /* model */,
-				84E207F11DE869E300CD99F4 /* view */,
-				84E207F21DE869E300CD99F4 /* ViewController */,
-			);
-			path = ljdz;
-			sourceTree = "<group>";
-		};
-		84E207F01DE869E300CD99F4 /* model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		84E207F11DE869E300CD99F4 /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
-		84E207F21DE869E300CD99F4 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -5160,7 +5128,7 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = PK4EEXA626;
+						DevelopmentTeam = 8NT4E7BWNP;
 						ProvisioningStyle = Automatic;
 					};
 					C9C0E9641D9948F300575A7C = {
@@ -5909,7 +5877,7 @@
 			baseConfigurationReference = A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PK4EEXA626;
+				DEVELOPMENT_TEAM = 8NT4E7BWNP;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -5926,7 +5894,7 @@
 			baseConfigurationReference = 8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = PK4EEXA626;
+				DEVELOPMENT_TEAM = 8NT4E7BWNP;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
