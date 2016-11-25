@@ -332,8 +332,7 @@ UITableViewDataSource
     __weak typeof (self) weakSelf = self;
     self.addressPicker.myBlock = ^(NSString *address,NSArray *selections){
         if (address && [address length]) {
-            [weakSelf.personalModel updateArea:0 CityId:0 Token:nil];
-//            [weakSelf reloadTableView:eCity content:address];
+            [weakSelf.personalModel updateArea:1000 CityId:1 Token:nil];
         }
     };
 }

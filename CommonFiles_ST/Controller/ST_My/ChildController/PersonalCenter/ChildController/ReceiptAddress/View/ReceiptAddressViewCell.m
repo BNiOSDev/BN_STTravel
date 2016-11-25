@@ -43,10 +43,10 @@
 - (void)setCellInfo:(LBB_AddressModel *)cellInfo
 {
     _cellInfo = cellInfo;
-    self.userNameLabel.text = _cellInfo.userName;
-    self.phoneNumLabel.text = _cellInfo.phoneNum;
-    self.adressLabel.text = _cellInfo.adress;
-    self.streetLabel.text = _cellInfo.street;
+    self.userNameLabel.text = _cellInfo.name;
+    self.phoneNumLabel.text = _cellInfo.phone;
+    self.adressLabel.text = [_cellInfo.provinceName length] ? _cellInfo.provinceName : @"福建省 厦门市 思明区";
+    self.streetLabel.text = _cellInfo.address;
     self.defaultImgView.hidden = !_cellInfo.isDefault;
     if (_cellInfo.isDefault) {
         self.defaultBtn.backgroundColor = ColorBtnYellow;

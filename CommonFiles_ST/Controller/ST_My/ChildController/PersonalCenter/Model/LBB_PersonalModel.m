@@ -308,6 +308,8 @@
         {
             weakSelf.provId = provinceId;
             weakSelf.cityId = cityId;
+            weakSelf.area = @"福建厦门思明区XX地址XX号";
+//            [weakSelf getPersonInfo:nil];
             weakSelf.loadSupport.loadEvent = codeNumber.intValue;
         }else{
             weakSelf.loadSupport.netRemark = remark;
