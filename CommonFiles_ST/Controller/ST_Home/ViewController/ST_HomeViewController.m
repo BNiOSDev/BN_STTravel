@@ -24,6 +24,7 @@
 
 #import "LBB_PoohMyFavoriteViewController.h"
 
+#import "LBB_PublishUgcViewModel.h"
 
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -43,6 +44,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    [self testModel];
+}
+
+-(void)testModel{
+
+    LBB_PublishUgcViewModel* model = [[LBB_PublishUgcViewModel alloc]init];
+    
+    NSMutableArray* arr = [NSMutableArray new];
+    NSMutableArray* tagsArr = [NSMutableArray arrayWithObjects:@1,@2,@3, nil];
+    for (int i = 0; i<3; i++) {
+        BN_PublicPics* pic = [[BN_PublicPics alloc] init];
+        pic.imageUrl = @"照片地址";
+        pic.imageDesc = @"照片描述";
+        pic.tags = tagsArr;
+        [arr addObject:pic];
+    }
+    [model setSquareUgc:1 url:@"照片地址请" remark:@"标注啦" longitude:@"-1" dimensionality:@"-1" allSpotsId:0 tags:tagsArr pics:arr block:^(NSError* error){
+    
+    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
