@@ -7,7 +7,9 @@
 //
 
 #import "MineBaseViewController.h"
+#import "LBB_PersonalModel.h"
 
 @interface ChangePhoneNumViewController : MineBaseViewController
+@property(nonatomic,strong) LBB_PersonalModel *personModel;
 
 @end

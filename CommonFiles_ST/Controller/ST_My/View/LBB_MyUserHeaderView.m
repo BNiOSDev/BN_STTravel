@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *guideLabel;
 @property (weak, nonatomic) IBOutlet UIView *levelGuideBgView;
 @property (weak, nonatomic) IBOutlet UIButton *coverPictureBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *userHeadImgView;
 
 @end
 
@@ -36,6 +37,8 @@
     self.levelLabel.textColor = ColorWhite;
     self.guideLabel.textColor = ColorWhite;
     self.signatureLabel.textColor = ColorWhite;
+    self.signatureLabel.adjustsFontSizeToFitWidth = YES;
+    self.signatureLabel.numberOfLines = 0;
     self.userNameLabel.font = Font16;
     self.levelLabel.font = Font12;
     self.guideLabel.font = Font12;
@@ -49,42 +52,90 @@
     self.backImgView.contentMode = UIViewContentModeScaleAspectFill;
     self.setBtn.enlargeInset = UIEdgeInsetsMake(10, 10, 40, 40);
     self.messageBtn.enlargeInset = UIEdgeInsetsMake(10, 40, 40, 10);
+    self.levelImgView.hidden = YES;
+    self.levelLabel.hidden = YES;
+    self.guideImgView.hidden = YES;
+    self.guideLabel.hidden = YES;
 }
 
-- (void)setUserInfo:(LBB_MineUserInfo*)userInfo
+- (void)setViewModel:(LBB_MineViewModel*)viewModel
 {
-    _userInfo = userInfo;
-    UIImage *image = IMAGE(userInfo.userImagePath);
+    _viewModel = viewModel;
+    UIImage *image = IMAGE(_viewModel.portrait);
+    if (_viewModel.portrait && [_viewModel.portrait length]) {
+        [self.userHeadImgView  sd_setImageWithURL:[NSURL URLWithString:_viewModel.portrait] placeholderImage:UnLoginDefaultImage];
+    }else{
+        [self.userHeadImgView setImage:UnLoginDefaultImage];
+    }
+    
     [self.userHeadBtn setImage:image forState:UIControlStateNormal];
-    self.backImgView.image = userInfo.coverPicturePath;
-    self.userNameLabel.text = userInfo.userName;
-    self.levelLabel.text = [NSString stringWithFormat:@"lv %@",@(userInfo.lvLevel)];
-    self.guideImgView.hidden = !userInfo.isGuideAuth;
-    self.guideLabel.hidden = !userInfo.isGuideAuth;
-    self.signatureLabel.text = userInfo.signature;
+    
+    if (_viewModel.coverImageUrl && [_viewModel.coverImageUrl length]) {
+        [self.backImgView  sd_setImageWithURL:[NSURL URLWithString:_viewModel.coverImageUrl] placeholderImage:nil];
+    }else {
+        self.backImgView.image = nil;
+    }
+   
+    self.userNameLabel.text = _viewModel.name;
+    self.levelLabel.text = [NSString stringWithFormat:@"Lv. %@",@(_viewModel.level)];
+//    self.guideLabel.text = [self getAuthMessage:_viewModel.tourAuditState];
+    self.signatureLabel.text = _viewModel.signature;
+    if (self.isLogin) {
+        self.levelImgView.hidden = NO;
+        self.levelLabel.hidden = NO;
+        self.guideImgView.hidden = NO;
+        self.guideLabel.hidden = NO;
+    }else {
+        self.levelImgView.hidden = YES;
+        self.levelLabel.hidden = YES;
+        self.guideImgView.hidden = YES;
+        self.guideLabel.hidden = YES;
+    }
+}
+
+- (NSString*)getAuthMessage:(int)type
+{
+    NSString *authStr = @"未提交实名认证";
+    switch (type) {
+        case 0:
+            authStr = @"未提交实名认证";
+            break;
+        case 1:
+            authStr = @"已提交实名认证，正在审核";
+            break;
+        case 2:
+            authStr = @"认证成功";
+            break;
+        case 3:
+            authStr = @"认证失败";
+            break;
+        default:
+            break;
+    }
+    return authStr;
 }
 
 - (IBAction)setBtnClickEvent:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickSetting:)]) {
-        [self.delegate didClickSetting:self.userInfo];
+        [self.delegate didClickSetting:self.viewModel];
     }
 }
 
 - (IBAction)messageBtnClickEvent:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickMessage:)]) {
-        [self.delegate didClickMessage:self.userInfo];
+        [self.delegate didClickMessage:self.viewModel];
     }
 }
 
 - (IBAction)personCenterBtnClickEvent:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickPersonalCenter:)]) {
-        [self.delegate didClickPersonalCenter:self.userInfo];
+        [self.delegate didClickPersonalCenter:self.viewModel];
     }
 }
 
 - (IBAction)converPictureClickEvent:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didClickConverPicture:)]) {
-        [self.delegate didClickConverPicture:self.userInfo];
+        [self.delegate didClickConverPicture:self.viewModel];
     }
 }
 

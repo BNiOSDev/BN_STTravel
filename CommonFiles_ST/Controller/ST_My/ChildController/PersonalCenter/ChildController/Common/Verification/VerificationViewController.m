@@ -10,9 +10,12 @@
 #import "LBB_LoginManager.h"
 #import "ChangePasswordViewController.h"
 
+
 @interface VerificationViewController ()<
 UITextFieldDelegate
 >
+@property(nonatomic,strong) LBB_PersonalModel *personModel;
+
 @property (weak, nonatomic) IBOutlet UILabel *phoneTipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *checkTipLabel;
 
@@ -35,6 +38,12 @@ UITextFieldDelegate
 @end
 
 @implementation VerificationViewController
+
+- (void)dealloc
+{
+    self.mainPersonModel = nil;
+    self.personModel = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -93,7 +102,8 @@ UITextFieldDelegate
         {
             self.tipLabel.text = @"修改手机号，需要对旧的手机号码进行验证";
             self.navigationItem.title = @"修改手机号码";
-            self.phoneTextFiled.userInteractionEnabled = NO;
+            self.phoneTextFiled.text = self.mainPersonModel.phoneNum;
+            self.phoneNum = self.phoneTextFiled.text;
         }
             break;
         case eCheckPhoneNum:
@@ -129,6 +139,18 @@ UITextFieldDelegate
 }
 
 - (IBAction)startVerificatiteAction:(id)sender {
+    
+    self.phoneNum = [self.phoneNum Trim];
+    self.checkNum = [self.checkNum Trim];
+    if ([self.phoneNum length] == 0) {
+        [self showHudPrompt:@"请输入手机号"];
+        return;
+    }
+    if([self.checkNum length] == 0){
+        [self showHudPrompt:@"请输入验证码"];
+        return;
+    }
+    
     switch (self.baseViewType) {
         case eFindPassword:
         {
@@ -140,13 +162,34 @@ UITextFieldDelegate
             UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
             VerificationViewController* vc = [main instantiateViewControllerWithIdentifier:@"VerificationViewController"];
             vc.baseViewType = eCheckPhoneNum;
+            vc.mainPersonModel = self.mainPersonModel;
             [self.navigationController pushViewController:vc animated:YES];
+         
         }
             break;
         case eCheckPhoneNum:
         {
-            [self showHudPrompt:@"绑定成功"];
-            [self.navigationController popViewControllerAnimated:YES];
+            if (!self.personModel) {
+                self.personModel = [[LBB_PersonalModel alloc] init];
+            }
+            
+            [self.personModel updatePhoneNum:self.phoneNum VerifyCode:self.checkNum Token:self.userToken];
+            __weak typeof (self) weakSelf = self;
+            
+            [self.personModel.loadSupport setDataRefreshblock:^{
+                weakSelf.mainPersonModel.phoneNum = weakSelf.phoneNum;
+                weakSelf.mainPersonModel.loadSupport.loadEvent = NetLoadSuccessfulEvent;
+                NSArray *vcArray = weakSelf.navigationController.viewControllers;
+                UIViewController *vc = weakSelf.navigationController.topViewController;
+                if (vcArray.count >= 3) {
+                    vc = [vcArray objectAtIndex:(vcArray.count - 3)];
+                }
+                [weakSelf.navigationController popToViewController:vc animated:YES];
+            }];
+            [self.personModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
+                [weakSelf showHudPrompt:remark];
+            }];
+
         }
             break;
             

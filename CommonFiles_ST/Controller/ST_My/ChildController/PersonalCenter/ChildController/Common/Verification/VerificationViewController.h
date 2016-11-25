@@ -7,7 +7,12 @@
 //
 
 #import "MineBaseViewController.h"
+#import "LBB_PersonalModel.h"
 
 @interface VerificationViewController : MineBaseViewController
+
+@property(nonatomic,copy) NSString *userToken;
+@property(nonatomic,strong) LBB_PersonalModel *mainPersonModel;
+
 
 @end

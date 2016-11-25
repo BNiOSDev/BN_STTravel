@@ -17,8 +17,10 @@ ReceiptAddressViewCellDelegate
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
-@property (strong,nonatomic) LBB_AddressDataModel *dataModel;
 @property (strong, nonatomic) UIView *addNewAddressView;
+
+@property (strong,nonatomic) LBB_AddressViewModel *viewModel;
+
 @end
 
 @implementation ReceiptAddressViewController
@@ -32,6 +34,7 @@ ReceiptAddressViewCellDelegate
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
 }
 
 #pragma mark - private
@@ -39,17 +42,42 @@ ReceiptAddressViewCellDelegate
 {
     UINib *nib = [UINib nibWithNibName:@"ReceiptAddressViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"ReceiptAddressViewCell"];
-    if (!self.dataModel) {
-        self.dataModel = [[LBB_AddressDataModel alloc] init];
-    }
-    self.dataSourceArray = [self.dataModel getData];
+    self.viewModel = [[LBB_AddressViewModel alloc] init];
+    
+    __weak typeof(self) temp = self;
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+        [temp.viewModel getAddressList:0 PageNum:10 IsClear:YES];
+    } footerRefreshDatablock:^{
+        [temp.viewModel getAddressList:0 PageNum:10  IsClear:YES];
+    }];
+    
+    //设置绑定数组
+    [self.tableView setTableViewData:self.viewModel.addressArray];
+    
+    //刷新数据
+    [self.viewModel getAddressList:0 PageNum:10  IsClear:YES];
+    
+    [self.viewModel.addressArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.tableView loadData:self.viewModel.addressArray];
+    
+//    __weak typeof (self) weakSelf = self;
+//    [self.viewModel.loadSupport setDataRefreshblock:^{
+//        [weakSelf.tableView reloadData];
+//    }];
+//    
+//    [self.viewModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
+//        [weakSelf showHudPrompt:remark];
+//    }];
 }
-
 
 #pragma mark - tableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSourceArray.count;
+    return self.viewModel.addressArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -61,8 +89,11 @@ ReceiptAddressViewCellDelegate
     
     CGFloat height = [tableView fd_heightForCellWithIdentifier:@"ReceiptAddressViewCell"
                                                  configuration:^(ReceiptAddressViewCell *cell) {
-                                                    LBB_AddressModel *cellModel = [self.dataSourceArray objectAtIndex:[indexPath row]];
-                                                     [cell setCellInfo:cellModel];
+                                                     if (indexPath.row < self.viewModel.addressArray.count) {
+                                                         LBB_AddressModel *cellModel = [self.viewModel.addressArray objectAtIndex:[indexPath row]];
+                                                         [cell setCellInfo:cellModel];
+                                                     }
+                                                   
                                                  }];
     
     return height;
@@ -83,7 +114,6 @@ ReceiptAddressViewCellDelegate
     static NSString *CellIdentifier = @"ReceiptAddressViewCell";
     ReceiptAddressViewCell *cell = nil;
     
-    LBB_AddressModel *cellModel = [self.dataSourceArray objectAtIndex:[indexPath row]];
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[ReceiptAddressViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -92,8 +122,11 @@ ReceiptAddressViewCellDelegate
     cell.accessoryView =  nil;
     cell.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
     cell.delegate = self;
-    [cell setCellInfo:cellModel];
-    
+    if (indexPath.row < self.viewModel.addressArray.count) {
+        LBB_AddressModel *cellModel = [self.viewModel.addressArray objectAtIndex:[indexPath row]];
+        
+        [cell setCellInfo:cellModel];
+    }
     return cell;
 }
 
@@ -139,17 +172,32 @@ ReceiptAddressViewCellDelegate
 - (void)setDefautlCellAdress:(id)cellInfo
 {
     LBB_AddressModel *cellModel = (LBB_AddressModel*)cellInfo;
+    [cellModel setDefaultAddress];
     
-    for (NSInteger i = 0; i < self.dataSourceArray.count; i++) {
-        LBB_AddressModel *tmpModel = (LBB_AddressModel*)[self.dataSourceArray objectAtIndex:i];
-        if ([tmpModel.addressId isEqualToString:cellModel.addressId]) {
-            tmpModel.isDefault = YES;
-        }else{
-            tmpModel.isDefault = NO;
-        }
-    }
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (LBB_AddressModel*) weakModel = cellModel;
     
-    [self.tableView reloadData];
+    [cellModel.loadSupport setDataRefreshblock:^{
+        [weakSelf updateDefaultModel:weakModel];
+    }];
+    
+    [cellModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
+        [weakSelf showHudPrompt:remark];
+    }];
 }
 
+- (void)updateDefaultModel:(LBB_AddressModel*)model
+{
+    if(!model){
+        return;
+    }
+    
+    model.isDefault = YES;
+    for (int i = 0; i < self.viewModel.addressArray.count; i++) {
+        if (model.addressId != model.addressId) {
+            model.isDefault = NO;
+        }
+    }
+    [self.tableView reloadData];
+}
 @end

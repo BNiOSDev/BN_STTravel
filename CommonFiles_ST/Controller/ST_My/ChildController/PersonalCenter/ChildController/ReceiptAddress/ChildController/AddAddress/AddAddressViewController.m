@@ -121,9 +121,62 @@
 }
 
 - (IBAction)saveBtnClickAction:(id)sender {
+    self.userName = [self.userName Trim];
+    self.phoneNum = [self.phoneNum Trim];
+    self.address = [self.address Trim];
+    self.street = [self.street Trim];
+    self.postNum = [self.postNum Trim];
+    if ([self.userName length] == 0) {
+        [self showHudPrompt:@"请填写收件人名称"];
+        return;
+    }
+    
+    if ([self.phoneNum validateMobile] == 0) {
+        [self showHudPrompt:@"请输入正确的手机号码"];
+        return;
+    }
+    if ([self.address length] == 0) {
+        [self showHudPrompt:@"请选择所在区域"];
+        return;
+    }
+//    if ([self.street length] == 0) {
+//        [self showHudPrompt:@"请填写详细地址"];
+//        return;
+//    }
+//    
+//    if ([self.postNum length] == 0) {
+//        [self showHudPrompt:@"请填写邮政编码"];
+//        return;
+//    }
+    
+    if (!self.addressModel) {
+        self.addressModel = [[LBB_AddressModel alloc] init];
+    }
+    self.addressModel.name = self.userName;
+    self.addressModel.phone = self.phoneNum;
+    self.addressModel.provinceId = 10;
+    self.addressModel.cityId = 10;
+    self.addressModel.provinceName =@"福建省";
+    self.addressModel.cityName = @"厦门市 思明区";
+    self.addressModel.address = self.street;
+    self.addressModel.zipcode = self.postNum;
+    
+    [self.addressModel updateAddress];
+    
+    __weak typeof (self) weakSelf = self;
+    [self.addressModel.loadSupport setDataRefreshblock:^{
+    }];
+    
+    [self.addressModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
+        [weakSelf showHudPrompt:remark];
+    }];
+    
 }
 
 - (IBAction)showAddressPickView:(id)sender {
+    
+    //隐藏键盘
+    [self.phoneNumTextField resignFirstResponder];
     
     if (!self.addressPicker) {
         self.addressPicker = [[LBB_AddressPickerView alloc] initWithTitle:NSLocalizedString(@"选择地址", nil)
@@ -137,6 +190,7 @@
     self.addressPicker.myBlock = ^(NSString *address,NSArray *selections){
         if (address && [address length]) {
             weakSelf.addressTextField.text = address;
+            weakSelf.address = address;
         }
     };
 
