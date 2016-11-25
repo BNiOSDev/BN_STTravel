@@ -182,8 +182,8 @@
      priceKey = -1;//价格
     
     
-    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude//精度
-                           dimensionality:self.locationManager.latitude//维度
+    [self.viewModel getSpotArrayLongitude:@"-1"//精度
+                           dimensionality:@"-1"//维度
                                   typeKey:typeKey
                                  orderKey:orderKey
                           hotRecommendKey:hotRecommendKey
@@ -520,7 +520,8 @@
     self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
     
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.tableHeaderView = [[UIView alloc]init];
     [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
     [self.tableView registerClass:[LBB_ScenicMainTableViewCell class] forCellReuseIdentifier:@"LBB_ScenicMainTableViewCell"];
     [self initViewModel];
@@ -540,28 +541,6 @@
 
 #pragma tableView Delegate
 
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.0001;
-}
--(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return [UIView new];
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return AutoSize(10);
-}
-
--(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    UIView* v = [UIView new];
-    CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
-    [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
-    [v setBackgroundColor:[UIColor whiteColor]];
-    return v;
-    
-}
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.viewModel.spotArray.count + 1;
 }
@@ -580,7 +559,7 @@
     }
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicMainTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicMainTableViewCell *cell) {
-            
+            [cell showTopSepLine:YES];
             [cell setModel:[ws.viewModel.spotArray objectAtIndex:indexPath.section - 1]];
         }];
     }
@@ -610,6 +589,7 @@
             
             NSLog(@"LBB_ScenicMainTableViewCell nil");
         }
+        [cell showTopSepLine:YES];
         [cell setModel:[self.viewModel.spotArray objectAtIndex:indexPath.section - 1]];
         return cell;
     }

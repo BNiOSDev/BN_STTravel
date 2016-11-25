@@ -9,6 +9,7 @@
 #import "Base_BaseViewController.h"
 #import "Mine_Common.h"
 
+
 @interface MineBaseViewController : Base_BaseViewController
     
 @property (weak, nonatomic) IBOutlet UIView *lineView;

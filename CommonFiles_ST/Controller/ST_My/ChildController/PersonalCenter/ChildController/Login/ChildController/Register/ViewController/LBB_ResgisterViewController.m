@@ -166,39 +166,4 @@
 }
 
 
-//#pragma mark - UI Action
-//
-//- (IBAction)userHeadBtnAction:(id)sender
-//{
-//    self.imagePicker = nil;
-//    
-//    self.imagePicker = [[LBB_ImagePickerViewController alloc] initPickerWithType:UIImagePickerControllerSourceTypePhotoLibrary Parent:self];
-//    
-//    @weakify(self)
-//    [self.imagePicker showPicker:^(UIImage *resultImage){
-//        NSLog(@"%d",resultImage == nil);
-//        @strongify(self)
-//        self.userHeadImage = resultImage;
-//    }];
-//}
-//
-//- (void)showAddressPickerMenu:(id)sender
-//{
-//    if (!self.addressPicker) {
-//        self.addressPicker = [[LBB_AddressPickerView alloc] initWithTitle:NSLocalizedString(@"选择地址", nil)
-//                                                         showCancelButton:YES
-//                                                               parentView:self.view
-//                                                               showStreet:NO];
-//    }
-//    
-//    [self.addressPicker showPickerView];
-//    @weakify(self)
-//    self.addressPicker.myBlock = ^(NSString *address,NSArray *selections){
-//        @strongify(self)
-//        if (address && [address length]) {
-//            self.address = [self.account Trim];
-//        }
-//    };
-//}
-
 @end

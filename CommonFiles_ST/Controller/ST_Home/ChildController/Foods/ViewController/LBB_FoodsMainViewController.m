@@ -196,8 +196,8 @@
     areaKey = -1;//区域
     distanceKey = -1;//距离
 
-    [self.viewModel getFoodsArrayLongitude:self.locationManager.longitude//精度
-                           dimensionality:self.locationManager.latitude//维度
+    [self.viewModel getFoodsArrayLongitude:@"-1"//精度
+                           dimensionality:@"-1"//维度
                             tradingAreaKey:areaKey
                                   distance:distanceKey
                                   typeKey:typeKey

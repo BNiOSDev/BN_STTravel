@@ -2,7 +2,7 @@
 //  LBB_TravelModel.h
 //  ST_Travel
 //
-//  Created by dhxiang on 16/11/20.
+//  Created by 晨曦 on 16/11/20.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 

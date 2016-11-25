@@ -12,7 +12,16 @@
 #import "LBB_MySectionFooterViewCell.h"
 #import "LBB_MyUserHeaderView.h"
 #import "MineBaseViewController.h"
+#import "Mine_Common.h"
+#import "UIImageView+WebCache.h"
+#import "LBB_MineModel.h"
 
+
+@interface LBB_MineViewDataController()
+
+@property(nonatomic,strong) LBB_MineViewModel *mineViewModel;
+@property(nonatomic,assign) BOOL isLogin;
+@end
 
 @implementation LBB_MineViewDataController
 
@@ -23,10 +32,7 @@
 
 - (void)initDataSource
 {
-    self.model = [[LBB_MineModel alloc] init];
-    self.modelData = [self.model getData];
-    self.arr = self.modelData.sectionInfo;
-    
+ 
     //进行CollectionView和Cell的绑定
     UINib *nib = [UINib nibWithNibName:@"LBB_MyViewCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"LBB_MyViewCell"];
@@ -50,13 +56,28 @@
           forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                  withReuseIdentifier:@"LBB_MySectionFooterViewCell"];
     
+    self.mineViewModel = [[LBB_MineViewModel alloc] init];
+    __weak typeof (self) weakSelf = self;
+    [self.mineViewModel.loadSupport setDataRefreshblock:^{
+        weakSelf.isLogin = YES;
+        [weakSelf.collectionView reloadData];
+    }];
+    
+    [self.mineViewModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark)     {
+        if (code == NetTokenExpiredEvent) {
+            weakSelf.isLogin = NO;
+        }
+        [weakSelf.collectionView reloadData];
+    }];
+    
+    [self.mineViewModel getMineInfo:nil];
 }
 
 - (LBB_MineDetaiInfo*)getCellInfo:(NSIndexPath*)indexPath
 {
     LBB_MineDetaiInfo *cellInfo = nil;
-    if ((indexPath.section - 1) < self.arr.count) {
-        LBB_MineSectionInfo *sectionInfo = [self.arr objectAtIndex:indexPath.section -1];
+    if ((indexPath.section - 1) < self.mineViewModel.sectionInfo.count) {
+        LBB_MineSectionInfo *sectionInfo = [self.mineViewModel.sectionInfo objectAtIndex:indexPath.section -1];
         NSArray *contentArray = sectionInfo.detailArary;
         if (contentArray && [contentArray isKindOfClass:[NSArray class]]) {
             LBB_MineDetaiInfo *detailInfo = [contentArray objectAtIndex:indexPath.row];
@@ -70,22 +91,20 @@
 - (void)replaceUserHeadImage:(UIImage*)converPicture
 {
     if (converPicture) {
-        LBB_MineUserInfo *userInfo = self.modelData.userInfo;
-        userInfo.coverPicturePath = converPicture;
-        [self.collectionView reloadData];
+        [self.mineViewModel updateCover:@"http://oggvb32dz.bkt.clouddn.com/161120201117.jpg" Token:nil];
     }
 }
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return self.arr.count + 1;
+    return self.mineViewModel.sectionInfo.count + 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (section == 0) {
         return 0;
     }
-    LBB_MineSectionInfo *cellnfo = [self.arr objectAtIndex:section - 1];
+    LBB_MineSectionInfo *cellnfo = [self.mineViewModel.sectionInfo objectAtIndex:section - 1];
     NSArray *contentArray = cellnfo.detailArary;
     if (contentArray && [contentArray isKindOfClass:[NSArray class]]) {
         return [contentArray count];
@@ -119,13 +138,13 @@
         if (indexPath.section == 0) {
             LBB_MyUserHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LBB_MyUserHeaderView" forIndexPath:indexPath];
             view.delegate = self.userHeaderDelegate;
+            view.isLogin = self.isLogin;
             reusable = view;
-            LBB_MineUserInfo *userHeadInfo = self.modelData.userInfo;
-            [view setUserInfo:userHeadInfo];
+            [view setViewModel:self.mineViewModel];
         }else {
             LBB_MySectionHeadViewCell *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"LBB_MySectionHeadViewCell" forIndexPath:indexPath];
-            if ((indexPath.section - 1) < self.arr.count) {
-                LBB_MineSectionInfo *sectionInfo = [self.arr objectAtIndex:indexPath.section - 1];
+            if ((indexPath.section - 1) < self.mineViewModel.sectionInfo.count) {
+                LBB_MineSectionInfo *sectionInfo = [self.mineViewModel.sectionInfo objectAtIndex:indexPath.section - 1];
                 view.titleLabel.text = sectionInfo.sectionContent;
                 view.userInfo = sectionInfo;
                 view.viewType = sectionInfo.setcionType;
@@ -134,7 +153,7 @@
                     view.rightBtn.hidden = YES;
                     view.arrowImgView.hidden = YES;
                 }
-                if ((indexPath.section == self.arr.count) || (indexPath.section == 0)) {
+                if ((indexPath.section == self.mineViewModel.sectionInfo.count) || (indexPath.section == 0)) {
                     view.lineView.hidden = YES;
                 }else {
                     view.lineView.hidden = NO;
@@ -177,7 +196,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return CGSizeMake(self.collectionView.frame.size.width, self.collectionView.frame.size.width * (283.f/475.f));
-    }else if (section == (self.arr.count)) {
+    }else if (section == (self.mineViewModel.sectionInfo.count)) {
          return CGSizeMake(self.collectionView.frame.size.width, 0.001f);
     }
     return CGSizeMake(self.collectionView.frame.size.width, 40.f);

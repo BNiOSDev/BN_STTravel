@@ -111,7 +111,6 @@
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         temp.userShowViewModel.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
-
 }
 
 @end
@@ -156,7 +155,8 @@
     if (self) {
         self.squareRecommend = [[LBB_SquareFriend alloc]init];
         self.friendArray = [[NSMutableArray alloc]initFromNet];
-        self.ugcArray = [[NSMutableArray alloc]initFromNet];
+        self.ugcImageArray = [[NSMutableArray alloc]initFromNet];
+        self.ugcVideoArray = [[NSMutableArray alloc]initFromNet];
     }
     return self;
 }
@@ -202,7 +202,7 @@
                               @"pageNum":[NSNumber numberWithInt:10],
                               };
     
-    NSString *url = [NSString stringWithFormat:@"%@/spot/list",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/square/friends/list",BASEURL];
     __weak typeof(self) temp = self;
     self.friendArray.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -211,7 +211,6 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SquareFriend mj_objectArrayWithKeyValuesArray:array];
             
@@ -230,7 +229,6 @@
         
         temp.friendArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getUgcArrayClearData失败  %@",error.domain);
         
         temp.friendArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
@@ -245,7 +243,9 @@
  */
 - (void)getUgcArrayType:(int)type ClearData:(BOOL)clear
 {
-    int curPage = clear == YES ? 0 : round(self.friendArray.count/10.0);
+    NSMutableArray *ugcArray = type == 2 ? self.ugcVideoArray : self.ugcImageArray;
+    
+    int curPage = clear == YES ? 0 : round(ugcArray.count/10.0);
     NSDictionary *paraDic = @{
                               @"type":@(type),
                               @"curPage":[NSNumber numberWithInt:curPage],
@@ -254,7 +254,8 @@
     
     NSString *url = [NSString stringWithFormat:@"%@/square/ugc/list",BASEURL];
     __weak typeof(self) temp = self;
-    self.friendArray.loadSupport.loadEvent = NetLoadingEvent;
+    __weak NSMutableArray *ugcArray_block = ugcArray;
+    ugcArray.loadSupport.loadEvent = NetLoadingEvent;
     
     [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
@@ -263,26 +264,26 @@
         {
             NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
-            NSArray *returnArray = [LBB_SquareFriend mj_objectArrayWithKeyValuesArray:array];
+            NSArray *returnArray = [LBB_SquareUgc mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
             {
-                [temp.friendArray removeAllObjects];
+                [ugcArray_block removeAllObjects];
             }
             
-            [temp.friendArray addObjectsFromArray:returnArray];
-            temp.friendArray.networkTotal = [dic objectForKey:@"total"];
+            [ugcArray_block addObjectsFromArray:returnArray];
+            ugcArray_block.networkTotal = [dic objectForKey:@"total"];
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
-        temp.friendArray.loadSupport.loadEvent = codeNumber.intValue;
+        ugcArray_block.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"getUgcArrayClearData失败  %@",error.domain);
         
-        temp.friendArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        ugcArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
 

@@ -23,10 +23,6 @@ LBB_MySectionHeadViewDelegate
 
 @property (nonatomic,weak) id<LBB_MySectionHeadViewDelegate> cellDelegate;
 @property (nonatomic,weak) id<LBB_MyUserHeaderViewDelegate> userHeaderDelegate;
-@property (nonatomic,strong) id userInfo;
-@property (nonatomic,strong) LBB_MineModel *model;
-@property (strong,nonatomic) LBB_MineModelData *modelData;
-@property (strong,nonatomic) NSMutableArray *arr;
 
 - (void)initDataSource;
 

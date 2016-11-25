@@ -53,7 +53,7 @@ UITextFieldDelegate
     if (self.baseViewType == eChangePhoneNum) {
         UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
         ChangePhoneNumViewController *phoneVC = [main instantiateViewControllerWithIdentifier:@"ChangePhoneNumViewController"];
-        phoneVC.baseViewType = eEditUserSignature;
+        phoneVC.baseViewType = eCheckPhoneNum;
         [self.navigationController pushViewController:phoneVC animated:YES];
     }else {
         //请求后台进行绑定后跳转到前一页

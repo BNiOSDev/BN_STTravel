@@ -7,6 +7,25 @@
 //
 
 #import <BN_BaseDataModel.h>
+#import "LBB_TagsViewModel.h"
+
+@interface LBB_UserOther : BN_BaseDataModel
+
+@property (nonatomic, assign)long userId ;// 用户ID
+@property (nonatomic, strong)NSString *userName ;// 用户名称
+@property (nonatomic, strong)NSString *userPicUrl ;// 用户头像
+@property (nonatomic, strong)NSString *signature ;// 签名
+
+@end
+
+@interface LBB_UserAction : BN_BaseDataModel
+
+@property (nonatomic, assign)int actionType ;// 5 ugc图片 6 ugc视频 7 游记
+@property (nonatomic, assign)long objId ;// 对象主键
+@property (nonatomic, strong)NSString *picUrl ;//图片地址
+@property (nonatomic, strong)NSMutableArray<LBB_SquareTags *> *tags ;// 视频标签
+
+@end
 
 @interface LBB_UserShowViewModel : BN_BaseDataModel
 
@@ -39,5 +58,32 @@
 @property (nonatomic, strong)NSString *tourAWords ;// 导游简介
 @property (nonatomic, strong)NSString *tourDetails ;// 导游介绍
 
+
+@property (nonatomic, strong)NSMutableArray<LBB_UserAction *> *userActionArray;
+@property (nonatomic, strong)NSMutableArray<LBB_UserOther *> *userAttentionArray;
+@property (nonatomic, strong)NSMutableArray<LBB_UserOther *> *userFansArray;
+
+/**
+ 3.4.7	广场-广场主页-个人主页-动态（已测）
+
+ @param clear 清空原数据
+ */
+- (void)getUserActionArrayClearData:(BOOL)clear;
+
+
+/**
+ 3.4.8	广场-广场主页-个人主页-关注（已测）
+
+ @param clear 清空原数据
+ */
+- (void)getUserAttentionArrayClearData:(BOOL)clear;
+
+
+/**
+ 3.4.9	广场-广场主页-个人主页-粉丝（已测）
+
+ @param clear 清空原数据
+ */
+- (void)getUserFansArrayClearData:(BOOL)clear;
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import "MineBaseViewController.h"
+#import "LBB_AddressModel.h"
 
 @interface AddAddressViewController : MineBaseViewController
+
+@property(nonatomic,strong) LBB_AddressModel *addressModel;
 
 @end
