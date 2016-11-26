@@ -30,6 +30,13 @@
     }
     return self;
 }
+
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    [contentImage prepareForReuse];
+}
+
 - (void)setup
 {
     contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth,AUTO(180))];

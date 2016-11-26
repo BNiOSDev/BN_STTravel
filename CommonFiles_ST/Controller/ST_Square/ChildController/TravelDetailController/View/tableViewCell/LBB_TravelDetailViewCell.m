@@ -25,6 +25,12 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    [cellView prepareForReuse];
+    
+}
 - (void)setup
 {
     cellView = [LBB_TravelDetailContentView new];

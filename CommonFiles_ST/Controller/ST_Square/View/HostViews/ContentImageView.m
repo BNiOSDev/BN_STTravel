@@ -66,6 +66,19 @@
 //    self.picArray = [temp copy];
 }
 
+- (void)prepareForReuse
+{
+    oneImage.image = nil;
+    twoImage.image = nil;
+    threeImage.image = nil;
+    fourImage.image = nil;
+    fiveImage.image = nil;
+    sixImage.image = nil;
+    sevenImage.image = nil;
+    eightImage.image = nil;
+    nightImage.image = nil;
+}
+
 - (void)setImageArray:(NSArray *)imageArray
 {
     for(UIView *view in self.subviews)

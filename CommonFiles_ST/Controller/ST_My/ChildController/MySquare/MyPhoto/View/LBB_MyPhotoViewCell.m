@@ -42,6 +42,7 @@
 - (void)prepareForReuse
 {
     [super prepareForReuse];
+    [contentImage prepareForReuse];
 }
 
 - (void)setup
