@@ -45,9 +45,6 @@
 @property(nonatomic, strong)NSString* consumptionDesc;//	String	消费描述
 
 
-//足记列表父数组,必须传入
-@property(nonatomic, weak)NSArray<TravelNotesDetails*>* parentArray;//	List	足记列表
-
 /**
   3.4.24 主页-足记保存（已测）
 
