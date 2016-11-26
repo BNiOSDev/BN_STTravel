@@ -63,8 +63,8 @@
         if(codeNumber.intValue == 0)
         {
             NSDictionary *result = [dic objectForKey:@"result"];
-            int likedState = [[result objectForKey:@"likedState"] intValue];
-            weakSelf.isLiked = likedState;
+            int collecteState = [[result objectForKey:@"collecteState"] intValue];
+            weakSelf.isCollected = collecteState;
             weakSelf.loadSupport.loadEvent = codeNumber.intValue;
         }
         else
@@ -100,6 +100,11 @@
         {
             NSDictionary *result = [dic objectForKey:@"result"];
             int likedState = [[result objectForKey:@"likedState"] intValue];
+            if (weakSelf.isLiked == 1 && likedState == 0 ) {
+                weakSelf.totalLike -= 1;
+            }else {
+                weakSelf.totalLike += 1;
+            }
             weakSelf.isLiked = likedState;
             weakSelf.loadSupport.loadEvent = codeNumber.intValue;
         }
