@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BCC8A511DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		84E2122D1DE88F5900CD99F4 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E20DAB1DE88F5800CD99F4 /* PoohBaseTableViewController.m */; };
@@ -502,6 +503,8 @@
 
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BCC8A4F1DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareAddressViewModel.h; sourceTree = "<group>"; };
+		1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareAddressViewModel.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		84E20DAA1DE88F5800CD99F4 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
@@ -4950,6 +4953,8 @@
 				84E2121C1DE88F5900CD99F4 /* LBB_TagsViewModel.m */,
 				84E2121D1DE88F5900CD99F4 /* LBB_UserShowViewModel.h */,
 				84E2121E1DE88F5900CD99F4 /* LBB_UserShowViewModel.m */,
+				1BCC8A4F1DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.h */,
+				1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -5629,6 +5634,7 @@
 				84E212371DE88F5900CD99F4 /* LBB_PoohPlusMinTextField.m in Sources */,
 				84E213E31DE88F5A00CD99F4 /* ZJMCommentView.m in Sources */,
 				84E212F11DE88F5A00CD99F4 /* AddAddressViewController.m in Sources */,
+				1BCC8A511DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m in Sources */,
 				84E213F41DE88F5A00CD99F4 /* LBB_TagsViewModel.m in Sources */,
 				84E212511DE88F5900CD99F4 /* LBB_FoodsMainViewController.m in Sources */,
 				84E2123E1DE88F5900CD99F4 /* LBBPoohGreatItemView.m in Sources */,

@@ -70,11 +70,11 @@
 
 @interface LBB_SquareViewModel : NSObject
 
-@property (nonatomic, strong)LBB_SquareFriend *squareRecommend;
-@property (nonatomic, strong)NSMutableArray<LBB_SquareFriend*> *friendArray;
+@property (nonatomic, strong)LBB_SquareFriend *squareRecommend;//好友推荐数据
+@property (nonatomic, strong)NSMutableArray<LBB_SquareFriend*> *friendArray;//好友列表数据
 
-@property (nonatomic, strong)NSMutableArray<LBB_SquareUgc*> *ugcImageArray;
-@property (nonatomic, strong)NSMutableArray<LBB_SquareUgc*> *ugcVideoArray;
+@property (nonatomic, strong)NSMutableArray<LBB_SquareUgc*> *ugcImageArray;//展示图片数据列表
+@property (nonatomic, strong)NSMutableArray<LBB_SquareUgc*> *ugcVideoArray;//展示视频数据列表
 
 /**
  3.4.1	广场-广场主页-好友推荐（已测）
