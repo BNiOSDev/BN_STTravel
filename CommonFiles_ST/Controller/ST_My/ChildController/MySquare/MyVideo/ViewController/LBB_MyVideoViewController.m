@@ -193,7 +193,6 @@ UICollectionViewDelegateFlowLayout>
                         break;
                     }
                 }
-                [weakSelf.viewModel.videoArray removeObject:weakVideoModel];
                 [weakSelf.collectionView reloadData];
             }];
             
