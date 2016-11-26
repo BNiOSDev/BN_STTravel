@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "Base_Utils.h"
 #import "CommonFunc.h"
+#import "LBB_WebViewController.h"
 
 typedef NS_ENUM(NSInteger,SettingViewType) {
     ePushNotification = 0,//推送通知
@@ -227,6 +228,14 @@ UITableViewDataSource
    [self performSegueWithIdentifier:@"LBB_InviteFriendsViewController" sender:nil];
 }
 
+- (void)aboutUS:(id)sender
+{
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
+    vc.baseViewType = eSettongAboutUS;
+    vc.webViewURL = @"http://www.baidu.com/";
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark - 计算缓存大小
 - (void)cacheSize
 {

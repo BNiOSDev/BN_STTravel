@@ -81,6 +81,7 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     
     eSettingPush,//推送消息
     eSettingPrivace, //隐私
+    eSettongAboutUS, //关于我们
     
     /* 消息中心 */
     eMessageCenter,//消息中心
