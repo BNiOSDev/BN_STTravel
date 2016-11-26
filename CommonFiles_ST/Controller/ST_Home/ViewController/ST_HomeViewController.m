@@ -24,7 +24,9 @@
 
 #import "LBB_PoohMyFavoriteViewController.h"
 
+//pooh test
 #import "LBB_PublishUgcViewModel.h"
+#import "LBB_SquareTravelListViewModel.h"
 
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -36,6 +38,10 @@
 @property(nonatomic, retain)LBB_HomeTableViewDataSource* dataSource;
 
 @property(nonatomic, retain)LBB_HomeViewModel* viewModel;//数据模型
+
+
+//test
+@property(nonatomic, retain)LBB_SquareTravelListViewModel* m1;
 
 @end
 
@@ -54,21 +60,27 @@
 
 -(void)testModel{
 
+    LBB_SquareTravelListViewModel* m1 = [[LBB_SquareTravelListViewModel alloc] init];
+    self.m1 = m1;
+    [m1 getSquareTravelList:YES];
+    
+ 
+/*
     LBB_PublishUgcViewModel* model = [[LBB_PublishUgcViewModel alloc]init];
     
     NSMutableArray* arr = [NSMutableArray new];
     NSMutableArray* tagsArr = [NSMutableArray arrayWithObjects:@1,@2,@3, nil];
     for (int i = 0; i<3; i++) {
         BN_PublicPics* pic = [[BN_PublicPics alloc] init];
-        pic.imageUrl = @"照片地址";
+        pic.imageUrl = @"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg";
         pic.imageDesc = @"照片描述";
         pic.tags = tagsArr;
         [arr addObject:pic];
     }
-    [model setSquareUgc:1 url:@"照片地址请" remark:@"标注啦" longitude:@"-1" dimensionality:@"-1" allSpotsId:0 tags:tagsArr pics:arr block:^(NSError* error){
+    [model setSquareUgc:1 url:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg" remark:@"标注啦" longitude:@"-1" dimensionality:@"-1" allSpotsId:0 tags:tagsArr pics:arr block:^(NSError* error){
     
     }];
-    
+   */
 }
 
 - (void)viewWillAppear:(BOOL)animated

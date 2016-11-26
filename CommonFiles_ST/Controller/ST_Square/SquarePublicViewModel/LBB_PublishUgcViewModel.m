@@ -48,7 +48,6 @@
                pics:(NSMutableArray<BN_PublicPics*>*)pics
               block:(void (^)(NSError *error))block{
 
-    
     NSMutableArray *tagsArray = (NSMutableArray *)[tags map:^id(NSNumber *element) {
         
         NSDictionary* dic = @{@"tagId":element};
@@ -69,7 +68,7 @@
         NSDictionary* dic = @{
                               @"imageUrl":element.imageUrl,
                               @"imageDesc":element.imageDesc,
-                              @"tags":tagsArray,
+                              @"tags":element.tags//tagsArray,
 
                               };
         return dic;
@@ -84,7 +83,7 @@
                               @"longitude":longitude,
                               @"dimensionality":dimensionality,
                               @"allSpotsId":@(allSpotsId),
-                              @"tags":tagsArray,
+                              @"tags":tags,//tagsArray,
                               @"pics":picsArray,
 
                               };
@@ -115,5 +114,25 @@
     }];
     
 }
+
+
+#pragma test func
+
+/*
+ LBB_PublishUgcViewModel* model = [[LBB_PublishUgcViewModel alloc]init];
+ 
+ NSMutableArray* arr = [NSMutableArray new];
+ NSMutableArray* tagsArr = [NSMutableArray arrayWithObjects:@1,@2,@3, nil];
+ for (int i = 0; i<3; i++) {
+ BN_PublicPics* pic = [[BN_PublicPics alloc] init];
+ pic.imageUrl = @"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg";
+ pic.imageDesc = @"照片描述";
+ pic.tags = tagsArr;
+ [arr addObject:pic];
+ }
+ [model setSquareUgc:1 url:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg" remark:@"标注啦" longitude:@"-1" dimensionality:@"-1" allSpotsId:0 tags:tagsArr pics:arr block:^(NSError* error){
+ 
+ }];
+ */
 
 @end

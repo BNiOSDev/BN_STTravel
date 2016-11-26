@@ -472,7 +472,8 @@
 		1DECED601DE890C700E99098 /* ST_Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DECEB901DE890C600E99098 /* ST_Mine.xcassets */; };
 		1DECED611DE890C700E99098 /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DECEB911DE890C600E99098 /* ST_Pooh.xcassets */; };
 		1DECED621DE890C700E99098 /* ST_Square.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DECEB921DE890C600E99098 /* ST_Square.xcassets */; };
-		1DECED661DE898C600E99098 /* LBB_SquareTravelListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DECED651DE898C600E99098 /* LBB_SquareTravelListViewModel.m */; };
+		1DECED6F1DE8A6A900E99098 /* BN_SquareTravelNotesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DECED6C1DE8A6A900E99098 /* BN_SquareTravelNotesModel.m */; };
+		1DECED701DE8A6A900E99098 /* LBB_SquareTravelListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DECED6E1DE8A6A900E99098 /* LBB_SquareTravelListViewModel.m */; };
 		842BCC441DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC4C1DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		842BCC581DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -1323,8 +1324,10 @@
 		1DECEB901DE890C600E99098 /* ST_Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Mine.xcassets; sourceTree = "<group>"; };
 		1DECEB911DE890C600E99098 /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
 		1DECEB921DE890C600E99098 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
-		1DECED641DE898C600E99098 /* LBB_SquareTravelListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_SquareTravelListViewModel.h; path = SquareTravel/LBB_SquareTravelListViewModel.h; sourceTree = "<group>"; };
-		1DECED651DE898C600E99098 /* LBB_SquareTravelListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_SquareTravelListViewModel.m; path = SquareTravel/LBB_SquareTravelListViewModel.m; sourceTree = "<group>"; };
+		1DECED6B1DE8A6A900E99098 /* BN_SquareTravelNotesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BN_SquareTravelNotesModel.h; sourceTree = "<group>"; };
+		1DECED6C1DE8A6A900E99098 /* BN_SquareTravelNotesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BN_SquareTravelNotesModel.m; sourceTree = "<group>"; };
+		1DECED6D1DE8A6A900E99098 /* LBB_SquareTravelListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareTravelListViewModel.h; sourceTree = "<group>"; };
+		1DECED6E1DE8A6A900E99098 /* LBB_SquareTravelListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareTravelListViewModel.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -4278,7 +4281,7 @@
 		1DECEB261DE890C600E99098 /* SquarePublicViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				1DECED631DE8984C00E99098 /* SquareTravel */,
+				1DECED6A1DE8A6A900E99098 /* SquareTravel */,
 				1DECEB271DE890C600E99098 /* LBB_PublishUgcViewModel.h */,
 				1DECEB281DE890C600E99098 /* LBB_PublishUgcViewModel.m */,
 			);
@@ -4505,13 +4508,15 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
-		1DECED631DE8984C00E99098 /* SquareTravel */ = {
+		1DECED6A1DE8A6A900E99098 /* SquareTravel */ = {
 			isa = PBXGroup;
 			children = (
-				1DECED641DE898C600E99098 /* LBB_SquareTravelListViewModel.h */,
-				1DECED651DE898C600E99098 /* LBB_SquareTravelListViewModel.m */,
+				1DECED6B1DE8A6A900E99098 /* BN_SquareTravelNotesModel.h */,
+				1DECED6C1DE8A6A900E99098 /* BN_SquareTravelNotesModel.m */,
+				1DECED6D1DE8A6A900E99098 /* LBB_SquareTravelListViewModel.h */,
+				1DECED6E1DE8A6A900E99098 /* LBB_SquareTravelListViewModel.m */,
 			);
-			name = SquareTravel;
+			path = SquareTravel;
 			sourceTree = "<group>";
 		};
 		C9C0E9431D9948F100575A7C = {
@@ -5185,6 +5190,7 @@
 				1DECEC5B1DE890C600E99098 /* LBB_AddressPickerView.m in Sources */,
 				1DECEC3F1DE890C600E99098 /* LBB_ChatModel.m in Sources */,
 				1DECEC891DE890C600E99098 /* BalanceViewController.m in Sources */,
+				1DECED701DE8A6A900E99098 /* LBB_SquareTravelListViewModel.m in Sources */,
 				1DECEC341DE890C600E99098 /* LBB_SquareNotificationViewCell.m in Sources */,
 				1DECEC501DE890C600E99098 /* LBB_MyVideoViewCell.m in Sources */,
 				1DECEC921DE890C600E99098 /* LBB_ImagePickerViewController.m in Sources */,
@@ -5202,6 +5208,7 @@
 				1DECEB981DE890C600E99098 /* CWStarRateView.m in Sources */,
 				1DECEC161DE890C600E99098 /* LBBHomeTravelRecommendTableViewCell.m in Sources */,
 				1DECEC6A1DE890C600E99098 /* LBB_PointsModel.m in Sources */,
+				1DECED6F1DE8A6A900E99098 /* BN_SquareTravelNotesModel.m in Sources */,
 				1DECED051DE890C700E99098 /* LBB_SelectImages_ViewController.m in Sources */,
 				842BCC581DCD792500A16788 /* (null) in Sources */,
 				1DECEC691DE890C600E99098 /* BalanceDetailViewController.m in Sources */,
@@ -5237,7 +5244,6 @@
 				1DECEC2C1DE890C600E99098 /* LBB_NoticeViewCell.m in Sources */,
 				1DECEC131DE890C600E99098 /* LBBHomeHotestTableViewCellItem.m in Sources */,
 				1DECEC6D1DE890C600E99098 /* SetingSwitchBaseViewController.m in Sources */,
-				1DECED661DE898C600E99098 /* LBB_SquareTravelListViewModel.m in Sources */,
 				1DECEBCC1DE890C600E99098 /* LBB_LabelDetailHeaderView.m in Sources */,
 				1DECED471DE890C700E99098 /* CommentBoxView.m in Sources */,
 				1DECEC5D1DE890C600E99098 /* ReceiptAddressViewCell.m in Sources */,

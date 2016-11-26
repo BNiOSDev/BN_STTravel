@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LBB_TagsViewModel.h"
-
+#import "BN_SquareTravelNotesModel.h"
 
 @interface BN_SquareTravelList : BN_BaseDataModel
 
@@ -28,17 +28,25 @@
 @property(nonatomic, assign)int isCollected;//	int	是否收藏
 @property(nonatomic, assign)int totalCollected;//	Int	收藏数
 
+@property(nonatomic, strong)BN_SquareTravelNotesModel* travelDetailModel;
+/**
+ 3.4.17 主页-游记详情/游记下载（已测）
+ */
+-(void)getTravelDetailModel;
 
 @end
 
 
-@interface LBB_SquareTravelListViewModel : BN_BaseDataModel
-
-@property(nonatomic, strong)NSMutableArray<BN_SquareTravelList*>* squareTravelArray;
 
 /**
  3.4.16 主页-游记列表（已测）
  */
--(void)getSquareTravelList;
+@interface LBB_SquareTravelListViewModel : BN_BaseDataModel
+
+@property(nonatomic, strong)NSMutableArray<BN_SquareTravelList*>* squareTravelArray;
+
+- (void)getSquareTravelList:(BOOL)clear;
+
+
 
 @end
