@@ -119,7 +119,7 @@
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
     collecdtionBtn.selected = _model.isCollected;
-   
+    [collecdtionBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setSquareType:(MySquareViewType)squareType

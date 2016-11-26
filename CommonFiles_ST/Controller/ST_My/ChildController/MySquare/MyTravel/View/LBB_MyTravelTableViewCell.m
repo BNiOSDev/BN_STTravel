@@ -43,7 +43,7 @@
     [self addSubview:contentImage];
     contentImage.backgroundColor = ColorLine;
     
-    collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(self.width - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
+    collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(DeviceWidth - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
     collecdtionBtn.enlargeInset = UIEdgeInsetsMake(AUTO(10), AUTO(20), AUTO(15), AUTO(10));
     collecdtionBtn.titleLabel.font = FONT(AUTO(11.0));
     [collecdtionBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -145,7 +145,7 @@
             pinBtn.hidden = YES;
             zanBtn.hidden = YES;
             heartBtn.hidden = YES;
-            collecdtionBtn.hidden = YES;
+            collecdtionBtn.hidden = NO;
         }
             break;
         default:
@@ -162,6 +162,7 @@
     
     CGFloat deleteWidth = 0.f;
     collecdtionBtn.selected = _model.isCollected;
+    [collecdtionBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
     deleteBtn.left = DeviceWidth - 10 - deleteBtn.width;
     deleteWidth = deleteBtn.width;
@@ -204,7 +205,7 @@
     
     CGFloat deleteWidth = 0.f;
     collecdtionBtn.selected = _guideModel.isCollected;
-    
+    [collecdtionBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     deleteBtn.left = DeviceWidth - 10 - deleteBtn.width;
     deleteWidth = deleteBtn.width;
     [deleteBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];

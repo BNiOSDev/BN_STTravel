@@ -139,7 +139,7 @@
 {
     NSString *url = [NSString stringWithFormat:@"%@/mime/travelNotes/list",BASEURL];
     if (videoType == MySquareViewFravorite) {
-        [NSString stringWithFormat:@"%@/mime/myCollect/travelNotes/list",BASEURL];
+        url =[NSString stringWithFormat:@"%@/mime/myCollect/travelNotes/list",BASEURL];
     }
 
     int curPage = isClear == YES ? 0 : round(self.travelArray.count/10.0);

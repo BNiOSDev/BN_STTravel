@@ -101,7 +101,7 @@
     
     contentImage.imageUrl = model.videoUrl;
     collecdtionBtn.selected = _model.isCollected;
-    
+    [collecdtionBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     CGFloat deleteWidth = 0.f;
     
     deleteBtn.left = self.width - 10 - deleteBtn.width;
