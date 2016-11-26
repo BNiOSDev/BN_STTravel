@@ -28,6 +28,8 @@
 #import "LBB_PublishUgcViewModel.h"
 #import "LBB_SquareTravelListViewModel.h"
 
+#import "LBB_SquareViewModel.h"
+
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -42,6 +44,8 @@
 
 //test
 @property(nonatomic, retain)LBB_SquareTravelListViewModel* m1;
+
+@property (nonatomic, strong)LBB_SquareViewModel *sViewModel;
 
 @end
 
@@ -65,7 +69,7 @@
     [m1 getSquareTravelList:YES];
     
  
-/*
+
     LBB_PublishUgcViewModel* model = [[LBB_PublishUgcViewModel alloc]init];
     
     NSMutableArray* arr = [NSMutableArray new];
@@ -80,7 +84,7 @@
     [model setSquareUgc:1 url:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg" remark:@"标注啦" longitude:@"-1" dimensionality:@"-1" allSpotsId:0 tags:tagsArr pics:arr block:^(NSError* error){
     
     }];
-   */
+ 
 }
 
 - (void)viewWillAppear:(BOOL)animated

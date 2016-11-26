@@ -10,6 +10,7 @@
 #import "ReceiptAddressViewCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "LBB_AddressModel.h"
+#import "AddAddressViewController.h"
 
 @interface ReceiptAddressViewController ()<
 ReceiptAddressViewCellDelegate
@@ -47,31 +48,22 @@ ReceiptAddressViewCellDelegate
     __weak typeof(self) temp = self;
     
     [self.tableView setHeaderRefreshDatablock:^{
-        [temp.viewModel getAddressList:0 PageNum:10 IsClear:YES];
+        [temp.viewModel getAddressList:YES];
     } footerRefreshDatablock:^{
-        [temp.viewModel getAddressList:0 PageNum:10  IsClear:YES];
+        [temp.viewModel getAddressList:NO];
     }];
     
     //设置绑定数组
     [self.tableView setTableViewData:self.viewModel.addressArray];
     
     //刷新数据
-    [self.viewModel getAddressList:0 PageNum:10  IsClear:YES];
+    [self.viewModel getAddressList:YES];
     
     [self.viewModel.addressArray.loadSupport setDataRefreshblock:^{
         NSLog(@"数据刷新了");
     }];
     
     [self.tableView loadData:self.viewModel.addressArray];
-    
-//    __weak typeof (self) weakSelf = self;
-//    [self.viewModel.loadSupport setDataRefreshblock:^{
-//        [weakSelf.tableView reloadData];
-//    }];
-//    
-//    [self.viewModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
-//        [weakSelf showHudPrompt:remark];
-//    }];
 }
 
 #pragma mark - tableView delegate
@@ -161,7 +153,20 @@ ReceiptAddressViewCellDelegate
 #pragma mark - cell delegate
 - (void)didDeleteCellAddress:(id)cellInfo
 {
+     LBB_AddressModel *cellModel = (LBB_AddressModel*)cellInfo;
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (LBB_AddressModel*) weakModel = cellModel;
     
+    [cellModel.loadSupport setDataRefreshblock:^{
+        [weakSelf.viewModel.addressArray removeObject:weakModel];
+        [weakSelf.tableView reloadData];
+    }];
+    
+    [cellModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
+        [weakSelf showHudPrompt:remark];
+    }];
+    
+    [cellModel deleteAddress];
 }
 
 - (void)didEditCellAddress:(id)cellInfo
@@ -172,7 +177,6 @@ ReceiptAddressViewCellDelegate
 - (void)setDefautlCellAdress:(id)cellInfo
 {
     LBB_AddressModel *cellModel = (LBB_AddressModel*)cellInfo;
-    [cellModel setDefaultAddress];
     
     __weak typeof (self) weakSelf = self;
     __weak typeof (LBB_AddressModel*) weakModel = cellModel;
@@ -184,6 +188,7 @@ ReceiptAddressViewCellDelegate
     [cellModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
         [weakSelf showHudPrompt:remark];
     }];
+    [cellModel setDefaultAddress];
 }
 
 - (void)updateDefaultModel:(LBB_AddressModel*)model
@@ -194,10 +199,20 @@ ReceiptAddressViewCellDelegate
     
     model.isDefault = YES;
     for (int i = 0; i < self.viewModel.addressArray.count; i++) {
-        if (model.addressId != model.addressId) {
-            model.isDefault = NO;
+        LBB_AddressModel *tmpModel = self.viewModel.addressArray[i];
+        if (model.addressId != tmpModel.addressId) {
+            tmpModel.isDefault = NO;
         }
     }
     [self.tableView reloadData];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    UIViewController *dstVC = segue.destinationViewController;
+    if ([dstVC isKindOfClass:NSClassFromString(@"AddAddressViewController")]) {
+        AddAddressViewController *addAddressVC = (AddAddressViewController*)dstVC;
+        addAddressVC.addressModel = sender;
+    }
 }
 @end

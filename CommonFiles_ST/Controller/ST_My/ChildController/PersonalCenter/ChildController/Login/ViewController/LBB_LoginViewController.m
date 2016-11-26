@@ -144,6 +144,7 @@
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
     VerificationViewController* vc = [main instantiateViewControllerWithIdentifier:@"VerificationViewController"];
     vc.baseViewType = eFindPassword;
+    
     [self.navigationController pushViewController:vc animated:YES];
     
 }

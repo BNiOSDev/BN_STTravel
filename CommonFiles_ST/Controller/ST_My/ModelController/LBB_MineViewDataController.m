@@ -70,7 +70,7 @@
         [weakSelf.collectionView reloadData];
     }];
     
-    [self.mineViewModel getMineInfo:nil];
+    [self.mineViewModel getMineInfo];
 }
 
 - (LBB_MineDetaiInfo*)getCellInfo:(NSIndexPath*)indexPath
@@ -91,7 +91,7 @@
 - (void)replaceUserHeadImage:(UIImage*)converPicture
 {
     if (converPicture) {
-        [self.mineViewModel updateCover:@"http://oggvb32dz.bkt.clouddn.com/161120201117.jpg" Token:nil];
+        [self.mineViewModel updateCover:@"http://oggvb32dz.bkt.clouddn.com/161120201117.jpg"];
     }
 }
 

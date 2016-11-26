@@ -58,7 +58,7 @@
 /**
  3.5.1 我的-首页（已测）
  */
-- (void)getMineInfo:(NSString*)userToken;
+- (void)getMineInfo;
 
 @end
 

@@ -14,22 +14,14 @@
 /**
  3.5.1 我的-首页（已测）
  */
-- (void)getMineInfo:(NSString*)userToken
+- (void)getMineInfo
 {
     NSString *url = [NSString stringWithFormat:@"%@/mime/index",BASEURL];
     
     self.loadSupport.loadEvent = NetLoadingEvent;
-    NSDictionary *parames = nil;
-    if (!userToken) {
-        userToken = [LBB_LoginManager shareInstance].userToken;
-    }
-    if (userToken && [userToken length]) {
-        parames = @{
-                    @"Token":userToken
-                    };
-    }
+    
     __weak typeof(self) weakSelf = self;
-    [[BC_ToolRequest sharedManager] GET:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = (NSDictionary*)responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         NSLog(@"responseObject = %@",responseObject);

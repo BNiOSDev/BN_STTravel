@@ -68,7 +68,7 @@
         NSDictionary* dic = @{
                               @"imageUrl":element.imageUrl,
                               @"imageDesc":element.imageDesc,
-                              @"tags":element.tags//tagsArray,
+                              @"tags":tagsArray,
 
                               };
         return dic;
@@ -82,10 +82,9 @@
                               @"remark":remark,
                               @"longitude":longitude,
                               @"dimensionality":dimensionality,
-                              @"allSpotsId":@(allSpotsId),
-                              @"tags":tags,//tagsArray,
+                              @"allSpotsId":@(17),
+                              @"tags":tagsArray,
                               @"pics":picsArray,
-
                               };
     NSLog(@"paraDic:%@",paraDic);
 

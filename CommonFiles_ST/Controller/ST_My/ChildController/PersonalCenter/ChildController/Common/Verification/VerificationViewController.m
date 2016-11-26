@@ -173,7 +173,7 @@ UITextFieldDelegate
                 self.personModel = [[LBB_PersonalModel alloc] init];
             }
             
-            [self.personModel updatePhoneNum:self.phoneNum VerifyCode:self.checkNum Token:self.userToken];
+            [self.personModel updatePhoneNum:self.phoneNum VerifyCode:self.checkNum];
             __weak typeof (self) weakSelf = self;
             
             [self.personModel.loadSupport setDataRefreshblock:^{
@@ -213,6 +213,8 @@ UITextFieldDelegate
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
     ChangePasswordViewController  *vc  = [main instantiateViewControllerWithIdentifier:@"ChangePasswordViewController"];
     vc.baseViewType = eResetPassword;
+    vc.account = self.phoneNum;
+    vc.checkNum = self.checkNum;
     [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark - UITextFiled Delegate

@@ -101,12 +101,12 @@
     switch (self.baseViewType) {
         case eEditUserName: //用户名
         {
-            [self.personModel updateUserName:self.textContent Token:self.userToken];
+            [self.personModel updateUserName:self.textContent];
         }
             break;
         case eEditUserSignature://用户签名
         {
-            [self.personModel updateSignature:self.textContent Token:self.userToken];
+            [self.personModel updateSignature:self.textContent];
         }
             break;
             
