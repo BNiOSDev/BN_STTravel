@@ -9,7 +9,6 @@
 #import "SettingViewController.h"
 #import "Base_Utils.h"
 #import "CommonFunc.h"
-#import "LBB_SettingViewMoel.h"
 
 typedef NS_ENUM(NSInteger,SettingViewType) {
     ePushNotification = 0,//推送通知
@@ -35,7 +34,6 @@ UITableViewDataSource
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
-@property (strong,nonatomic) LBB_SettingViewMoel *viewModel;
 
 @end
 
@@ -58,12 +56,6 @@ UITableViewDataSource
 #pragma mark - private
 - (void)initData
 {
-    if (!self.viewModel) {
-        self.viewModel = [[LBB_SettingViewMoel alloc] init];
-    }
-    [self.viewModel getSettingData];
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                                                    @{@"Title": NSLocalizedString(@"推送通知",nil),
                                                                      @"Image" : @"19.pic.jpg",
