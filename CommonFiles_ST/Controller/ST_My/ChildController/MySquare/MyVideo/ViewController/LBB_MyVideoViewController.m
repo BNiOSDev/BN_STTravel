@@ -170,6 +170,21 @@ UICollectionViewDelegateFlowLayout>
             break;
         case UICollectionViewCellDelete://删除
         {
+             LBB_MyVideoModel *videoModel = (LBB_MyVideoModel*)infoObject;
+            
+            __weak typeof (self) weakSelf = self;
+            __weak typeof (LBB_MyVideoModel *) weakVideoModel = videoModel;
+            [videoModel.loadSupport setDataRefreshblock:^{
+                [weakSelf.viewModel.videoArray removeObject:weakVideoModel];
+                [weakSelf.collectionView reloadData];
+            }];
+            
+            [videoModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+                if (remak && [remak length]) {
+                    [weakSelf showHudPrompt:remak];
+                }
+            }];
+            [videoModel deleteMyVideo];
             
         }
             break;

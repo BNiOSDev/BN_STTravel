@@ -33,6 +33,37 @@
     _tags  = array;
 }
 
+/**
+ *3.5.5 我的-广场图片/视频删除（已测）
+ */
+- (void)deleteMyVideo
+{
+    NSString *url = [NSString stringWithFormat:@"%@/mime/square/video/list",BASEURL];
+    
+    NSDictionary *parames = @{
+                              @"ugcId":@(self.ugcId)
+                              };
+    
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] GET:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            weakSelf.loadSupport.netRemark = errorStr;
+            weakSelf.loadSupport.loadFailEvent =  codeNumber.intValue;
+        }
+
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
 @end
 
 @implementation LBB_MyVideoViewModel

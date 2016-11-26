@@ -26,6 +26,11 @@
 @property (nonatomic, assign) int     totalComment;//评论数
 @property (nonatomic, strong)NSMutableArray<LBB_MyVideoTagModel *> *tags ;// 视频标签
 
+/**
+ *3.5.5 我的-广场图片/视频删除（已测）
+ */
+- (void)deleteMyVideo;
+
 @end
 
 
