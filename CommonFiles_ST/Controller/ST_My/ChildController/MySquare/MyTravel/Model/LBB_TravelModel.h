@@ -22,6 +22,21 @@
 @property (nonatomic, assign) int     totalComment;//评论数
 @property (nonatomic, assign) int     totalCollected;//收藏数
 
+/**
+ *3.1.4 收藏(已测)
+ */
+- (void)collect;
+
+/**
+ *3.1.5 点赞(已测)
+ */
+- (void)like;
+
+/**
+ *3.5.7 我的-广场游记 删除（已测）
+ */
+- (void)deleteTravel;
+
 @end
 
 @interface LBB_TravelViewModel : BN_BaseDataModel

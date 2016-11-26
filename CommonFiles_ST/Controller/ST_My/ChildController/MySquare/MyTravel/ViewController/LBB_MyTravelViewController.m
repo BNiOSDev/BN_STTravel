@@ -136,11 +136,25 @@
 #pragma mark 处理点击cell上面的按钮
 - (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject
 {
+    LBB_TravelModel *travelModel = (LBB_TravelModel*)infoObject;
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (LBB_TravelModel *) weakTravelModel = travelModel;
+    
+    [travelModel.loadSupport setDataRefreshblock:^{
+        [weakSelf.mTableView reloadData];
+    }];
+    
+    [travelModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+        if (remak && [remak length]) {
+            [weakSelf showHudPrompt:remak];
+        }
+    }];
+    
     NSLog(@"indexPath = %ld",(long)indexPath.row);
     switch (signel) {
         case UICollectionViewCellPraise://赞
         {
-            
+            [travelModel like];
         }
             break;
         case UICollectionViewCellComment://评论
@@ -152,16 +166,28 @@
         case UICollectionViewCellHeart://爱心
         {
             
+            [travelModel like];
         }
             break;
         case UICollectionViewCellDelete://删除
         {
+            [travelModel.loadSupport setDataRefreshblock:^{
+                for (int i = 0; i < weakSelf.viewModel.travelArray.count; i++) {
+                    LBB_TravelModel *tmpModel = weakSelf.viewModel.travelArray[i];
+                    if (tmpModel.travelNoteId == weakTravelModel.travelNoteId) {
+                        [weakSelf.viewModel.travelArray removeObject:tmpModel];
+                        break;
+                    }
+                }
+                [weakSelf.mTableView reloadData];
+            }];
             
+            [travelModel deleteTravel];
         }
             break;
         case UICollectionViewCellCollection://收藏
         {
-            
+            [travelModel collect];
         }
             break;
         default:

@@ -149,10 +149,25 @@ UICollectionViewDelegateFlowLayout>
 - (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject
 {
     NSLog(@"indexPath = %ld",(long)indexPath.row);
+    LBB_MyPhotoModel *photoModel = (LBB_MyPhotoModel*)infoObject;
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (LBB_MyPhotoModel *) weakPhotoModel = photoModel;
+    
+    [photoModel.loadSupport setDataRefreshblock:^{
+        [weakSelf.collectionView reloadData];
+    }];
+    
+    [photoModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+        if (remak && [remak length]) {
+            [weakSelf showHudPrompt:remak];
+        }
+    }];
+    
+    
     switch (signel) {
         case UICollectionViewCellPraise://赞
         {
-            
+            [photoModel like];
         }
             break;
         case UICollectionViewCellComment://评论
@@ -163,18 +178,15 @@ UICollectionViewDelegateFlowLayout>
             break;
         case UICollectionViewCellDelete://删除
         {
-            LBB_MyPhotoModel *photoModel = (LBB_MyPhotoModel*)infoObject;
-            __weak typeof (self) weakSelf = self;
-            __weak typeof (LBB_MyPhotoModel *) weakPhotoModel = photoModel;
             [photoModel.loadSupport setDataRefreshblock:^{
-                [weakSelf.viewModel.photoArray removeObject:weakPhotoModel];
-                [weakSelf.collectionView reloadData];
-            }];
-            
-            [photoModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
-                if (remak && [remak length]) {
-                    [weakSelf showHudPrompt:remak];
+                for (int i = 0; i < weakSelf.viewModel.photoArray.count; i++) {
+                    LBB_MyPhotoModel *tmpModel = weakSelf.viewModel.photoArray[i];
+                    if (tmpModel.ugcId == weakPhotoModel.ugcId) {
+                        [weakSelf.viewModel.photoArray removeObject:tmpModel];
+                        break;
+                    }
                 }
+                [weakSelf.collectionView reloadData];
             }];
             
             [photoModel deleteMyPhoto];
@@ -182,7 +194,7 @@ UICollectionViewDelegateFlowLayout>
             break;
         case UICollectionViewCellCollection://收藏
         {
-            
+            [photoModel collect];
         }
             break;
         default:

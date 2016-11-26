@@ -155,10 +155,26 @@ UICollectionViewDelegateFlowLayout>
 - (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject
 {
     NSLog(@"indexPath = %ld",(long)indexPath.row);
+    
+    LBB_MyVideoModel *videoModel = (LBB_MyVideoModel*)infoObject;
+    
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (LBB_MyVideoModel *) weakVideoModel = videoModel;
+    
+    [videoModel.loadSupport setDataRefreshblock:^{
+        [weakSelf.collectionView reloadData];
+    }];
+    
+    [videoModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+        if (remak && [remak length]) {
+            [weakSelf showHudPrompt:remak];
+        }
+    }];
+    
     switch (signel) {
         case UICollectionViewCellPraise://赞
         {
-            
+            [videoModel like];
         }
             break;
         case UICollectionViewCellComment://评论
@@ -169,27 +185,25 @@ UICollectionViewDelegateFlowLayout>
             break;
         case UICollectionViewCellDelete://删除
         {
-             LBB_MyVideoModel *videoModel = (LBB_MyVideoModel*)infoObject;
-            
-            __weak typeof (self) weakSelf = self;
-            __weak typeof (LBB_MyVideoModel *) weakVideoModel = videoModel;
             [videoModel.loadSupport setDataRefreshblock:^{
+                for (int i = 0; i < weakSelf.viewModel.videoArray.count; i++) {
+                    LBB_MyVideoModel *tmpModel = weakSelf.viewModel.videoArray[i];
+                    if (tmpModel.ugcId == weakVideoModel.ugcId) {
+                        [weakSelf.viewModel.videoArray removeObject:tmpModel];
+                        break;
+                    }
+                }
                 [weakSelf.viewModel.videoArray removeObject:weakVideoModel];
                 [weakSelf.collectionView reloadData];
             }];
             
-            [videoModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
-                if (remak && [remak length]) {
-                    [weakSelf showHudPrompt:remak];
-                }
-            }];
             [videoModel deleteMyVideo];
             
         }
             break;
         case UICollectionViewCellCollection://收藏
         {
-            
+            [videoModel collect];
         }
             break;
         default:
