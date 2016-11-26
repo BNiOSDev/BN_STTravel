@@ -17,9 +17,8 @@ UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic,strong) NSMutableArray *arr;
 @property(nonatomic,strong) UICollectionView *collectionView;
-
+@property(nonatomic,strong) LBB_MyPhotoViewModel *viewModel;
 
 @end
 
@@ -68,18 +67,52 @@ UICollectionViewDelegateFlowLayout>
 
 - (void)initDataSource
 {
-    self.arr = [[NSMutableArray alloc] initWithCapacity:10];
-    for (int i = 0; i < 10; i++) {
-        LBB_MyPhotoModel  *model = [[LBB_MyPhotoModel alloc]init];
-        model.imageUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.praiseNum = @"999";
-        model.commentNum = @"999";
-        if (self.squareType == MySquarePhotoViewFravorite) {
-            model.isCollection = (i%2) ? YES: NO;
+    
+    self.viewModel = [[LBB_MyPhotoViewModel alloc] init];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [self.collectionView setHeaderRefreshDatablock:^{
+        [weakSelf.viewModel getMyPhotoList:YES VidewType:weakSelf.squareType];
+    } footerRefreshDatablock:^{
+        [weakSelf.viewModel getMyPhotoList:NO VidewType:weakSelf.squareType];
+    }];
+    
+    //设置绑定数组
+    [self.collectionView setCollectionViewData:self.viewModel.photoArray];
+    
+    //刷新数据
+    [self.viewModel getMyPhotoList:YES VidewType:weakSelf.squareType];
+    
+    [self.viewModel.photoArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.viewModel.photoArray.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+        if (remak && [remak length]) {
+            [weakSelf showHudPrompt:remak];
         }
-        [self.arr addObject:model];
+    }];
+    
+    [self.collectionView loadData:self.viewModel.photoArray];
+}
+//#warning  模拟测试数据
+- (void)dataForTest
+{
+    if (TextEnvironment) {
+        NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:10];
+        for (int i = 0; i < 10; i++) {
+            LBB_MyPhotoModel  *model = [[LBB_MyPhotoModel alloc]init];
+            model.coverImageUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
+            model.totalComment = 9909;
+            model.totalLike = 999;
+            [array addObject:model];
+        }
+        self.viewModel.photoArray = array;
+        [self.collectionView reloadData];
     }
 }
+
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -88,7 +121,7 @@ UICollectionViewDelegateFlowLayout>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)sgection{
     
-   return self.arr.count;
+   return self.viewModel.photoArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -99,7 +132,7 @@ UICollectionViewDelegateFlowLayout>
     cell.cellBlock = ^(id info,UICollectionViewCellSignal signal){
         [self dealCellSignal:signal withIndex:indexPath Object:info];
     };
-    [cell setModel:[self.arr objectAtIndex:indexPath.row]];
+    [cell setModel:[self.viewModel.photoArray objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -130,7 +163,21 @@ UICollectionViewDelegateFlowLayout>
             break;
         case UICollectionViewCellDelete://删除
         {
+            LBB_MyPhotoModel *photoModel = (LBB_MyPhotoModel*)infoObject;
+            __weak typeof (self) weakSelf = self;
+            __weak typeof (LBB_MyPhotoModel *) weakPhotoModel = photoModel;
+            [photoModel.loadSupport setDataRefreshblock:^{
+                [weakSelf.viewModel.photoArray removeObject:weakPhotoModel];
+                [weakSelf.collectionView reloadData];
+            }];
             
+            [photoModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+                if (remak && [remak length]) {
+                    [weakSelf showHudPrompt:remak];
+                }
+            }];
+            
+            [photoModel deleteMyPhoto];
         }
             break;
         case UICollectionViewCellCollection://收藏

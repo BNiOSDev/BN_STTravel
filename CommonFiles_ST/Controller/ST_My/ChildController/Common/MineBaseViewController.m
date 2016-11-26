@@ -217,6 +217,11 @@
             self.navigationItem.title = NSLocalizedString(@"隐私", nil);
         }
             break;
+        case eSettongAboutUS: //关于我们
+        {
+            self.navigationItem.title = NSLocalizedString(@"关于我们", nil);
+        }
+            break;
         case eMessageCenter://消息中心
         {
             self.navigationItem.title = NSLocalizedString(@"消息中心", nil);

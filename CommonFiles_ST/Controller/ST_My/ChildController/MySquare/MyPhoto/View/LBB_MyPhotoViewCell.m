@@ -48,6 +48,7 @@
 {
     contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
     [self addSubview:contentImage];
+    contentImage.backgroundColor = ColorLine;
     
     collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(self.width - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
     collecdtionBtn.enlargeInset = UIEdgeInsetsMake(AUTO(10), AUTO(20), AUTO(15), AUTO(10));
@@ -92,7 +93,7 @@
 {
     _model = model; 
     
-    contentImage.imageUrl = model.imageUrl;
+    contentImage.imageUrl = model.coverImageUrl;
     
     CGFloat deleteWidth = 0.f;
     
@@ -101,19 +102,22 @@
     [deleteBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [deleteBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    [pinBtn setTitle:model.commentNum forState:UIControlStateNormal];
-    pinBtn.width = [self getWidthWithContent:model.commentNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+     NSString *pinTitle = getNumTitleStr(_model.totalComment);
+    [pinBtn setTitle:pinTitle forState:UIControlStateNormal];
+    pinBtn.width = [self getWidthWithContent:pinTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     pinBtn.left = self.width - deleteBtn.width - 10 - deleteWidth;
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    [zanBtn setTitle:model.praiseNum forState:UIControlStateNormal];
-    zanBtn.width = [self getWidthWithContent:model.praiseNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    NSString *zanTitle = getNumTitleStr(_model.totalLike);
+    
+    [zanBtn setTitle:zanTitle forState:UIControlStateNormal];
+    zanBtn.width = [self getWidthWithContent:zanTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     zanBtn.left = self.width - deleteBtn.width - pinBtn.width - 10 - deleteWidth;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
-    collecdtionBtn.selected = _model.isCollection;
+    collecdtionBtn.selected = _model.isCollected;
    
 }
 
