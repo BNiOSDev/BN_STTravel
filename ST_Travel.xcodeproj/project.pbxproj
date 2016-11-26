@@ -471,6 +471,7 @@
 		84E213F81DE88F5A00CD99F4 /* ST_Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E212261DE88F5900CD99F4 /* ST_Mine.xcassets */; };
 		84E213F91DE88F5A00CD99F4 /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E212271DE88F5900CD99F4 /* ST_Pooh.xcassets */; };
 		84E213FA1DE88F5A00CD99F4 /* ST_Square.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E212281DE88F5900CD99F4 /* ST_Square.xcassets */; };
+		84E214001DE92AAE00CD99F4 /* LBB_SetPushViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E213FF1DE92AAE00CD99F4 /* LBB_SetPushViewModel.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C9C0E9511D9948F100575A7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C0E9501D9948F100575A7C /* main.m */; };
@@ -1308,6 +1309,8 @@
 		84E212261DE88F5900CD99F4 /* ST_Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Mine.xcassets; sourceTree = "<group>"; };
 		84E212271DE88F5900CD99F4 /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
 		84E212281DE88F5900CD99F4 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
+		84E213FE1DE92AAE00CD99F4 /* LBB_SetPushViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SetPushViewModel.h; sourceTree = "<group>"; };
+		84E213FF1DE92AAE00CD99F4 /* LBB_SetPushViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SetPushViewModel.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -3437,9 +3440,9 @@
 		84E210141DE88F5900CD99F4 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				84E214011DE93BB500CD99F4 /* Model */,
 				84E210151DE88F5900CD99F4 /* ChildController */,
 				84E2102F1DE88F5900CD99F4 /* Common */,
-				84E210331DE88F5900CD99F4 /* Model */,
 				84E210341DE88F5900CD99F4 /* View */,
 				84E210351DE88F5900CD99F4 /* ViewController */,
 			);
@@ -3542,6 +3545,8 @@
 		84E2102B1DE88F5900CD99F4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84E213FE1DE92AAE00CD99F4 /* LBB_SetPushViewModel.h */,
+				84E213FF1DE92AAE00CD99F4 /* LBB_SetPushViewModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3570,13 +3575,6 @@
 				84E210321DE88F5900CD99F4 /* CommonFunc.m */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		84E210331DE88F5900CD99F4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		84E210341DE88F5900CD99F4 /* View */ = {
@@ -5013,6 +5011,13 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		84E214011DE93BB500CD99F4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C9C0E9431D9948F100575A7C = {
 			isa = PBXGroup;
 			children = (
@@ -5727,6 +5732,7 @@
 				84E2125B1DE88F5900CD99F4 /* LBB_GuiderUserFunsDataSource.m in Sources */,
 				84E212C01DE88F5900CD99F4 /* LBB_MyPropertyViewCell.m in Sources */,
 				84E213CF1DE88F5A00CD99F4 /* JHLineChart.m in Sources */,
+				84E214001DE92AAE00CD99F4 /* LBB_SetPushViewModel.m in Sources */,
 				84E212B41DE88F5900CD99F4 /* LBB_HomeCommonModel.m in Sources */,
 				84E2126A1DE88F5900CD99F4 /* LBB_LabelDetailViewController.m in Sources */,
 				84E212611DE88F5900CD99F4 /* LBB_GuiderMainViewController.m in Sources */,

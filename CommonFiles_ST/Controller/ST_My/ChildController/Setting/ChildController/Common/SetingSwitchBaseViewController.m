@@ -60,7 +60,7 @@
     cell.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
     cell.contentLabel.text = [cellDict objectForKey:@"Title"];
     cell.descLabel.hidden = ![[cellDict objectForKey:@"ShowDesc"] boolValue];
-    if ([[cellDict objectForKey:@"SwitchOn"] boolValue]) {
+    if ([[cellDict objectForKey:@"SwitchOn"] intValue]) {
         [cell.switchBtn setImage:IMAGE(@"我的_设置_开关关.png") forState:UIControlStateNormal];
     }else {
         [cell.switchBtn setImage:IMAGE(@"我的_设置_开关开.png") forState:UIControlStateNormal];
