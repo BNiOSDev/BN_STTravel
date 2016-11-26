@@ -19,7 +19,7 @@
 @property (nonatomic, assign) int     totalComment;//评论数
 
 /**
- * 还没提供 我的-广场图片/视频删除（已测）
+ * 3.5.5 我的-广场图片/视频删除（已测）
  */
 - (void)deleteMyPhoto;
 

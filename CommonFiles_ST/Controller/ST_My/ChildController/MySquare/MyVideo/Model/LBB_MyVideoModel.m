@@ -38,7 +38,7 @@
  */
 - (void)deleteMyVideo
 {
-    NSString *url = [NSString stringWithFormat:@"%@/mime/square/video/list",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/mime/square/delete",BASEURL];
     
     NSDictionary *parames = @{
                               @"ugcId":@(self.ugcId)

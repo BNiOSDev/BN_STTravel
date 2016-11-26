@@ -13,7 +13,7 @@
 @protocol TicketFooterViewDelegate <NSObject>
 
 @optional
-- (void)cellBtnClickDelegate:(NSDictionary*)cellInfo
+- (void)cellBtnClickDelegate:(LBB_TicketModel*)cellInfo
                    StateType:(MineBaseViewType)type
              TicketClickType:(TicketClickType)clickType;
 
