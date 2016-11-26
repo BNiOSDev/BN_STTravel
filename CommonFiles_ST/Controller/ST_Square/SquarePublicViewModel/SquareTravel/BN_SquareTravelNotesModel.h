@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "LBB_TagsViewModel.h"
+#import "BN_SquareTravelNotesBillModel.h"
+
 
 @interface TravelNotesPics : BN_BaseDataModel
 
 @property(nonatomic, assign)long picId;//	Long	图片ID
 @property(nonatomic, strong)NSString* imageUrl;//	String	图片url
+
+
 
 @end
 
@@ -22,6 +26,8 @@
 @property(nonatomic, assign)long travelNotesDetailId;//	Long	标签ID
 @property(nonatomic, strong)NSArray<TravelNotesPics*>* pics;//	List	图片集合
 @property(nonatomic, strong)NSString* picRemark;//	String	图片描述
+@property(nonatomic, strong)NSString* picUrl;//	String	图片描述
+
 @property(nonatomic, assign)int whitchDay;//	Int	第几天
 @property(nonatomic, strong)NSString* releaseDate;//	String	发布日期
 @property(nonatomic, strong)NSString* releaseTime;//	String	发布时间
@@ -39,13 +45,30 @@
 @property(nonatomic, strong)NSString* consumptionDesc;//	String	消费描述
 
 
+//足记列表父数组,必须传入
+@property(nonatomic, weak)NSArray<TravelNotesDetails*>* parentArray;//	List	足记列表
+
+/**
+  3.4.24 主页-足记保存（已测）
+
+ @param isAdd YES:新增足迹  NO:修改足迹
+ @param block 结果回调
+ */
+-(void)saveTravelTrackData:(BOOL)isAdd
+                     block:(void (^)(NSError *error))block;
+
 @end
 
+//3.4.17 主页-游记详情/游记下载（已测）
 @interface BN_SquareTravelNotesModel : BN_BaseDataModel
 
 @property(nonatomic, assign)long travelNotesId;//	Long	主键
 @property(nonatomic, strong)NSString* name;//	String	游记名称
 @property(nonatomic, strong)NSString* picUrl;//	String	游记封面
+@property(nonatomic, strong)NSString* picRemark;//	String	游记封面备注
+
+@property(nonatomic, assign)int displayState;//	查看状态 1公开游记 2好友可见 3 自己可见
+
 @property(nonatomic, assign)long userId;//	Long	用户ID
 @property(nonatomic, strong)NSString* userName;//	String	用户名称
 @property(nonatomic, strong)NSString* userPicUrl;//	String	用户头像
@@ -67,7 +90,11 @@
 @property(nonatomic, assign)int isCollected;//	int	是否收藏
 @property(nonatomic, assign)int totalCollected;//	Int	收藏数
 
-
+/**
+ 3.4.18 主页-游记账单（已测）
+ */
+@property(nonatomic, strong)BN_SquareTravelNotesBillModel* travelBillModel;
+-(void)getTravelBilllModel;
 
 @end
 

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1BCC8A511DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */; };
+		1D003E1C1DE9B67E00F40B65 /* BN_SquareTravelNotesBillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D003E1B1DE9B67E00F40B65 /* BN_SquareTravelNotesBillModel.m */; };
+		1D003E201DE9D15300F40B65 /* LBB_TravelDraftViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D003E1F1DE9D15300F40B65 /* LBB_TravelDraftViewModel.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DECEB941DE890C600E99098 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DECE7521DE890C500E99098 /* PoohBaseTableViewController.m */; };
@@ -519,6 +521,10 @@
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BCC8A4F1DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareAddressViewModel.h; sourceTree = "<group>"; };
 		1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareAddressViewModel.m; sourceTree = "<group>"; };
+		1D003E1A1DE9B67E00F40B65 /* BN_SquareTravelNotesBillModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BN_SquareTravelNotesBillModel.h; sourceTree = "<group>"; };
+		1D003E1B1DE9B67E00F40B65 /* BN_SquareTravelNotesBillModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BN_SquareTravelNotesBillModel.m; sourceTree = "<group>"; };
+		1D003E1E1DE9D15300F40B65 /* LBB_TravelDraftViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_TravelDraftViewModel.h; path = TravelDraft/LBB_TravelDraftViewModel.h; sourceTree = "<group>"; };
+		1D003E1F1DE9D15300F40B65 /* LBB_TravelDraftViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_TravelDraftViewModel.m; path = TravelDraft/LBB_TravelDraftViewModel.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DECE7511DE890C500E99098 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
@@ -1391,6 +1397,15 @@
 				0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1D003E1D1DE9D01500F40B65 /* TravelPublic */ = {
+			isa = PBXGroup;
+			children = (
+				1D003E1E1DE9D15300F40B65 /* LBB_TravelDraftViewModel.h */,
+				1D003E1F1DE9D15300F40B65 /* LBB_TravelDraftViewModel.m */,
+			);
+			name = TravelPublic;
 			sourceTree = "<group>";
 		};
 		1DECE74D1DE890C500E99098 /* CommonFiles_ST */ = {
@@ -4284,6 +4299,7 @@
 		1DECEB261DE890C600E99098 /* SquarePublicViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1D003E1D1DE9D01500F40B65 /* TravelPublic */,
 				1DECED6A1DE8A6A900E99098 /* SquareTravel */,
 				1DECEB271DE890C600E99098 /* LBB_PublishUgcViewModel.h */,
 				1DECEB281DE890C600E99098 /* LBB_PublishUgcViewModel.m */,
@@ -4471,14 +4487,6 @@
 				1DECEB861DE890C600E99098 /* LBB_TagsViewModel.m */,
 				1DECEB871DE890C600E99098 /* LBB_UserShowViewModel.h */,
 				1DECEB881DE890C600E99098 /* LBB_UserShowViewModel.m */,
-				84E212171DE88F5900CD99F4 /* LBB_SquareDetailViewModel.h */,
-				84E212181DE88F5900CD99F4 /* LBB_SquareDetailViewModel.m */,
-				84E212191DE88F5900CD99F4 /* LBB_SquareViewModel.h */,
-				84E2121A1DE88F5900CD99F4 /* LBB_SquareViewModel.m */,
-				84E2121B1DE88F5900CD99F4 /* LBB_TagsViewModel.h */,
-				84E2121C1DE88F5900CD99F4 /* LBB_TagsViewModel.m */,
-				84E2121D1DE88F5900CD99F4 /* LBB_UserShowViewModel.h */,
-				84E2121E1DE88F5900CD99F4 /* LBB_UserShowViewModel.m */,
 				1BCC8A4F1DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.h */,
 				1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */,
 			);
@@ -4528,6 +4536,8 @@
 				1DECED6C1DE8A6A900E99098 /* BN_SquareTravelNotesModel.m */,
 				1DECED6D1DE8A6A900E99098 /* LBB_SquareTravelListViewModel.h */,
 				1DECED6E1DE8A6A900E99098 /* LBB_SquareTravelListViewModel.m */,
+				1D003E1A1DE9B67E00F40B65 /* BN_SquareTravelNotesBillModel.h */,
+				1D003E1B1DE9B67E00F40B65 /* BN_SquareTravelNotesBillModel.m */,
 			);
 			path = SquareTravel;
 			sourceTree = "<group>";
@@ -5171,6 +5181,7 @@
 				1DECEC231DE890C600E99098 /* LBB_DownloadedViewController.m in Sources */,
 				1DECEBD11DE890C600E99098 /* LBB_LabelDetailViewController.m in Sources */,
 				1DECEC2B1DE890C600E99098 /* LBB_NoticeModel.m in Sources */,
+				1D003E201DE9D15300F40B65 /* LBB_TravelDraftViewModel.m in Sources */,
 				1DECEBCB1DE890C600E99098 /* LBB_HostelViewModel.m in Sources */,
 				1DECED4A1DE890C700E99098 /* PraiseView.m in Sources */,
 				1DECED2B1DE890C700E99098 /* LBB_TravelDetailHeadView.m in Sources */,
@@ -5182,6 +5193,7 @@
 				1DECED411DE890C700E99098 /* UIView+ZJFrame.m in Sources */,
 				1DECEBB51DE890C600E99098 /* LBB_DiscoveryDetailViewController.m in Sources */,
 				1DECEBE41DE890C600E99098 /* LBB_OrderPayWayViewController.m in Sources */,
+				1D003E1C1DE9B67E00F40B65 /* BN_SquareTravelNotesBillModel.m in Sources */,
 				1DECEC861DE890C600E99098 /* LBB_TicketModuleViewController.m in Sources */,
 				1DECEBF71DE890C600E99098 /* LBB_ScenicMainViewController.m in Sources */,
 				1DECEBDA1DE890C600E99098 /* LBB_OrderTextCell.m in Sources */,
@@ -5209,86 +5221,7 @@
 				1DECEC921DE890C600E99098 /* LBB_ImagePickerViewController.m in Sources */,
 				1DECEBC61DE890C600E99098 /* LBB_GuiderApplyResultViewController.m in Sources */,
 				1DECEC581DE890C600E99098 /* AddAddressViewController.m in Sources */,
-				84E213201DE88F5A00CD99F4 /* ExtractDetailViewController.m in Sources */,
-				84E212341DE88F5900CD99F4 /* LBB_FilterListTableViewCell.m in Sources */,
-				84E213A41DE88F5A00CD99F4 /* UIViewExt.m in Sources */,
-				84E2123C1DE88F5900CD99F4 /* LBBPoohBaseTableViewCell.m in Sources */,
-				84E213F31DE88F5A00CD99F4 /* LBB_SquareViewModel.m in Sources */,
-				84E2131E1DE88F5A00CD99F4 /* TicketViewController.m in Sources */,
-				84E213DD1DE88F5A00CD99F4 /* ZJScrollSegmentView.m in Sources */,
-				84E213DF1DE88F5A00CD99F4 /* CommentBoxView.m in Sources */,
-				84E212B11DE88F5900CD99F4 /* ST_HomeViewController.m in Sources */,
-				84E2124D1DE88F5900CD99F4 /* LBB_DiscoveryCustomizedViewController.m in Sources */,
-				84E212311DE88F5900CD99F4 /* CWStarRateView.m in Sources */,
-				84E212451DE88F5900CD99F4 /* LBB_AddressAddViewController.m in Sources */,
-				84E212731DE88F5900CD99F4 /* LBB_OrderTextCell.m in Sources */,
-				84E213C11DE88F5A00CD99F4 /* LBB_PraiseWithCommentView.m in Sources */,
-				84E213E61DE88F5A00CD99F4 /* LBB_HostTableViewCell.m in Sources */,
-				84E2125E1DE88F5900CD99F4 /* LBB_GuiderUserMsgCell.m in Sources */,
-				84E212521DE88F5900CD99F4 /* LBB_FoodsViewModel.m in Sources */,
-				84E212491DE88F5900CD99F4 /* LBB_DiscoveryCustomizedPopView.m in Sources */,
-				84E213981DE88F5A00CD99F4 /* LBBFriendViewController.m in Sources */,
-				84E2128E1DE88F5900CD99F4 /* LBB_ScenicDetailSubjectViewController.m in Sources */,
-				84E212FD1DE88F5A00CD99F4 /* PersonalCenterViewController.m in Sources */,
-				84E212371DE88F5900CD99F4 /* LBB_PoohPlusMinTextField.m in Sources */,
-				84E213E31DE88F5A00CD99F4 /* ZJMCommentView.m in Sources */,
-				84E212F11DE88F5A00CD99F4 /* AddAddressViewController.m in Sources */,
 				1BCC8A511DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m in Sources */,
-				84E213F41DE88F5A00CD99F4 /* LBB_TagsViewModel.m in Sources */,
-				84E212511DE88F5900CD99F4 /* LBB_FoodsMainViewController.m in Sources */,
-				84E2123E1DE88F5900CD99F4 /* LBBPoohGreatItemView.m in Sources */,
-				84E212551DE88F5900CD99F4 /* LBB_GuiderIdentityCardSelectView.m in Sources */,
-				84E212E01DE88F5900CD99F4 /* LBB_FollowViewController.m in Sources */,
-				84E212811DE88F5900CD99F4 /* LBB_ScenicDetailAddressCell.m in Sources */,
-				84E212F81DE88F5A00CD99F4 /* ReceiptAddressViewController.m in Sources */,
-				84E2130F1DE88F5A00CD99F4 /* SettingViewController.m in Sources */,
-				84E213CE1DE88F5A00CD99F4 /* JHColumnChart.m in Sources */,
-				84E213E71DE88F5A00CD99F4 /* LBBFriendTableViewCell.m in Sources */,
-				84E212351DE88F5900CD99F4 /* LBB_FilterTableViewCell.m in Sources */,
-				84E2139F1DE88F5A00CD99F4 /* LBBVideoPlayerViewController.m in Sources */,
-				84E213B11DE88F5A00CD99F4 /* LBB_TipView.m in Sources */,
-				84E212641DE88F5900CD99F4 /* LBB_HostelViewModel.m in Sources */,
-				84E213D91DE88F5A00CD99F4 /* UIView+ZJFrame.m in Sources */,
-				84E2130D1DE88F5A00CD99F4 /* SettingPushViewController.m in Sources */,
-				84E213211DE88F5A00CD99F4 /* BalanceExtractViewController.m in Sources */,
-				84E2124F1DE88F5900CD99F4 /* LBB_DiscoveryMainViewController.m in Sources */,
-				84E212BF1DE88F5900CD99F4 /* LBB_CustomerViewController.m in Sources */,
-				84E2130C1DE88F5A00CD99F4 /* SettingPrivaceViewController.m in Sources */,
-				84E212321DE88F5900CD99F4 /* GYChangeTextView.m in Sources */,
-				84E213271DE88F5A00CD99F4 /* CardViewController.m in Sources */,
-				84E2132B1DE88F5A00CD99F4 /* LBB_ImagePickerViewController.m in Sources */,
-				84E212711DE88F5900CD99F4 /* LBB_OrderPayWayCell.m in Sources */,
-				84E212B51DE88F5900CD99F4 /* LBB_HomeViewModel.m in Sources */,
-				84E2130B1DE88F5A00CD99F4 /* LBB_InviteFriendsViewController.m in Sources */,
-				84E213B91DE88F5A00CD99F4 /* LBB_ShopRecoder_Controller.m in Sources */,
-				84E213171DE88F5A00CD99F4 /* LBB_TicketModel.m in Sources */,
-				84E212901DE88F5900CD99F4 /* LBB_ScenicMainViewController.m in Sources */,
-				84E213E51DE88F5A00CD99F4 /* UIView+SDAutoLayout.m in Sources */,
-				84E213B21DE88F5A00CD99F4 /* LBB_PublishTravel_Controller.m in Sources */,
-				84E2125D1DE88F5900CD99F4 /* LBB_GuiderUserHeaderCell.m in Sources */,
-				84E212EB1DE88F5900CD99F4 /* ChangePasswordViewController.m in Sources */,
-				84E213AA1DE88F5A00CD99F4 /* FZJSmallPhotoCell.m in Sources */,
-				84E2128B1DE88F5900CD99F4 /* LBB_ScenicTextTableViewCell.m in Sources */,
-				84E213C61DE88F5A00CD99F4 /* LBB_TravelDetailViewController.m in Sources */,
-				84E212531DE88F5900CD99F4 /* LBB_GuiderApplyLabelSelectView.m in Sources */,
-				84E213C41DE88F5A00CD99F4 /* LBB_TravelDetailHeadView.m in Sources */,
-				84E212D01DE88F5900CD99F4 /* LBB_SquareTravelModel.m in Sources */,
-				84E212861DE88F5900CD99F4 /* LBB_ScenicDetailPriceMsgCell.m in Sources */,
-				84E2125F1DE88F5900CD99F4 /* LBB_GuiderApplyResultViewController.m in Sources */,
-				84E212A51DE88F5900CD99F4 /* UILabel+Common.m in Sources */,
-				84E212BA1DE88F5900CD99F4 /* MineBaseViewController.m in Sources */,
-				84E212A81DE88F5900CD99F4 /* IConstants.m in Sources */,
-				84E212941DE88F5900CD99F4 /* LBB_HomeSearchKeyWordCell.m in Sources */,
-				84E213F51DE88F5A00CD99F4 /* LBB_UserShowViewModel.m in Sources */,
-				84E212601DE88F5900CD99F4 /* LBB_GuiderApplyViewController.m in Sources */,
-				84E2124B1DE88F5900CD99F4 /* LBB_DiscoveryDetailMsgCell.m in Sources */,
-				84E213CA1DE88F5A00CD99F4 /* PraiseModel.m in Sources */,
-				84E213C21DE88F5A00CD99F4 /* LBB_ToolsBtnView.m in Sources */,
-				84E212BD1DE88F5900CD99F4 /* LBB_MyFavoriteSquareViewController.m in Sources */,
-				84E212BE1DE88F5900CD99F4 /* LBB_FightGroupViewController.m in Sources */,
-				84E212A61DE88F5900CD99F4 /* LBB_PoohCoreLocationManager.m in Sources */,
-				84E2133C1DE88F5A00CD99F4 /* LBB_ZJMPhotoList.m in Sources */,
-				84E212661DE88F5900CD99F4 /* LBB_LabelDetailHotCell.m in Sources */,
 				C9C0E9511D9948F100575A7C /* main.m in Sources */,
 				1DECED031DE890C700E99098 /* LBB_ImagePick_ViewController.m in Sources */,
 				1DECED5A1DE890C700E99098 /* LBB_SquareDetailViewModel.m in Sources */,

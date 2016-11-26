@@ -28,10 +28,10 @@
 @property(nonatomic, assign)int isCollected;//	int	是否收藏
 @property(nonatomic, assign)int totalCollected;//	Int	收藏数
 
-@property(nonatomic, strong)BN_SquareTravelNotesModel* travelDetailModel;
 /**
  3.4.17 主页-游记详情/游记下载（已测）
  */
+@property(nonatomic, strong)BN_SquareTravelNotesModel* travelDetailModel;
 -(void)getTravelDetailModel;
 
 @end

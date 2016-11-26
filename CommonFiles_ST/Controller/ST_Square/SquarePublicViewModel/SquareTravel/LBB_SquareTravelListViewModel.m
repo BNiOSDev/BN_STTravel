@@ -34,28 +34,37 @@
  */
 -(void)getTravelDetailModel{
 
+    NSDictionary *paraDic = @{
+                              @"travelNotesId":@(self.travelNotesId),
+                              };
+    NSLog(@"paraDic:%@",paraDic);
+    
+    
     NSString *url = [NSString stringWithFormat:@"%@/square/travelNotes/view",BASEURL];
     __weak typeof(self) temp = self;
     self.travelDetailModel.loadSupport.loadEvent = NetLoadingEvent;
     
-    [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
             [temp.travelDetailModel mj_setKeyValues:[dic objectForKey:@"result"]];
-            NSLog(@"getSpotDetailsData 成功  %@",[dic objectForKey:@"result"]);
-            
+            NSLog(@"getTravelDetailModel 成功  %@",[dic objectForKey:@"result"]);
+            NSLog(@"getTravelDetailModel temp.travelDetailModel:  %@",temp.travelDetailModel);
+
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            NSLog(@"getSpotDetailsData 失败  %@",errorStr);
+            NSLog(@"getTravelDetailModel errorStr : %@",errorStr);
             
         }
         
         temp.travelDetailModel.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getTravelDetailModel 失败 : %@",error.domain);
+
         temp.travelDetailModel.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
