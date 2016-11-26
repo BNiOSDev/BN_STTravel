@@ -7,19 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Mine_Common.h"
 
-@interface LBB_TravelModel : NSObject
+@interface LBB_TravelModel : BN_BaseDataModel
 
-@property (nonatomic, copy)  NSString  *imageUrl;
-@property (nonatomic, strong) NSString *iconName;//icon
-@property (nonatomic, strong) NSString *name;//名字
-@property (nonatomic, strong) NSString *msgContent;//内容
-@property (nonatomic, copy) NSString    *timeStr;//时间
-@property (nonatomic, copy) NSString    *daysStr;//历时多久
-@property (nonatomic, copy) NSString    *vistNum;//浏览人数
-@property (nonatomic, copy) NSString    *praiseNum;//赞数
-@property (nonatomic, copy) NSString    *commentNum;//评论数
-@property (nonatomic, copy) NSString    *collectNum;//收藏数
-@property (nonatomic,assign) BOOL       isCollection;//是否收藏
+@property (nonatomic, assign)long travelNoteId ;//游记主键
+@property (nonatomic, copy)NSString* travelNoteName ;//游记名称
+@property (nonatomic, copy)NSString* travelNotePicUrl ;//游记封面
+@property (nonatomic, copy)NSString* releaseDate ;//发布日期
+@property (nonatomic, assign) int    dayCount;//天数
+@property (nonatomic, assign) int    isLiked;//是否点赞
+@property (nonatomic, assign) int    isCollected;//是否收藏
+@property (nonatomic, assign) int     totalLike;//赞数
+@property (nonatomic, assign) int     totalComment;//评论数
+@property (nonatomic, assign) int     totalCollected;//收藏数
+
+@end
+
+@interface LBB_TravelViewModel : BN_BaseDataModel
+
+@property(nonatomic,strong) NSMutableArray<LBB_TravelModel*>* travelArray;
+
+/**
+ *3.5.6 我的-广场 游记（已测）
+ *3.5.12 我的-收藏 广场 游记（已测）
+ */
+- (void)getMyTravelList:(BOOL)isClear VidewType:(MySquareViewType)videoType;
 
 @end

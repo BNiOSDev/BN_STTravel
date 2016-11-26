@@ -472,6 +472,8 @@
 		84E213F91DE88F5A00CD99F4 /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E212271DE88F5900CD99F4 /* ST_Pooh.xcassets */; };
 		84E213FA1DE88F5A00CD99F4 /* ST_Square.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E212281DE88F5900CD99F4 /* ST_Square.xcassets */; };
 		84E214001DE92AAE00CD99F4 /* LBB_SetPushViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E213FF1DE92AAE00CD99F4 /* LBB_SetPushViewModel.m */; };
+		84E2140A1DE964D600CD99F4 /* LBB_MyComomFun.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E214091DE964D600CD99F4 /* LBB_MyComomFun.m */; };
+		84E2140D1DE965CF00CD99F4 /* LBB_TravelGuideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E2140C1DE965CF00CD99F4 /* LBB_TravelGuideModel.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C9C0E9511D9948F100575A7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C0E9501D9948F100575A7C /* main.m */; };
@@ -1311,6 +1313,10 @@
 		84E212281DE88F5900CD99F4 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
 		84E213FE1DE92AAE00CD99F4 /* LBB_SetPushViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SetPushViewModel.h; sourceTree = "<group>"; };
 		84E213FF1DE92AAE00CD99F4 /* LBB_SetPushViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SetPushViewModel.m; sourceTree = "<group>"; };
+		84E214081DE964D600CD99F4 /* LBB_MyComomFun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MyComomFun.h; sourceTree = "<group>"; };
+		84E214091DE964D600CD99F4 /* LBB_MyComomFun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MyComomFun.m; sourceTree = "<group>"; };
+		84E2140B1DE965CF00CD99F4 /* LBB_TravelGuideModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TravelGuideModel.h; sourceTree = "<group>"; };
+		84E2140C1DE965CF00CD99F4 /* LBB_TravelGuideModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TravelGuideModel.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -2242,6 +2248,8 @@
 				84E20F051DE88F5900CD99F4 /* Mine_Common.h */,
 				84E20F061DE88F5900CD99F4 /* MineBaseViewController.h */,
 				84E20F071DE88F5900CD99F4 /* MineBaseViewController.m */,
+				84E214081DE964D600CD99F4 /* LBB_MyComomFun.h */,
+				84E214091DE964D600CD99F4 /* LBB_MyComomFun.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -2266,25 +2274,9 @@
 		84E20F0A1DE88F5900CD99F4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				84E20F0B1DE88F5900CD99F4 /* DownloadTravels */,
 				84E20F0D1DE88F5900CD99F4 /* TravelsGuide */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		84E20F0B1DE88F5900CD99F4 /* DownloadTravels */ = {
-			isa = PBXGroup;
-			children = (
-				84E20F0C1DE88F5900CD99F4 /* Model */,
-			);
-			path = DownloadTravels;
-			sourceTree = "<group>";
-		};
-		84E20F0C1DE88F5900CD99F4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		84E20F0D1DE88F5900CD99F4 /* TravelsGuide */ = {
@@ -2299,6 +2291,8 @@
 		84E20F0E1DE88F5900CD99F4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84E2140B1DE965CF00CD99F4 /* LBB_TravelGuideModel.h */,
+				84E2140C1DE965CF00CD99F4 /* LBB_TravelGuideModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5694,6 +5688,7 @@
 				84E213DE1DE88F5A00CD99F4 /* ZJSegmentStyle.m in Sources */,
 				84E212C81DE88F5900CD99F4 /* LBB_PromotionsViewCell.m in Sources */,
 				84E213421DE88F5A00CD99F4 /* LBB_CommentView.m in Sources */,
+				84E2140D1DE965CF00CD99F4 /* LBB_TravelGuideModel.m in Sources */,
 				84E2139C1DE88F5A00CD99F4 /* LBB_ImagePick_ViewController.m in Sources */,
 				84E213D71DE88F5A00CD99F4 /* UILabel+AutoFit.m in Sources */,
 				84E213DB1DE88F5A00CD99F4 /* ZJCustomLabel.m in Sources */,
@@ -5708,6 +5703,7 @@
 				84E2127D1DE88F5900CD99F4 /* LBB_OrderPayWayViewController.m in Sources */,
 				84E212671DE88F5900CD99F4 /* LBB_LabelDetailHotDataSource.m in Sources */,
 				84E213DC1DE88F5A00CD99F4 /* ZJScrollPageView.m in Sources */,
+				84E2140A1DE964D600CD99F4 /* LBB_MyComomFun.m in Sources */,
 				84E212EE1DE88F5900CD99F4 /* LBB_LoginManager.m in Sources */,
 				84E212461DE88F5900CD99F4 /* LBB_ScenicSearchViewController.m in Sources */,
 				84E213C91DE88F5A00CD99F4 /* LBBFriendModel.m in Sources */,

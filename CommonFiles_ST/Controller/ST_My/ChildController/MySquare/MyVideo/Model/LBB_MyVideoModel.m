@@ -87,7 +87,7 @@
     if (videoType == MySquareVideoViewFravorite) {
        [NSString stringWithFormat:@"%@/mime/myCollect/square/video/list",BASEURL];
     } 
-    
+   
     int curPage = isClear == YES ? 0 : round(self.videoArray.count/10.0);
     
     NSDictionary *parames = @{

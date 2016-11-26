@@ -10,6 +10,7 @@
 #define Mine_Common_h
 
 #import "UIImageView+WebCache.h"
+#import "LBB_MyComomFun.h"
 
 #define TextEnvironment  1
 //屏幕适配

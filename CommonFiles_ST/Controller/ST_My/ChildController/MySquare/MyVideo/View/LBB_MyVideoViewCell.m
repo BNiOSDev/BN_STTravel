@@ -103,7 +103,7 @@
     [deleteBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [deleteBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    NSString *pinTitle = [self getNumTitleStr:_model.totalComment];
+    NSString *pinTitle = getNumTitleStr(_model.totalComment);
    
     [pinBtn setTitle:pinTitle forState:0];
     pinBtn.width = [self getWidthWithContent:pinTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
@@ -111,52 +111,14 @@
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    NSString *zanTitle = [self getNumTitleStr:_model.totalLike];
+    NSString *zanTitle = getNumTitleStr(_model.totalLike);
     [zanBtn setTitle:zanTitle forState:0];
     zanBtn.width = [self getWidthWithContent:zanTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     zanBtn.left = self.width - deleteBtn.width - pinBtn.width - 10 - deleteWidth;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
 }
-
-- (NSString *)getNumTitleStr:(int)num
-{
-    NSString *numstr = @"";
-    int tmpNum = num;
-    
-    int wan = num/10000;
-    num = num%10000;
-    int qian = num/1000;
-    num = num%1000;
-    int bai = num/100;
-    num = num%100;
-    int shi = num/10;
-    num = num%10;
-    
-    if (wan > 0) {
-        if (bai > 0) {
-            numstr = [NSString stringWithFormat:@"%@.%@%@W",@(wan),@(qian),@(bai)];
-        }else if(qian > 0){
-            numstr = [NSString stringWithFormat:@"%@.%@W",@(wan),@(qian)];
-        }else {
-            numstr = [NSString stringWithFormat:@"%@",@(wan)];
-        }
-    }
-    else if (qian > 0) {
-        if (shi > 0) {
-           numstr = [NSString stringWithFormat:@"%@.%@%@K",@(qian),@(bai),@(shi)];
-        }else if(bai > 0){
-            numstr = [NSString stringWithFormat:@"%@.%@K",@(qian),@(bai)];
-        }else {
-            numstr = [NSString stringWithFormat:@"%@K",@(qian)];
-        }
-        
-    }else {
-          numstr = [NSString stringWithFormat:@"%@",@(tmpNum)];
-    }
-    return numstr;
-}
-
+ 
 - (void)setSquareType:(MySquareViewType)squareType
 {
     _squareType = squareType;
