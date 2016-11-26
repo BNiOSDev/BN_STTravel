@@ -34,6 +34,12 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    headBackImage.image = nil;
+    _iconImage.image = nil;
+}
 - (void)setUp
 {
 //    [self.contentView removeAllSubviews];

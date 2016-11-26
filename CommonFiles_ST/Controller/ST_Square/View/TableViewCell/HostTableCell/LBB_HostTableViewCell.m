@@ -37,6 +37,14 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    iconImage.image = nil;
+    timeImage.image = nil;
+    commentImage.image = nil;
+    [_imageContentView prepareForReuse];
+}
 - (void)setUp
 {
     iconImage = [UIImageView new];

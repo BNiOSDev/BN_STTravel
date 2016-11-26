@@ -19,8 +19,9 @@ UICollectionViewDelegate,
 UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic,strong) NSMutableArray *arr;
 @property(nonatomic,strong) UICollectionView *collectionView;
+@property(nonatomic,strong) LBB_MyVideoViewModel *viewModel;
+
 @end
 
 @implementation LBB_MyVideoViewController
@@ -30,7 +31,6 @@ UICollectionViewDelegateFlowLayout>
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"视频";
     [self initDataSource];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,16 +72,51 @@ UICollectionViewDelegateFlowLayout>
 
 - (void)initDataSource
 {
-    self.arr = [[NSMutableArray alloc] initWithCapacity:10];
-    for (int i = 0; i < 10; i++) {
-        LBB_MyVideoModel  *model = [[LBB_MyVideoModel alloc]init];
-        model.imageUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.praiseNum = @"999";
-        model.commentNum = @"999";
-        [self.arr addObject:model];
-    }
-}
+    self.viewModel = [[LBB_MyVideoViewModel alloc] init];
+ 
+    __weak typeof(self) weakSelf = self;
+    
+    [self.collectionView setHeaderRefreshDatablock:^{
+        [weakSelf.viewModel getMyVideoList:YES VidewType:weakSelf.squareType];
+    } footerRefreshDatablock:^{
+        [weakSelf.viewModel getMyVideoList:NO VidewType:weakSelf.squareType];
+    }];
+    
+    //设置绑定数组
+    [self.collectionView setCollectionViewData:self.viewModel.videoArray];
+    
+    //刷新数据
+    [self.viewModel getMyVideoList:YES VidewType:weakSelf.squareType];
+    
+    [self.viewModel.videoArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.viewModel.videoArray.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+        if (remak && [remak length]) {
+            [weakSelf showHudPrompt:remak];
+        }
+    }];
+    
+    [self.collectionView loadData:self.viewModel.videoArray];
 
+}
+//#warning  模拟测试数据
+//- (void)dataForTest
+//{
+//    if (TextEnvironment) {
+//        NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:10];
+//        for (int i = 0; i < 10; i++) {
+//            LBB_MyVideoModel  *model = [[LBB_MyVideoModel alloc]init];
+//            model.videoUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
+//            model.totalComment = 9909;
+//            model.totalLike = 999;
+//            [array addObject:model];
+//        }
+//        self.viewModel.videoArray = array;
+//        [self.collectionView reloadData];
+//    }
+//}
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -89,7 +124,7 @@ UICollectionViewDelegateFlowLayout>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return self.arr.count;
+    return self.viewModel.videoArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -100,7 +135,9 @@ UICollectionViewDelegateFlowLayout>
     cell.cellBlock = ^(id info,UICollectionViewCellSignal signal){
         [self dealCellSignal:signal withIndex:indexPath Object:info];
     };
-    [cell setModel:[self.arr objectAtIndex:indexPath.row]];
+    if (indexPath.row < self.viewModel.videoArray.count) {
+        [cell setModel:self.viewModel.videoArray[indexPath.row]];
+    }
    
     return cell;
 }
@@ -118,10 +155,26 @@ UICollectionViewDelegateFlowLayout>
 - (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject
 {
     NSLog(@"indexPath = %ld",(long)indexPath.row);
+    
+    LBB_MyVideoModel *videoModel = (LBB_MyVideoModel*)infoObject;
+    
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (LBB_MyVideoModel *) weakVideoModel = videoModel;
+    
+    [videoModel.loadSupport setDataRefreshblock:^{
+        [weakSelf.collectionView reloadData];
+    }];
+    
+    [videoModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+        if (remak && [remak length]) {
+            [weakSelf showHudPrompt:remak];
+        }
+    }];
+    
     switch (signel) {
         case UICollectionViewCellPraise://赞
         {
-            
+            [videoModel like];
         }
             break;
         case UICollectionViewCellComment://评论
@@ -132,12 +185,24 @@ UICollectionViewDelegateFlowLayout>
             break;
         case UICollectionViewCellDelete://删除
         {
+            [videoModel.loadSupport setDataRefreshblock:^{
+                for (int i = 0; i < weakSelf.viewModel.videoArray.count; i++) {
+                    LBB_MyVideoModel *tmpModel = weakSelf.viewModel.videoArray[i];
+                    if (tmpModel.ugcId == weakVideoModel.ugcId) {
+                        [weakSelf.viewModel.videoArray removeObject:tmpModel];
+                        break;
+                    }
+                }
+                [weakSelf.collectionView reloadData];
+            }];
+            
+            [videoModel deleteMyVideo];
             
         }
             break;
         case UICollectionViewCellCollection://收藏
         {
-            
+            [videoModel collect];
         }
             break;
         default:

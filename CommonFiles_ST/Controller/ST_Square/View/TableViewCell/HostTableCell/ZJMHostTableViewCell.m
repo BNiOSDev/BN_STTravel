@@ -44,6 +44,12 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    [_contentImage prepareForReuse];
+}
+
 - (void)setup
 {
     _iconImage = [UIButton new];

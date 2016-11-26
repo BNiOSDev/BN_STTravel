@@ -33,4 +33,10 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    _image.image = nil; //内存释放
+}
+
 @end

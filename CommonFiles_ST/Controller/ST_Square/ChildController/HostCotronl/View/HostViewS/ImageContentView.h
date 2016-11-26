@@ -10,4 +10,7 @@
 
 @interface ImageContentView : UIView
 @property(nonatomic, strong)NSArray     *imageArray;
+
+- (void)prepareForReuse;
+
 @end
