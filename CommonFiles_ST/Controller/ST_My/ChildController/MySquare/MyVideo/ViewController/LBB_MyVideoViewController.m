@@ -99,7 +99,6 @@ UICollectionViewDelegateFlowLayout>
     }];
     
     [self.collectionView loadData:self.viewModel.videoArray];
-    
 
 }
 //#warning  模拟测试数据

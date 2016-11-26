@@ -19,9 +19,9 @@
 @interface LBB_MyVideoModel : BN_BaseDataModel
 
 @property (nonatomic, assign) long  ugcId;//明细主键
-@property (nonatomic, copy) NSString  *videoUrl;//明细主键
-@property (nonatomic, assign) BOOL    isLiked;//是否点赞
-@property (nonatomic, assign) BOOL    isCollected;//是否收藏
+@property (nonatomic, copy) NSString  *videoUrl;//封面图片
+@property (nonatomic, assign) int    isLiked;//是否点赞
+@property (nonatomic, assign) int    isCollected;//是否收藏
 @property (nonatomic, assign) int     totalLike;//赞数
 @property (nonatomic, assign) int     totalComment;//评论数
 @property (nonatomic, strong)NSMutableArray<LBB_MyVideoTagModel *> *tags ;// 视频标签

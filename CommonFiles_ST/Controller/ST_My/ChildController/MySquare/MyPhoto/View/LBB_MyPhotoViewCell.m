@@ -48,6 +48,7 @@
 {
     contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
     [self addSubview:contentImage];
+    contentImage.backgroundColor = ColorLine;
     
     collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(self.width - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
     collecdtionBtn.enlargeInset = UIEdgeInsetsMake(AUTO(10), AUTO(20), AUTO(15), AUTO(10));
@@ -92,7 +93,7 @@
 {
     _model = model; 
     
-    contentImage.imageUrl = model.imageUrl;
+    contentImage.imageUrl = model.coverImageUrl;
     
     CGFloat deleteWidth = 0.f;
     
@@ -101,20 +102,60 @@
     [deleteBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [deleteBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    [pinBtn setTitle:model.commentNum forState:UIControlStateNormal];
-    pinBtn.width = [self getWidthWithContent:model.commentNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+     NSString *pinTitle = [self getNumTitleStr:_model.totalComment];
+    [pinBtn setTitle:pinTitle forState:UIControlStateNormal];
+    pinBtn.width = [self getWidthWithContent:pinTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     pinBtn.left = self.width - deleteBtn.width - 10 - deleteWidth;
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    [zanBtn setTitle:model.praiseNum forState:UIControlStateNormal];
-    zanBtn.width = [self getWidthWithContent:model.praiseNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    NSString *zanTitle = [self getNumTitleStr:_model.totalLike];
+    
+    [zanBtn setTitle:zanTitle forState:UIControlStateNormal];
+    zanBtn.width = [self getWidthWithContent:zanTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     zanBtn.left = self.width - deleteBtn.width - pinBtn.width - 10 - deleteWidth;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
-    collecdtionBtn.selected = _model.isCollection;
+    collecdtionBtn.selected = _model.isCollected;
    
+}
+- (NSString *)getNumTitleStr:(int)num
+{
+    NSString *numstr = @"";
+    int tmpNum = num;
+    
+    int wan = num/10000;
+    num = num%10000;
+    int qian = num/1000;
+    num = num%1000;
+    int bai = num/100;
+    num = num%100;
+    int shi = num/10;
+    num = num%10;
+    
+    if (wan > 0) {
+        if (bai > 0) {
+            numstr = [NSString stringWithFormat:@"%@.%@%@W",@(wan),@(qian),@(bai)];
+        }else if(qian > 0){
+            numstr = [NSString stringWithFormat:@"%@.%@W",@(wan),@(qian)];
+        }else {
+            numstr = [NSString stringWithFormat:@"%@",@(wan)];
+        }
+    }
+    else if (qian > 0) {
+        if (shi > 0) {
+            numstr = [NSString stringWithFormat:@"%@.%@%@K",@(qian),@(bai),@(shi)];
+        }else if(bai > 0){
+            numstr = [NSString stringWithFormat:@"%@.%@K",@(qian),@(bai)];
+        }else {
+            numstr = [NSString stringWithFormat:@"%@K",@(qian)];
+        }
+        
+    }else {
+        numstr = [NSString stringWithFormat:@"%@",@(tmpNum)];
+    }
+    return numstr;
 }
 
 - (void)setSquareType:(MySquareViewType)squareType
