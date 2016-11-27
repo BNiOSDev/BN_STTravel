@@ -43,6 +43,11 @@ UITableViewDataSource
 
 @implementation PersonalCenterViewController
 
+- (void)dealloc
+{
+    self.personalModel = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -68,7 +73,6 @@ UITableViewDataSource
     [self.tableView registerNib:nib forCellReuseIdentifier:@"PersonalInfoCell"];
     
     self.personalModel = [[LBB_PersonalModel alloc] init];
-    [self updateData];
     
     __weak typeof (self) weakSelf = self;
     [self.personalModel.loadSupport setDataRefreshblock:^{
@@ -78,6 +82,8 @@ UITableViewDataSource
     [self.personalModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
 //        [weakSelf showHudPrompt:remark];
     }];
+    
+    [self updateData];
 }
 
 - (void)updateData

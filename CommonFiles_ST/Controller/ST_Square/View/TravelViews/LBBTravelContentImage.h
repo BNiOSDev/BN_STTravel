@@ -11,4 +11,7 @@
 @interface LBBTravelContentImage : UIView
 @property(nonatomic, copy)NSString     *imageUrl;
 @property(nonatomic, strong)NSArray    *tipArray;
+
+- (void)prepareForReuse;
+
 @end

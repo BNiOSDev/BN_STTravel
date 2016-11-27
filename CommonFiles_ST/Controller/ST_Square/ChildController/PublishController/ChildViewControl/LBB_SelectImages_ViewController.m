@@ -338,7 +338,7 @@
     if (!cell) {
         cell = [[LBB_ImageCollect_TableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
-    CGSize size = CGSizeMake(cell.size.width, cell.size.height);
+    CGSize size = CGSizeMake(40, 40); //缩略图尺寸是合适范围内尽量小，否则快速滑动界面会因内存爆满崩溃或者卡住
     size.height *= [UIScreen mainScreen].scale;
     size.width *= [UIScreen mainScreen].scale;
     

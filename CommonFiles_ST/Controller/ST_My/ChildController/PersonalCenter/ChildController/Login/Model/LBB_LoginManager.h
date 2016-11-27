@@ -46,16 +46,12 @@ typedef NS_ENUM(NSInteger,LoginType)
 + (instancetype)shareInstance;
 
 /*
- * 注册
+ * 3.1.12 发短信验证码(已测)
+ 1:注册短信2.服务通知类短信3营销类短信4修改密码5:修改手机号码
  */
-- (void)registered:(LoginType)loginType
-     UserHeadImage:(UIImage*)headImage
-           Account:(NSString*)account
-          Password:(NSString*)password
-          CheckNum:(NSString*)checkNum
-               Sex:(NSInteger)sex
-           Address:(NSString*)address
-     CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
+- (void)getVerificationCode:(NSString*)phoneNum Type:(int)type;
+
+
 
 /*
  * 3.5.18 我的-正常登录（已测）
@@ -67,15 +63,21 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 
 
 /*
+ * 3.5.20 我的-注册（已测）
+ */
+- (void)registered:(LoginType)loginType
+     UserHeadImage:(UIImage*)headImage
+           Account:(NSString*)account
+          Password:(NSString*)password
+          CheckNum:(NSString*)checkNum
+               Sex:(NSInteger)sex
+           Address:(NSString*)address
+     CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
+
+/*
  * 3.5.21 我的-退出登录（已测）
  */
 - (void)logout:(void (^)(NSString *userToken,BOOL result))completeBlock;
-
-/*
- * 3.1.12 发短信验证码(已测)
- 1:注册短信2.服务通知类短信3营销类短信4修改密码5:修改手机号码
- */
-- (void)getVerificationCode:(NSString*)phoneNum Type:(int)type;
 
 /*
 *3.5.22 我的-找回密码（已测）

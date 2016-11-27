@@ -55,70 +55,31 @@
     return self;
 }
 
-- (void)registered:(LoginType)loginType
-     UserHeadImage:(UIImage*)headImage
-           Account:(NSString*)account
-          Password:(NSString*)password
-          CheckNum:(NSString*)checkNum
-               Sex:(NSInteger)sex
-           Address:(NSString*)address
-     CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
+/*
+ *  3.1.12获取验证码
+ 1:注册短信2.服务通知类短信3营销类短信4修改密码5:修改手机号码
+ */
+- (void)getVerificationCode:(NSString*)phoneNum Type:(int)type
 {
-    
-    self.userHeadImage = headImage;
-    self.account = account;
-    self.password = password;
-    self.loginType = loginType;
-    self.checkNum = checkNum;
-    self.resgisterCompleteBlock = completeBlock;
-    
-    self.sex = sex;
-    if (address) {
-        self.address = address;
-    }
-    //todo 调用注册接口
-    NSString *deviceID  =  [self uuid];
+    self.account = phoneNum;
     NSDictionary *paraDic = @{
                               @"phoneNum":self.account,
-                              @"passwd":self.password,
-                              @"deviceSystemType":@(2),
-                              @"deviceId":deviceID,
-                              @"verifyCode" : self.checkNum
+                              @"type":@(type)
                               };
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/smsVerifyCode",BASEURL];
     
-    NSString *url = [NSString stringWithFormat:@"%@/mime/register",BASEURL];
-    __weak typeof(self) weakSelf = self;
-
-    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
-                                 success:^(NSURLSessionDataTask *operation, id responseObject){
-         NSDictionary *dict = (NSDictionary*)responseObject;
-         NSLog(@"responseObject = %@",dict);
-         int code = [[dict objectForKey:@"code"] intValue];
-         NSString *remark = [dict objectForKey:@"remark"];
-         NSString *token = [dict objectForKey:@"token"];
-          if (code == 0) {
-             if (weakSelf.resgisterCompleteBlock) {
-                 weakSelf.resgisterCompleteBlock(token,YES);
-             }
-              LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
-              loginCountInfo.account = weakSelf.account;
-              loginCountInfo.password = weakSelf.password;
-              [weakSelf saveLoginUserInfo:loginCountInfo];
-          }else{
-              if (weakSelf.resgisterCompleteBlock) {
-                  weakSelf.resgisterCompleteBlock(remark,NO);
-              }
-          }
-        
-    } failure:^(NSURLSessionDataTask *operation, NSError *error){
-        if (weakSelf.resgisterCompleteBlock) {
-            weakSelf.resgisterCompleteBlock(nil,NO);
-        }
-        NSLog(@"error = %@",error);
-        
-    }];
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic
+                                success:^(NSURLSessionDataTask *operation, id responseObject){
+                                    NSLog(@"responseObject = %@",responseObject);
+                                    
+                                } failure:^(NSURLSessionDataTask *operation, NSError *error){
+                                    NSLog(@"error = %@",error);
+                                }];
 }
 
+/*
+ * 3.5.18 我的-正常登录（已测）
+ */
 - (void)login:(LoginType)loginType
       Account:(NSString*)account
      Password:(NSString*)password
@@ -183,6 +144,76 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     }];
 }
 
+/*
+ * 3.5.20 我的-注册（已测）
+ */
+- (void)registered:(LoginType)loginType
+     UserHeadImage:(UIImage*)headImage
+           Account:(NSString*)account
+          Password:(NSString*)password
+          CheckNum:(NSString*)checkNum
+               Sex:(NSInteger)sex
+           Address:(NSString*)address
+     CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
+{
+    
+    self.userHeadImage = headImage;
+    self.account = account;
+    self.password = password;
+    self.loginType = loginType;
+    self.checkNum = checkNum;
+    self.resgisterCompleteBlock = completeBlock;
+    
+    self.sex = sex;
+    if (address) {
+        self.address = address;
+    }
+    //todo 调用注册接口
+    NSString *deviceID  =  [self uuid];
+    NSDictionary *paraDic = @{
+                              @"phoneNum":self.account,
+                              @"passwd":self.password,
+                              @"deviceSystemType":@(2),
+                              @"deviceId":deviceID,
+                              @"verifyCode" : self.checkNum
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/mime/register",BASEURL];
+    __weak typeof(self) weakSelf = self;
+    
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
+                                 success:^(NSURLSessionDataTask *operation, id responseObject){
+                                     NSDictionary *dict = (NSDictionary*)responseObject;
+                                     NSLog(@"responseObject = %@",dict);
+                                     int code = [[dict objectForKey:@"code"] intValue];
+                                     NSString *remark = [dict objectForKey:@"remark"];
+                                     NSString *token = [dict objectForKey:@"token"];
+                                     if (code == 0) {
+                                         if (weakSelf.resgisterCompleteBlock) {
+                                             weakSelf.resgisterCompleteBlock(token,YES);
+                                         }
+                                         LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
+                                         loginCountInfo.account = weakSelf.account;
+                                         loginCountInfo.password = weakSelf.password;
+                                         [weakSelf saveLoginUserInfo:loginCountInfo];
+                                     }else{
+                                         if (weakSelf.resgisterCompleteBlock) {
+                                             weakSelf.resgisterCompleteBlock(remark,NO);
+                                         }
+                                     }
+                                     
+                                 } failure:^(NSURLSessionDataTask *operation, NSError *error){
+                                     if (weakSelf.resgisterCompleteBlock) {
+                                         weakSelf.resgisterCompleteBlock(nil,NO);
+                                     }
+                                     NSLog(@"error = %@",error);
+                                     
+                                 }];
+}
+
+/*
+ * 3.5.21 我的-退出登录（已测）
+ */
 - (void)logout:(void (^)(NSString *userToken,BOOL result))completeBlock;
 {
     self.logoutCompleteBlock = completeBlock;
@@ -228,28 +259,6 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
         }
         NSLog(@"error = %@",error);
     }];
-}
-
-/*
- *  3.1.12获取验证码
-  1:注册短信2.服务通知类短信3营销类短信4修改密码5:修改手机号码
- */
-- (void)getVerificationCode:(NSString*)phoneNum Type:(int)type
-{
-    self.account = phoneNum;
-    NSDictionary *paraDic = @{
-                              @"phoneNum":self.account,
-                              @"type":@(type)
-                              };
-    NSString *url = [NSString stringWithFormat:@"%@/homePage/smsVerifyCode",BASEURL];
- 
-    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic
-                                 success:^(NSURLSessionDataTask *operation, id responseObject){
-                                     NSLog(@"responseObject = %@",responseObject);
-                                     
-                                 } failure:^(NSURLSessionDataTask *operation, NSError *error){
-                                    NSLog(@"error = %@",error);
-                                 }];
 }
 
 /*

@@ -180,6 +180,44 @@
     
 }
 
+/**
+ 3.1.13	筛选标签列表(已测)
+ 
+ @param classes 1美食 2 民宿 3 景点 4 伴手礼  10 线路攻略11 美食专题 12民宿专题 13景点专题 14伴手礼专题 15  用户/导游
+ @param type 1.热门推荐 2标签 3价格 4类别 5、设施 6、退票及预约提示 7、品牌 8、适合人群 9、个性标签 10、行程时长 11  导游类型  12  从业时间
+ @param dataBlock 返回标签数据
+ */
++ (void)getConditionTagsClass:(int)classes type:(int)type block:(void (^)(NSArray<LBB_SquareTags*> *files, NSError *error))dataBlock
+{
+    NSDictionary *paraDic = @{
+                              @"classes":@(classes),
+                              @"type":@(type),
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/condition/tags",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_SquareTags mj_objectArrayWithKeyValuesArray:array];
+            dataBlock(returnArray,nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            dataBlock(nil,[NSError errorWithDomain:errorStr
+                                      code:8
+                                  userInfo:nil]);
+        }
+        
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        dataBlock(nil,error);
+    }];
+}
+
 
 @end
 

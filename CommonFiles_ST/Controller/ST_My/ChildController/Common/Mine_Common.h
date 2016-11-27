@@ -10,7 +10,9 @@
 #define Mine_Common_h
 
 #import "UIImageView+WebCache.h"
+#import "LBB_MyComomFun.h"
 
+#define TextEnvironment  1
 //屏幕适配
 #define FB_FIX_SIZE_WIDTH(w) (((w) / 320.0) * DeviceWidth)
 //获取当前app版本
@@ -81,6 +83,7 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     
     eSettingPush,//推送消息
     eSettingPrivace, //隐私
+    eSettongAboutUS, //关于我们
     
     /* 消息中心 */
     eMessageCenter,//消息中心

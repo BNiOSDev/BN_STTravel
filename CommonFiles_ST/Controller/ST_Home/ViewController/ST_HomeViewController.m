@@ -25,11 +25,9 @@
 #import "LBB_PoohMyFavoriteViewController.h"
 
 //pooh test
-#import "LBB_PublishUgcViewModel.h"
 #import "LBB_SquareTravelListViewModel.h"
-
-#import "LBB_SquareViewModel.h"
-
+#import "LBB_PublishUgcViewModel.h"
+#import "LBB_TravelDraftViewModel.h"
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -43,9 +41,8 @@
 
 
 //test
-@property(nonatomic, retain)LBB_SquareTravelListViewModel* m1;
+@property(nonatomic, retain)LBB_TravelDraftViewModel* m1;
 
-@property (nonatomic, strong)LBB_SquareViewModel *sViewModel;
 
 @end
 
@@ -60,31 +57,61 @@
     
     [super viewDidAppear:animated];
     [self testModel];
+
 }
 
 -(void)testModel{
 
-    LBB_SquareTravelListViewModel* m1 = [[LBB_SquareTravelListViewModel alloc] init];
-    self.m1 = m1;
-    [m1 getSquareTravelList:YES];
+    TravelNotesDetails* ob = [[TravelNotesDetails alloc] init];
     
- 
-
-    LBB_PublishUgcViewModel* model = [[LBB_PublishUgcViewModel alloc]init];
-    
-    NSMutableArray* arr = [NSMutableArray new];
-    NSMutableArray* tagsArr = [NSMutableArray arrayWithObjects:@1,@2,@3, nil];
-    for (int i = 0; i<3; i++) {
-        BN_PublicPics* pic = [[BN_PublicPics alloc] init];
-        pic.imageUrl = @"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg";
-        pic.imageDesc = @"照片描述";
-        pic.tags = tagsArr;
-        [arr addObject:pic];
-    }
-    [model setSquareUgc:1 url:@"http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg" remark:@"标注啦" longitude:@"-1" dimensionality:@"-1" allSpotsId:0 tags:tagsArr pics:arr block:^(NSError* error){
+    [ob saveTravelTrackData:YES block:^(NSError* error){
     
     }];
- 
+    
+    /*
+    LBB_TravelDraftViewModel* m1 = [[LBB_TravelDraftViewModel alloc] init];
+    self.m1 = m1;
+    [m1 getTravelDraftData];
+    WS(ws);
+    [m1.travelDraftModel.loadSupport setDataRefreshblock:^{
+        
+        [ws.m1 publicTravelDraftData:^(NSError* error){
+        
+        }];
+    }];
+     */
+    
+ /*   LBB_SquareTravelListViewModel* m1 = [[LBB_SquareTravelListViewModel alloc] init];
+    self.m1 = m1;
+    [m1 getSquareTravelList:YES];
+   
+    WS(ws);
+    [self.m1.squareTravelArray.loadSupport setDataRefreshblock:^{
+
+        BN_SquareTravelList* obj = ws.m1.squareTravelArray[0];
+        [obj getTravelDetailModel];
+        __weak BN_SquareTravelList* objBlock = obj;
+        [obj.travelDetailModel.loadSupport setDataRefreshblock:^{
+        
+            [objBlock.travelDetailModel getTravelBilllModel];
+            
+            [objBlock.travelDetailModel.travelBillModel.loadSupport setDataRefreshblock:^{
+                
+                BN_SquareTravelNotesconsumeDetails* obj = objBlock.travelDetailModel.travelBillModel.consumeDetails[0];//取得detail数据
+                obj.parentArray = objBlock.travelDetailModel.travelBillModel.consumeDetails;
+                NSLog(@"obj.parentArray:%d",obj.parentArray.count);
+
+                [obj deleteSquareTravelNotesConsumeDetails:^(NSError* error){
+                
+                    NSLog(@"deleteSquareTravelNotesConsumeDetails clock:%d",obj.parentArray.count);
+                    
+                }];
+                
+            }];
+            
+        }];
+    
+    }];*/
 }
 
 - (void)viewWillAppear:(BOOL)animated

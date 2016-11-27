@@ -26,6 +26,12 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    iconImage.image = nil;
+    
+}
 - (void)setup
 {
     iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(15,AUTO(10) , AUTO(40), AUTO(40))];

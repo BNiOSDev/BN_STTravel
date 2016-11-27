@@ -11,4 +11,6 @@
 @interface ContentImageView : UIView
 @property(nonatomic,strong)NSArray          *imageArray;
 @property(nonatomic,strong)NSArray          *picArray;
+
+- (void)prepareForReuse;
 @end

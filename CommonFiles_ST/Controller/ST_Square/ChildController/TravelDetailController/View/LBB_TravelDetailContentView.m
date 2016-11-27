@@ -30,6 +30,11 @@
     return self;
 }
 
+- (void)prepareForReuse
+{
+    vistImage.image = nil;
+    timeImage.image = nil;
+}
 
 - (void)setup
 {

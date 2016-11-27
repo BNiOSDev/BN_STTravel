@@ -32,13 +32,13 @@
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                                                    @{@"Title": NSLocalizedString(@"向我推荐通讯录好友",nil),
                                                                      @"SwitchOn" : [NSNumber numberWithBool:YES]
-                                                                     ,@"Action":@"wallet"},
+                                                                     ,@"SwitchType":[NSNumber numberWithInteger:eRecommendedPhoneFriends]},
                                                                     @{@"Title": NSLocalizedString(@"关注需要通过我审核",nil),
                                                                       @"SwitchOn" : [NSNumber numberWithBool:NO],
-                                                                      @"Action":@"wallet"},
+                                                                      @"SwitchType":[NSNumber numberWithInteger:eAttentionNeedAudited]},
                                                                     @{@"Title": NSLocalizedString(@"好友动态红点提示",nil),
                                                                       @"SwitchOn" : [NSNumber numberWithBool:YES],
-                                                                      @"Action":@"wallet"}
+                                                                      @"SwitchType":[NSNumber numberWithInteger:eFriendsDynamicRedDot]}
                                                                    ]];
     
 }

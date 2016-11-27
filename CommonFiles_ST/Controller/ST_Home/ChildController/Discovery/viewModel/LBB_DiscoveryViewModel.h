@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LBB_SpotAddress.h"
 
 @interface LBB_DiscoveryDetailModel : BN_BaseDataModel
 
@@ -51,7 +52,7 @@
 
 @property (nonatomic, strong)NSMutableArray<LBB_DiscoveryModel *> *discoveryArray;
 
-@property (nonatomic,strong)NSMutableArray<LBB_SquareSpots*> *squareSpotsArray;
+@property (nonatomic,strong)NSMutableArray<LBB_SpotAddress*> *squareSpotsArray;
 
 /**
  3.4.26	主页-游记添加地址（已测）

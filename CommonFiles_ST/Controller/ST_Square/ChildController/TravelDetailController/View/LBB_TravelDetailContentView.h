@@ -13,4 +13,7 @@
 
 @interface LBB_TravelDetailContentView : UIView
 @property(nonatomic,strong)ZJMHostModel   *model;//无实际作用，调试用
+
+- (void)prepareForReuse;
+
 @end

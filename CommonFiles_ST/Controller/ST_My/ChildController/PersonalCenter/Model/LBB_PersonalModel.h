@@ -24,42 +24,47 @@
 @property(nonatomic,assign) int  isUpdatePasswd;//0不可修改 1可修改
 
 /**
- 3.5.21 我的-个人中心（已测）
+ 3.5.23 我的-个人中心（已测）
  */
 - (void)getPersonInfo;
 
 /**
-3.5.22 我的-头像修改 （已测）
+3.5.24 我的-头像修改 （已测）
  */
 - (void)updateUserPicture:(NSString*)imageUrl;
 
 /**
- 3.5.23 我的-用户名修改（已测）
+ 3.5.25 我的-用户名修改（已测）
  */
 - (void)updateUserName:(NSString*)userName;
 
 /**
-  3.5.24 我的-签名修改 （已测)
+  3.5.26 我的-签名修改 （已测)
  */
 - (void)updateSignature:(NSString*)signature;
 
 /**
-3.5.25 我的-手机号修改（已测)
+ 3.5.27 我的-手机号修改前校验（已测)
+ */
+- (void)updateCheckPhoneNum:(NSString*)phoneNum VerifyCode:(NSString*)verifyCode;
+
+/**
+3.5.28 我的-手机号修改（已测)
  */
 - (void)updatePhoneNum:(NSString*)phoneNum VerifyCode:(NSString*)verifyCode;
 
 /**
-  3.5.26 我的-性别修改（已测）
+  3.5.29 我的-性别修改（已测）
  */
 - (void)updateGender:(int)gender;
 
 /**
- 3.5.27 我的-出生日期修改（已测）
+ 3.5.30 我的-出生日期修改（已测）
  */
 - (void)updateBirthDate:(NSString*)birthDate;
 
 /**
- 3.5.28 我的-地区修改（已测）
+ 3.5.31 我的-地区修改（已测）
  */
 - (void)updateArea:(int)provinceId CityId:(int)cityId;
 

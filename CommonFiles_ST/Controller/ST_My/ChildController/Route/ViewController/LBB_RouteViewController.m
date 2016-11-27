@@ -36,16 +36,17 @@
     _dataArray = [[NSMutableArray alloc]init];
     for (int i = 0; i <= 9; i++) {
         LBB_TravelModel  *model = [[LBB_TravelModel alloc]init];
-        model.iconName = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.imageUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.name = @"钟爱SD的男人";
-        model.msgContent = @"开启说走就走的旅行吧";
-        model.timeStr = @"2016-09-09";
-        model.daysStr = @"5 days";
-        model.vistNum = @"1080";
-        model.praiseNum = @"999";
-        model.commentNum = @"999";
-        model.collectNum = @"9999";
+        model.travelNotePicUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
+        model.travelNotePicUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
+        model.travelNoteName = @"开启说走就走的旅行吧";
+        model.releaseDate = @"2016-09-09";
+        model.dayCount = 5;
+        model.isLiked = 1;//是否点赞
+        model.isCollected = 1;//是否收藏
+        model.totalLike = 10000;//赞数
+        model.totalComment = 10000;//评论数
+        model.totalCollected = 100;//收藏数
+       
         [_dataArray addObject:model];
     }
     [self createTable];

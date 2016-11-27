@@ -31,4 +31,8 @@
     
 }
 
+- (void)prepareForReuse
+{
+    _contentimage.image = nil;
+}
 @end
