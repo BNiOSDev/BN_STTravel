@@ -480,6 +480,7 @@
 		1B09D8861DEAA37E0060F57D /* ST_Square.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B09D6AE1DEAA37D0060F57D /* ST_Square.xcassets */; };
 		1B09D8891DEAB4430060F57D /* LBB_TagsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B09D8881DEAB4430060F57D /* LBB_TagsViewModel.m */; };
 		1B09D88C1DEAB5730060F57D /* LBB_SpotAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B09D88B1DEAB5730060F57D /* LBB_SpotAddress.m */; };
+		1B68116B1DEAE37A0030189B /* LBB_NearViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B68116A1DEAE37A0030189B /* LBB_NearViewModel.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		842BCC441DCD792500A16788 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -1353,6 +1354,8 @@
 		1B09D8881DEAB4430060F57D /* LBB_TagsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TagsViewModel.m; sourceTree = "<group>"; };
 		1B09D88A1DEAB5730060F57D /* LBB_SpotAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SpotAddress.h; sourceTree = "<group>"; };
 		1B09D88B1DEAB5730060F57D /* LBB_SpotAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SpotAddress.m; sourceTree = "<group>"; };
+		1B6811691DEAE37A0030189B /* LBB_NearViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NearViewModel.h; sourceTree = "<group>"; };
+		1B68116A1DEAE37A0030189B /* LBB_NearViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NearViewModel.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		844065CB1DEAC7C500164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -1845,6 +1848,7 @@
 		1B09D2FF1DEAA37C0060F57D /* nearBy */ = {
 			isa = PBXGroup;
 			children = (
+				1B6811681DEAE2630030189B /* viewModel */,
 				1B09D3001DEAA37C0060F57D /* View */,
 				1B09D3031DEAA37C0060F57D /* ViewController */,
 			);
@@ -4523,6 +4527,15 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		1B6811681DEAE2630030189B /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B6811691DEAE37A0030189B /* LBB_NearViewModel.h */,
+				1B68116A1DEAE37A0030189B /* LBB_NearViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		C9C0E9431D9948F100575A7C = {
 			isa = PBXGroup;
 			children = (
@@ -5213,6 +5226,7 @@
 				1B09D7421DEAA37D0060F57D /* LBB_MyFavoriteSquareViewController.m in Sources */,
 				1B09D7291DEAA37D0060F57D /* LBB_PoohCoreLocationManager.m in Sources */,
 				1B09D7CA1DEAA37D0060F57D /* LBB_HostDetailHeadView.m in Sources */,
+				1B68116B1DEAE37A0030189B /* LBB_NearViewModel.m in Sources */,
 				1B09D82A1DEAA37E0060F57D /* UIViewExt.m in Sources */,
 				1B09D79E1DEAA37D0060F57D /* LBB_TicketFooterView.m in Sources */,
 				1B09D6B71DEAA37D0060F57D /* LBB_FilterTableViewCell.m in Sources */,
