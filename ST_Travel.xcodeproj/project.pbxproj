@@ -10,6 +10,9 @@
 		1BCC8A511DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
+		844065C61DEAC1EB00164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065C51DEAC1EB00164DED /* libc++.tbd */; };
+		844065C81DEAC1F500164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065C71DEAC1F500164DED /* libsqlite3.0.tbd */; };
+		844065CA1DEAC1FD00164DED /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065C91DEAC1FD00164DED /* libz.tbd */; };
 		84E2122D1DE88F5900CD99F4 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E20DAB1DE88F5800CD99F4 /* PoohBaseTableViewController.m */; };
 		84E2122E1DE88F5900CD99F4 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E20DAD1DE88F5800CD99F4 /* PoohBaseViewController.m */; };
 		84E2122F1DE88F5900CD99F4 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E20DB21DE88F5800CD99F4 /* b27_icon_star_gray@2x.png */; };
@@ -510,6 +513,9 @@
 		1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareAddressViewModel.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		844065C51DEAC1EB00164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		844065C71DEAC1F500164DED /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		844065C91DEAC1FD00164DED /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		84E20DAA1DE88F5800CD99F4 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		84E20DAB1DE88F5800CD99F4 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		84E20DAC1DE88F5800CD99F4 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -1347,6 +1353,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844065CA1DEAC1FD00164DED /* libz.tbd in Frameworks */,
+				844065C81DEAC1F500164DED /* libsqlite3.0.tbd in Frameworks */,
+				844065C61DEAC1EB00164DED /* libc++.tbd in Frameworks */,
 				1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */,
 				1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */,
 				C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */,
@@ -1374,6 +1383,9 @@
 		04A976604EE4577D70DCD075 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				844065C91DEAC1FD00164DED /* libz.tbd */,
+				844065C71DEAC1F500164DED /* libsqlite3.0.tbd */,
+				844065C51DEAC1EB00164DED /* libc++.tbd */,
 				1DAC47CE1DE2B25F001443DE /* MapKit.framework */,
 				1DAC47CC1DE2B259001443DE /* CoreLocation.framework */,
 				C91F610B1D9F559C004FE75C /* QuartzCore.framework */,
