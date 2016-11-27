@@ -66,6 +66,6 @@
 /**
  3.5.31 我的-地区修改（已测）
  */
-- (void)updateArea:(int)provinceId CityId:(int)cityId;
+- (void)updateArea:(int)provinceId CityId:(int)cityId AddressName:(NSString*)detailName;
 
 @end

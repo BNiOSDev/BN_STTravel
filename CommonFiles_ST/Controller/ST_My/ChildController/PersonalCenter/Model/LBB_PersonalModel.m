@@ -280,7 +280,7 @@
 /**
  3.5.31 我的-地区修改（已测）
  */
-- (void)updateArea:(int)provinceId CityId:(int)cityId
+- (void)updateArea:(int)provinceId CityId:(int)cityId AddressName:(NSString*)detailName
 {
     NSString *url = [NSString stringWithFormat:@"%@/mime/area/update",BASEURL];
     
@@ -297,8 +297,7 @@
         {
             weakSelf.provId = provinceId;
             weakSelf.cityId = cityId;
-            weakSelf.area = @"福建厦门思明区XX地址XX号";
-//            [weakSelf getPersonInfo:nil];
+            weakSelf.area = detailName;
             weakSelf.loadSupport.loadEvent = codeNumber.intValue;
         }else{
             weakSelf.loadSupport.netRemark = remark;

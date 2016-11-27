@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^MyBlock)(NSString *address,NSArray *selections);
+typedef void(^MyBlock)(SJR_Area *privience,SJR_Area *city ,SJR_Area *street);
 
 @interface LBB_AddressPickerView : UIView
 
@@ -27,6 +27,8 @@ typedef void(^MyBlock)(NSString *address,NSArray *selections);
              showCancelButton:(BOOL)showCancelButton
                        parentView:(UIView *)parentView
                    showStreet:(BOOL)isShowStreet;
+
+
 
 - (void)showPickerView;
 

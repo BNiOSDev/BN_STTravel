@@ -327,6 +327,10 @@ UITableViewDataSource
 
 - (void)showAddressPickerMenu:(id)sender
 {
+    if (self.addressPicker) {
+        [self.addressPicker removeFromSuperview];
+        self.addressPicker = nil;
+    }
     if (!self.addressPicker) {
         self.addressPicker = [[LBB_AddressPickerView alloc] initWithTitle:NSLocalizedString(@"选择地址", nil)
                                                          showCancelButton:YES
@@ -334,11 +338,11 @@ UITableViewDataSource
                                                         showStreet:NO];
     }
   
-    [self.addressPicker showPickerView];
     __weak typeof (self) weakSelf = self;
-    self.addressPicker.myBlock = ^(NSString *address,NSArray *selections){
+    self.addressPicker.myBlock = ^(SJR_Area *privience,SJR_Area *city ,SJR_Area *street){
+        NSString *address = [NSString stringWithFormat:@"%@ %@",privience.NAME,city.NAME];
         if (address && [address length]) {
-            [weakSelf.personalModel updateArea:1000 CityId:1];
+            [weakSelf.personalModel updateArea:[privience.CODE intValue] CityId:[city.CODE intValue] AddressName:address];
         }
     };
 }

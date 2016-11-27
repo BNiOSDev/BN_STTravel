@@ -40,10 +40,18 @@
 
 @property(nonatomic,strong) LBB_AddressPickerView *addressPicker;
 
+@property (nonatomic,strong) SJR_Area  *provinceArea;
+@property (nonatomic,strong) SJR_Area  *cityArea;
+@property (nonatomic,assign) SJR_Area  *streetArea;
 @end
 
 
 @implementation AddAddressViewController
+
+- (void)dealloc
+{
+    self.addressModel = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -168,23 +176,24 @@
     }
     self.addressModel.name = self.userName;
     self.addressModel.phone = self.phoneNum;
-    self.addressModel.provinceId = 10;
-    self.addressModel.cityId = 10;
-    self.addressModel.provinceName =@"福建省";
-    self.addressModel.cityName = @"厦门市 思明区";
+    self.addressModel.provinceId = [[self.provinceArea CODE] intValue];
+    self.addressModel.cityId = [[self.cityArea CODE] intValue];
+    self.addressModel.provinceName = self.provinceArea.NAME;
+    self.addressModel.cityName = self.cityArea.NAME;
+    self.addressModel.districtId = [[self.streetArea CODE] intValue];
     self.addressModel.address = self.street;
     self.addressModel.zipcode = self.postNum;
     
-    [self.addressModel updateAddress];
-    
     __weak typeof (self) weakSelf = self;
     [self.addressModel.loadSupport setDataRefreshblock:^{
+        [weakSelf showHudPrompt:@"保存成功！"];
     }];
     
     [self.addressModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
         [weakSelf showHudPrompt:remark];
     }];
     
+    [self.addressModel updateAddress];
 }
 
 - (IBAction)showAddressPickView:(id)sender {
@@ -194,19 +203,32 @@
         [self.view endEditing:YES];
     });
     
+    if (self.addressPicker) {
+        [self.addressPicker removeFromSuperview];
+        self.addressPicker = nil;
+    }
+    
     if (!self.addressPicker) {
         self.addressPicker = [[LBB_AddressPickerView alloc] initWithTitle:NSLocalizedString(@"选择地址", nil)
                                                          showCancelButton:YES
                                                                parentView:self.view
-                                                               showStreet:NO];
+                                                               showStreet:YES];
     }
     
-    [self.addressPicker showPickerView];
     __weak typeof (self) weakSelf = self;
-    self.addressPicker.myBlock = ^(NSString *address,NSArray *selections){
+    self.addressPicker.myBlock = ^(SJR_Area *privience,SJR_Area *city ,SJR_Area *street){
+        NSString *address = [NSString stringWithFormat:@"%@ %@ %@",privience.NAME,city.NAME,street.NAME];
         if (address && [address length]) {
             weakSelf.addressTextField.text = address;
             weakSelf.address = address;
+            if (street.ZIPCODE) {
+                weakSelf.postalNumTextFiled.text = [NSString stringWithFormat:@"%@",@(city.ZIPCODE)];
+            }else if(city.ZIPCODE){
+                weakSelf.postalNumTextFiled.text = [NSString stringWithFormat:@"%@",@(city.ZIPCODE)];
+            }else if(privience.ZIPCODE){
+                weakSelf.postalNumTextFiled.text = [NSString stringWithFormat:@"%@",@(city.ZIPCODE)];
+            }
+            weakSelf.postNum = weakSelf.postalNumTextFiled.text;
         }
     };
 

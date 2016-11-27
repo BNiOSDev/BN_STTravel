@@ -207,7 +207,6 @@
 		1D0043411DE9EE8400F40B65 /* ChangePhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0040301DE9EE8300F40B65 /* ChangePhoneNumViewController.m */; };
 		1D0043421DE9EE8400F40B65 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0040351DE9EE8300F40B65 /* AddAddressViewController.m */; };
 		1D0043431DE9EE8400F40B65 /* LBB_AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0040381DE9EE8300F40B65 /* LBB_AddressModel.m */; };
-		1D0043441DE9EE8400F40B65 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D00403B1DE9EE8300F40B65 /* address.json */; };
 		1D0043451DE9EE8400F40B65 /* LBB_AddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D00403D1DE9EE8300F40B65 /* LBB_AddressPickerView.m */; };
 		1D0043461DE9EE8400F40B65 /* LBB_AddressPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D00403E1DE9EE8300F40B65 /* LBB_AddressPickerView.xib */; };
 		1D0043471DE9EE8400F40B65 /* ReceiptAddressViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D0040401DE9EE8300F40B65 /* ReceiptAddressViewCell.m */; };
@@ -914,7 +913,6 @@
 		1D0040351DE9EE8300F40B65 /* AddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
 		1D0040371DE9EE8300F40B65 /* LBB_AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_AddressModel.h; sourceTree = "<group>"; };
 		1D0040381DE9EE8300F40B65 /* LBB_AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AddressModel.m; sourceTree = "<group>"; };
-		1D00403B1DE9EE8300F40B65 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
 		1D00403C1DE9EE8300F40B65 /* LBB_AddressPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_AddressPickerView.h; sourceTree = "<group>"; };
 		1D00403D1DE9EE8300F40B65 /* LBB_AddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AddressPickerView.m; sourceTree = "<group>"; };
 		1D00403E1DE9EE8300F40B65 /* LBB_AddressPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_AddressPickerView.xib; sourceTree = "<group>"; };
@@ -3019,7 +3017,6 @@
 		1D00403A1DE9EE8300F40B65 /* AddressPickerView */ = {
 			isa = PBXGroup;
 			children = (
-				1D00403B1DE9EE8300F40B65 /* address.json */,
 				1D00403C1DE9EE8300F40B65 /* LBB_AddressPickerView.h */,
 				1D00403D1DE9EE8300F40B65 /* LBB_AddressPickerView.m */,
 				1D00403E1DE9EE8300F40B65 /* LBB_AddressPickerView.xib */,
@@ -4870,7 +4867,6 @@
 				1D0043861DE9EE8400F40B65 /* LBB_MySectionFooterViewCell.xib in Resources */,
 				1D0043CB1DE9EE8400F40B65 /* zjmtravelhouse@2x.png in Resources */,
 				1D00435B1DE9EE8400F40B65 /* LBB_InviteViewCell.xib in Resources */,
-				1D0043441DE9EE8400F40B65 /* address.json in Resources */,
 				1D0043E81DE9EE8400F40B65 /* zjmyule@2x.png in Resources */,
 				1D0043DE1DE9EE8400F40B65 /* zjmshoped@2x.png in Resources */,
 				1D0043BC1DE9EE8400F40B65 /* zjmtakephotoing@2x.png in Resources */,
