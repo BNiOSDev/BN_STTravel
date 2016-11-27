@@ -15,8 +15,7 @@ UITableViewDelegate,
 UITableViewDataSource
 >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSArray *dataSourceArray;
-@property (nonatomic,strong) LBB_BalanceDataModel *balanceModel;
+@property (nonatomic,strong) LBB_BalanceViewModel *viewModel;
 
 @end
 
@@ -24,7 +23,7 @@ UITableViewDataSource
 
 - (void)dealloc
 {
-    self.balanceModel = nil;
+    self.viewModel = nil;
 }
 
 - (void)viewDidLoad {
@@ -42,14 +41,33 @@ UITableViewDataSource
 {
     UINib *nib = [UINib nibWithNibName:@"BalanceDetailViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"BalanceDetailViewCell"];
-    self.balanceModel = [[LBB_BalanceDataModel alloc] init];
-    self.dataSourceArray = [self.balanceModel getData];
+    self.viewModel = [[LBB_BalanceViewModel alloc] init];
+    
+    __weak typeof(self) temp = self;
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+        [temp.viewModel getMyCreditDetail:YES];
+    } footerRefreshDatablock:^{
+        [temp.viewModel getMyCreditDetail:NO];
+    }];
+    
+    //设置绑定数组
+    [self.tableView setTableViewData:self.viewModel.banlanceArray];
+    
+    //刷新数据
+    [self.viewModel getMyCreditDetail:YES];
+    
+    [self.viewModel.banlanceArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.tableView loadData:self.viewModel.banlanceArray];
 }
 
 #pragma mark - tableView delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSourceArray.count;
+    return self.viewModel.banlanceArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -60,8 +78,10 @@ UITableViewDataSource
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [tableView fd_heightForCellWithIdentifier:@"BalanceDetailViewCell" configuration:^(BalanceDetailViewCell *cell) {
-        LBB_BalanceDetailModel *detailModel = [self.dataSourceArray objectAtIndex:[indexPath row]];
-        [self configCell:cell Model:detailModel];
+        if ([indexPath row] < self.viewModel.banlanceArray.count) {
+            LBB_BalanceDetailModel *detailModel = [self.viewModel.banlanceArray objectAtIndex:[indexPath row]];
+            [self configCell:cell Model:detailModel];
+        }
     }];
 }
 
@@ -86,16 +106,19 @@ UITableViewDataSource
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryView =  nil;
-    LBB_BalanceDetailModel *detailModel = [self.dataSourceArray objectAtIndex:[indexPath row]];
-    [self configCell:cell Model:detailModel];
+    if ([indexPath row] < self.viewModel.banlanceArray.count) {
+        LBB_BalanceDetailModel *detailModel = [self.viewModel.banlanceArray objectAtIndex:[indexPath row]];
+        [self configCell:cell Model:detailModel];
+    }
+  
     return cell;
 }
 
 - (void)configCell:(BalanceDetailViewCell*)cell Model:(LBB_BalanceDetailModel*)detailModel
 {
-    cell.describeLabel.text = detailModel.content;
-    cell.timeLabel.text = detailModel.dateStr;
-    cell.numLabel.text = [NSString stringWithFormat:@"%ld",detailModel.num];
+    cell.describeLabel.text = detailModel.remark;
+    cell.timeLabel.text = detailModel.createTime;
+    cell.numLabel.text = detailModel.amount;
 }
 
 @end

@@ -8,17 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LBB_BalanceDetailModel : NSObject
+@interface LBB_BalanceDetailModel : BN_BaseDataModel
 
-@property(nonatomic,copy) NSString *content;//描述
-@property(nonatomic,copy) NSString *dateStr;//日期
-@property(nonatomic,assign) NSInteger num;//数量
+@property(nonatomic,assign)long detailId;//明细主键
+@property(nonatomic,copy) NSString *remark;//明细备注
+@property(nonatomic,copy) NSString *amount;//金额
+@property(nonatomic,copy) NSString *createTime;//日期
 
 @end
 
 
-@interface LBB_BalanceDataModel : NSObject
+@interface LBB_BalanceViewModel : BN_BaseDataModel
 
-- (NSArray<LBB_BalanceDetailModel*>*)getData;
+@property(nonatomic,strong) NSMutableArray <LBB_BalanceDetailModel*> *banlanceArray;
+
+/**
+ *3.5.11 我的-积分明细（已测）
+ */
+- (void)getMyCreditDetail:(BOOL)isClear;
 
 @end
