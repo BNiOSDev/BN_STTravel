@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B09D25A1DE9E8520060F57D /* LBB_DiscoveryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B09D2591DE9E8520060F57D /* LBB_DiscoveryViewModel.m */; };
 		1BCC8A511DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
@@ -517,6 +518,8 @@
 
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B09D2581DE9E8520060F57D /* LBB_DiscoveryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryViewModel.h; sourceTree = "<group>"; };
+		1B09D2591DE9E8520060F57D /* LBB_DiscoveryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryViewModel.m; sourceTree = "<group>"; };
 		1BCC8A4F1DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SquareAddressViewModel.h; sourceTree = "<group>"; };
 		1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareAddressViewModel.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1393,6 +1396,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1B09D2571DE9E7F70060F57D /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B09D2581DE9E8520060F57D /* LBB_DiscoveryViewModel.h */,
+				1B09D2591DE9E8520060F57D /* LBB_DiscoveryViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		1DECE74D1DE890C500E99098 /* CommonFiles_ST */ = {
 			isa = PBXGroup;
 			children = (
@@ -1573,6 +1585,7 @@
 		1DECE78E1DE890C500E99098 /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
+				1B09D2571DE9E7F70060F57D /* viewModel */,
 				1DECE78F1DE890C500E99098 /* Model */,
 				1DECE7921DE890C500E99098 /* View */,
 				1DECE79B1DE890C500E99098 /* ViewController */,
@@ -4471,14 +4484,6 @@
 				1DECEB861DE890C600E99098 /* LBB_TagsViewModel.m */,
 				1DECEB871DE890C600E99098 /* LBB_UserShowViewModel.h */,
 				1DECEB881DE890C600E99098 /* LBB_UserShowViewModel.m */,
-				84E212171DE88F5900CD99F4 /* LBB_SquareDetailViewModel.h */,
-				84E212181DE88F5900CD99F4 /* LBB_SquareDetailViewModel.m */,
-				84E212191DE88F5900CD99F4 /* LBB_SquareViewModel.h */,
-				84E2121A1DE88F5900CD99F4 /* LBB_SquareViewModel.m */,
-				84E2121B1DE88F5900CD99F4 /* LBB_TagsViewModel.h */,
-				84E2121C1DE88F5900CD99F4 /* LBB_TagsViewModel.m */,
-				84E2121D1DE88F5900CD99F4 /* LBB_UserShowViewModel.h */,
-				84E2121E1DE88F5900CD99F4 /* LBB_UserShowViewModel.m */,
 				1BCC8A4F1DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.h */,
 				1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */,
 			);
@@ -4891,7 +4896,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
@@ -5121,6 +5126,7 @@
 				1DECED421DE890C700E99098 /* ZJContentView.m in Sources */,
 				1DECEBD41DE890C600E99098 /* LBB_PoohMyFavoriteViewController.m in Sources */,
 				1DECEC601DE890C600E99098 /* LBB_UserNameViewController.m in Sources */,
+				1B09D25A1DE9E8520060F57D /* LBB_DiscoveryViewModel.m in Sources */,
 				1DECEBBC1DE890C600E99098 /* LBB_GuiderIdentityCardSelectView.m in Sources */,
 				842BCC691DCD792500A16788 /* (null) in Sources */,
 				1DECEC521DE890C600E99098 /* ChangePasswordViewController.m in Sources */,
@@ -5209,86 +5215,7 @@
 				1DECEC921DE890C600E99098 /* LBB_ImagePickerViewController.m in Sources */,
 				1DECEBC61DE890C600E99098 /* LBB_GuiderApplyResultViewController.m in Sources */,
 				1DECEC581DE890C600E99098 /* AddAddressViewController.m in Sources */,
-				84E213201DE88F5A00CD99F4 /* ExtractDetailViewController.m in Sources */,
-				84E212341DE88F5900CD99F4 /* LBB_FilterListTableViewCell.m in Sources */,
-				84E213A41DE88F5A00CD99F4 /* UIViewExt.m in Sources */,
-				84E2123C1DE88F5900CD99F4 /* LBBPoohBaseTableViewCell.m in Sources */,
-				84E213F31DE88F5A00CD99F4 /* LBB_SquareViewModel.m in Sources */,
-				84E2131E1DE88F5A00CD99F4 /* TicketViewController.m in Sources */,
-				84E213DD1DE88F5A00CD99F4 /* ZJScrollSegmentView.m in Sources */,
-				84E213DF1DE88F5A00CD99F4 /* CommentBoxView.m in Sources */,
-				84E212B11DE88F5900CD99F4 /* ST_HomeViewController.m in Sources */,
-				84E2124D1DE88F5900CD99F4 /* LBB_DiscoveryCustomizedViewController.m in Sources */,
-				84E212311DE88F5900CD99F4 /* CWStarRateView.m in Sources */,
-				84E212451DE88F5900CD99F4 /* LBB_AddressAddViewController.m in Sources */,
-				84E212731DE88F5900CD99F4 /* LBB_OrderTextCell.m in Sources */,
-				84E213C11DE88F5A00CD99F4 /* LBB_PraiseWithCommentView.m in Sources */,
-				84E213E61DE88F5A00CD99F4 /* LBB_HostTableViewCell.m in Sources */,
-				84E2125E1DE88F5900CD99F4 /* LBB_GuiderUserMsgCell.m in Sources */,
-				84E212521DE88F5900CD99F4 /* LBB_FoodsViewModel.m in Sources */,
-				84E212491DE88F5900CD99F4 /* LBB_DiscoveryCustomizedPopView.m in Sources */,
-				84E213981DE88F5A00CD99F4 /* LBBFriendViewController.m in Sources */,
-				84E2128E1DE88F5900CD99F4 /* LBB_ScenicDetailSubjectViewController.m in Sources */,
-				84E212FD1DE88F5A00CD99F4 /* PersonalCenterViewController.m in Sources */,
-				84E212371DE88F5900CD99F4 /* LBB_PoohPlusMinTextField.m in Sources */,
-				84E213E31DE88F5A00CD99F4 /* ZJMCommentView.m in Sources */,
-				84E212F11DE88F5A00CD99F4 /* AddAddressViewController.m in Sources */,
 				1BCC8A511DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m in Sources */,
-				84E213F41DE88F5A00CD99F4 /* LBB_TagsViewModel.m in Sources */,
-				84E212511DE88F5900CD99F4 /* LBB_FoodsMainViewController.m in Sources */,
-				84E2123E1DE88F5900CD99F4 /* LBBPoohGreatItemView.m in Sources */,
-				84E212551DE88F5900CD99F4 /* LBB_GuiderIdentityCardSelectView.m in Sources */,
-				84E212E01DE88F5900CD99F4 /* LBB_FollowViewController.m in Sources */,
-				84E212811DE88F5900CD99F4 /* LBB_ScenicDetailAddressCell.m in Sources */,
-				84E212F81DE88F5A00CD99F4 /* ReceiptAddressViewController.m in Sources */,
-				84E2130F1DE88F5A00CD99F4 /* SettingViewController.m in Sources */,
-				84E213CE1DE88F5A00CD99F4 /* JHColumnChart.m in Sources */,
-				84E213E71DE88F5A00CD99F4 /* LBBFriendTableViewCell.m in Sources */,
-				84E212351DE88F5900CD99F4 /* LBB_FilterTableViewCell.m in Sources */,
-				84E2139F1DE88F5A00CD99F4 /* LBBVideoPlayerViewController.m in Sources */,
-				84E213B11DE88F5A00CD99F4 /* LBB_TipView.m in Sources */,
-				84E212641DE88F5900CD99F4 /* LBB_HostelViewModel.m in Sources */,
-				84E213D91DE88F5A00CD99F4 /* UIView+ZJFrame.m in Sources */,
-				84E2130D1DE88F5A00CD99F4 /* SettingPushViewController.m in Sources */,
-				84E213211DE88F5A00CD99F4 /* BalanceExtractViewController.m in Sources */,
-				84E2124F1DE88F5900CD99F4 /* LBB_DiscoveryMainViewController.m in Sources */,
-				84E212BF1DE88F5900CD99F4 /* LBB_CustomerViewController.m in Sources */,
-				84E2130C1DE88F5A00CD99F4 /* SettingPrivaceViewController.m in Sources */,
-				84E212321DE88F5900CD99F4 /* GYChangeTextView.m in Sources */,
-				84E213271DE88F5A00CD99F4 /* CardViewController.m in Sources */,
-				84E2132B1DE88F5A00CD99F4 /* LBB_ImagePickerViewController.m in Sources */,
-				84E212711DE88F5900CD99F4 /* LBB_OrderPayWayCell.m in Sources */,
-				84E212B51DE88F5900CD99F4 /* LBB_HomeViewModel.m in Sources */,
-				84E2130B1DE88F5A00CD99F4 /* LBB_InviteFriendsViewController.m in Sources */,
-				84E213B91DE88F5A00CD99F4 /* LBB_ShopRecoder_Controller.m in Sources */,
-				84E213171DE88F5A00CD99F4 /* LBB_TicketModel.m in Sources */,
-				84E212901DE88F5900CD99F4 /* LBB_ScenicMainViewController.m in Sources */,
-				84E213E51DE88F5A00CD99F4 /* UIView+SDAutoLayout.m in Sources */,
-				84E213B21DE88F5A00CD99F4 /* LBB_PublishTravel_Controller.m in Sources */,
-				84E2125D1DE88F5900CD99F4 /* LBB_GuiderUserHeaderCell.m in Sources */,
-				84E212EB1DE88F5900CD99F4 /* ChangePasswordViewController.m in Sources */,
-				84E213AA1DE88F5A00CD99F4 /* FZJSmallPhotoCell.m in Sources */,
-				84E2128B1DE88F5900CD99F4 /* LBB_ScenicTextTableViewCell.m in Sources */,
-				84E213C61DE88F5A00CD99F4 /* LBB_TravelDetailViewController.m in Sources */,
-				84E212531DE88F5900CD99F4 /* LBB_GuiderApplyLabelSelectView.m in Sources */,
-				84E213C41DE88F5A00CD99F4 /* LBB_TravelDetailHeadView.m in Sources */,
-				84E212D01DE88F5900CD99F4 /* LBB_SquareTravelModel.m in Sources */,
-				84E212861DE88F5900CD99F4 /* LBB_ScenicDetailPriceMsgCell.m in Sources */,
-				84E2125F1DE88F5900CD99F4 /* LBB_GuiderApplyResultViewController.m in Sources */,
-				84E212A51DE88F5900CD99F4 /* UILabel+Common.m in Sources */,
-				84E212BA1DE88F5900CD99F4 /* MineBaseViewController.m in Sources */,
-				84E212A81DE88F5900CD99F4 /* IConstants.m in Sources */,
-				84E212941DE88F5900CD99F4 /* LBB_HomeSearchKeyWordCell.m in Sources */,
-				84E213F51DE88F5A00CD99F4 /* LBB_UserShowViewModel.m in Sources */,
-				84E212601DE88F5900CD99F4 /* LBB_GuiderApplyViewController.m in Sources */,
-				84E2124B1DE88F5900CD99F4 /* LBB_DiscoveryDetailMsgCell.m in Sources */,
-				84E213CA1DE88F5A00CD99F4 /* PraiseModel.m in Sources */,
-				84E213C21DE88F5A00CD99F4 /* LBB_ToolsBtnView.m in Sources */,
-				84E212BD1DE88F5900CD99F4 /* LBB_MyFavoriteSquareViewController.m in Sources */,
-				84E212BE1DE88F5900CD99F4 /* LBB_FightGroupViewController.m in Sources */,
-				84E212A61DE88F5900CD99F4 /* LBB_PoohCoreLocationManager.m in Sources */,
-				84E2133C1DE88F5A00CD99F4 /* LBB_ZJMPhotoList.m in Sources */,
-				84E212661DE88F5900CD99F4 /* LBB_LabelDetailHotCell.m in Sources */,
 				C9C0E9511D9948F100575A7C /* main.m in Sources */,
 				1DECED031DE890C700E99098 /* LBB_ImagePick_ViewController.m in Sources */,
 				1DECED5A1DE890C700E99098 /* LBB_SquareDetailViewModel.m in Sources */,
