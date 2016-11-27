@@ -73,7 +73,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 
 -(void)initViewModel{
     WS(ws);
-    [self.spotModel getSpotDetailsData];
+    [self.spotModel getSpotDetailsData:YES];
     [self.spotModel.spotDetails.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];//data reload
     }];
@@ -82,7 +82,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.tableView.mj_header endRefreshing];
         
-        [ws.spotModel getSpotDetailsData];
+        [ws.spotModel getSpotDetailsData:YES];
         
     } footerRefreshDatablock:^{
        // [ws.tableView.mj_footer endRefreshing];

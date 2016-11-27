@@ -24,7 +24,10 @@
 
 #import "LBB_PoohMyFavoriteViewController.h"
 
-
+//pooh test
+#import "LBB_SquareTravelListViewModel.h"
+#import "LBB_PublishUgcViewModel.h"
+#import "LBB_TravelDraftViewModel.h"
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -36,6 +39,11 @@
 
 @property(nonatomic, retain)LBB_HomeViewModel* viewModel;//数据模型
 
+
+//test
+@property(nonatomic, retain)LBB_TravelDraftViewModel* m1;
+
+
 @end
 
 @implementation ST_HomeViewController
@@ -43,6 +51,67 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    [self testModel];
+
+}
+
+-(void)testModel{
+
+    TravelNotesDetails* ob = [[TravelNotesDetails alloc] init];
+    
+    [ob saveTravelTrackData:YES block:^(NSError* error){
+    
+    }];
+    
+    /*
+    LBB_TravelDraftViewModel* m1 = [[LBB_TravelDraftViewModel alloc] init];
+    self.m1 = m1;
+    [m1 getTravelDraftData];
+    WS(ws);
+    [m1.travelDraftModel.loadSupport setDataRefreshblock:^{
+        
+        [ws.m1 publicTravelDraftData:^(NSError* error){
+        
+        }];
+    }];
+     */
+    
+ /*   LBB_SquareTravelListViewModel* m1 = [[LBB_SquareTravelListViewModel alloc] init];
+    self.m1 = m1;
+    [m1 getSquareTravelList:YES];
+   
+    WS(ws);
+    [self.m1.squareTravelArray.loadSupport setDataRefreshblock:^{
+
+        BN_SquareTravelList* obj = ws.m1.squareTravelArray[0];
+        [obj getTravelDetailModel];
+        __weak BN_SquareTravelList* objBlock = obj;
+        [obj.travelDetailModel.loadSupport setDataRefreshblock:^{
+        
+            [objBlock.travelDetailModel getTravelBilllModel];
+            
+            [objBlock.travelDetailModel.travelBillModel.loadSupport setDataRefreshblock:^{
+                
+                BN_SquareTravelNotesconsumeDetails* obj = objBlock.travelDetailModel.travelBillModel.consumeDetails[0];//取得detail数据
+                obj.parentArray = objBlock.travelDetailModel.travelBillModel.consumeDetails;
+                NSLog(@"obj.parentArray:%d",obj.parentArray.count);
+
+                [obj deleteSquareTravelNotesConsumeDetails:^(NSError* error){
+                
+                    NSLog(@"deleteSquareTravelNotesConsumeDetails clock:%d",obj.parentArray.count);
+                    
+                }];
+                
+            }];
+            
+        }];
+    
+    }];*/
 }
 
 - (void)viewWillAppear:(BOOL)animated
