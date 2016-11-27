@@ -492,6 +492,7 @@
 		844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */; };
 		844065D01DEAC7D300164DED /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CF1DEAC7D300164DED /* libz.tbd */; };
 		844065D31DEACFA500164DED /* LBB_PointViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 844065D21DEACFA500164DED /* LBB_PointViewModel.m */; };
+		84EA08FD1DEB222600270C8C /* LBB_PoohMyFavoriteViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA08FC1DEB222600270C8C /* LBB_PoohMyFavoriteViewModel.m */; };
 		84F6B8141DC6E277009ED8DF /* (null) in Sources */ = {isa = PBXBuildFile; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
@@ -1350,6 +1351,8 @@
 		844065CF1DEAC7D300164DED /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		844065D11DEACFA500164DED /* LBB_PointViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PointViewModel.h; sourceTree = "<group>"; };
 		844065D21DEACFA500164DED /* LBB_PointViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PointViewModel.m; sourceTree = "<group>"; };
+		84EA08FB1DEB222600270C8C /* LBB_PoohMyFavoriteViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohMyFavoriteViewModel.h; sourceTree = "<group>"; };
+		84EA08FC1DEB222600270C8C /* LBB_PoohMyFavoriteViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohMyFavoriteViewModel.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -1807,6 +1810,7 @@
 		1D003EBA1DE9EE8200F40B65 /* MyFavorite */ = {
 			isa = PBXGroup;
 			children = (
+				84EA08FA1DEB220B00270C8C /* viewModel */,
 				1D003EBB1DE9EE8200F40B65 /* View */,
 				1D003EC01DE9EE8200F40B65 /* ViewController */,
 			);
@@ -4582,6 +4586,15 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
+		84EA08FA1DEB220B00270C8C /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				84EA08FB1DEB222600270C8C /* LBB_PoohMyFavoriteViewModel.h */,
+				84EA08FC1DEB222600270C8C /* LBB_PoohMyFavoriteViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		C9C0E9431D9948F100575A7C = {
 			isa = PBXGroup;
 			children = (
@@ -5182,6 +5195,7 @@
 				1D0043191DE9EE8400F40B65 /* LBB_PromotionsViewCell.m in Sources */,
 				1D0043001DE9EE8400F40B65 /* ST_HomeViewController.m in Sources */,
 				1D0043571DE9EE8400F40B65 /* SetingSwitchBaseViewController.m in Sources */,
+				84EA08FD1DEB222600270C8C /* LBB_PoohMyFavoriteViewModel.m in Sources */,
 				1D0043F41DE9EE8400F40B65 /* ZYCameraViewComtroller.m in Sources */,
 				1D0042AB1DE9EE8400F40B65 /* LBB_GuiderUserFunsListCell.m in Sources */,
 				1D0042BC1DE9EE8400F40B65 /* LBB_PoohMyFavoriteViewController.m in Sources */,
