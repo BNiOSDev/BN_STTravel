@@ -80,13 +80,14 @@
     pinBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - deleteBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     pinBtn.titleLabel.font = FONT(AUTO(11.0));
     [pinBtn setTitleColor:[UIColor grayColor] forState:0];
-    [pinBtn setImage:IMAGE(@"zjmcomment") forState:0];
+    [pinBtn setImage:IMAGE(@"我的_评论") forState:0];
     [self addSubview:pinBtn];
     
     zanBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - pinBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     zanBtn.titleLabel.font = FONT(AUTO(11.0));
     [zanBtn setTitleColor:[UIColor grayColor] forState:0];
-    [zanBtn setImage:IMAGE(@"zjmdianzan") forState:0];
+    [zanBtn setImage:IMAGE(@"我的_点赞") forState:UIControlStateNormal];
+    [zanBtn setImage:IMAGE(@"我的_点赞_点击后") forState:UIControlStateSelected];
     [self addSubview:zanBtn];
     
     //屏蔽两个按钮可以同时被点击
@@ -113,16 +114,17 @@
    
     [pinBtn setTitle:pinTitle forState:0];
     pinBtn.width = [self getWidthWithContent:pinTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    pinBtn.left = self.width - deleteBtn.width - 10 - deleteWidth;
+    pinBtn.left = deleteBtn.left - pinBtn.width - 10;
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
     NSString *zanTitle = getNumTitleStr(_model.totalLike);
     [zanBtn setTitle:zanTitle forState:0];
     zanBtn.width = [self getWidthWithContent:zanTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    zanBtn.left = self.width - deleteBtn.width - pinBtn.width - 10 - deleteWidth;
+    zanBtn.left = pinBtn.left - pinBtn.width - 10;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    zanBtn.selected = _model.isLiked;
 }
  
 - (void)setSquareType:(MySquareViewType)squareType
@@ -166,11 +168,8 @@
 
 - (CGFloat)getWidthWithContent:(NSString *)content height:(CGFloat)height font:(CGFloat)font{
     
-    CGRect rect = [content boundingRectWithSize:CGSizeMake(999, height)
-                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                     attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]}
-                                        context:nil];
-    return rect.size.width;
+    CGSize size = sizeOfString(content, CGSizeMake(9999, 35.f), [UIFont systemFontOfSize:font]);
+    return size.width;
 }
 
 @end

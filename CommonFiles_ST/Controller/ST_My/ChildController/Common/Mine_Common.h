@@ -11,6 +11,7 @@
 
 #import "UIImageView+WebCache.h"
 #import "LBB_MyComomFun.h"
+#import "CommonFunc.h"
 
 #define TextEnvironment  1
 //屏幕适配

@@ -166,7 +166,7 @@
         case UICollectionViewCellHeart://爱心
         {
             
-            [travelModel like];
+            [travelModel collect];
         }
             break;
         case UICollectionViewCellDelete://删除

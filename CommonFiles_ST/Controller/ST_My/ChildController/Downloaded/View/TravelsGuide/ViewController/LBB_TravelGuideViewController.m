@@ -129,10 +129,26 @@
 - (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject
 {
     NSLog(@"indexPath = %ld",(long)indexPath.row);
+    LBB_TravelGuideModel *travelGuideModel = (LBB_TravelGuideModel*)infoObject;
+    
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (LBB_TravelGuideModel *) weakTravelModel = travelGuideModel;
+    
+    [travelGuideModel.loadSupport setDataRefreshblock:^{
+        [weakSelf.mTableView reloadData];
+    }];
+    
+    [travelGuideModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+        if (remak && [remak length]) {
+            [weakSelf showHudPrompt:remak];
+        }
+    }];
+
+    
     switch (signel) {
         case UICollectionViewCellPraise://赞
         {
-            
+            [travelGuideModel like];
         }
             break;
         case UICollectionViewCellComment://评论
@@ -143,19 +159,10 @@
             break;
         case UICollectionViewCellHeart://爱心
         {
-            
+            [travelGuideModel collect];
         }
             break;
-        case UICollectionViewCellDelete://删除
-        {
             
-        }
-            break;
-        case UICollectionViewCellCollection://收藏
-        {
-            
-        }
-            break;
         default:
             break;
     }

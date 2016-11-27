@@ -23,6 +23,17 @@
 @property (nonatomic, assign) int     commentsNum;//评论条数
 @property (nonatomic, assign) int     collecteNum;//收藏次数
 
+/**
+ *3.1.4 收藏(已测)
+ */
+- (void)collect;
+
+/**
+ *3.1.5 点赞(已测)
+ */
+- (void)like;
+
+
 @end
 
 @interface LBB_TravelGuideViewModelModel : BN_BaseDataModel

@@ -10,6 +10,91 @@
 
 @implementation LBB_TravelGuideModel
 
+/**
+ *3.1.4 收藏(已测)
+ */
+//allSpotsType	Int	1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记 8用户头像 9足迹  10 线路攻略11 美食专题 12民宿专题 13景点专题
+
+- (void)collect
+{
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
+    
+    NSDictionary *parames = @{
+                              @"allSpotsId":@(self.lineId),
+                              @"allSpotsType" :@(7)
+                              };
+    
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSDictionary *result = [dic objectForKey:@"result"];
+            int collecteState = [[result objectForKey:@"collecteState"] intValue];
+            if (weakSelf.isCollected == 1 && collecteState == 0 ) {
+                weakSelf.collecteNum -= 1;
+            }else {
+                weakSelf.collecteNum += 1;
+            }
+
+            weakSelf.isCollected = collecteState;
+            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            weakSelf.loadSupport.netRemark = errorStr;
+            weakSelf.loadSupport.loadFailEvent =  codeNumber.intValue;
+        }
+        
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
+/**
+ *3.1.5 点赞(已测)
+ */
+//allSpotsType	Int	1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记 8用户头像 9足迹  10 线路攻略11 美食专题 12民宿专题 13景点专题
+- (void)like
+{
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/like",BASEURL];
+    
+    NSDictionary *parames = @{
+                              @"allSpotsId":@(self.lineId),
+                              @"allSpotsType" :@(7)
+                              };
+    
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSDictionary *result = [dic objectForKey:@"result"];
+            int likedState = [[result objectForKey:@"likedState"] intValue];
+            if (weakSelf.isLiked == 1 && likedState == 0 ) {
+                weakSelf.likeNum -= 1;
+            }else {
+                weakSelf.likeNum += 1;
+            }
+            weakSelf.isLiked = likedState;
+            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            weakSelf.loadSupport.netRemark = errorStr;
+            weakSelf.loadSupport.loadFailEvent =  codeNumber.intValue;
+        }
+        
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
+
 @end
 
 @implementation LBB_TravelGuideViewModelModel

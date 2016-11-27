@@ -74,20 +74,22 @@
     heartBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - deleteBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     heartBtn.titleLabel.font = FONT(AUTO(11.0));
     [heartBtn setTitleColor:[UIColor grayColor] forState:0];
-    [heartBtn setImage:IMAGE(@"zjmlittlecollect_no") forState:0];
+    [heartBtn setImage:IMAGE(@"我的_小收藏") forState:UIControlStateNormal];
+    [heartBtn setImage:IMAGE(@"我的_小收藏-点击后") forState:UIControlStateSelected];
     [self addSubview:heartBtn];
     
     pinBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - heartBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     pinBtn.titleLabel.font = FONT(AUTO(11.0));
     [pinBtn setTitleColor:[UIColor grayColor] forState:0];
-    [pinBtn setImage:IMAGE(@"zjmcomment") forState:0];
+    [pinBtn setImage:IMAGE(@"我的_评论") forState:0];
     [self addSubview:pinBtn];
     
     zanBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - pinBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     zanBtn.titleLabel.font = FONT(AUTO(11.0));
     [zanBtn setTitleColor:[UIColor grayColor] forState:0];
-    [zanBtn setImage:IMAGE(@"zjmdianzan") forState:0];
-    [self addSubview:zanBtn];   
+    [zanBtn setImage:IMAGE(@"我的_点赞") forState:UIControlStateNormal];
+    [zanBtn setImage:IMAGE(@"我的_点赞_点击后") forState:UIControlStateSelected];
+    [self addSubview:zanBtn];
     
     //屏蔽两个按钮可以同时被点击
     deleteBtn.exclusiveTouch = YES;
@@ -161,6 +163,8 @@
     timeLabel.text = [NSString stringWithFormat:@"%@  %@   %@",model.releaseDate,@(model.dayCount),@(model.totalCollected)];
     
     CGFloat deleteWidth = 0.f;
+    CGFloat interval = 15.f;
+    
     collecdtionBtn.selected = _model.isCollected;
     [collecdtionBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -176,23 +180,25 @@
     NSString *heartTitle = getNumTitleStr(_model.totalCollected);
     [heartBtn setTitle:heartTitle forState:0];
     heartBtn.width = [self getWidthWithContent:heartTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    heartBtn.left = DeviceWidth - 10 - heartBtn.width - deleteWidth;
+    heartBtn.left = DeviceWidth - interval - heartBtn.width - deleteWidth;
     [heartBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [heartBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
+    heartBtn.selected = _model.isCollected;
     
     NSString *pinTitle = getNumTitleStr(_model.totalComment);
     [pinBtn setTitle:pinTitle forState:0];
     pinBtn.width = [self getWidthWithContent:pinTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    pinBtn.left = DeviceWidth - heartBtn.width - pinBtn.width  - 10 - deleteWidth;
+    pinBtn.left = heartBtn.left - pinBtn.width  - interval;
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
     NSString *zanTitle = getNumTitleStr(_model.totalLike);
     [zanBtn setTitle:zanTitle forState:0];
     zanBtn.width = [self getWidthWithContent:zanTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    zanBtn.left = DeviceWidth - pinBtn.width - heartBtn.width - zanBtn.width  - 10 - deleteWidth;
+    zanBtn.left = pinBtn.left - heartBtn.width - interval;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    zanBtn.selected = _model.isLiked;
     
 }
 
@@ -204,6 +210,8 @@
 //    timeLabel.text = [NSString stringWithFormat:@"%@  %@   %@",_guideModel.releaseDate,@(_guideModel.dayCount),@(_guideModel.totalCollected)];
     
     CGFloat deleteWidth = 0.f;
+    CGFloat interval = 15.f;
+    
     collecdtionBtn.selected = _guideModel.isCollected;
     [collecdtionBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     deleteBtn.left = DeviceWidth - 10 - deleteBtn.width;
@@ -218,21 +226,21 @@
     NSString *heartTitle = getNumTitleStr(_guideModel.collecteNum);
     [heartBtn setTitle:heartTitle forState:0];
     heartBtn.width = [self getWidthWithContent:heartTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    heartBtn.left = DeviceWidth - 10 - heartBtn.width - deleteWidth;
+    heartBtn.left = DeviceWidth - interval - heartBtn.width - deleteWidth;
     [heartBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [heartBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
     NSString *pinTitle = getNumTitleStr(_guideModel.commentsNum);
     [pinBtn setTitle:pinTitle forState:0];
     pinBtn.width = [self getWidthWithContent:pinTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    pinBtn.left = DeviceWidth - heartBtn.width - pinBtn.width  - 10 - deleteWidth;
+    pinBtn.left = heartBtn.left - pinBtn.width  - interval ;
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
     NSString *zanTitle = getNumTitleStr(_guideModel.likeNum);
     [zanBtn setTitle:zanTitle forState:0];
     zanBtn.width = [self getWidthWithContent:zanTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    zanBtn.left = DeviceWidth - pinBtn.width - heartBtn.width - zanBtn.width  - 10 - deleteWidth;
+    zanBtn.left = pinBtn.left - zanBtn.width  - interval ;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
 }
@@ -273,11 +281,8 @@
 
 - (CGFloat)getWidthWithContent:(NSString *)content height:(CGFloat)height font:(CGFloat)font{
     
-    CGRect rect = [content boundingRectWithSize:CGSizeMake(999, height)
-                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                     attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]}
-                                        context:nil];
-    return rect.size.width;
+    CGSize size = sizeOfString(content, CGSizeMake(9999, 35.f), [UIFont systemFontOfSize:font]);
+    return size.width;
 }
 
 @end
