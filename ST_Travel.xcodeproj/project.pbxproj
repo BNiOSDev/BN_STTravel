@@ -287,7 +287,6 @@
 		84EA0EAB1DEB2C2A00270C8C /* IMG_0849.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 84EA0C081DEB2C2900270C8C /* IMG_0849.JPG */; };
 		84EA0EAC1DEB2C2A00270C8C /* MineStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84EA0C091DEB2C2900270C8C /* MineStoryboard.storyboard */; };
 		84EA0EAD1DEB2C2A00270C8C /* LBB_MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA0C0C1DEB2C2900270C8C /* LBB_MineModel.m */; };
-		84EA0EAE1DEB2C2A00270C8C /* LBB_MineViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA0C0E1DEB2C2900270C8C /* LBB_MineViewModel.m */; };
 		84EA0EAF1DEB2C2A00270C8C /* LBB_MineViewDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA0C111DEB2C2900270C8C /* LBB_MineViewDataController.m */; };
 		84EA0EB01DEB2C2A00270C8C /* LBB_MySectionFooterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EA0C141DEB2C2900270C8C /* LBB_MySectionFooterViewCell.m */; };
 		84EA0EB11DEB2C2A00270C8C /* LBB_MySectionFooterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EA0C151DEB2C2900270C8C /* LBB_MySectionFooterViewCell.xib */; };
@@ -1035,8 +1034,6 @@
 		84EA0C091DEB2C2900270C8C /* MineStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MineStoryboard.storyboard; sourceTree = "<group>"; };
 		84EA0C0B1DEB2C2900270C8C /* LBB_MineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MineModel.h; sourceTree = "<group>"; };
 		84EA0C0C1DEB2C2900270C8C /* LBB_MineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MineModel.m; sourceTree = "<group>"; };
-		84EA0C0D1DEB2C2900270C8C /* LBB_MineViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MineViewModel.h; sourceTree = "<group>"; };
-		84EA0C0E1DEB2C2900270C8C /* LBB_MineViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MineViewModel.m; sourceTree = "<group>"; };
 		84EA0C101DEB2C2900270C8C /* LBB_MineViewDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MineViewDataController.h; sourceTree = "<group>"; };
 		84EA0C111DEB2C2900270C8C /* LBB_MineViewDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MineViewDataController.m; sourceTree = "<group>"; };
 		84EA0C131DEB2C2900270C8C /* LBB_MySectionFooterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MySectionFooterViewCell.h; sourceTree = "<group>"; };
@@ -2298,7 +2295,6 @@
 				84EA0C0F1DEB2C2900270C8C /* ModelController */,
 				84EA0C121DEB2C2900270C8C /* View */,
 				84EA0C1F1DEB2C2900270C8C /* ViewController */,
-				84EA0C221DEB2C2900270C8C /* ViewModel */,
 			);
 			path = ST_My;
 			sourceTree = "<group>";
@@ -2356,25 +2352,9 @@
 		84EA0A6D1DEB2C2900270C8C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				84EA0A6E1DEB2C2900270C8C /* DownloadTravels */,
 				84EA0A701DEB2C2900270C8C /* TravelsGuide */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		84EA0A6E1DEB2C2900270C8C /* DownloadTravels */ = {
-			isa = PBXGroup;
-			children = (
-				84EA0A6F1DEB2C2900270C8C /* Model */,
-			);
-			path = DownloadTravels;
-			sourceTree = "<group>";
-		};
-		84EA0A6F1DEB2C2900270C8C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		84EA0A701DEB2C2900270C8C /* TravelsGuide */ = {
@@ -4184,8 +4164,6 @@
 			children = (
 				84EA0C0B1DEB2C2900270C8C /* LBB_MineModel.h */,
 				84EA0C0C1DEB2C2900270C8C /* LBB_MineModel.m */,
-				84EA0C0D1DEB2C2900270C8C /* LBB_MineViewModel.h */,
-				84EA0C0E1DEB2C2900270C8C /* LBB_MineViewModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4225,13 +4203,6 @@
 				84EA0C211DEB2C2900270C8C /* MineViewController.m */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		84EA0C221DEB2C2900270C8C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		84EA0C231DEB2C2900270C8C /* ST_Square */ = {
@@ -5858,7 +5829,6 @@
 				84EA0DDC1DEB2C2A00270C8C /* LBB_HostelMainViewController.m in Sources */,
 				84EA0E931DEB2C2A00270C8C /* LBB_TicketCommentViewController.m in Sources */,
 				84EA0DF01DEB2C2A00270C8C /* LBB_OrderTicketConfirmCell.m in Sources */,
-				84EA0EAE1DEB2C2A00270C8C /* LBB_MineViewModel.m in Sources */,
 				84EA0DAD1DEB2C2A00270C8C /* LBB_FilterTableViewCell.m in Sources */,
 				84EA0EBC1DEB2C2A00270C8C /* LBB_EditShopRecoder_Controller.m in Sources */,
 				84EA0E2E1DEB2C2A00270C8C /* ST_TabBarController.m in Sources */,

@@ -57,6 +57,6 @@
 /**
  3.5.2 我的-首页修改封面（已测）
  */
-- (void)updateCover:(NSString*)coverURL;
+- (void)updateCover:(UIImage*)coverImage;
 
 @end

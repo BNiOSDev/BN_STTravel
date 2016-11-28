@@ -55,7 +55,7 @@
 
 - (void)createTable
 {
-    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:0];
+    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
     _mTableView.height = _mTableView.height - TopSegmmentControlHeight - 64;
     if(self.travelviewType == MyTravelsViewFravorite) {
         _mTableView.height = DeviceHeight - 64;

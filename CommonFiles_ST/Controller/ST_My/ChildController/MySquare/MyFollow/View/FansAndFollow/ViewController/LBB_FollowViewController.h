@@ -7,8 +7,14 @@
 //
 
 #import "MineBaseViewController.h"
-
+typedef NS_ENUM(NSInteger, FollowViewType)
+{
+    eFanFollowType = 1, //我的-广场 粉丝列表
+    eSquareFollowType = 2, //3.5.9 我的-广场 关注列表
+};
 
 @interface LBB_FollowViewController : MineBaseViewController
+
+@property(nonatomic,assign) FollowViewType followType;
 
 @end

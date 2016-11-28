@@ -51,32 +51,46 @@
 /**
  3.5.24 我的-头像修改 （已测）
  */
-- (void)updateUserPicture:(NSString*)imageUrl
+- (void)updateUserPicture:(UIImage*)pictureImage
 {
-    NSString *url = [NSString stringWithFormat:@"%@/mime/userPicUrl/update",BASEURL];
-    self.loadSupport.loadEvent = NetLoadingEvent;
-    if (!imageUrl || [imageUrl length] == 0) {
+    if (!pictureImage) {
         return;
     }
-    NSMutableDictionary *parames = [[NSMutableDictionary alloc] init];
-    [parames setObject:imageUrl forKey:@"userPicUrl"];
-    __weak typeof(self) weakSelf = self;
-    [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
-        NSDictionary *dic = (NSDictionary*)responseObject;
-        NSNumber *codeNumber = [dic objectForKey:@"code"];
-        NSString *remark = [dic objectForKey:@"remark"];
-        NSLog(@"responseObject = %@",responseObject);
-        if(codeNumber.intValue == 0)
-        {
-            weakSelf.userPicUrl = imageUrl;
-            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
-        }else{
-            weakSelf.loadSupport.netRemark = remark;
-            weakSelf.loadSupport.loadFailEvent = codeNumber.intValue;
+    
+    [[BC_ToolRequest sharedManager] uploadfile:@[pictureImage] block:^(NSArray *files, NSError *error){
+        if (!error && [files count]) {
+            
+            NSString *qiniuImageURL = [files firstObject];
+            
+            if (!qiniuImageURL || [qiniuImageURL length] == 0) {
+                return;
+            }
+            
+            NSString *url = [NSString stringWithFormat:@"%@/mime/userPicUrl/update",BASEURL];
+            self.loadSupport.loadEvent = NetLoadingEvent;
+            if (!qiniuImageURL || [qiniuImageURL length] == 0) {
+                return;
+            }
+            NSMutableDictionary *parames = [[NSMutableDictionary alloc] init];
+            [parames setObject:qiniuImageURL forKey:@"userPicUrl"];
+           
+            [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+                NSDictionary *dic = (NSDictionary*)responseObject;
+                NSNumber *codeNumber = [dic objectForKey:@"code"];
+                NSString *remark = [dic objectForKey:@"remark"];
+                NSLog(@"responseObject = %@",responseObject);
+                if(codeNumber.intValue == 0)
+                {
+                    [self getPersonInfo];
+                }else{
+                    self.loadSupport.netRemark = remark;
+                    self.loadSupport.loadFailEvent = codeNumber.intValue;
+                }
+                
+            } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+                self.loadSupport.loadEvent = NetLoadFailedEvent;
+            }];
         }
-
-    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-           weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
 

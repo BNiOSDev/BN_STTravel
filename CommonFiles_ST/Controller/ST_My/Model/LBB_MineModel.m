@@ -392,34 +392,44 @@
 /**
  3.5.2 我的-首页修改封面（已测）
  */
-- (void)updateCover:(NSString*)coverURL
+- (void)updateCover:(UIImage*)coverImage
 {
-    NSString *url = [NSString stringWithFormat:@"%@/mime/cover/update",BASEURL];
-    if (!coverURL || [coverURL length] == 0) {
+    if (!coverImage) {
         return;
     }
     
-    NSMutableDictionary *parames = [NSMutableDictionary dictionaryWithCapacity:0];
-    [parames setObject:coverURL forKey:@"coverImageUrl"];
-    
-    __weak typeof(self) weakSelf = self;
-    [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
-        NSDictionary *dic = (NSDictionary*)responseObject;
-        NSNumber *codeNumber = [dic objectForKey:@"code"];
-        NSLog(@"responseObject = %@",responseObject);
-        NSString *remark = [dic objectForKey:@"remark"];
-        if(codeNumber.intValue == 0)
-        {
-            weakSelf.coverImageUrl = coverURL;
-            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
-        }else {
-            weakSelf.loadSupport.netRemark = remark;
-            weakSelf.loadSupport.loadFailEvent = codeNumber.intValue;
+    [[BC_ToolRequest sharedManager] uploadfile:@[coverImage] block:^(NSArray *files, NSError *error){
+        if (!error && [files count]) {
+
+            NSString *qiniuCoverURL = [files firstObject];
+            
+            NSString *url = [NSString stringWithFormat:@"%@/mime/cover/update",BASEURL];
+            if (!qiniuCoverURL || [qiniuCoverURL length] == 0) {
+                return;
+            }
+            
+            NSMutableDictionary *parames = [NSMutableDictionary dictionaryWithCapacity:0];
+            [parames setObject:qiniuCoverURL forKey:@"coverImageUrl"];
+            
+            [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+                NSDictionary *dic = (NSDictionary*)responseObject;
+                NSNumber *codeNumber = [dic objectForKey:@"code"];
+                NSLog(@"responseObject = %@",responseObject);
+                NSString *remark = [dic objectForKey:@"remark"];
+                if(codeNumber.intValue == 0)
+                {
+                    [self getMineInfo];
+                }else {
+                    self.loadSupport.netRemark = remark;
+                    self.loadSupport.loadFailEvent = codeNumber.intValue;
+                }
+                
+            } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+                self.loadSupport.loadEvent = NetLoadFailedEvent;
+            }];
         }
-        
-    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
+    
 }
 
 @end
