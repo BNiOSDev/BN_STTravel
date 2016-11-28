@@ -31,7 +31,7 @@
 /**
 3.5.24 我的-头像修改 （已测）
  */
-- (void)updateUserPicture:(NSString*)imageUrl;
+- (void)updateUserPicture:(UIImage*)pictureImage;
 
 /**
  3.5.25 我的-用户名修改（已测）

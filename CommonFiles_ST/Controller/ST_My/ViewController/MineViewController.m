@@ -35,6 +35,8 @@ LBB_MySectionHeadViewDelegate
 
 @property (strong, nonatomic) IBOutlet LBB_MineViewDataController *dataController;
 @property (strong,nonatomic) LBB_ImagePickerViewController *imagePicker;
+@property (nonatomic,assign) BOOL isSeletePhoto;
+
 @end
 
 @implementation MineViewController
@@ -54,7 +56,10 @@ LBB_MySectionHeadViewDelegate
 - (void)viewWillAppear:(BOOL)animated
 {
    [super viewWillAppear:animated];
-    [self.dataController initDataSource];
+    if (!self.isSeletePhoto) {
+        [self.dataController initDataSource];
+    }
+    self.isSeletePhoto = NO;
    [self setNavigationBarHidden:YES];
 }
     
@@ -123,6 +128,7 @@ LBB_MySectionHeadViewDelegate
     
     __weak typeof (self) weakSelf = self;
     [self.imagePicker showPicker:^(UIImage *resultImage){
+        weakSelf.isSeletePhoto = YES;
         [weakSelf.dataController replaceUserHeadImage:resultImage];
     }];
 }
