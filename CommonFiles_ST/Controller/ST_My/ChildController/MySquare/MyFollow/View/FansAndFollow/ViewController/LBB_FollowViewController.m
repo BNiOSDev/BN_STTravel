@@ -18,11 +18,16 @@
 @interface LBB_FollowViewController ()
 <UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong)UITableView    *mTableView;
-@property(nonatomic, strong)NSMutableArray   *dataArray;
+@property(nonatomic, strong)LBB_FollowViewModel *viewModel;
 
 @end
 
 @implementation LBB_FollowViewController
+
+- (void)dealloc
+{
+    self.viewModel = nil;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -32,18 +37,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _dataArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 9; i++) {
-        LBB_FollowModel  *model = [[LBB_FollowModel alloc]init];
-        model.userImageURL = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.userName = @"钟爱SD的男人钟";
-        model.userSignature = @"开启说走就走的旅行吧";
-        model.certified = (i%2) ? YES: NO;
-        model.lvLevel = 99;
-        model.isFollow = (i%2) ? NO: YES;
-        [_dataArray addObject:model];
-    }
     [self createTable];
+    [self initDataSource];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,7 +48,7 @@
 
 - (void)createTable
 {
-    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:0];
+    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
     _mTableView.height = _mTableView.height - 40 - 64;
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
@@ -64,6 +59,31 @@
     
     [self.view  addSubview:_mTableView];
     
+}
+- (void)initDataSource
+{
+    if (!self.viewModel) {
+        self.viewModel = [[LBB_FollowViewModel alloc] init];
+    }
+    __weak typeof (self) weakSelf = self;
+    [self.mTableView setHeaderRefreshDatablock:^{
+        [weakSelf.viewModel getDataList:weakSelf.followType IsClear:YES];
+    } footerRefreshDatablock:^{
+        [weakSelf.viewModel getDataList:weakSelf.followType IsClear:YES];
+    }];
+    
+    //设置绑定数组
+    [self.mTableView setTableViewData:self.viewModel.dataArray];
+    
+    
+    [self.viewModel.dataArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.mTableView loadData:self.viewModel.dataArray];
+    
+    //刷新数据
+    [weakSelf.viewModel getDataList:weakSelf.followType IsClear:YES];
 }
 
 #pragma mark - tableview delegate
@@ -76,7 +96,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return [tableView fd_heightForCellWithIdentifier:FllowTableViewCell configuration:^(LBB_FollowViewCell *cell) {
-        cell.model = self.dataArray[indexPath.row];
+        if (indexPath.row < self.viewModel.dataArray.count) {
+            cell.model = self.viewModel.dataArray[indexPath.row];
+        } 
     }];
 }
 
@@ -87,7 +109,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 { 
-    return self.dataArray.count;
+    return self.viewModel.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -96,8 +118,10 @@
    
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
+    if (indexPath.row < self.viewModel.dataArray.count) {
+        cell.model = self.viewModel.dataArray[indexPath.row];
+    }
     
-    cell.model = self.dataArray[indexPath.row];
     return cell;
 }
 

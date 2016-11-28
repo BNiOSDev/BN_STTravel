@@ -52,7 +52,7 @@
 
 - (void)createTable
 {
-    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:0];
+    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
     _mTableView.height = _mTableView.height - 40 - 64;
     _mTableView.delegate = self;
     _mTableView.dataSource = self;

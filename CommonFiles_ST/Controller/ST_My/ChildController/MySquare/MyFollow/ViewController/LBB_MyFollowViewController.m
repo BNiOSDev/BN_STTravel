@@ -112,9 +112,11 @@
     [self addChildViewController:self.chatVC];
     
     self.fansVC = [[LBB_FollowViewController alloc]init];
+    self.fansVC.followType = eFanFollowType;
     [self addChildViewController:self.fansVC];
 
     self.followVC = [[LBB_FollowViewController alloc]init];
+    self.followVC.followType = eSquareFollowType;
     [self addChildViewController:self.followVC];
 }
 
