@@ -24,7 +24,7 @@
  */
 -(void)getTravelDraftData{
     
-    NSString *url = [NSString stringWithFormat:@"%@/square/travelNotes/view",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/square/travelNotes/edit",BASEURL];
     __weak typeof(self) temp = self;
     self.travelDraftModel.loadSupport.loadEvent = NetLoadingEvent;
     

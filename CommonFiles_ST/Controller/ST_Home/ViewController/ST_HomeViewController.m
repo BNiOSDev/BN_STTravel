@@ -28,6 +28,7 @@
 #import "LBB_SquareTravelListViewModel.h"
 #import "LBB_PublishUgcViewModel.h"
 #import "LBB_TravelDraftViewModel.h"
+#import "LBB_SquareAddressViewModel.h"
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -42,7 +43,7 @@
 
 //test
 @property(nonatomic, retain)LBB_TravelDraftViewModel* m1;
-
+@property(nonatomic, retain)LBB_SquareAddressViewModel* add;
 
 @end
 
@@ -62,24 +63,49 @@
 
 -(void)testModel{
 
-    TravelNotesDetails* ob = [[TravelNotesDetails alloc] init];
+    WS(ws);
+  /*  LBB_SquareAddressViewModel* add = [[LBB_SquareAddressViewModel alloc] init];
+    self.add = add;
+    [add getsTravelNotesDetailAllSpotsType:1 name:@"" ClearData:YES];
+    [add.squareSpotsArray.loadSupport setDataRefreshblock:^{
+    
+        NSLog(@"getsTravelNotesDetailAllSpotsType 回调");
+        LBB_SpotAddress* obj1 = [ws.add.squareSpotsArray objectAtIndex:0];
+        
+        TravelNotesDetails* ob = [[TravelNotesDetails alloc] init];
+        obj1.longy = @"-1";
+        obj1.dimx = @"-1";
+        
+        [ob saveTravelTrackData:YES
+         address:obj1
+                          block:^(NSError* error){
+            
+        }];
+    }];
+    */
+    
+ /*   TravelNotesDetails* ob = [[TravelNotesDetails alloc] init];
     
     [ob saveTravelTrackData:YES block:^(NSError* error){
     
     }];
     
-    /*
+   */
+    
+    
     LBB_TravelDraftViewModel* m1 = [[LBB_TravelDraftViewModel alloc] init];
     self.m1 = m1;
     [m1 getTravelDraftData];
-    WS(ws);
     [m1.travelDraftModel.loadSupport setDataRefreshblock:^{
         
-        [ws.m1 publicTravelDraftData:^(NSError* error){
+        TravelNotesDetails* ob = [m1.travelDraftModel.travelNotesDetails objectAtIndex:0];
         
-        }];
+        [ob deleteTravelTrackData
+         :^(NSError* error){
+             
+         }];
     }];
-     */
+    
     
  /*   LBB_SquareTravelListViewModel* m1 = [[LBB_SquareTravelListViewModel alloc] init];
     self.m1 = m1;

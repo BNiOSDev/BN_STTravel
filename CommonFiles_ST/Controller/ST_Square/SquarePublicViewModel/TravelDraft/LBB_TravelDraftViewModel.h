@@ -20,17 +20,17 @@
 
 
 /**
- 3.4.21 主页-游记修改草稿保存（已测）
+ 3.4.22 主页-游记修改草稿保存（已测）
  */
 -(void)saveTravelDraftData:(void (^)(NSError *error))block;;
 
 /**
- 3.4.22 主页-游记删除（已测）
+ 3.4.23 主页-游记删除（已测）
  */
 -(void)deleteTravelDraftData:(void (^)(NSError *error))block;;
 
 /**
-3.4.23 主页-游记发布（已测）
+3.4.24 主页-游记发布（已测）
  */
 -(void)publicTravelDraftData:(void (^)(NSError *error))block;;
 

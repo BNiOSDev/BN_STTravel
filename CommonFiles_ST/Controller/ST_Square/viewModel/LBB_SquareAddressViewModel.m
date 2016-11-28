@@ -50,7 +50,7 @@
         {
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SpotAddress mj_objectArrayWithKeyValuesArray:array];
-            
+            NSLog(@"getsTravelNotesDetailAllSpotsType 成功:%@",array);
             if (clear == YES)
             {
                 [showArray_block removeAllObjects];

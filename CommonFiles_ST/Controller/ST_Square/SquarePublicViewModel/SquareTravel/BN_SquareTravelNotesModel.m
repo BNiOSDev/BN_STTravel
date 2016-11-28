@@ -30,16 +30,16 @@
         self.pics = [[NSArray alloc] init];
         self.picRemark = @"";//	String	图片描述
         self.picUrl = @"";
-        self.releaseDate = @"";//	String	发布日期
-        self.releaseTime = @"";//	String	发布时间
-        self.allSpotsTypeName = @"";;//	String	场景类型名称
+        self.releaseDate = @" 2016-11-15";//	String	发布日期
+        self.releaseTime = @"20:30";//	String	发布时间
+        self.allSpotsTypeName = @"";//	String	场景类型名称
         self.name = @"";;//	String	名称
-        self.longitude = @"";;//	String	经度
-        self.dimensionality = @"";;//	String	纬度
-        self.billAmount = @"0";;//	String	账单金额
+        self.longitude = @"-1";//	String	经度
+        self.dimensionality = @"-1";//	String	纬度
+        self.billAmount = @"0";//	String	账单金额
         self.consumptionType = 1;//	Int	消费类型 1 民宿 2 交通 3 美食 4 门票 5 娱乐 6 购物 7 其他
         self.consumptionDesc = @"";;//	String	消费描述
-        
+        self.allSpotsType = 1;//1美食 2 民宿 3 景点
     }
     return self;
 }
@@ -63,6 +63,7 @@
  @param block 结果回调
  */
 -(void)saveTravelTrackData:(BOOL)isAdd
+                   address:(LBB_SpotAddress*)spotAddress
                      block:(void (^)(NSError *error))block{
     NSDictionary *paraDic;
     NSMutableArray *picsArray = (NSMutableArray *)[self.pics map:^id(TravelNotesPics *element) {
@@ -80,11 +81,11 @@
                                   @"name":self.name,
                                   @"picUrl":self.picUrl,
                                   @"picRemark":self.picRemark,
-                                  @"longitude":self.longitude,
-                                  @"dimensionality":self.dimensionality,
+                                  @"longitude":spotAddress.longy,
+                                  @"dimensionality":spotAddress.dimx,
                                   @"billAmount":@([self.billAmount doubleValue]),
                                   @"allSpotsType":@(self.allSpotsType),
-                                  @"objId":@(self.objId),
+                                  @"objId":@(spotAddress.allSpotsId),
                                   @"consumptionType":@(self.consumptionType),
                                   @"consumptionDesc":self.consumptionDesc,
                                   @"pics":picsArray,
@@ -97,12 +98,12 @@
                                   @"releaseDate":self.releaseDate,
                                   @"name":self.name,
                                   @"picUrl":self.picUrl,
-                                  @"picRemark":self.picRemark,
-                                  @"longitude":self.longitude,
+                                  @"longitude":spotAddress.longy,
+                                  @"dimensionality":spotAddress.dimx,
                                   @"dimensionality":self.dimensionality,
                                   @"billAmount":@([self.billAmount doubleValue]),
                                   @"allSpotsType":@(self.allSpotsType),
-                                  @"objId":@(self.objId),
+                                  @"objId":@(spotAddress.allSpotsId),
                                   @"consumptionType":@(self.consumptionType),
                                   @"consumptionDesc":self.consumptionDesc,
                                   @"pics":picsArray,
@@ -111,10 +112,10 @@
     }
     
 
-    NSLog(@"paraDic:%@",paraDic);
+    NSLog(@"saveTravelTrackData paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/square/travelNotesDetail/save",BASEURL];
     
-    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
@@ -137,6 +138,50 @@
         
         block(error);
     }];
+}
+
+
+/**
+ 3.4.26 主页-足记删除（已测）
+ 
+ @param block 结果回调
+ */
+-(void)deleteTravelTrackData:(void (^)(NSError *error))block{
+
+    NSDictionary *paraDic = @{
+                              @"travelNotesDetailId":@(self.travelNotesDetailId),
+                    };
+    
+
+    
+    
+    NSLog(@"deleteTravelTrackData paraDic:%@",paraDic);
+    NSString *url = [NSString stringWithFormat:@"%@/square/travelNotesDetail/delete",BASEURL];
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSLog(@"deleteTravelTrackData成功:%d",[codeNumber intValue]);
+            block(nil);
+            
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"deleteTravelTrackData errorStr : %@",errorStr);
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+        
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"deleteTravelTrackData 失败 : %@",error.domain);
+        
+        block(error);
+    }];
+    
 }
 
 @end

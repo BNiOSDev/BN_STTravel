@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LBB_TagsViewModel.h"
 #import "BN_SquareTravelNotesBillModel.h"
-
+#import "LBB_SquareAddressViewModel.h"
 
 @interface TravelNotesPics : BN_BaseDataModel
 
@@ -29,13 +29,15 @@
 @property(nonatomic, strong)NSString* picUrl;//	String	图片描述
 
 @property(nonatomic, assign)int whitchDay;//	Int	第几天
-@property(nonatomic, strong)NSString* releaseDate;//	String	发布日期
-@property(nonatomic, strong)NSString* releaseTime;//	String	发布时间
+@property(nonatomic, strong)NSString* releaseDate;//	String	发布日期 发布日期格式: 2016-11-15
+
+@property(nonatomic, strong)NSString* releaseTime;//	String	发布时间发布时间格式 20:30
+
 @property(nonatomic, assign)int likeNum;//	Int	点赞次数
 @property(nonatomic, assign)int commentsNum;//	Int	评论条数
 @property(nonatomic, assign)int isLiked;//	int	点赞标志 0未点赞 1：点赞
-@property(nonatomic, assign)long objId;//	Long	场景ID
-@property(nonatomic, assign)int allSpotsType;//	int	场景类型
+@property(nonatomic, assign)long objId;//	Long	场景ID，就是选择的地址id
+@property(nonatomic, assign)int allSpotsType;//	int	场景类型 1美食 2 民宿 3 景点
 @property(nonatomic, strong)NSString* allSpotsTypeName;//	String	场景类型名称
 @property(nonatomic, strong)NSString* name;//	String	名称
 @property(nonatomic, strong)NSString* longitude;//	String	经度
@@ -49,11 +51,22 @@
   3.4.24 主页-足记保存（已测）
 
  @param isAdd YES:新增足迹  NO:修改足迹
+ @param spotAddress 选择地址回调的地址内容
+
  @param block 结果回调
  */
+
 -(void)saveTravelTrackData:(BOOL)isAdd
+                   address:(LBB_SpotAddress*)spotAddress
                      block:(void (^)(NSError *error))block;
 
+
+/**
+ 3.4.26 主页-足记删除（已测）
+
+ @param block 结果回调
+ */
+-(void)deleteTravelTrackData:(void (^)(NSError *error))block;
 @end
 
 //3.4.17 主页-游记详情/游记下载（已测）

@@ -8,7 +8,7 @@
 
 ///当前屏幕rect
 
-//#define BASEURL @"http://7d86792c.ittun.com/lbb"
 
-#define BASEURL @"http://112.74.31.159:26088/lbb-app"
+//#define BASEURL @"http://112.74.31.159:26088/lbb-app"
+#define BASEURL @"http://77206c46.ittun.com/lbb/"
 

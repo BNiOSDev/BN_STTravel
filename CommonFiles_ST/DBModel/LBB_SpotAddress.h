@@ -14,5 +14,7 @@
 @property (nonatomic,strong)NSString *allSpotsName ;// 场景名称
 @property (nonatomic,assign)int allSpotsType ;// 1.美食 2.民宿 3景点
 @property (nonatomic,strong)NSString *address ;// 地址
+@property (nonatomic,strong)NSString *longy;//精度
+@property (nonatomic,strong)NSString *dimx;//伟度
 
 @end
