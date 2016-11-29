@@ -10,6 +10,7 @@
 #import "LBBTravelContentImage.h"
 #import "Header.h"
 
+
 @interface LBB_MyPhotoViewCell()
 {
     LBBTravelContentImage  *contentImage;
@@ -42,12 +43,14 @@
 - (void)prepareForReuse
 {
     [super prepareForReuse];
+    [contentImage prepareForReuse];
 }
 
 - (void)setup
 {
     contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
     [self addSubview:contentImage];
+    contentImage.backgroundColor = ColorLine;
     
     collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(self.width - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
     collecdtionBtn.enlargeInset = UIEdgeInsetsMake(AUTO(10), AUTO(20), AUTO(15), AUTO(10));
@@ -71,13 +74,14 @@
     pinBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - deleteBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     pinBtn.titleLabel.font = FONT(AUTO(11.0));
     [pinBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [pinBtn setImage:IMAGE(@"zjmcomment") forState:UIControlStateNormal];
+    [pinBtn setImage:IMAGE(@"我的_评论") forState:UIControlStateNormal];
     [self addSubview:pinBtn];
     
     zanBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - pinBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     zanBtn.titleLabel.font = FONT(AUTO(11.0));
     [zanBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [zanBtn setImage:IMAGE(@"zjmdianzan") forState:UIControlStateNormal];
+    [zanBtn setImage:IMAGE(@"我的_点赞") forState:UIControlStateNormal];
+    [zanBtn setImage:IMAGE(@"我的_点赞_点击后") forState:UIControlStateSelected];
     [self addSubview:zanBtn];
     
     
@@ -92,29 +96,29 @@
 {
     _model = model; 
     
-    contentImage.imageUrl = model.imageUrl;
-    
-    CGFloat deleteWidth = 0.f;
-    
+    contentImage.imageUrl = model.coverImageUrl;
     deleteBtn.left = self.width - 10 - deleteBtn.width;
-    deleteWidth = deleteBtn.width;
     [deleteBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [deleteBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [pinBtn setTitle:model.commentNum forState:UIControlStateNormal];
-    pinBtn.width = [self getWidthWithContent:model.commentNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    pinBtn.left = self.width - deleteBtn.width - 10 - deleteWidth;
+  
+     NSString *pinTitle = getNumTitleStr(_model.totalComment);
+    [pinBtn setTitle:pinTitle forState:UIControlStateNormal];
+    pinBtn.width = [self getWidthWithContent:pinTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    pinBtn.left = deleteBtn.left - pinBtn.width - 10 ;
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    [zanBtn setTitle:model.praiseNum forState:UIControlStateNormal];
-    zanBtn.width = [self getWidthWithContent:model.praiseNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
-    zanBtn.left = self.width - deleteBtn.width - pinBtn.width - 10 - deleteWidth;
+    NSString *zanTitle = getNumTitleStr(_model.totalLike);
+    
+    [zanBtn setTitle:zanTitle forState:UIControlStateNormal];
+    zanBtn.width = [self getWidthWithContent:zanTitle height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    zanBtn.left =  pinBtn.left -  zanBtn.width - 10 ;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    zanBtn.selected = _model.isLiked;
     
-    collecdtionBtn.selected = _model.isCollection;
-   
+    collecdtionBtn.selected = _model.isCollected;
+    [collecdtionBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setSquareType:(MySquareViewType)squareType
@@ -156,11 +160,8 @@
 
 - (CGFloat)getWidthWithContent:(NSString *)content height:(CGFloat)height font:(CGFloat)font{
     
-    CGRect rect = [content boundingRectWithSize:CGSizeMake(999, height)
-                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                     attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]}
-                                        context:nil];
-    return rect.size.width;
+    CGSize size = sizeOfString(content, CGSizeMake(9999, 35.f), [UIFont systemFontOfSize:font]);
+    return size.width;
 }
 
 @end

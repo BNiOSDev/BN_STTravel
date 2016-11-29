@@ -7,20 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
-@interface LBB_SquareSpots : NSObject
-
-@property (nonatomic,assign)long allSpotsId ;// 主键
-@property (nonatomic,strong)NSString *allSpotsName ;// 场景名称
-@property (nonatomic,assign)int allSpotsType ;// 1.美食 2.民宿 3景点
-@property (nonatomic,strong)NSString *address ;// 地址
-
-@end
+#import "LBB_SpotAddress.h"
 
 @interface LBB_SquareAddressViewModel : NSObject
 
-@property (nonatomic,strong)NSMutableArray<LBB_SquareSpots*> *squareSpotsArray;
+@property (nonatomic,strong)NSMutableArray<LBB_SpotAddress*> *squareSpotsArray;
 
 /**
  3.4.26	主页-游记添加地址（已测）

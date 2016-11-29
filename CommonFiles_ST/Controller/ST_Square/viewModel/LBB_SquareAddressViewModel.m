@@ -8,11 +8,16 @@
 
 #import "LBB_SquareAddressViewModel.h"
 
-@implementation LBB_SquareSpots
-
-@end
-
 @implementation LBB_SquareAddressViewModel
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.squareSpotsArray = [[NSMutableArray alloc]initFromNet];
+    }
+    return self;
+}
 
 /**
  3.4.26	主页-游记添加地址（已测）
@@ -33,7 +38,7 @@
                               @"pageNum":[NSNumber numberWithInt:10],
                               };
     
-    NSString *url = [NSString stringWithFormat:@"%@/square/tags/view/list",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/square/travelNotesDetail/allSpots",BASEURL];
     __weak typeof(self) temp = self;
     __weak NSMutableArray *showArray_block = showArray;
     showArray.loadSupport.loadEvent = NetLoadingEvent;
@@ -44,8 +49,8 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
-            NSArray *returnArray = [LBB_SquareSpots mj_objectArrayWithKeyValuesArray:array];
-            
+            NSArray *returnArray = [LBB_SpotAddress mj_objectArrayWithKeyValuesArray:array];
+            NSLog(@"getsTravelNotesDetailAllSpotsType 成功:%@",array);
             if (clear == YES)
             {
                 [showArray_block removeAllObjects];

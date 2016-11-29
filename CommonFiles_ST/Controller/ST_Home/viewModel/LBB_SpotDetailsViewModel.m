@@ -198,7 +198,7 @@
 /**
  3.2.7	景点/美食/民宿详情(已测)
  */
-- (void)getSpotDetailsData
+- (void)getSpotDetailsData:(BOOL)clear
 {
     NSString *url = [NSString stringWithFormat:@"%@/spot/view/%ld",BASEURL,self.allSpotsId];
     __weak typeof(self) temp = self;

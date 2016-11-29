@@ -26,16 +26,17 @@ ReceiptAddressViewCellDelegate
 
 @implementation ReceiptAddressViewController
 
+- (void)dealloc
+{
+    self.viewModel = nil;
+    self.tableView.delegate = nil;
+    self.tableView.dataSource = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.baseViewType = eAddress;
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
 }
 
 #pragma mark - private

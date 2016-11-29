@@ -153,7 +153,7 @@
 /**
  3.2.7	景点/美食/民宿详情(已测)
  */
-- (void)getSpotDetailsData;
+- (void)getSpotDetailsData:(BOOL)clear;
 
 
 @end

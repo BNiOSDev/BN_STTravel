@@ -9,7 +9,7 @@
 #import "PointsViewController.h"
 #import "WalletViewCell.h"
 #import "BalanceDetailViewController.h"
-#import "LBB_PointsModel.h"
+#import "LBB_PointViewModel.h"
 #import "LBB_WebViewController.h"
 
 @interface PointsViewController ()<
@@ -34,13 +34,16 @@ UICollectionViewDelegateFlowLayout
 @property (weak, nonatomic) IBOutlet UIButton *detailDescBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailDescBtnBottomContraint;
 
-@property (strong,nonatomic) LBB_PointsModel *pointModel;
-@property (strong,nonatomic) LBB_PointsDetailModel *detailModel;
+@property (strong,nonatomic) LBB_PointViewModel *viewModel;
 
 @end
 
 @implementation PointsViewController
 
+- (void)dealloc
+{
+    self.viewModel = nil;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -50,10 +53,16 @@ UICollectionViewDelegateFlowLayout
 
 - (void)buildControls
 {
-    if (!self.pointModel) {
-        self.pointModel = [[LBB_PointsModel alloc] init];
+    if (!self.viewModel) {
+        self.viewModel = [[LBB_PointViewModel alloc] init];
     }
     [self initData];
+    
+    __weak typeof (self) weakSelf = self;
+    [self.viewModel.loadSupport setDataRefreshblock:^{
+        [weakSelf initData];
+    }];
+    [self.viewModel getPointData];
 }
 
 - (void)initUI
@@ -68,25 +77,23 @@ UICollectionViewDelegateFlowLayout
     self.pointsDetailBtn.backgroundColor = ColorBtnYellow;
     self.pointsRedeemedBtn.backgroundColor = ColorGray;
     self.pointsRedeemedBtn.hidden = YES;
-    
 }
 
 - (void)initData
 {
-    self.detailModel = [self.pointModel getData];
-    
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                        @{@"Title": NSLocalizedString(@"可兑换积分",nil),
                                          @"Image" : @"我的_积分2",
-                                         @"Num": [NSString stringWithFormat:@"%@",@(self.detailModel.convertiblePoints)]},
+                                         @"Num": [NSString stringWithFormat:@"%@",@(self.viewModel.unused)]},
                                        @{@"Title": NSLocalizedString(@"已兑换积分",nil),
                                          @"Image" : @"我的_积分3",
-                                         @"Num":[NSString stringWithFormat:@"%@",@(self.detailModel.haveConvertedPoints)]},
+                                         @"Num":[NSString stringWithFormat:@"%@",@(self.viewModel.used)]},
                                        @{@"Title": NSLocalizedString(@"累计总积分",nil),
                                          @"Image" : @"我的_积分4",
-                                         @"Num": [NSString stringWithFormat:@"%@",@(self.detailModel.totalPoints)]}
+                                         @"Num": [NSString stringWithFormat:@"%@",@(self.viewModel.total)]}
                                     ]];
-    
+    [self.collectionView reloadData];
+
 }
 
 
@@ -128,11 +135,13 @@ UICollectionViewDelegateFlowLayout
 
 - (void)configureCell:(WalletViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *cellDict = self.dataSourceArray[indexPath.row];
-    cell.contentLabel.text = [cellDict objectForKey:@"Title"];
-    cell.contentImgView.image = [UIImage imageNamed:[cellDict objectForKey:@"Image"]];
-    cell.numLabel.text = [cellDict objectForKey:@"Num"];
-    cell.exclusiveTouch = YES;
+    if (indexPath.row < self.dataSourceArray.count) {
+        NSDictionary *cellDict = self.dataSourceArray[indexPath.row];
+        cell.contentLabel.text = [cellDict objectForKey:@"Title"];
+        cell.contentImgView.image = [UIImage imageNamed:[cellDict objectForKey:@"Image"]];
+        cell.numLabel.text = [cellDict objectForKey:@"Num"];
+        cell.exclusiveTouch = YES;
+    }
 }
 
 #pragma mark - UI Action
@@ -150,7 +159,7 @@ UICollectionViewDelegateFlowLayout
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
     LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
     vc.baseViewType = ePointConvertDesc;
-    vc.webViewURL = self.detailModel.descURL;
+    vc.webViewURL = self.viewModel.descURL;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

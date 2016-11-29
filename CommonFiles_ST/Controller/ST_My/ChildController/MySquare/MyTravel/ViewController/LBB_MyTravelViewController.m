@@ -28,7 +28,8 @@
 
 @interface LBB_MyTravelViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong)UITableView    *mTableView;
-@property(nonatomic, strong)NSMutableArray   *dataArray;
+@property(nonatomic, strong) LBB_TravelViewModel *viewModel;
+
 @end
 
 @implementation LBB_MyTravelViewController
@@ -42,22 +43,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _dataArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 9; i++) {
-        LBB_TravelModel  *model = [[LBB_TravelModel alloc]init];
-        model.iconName = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.imageUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.name = @"钟爱SD的男人";
-        model.msgContent = @"开启说走就走的旅行吧";
-        model.timeStr = @"2016-09-09";
-        model.daysStr = @"5 days";
-        model.vistNum = @"1080";
-        model.praiseNum = @"999";
-        model.commentNum = @"999";
-        model.collectNum = @"9999";
-        [_dataArray addObject:model];
-    }
     [self createTable];
+    [self initDataSource];
 }
 
 
@@ -68,7 +55,7 @@
 
 - (void)createTable
 {
-    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:0];
+    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
     _mTableView.height = _mTableView.height - TopSegmmentControlHeight - 64;
     if(self.travelviewType == MyTravelsViewFravorite) {
         _mTableView.height = DeviceHeight - 64;
@@ -79,15 +66,40 @@
     _mTableView.backgroundColor = [UIColor whiteColor];
     
     [self.mTableView registerClass:[LBB_MyTravelTableViewCell class] forCellReuseIdentifier:MyTravelNormal];
+     [self.view  addSubview:_mTableView];
+}
+
+- (void)initDataSource
+{
+    if (!self.viewModel) {
+        self.viewModel = [[LBB_TravelViewModel alloc] init];
+    }
+    __weak typeof (self) weakSelf = self;
+    [self.mTableView setHeaderRefreshDatablock:^{
+         [weakSelf.viewModel getMyTravelList:YES VidewType:weakSelf.squareType];
+    } footerRefreshDatablock:^{
+        [weakSelf.viewModel getMyTravelList:NO VidewType:weakSelf.squareType];
+    }];
     
-    [self.view  addSubview:_mTableView];
+    //设置绑定数组
+    [self.mTableView setTableViewData:self.viewModel.travelArray];
     
+    
+    [self.viewModel.travelArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.mTableView loadData:self.viewModel.travelArray];
+
+    //刷新数据
+    
+    [self.viewModel getMyTravelList:YES VidewType:self.squareType];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"wyl = 22222222");
-    return self.dataArray.count;
+    return self.viewModel.travelArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -100,8 +112,11 @@
     cell.viewType = _travelviewType;
     cell.squareType = _squareType;
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-
-    cell.model = self.dataArray[indexPath.row];
+    
+    if (self.viewModel.travelArray.count > indexPath.row) {
+         cell.model = self.viewModel.travelArray[indexPath.row];
+    }
+   
     return cell;
 }
 
@@ -121,11 +136,25 @@
 #pragma mark 处理点击cell上面的按钮
 - (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject
 {
+    LBB_TravelModel *travelModel = (LBB_TravelModel*)infoObject;
+    __weak typeof (self) weakSelf = self;
+    __weak typeof (LBB_TravelModel *) weakTravelModel = travelModel;
+    
+    [travelModel.loadSupport setDataRefreshblock:^{
+        [weakSelf.mTableView reloadData];
+    }];
+    
+    [travelModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+        if (remak && [remak length]) {
+            [weakSelf showHudPrompt:remak];
+        }
+    }];
+    
     NSLog(@"indexPath = %ld",(long)indexPath.row);
     switch (signel) {
         case UICollectionViewCellPraise://赞
         {
-            
+            [travelModel like];
         }
             break;
         case UICollectionViewCellComment://评论
@@ -137,16 +166,28 @@
         case UICollectionViewCellHeart://爱心
         {
             
+            [travelModel collect];
         }
             break;
         case UICollectionViewCellDelete://删除
         {
+            [travelModel.loadSupport setDataRefreshblock:^{
+                for (int i = 0; i < weakSelf.viewModel.travelArray.count; i++) {
+                    LBB_TravelModel *tmpModel = weakSelf.viewModel.travelArray[i];
+                    if (tmpModel.travelNoteId == weakTravelModel.travelNoteId) {
+                        [weakSelf.viewModel.travelArray removeObject:tmpModel];
+                        break;
+                    }
+                }
+                [weakSelf.mTableView reloadData];
+            }];
             
+            [travelModel deleteTravel];
         }
             break;
         case UICollectionViewCellCollection://收藏
         {
-            
+            [travelModel collect];
         }
             break;
         default:

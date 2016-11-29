@@ -14,37 +14,50 @@
 #define Marign  5.0
 
 @implementation ImageContentView
+{
+    UIImageView         *oneImage;
+    UIImageView         *twoImage;
+    UIImageView         *threeImage;
+    UIImageView         *fourImage;
+    UIImageView         *fiveImage;
+    UIImageView         *sevenImage;
+    UIImageView         *sixImage;
+    UIImageView         *eightImage;
+    UIImageView         *nightImage;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if(self == [super initWithFrame:frame])
     {
-        UIImageView         *oneImage;
-        UIImageView         *twoImage;
-        UIImageView         *threeImage;
-        UIImageView         *fourImage;
-        UIImageView         *fiveImage;
-        UIImageView         *sevenImage;
-        UIImageView         *sixImage;
-        UIImageView         *eightImage;
-        UIImageView         *nightImage;
+        oneImage = [UIImageView new];
+        [self addSubview:oneImage];
+        twoImage = [UIImageView new];
+        [self addSubview:twoImage];
+        threeImage = [UIImageView new];
+        [self addSubview:threeImage];
+        fourImage = [UIImageView new];
+        fiveImage = [UIImageView new];
+        sixImage = [UIImageView new];
+        sevenImage = [UIImageView new];
+        eightImage = [UIImageView new];
+        nightImage = [UIImageView new];
     }
-    
-    - (instancetype)initWithFrame:(CGRect)frame
-    {
-        if(self == [super initWithFrame:frame])
-        {
-            oneImage = [UIImageView new];
-            [self addSubview:oneImage];
-            twoImage = [UIImageView new];
-            [self addSubview:twoImage];
-            threeImage = [UIImageView new];
-            [self addSubview:threeImage];
-            fourImage = [UIImageView new];
-            fiveImage = [UIImageView new];
-            sixImage = [UIImageView new];
-            sevenImage = [UIImageView new];
-            eightImage = [UIImageView new];
-            nightImage = [UIImageView new];
-        }
-        return self;
-    }
+    return self;
+}
+
+- (void)prepareForReuse
+{
+    oneImage.image = nil;
+    twoImage.image = nil;
+    threeImage.image = nil;
+    fourImage.image = nil;
+    fiveImage.image = nil;
+    sixImage.image = nil;
+    sevenImage.image = nil;
+    eightImage.image = nil;;
+    nightImage.image = nil;;
+}
 
 - (void)setImageArray:(NSArray *)imageArray
 {

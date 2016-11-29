@@ -1,22 +1,21 @@
 //
-//  LBB_MineViewModel.m
+//  LBB_PointViewModel.m
 //  ST_Travel
 //
-//  Created by dhxiang on 16/11/24.
+//  Created by 晨曦 on 16/11/27.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBB_MineViewModel.h"
-#import "LBB_LoginManager.h"
+#import "LBB_PointViewModel.h"
 
-@implementation LBB_MineModelData
+@implementation LBB_PointViewModel
 
 /**
- 3.5.1 我的-首页（已测）
+ *3.5.10 我的-积分（已测）
  */
-- (void)getMineInfo
+- (void)getPointData
 {
-    NSString *url = [NSString stringWithFormat:@"%@/mime/index",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/mime/myCredits/view",BASEURL];
     
     self.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -38,7 +37,7 @@
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
-}
 
+}
 
 @end

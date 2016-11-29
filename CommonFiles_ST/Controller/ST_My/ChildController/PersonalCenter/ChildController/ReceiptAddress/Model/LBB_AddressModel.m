@@ -124,7 +124,6 @@
 
 - (void)getAddressList:(BOOL)isClear
 {
-    
     NSString *url = [NSString stringWithFormat:@"%@/mime/address/list",BASEURL];
     
     int curPage = isClear == YES ? 0 : round(self.addressArray.count/10.0);

@@ -12,24 +12,55 @@
 
 @end
 
+@implementation LBB_BalanceViewModel
 
-@implementation LBB_BalanceDataModel
-
-- (NSArray<LBB_BalanceDetailModel*>*)getData
+- (id)init
 {
-    NSMutableArray *dataArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 9; i++) {
-        LBB_BalanceDetailModel *detailModel = [[LBB_BalanceDetailModel alloc] init];
-        detailModel.content = @"兑换积分一百积分兑换积分一百积分兑换积分一百积分兑换";
-        detailModel.dateStr = @"2016-01-22 12:01";
-        detailModel.num = 1000000000000;
-        if (i%2 == 0) {
-            detailModel.num = -99;
-        }
-        [dataArray addObject:detailModel];
+    self = [super init];
+    if (self) {
+        self.banlanceArray = [[NSMutableArray alloc] initFromNet];
     }
+    return self;
+}
+
+/**
+ *3.5.11 我的-积分明细（已测）
+ */
+- (void)getMyCreditDetail:(BOOL)isClear
+{
+    NSString *url = [NSString stringWithFormat:@"%@/mime/myCredits/details",BASEURL];
+
+    int curPage = isClear == YES ? 0 : round(self.banlanceArray.count/10.0);
     
-    return dataArray;
+    NSDictionary *parames = @{
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              };
+    
+    
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] GET:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = (NSDictionary*)responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+
+        NSLog(@"responseObject = %@",responseObject);
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_BalanceDetailModel mj_objectArrayWithKeyValuesArray:array];
+            if (isClear) {
+                [weakSelf.banlanceArray removeAllObjects];
+            }
+             [weakSelf.banlanceArray addObjectsFromArray:returnArray];
+        }
+       
+        weakSelf.banlanceArray.networkTotal = [dic objectForKey:@"total"];
+        weakSelf.banlanceArray.loadSupport.loadEvent = codeNumber.intValue;
+        
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        weakSelf.loadSupport.loadFailEvent = NetLoadFailedEvent;
+    }];
+    
 }
 
 @end

@@ -36,6 +36,12 @@ UITextFieldDelegate
 
 @implementation ChangePasswordViewController
 
+- (void)dealloc
+{
+    self.account = nil;
+    self.checkNum = nil;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

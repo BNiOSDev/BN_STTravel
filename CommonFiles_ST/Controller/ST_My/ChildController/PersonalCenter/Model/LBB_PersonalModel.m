@@ -20,7 +20,7 @@
 }
 
 /**
- 3.5.21 我的-个人中心（已测）
+ 3.5.23 我的-个人中心（已测）
  */
 - (void)getPersonInfo
 {
@@ -49,39 +49,53 @@
 }
 
 /**
- 3.5.22 我的-头像修改 （已测）
+ 3.5.24 我的-头像修改 （已测）
  */
-- (void)updateUserPicture:(NSString*)imageUrl
+- (void)updateUserPicture:(UIImage*)pictureImage
 {
-    NSString *url = [NSString stringWithFormat:@"%@/mime/userPicUrl/update",BASEURL];
-    self.loadSupport.loadEvent = NetLoadingEvent;
-    if (!imageUrl || [imageUrl length] == 0) {
+    if (!pictureImage) {
         return;
     }
-    NSMutableDictionary *parames = [[NSMutableDictionary alloc] init];
-    [parames setObject:imageUrl forKey:@"userPicUrl"];
-    __weak typeof(self) weakSelf = self;
-    [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
-        NSDictionary *dic = (NSDictionary*)responseObject;
-        NSNumber *codeNumber = [dic objectForKey:@"code"];
-        NSString *remark = [dic objectForKey:@"remark"];
-        NSLog(@"responseObject = %@",responseObject);
-        if(codeNumber.intValue == 0)
-        {
-            weakSelf.userPicUrl = imageUrl;
-            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
-        }else{
-            weakSelf.loadSupport.netRemark = remark;
-            weakSelf.loadSupport.loadFailEvent = codeNumber.intValue;
+    
+    [[BC_ToolRequest sharedManager] uploadfile:@[pictureImage] block:^(NSArray *files, NSError *error){
+        if (!error && [files count]) {
+            
+            NSString *qiniuImageURL = [files firstObject];
+            
+            if (!qiniuImageURL || [qiniuImageURL length] == 0) {
+                return;
+            }
+            
+            NSString *url = [NSString stringWithFormat:@"%@/mime/userPicUrl/update",BASEURL];
+            self.loadSupport.loadEvent = NetLoadingEvent;
+            if (!qiniuImageURL || [qiniuImageURL length] == 0) {
+                return;
+            }
+            NSMutableDictionary *parames = [[NSMutableDictionary alloc] init];
+            [parames setObject:qiniuImageURL forKey:@"userPicUrl"];
+           
+            [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+                NSDictionary *dic = (NSDictionary*)responseObject;
+                NSNumber *codeNumber = [dic objectForKey:@"code"];
+                NSString *remark = [dic objectForKey:@"remark"];
+                NSLog(@"responseObject = %@",responseObject);
+                if(codeNumber.intValue == 0)
+                {
+                    [self getPersonInfo];
+                }else{
+                    self.loadSupport.netRemark = remark;
+                    self.loadSupport.loadFailEvent = codeNumber.intValue;
+                }
+                
+            } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+                self.loadSupport.loadEvent = NetLoadFailedEvent;
+            }];
         }
-
-    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-           weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
 
 /**
- 3.5.23 我的-用户名修改（已测）
+ 3.5.25 我的-用户名修改（已测）
  */
 - (void)updateUserName:(NSString*)userName
 {
@@ -115,7 +129,7 @@
 }
 
 /**
- 3.5.24 我的-签名修改 （已测））
+ 3.5.26 我的-签名修改 （已测））
  */
 - (void)updateSignature:(NSString*)signature
 {
@@ -147,6 +161,42 @@
     }];
 }
 
+/**
+ 3.5.27 我的-手机号修改前校验（已测)
+ */
+- (void)updateCheckPhoneNum:(NSString*)phoneNum VerifyCode:(NSString*)verifyCode
+{
+    NSString *url = [NSString stringWithFormat:@"%@/mime/phoneNum/update/check",BASEURL];
+    
+    if (!phoneNum || [phoneNum length] == 0 || !verifyCode || [verifyCode length] == 0) {
+        return;
+    }
+    NSMutableDictionary *parames = [[NSMutableDictionary alloc] init];
+    [parames setObject:phoneNum forKey:@"phoneNum"];
+    [parames setObject:verifyCode forKey:@"verifyCode"];
+    
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = (NSDictionary*)responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        NSString *remark = [dic objectForKey:@"remark"];
+        NSLog(@"responseObject = %@",responseObject);
+        if(codeNumber.intValue == 0)
+        {
+            weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+        }else {
+            weakSelf.loadSupport.netRemark = remark;
+            weakSelf.loadSupport.loadFailEvent = codeNumber.intValue;
+        }
+        
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        weakSelf.loadSupport.loadFailEvent = NetLoadFailedEvent;
+    }];
+}
+
+/**
+ 3.5.28 我的-手机号修改（已测)
+ */
 - (void)updatePhoneNum:(NSString*)phoneNum VerifyCode:(NSString*)verifyCode
 {
     NSString *url = [NSString stringWithFormat:@"%@/mime/phoneNum/update",BASEURL];
@@ -179,7 +229,7 @@
 }
 
 /**
- 3.5.26 我的-性别修改（已测）
+ 3.5.29 我的-性别修改（已测）
  */
 - (void)updateGender:(int)gender
 {
@@ -209,7 +259,7 @@
 }
 
 /**
- 3.5.27 我的-出生日期修改（已测）
+ 3.5.30 我的-出生日期修改（已测）
  */
 - (void)updateBirthDate:(NSString*)birthDate
 {
@@ -242,9 +292,9 @@
 }
 
 /**
- 3.5.28 我的-地区修改（已测）
+ 3.5.31 我的-地区修改（已测）
  */
-- (void)updateArea:(int)provinceId CityId:(int)cityId
+- (void)updateArea:(int)provinceId CityId:(int)cityId AddressName:(NSString*)detailName
 {
     NSString *url = [NSString stringWithFormat:@"%@/mime/area/update",BASEURL];
     
@@ -261,8 +311,7 @@
         {
             weakSelf.provId = provinceId;
             weakSelf.cityId = cityId;
-            weakSelf.area = @"福建厦门思明区XX地址XX号";
-//            [weakSelf getPersonInfo:nil];
+            weakSelf.area = detailName;
             weakSelf.loadSupport.loadEvent = codeNumber.intValue;
         }else{
             weakSelf.loadSupport.netRemark = remark;

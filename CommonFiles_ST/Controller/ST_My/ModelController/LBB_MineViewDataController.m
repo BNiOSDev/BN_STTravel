@@ -31,8 +31,7 @@
 }
 
 - (void)initDataSource
-{
- 
+{ 
     //进行CollectionView和Cell的绑定
     UINib *nib = [UINib nibWithNibName:@"LBB_MyViewCell" bundle:nil];
     [self.collectionView registerNib:nib forCellWithReuseIdentifier:@"LBB_MyViewCell"];
@@ -91,7 +90,7 @@
 - (void)replaceUserHeadImage:(UIImage*)converPicture
 {
     if (converPicture) {
-        [self.mineViewModel updateCover:@"http://oggvb32dz.bkt.clouddn.com/161120201117.jpg"];
+        [self.mineViewModel updateCover:converPicture];
     }
 }
 

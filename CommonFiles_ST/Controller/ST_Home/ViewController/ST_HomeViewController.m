@@ -24,7 +24,11 @@
 
 #import "LBB_PoohMyFavoriteViewController.h"
 
-
+//pooh test
+#import "LBB_SquareTravelListViewModel.h"
+#import "LBB_PublishUgcViewModel.h"
+#import "LBB_TravelDraftViewModel.h"
+#import "LBB_SquareAddressViewModel.h"
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -36,6 +40,11 @@
 
 @property(nonatomic, retain)LBB_HomeViewModel* viewModel;//数据模型
 
+
+//test
+@property(nonatomic, retain)LBB_TravelDraftViewModel* m1;
+@property(nonatomic, retain)LBB_SquareAddressViewModel* add;
+
 @end
 
 @implementation ST_HomeViewController
@@ -43,6 +52,92 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    [self testModel];
+
+}
+
+-(void)testModel{
+
+    WS(ws);
+  /*  LBB_SquareAddressViewModel* add = [[LBB_SquareAddressViewModel alloc] init];
+    self.add = add;
+    [add getsTravelNotesDetailAllSpotsType:1 name:@"" ClearData:YES];
+    [add.squareSpotsArray.loadSupport setDataRefreshblock:^{
+    
+        NSLog(@"getsTravelNotesDetailAllSpotsType 回调");
+        LBB_SpotAddress* obj1 = [ws.add.squareSpotsArray objectAtIndex:0];
+        
+        TravelNotesDetails* ob = [[TravelNotesDetails alloc] init];
+        obj1.longy = @"-1";
+        obj1.dimx = @"-1";
+        
+        [ob saveTravelTrackData:YES
+         address:obj1
+                          block:^(NSError* error){
+            
+        }];
+    }];
+    */
+    
+ /*   TravelNotesDetails* ob = [[TravelNotesDetails alloc] init];
+    
+    [ob saveTravelTrackData:YES block:^(NSError* error){
+    
+    }];
+    
+   */
+    
+    
+    LBB_TravelDraftViewModel* m1 = [[LBB_TravelDraftViewModel alloc] init];
+    self.m1 = m1;
+    [m1 getTravelDraftData];
+    [m1.travelDraftModel.loadSupport setDataRefreshblock:^{
+        
+        TravelNotesDetails* ob = [m1.travelDraftModel.travelNotesDetails objectAtIndex:0];
+        
+        [ob deleteTravelTrackData
+         :^(NSError* error){
+             
+         }];
+    }];
+    
+    
+ /*   LBB_SquareTravelListViewModel* m1 = [[LBB_SquareTravelListViewModel alloc] init];
+    self.m1 = m1;
+    [m1 getSquareTravelList:YES];
+   
+    WS(ws);
+    [self.m1.squareTravelArray.loadSupport setDataRefreshblock:^{
+
+        BN_SquareTravelList* obj = ws.m1.squareTravelArray[0];
+        [obj getTravelDetailModel];
+        __weak BN_SquareTravelList* objBlock = obj;
+        [obj.travelDetailModel.loadSupport setDataRefreshblock:^{
+        
+            [objBlock.travelDetailModel getTravelBilllModel];
+            
+            [objBlock.travelDetailModel.travelBillModel.loadSupport setDataRefreshblock:^{
+                
+                BN_SquareTravelNotesconsumeDetails* obj = objBlock.travelDetailModel.travelBillModel.consumeDetails[0];//取得detail数据
+                obj.parentArray = objBlock.travelDetailModel.travelBillModel.consumeDetails;
+                NSLog(@"obj.parentArray:%d",obj.parentArray.count);
+
+                [obj deleteSquareTravelNotesConsumeDetails:^(NSError* error){
+                
+                    NSLog(@"deleteSquareTravelNotesConsumeDetails clock:%d",obj.parentArray.count);
+                    
+                }];
+                
+            }];
+            
+        }];
+    
+    }];*/
 }
 
 - (void)viewWillAppear:(BOOL)animated

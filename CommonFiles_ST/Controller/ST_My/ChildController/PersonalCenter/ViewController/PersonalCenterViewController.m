@@ -38,10 +38,16 @@ UITableViewDataSource
 @property (strong, nonatomic) ActionSheetDatePicker *datePicker;
 @property (strong, nonatomic) UIView *exitLoginView;
 @property (nonatomic,strong) LBB_ImagePickerViewController *imagePicker;
-@property (nonatomic,strong) LBB_PersonalModel *personalModel;
+@property (nonatomic,strong) LBB_PersonalModel *viewModel;
+@property (nonatomic,assign) BOOL isSeletePhoto;
 @end
 
 @implementation PersonalCenterViewController
+
+- (void)dealloc
+{
+    self.viewModel = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,7 +63,10 @@ UITableViewDataSource
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.personalModel getPersonInfo];
+    if (!self.isSeletePhoto) {
+            [self.viewModel getPersonInfo];
+    }
+    self.isSeletePhoto = NO;
 }
 
 #pragma mark - private
@@ -67,56 +76,57 @@ UITableViewDataSource
     UINib *nib = [UINib nibWithNibName:@"PersonalInfoCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"PersonalInfoCell"];
     
-    self.personalModel = [[LBB_PersonalModel alloc] init];
-    [self updateData];
+    self.viewModel = [[LBB_PersonalModel alloc] init];
     
     __weak typeof (self) weakSelf = self;
-    [self.personalModel.loadSupport setDataRefreshblock:^{
+    [self.viewModel.loadSupport setDataRefreshblock:^{
         [weakSelf updateData];
     }];
     
-    [self.personalModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
+    [self.viewModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
 //        [weakSelf showHudPrompt:remark];
     }];
+    
+    [self updateData];
 }
 
 - (void)updateData
 {
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                                                        @{@"Title":@"",
-                                                                         @"Image" :[self anyValue:self.personalModel.userPicUrl],
+                                                                         @"Image" :[self anyValue:self.viewModel.userPicUrl],
                                                                          @"Action":@"showHeadImagePickerMenu:",
                                                                          @"ActionSender" : [NSNumber numberWithInt:eUserHead]},
                                                                        @{@"Title": NSLocalizedString(@"用户名",nil),
-                                                                         @"Desc" : [self anyValue:self.personalModel.userName],
+                                                                         @"Desc" : [self anyValue:self.viewModel.userName],
                                                                          @"Action":@"showTextFieldView:",
                                                                          @"ActionSender" : [NSNumber numberWithInt:eEditUserName]},
                                                                        @{@"Title": NSLocalizedString(@"个人签名",nil),
-                                                                         @"Desc" : [self anyValue:self.personalModel.signature],
+                                                                         @"Desc" : [self anyValue:self.viewModel.signature],
                                                                          @"Action":@"showTextFieldView:",
                                                                          @"ActionSender" : [NSNumber numberWithInt:eEditUserSignature]},
                                                                        @{@"Title": NSLocalizedString(@"手机号",nil),
-                                                                         @"Desc" : [self anyValue:self.personalModel.phoneNum],
+                                                                         @"Desc" : [self anyValue:self.viewModel.phoneNum],
                                                                          @"Action":@"showChangePhoneNum:",
                                                                          @"ActionSender" : [NSNumber numberWithInt:ePhoneNum]},
                                                                        @{@"Title": NSLocalizedString(@"性别",nil),
-                                                                         @"Desc" : [self sexStr:self.personalModel.gender],
+                                                                         @"Desc" : [self sexStr:self.viewModel.gender],
                                                                          @"Action":@"showSexPickerMenu:",
                                                                          @"ActionSender" : [NSNumber numberWithInt:eSex]},
                                                                        @{@"Title": NSLocalizedString(@"出生日期",nil),
-                                                                         @"Desc" : [self anyValue:self.personalModel.birthDate],
+                                                                         @"Desc" : [self anyValue:self.viewModel.birthDate],
                                                                          @"Action":@"birthDatePickerMenu:",
                                                                          @"ActionSender" : [NSNumber numberWithInt:eBirthDate]},
                                                                        @{@"Title": NSLocalizedString(@"所在城市",nil),
-                                                                         @"Desc" : [self anyValue:self.personalModel.area],
+                                                                         @"Desc" : [self anyValue:self.viewModel.area],
                                                                          @"Action":@"showAddressPickerMenu:",
                                                                          @"ActionSender" : [NSNumber numberWithInt:eCity]},
                                                                        @{@"Title": NSLocalizedString(@"收货地址",nil),
-                                                                         @"Desc" :[self anyValue:self.personalModel.address],
+                                                                         @"Desc" :[self anyValue:self.viewModel.address],
                                                                          @"Action":@"showReceiptAddress:",
                                                                          @"ActionSender" : [NSNumber numberWithInt:eAddress]},
                                                                        @{@"Title": NSLocalizedString(@"修改密码",nil),
-                                                                         @"Desc" : [self passwordTips:self.personalModel.isUpdatePasswd],
+                                                                         @"Desc" : [self passwordTips:self.viewModel.isUpdatePasswd],
                                                                          @"Action":@"changePassword:",
                                                                          @"ActionSender" : [NSNumber numberWithInt:ePassword]}
                                                                        ]];
@@ -290,6 +300,7 @@ UITableViewDataSource
     __weak typeof (self) weakSelf = self;
     [self.imagePicker showPicker:^(UIImage *resultImage){
         NSLog(@"%d",resultImage == nil);
+        weakSelf.isSeletePhoto = YES;
         [weakSelf reSetDataSource:resultImage];
     }];
 }
@@ -297,10 +308,7 @@ UITableViewDataSource
 - (void)reSetDataSource:(UIImage*)userImage
 {
     if (userImage) {
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:[self.dataSourceArray objectAtIndex:0]];
-        [dict setObject:userImage forKey:@"Image"];
-        [self.dataSourceArray replaceObjectAtIndex:0 withObject:dict];
-        [self.tableView reloadData];
+        [self.viewModel updateUserPicture:userImage];
     }
 }
 
@@ -314,13 +322,17 @@ UITableViewDataSource
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
     VerificationViewController* vc = [main instantiateViewControllerWithIdentifier:@"VerificationViewController"];
     vc.baseViewType = eChangePhoneNum;
-    vc.mainPersonModel = self.personalModel;
+    vc.mainPersonModel = self.viewModel;
     vc.userToken = [LBB_LoginManager shareInstance].userToken;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showAddressPickerMenu:(id)sender
 {
+    if (self.addressPicker) {
+        [self.addressPicker removeFromSuperview];
+        self.addressPicker = nil;
+    }
     if (!self.addressPicker) {
         self.addressPicker = [[LBB_AddressPickerView alloc] initWithTitle:NSLocalizedString(@"选择地址", nil)
                                                          showCancelButton:YES
@@ -328,11 +340,11 @@ UITableViewDataSource
                                                         showStreet:NO];
     }
   
-    [self.addressPicker showPickerView];
     __weak typeof (self) weakSelf = self;
-    self.addressPicker.myBlock = ^(NSString *address,NSArray *selections){
+    self.addressPicker.myBlock = ^(SJR_Area *privience,SJR_Area *city ,SJR_Area *street){
+        NSString *address = [NSString stringWithFormat:@"%@ %@",privience.NAME,city.NAME];
         if (address && [address length]) {
-            [weakSelf.personalModel updateArea:1000 CityId:1];
+            [weakSelf.viewModel updateArea:[privience.CODE intValue] CityId:[city.CODE intValue] AddressName:address];
         }
     };
 }
@@ -361,20 +373,20 @@ UITableViewDataSource
     UIAlertAction *baomiAction = [UIAlertAction actionWithTitle:cancelButtonTitle
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
-                                                             [self.personalModel updateGender:2];
+                                                             [self.viewModel updateGender:2];
                                                          }];
     
     
     UIAlertAction *otherAction = [UIAlertAction actionWithTitle:otherButtonTitle
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction *action) {
-        [self.personalModel updateGender:1];
+        [self.viewModel updateGender:1];
     }];
     
     UIAlertAction *otherAction1 = [UIAlertAction actionWithTitle:otherButtonTitle1
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction *action) {
-        [self.personalModel updateGender:0];
+        [self.viewModel updateGender:0];
     }];
     
     
@@ -403,9 +415,7 @@ UITableViewDataSource
                                   selectedDate:[NSDate date]
                                      doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
                                          NSLog(@"selectedDate =  %@",selectedDate);
-                                         [weakSelf.personalModel updateBirthDate:[weakSelf stringFromDate:selectedDate] ];
-//                                         
-//                                         [weakSelf reloadTableView:eBirthDate content:[weakSelf stringFromDate:selectedDate]];
+                                         [weakSelf.viewModel updateBirthDate:[weakSelf stringFromDate:selectedDate]];
                                      }
                                    cancelBlock:^(ActionSheetDatePicker *picker){
                                        
@@ -435,7 +445,7 @@ UITableViewDataSource
     }
     if ([dstController isKindOfClass:NSClassFromString(@"LBB_UserNameViewController")]){
         LBB_UserNameViewController *baseVC = (LBB_UserNameViewController*)dstController;
-        baseVC.personModel = self.personalModel;
+        baseVC.personModel = self.viewModel;
         baseVC.userToken = [LBB_LoginManager shareInstance].userToken;
         
     }else if([dstController isKindOfClass:NSClassFromString(@"ReceiptAddressViewController")]){

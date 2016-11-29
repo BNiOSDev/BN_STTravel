@@ -131,11 +131,12 @@ UITextFieldDelegate
         [alertView show];
         return;
     }
+    // 1:注册短信2.服务通知类短信3营销类短信4修改密码5:修改手机号码
     int type = 4;
-    if (self.baseViewType == eCheckPhoneNum) {
+    if ((self.baseViewType == eChangePhoneNum) || (self.baseViewType == eCheckPhoneNum)) {
         type = 5;
     }
-    [[LBB_LoginManager shareInstance] getVerificationCode:self.phoneNum Type:4];
+    [[LBB_LoginManager shareInstance] getVerificationCode:self.phoneNum Type:type];
 }
 
 - (IBAction)startVerificatiteAction:(id)sender {
@@ -159,12 +160,24 @@ UITextFieldDelegate
             break;
         case eChangePhoneNum:
         {
-            UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
-            VerificationViewController* vc = [main instantiateViewControllerWithIdentifier:@"VerificationViewController"];
-            vc.baseViewType = eCheckPhoneNum;
-            vc.mainPersonModel = self.mainPersonModel;
-            [self.navigationController pushViewController:vc animated:YES];
-         
+            if (!self.personModel) {
+                self.personModel = [[LBB_PersonalModel alloc] init];
+            }
+            __weak typeof (self) weakSelf = self;
+            [self.personModel.loadSupport setDataRefreshblock:^{
+                UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+                VerificationViewController* vc = [main instantiateViewControllerWithIdentifier:@"VerificationViewController"];
+                vc.baseViewType = eCheckPhoneNum;
+                vc.mainPersonModel = weakSelf.mainPersonModel;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }];
+            
+            [self.personModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
+                [weakSelf showHudPrompt:remark];
+            }];
+        
+            [self.personModel updateCheckPhoneNum:self.phoneNum VerifyCode:self.checkNum];
+           
         }
             break;
         case eCheckPhoneNum:
@@ -173,7 +186,6 @@ UITextFieldDelegate
                 self.personModel = [[LBB_PersonalModel alloc] init];
             }
             
-            [self.personModel updatePhoneNum:self.phoneNum VerifyCode:self.checkNum];
             __weak typeof (self) weakSelf = self;
             
             [self.personModel.loadSupport setDataRefreshblock:^{
@@ -189,6 +201,8 @@ UITextFieldDelegate
             [self.personModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
                 [weakSelf showHudPrompt:remark];
             }];
+            
+            [self.personModel updatePhoneNum:self.phoneNum VerifyCode:self.checkNum];
 
         }
             break;
