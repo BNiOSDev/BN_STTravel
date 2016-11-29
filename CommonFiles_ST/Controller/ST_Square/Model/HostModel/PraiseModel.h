@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface PraiseModel : NSObject
-@property(nonatomic, copy)NSString      *iconUrl;
-@property(nonatomic, copy)NSString      *userID;
+@property(nonatomic, copy)NSString      *iconUrl;// 头像
+@property(nonatomic, copy)NSString      *userID;// 用户ID
+
+@property (nonatomic, assign)long likeId ;// 标签ID
+
 @end

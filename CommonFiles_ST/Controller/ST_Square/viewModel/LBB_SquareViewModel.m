@@ -176,16 +176,19 @@
         if(codeNumber.intValue == 0)
         {
             [temp.squareRecommend mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getSquareRecommendData 成功:%@",[dic objectForKey:@"result"]);
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            NSLog(@"失败  %@",errorStr);
+            NSLog(@"getSquareRecommendData失败  %@",errorStr);
         }
         
         temp.squareRecommend.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         temp.squareRecommend.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getSquareRecommendData 失败 error:%@",error.domain);
+
     }];
 }
 
@@ -212,6 +215,7 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getFriendArrayClearData 成功:%@",array);
             NSArray *returnArray = [LBB_SquareFriend mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
@@ -225,12 +229,16 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getFriendArrayClearData errorStr:%@",errorStr);
+
         }
         
         temp.friendArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         
         temp.friendArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getFriendArrayClearData 失败:%@",error.domain);
+
     }];
 
 }
@@ -262,7 +270,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getUgcArrayType成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SquareUgc mj_objectArrayWithKeyValuesArray:array];
             
@@ -277,11 +285,13 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getUgcArrayType errorStr:  %@",errorStr);
+
         }
         
         ugcArray_block.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getUgcArrayClearData失败  %@",error.domain);
+        NSLog(@"getUgcArrayType失败  %@",error.domain);
         
         ugcArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];

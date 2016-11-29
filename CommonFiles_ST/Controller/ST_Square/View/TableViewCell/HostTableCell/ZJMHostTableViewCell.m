@@ -15,6 +15,7 @@
 #import "CommentBoxView.h"
 #import "ContentImageView.h"
 #import "Header.h"
+#import "PraiseModel.h"
 
 @implementation ZJMHostTableViewCell
 {
@@ -140,24 +141,78 @@
 }
 
 
-- (void)setModel:(ZJMHostModel *)model
+- (void)setModel:(LBB_SquareUgc *)model
 {
-    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
+    _model = model;
+    
+    /*
+     
+     @property (nonatomic, assign)long ugcId ;// 主键
+     @property (nonatomic, assign)int ugcType ;// 1.照片 2.视频
+     @property (nonatomic, strong)NSString *videoUrl ;// 视频地址(类型为2)
+     @property (nonatomic, assign)long userId ;// 用户ID
+
+     @property (nonatomic, assign)long allSpotsId ;// 场景ID
+     @property (nonatomic, strong)NSMutableArray<LBB_SquarePics *> *pics ;// 图片集合
+     @property (nonatomic, strong)NSMutableArray<LBB_SquareTags *> *tags ;// 视频标签
+     @property (nonatomic, assign)int picNum ;// 图片总数
+     @property (nonatomic, strong)NSString *picsRemark ;// 图片描述
+     @property (nonatomic, strong)NSString *videoRemark ;// 视频描述
+     @property (nonatomic, assign)int likeNum ;// 点赞次数
+     @property (nonatomic, assign)int isLiked ;// 是否点赞 0 否 1是
+     @property (nonatomic, strong)NSMutableArray<LBB_SquareLikeList *> *likeList ;// 点赞集合
+     @property (nonatomic, assign)int isCollected ;// 是否收藏0 否 1是
+     @property (nonatomic, strong)NSMutableArray<LBB_SquareComments *> *comments ;// 评论集合
+     
+     @property (nonatomic, strong)LBB_SquareDetailViewModel *squareDetailViewModel;
+     
+     @property (nonatomic, strong)LBB_UserShowViewModel *userShowViewModel;
+
+     */
+    
+    
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");
-    _addressNameLabel.text = model.address;
-    _timeLabel.text = model.timeAgo;
-    _contentLabel.text = model.content;
+    _addressNameLabel.text = model.allSpotsName ;// 场景名称;
+    _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
+    _contentLabel.text = model.picsRemark ;// 图片描述
+    //图片集合
+    NSMutableArray *imageArray = (NSMutableArray *)[model.pics map:^id(LBB_SquarePics *element) {
+        
+        NSString* dic = element.imageUrl;
+        return dic;
+    }];
+    _contentImage.imageArray = imageArray;
     
-    _contentImage.imageArray = model.imageArray;
-    praiseView.praiseArray = model.praiseModelArray;
-    commetView.commentArray = model.commentModelArray;
+    //点赞人数
+    NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {
+        
+        PraiseModel* dic = [[PraiseModel alloc] init];
+        dic.iconUrl = element.portrait;
+        dic.userID = [NSString stringWithFormat:@"%ld",element.userId];
+        dic.likeId = element.likeId;
+        return dic;
+    }];
+    praiseView.praiseArray = praiseModelArray;
+    
+    
+    //评论内容
+    NSMutableArray *commentModelArray = (NSMutableArray *)[model.comments map:^id(LBB_SquareComments *element) {
+        
+        CommentModel *model = [[CommentModel alloc]init];
+        model.userName = element.userName;// 用户名称
+        model.contentStr = element.remark;// 评论内容
+        model.userID = [NSString stringWithFormat:@"%ld",element.commentId];// 评论ID
+        return model;
+    }];
+    commetView.commentArray = commentModelArray;
     
     _contentLabel.sd_layout
     .leftEqualToView(_nameLable)
     .topSpaceToView(_iconImage, 5);
-    [_contentLabel autoFit:model.content size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 75, DeviceHeight)];
+    [_contentLabel autoFit:model.picsRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 75, DeviceHeight)];
     
     _contentImage.sd_layout
     .leftEqualToView(_nameLable)

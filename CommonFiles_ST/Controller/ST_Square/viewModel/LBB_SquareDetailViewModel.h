@@ -12,7 +12,7 @@
 @interface LBB_SquareComments : BN_BaseDataModel
 
 @property (nonatomic, assign)long commentId ;// 评论ID
-@property (nonatomic, strong)NSString *username ;// 用户名称
+@property (nonatomic, strong)NSString *userName ;// 用户名称
 @property (nonatomic, strong)NSString *remark ;// 评论内容
 
 @end

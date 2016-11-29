@@ -13,6 +13,7 @@
 #import <Masonry.h>
 #import "UILabel+AutoFit.h"
 #import "UIView+SDAutoLayout.h"
+#import <MJRefresh/MJRefresh.h>
 
 typedef NS_ENUM(NSInteger, UITableViewCellViewSignal)
 {

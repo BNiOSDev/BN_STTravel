@@ -7,7 +7,6 @@
 //
 
 #import "LBB_ZJMHostViewController.h"
-#import "ZJMHostModel.h"
 #import "ZJMHostTableViewCell.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "UIView+SDAutoLayout.h"
@@ -18,14 +17,16 @@
 #import "LBBFriendModel.h"
 #import "LBBFriendViewController.h"
 #import "LBBHostDetailViewController.h"
+#import "LBB_SquareViewModel.h"
+
 
 @interface LBB_ZJMHostViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)UITableView     *tableView;
-@property(nonatomic, strong)NSMutableArray  *dataArray;
-@property(nonatomic, strong)NSMutableArray  *praiseArray;
-@property(nonatomic, strong)NSMutableArray  *commentArray;
-@property(nonatomic, strong)NSMutableArray  *imageArray;
-@property(nonatomic, strong)NSMutableArray  *imageArray2;
+
+
+
+@property(nonatomic, strong)LBB_SquareViewModel* viewModel;
+
 @end
 
 @implementation LBB_ZJMHostViewController
@@ -33,9 +34,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self initData];
 
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 64 - AUTO(44))];
+    [self initViewModel];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -44,60 +45,53 @@
     [self.tableView registerClass:[LBBFriendTableViewCell class] forCellReuseIdentifier:@"LBBFriendTableViewCell"];
 }
 
-- (void)initData
-{
-    _imageArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 0; i++) {
-        NSString *str = @"http://c.hiphotos.baidu.com/image/pic/item/6c224f4a20a446230b10a7179a22720e0df3d7e8.jpg";
-        [_imageArray addObject:str];
-    }
-    _imageArray2 = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 0; i++) {
-        NSString *str = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        [_imageArray2 addObject:str];
-    }
-    
-    _praiseArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 10; i++) {
-        PraiseModel *model = [[PraiseModel alloc]init];
-        model.iconUrl = @"";
-        [_praiseArray addObject:model];
-    }
-    
-    _commentArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 2; i++) {
-        CommentModel *model = [[CommentModel alloc]init];
-        model.userName = @"小大王";
-        model.contentStr = @"大王叫我来巡山，抓个和尚当晚餐。看到和尚太有型，抓来当我压寨老公哇哈哈";
-        [_commentArray addObject:model];
-    }
-    
-    _dataArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 10; i++) {
-        ZJMHostModel *model = [[ZJMHostModel alloc]init];
-        model.iconUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.userName = @"zjmzjmzjmzjm";
-        model.timeAgo = @"15min ago";
-        model.address = @"address";
-        model.content = @"wdashkdfahsdfhasjkdfhasjlkhfdajshdfjkashdfjakshdjshfkjsahfksajhfsakjhfaslhfkalshfasfkajhfalskhksal";
-        model.hostImageUrl = @"";
-        
-        if(i % 2 == 0)
-        {
-             model.imageArray = _imageArray;
-        }else{
-             model.imageArray = _imageArray2;
-        }
-       
-        
-        model.praiseModelArray = _praiseArray;
-        
-        model.commentModelArray = _commentArray;
-        
-        [_dataArray addObject:model];
-    }
-    
 
+-(void)initViewModel{
+
+    self.viewModel = [[LBB_SquareViewModel alloc] init];
+    
+    /**
+     3.4.1	广场-广场主页-好友推荐（已测）
+     */
+    __weak typeof(self) temp = self;
+    [self.viewModel getSquareRecommendData];
+    [self.viewModel.squareRecommend.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+    }];
+    
+    /**
+     3.4.4	广场-广场主页-图片/视频列表（已测）
+     
+     @param type 1主页  视频为单独的2.视频
+     @param clear 清空原数据
+     */
+    [self.viewModel getUgcArrayType:1 ClearData:YES];
+    [self.viewModel.ugcImageArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+    }];
+    
+    [self.tableView setTableViewData:self.viewModel.ugcImageArray];
+    
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [temp.viewModel getFriendArrayClearData:YES];
+        [temp.viewModel getSquareRecommendData];
+        [temp.viewModel getUgcArrayType:1 ClearData:YES];
+        
+        [temp.tableView.mj_header endRefreshing];
+        
+    } footerRefreshDatablock:^{
+        [temp.viewModel getUgcArrayType:1 ClearData:NO];
+        [temp.tableView.mj_footer endRefreshing];
+    }];
+
+    /**
+     3.4.2	广场-广场主页-好友推荐列表（已测）
+     
+     @param clear 清空原数据
+     */
+    [self.viewModel getFriendArrayClearData:YES];
+    
 }
 
 #pragma mark -- TableViewDelegate
@@ -112,7 +106,7 @@
     {
         return 1;
     }
-    return self.dataArray.count;
+    return self.viewModel.ugcImageArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -146,24 +140,20 @@
     if(indexPath.section == 0)
     {
         LBBFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBBFriendTableViewCell"];
-        LBBFriendModel *model = [[LBBFriendModel alloc]init];
-        model.userName = @"老郑刷锅";
-        model.iconUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.content = @"果然是个大帅哥";
-        cell.model = model;
+
+        cell.model = self.viewModel.squareRecommend;
         return cell;
     }else{
         ZJMHostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"zjmhost"];
         ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
         [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-        cell.model = self.dataArray[indexPath.row];
+        cell.model = self.viewModel.ugcImageArray[indexPath.row];
         return cell;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"xuanzhong");
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(indexPath.section == 0)
     {
@@ -177,12 +167,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-    id model = self.dataArray[indexPath.row];
     if(indexPath.section == 0)
     {
         return AUTO(60);
     }else{
+        // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
+        id model = self.viewModel.ugcImageArray[indexPath.row];
+
         return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ZJMHostTableViewCell class] contentViewWidth:[self cellContentViewWith]];
     }
 }

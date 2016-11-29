@@ -48,19 +48,27 @@
     [self addSubview:contentLabel];
     
     focusBtn = [[UIButton alloc]initWithFrame:CGRectMake(DeviceWidth - AUTO(45) - 20, AUTO(20), AUTO(45), AUTO(20))];
-    [focusBtn setTitle:@"关注" forState:0];
+    [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
     [focusBtn setTitleColor:UIColorFromRGB(0xBA9150) forState:0];
     focusBtn.titleLabel.font = FONT(AUTO(12.0));
     LRViewBorderRadius(focusBtn, 2.0, 0.5, UIColorFromRGB(0xBA9150));
     [self addSubview:focusBtn];
 }
 
-- (void)setModel:(LBBFriendModel *)model
+- (void)setModel:(LBB_SquareFriend *)model
 {
     _model = model;
-    [iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:DEFAULTIMAGE];
+    [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userHeadPortraitUrl] placeholderImage:DEFAULTIMAGE];
     nameLabel.text = model.userName;
-    contentLabel.text = model.content;
+    contentLabel.text = model.attentionRemark;
+    
+    if (model.AttentionStatus == 0) {//未关注
+        [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
+    }
+    else{//已关注
+        [focusBtn setTitle:@"已关注" forState:UIControlStateNormal];
+    }
+    
 }
 
 @end

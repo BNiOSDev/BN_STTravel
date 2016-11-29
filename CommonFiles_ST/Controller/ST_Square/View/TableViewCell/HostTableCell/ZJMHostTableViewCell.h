@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZJMHostModel.h"
+#import "LBB_SquareViewModel.h"
 #import "UIView+SDAutoLayout.h"
+
 @interface ZJMHostTableViewCell : UITableViewCell
-@property(nonatomic, strong) ZJMHostModel   *model;
+@property(nonatomic, strong) LBB_SquareUgc   *model;
 @end

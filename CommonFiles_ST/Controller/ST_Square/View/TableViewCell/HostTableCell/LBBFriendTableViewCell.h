@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LBBFriendModel.h"
+#import "LBB_SquareViewModel.h"
+
 @interface LBBFriendTableViewCell : UITableViewCell
-@property(nonatomic, strong)LBBFriendModel   *model;
+@property (nonatomic, strong)LBB_SquareFriend   *model;
+
+
+
 @end
