@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface ZJMTravelModel : NSObject
-@property (nonatomic, copy)  NSString  *imageUrl;
-@property (nonatomic, strong) NSString *iconName;//icon
-@property (nonatomic, strong) NSString *name;//名字
-@property (nonatomic, strong) NSString *msgContent;//内容
+@property (nonatomic, copy)  NSString   *imageUrl;
+@property (nonatomic, strong) NSString  *iconName;//icon
+@property (nonatomic, strong) NSString  *name;//名字
+@property (nonatomic, strong) NSString  *msgContent;//内容
 @property (nonatomic, copy) NSString    *timeStr;//时间
 @property (nonatomic, copy) NSString    *daysStr;//历时多久
 @property (nonatomic, copy) NSString    *vistNum;//浏览人数

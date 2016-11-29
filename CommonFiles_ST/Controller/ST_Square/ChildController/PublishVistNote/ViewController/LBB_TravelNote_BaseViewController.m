@@ -10,6 +10,7 @@
 #import "UINavigationBar+Awesome.h"
 #import "LBB_TraveNoteHead_View.h"
 #import "Header.h"
+#import "LBB_AddTextToVistNote_Controller.h"
 
 @interface LBB_TravelNote_BaseViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UIView       *whiteLine;
@@ -115,6 +116,8 @@
 - (void)editTextFunc
 {
     NSLog(@"editTextFunc");
+    LBB_AddTextToVistNote_Controller *vc = [[LBB_AddTextToVistNote_Controller alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)backToBaseControl
@@ -132,12 +135,19 @@
 {
     UIAlertController   *alterSheet = [UIAlertController alertControllerWithTitle: nil message: nil preferredStyle:UIAlertControllerStyleActionSheet];
     //添加Button
-    [alterSheet addAction: [UIAlertAction actionWithTitle: @"拍照" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    [alterSheet addAction: [UIAlertAction actionWithTitle: @"预览游记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         //处理点击拍照
     }]];
-    [alterSheet addAction: [UIAlertAction actionWithTitle: @"从相册选取" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    
+    [alterSheet addAction: [UIAlertAction actionWithTitle: @"游记设置" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         //处理点击从相册选取
     }]];
+    
+    [alterSheet addAction: [UIAlertAction actionWithTitle: @"发布游记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        //处理点击从相册选取
+    }]];
+    
+    [alterSheet addAction: [UIAlertAction actionWithTitle: @"删除游记" style: UIAlertActionStyleDefault handler:nil]];
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:nil]];
     
     [self presentViewController: alterSheet animated: YES completion: nil];

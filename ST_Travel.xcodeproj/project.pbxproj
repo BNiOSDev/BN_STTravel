@@ -10,6 +10,9 @@
 		1BCC8A511DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
+		3C66D0A91DED2493002CBECE /* LBB_AddTextToVistNote_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C66D0A81DED2493002CBECE /* LBB_AddTextToVistNote_Controller.m */; };
+		3C66D0AC1DED2AE8002CBECE /* LBB_Date_SengeMent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C66D0AB1DED2AE8002CBECE /* LBB_Date_SengeMent.m */; };
+		3C66D0AF1DED33B4002CBECE /* LBB_AddClass_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C66D0AE1DED33B4002CBECE /* LBB_AddClass_Button.m */; };
 		84E2122D1DE88F5900CD99F4 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E20DAB1DE88F5800CD99F4 /* PoohBaseTableViewController.m */; };
 		84E2122E1DE88F5900CD99F4 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E20DAD1DE88F5800CD99F4 /* PoohBaseViewController.m */; };
 		84E2122F1DE88F5900CD99F4 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E20DB21DE88F5800CD99F4 /* b27_icon_star_gray@2x.png */; };
@@ -507,6 +510,12 @@
 		1BCC8A501DE8ACCB00802CE6 /* LBB_SquareAddressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SquareAddressViewModel.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3C66D0A71DED2493002CBECE /* LBB_AddTextToVistNote_Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_AddTextToVistNote_Controller.h; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/ViewController/LBB_AddTextToVistNote_Controller.h; sourceTree = SOURCE_ROOT; };
+		3C66D0A81DED2493002CBECE /* LBB_AddTextToVistNote_Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_AddTextToVistNote_Controller.m; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/ViewController/LBB_AddTextToVistNote_Controller.m; sourceTree = SOURCE_ROOT; };
+		3C66D0AA1DED2AE8002CBECE /* LBB_Date_SengeMent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_Date_SengeMent.h; sourceTree = "<group>"; };
+		3C66D0AB1DED2AE8002CBECE /* LBB_Date_SengeMent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_Date_SengeMent.m; sourceTree = "<group>"; };
+		3C66D0AD1DED33B4002CBECE /* LBB_AddClass_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_AddClass_Button.h; sourceTree = "<group>"; };
+		3C66D0AE1DED33B4002CBECE /* LBB_AddClass_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AddClass_Button.m; sourceTree = "<group>"; };
 		84E20DAA1DE88F5800CD99F4 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		84E20DAB1DE88F5800CD99F4 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		84E20DAC1DE88F5800CD99F4 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -4550,6 +4559,8 @@
 		84E211741DE88F5900CD99F4 /* ChileViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3C66D0A71DED2493002CBECE /* LBB_AddTextToVistNote_Controller.h */,
+				3C66D0A81DED2493002CBECE /* LBB_AddTextToVistNote_Controller.m */,
 			);
 			path = ChileViewController;
 			sourceTree = "<group>";
@@ -4566,6 +4577,10 @@
 			children = (
 				84E211771DE88F5900CD99F4 /* LBB_TraveNoteHead_View.h */,
 				84E211781DE88F5900CD99F4 /* LBB_TraveNoteHead_View.m */,
+				3C66D0AA1DED2AE8002CBECE /* LBB_Date_SengeMent.h */,
+				3C66D0AB1DED2AE8002CBECE /* LBB_Date_SengeMent.m */,
+				3C66D0AD1DED33B4002CBECE /* LBB_AddClass_Button.h */,
+				3C66D0AE1DED33B4002CBECE /* LBB_AddClass_Button.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5509,6 +5524,7 @@
 				84E213C51DE88F5A00CD99F4 /* LBB_TravelDetailViewCell.m in Sources */,
 				84E2139A1DE88F5A00CD99F4 /* FZJBigPhotoController.m in Sources */,
 				84E212921DE88F5900CD99F4 /* LBB_HomeSearchDefaultCell.m in Sources */,
+				3C66D0A91DED2493002CBECE /* LBB_AddTextToVistNote_Controller.m in Sources */,
 				84E212E41DE88F5900CD99F4 /* LBB_MyPhotoViewController.m in Sources */,
 				84E2133B1DE88F5A00CD99F4 /* MineViewController.m in Sources */,
 				84E212D51DE88F5900CD99F4 /* LBB_MessageCenterViewCell.m in Sources */,
@@ -5623,6 +5639,7 @@
 				84E212311DE88F5900CD99F4 /* CWStarRateView.m in Sources */,
 				84E212451DE88F5900CD99F4 /* LBB_AddressAddViewController.m in Sources */,
 				84E212731DE88F5900CD99F4 /* LBB_OrderTextCell.m in Sources */,
+				3C66D0AF1DED33B4002CBECE /* LBB_AddClass_Button.m in Sources */,
 				84E213C11DE88F5A00CD99F4 /* LBB_PraiseWithCommentView.m in Sources */,
 				84E213E61DE88F5A00CD99F4 /* LBB_HostTableViewCell.m in Sources */,
 				84E2125E1DE88F5900CD99F4 /* LBB_GuiderUserMsgCell.m in Sources */,
@@ -5674,6 +5691,7 @@
 				84E212531DE88F5900CD99F4 /* LBB_GuiderApplyLabelSelectView.m in Sources */,
 				84E213C41DE88F5A00CD99F4 /* LBB_TravelDetailHeadView.m in Sources */,
 				84E212D01DE88F5900CD99F4 /* LBB_SquareTravelModel.m in Sources */,
+				3C66D0AC1DED2AE8002CBECE /* LBB_Date_SengeMent.m in Sources */,
 				84E212861DE88F5900CD99F4 /* LBB_ScenicDetailPriceMsgCell.m in Sources */,
 				84E2125F1DE88F5900CD99F4 /* LBB_GuiderApplyResultViewController.m in Sources */,
 				84E212A51DE88F5900CD99F4 /* UILabel+Common.m in Sources */,

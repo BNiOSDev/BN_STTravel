@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LBB_AddClass_Button : UIButton
-
+@property(nonatomic,copy)NSString   *titleStr;
 @end

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import <BN_BaseKit/BN_BaseKit.h>
+#import "Base_BaseViewController.h"
 
 @interface LBB_AddTextToVistNote_Controller : Base_BaseViewController
 

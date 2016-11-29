@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Header.h"
 @interface LBB_Date_SengeMent : UIButton
-
+@property(nonatomic,copy)NSString  *dateStr;
+@property(nonatomic,copy)NSString  *timeStr;
+@property(nonatomic,copy)BtnFuncTion  blockDatepick;
 @end
