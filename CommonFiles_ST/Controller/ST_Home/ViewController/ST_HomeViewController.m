@@ -57,7 +57,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-    [self testModel];
+  //  [self testModel];
 
 }
 
