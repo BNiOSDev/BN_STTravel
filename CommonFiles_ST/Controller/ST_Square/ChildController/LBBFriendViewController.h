@@ -7,7 +7,10 @@
 //
 
 #import "ZJMBaseViewController.h"
+#import "LBB_SquareViewModel.h"
 
 @interface LBBFriendViewController : ZJMBaseViewController
+
+@property(nonatomic, strong)LBB_SquareViewModel* viewModel;
 
 @end

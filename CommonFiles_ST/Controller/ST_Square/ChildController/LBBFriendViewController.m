@@ -42,27 +42,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"好友推荐";
-    [self initData];
     
     [self createTable];
 }
 
 - (void)initData
 {
-    _dataArray = [[NSMutableArray alloc]init];
-    for(int i = 0;i < 9;i++)
-    {
-        LBBFriendModel *model = [[LBBFriendModel alloc]init];
-        model.iconUrl = @"http://c.hiphotos.baidu.com/image/pic/item/6c224f4a20a446230b10a7179a22720e0df3d7e8.jpg";
-        model.userName = @"帅哥老郑";
-        model.content = @"嗯嗯，确实是个帅哥";
-        [_dataArray addObject:model];
-    }
+    __weak typeof(self) temp = self;
+
+    [self.viewModel.friendArray.loadSupport setDataRefreshblock:^{
+        [temp.mTableView reloadData];
+    }];
+    
+    [self.mTableView setTableViewData:self.viewModel.friendArray];
+    
+    //3.1上拉和下拉的动作
+    [self.mTableView setHeaderRefreshDatablock:^{
+        [temp.viewModel getFriendArrayClearData:YES];
+        [temp.mTableView.mj_header endRefreshing];
+        
+    } footerRefreshDatablock:^{
+        [temp.viewModel getFriendArrayClearData:NO];
+        [temp.mTableView.mj_footer endRefreshing];
+    }];
+    
+    
 }
 - (void)createTable
 {
     UITableView *mtableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64 - 49) style:UITableViewStylePlain];
     _mTableView = mtableView;
+    [self initData];
     //    _mTableView.backgroundColor = BACKVIEWBACKCOLOR;
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
@@ -74,7 +84,7 @@
 #pragma mark TableView Delegate Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return  _dataArray.count;
+    return  self.viewModel.friendArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -90,7 +100,7 @@
     if (!cell) {
         cell = [[LBBFriendTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:tableCellID];
     }
-    cell.model = _dataArray[indexPath.row];
+    cell.model = self.viewModel.friendArray[indexPath.row];
     return cell;
 }
 

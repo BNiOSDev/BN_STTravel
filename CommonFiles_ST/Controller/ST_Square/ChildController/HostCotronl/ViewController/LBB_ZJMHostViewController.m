@@ -158,6 +158,7 @@
     if(indexPath.section == 0)
     {
         LBBFriendViewController   *vc = [[LBBFriendViewController alloc]init];
+        vc.viewModel = self.viewModel;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
