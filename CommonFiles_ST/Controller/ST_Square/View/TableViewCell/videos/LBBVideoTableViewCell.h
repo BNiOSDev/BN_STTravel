@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ZJMHostModel.h"
 #import "UIView+SDAutoLayout.h"
+#import "LBB_SquareViewModel.h"
 
 @interface LBBVideoTableViewCell : UITableViewCell
-@property(nonatomic, strong) ZJMHostModel   *model;
+@property(nonatomic, strong) LBB_SquareUgc   *model;
 @end

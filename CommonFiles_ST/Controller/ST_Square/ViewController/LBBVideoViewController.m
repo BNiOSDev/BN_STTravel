@@ -13,16 +13,14 @@
 #import "PraiseModel.h"
 #import "CommentModel.h"
 #import "LBBVideoTableViewCell.h"
-
+#import "LBB_SquareViewModel.h"
+#import "Header.h"
 #define VideoCell @"zjmVideoCell"
 
 @interface LBBVideoViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)UITableView     *tableView;
-@property(nonatomic, strong)NSMutableArray  *dataArray;
-@property(nonatomic, strong)NSMutableArray  *praiseArray;
-@property(nonatomic, strong)NSMutableArray  *commentArray;
-@property(nonatomic, strong)NSMutableArray  *imageArray;
-@property(nonatomic, strong)NSMutableArray  *imageArray2;
+@property(nonatomic, strong)LBB_SquareViewModel* viewModel;
+
 
 @end
 
@@ -36,9 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initData];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 30 - 64 - 44 - 20)];
+    [self initViewModel];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -46,68 +44,44 @@
     [self.tableView registerClass:[LBBVideoTableViewCell class] forCellReuseIdentifier:VideoCell];
 }
 
-- (void)initData
-{
+
+-(void)initViewModel{
     
-    _imageArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 0; i++) {
-        NSString *str = @"http://c.hiphotos.baidu.com/image/pic/item/6c224f4a20a446230b10a7179a22720e0df3d7e8.jpg";
-        [_imageArray addObject:str];
-    }
+    self.viewModel = [[LBB_SquareViewModel alloc] init];
     
-    _imageArray2 = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 0; i++) {
-        NSString *str = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        [_imageArray2 addObject:str];
-    }
+    /**
+     3.4.4	广场-广场主页-图片/视频列表（已测）
+     
+     @ param type 1主页  视频为单独的2.视频
+     @ param clear 清空原数据
+     */
+    __weak typeof(self) temp = self;
+
+    [self.viewModel getUgcArrayType:2 ClearData:YES];
+    [self.viewModel.ugcVideoArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+    }];
     
-    _praiseArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 10; i++) {
-        PraiseModel *model = [[PraiseModel alloc]init];
-        model.iconUrl = @"http://c.hiphotos.baidu.com/image/pic/item/6c224f4a20a446230b10a7179a22720e0df3d7e8.jpg";
-        [_praiseArray addObject:model];
-    }
+    [self.tableView setTableViewData:self.viewModel.ugcVideoArray];
     
-    _commentArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 0; i++) {
-        CommentModel *model = [[CommentModel alloc]init];
-        model.userName = @"小大王";
-        model.contentStr = @"大王叫我来巡山,大王叫我来巡山,大王叫我来巡山";
-        [_commentArray addObject:model];
-    }
-    
-    _dataArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 10; i++) {
-        ZJMHostModel *model = [[ZJMHostModel alloc]init];
-        model.iconUrl = @"http://c.hiphotos.baidu.com/image/pic/item/6c224f4a20a446230b10a7179a22720e0df3d7e8.jpg";
-        model.userName = @"zjmzjmzjmzjm";
-        model.timeAgo = @"15min ago";
-        model.address = @"address";
-        model.content = @"你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你你这是什么鬼啊你";
-        model.hostImageUrl = @"";
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [temp.viewModel getUgcArrayType:2 ClearData:YES];
         
-        if(i % 2 == 0)
-        {
-            model.imageArray = _imageArray;
-        }else{
-            model.imageArray = _imageArray2;
-        }
+        [temp.tableView.mj_header endRefreshing];
         
-        
-        model.praiseModelArray = _praiseArray;
-        
-        model.commentModelArray = _commentArray;
-        
-        [_dataArray addObject:model];
-    }
-    
+    } footerRefreshDatablock:^{
+        [temp.viewModel getUgcArrayType:2 ClearData:NO];
+        [temp.tableView.mj_footer endRefreshing];
+    }];
+
     
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    return self.viewModel.ugcVideoArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,7 +93,7 @@
     
     ///////////////////////////////////////////////////////////////////////
     
-    cell.model = self.dataArray[indexPath.row];
+    cell.model = self.viewModel.ugcVideoArray[indexPath.row];
     return cell;
 }
 
@@ -131,7 +105,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-    id model = self.dataArray[indexPath.row];
+    id model = self.viewModel.ugcVideoArray[indexPath.row];
     
     return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[LBBVideoTableViewCell class] contentViewWidth:[self cellContentViewWith]];
 }

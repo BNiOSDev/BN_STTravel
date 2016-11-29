@@ -133,25 +133,52 @@
 }
 
 
-- (void)setModel:(ZJMHostModel *)model
+- (void)setModel:(LBB_SquareUgc *)model
 {
-    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
+    _model = model;
+    
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");
-    _addressNameLabel.text = model.address;
-    _timeLabel.text = model.timeAgo;
-    _contentLabel.text = model.content;
-
-    _contentImage.imageArray = model.imageArray;
-    praiseView.praiseArray = model.praiseModelArray;
-    commetView.commentArray = model.commentModelArray;
+    _addressNameLabel.text = model.allSpotsName ;// 场景名称;
+    _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
+    _contentLabel.text = model.picsRemark ;// 图片描述
+    //图片集合
+    NSMutableArray *imageArray = (NSMutableArray *)[model.pics map:^id(LBB_SquarePics *element) {
+        
+        NSString* dic = element.imageUrl;
+        return dic;
+    }];
+    _contentImage.imageArray = imageArray;
+    
+    //点赞人数
+    NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {
+        
+        PraiseModel* dic = [[PraiseModel alloc] init];
+        dic.iconUrl = element.portrait;
+        dic.userID = [NSString stringWithFormat:@"%ld",element.userId];
+        dic.likeId = element.likeId;
+        return dic;
+    }];
+    praiseView.praiseArray = praiseModelArray;
+    
+    
+    //评论内容
+    NSMutableArray *commentModelArray = (NSMutableArray *)[model.comments map:^id(LBB_SquareComments *element) {
+        
+        CommentModel *model = [[CommentModel alloc]init];
+        model.userName = element.userName;// 用户名称
+        model.contentStr = element.remark;// 评论内容
+        model.userID = [NSString stringWithFormat:@"%ld",element.commentId];// 评论ID
+        return model;
+    }];
+    commetView.commentArray = commentModelArray;
     
     _contentLabel.sd_layout
     .leftEqualToView(_nameLable)
     .topSpaceToView(_iconImage, 5);
-    [_contentLabel autoFit:model.content size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 75, DeviceHeight)];
-    
+    [_contentLabel autoFit:model.picsRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 75, DeviceHeight)];
     _contentImage.sd_layout
     .leftEqualToView(_nameLable)
     .topSpaceToView(_contentLabel, 5)

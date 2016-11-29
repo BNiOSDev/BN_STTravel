@@ -144,33 +144,7 @@
 - (void)setModel:(LBB_SquareUgc *)model
 {
     _model = model;
-    
-    /*
-     
-     @property (nonatomic, assign)long ugcId ;// 主键
-     @property (nonatomic, assign)int ugcType ;// 1.照片 2.视频
-     @property (nonatomic, strong)NSString *videoUrl ;// 视频地址(类型为2)
-     @property (nonatomic, assign)long userId ;// 用户ID
 
-     @property (nonatomic, assign)long allSpotsId ;// 场景ID
-     @property (nonatomic, strong)NSMutableArray<LBB_SquarePics *> *pics ;// 图片集合
-     @property (nonatomic, strong)NSMutableArray<LBB_SquareTags *> *tags ;// 视频标签
-     @property (nonatomic, assign)int picNum ;// 图片总数
-     @property (nonatomic, strong)NSString *picsRemark ;// 图片描述
-     @property (nonatomic, strong)NSString *videoRemark ;// 视频描述
-     @property (nonatomic, assign)int likeNum ;// 点赞次数
-     @property (nonatomic, assign)int isLiked ;// 是否点赞 0 否 1是
-     @property (nonatomic, strong)NSMutableArray<LBB_SquareLikeList *> *likeList ;// 点赞集合
-     @property (nonatomic, assign)int isCollected ;// 是否收藏0 否 1是
-     @property (nonatomic, strong)NSMutableArray<LBB_SquareComments *> *comments ;// 评论集合
-     
-     @property (nonatomic, strong)LBB_SquareDetailViewModel *squareDetailViewModel;
-     
-     @property (nonatomic, strong)LBB_UserShowViewModel *userShowViewModel;
-
-     */
-    
-    
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     _addressImage.image = IMAGE(@"zjmaddress");
