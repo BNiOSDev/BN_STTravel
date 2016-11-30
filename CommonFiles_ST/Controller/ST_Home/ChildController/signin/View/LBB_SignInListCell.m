@@ -66,6 +66,8 @@
             
             make.left.equalTo(ws.portraitImageView.mas_right).offset(interval);
             make.top.equalTo(ws.portraitImageView.mas_centerY).offset(5);
+            make.right.equalTo(ws.contentView).offset(-interval);
+
         }];
         
         

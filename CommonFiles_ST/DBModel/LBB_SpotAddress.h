@@ -16,5 +16,11 @@
 @property (nonatomic,strong)NSString *address ;// 地址
 @property (nonatomic,strong)NSString *longy;//精度
 @property (nonatomic,strong)NSString *dimx;//伟度
+@property (nonatomic,strong)NSString *dimensionality;//伟度
+@property (nonatomic,strong)NSString *longitude;//精度
+@property (nonatomic,strong)NSString *picUrl;//图片
+
+
+
 
 @end

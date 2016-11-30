@@ -8,13 +8,17 @@
 
 #import "LBB_AddressAddViewController.h"
 #import "LBB_SignInListCell.h"
+#import "LBB_SquareAddressViewModel.h"
 
 @interface LBB_AddressAddViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property(nonatomic, retain)UITableView* tableView;
 @property(nonatomic, retain)UISearchBar* searchBar;
 
+@property(nonatomic, retain)LBB_SquareAddressViewModel* viewModel;
+
 @end
+
 
 @implementation LBB_AddressAddViewController
 
@@ -41,6 +45,40 @@
 /*
  * setup navigation bar view
  */
+
+-(void)initViewModel{
+
+    self.viewModel = [[LBB_SquareAddressViewModel alloc] init];
+    
+    /**
+     3.4.26	主页-游记添加地址（已测）
+     
+     @param allSpotsType 1.美食 2.民宿 3景点(可为空)
+     @param name 可为空 模糊查询
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getsTravelNotesDetailAllSpotsType:1 name:@"" ClearData:YES];
+    
+    WS(ws);
+    [self.viewModel.squareSpotsArray.loadSupport setDataRefreshblock:^{
+        
+        [ws.tableView reloadData];
+    }];
+    
+    [self.tableView setTableViewData:self.viewModel.squareSpotsArray];
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+        
+        [ws.viewModel getsTravelNotesDetailAllSpotsType:1 name:@"" ClearData:YES];
+        [ws.tableView.mj_header endRefreshing];
+    } footerRefreshDatablock:^{
+        [ws.tableView.mj_footer endRefreshing];
+        [ws.viewModel getsTravelNotesDetailAllSpotsType:1 name:@"" ClearData:NO];
+    }];
+    
+    
+}
+
 -(void)loadCustomNavigationButton{
     
     WS(ws);
@@ -110,6 +148,9 @@
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.tableView registerClass:[LBB_SignInListCell class] forCellReuseIdentifier:@"LBB_SignInListCell"];
     [self.view addSubview:self.tableView];
+    
+    [self initViewModel];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
@@ -125,7 +166,7 @@
 #pragma tableView Delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 14;
+    return self.viewModel.squareSpotsArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -142,12 +183,22 @@
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     [cell showArrowImageView:YES];
     cell.portraitImageView.layer.cornerRadius = 5;
+    
+    LBB_SpotAddress* obj = [self.viewModel.squareSpotsArray objectAtIndex:indexPath.row];
+    [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:obj.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    
+    [cell.titleLabel setText:obj.allSpotsName];
+    [cell.subTitleLabel setText:obj.address];
+    
+    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.click(self,@(indexPath.row));
+    LBB_SpotAddress* obj = [self.viewModel.squareSpotsArray objectAtIndex:indexPath.row];
+
+    self.click(self,obj);
 }
 
 
