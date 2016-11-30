@@ -25,11 +25,11 @@
  3.4.15 广场-广场主页-图片/视频发布（已测）
  
  @param type           int	1.照片 2.视频
- @param url            String	封面视频或图片地址
+ @param url              String	封面视频或图片地址
  @param remark         String	备注
- @param longitude      String	Y坐标
- @param dimensionality String	Y坐标
- @param allSpotsId     Long	关联场景
+ @param longitude      String	Y坐标（经度）
+ @param dimensionality String	Y坐标（纬度）
+ @param allSpotsId     Long	关联场景 （地址ID）
  @param tags           List	视频标签  @[ @"1",@"1",@"1",@"1",  ]
         参数字段	类型     说明
         tagId	Long	标签ID
@@ -39,9 +39,9 @@
                                                  @"tags":标签} 
                                             ]
         参数字段   	类型     说明
-         imageUrl	String	图片地址
-         imageDesc	String	图片描述
-         tags       List	标签
+         imageUrl          String	图片地址
+         imageDesc      String	图片描述
+         tags                 List	标签
 
  */
 -(void)setSquareUgc:(int)type
