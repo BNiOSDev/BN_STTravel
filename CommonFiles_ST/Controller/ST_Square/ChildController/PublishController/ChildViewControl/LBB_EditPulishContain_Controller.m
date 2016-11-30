@@ -8,12 +8,15 @@
 
 #import "LBB_EditPulishContain_Controller.h"
 #import "UITextView+Placeholder.h"
+#import "LBB_AddressAddViewController.h"
+#import "LBB_SpotAddress.h"
 
 @interface LBB_EditPulishContain_Controller ()
 @property(nonatomic,strong)UIScrollView   *backView;
 @property(nonatomic,strong)UITextView     *vistHead;
 @property(nonatomic,strong)UIButton         *pulishBtn;
 @property(nonatomic,strong)NSMutableArray   *mapViewArray;
+@property(nonatomic,strong)LBB_SpotAddress *addressInfo;
 @end
 
 @implementation LBB_EditPulishContain_Controller
@@ -83,14 +86,30 @@
 
 - (void)addMap:(UIView *)btn
 {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, btn.bottom + AUTO(5), DeviceWidth, AUTO(100))];
-    view.backgroundColor = ColorRed;
-    [_mapViewArray addObject:view];
-    [self.backView addSubview:view];
-    
-    _pulishBtn.bottom = view.bottom + AUTO(50);
-    
-    self.backView.contentSize = CGSizeMake(DeviceWidth, _pulishBtn.bottom+ 25);
+    __weak typeof (self) weakSelf = self;
+    LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
+    dest.click = ^(LBB_AddressAddViewController* add,LBB_SpotAddress* address){
+        //   [text setText:[NSString stringWithFormat:@"%ld",[index integerValue]]];
+        // [ws.dataArray addObject:index];//回调回来数据
+        _addressInfo = address;
+        NSLog(@"详细地址：%@",_addressInfo.address);
+        
+        //页面变化代码块
+        {
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, btn.bottom + AUTO(5), DeviceWidth, AUTO(100))];
+            view.backgroundColor = ColorRed;
+            [_mapViewArray addObject:view];
+            [self.backView addSubview:view];
+            
+            _pulishBtn.bottom = view.bottom + AUTO(50);
+            self.backView.contentSize = CGSizeMake(DeviceWidth, _pulishBtn.bottom+ 25);
+        }
+        
+        
+        [add.navigationController popViewControllerAnimated:YES];
+    };
+    [weakSelf.navigationController pushViewController:dest animated:YES];
+
 }
 
 @end

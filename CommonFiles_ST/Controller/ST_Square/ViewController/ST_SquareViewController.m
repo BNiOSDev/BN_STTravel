@@ -18,6 +18,7 @@
 #import "ZJMTravelsViewController.h"
 #import "LBBVideoViewController.h"
 #import "LBB_ZJMHostViewController.h"
+#import "CoreData+MagicalRecord.h"
 
 @interface ST_SquareViewController ()<UISearchBarDelegate,UIScrollViewDelegate>
 @property(nonatomic, weak)UISearchBar         *JMSearchBar;
@@ -29,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"history"];
     [self  initNaviStyle];
     //加载Segment
     [self setSegment];

@@ -10,8 +10,14 @@
 #import "LBB_HistoryTipView.h"
 #import "Header.h"
 #import "LBB_HotTipCell.h"
+#import "CoreData+MagicalRecord.h"
+#import "LBB_TagsViewModel.h"
+#import "TipHistory+CoreDataClass.h"
 
 @interface LBB_SelectTip_History_ViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+{
+    UITextField  *inputTip;
+}
 @property(nonatomic,strong)UITableView      *mTableView;
 @property(nonatomic,strong)UITableView      *SearchTableView;
 @property(nonatomic,weak)LBB_HistoryTipView *tableHead;
@@ -22,8 +28,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = WHITECOLOR;
+    
+    //注册键盘消失的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self
+     
+                                             selector:@selector(keyboardWillBeHidden:)
+     
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
     [self initNav];
     [self initView];
+    [self getData];
+}
+
+- (void)getData
+{
+//    LBB_TagsViewModel  *model = [[LBB_TagsViewModel alloc]init];
+    [LBB_SquareTags getConditionTagsClass: 1 type: 1 block:^(NSArray<LBB_SquareTags *> *files, NSError *error) {
+        NSLog(@"数组长度 %ld",files.count);
+    }];
 }
 
 - (void)initView
@@ -38,11 +61,12 @@
 
 - (void)initNav
 {
-    UITextField  *inputTip = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, AUTO(240), 25)];
+    inputTip = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, AUTO(240), 25)];
     inputTip.leftViewMode = UITextFieldViewModeAlways;
     inputTip.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, 25)];
     inputTip.delegate = self;
     inputTip.font = FONT(11.0);
+    
     LRViewBorderRadius(inputTip, 4.5, 0.5, BLACKCOLOR);
     inputTip.placeholder = @"输入标签";
     
@@ -124,7 +148,19 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     _SearchTableView = nil;
+    [textField endEditing:YES];
     return YES;
+}
+
+-(void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    if(inputTip.text.length <= 0)
+    {
+        return;
+    }
+    TipHistory  *historyModel = [TipHistory MR_createEntity];
+    historyModel.searchKey = inputTip.text;
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 @end
