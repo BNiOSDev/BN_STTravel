@@ -193,13 +193,50 @@
     return self;
 }
 
--(void)setModel:(id)model{
+-(void)setModel:(LBB_UserShowViewModel*)model{
     
     WS(ws);
     
-    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-
+    _model = model;
+    NSLog(@"model.coverImg:%@",model.coverImg);
+    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:IMAGE(PlaceHolderImage)];// 封面图片
+    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];// 用户头像
+    [self.nameLabel setText:model.userName];// 用户名称
+    [self.locationLabel setText:model.area];// 地址区域名称
+    [self.photoNumLabel setText:[NSString stringWithFormat:@"%d张照片",model.photoNum]];// 照片数量
+    [self.levelButton setTitle:[NSString stringWithFormat:@"Lv.%d",model.level] forState:UIControlStateNormal];// 级别
+    
+    
+    @weakify(self);
+    [RACObserve(model, isFollow) subscribeNext:^(NSNumber* follow){
+        @strongify(self);
+        int status = [follow intValue];
+        if (status == 0) {//未关注
+            [self.favoriteButton setImage:IMAGE(@"导游_关注") forState:UIControlStateNormal];
+        }
+        else{
+            [self.favoriteButton setImage:IMAGE(@"导游_关注HL") forState:UIControlStateNormal];
+        }
+    }];
+    [RACObserve(model, isLiked) subscribeNext:^(NSNumber* like){
+        @strongify(self);
+        int status = [like intValue];
+        if (status == 0) {//未点赞
+            [self.greatButton setImage:IMAGE(@"导游_点赞") forState:UIControlStateNormal];
+        }
+        else{
+            [self.greatButton setImage:IMAGE(@"导游_点赞HL") forState:UIControlStateNormal];
+        }
+    }];
+    [RACObserve(model, likeNum) subscribeNext:^(NSNumber* like){//点赞数
+        @strongify(self);
+        int num = [like intValue];
+        [self.greatButton setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];
+    }];
+    
+    
+    
+    
     [self.labelButton1 bk_whenTapped:^{
         NSLog(@"labelButton1 touch");
         LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];

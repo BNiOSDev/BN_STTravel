@@ -7,7 +7,10 @@
 //
 
 #import "PoohBaseViewController.h"
+#import "LBB_SquareViewModel.h"
 
 @interface LBB_SquareSnsFollowViewController : Base_BaseViewController
+
+@property(nonatomic, strong)LBB_SquareUgc* viewModel;
 
 @end

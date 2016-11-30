@@ -62,6 +62,7 @@
         {
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_UserAction mj_objectArrayWithKeyValuesArray:array];
+            NSLog(@"getUserActionArrayClearData 成功:%@",array);
             
             if (clear == YES)
             {
@@ -102,7 +103,7 @@
         {
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_UserOther mj_objectArrayWithKeyValuesArray:array];
-            
+            NSLog(@"getUserAttentionArrayClearData 成功:%@",array);
             if (clear == YES)
             {
                 [temp.userAttentionArray removeAllObjects];
@@ -114,11 +115,15 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getUserAttentionArrayClearData errorStr:%@",errorStr);
+
         }
         
         temp.userAttentionArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         temp.userAttentionArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getUserAttentionArrayClearData 失败:%@",error.domain);
+
     }];
 }
 
@@ -147,7 +152,8 @@
         {
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_UserOther mj_objectArrayWithKeyValuesArray:array];
-            
+            NSLog(@"getUserFansArrayClearData 成功:%@",array);
+
             if (clear == YES)
             {
                 [temp.userFansArray removeAllObjects];
@@ -159,11 +165,15 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getUserFansArrayClearData errorStr:%@",errorStr);
+
         }
         
         temp.userFansArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         temp.userFansArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getUserFansArrayClearData 失败:%@",error.domain);
+
     }];
 
 }

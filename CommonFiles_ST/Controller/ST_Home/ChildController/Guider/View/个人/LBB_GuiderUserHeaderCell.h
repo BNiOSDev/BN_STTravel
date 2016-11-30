@@ -7,6 +7,8 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_SquareViewModel.h"
+
 
 @interface LBB_GuiderUserHeaderCell : LBBPoohBaseTableViewCell
 
@@ -28,7 +30,7 @@
 
 @property(nonatomic, retain)UIButton* greatButton;
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)LBB_UserShowViewModel* model;
 
 
 

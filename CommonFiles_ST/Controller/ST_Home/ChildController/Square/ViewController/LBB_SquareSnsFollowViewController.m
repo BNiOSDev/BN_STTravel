@@ -57,6 +57,83 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
  */
 
 
+-(void)initViewModel{
+
+    __weak typeof(self) temp = self;
+    
+    [self.viewModel getUserShowViewModelData];
+    [self.viewModel.userShowViewModel.loadSupport setDataRefreshblock:^{
+        /**
+         3.4.7	广场-广场主页-个人主页-动态（已测）
+         
+         @param clear 清空原数据
+         */
+        [temp.viewModel.userShowViewModel getUserActionArrayClearData:YES];
+        
+        
+        /**
+         3.4.8	广场-广场主页-个人主页-关注（已测）
+         
+         @param clear 清空原数据
+         */
+        [temp.viewModel.userShowViewModel getUserAttentionArrayClearData:YES];
+        
+        
+        
+        /**
+         3.4.9	广场-广场主页-个人主页-粉丝（已测）
+         
+         @param clear 清空原数据
+         */
+        [temp.viewModel.userShowViewModel getUserFansArrayClearData:YES];
+        //默认是动态
+        [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userActionArray];
+        [temp.tableView reloadData];
+    }];
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+        [temp.tableView.mj_header endRefreshing];
+        [temp.viewModel getUserShowViewModelData];
+        [temp.viewModel.userShowViewModel getUserAttentionArrayClearData:YES];
+        [temp.viewModel.userShowViewModel getUserActionArrayClearData:YES];
+        [temp.viewModel.userShowViewModel getUserFansArrayClearData:YES];
+
+        
+    } footerRefreshDatablock:^{
+        [temp.tableView.mj_footer endRefreshing];
+        switch (temp.selectType) {
+            case LBB_SquareSnsFollowlDynamic://动态
+                [temp.viewModel.userShowViewModel getUserActionArrayClearData:NO];
+
+                break;
+            case LBB_SquareSnsFollowlFavorite://关注
+                [temp.viewModel.userShowViewModel getUserAttentionArrayClearData:NO];
+
+                break;
+            case LBB_SquareSnsFollowFuns://粉丝
+                [temp.viewModel.userShowViewModel getUserFansArrayClearData:NO];
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    [self.viewModel.userShowViewModel.userAttentionArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+
+    }];
+    [self.viewModel.userShowViewModel.userFansArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+
+    }];
+    [self.viewModel.userShowViewModel.userActionArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+
+    }];
+  
+}
+
+
 -(void)loadCustomNavigationButton{
     
     WS(ws);
@@ -89,9 +166,17 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.tableView registerClass:[LBB_GuiderUserHeaderCell class] forCellReuseIdentifier:@"LBB_GuiderUserHeaderCell"];
     
+    [self initViewModel];
+    
     self.dynamicDataSource = [[LBB_SquareSnsFollowDynamicDataSource alloc] initWithTableView:self.tableView];
+    self.dynamicDataSource.userActionArray = self.viewModel.userShowViewModel.userActionArray;
+    
     self.favoriteDataSource = [[LBB_SquareSnsFollowFavoriteDataSource alloc] initWithTableView:self.tableView];
+    self.favoriteDataSource.userAttentionArray = self.viewModel.userShowViewModel.userAttentionArray;
+
     self.funsDataSource = [[LBB_SquareSnsFollowFunsDataSource alloc] initWithTableView:self.tableView];
+    self.funsDataSource.userFansArray = self.viewModel.userShowViewModel.userFansArray;
+
     
     
     [self.view addSubview:self.tableView];
@@ -134,8 +219,12 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     }
     
     UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, height)];
-    
-    NSArray* segmentArray = @[@"动态112",@"关注12",@"粉丝1212"];
+
+    NSArray* segmentArray = @[
+                              [NSString stringWithFormat:@"动态%d",self.viewModel.userShowViewModel.actionNum],
+                              [NSString stringWithFormat:@"关注%d",self.viewModel.userShowViewModel.followNum],
+                              [NSString stringWithFormat:@"粉丝%d",self.viewModel.userShowViewModel.fansNum],
+                              ];
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
     segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
@@ -159,6 +248,20 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     segmentedControl.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
         ws.selectType = index;
+        switch (ws.selectType) {
+            case LBB_SquareSnsFollowlDynamic://动态
+                [ws.tableView setTableViewData:ws.viewModel.userShowViewModel.userActionArray];
+                break;
+            case LBB_SquareSnsFollowlFavorite://关注
+                [ws.tableView setTableViewData:ws.viewModel.userShowViewModel.userAttentionArray];
+                
+                break;
+            case LBB_SquareSnsFollowFuns://粉丝
+                [ws.tableView setTableViewData:ws.viewModel.userShowViewModel.userFansArray];
+                break;
+            default:
+                break;
+        }
         [ws.tableView reloadData];
     };
     
@@ -168,7 +271,12 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (section == 0) {
-        return 1;
+        
+        if (self.viewModel.userShowViewModel) {
+            return 1;
+        }
+        
+        return 0;
     }
     
     switch (self.selectType) {
@@ -231,16 +339,16 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
         NSLog(@"LBB_GuiderUserHeaderCell nil");
         
     }
-    [cell setModel:nil];
+    [cell setModel:self.viewModel.userShowViewModel];
     return cell;
 }
 
-#pragma 周边推荐
+#pragma header高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderSectionRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderUserHeaderCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderUserHeaderCell* cell){
         
-        [cell setModel:nil];
+        [cell setModel:self.viewModel.userShowViewModel];
     }];
     
 }

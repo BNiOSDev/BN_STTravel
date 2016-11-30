@@ -77,10 +77,20 @@
     return self;
 }
 
--(void)setModel:(id)model{
-    [self.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-    [self.item2.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
+-(void)setModel1:(LBB_UserAction *)model1{
+    
+    _model1 = model1;    
+    if (model1.actionType == 5) {
+        [self.item1.bgImageView sd_setImageWithURL:[NSURL URLWithString:model1.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+    
 }
 
+-(void)setModel2:(LBB_UserAction *)model2{
+    
+    if (model2.actionType == 5) {
+        [self.item2.bgImageView sd_setImageWithURL:[NSURL URLWithString:model2.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+}
 
 @end

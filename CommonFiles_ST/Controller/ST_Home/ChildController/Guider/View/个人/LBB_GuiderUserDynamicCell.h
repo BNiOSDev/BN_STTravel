@@ -7,6 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_SquareViewModel.h"
 
 @interface LBB_GuiderUserDynamicCellItem : UIView
 
@@ -21,6 +22,7 @@
 @property(nonatomic,retain)LBB_GuiderUserDynamicCellItem* item1;
 @property(nonatomic,retain)LBB_GuiderUserDynamicCellItem* item2;
 
-@property(nonatomic,retain)id model;
+@property(nonatomic,retain)LBB_UserAction* model1;
+@property(nonatomic,retain)LBB_UserAction* model2;
 
 @end

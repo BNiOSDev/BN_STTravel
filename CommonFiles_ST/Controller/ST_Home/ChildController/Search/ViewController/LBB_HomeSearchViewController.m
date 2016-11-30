@@ -456,7 +456,7 @@ static const NSInteger kButtonWidth = 45;
                     cell = [[LBB_GuiderUserDynamicCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
                     NSLog(@"LBB_GuiderUserDynamicCell nil");
                 }
-                [cell setModel:nil];
+               // [cell setModel:nil];
                 
                 
                 return cell;

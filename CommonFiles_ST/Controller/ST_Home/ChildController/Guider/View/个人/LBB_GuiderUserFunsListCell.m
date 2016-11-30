@@ -70,6 +70,7 @@
             make.right.equalTo(ws).offset(-2*interval);
             make.height.mas_equalTo(AutoSize(36/2));
             make.width.mas_equalTo(AutoSize(88/2));
+            make.left.equalTo(ws.subTitleLabel.mas_right).offset(interval);
         }];
         self.rightButton.layer.cornerRadius = 5;
         self.rightButton.layer.masksToBounds = YES;
@@ -126,8 +127,36 @@
     return self;
 }
 
--(void)setModel:(id)model{
-    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
+-(void)setModel:(LBB_UserOther*)model{
+    
+    _model = model;
+    
+    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.titleLabel setText:model.userName];
+    [self.subTitleLabel setText:model.signature];
+ 
+    @weakify(self);
+    [RACObserve(model, followState) subscribeNext:^(NSNumber* status){
+        @strongify(self);
+        //0未关注1：已关注 2：互相关注
+        
+        switch ([status intValue]) {
+            case 0:
+                [self.rightButton setTitle:@"关注" forState:UIControlStateNormal];
+                break;
+            case 1:
+                [self.rightButton setTitle:@"已关注" forState:UIControlStateNormal];
+                break;
+            case 2:
+                [self.rightButton setTitle:@"互相关注" forState:UIControlStateNormal];
+                break;
+                
+            default:
+                [self.rightButton setTitle:@"关注" forState:UIControlStateNormal];
+                break;
+        }
+    }];
+    
 }
 
 @end

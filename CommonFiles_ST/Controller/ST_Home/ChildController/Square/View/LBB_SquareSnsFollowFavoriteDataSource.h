@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LBB_SquareViewModel.h"
 
 @interface LBB_SquareSnsFollowFavoriteDataSource : NSObject<UITableViewDataSource,UITableViewDelegate>
 
 - (id)initWithTableView:(UITableView *)tableView;
+@property (nonatomic, strong)NSMutableArray<LBB_UserOther *> *userAttentionArray;
 
 @end

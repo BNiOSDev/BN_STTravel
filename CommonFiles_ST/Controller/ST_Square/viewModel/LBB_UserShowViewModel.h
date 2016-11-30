@@ -15,6 +15,7 @@
 @property (nonatomic, strong)NSString *userName ;// 用户名称
 @property (nonatomic, strong)NSString *userPicUrl ;// 用户头像
 @property (nonatomic, strong)NSString *signature ;// 签名
+@property (nonatomic, assign)int followState;//	Int	关注关系 0未关注1：已关注 2：互相关注
 
 @end
 

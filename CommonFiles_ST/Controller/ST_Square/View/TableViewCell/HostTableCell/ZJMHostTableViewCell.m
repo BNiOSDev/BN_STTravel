@@ -16,6 +16,7 @@
 #import "ContentImageView.h"
 #import "Header.h"
 #import "PraiseModel.h"
+#import "LBB_SquareSnsFollowViewController.h"
 
 @implementation ZJMHostTableViewCell
 {
@@ -138,8 +139,18 @@
     ////    .rightSpaceToView(contentView, 40)
     //    .autoHeightRatio(0);
     
+    [_iconImage addTarget:self action:@selector(userShow) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
+
+-(void)userShow{//点击头像，显示用户个人主页
+
+    LBB_SquareSnsFollowViewController* vc = [[LBB_SquareSnsFollowViewController alloc] init];
+    vc.viewModel = self.model;
+    [[self getViewController].navigationController pushViewController:vc animated:YES];
+    
+}
 
 - (void)setModel:(LBB_SquareUgc *)model
 {

@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LBB_SquareViewModel.h"
 
 @interface LBB_SquareSnsFollowDynamicDataSource : NSObject<UITableViewDataSource,UITableViewDelegate>
 
 - (id)initWithTableView:(UITableView *)tableView;
-
+@property (nonatomic, strong)NSMutableArray<LBB_UserAction *> *userActionArray;
 
 @end

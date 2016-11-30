@@ -100,16 +100,20 @@
         if(codeNumber.intValue == 0)
         {
             [temp.userShowViewModel mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getUserShowViewModelData成功  %@",[dic objectForKey:@"result"]);
+
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            NSLog(@"失败  %@",errorStr);
+            NSLog(@"getUserShowViewModelData失败  %@",errorStr);
         }
         
         temp.userShowViewModel.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         temp.userShowViewModel.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getUserShowViewModelData error:  %@",error.domain);
+
     }];
 }
 

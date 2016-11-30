@@ -39,7 +39,7 @@
         cell = [[LBB_GuiderUserDynamicCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_GuiderUserDynamicCell nil");
     }
-    [cell setModel:nil];
+  //  [cell setModel:nil];
     
     
     return cell;
@@ -49,7 +49,7 @@
     
     return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderUserDynamicCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderUserDynamicCell *cell) {
         
-        [cell setModel:nil];
+      //  [cell setModel:nil];
     }];
 }
 

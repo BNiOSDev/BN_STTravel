@@ -7,7 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
-
+#import "LBB_SquareViewModel.h"
 @interface LBB_GuiderUserFunsListCell : LBBPoohBaseTableViewCell
 
 @property(nonatomic, retain)UIImageView* portraitImageView;
@@ -21,6 +21,6 @@
 @property(nonatomic, retain)UILabel* identityLable;//认证
 
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)LBB_UserOther* model;
 
 @end
