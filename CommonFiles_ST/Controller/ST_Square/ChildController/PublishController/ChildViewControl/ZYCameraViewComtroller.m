@@ -10,6 +10,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "LBB_ZJMPhotoList.h"
 
 @interface ZYCameraViewComtroller ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -83,8 +84,6 @@
 //        NSData *fileData = UIImageJPEGRepresentation(image, 1.0);
         //保存图片至相册
         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-        //上传图片
-        [self.TransDelegate transCameraImage:image];
         
          NSLog(@"这是一张照片");
         
@@ -119,6 +118,9 @@
 }
 #pragma mark 图片保存完毕的回调
 - (void) image: (UIImage *) image didFinishSavingWithError:(NSError *) error contextInfo: (void *)contextInf{
+    PHAsset  *imageAsset = [FZJPhotoTool  latestAsset];
+    //上传图片
+    [self.TransDelegate transCameraImage:image PHAsset:imageAsset];
     NSLog(@"图片保存完毕");
 }
 

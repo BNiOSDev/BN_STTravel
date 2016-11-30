@@ -10,6 +10,7 @@
 #import "Header.h"
 #import "LBB_Date_SengeMent.h"
 #import "LBB_AddClass_Button.h"
+#import "ActionSheetDatePicker.h"
 #import "UITextView+Placeholder.h"
 
 @interface LBB_AddTextToVistNote_Controller ()
@@ -50,16 +51,19 @@
 
 - (void)initView
 {
+    __weak typeof (self) weakSelf = self;
     _headSegment = [[LBB_Date_SengeMent alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(32))];
-    _headSegment.dateStr = @"124";
-    _headSegment.timeStr = @"321";
+    _headSegment.dateStr = [self stringFromDate:[NSDate date]];
+    _headSegment.timeStr = [self stringFromTime:[NSDate date]];
     _headSegment.blockDatepick = ^(NSInteger tag)
     {
         if(tag == 0)
         {
-            NSLog(@"addTime");
+             NSLog(@"addTime");
+             [weakSelf setTime:nil];
         }else{
             NSLog(@"addDate");
+            [weakSelf setDate:nil];
         }
     };
     [self.view addSubview:_headSegment];
@@ -104,6 +108,57 @@
 - (void)publishFunc
 {
     NSLog(@"publishFunc");
+}
+
+- (void)setDate:(NSString *)dateStr
+{
+    __weak typeof (self) weakSelf = self;
+    [ActionSheetDatePicker showPickerWithTitle:NSLocalizedString(@"选择日期", nil)
+                                datePickerMode:UIDatePickerModeDate
+                                  selectedDate:[NSDate date]
+                                     doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
+                                         NSLog(@"selectedDate =  %@",selectedDate);
+                                       weakSelf.headSegment.dateStr = [weakSelf stringFromDate:selectedDate];
+                                     }
+                                   cancelBlock:^(ActionSheetDatePicker *picker){
+                                       
+                                   }  origin:self.view];
+}
+
+- (void)setTime:(NSString *)dateStr
+{
+    __weak typeof (self) weakSelf = self;
+    [ActionSheetDatePicker showPickerWithTitle:NSLocalizedString(@"选择日期", nil)
+                                datePickerMode:UIDatePickerModeTime
+                                  selectedDate:[NSDate date]
+                                     doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
+                                         NSLog(@"selectedDate =  %@",selectedDate);
+                                        weakSelf.headSegment.timeStr = [weakSelf stringFromTime:selectedDate];
+                                     }
+                                   cancelBlock:^(ActionSheetDatePicker *picker){
+                                       
+                                   }  origin:self.view];
+}
+
+
+- (NSString *)stringFromDate:(NSDate *)date{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息.
+    //[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    return destDateString;
+}
+
+- (NSString *)stringFromTime:(NSDate *)date{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息.
+    //[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    return destDateString;
 }
 
 @end

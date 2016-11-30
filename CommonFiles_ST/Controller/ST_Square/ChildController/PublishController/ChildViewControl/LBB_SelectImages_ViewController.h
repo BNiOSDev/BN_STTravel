@@ -29,8 +29,13 @@ typedef void (^returnBackPhotoArr)(id data);
  */
 @property(nonatomic,assign)NSInteger addNum;
 
+/**
+ *  控制器的区分
+ */
+@property(nonatomic,assign)NSInteger fatherNum;
+
 @property(nonatomic,copy)returnBackPhotoArr     returnBlock;
 @property(nonatomic,strong)hideBaseController   _blockHideControl;
-@property(nonatomic,strong)JumpToController   _blockJumpControl;
+@property(nonatomic,strong)JumpToController     _blockJumpControl;
 
 @end

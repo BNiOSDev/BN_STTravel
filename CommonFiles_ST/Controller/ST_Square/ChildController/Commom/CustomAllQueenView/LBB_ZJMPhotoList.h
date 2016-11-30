@@ -65,7 +65,14 @@
  */
 - (NSArray<PHAsset *> *)getAssetsInAssetCollection:(PHAssetCollection *)assetCollection ascending:(BOOL)ascending;
 
+/**
+ *  获取本地的所有图片
+ */
 - (NSArray<PHAsset *> *)getAllAssetInVideoAblumWithAscending:(BOOL)ascending;
 
+/**
+ *  获取最近的资源
+ */
++ (PHAsset *)latestAsset;
 
 @end

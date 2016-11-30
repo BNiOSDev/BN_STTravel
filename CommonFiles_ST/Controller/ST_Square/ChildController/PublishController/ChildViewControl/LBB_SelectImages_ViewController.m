@@ -44,8 +44,6 @@
     
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
 
-    
-    self.addNum = 9;
     _imageCollectArray = [NSMutableArray array];
     _imageCollectArray = [[[FZJPhotoTool defaultFZJPhotoTool] getAllPhotoList] mutableCopy];
     
@@ -62,9 +60,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1.0;
     [self.view addSubview:self.mTableView];
     [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-    
+    if(_fatherNum > 0)
+    {
+        _imageList.height = DeviceHeight - 64;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -117,6 +119,11 @@
 //通知根控制器做返回操作
 - (void)notifiTionBaseControl
 {
+    if(_fatherNum > 0)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
     self._blockHideControl(nil);
 }
 
@@ -127,6 +134,14 @@
         [self showHudPrompt:@"您未选择任何照片"];
         return;
     }
+    
+    if(_fatherNum > 0)
+    {
+        [self.navigationController popViewControllerAnimated:NO];
+        self.returnBlock(_selectedPhoto);
+        return;
+    }
+
     LBB_PulishContain_ViewController *Vc = [[LBB_PulishContain_ViewController alloc]init];
     Vc.selectImageArray = self.selectedPhoto.copy;
     self._blockJumpControl(Vc);
@@ -231,7 +246,7 @@
     btn.selected = !btn.selected;
     if (btn.selected) {//为1 则直接加进数组
         if (_selectedPhoto.count == self.addNum) {
-            [self showHudPrompt:@"已经选满九张"];
+            [self showHudPrompt:[NSString stringWithFormat:@"最多选择%ld张照片",self.addNum]];
             btn.selected = NO;
         }else{
             FZJPhotoModel * model = [[FZJPhotoModel alloc]init];
@@ -394,7 +409,7 @@
 }
 
 #pragma mark -- TransDelegate
-- (void)transCameraImage:(UIImage *)image
+- (void)transCameraImage:(UIImage *)image PHAsset:(PHAsset *)imageAsset
 {
     _fetchResult  = [[FZJPhotoTool alloc] getAllAssetInPhotoAblumWithAscending:YES];
     [_imageList reloadData];

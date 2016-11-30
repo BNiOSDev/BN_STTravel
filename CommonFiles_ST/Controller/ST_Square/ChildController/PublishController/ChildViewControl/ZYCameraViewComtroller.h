@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 @protocol TransImageDelegate <NSObject>
 
-- (void)transCameraImage:(UIImage *)image;
+- (void)transCameraImage:(UIImage *)image PHAsset:(PHAsset *)imageAsset;
 - (void)transCameraVideo:(NSData *)video;
 
 @end

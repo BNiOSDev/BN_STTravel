@@ -11,8 +11,12 @@
 #import "LBB_TraveNoteHead_View.h"
 #import "Header.h"
 #import "LBB_AddTextToVistNote_Controller.h"
+#import "LBB_AddFootprint_ViewController.h"
+#import "ZYCameraViewComtroller.h"
+#import "LBB_SelectImages_ViewController.h"
+#import "FZJPhotoModel.h"
 
-@interface LBB_TravelNote_BaseViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBB_TravelNote_BaseViewController ()<UITableViewDelegate,UITableViewDataSource,TransImageDelegate>
 @property(nonatomic,strong)UIView       *whiteLine;
 @property(nonatomic,weak)LBB_TraveNoteHead_View   *headView;
 @property(nonatomic,weak)UITableView  *mTableView;
@@ -69,7 +73,7 @@
     
     UIButton  *linerecoder = [[UIButton alloc]initWithFrame:CGRectMake(editText.right, 0, bottomView.width / 2.0, bottomView.height)];
     [linerecoder setTitle:@"线路账单" forState:0];
-    [linerecoder setImage:IMAGE(@"zjmorders") forState:0];
+    [linerecoder setImage:IMAGE(@"zjmorderss") forState:0];
     [linerecoder setTitleColor:BLACKCOLOR forState:0];
     linerecoder.titleLabel.font = FONT(14.0);
     [linerecoder setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
@@ -159,10 +163,29 @@
     UIAlertController   *alterSheet = [UIAlertController alertControllerWithTitle: nil message: nil preferredStyle:UIAlertControllerStyleActionSheet];
     //添加Button
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"拍照" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        //处理点击拍照
+        ZYCameraViewComtroller *Vc = [[ZYCameraViewComtroller alloc]init];
+        Vc.TransDelegate = self;
+        [self presentViewController:Vc animated:YES completion:nil];
     }]];
+    
+    __weak typeof (self) weakSelf = self;
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"从相册选取" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         //处理点击从相册选取
+        LBB_SelectImages_ViewController *Vc = [[LBB_SelectImages_ViewController alloc]init];
+        Vc.addNum = 5;
+        Vc.fatherNum = 2;
+        Vc.returnBlock = ^(NSMutableArray *array){
+            NSLog(@"图片数组");
+            LBB_AddFootprint_ViewController  *Vc = [[LBB_AddFootprint_ViewController alloc]init];
+            Vc.selectImageArray = [array copy];
+            [weakSelf.navigationController pushViewController:Vc animated:YES];
+        };
+        Vc._blockJumpControl = ^(UIViewController *obj){
+            [weakSelf.navigationController pushViewController:obj animated:YES];
+        };
+
+        [self.navigationController pushViewController:Vc animated:YES];
+
     }]];
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:nil]];
     
@@ -231,5 +254,18 @@
     }
 
     return cell;
+}
+
+#pragma mark -- TransDelegate
+- (void)transCameraImage:(UIImage *)image PHAsset:(PHAsset *)imageAsset
+{
+    NSLog(@"拍照执行完毕");
+    NSMutableArray *imageArray = [[NSMutableArray alloc]init];
+    FZJPhotoModel   *model = [[FZJPhotoModel alloc]init];
+    model.asset = imageAsset;
+    [imageArray addObject:model];
+    LBB_AddFootprint_ViewController  *Vc = [[LBB_AddFootprint_ViewController alloc]init];
+    Vc.selectImageArray = [imageArray copy];
+    [self.navigationController pushViewController:Vc animated:YES];
 }
 @end

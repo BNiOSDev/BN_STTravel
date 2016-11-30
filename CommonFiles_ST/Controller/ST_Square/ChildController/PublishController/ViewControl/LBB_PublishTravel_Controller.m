@@ -122,6 +122,7 @@
     vc1.view.backgroundColor = [UIColor whiteColor];    
     UINavigationController  *nav1 = [[UINavigationController alloc]initWithRootViewController:vc1];
     __weak typeof (self) _weakSelf = self;
+    vc1.addNum = 9;
     vc1._blockHideControl = ^(id obj){
         [_weakSelf dismissViewControllerAnimated:YES completion:nil];
     };
