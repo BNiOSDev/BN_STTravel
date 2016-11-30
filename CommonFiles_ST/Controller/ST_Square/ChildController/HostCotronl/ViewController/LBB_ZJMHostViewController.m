@@ -162,6 +162,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+        vc.viewModel = self.viewModel.ugcImageArray[indexPath.row];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

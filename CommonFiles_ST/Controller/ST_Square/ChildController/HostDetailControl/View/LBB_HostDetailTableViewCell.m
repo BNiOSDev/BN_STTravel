@@ -128,25 +128,90 @@
 }
 
 
-- (void)setModel:(ZJMHostModel *)model
+- (void)setModel:(LBB_SquareDetailViewModel *)model
 {
-    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
+    
+    _model = model;
+    
+    /*
+     
+     @property (nonatomic,assign)long ugcId ;// 主键
+     @property (nonatomic, strong)NSString *shareUrl ;// 分享URL
+     @property (nonatomic, strong)NSString *shareTitle ;// 分享标题
+     @property (nonatomic, strong)NSString *shareContent ;// 分享内容
+     @property (nonatomic, assign)int type ;// 1.照片 2.视频
+     @property (nonatomic, strong)NSString *videoUrl ;// 视频地址(类型为2)
+     @property (nonatomic,assign)long userId ;// 用户ID
+     @property (nonatomic, strong)NSString *userName ;// 用户名称
+     @property (nonatomic, strong)NSString *createTime ;// 创建时间
+     @property (nonatomic, strong)NSString *timeDistance ;// 时间距离
+     @property (nonatomic,assign)long allSpotsId ;// 场景ID
+     @property (nonatomic, strong)NSString *allSpotsName ;// 场景名称
+     @property (nonatomic, strong)NSMutableArray<LBB_SquarePics *> *pics ;// 图片集合
+     @property (nonatomic, strong)NSMutableArray<LBB_SquareTags *> *tags ;// 视频标签
+     @property (nonatomic, assign)int picNum ;// 图片总数
+     @property (nonatomic, strong)NSString *picsRemark ;// 图片描述
+     @property (nonatomic, strong)NSString *videoRemark ;// 视频描述
+     @property (nonatomic, assign)int likeNum ;// 点赞次数
+     @property (nonatomic, assign)int isLiked ;// 是否点赞
+     @property (nonatomic, strong)NSMutableArray<LBB_SquareLikeList *> *likeList ;// 点赞集合
+     @property (nonatomic, assign)int isCollected ;// 是否收藏
+     @property (nonatomic, strong)NSMutableArray<LBB_SquareComments *> *comments ;// 评论集合
+     */
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");
-    _addressNameLabel.text = model.address;
-    _timeLabel.text = model.timeAgo;
-    _contentLabel.text = model.content;
+    _addressNameLabel.text = model.allSpotsName;// 场景名称
+    _timeLabel.text = model.createTime;
+    if (model.type == 1) {//照片
+        _contentLabel.text = model.picsRemark;
+    }
+    else{//视频
+        _contentLabel.text = model.videoRemark;
+    }
     
-    _contentImage.imageArray = model.imageArray;
-    praiseView.praiseArray = model.praiseModelArray;
-    commetView.commentArray = model.commentModelArray;
+    //图片集合
+    NSMutableArray *imageArray = (NSMutableArray *)[model.pics map:^id(LBB_SquarePics *element) {
+        
+        NSString* dic = element.imageUrl;
+        return dic;
+    }];
+    _contentImage.imageArray = imageArray;
+    
+    //点赞人数
+    NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {
+        
+        PraiseModel* dic = [[PraiseModel alloc] init];
+        dic.iconUrl = element.portrait;
+        dic.userID = [NSString stringWithFormat:@"%ld",element.userId];
+        dic.likeId = element.likeId;
+        return dic;
+    }];
+    praiseView.praiseArray = praiseModelArray;
+    
+    
+    //评论内容
+    NSMutableArray *commentModelArray = (NSMutableArray *)[model.comments map:^id(LBB_SquareComments *element) {
+        
+        CommentModel *model = [[CommentModel alloc]init];
+        model.userName = element.userName;// 用户名称
+        model.contentStr = element.remark;// 评论内容
+        model.userID = [NSString stringWithFormat:@"%ld",element.commentId];// 评论ID
+        return model;
+    }];
+    commetView.commentArray = commentModelArray;
     
     _contentLabel.sd_layout
     .leftSpaceToView(self.contentView,10)
     .rightSpaceToView(self.contentView,5)
     .topSpaceToView(_iconImage, 2.5);
-    [_contentLabel autoFit:model.content size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 15, DeviceHeight)];
+    if (model.type == 1) {//照片
+        [_contentLabel autoFit:model.picsRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 15, DeviceHeight)];
+    }
+    else{//视频
+        [_contentLabel autoFit:model.videoRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 15, DeviceHeight)];
+    }
     
     _contentImage.sd_layout
     .leftEqualToView(self.contentView)

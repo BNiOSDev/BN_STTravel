@@ -53,6 +53,23 @@
     focusBtn.titleLabel.font = FONT(AUTO(12.0));
     LRViewBorderRadius(focusBtn, 2.0, 0.5, UIColorFromRGB(0xBA9150));
     [self addSubview:focusBtn];
+    
+    [focusBtn addTarget:self action:@selector(attention:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+-(void)attention:(UIButton*)sender{
+     @weakify(self)
+    [self.model attention:^(NSError* error){
+        @strongify(self);
+        if (error) {
+            NSLog(@"关注动作失败:%@",error.domain);
+        }
+        else{
+            NSLog(@"关注动作成功:%d",self.model.AttentionStatus);
+        }
+    }];
+    
 }
 
 - (void)setModel:(LBB_SquareFriend *)model
@@ -61,13 +78,18 @@
     [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userHeadPortraitUrl] placeholderImage:DEFAULTIMAGE];
     nameLabel.text = model.userName;
     contentLabel.text = model.attentionRemark;
-    
-    if (model.AttentionStatus == 0) {//未关注
-        [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
-    }
-    else{//已关注
-        [focusBtn setTitle:@"已关注" forState:UIControlStateNormal];
-    }
+   // @weakify(self)
+    [RACObserve(model, AttentionStatus) subscribeNext:^(NSNumber* num) {
+        
+        int status = [num intValue];
+        if (status == 0) {//未关注
+            [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
+        }
+        else{//已关注
+            [focusBtn setTitle:@"已关注" forState:UIControlStateNormal];
+        }
+    }];
+
     
 }
 

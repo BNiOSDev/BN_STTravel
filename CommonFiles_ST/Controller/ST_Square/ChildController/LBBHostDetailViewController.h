@@ -7,7 +7,10 @@
 //
 
 #import "Base_BaseViewController.h"
+#import "LBB_SquareViewModel.h"
 
 @interface LBBHostDetailViewController : Base_BaseViewController
+
+@property(nonatomic, strong)LBB_SquareUgc* viewModel;
 
 @end

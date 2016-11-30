@@ -28,12 +28,6 @@
 
 @implementation LBBHostDetailViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    [(ST_TabBarController*)self.tabBarController setTabBarHidden:YES animated:YES];
-}
-
 - (void)loadCustomNavigationButton
 {
     ;
@@ -44,12 +38,36 @@
     [self initData];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 44)];
+    [self initViewModel];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
     [self.tableView registerClass:[LBB_HostDetailTableViewCell class] forCellReuseIdentifier:@"LBB_HostDetailTableViewCell"];
+}
+
+
+-(void)initViewModel{
+    
+    __weak typeof(self) temp = self;
+
+    [self.viewModel getSquareDetailViewModelData];
+    [self.viewModel.squareDetailViewModel.loadSupport setDataRefreshblock:^{
+        
+        [temp.tableView reloadData];
+    }];
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+        [temp.tableView.mj_header endRefreshing];
+        [temp.viewModel getSquareDetailViewModelData];
+
+        
+    } footerRefreshDatablock:^{
+    
+    }];
+    
+    
 }
 
 - (void)initData
@@ -110,7 +128,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    if (self.viewModel.squareDetailViewModel) {
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }
 
 
@@ -120,7 +143,7 @@
         LBB_HostDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_HostDetailTableViewCell"];
         ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
         [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-        cell.model = self.dataArray[indexPath.row];
+        cell.model = self.viewModel.squareDetailViewModel;
         return cell;
 }
 
@@ -140,7 +163,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-    id model = self.dataArray[indexPath.row];
+    id model = self.viewModel.squareDetailViewModel;
     return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[LBB_HostDetailTableViewCell class] contentViewWidth:[self cellContentViewWith]];
     
 }
