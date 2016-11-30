@@ -8,7 +8,6 @@
 
 #import "LBB_AddressAddViewController.h"
 #import "LBB_SignInListCell.h"
-#import "LBB_SquareAddressViewModel.h"
 
 @interface LBB_AddressAddViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 

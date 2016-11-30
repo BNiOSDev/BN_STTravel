@@ -7,6 +7,7 @@
 //
 
 #import "PoohBaseViewController.h"
+#import "LBB_SquareAddressViewModel.h"
 
 @interface LBB_AddressAddViewController : Base_BaseViewController
 

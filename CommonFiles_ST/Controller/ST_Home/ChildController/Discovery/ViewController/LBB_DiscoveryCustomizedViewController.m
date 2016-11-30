@@ -319,10 +319,9 @@ static CGFloat height = 45;
         
         [text resignFirstResponder];
         LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
-        dest.click = ^(LBB_AddressAddViewController* add,NSNumber* index){
-            NSLog(@"回调地址:%ld",[index integerValue]);
+        dest.click = ^(LBB_AddressAddViewController* add,LBB_SpotAddress* address){
          //   [text setText:[NSString stringWithFormat:@"%ld",[index integerValue]]];
-            [ws.dataArray addObject:index];//回调回来数据
+           // [ws.dataArray addObject:index];//回调回来数据
             [ws refreshScenicPanel];
             [add.navigationController popViewControllerAnimated:YES];
         };
