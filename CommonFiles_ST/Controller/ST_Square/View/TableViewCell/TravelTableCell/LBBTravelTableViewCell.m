@@ -81,29 +81,48 @@
     
 }
 
-- (void)setModel:(ZJMTravelModel *)model
+- (void)setModel:(BN_SquareTravelList *)model
 {
     _model = model;
-    contentImage.imageUrl = model.imageUrl;
-    contentLabel.text  = model.msgContent;
-    timeLabel.text = [NSString stringWithFormat:@"%@  %@   %@",model.timeStr,model.daysStr,model.vistNum];
-    [iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconName] placeholderImage:DEFAULTIMAGE];
-    nameLabel.text = model.name;
+    /*
+     @property(nonatomic, assign)long travelNotesId;//	Long	游记主键
+     @property(nonatomic, strong)NSString* travelNotesName; //	String	游记名称
+     @property(nonatomic, strong)NSString* travelNotesPicUrl;//	String	游记封面
+     @property(nonatomic, strong)NSString* lastReleaseTime;//	String	发布日期
+     @property(nonatomic, assign)int dayCount;//	Int	天数
+     @property(nonatomic, assign)long totalPageViews;//	Long	浏览总数
+     @property(nonatomic, assign)long userId;//	Long	用户ID
+     @property(nonatomic, strong)NSString* userName;//	String	用户名称
+     @property(nonatomic, strong)NSString* userPicUrl;//	String	用户头像
+     @property(nonatomic, strong)NSArray<LBB_SquareTags*>* tags;//	List	标签集合
+     @property(nonatomic, assign)int isLiked;//	int	是否点赞
+     @property(nonatomic, assign)int likeNum;//	Int	点赞数
+     @property(nonatomic, assign)int commentsNum;//	Int	评论数
+     @property(nonatomic, assign)int isCollected;//	int	是否收藏
+     @property(nonatomic, assign)int totalCollected;//	Int	收藏数
+     */
     
-    [heartBtn setTitle:model.collectNum forState:0];
-    heartBtn.width = [self getWidthWithContent:model.collectNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    contentImage.imageUrl = model.travelNotesPicUrl;//	String	游记封面
+    contentLabel.text  = model.travelNotesName;//	String	游记名称
+    timeLabel.text = model.lastReleaseTime;//	String	发布日期
+    //[NSString stringWithFormat:@"%@  %@   %@",model.timeStr,model.daysStr,model.vistNum];
+    [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:DEFAULTIMAGE];//	String	用户头像
+    nameLabel.text = model.userName;//	String	用户名称
+    
+    [heartBtn setTitle:[NSString stringWithFormat:@"%d",model.totalCollected] forState:0];
+    heartBtn.width = [self getWidthWithContent:[NSString stringWithFormat:@"%d",model.totalCollected] height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     heartBtn.left = DeviceWidth - 10 - heartBtn.width;
     [heartBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [heartBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    [pinBtn setTitle:model.commentNum forState:0];
-    pinBtn.width = [self getWidthWithContent:model.commentNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    [pinBtn setTitle:[NSString stringWithFormat:@"%d",model.commentsNum] forState:0];
+    pinBtn.width = [self getWidthWithContent:[NSString stringWithFormat:@"%d",model.commentsNum] height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
      pinBtn.left = DeviceWidth - heartBtn.width - pinBtn.width  - 10;
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    [zanBtn setTitle:model.praiseNum forState:0];
-    zanBtn.width = [self getWidthWithContent:model.praiseNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    [zanBtn setTitle:[NSString stringWithFormat:@"%d",model.likeNum] forState:0];
+    zanBtn.width = [self getWidthWithContent:[NSString stringWithFormat:@"%d",model.likeNum] height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     zanBtn.left = DeviceWidth - pinBtn.width - heartBtn.width - zanBtn.width  - 10;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];

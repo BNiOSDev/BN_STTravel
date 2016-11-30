@@ -33,12 +33,6 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [(ST_TabBarController*)self.tabBarController setTabBarHidden:NO animated:YES];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"好友推荐";
@@ -70,7 +64,7 @@
 }
 - (void)createTable
 {
-    UITableView *mtableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64 - 49) style:UITableViewStylePlain];
+    UITableView *mtableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64) style:UITableViewStylePlain];
     _mTableView = mtableView;
     [self initData];
     //    _mTableView.backgroundColor = BACKVIEWBACKCOLOR;
