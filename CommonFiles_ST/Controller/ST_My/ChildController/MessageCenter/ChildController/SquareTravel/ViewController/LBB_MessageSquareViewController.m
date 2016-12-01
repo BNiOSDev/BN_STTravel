@@ -20,7 +20,6 @@
 @property(nonatomic,strong) LBB_SquareTravelViewController *zanVC;//点赞
 @property(nonatomic, strong) LBB_SquareTravelViewController  *commentVC;//评论
 @property(nonatomic,strong) LBB_SquareTravelViewController *collectVC;//收藏
-
 @property(nonatomic,strong) HMSegmentedControl *segmentedControl;
 
 @end

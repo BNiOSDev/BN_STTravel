@@ -2938,18 +2938,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCg-UH-NgS">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="CUU-b0-1np"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxe-16-ZDX">
-                                <color key="backgroundColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="9cH-c9-V1F"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ZUc-ew-Zc9">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
@@ -2960,23 +2948,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oxe-16-ZDX" firstAttribute="bottom" secondItem="nCg-UH-NgS" secondAttribute="bottom" id="0vJ-ZC-DOR"/>
-                            <constraint firstItem="oxe-16-ZDX" firstAttribute="leading" secondItem="IPB-15-r57" secondAttribute="leading" id="ChW-PP-WO0"/>
                             <constraint firstItem="ZUc-ew-Zc9" firstAttribute="leading" secondItem="IPB-15-r57" secondAttribute="leading" id="HeE-Rs-Z1c"/>
-                            <constraint firstAttribute="trailing" secondItem="nCg-UH-NgS" secondAttribute="trailing" id="OA4-4H-7SO"/>
-                            <constraint firstAttribute="trailing" secondItem="oxe-16-ZDX" secondAttribute="trailing" id="Swq-B7-50M"/>
-                            <constraint firstItem="nCg-UH-NgS" firstAttribute="top" secondItem="IPB-15-r57" secondAttribute="top" id="T2N-f3-z2Z"/>
+                            <constraint firstItem="ZUc-ew-Zc9" firstAttribute="top" secondItem="OAp-Lh-BS9" secondAttribute="bottom" id="PyT-bh-iHc"/>
                             <constraint firstItem="APg-if-v8k" firstAttribute="top" secondItem="ZUc-ew-Zc9" secondAttribute="bottom" constant="-49" id="V7w-Zl-nUj"/>
                             <constraint firstAttribute="trailing" secondItem="ZUc-ew-Zc9" secondAttribute="trailing" id="awc-Eu-jGo"/>
-                            <constraint firstItem="ZUc-ew-Zc9" firstAttribute="top" secondItem="nCg-UH-NgS" secondAttribute="bottom" id="hAv-Q9-Y2j"/>
-                            <constraint firstItem="nCg-UH-NgS" firstAttribute="leading" secondItem="IPB-15-r57" secondAttribute="leading" id="ie3-VJ-8Vr"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomViewBottomContraint" destination="V7w-Zl-nUj" id="Hba-Nf-0kz"/>
-                        <outlet property="lineView" destination="oxe-16-ZDX" id="eKw-wM-WY8"/>
-                        <outlet property="segmentBgView" destination="nCg-UH-NgS" id="157-Zs-q9B"/>
-                        <outlet property="segmentBgViewHeightConstraint" destination="CUU-b0-1np" id="uPg-PA-xCx"/>
                         <outlet property="tableView" destination="ZUc-ew-Zc9" id="Xmx-eL-20b"/>
                     </connections>
                 </viewController>
