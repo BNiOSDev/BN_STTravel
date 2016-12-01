@@ -14,9 +14,13 @@
 #import "FZJPhotoModel.h"
 
 @interface LBB_PublishVideo_Contain_ViewController ()
+{
+    BOOL    addTaged;//是否已添加标签
+}
 @property(nonatomic,strong)LBB_TipImage_Pulish_ImageView    *imageContainView;
 @property(nonatomic,strong)UIImageView    *pauseImage;
 @property(nonatomic,strong)AVPlayer           *player;
+@property(nonatomic,strong)NSMutableArray   *tagsViewArray;
 @end
 
 @implementation LBB_PublishVideo_Contain_ViewController
@@ -24,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //注册监听者。
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(back:) name:@"goBack" object:nil];
     
     [super viewDidLoad];
     self.navigationItem.title = @"发布内容";
@@ -32,7 +38,12 @@
     UIBarButtonItem  *backItem = [[UIBarButtonItem alloc] initWithTitle:@"back" style:0 target:self action:@selector(backToController)];
     backItem.tintColor = [UIColor blueColor];
     self.navigationItem.leftBarButtonItem = backItem;
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.view addSubview:_imageContainView];
 }
 
 - (void)backToController
@@ -40,8 +51,18 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)back:(NSNotification *)notification
+{
+    [self backToController];
+}
+
 - (void)initView
 {
+    _tagsViewArray = [[NSMutableArray alloc]init];
+    //初始化标签数组，为了后续使用代替方法
+    [_tagsViewArray addObject:@""];
+
+    
     UILabel  *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, AUTO(10.0), DeviceWidth, AUTO(20))];
     tipLabel.font = FONT(AUTO(12.0));
     tipLabel.textColor = MORELESSBLACKCOLOR;
@@ -70,10 +91,17 @@
 
 - (void)editPulish
 {
+    if(!addTaged)
+    {
+        [self showHudPrompt:@"至少选添加一个标签"];
+        return;
+    }
     LBB_EditPublishVideo_ViewController *Vc = [[LBB_EditPublishVideo_ViewController alloc]init];
     FZJPhotoModel *model = [[FZJPhotoModel alloc]init];
     model.asset = _videoAsset;
     Vc.imageArray = @[model];
+     Vc.tagsViewArray = _tagsViewArray;
+    Vc.imageContainView = _imageContainView;
     [self.navigationController pushViewController:Vc animated:YES];
 }
 
@@ -130,6 +158,13 @@
 //    
 //    }];
 
+}
+
+- (void)transTagsWithViewTag:(NSArray *)tagList viewTag:(NSInteger )tag
+{
+    [_tagsViewArray replaceObjectAtIndex:tag withObject:tagList];
+    addTaged = YES;
+    NSLog(@"数组总长度%ld",_tagsViewArray.count);
 }
 
 

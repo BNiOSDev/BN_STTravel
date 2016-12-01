@@ -8,6 +8,9 @@
 
 #import "LBB_HistoryTipView.h"
 #import "Header.h"
+#import "CoreData+MagicalRecord.h"
+#import "LBB_TagsViewModel.h"
+#import "TipHistory+CoreDataClass.h"
 
 @implementation LBB_HistoryTipView
 
@@ -118,6 +121,14 @@
 
 - (void)clearHistory
 {
+    
+    NSArray *array = [TipHistory MR_findAll];
+    for(TipHistory *model in array)
+    {
+        [model MR_deleteEntity];
+    }
+    [self setHistorySearch:nil];
+    self.height = AUTO(90);
     self.clearBlock(0);
 }
 

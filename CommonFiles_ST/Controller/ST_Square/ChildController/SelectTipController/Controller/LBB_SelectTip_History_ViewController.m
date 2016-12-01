@@ -57,12 +57,8 @@
     LBB_HistoryTipView  *tableHeadVeiw = [[LBB_HistoryTipView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(207))];
     tableHeadVeiw.backgroundColor = WHITECOLOR;
     tableHeadVeiw.clearBlock = ^(NSInteger tag){
-        NSArray *array = [TipHistory MR_findAll];
-        for(TipHistory *model in array)
-        {
-            [model MR_deleteEntity];
-        }
-        _tableHead.historySearch = nil;
+        [self.view removeAllSubviews];
+        [self initView];
     };
     _tableHead = tableHeadVeiw;
     [self.view addSubview:self.mTableView];

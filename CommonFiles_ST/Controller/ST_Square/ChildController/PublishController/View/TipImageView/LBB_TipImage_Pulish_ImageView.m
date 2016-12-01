@@ -12,6 +12,8 @@
 #import "LBB_PulishContain_ViewController.h"
 #import "LBB_TagsViewModel.h"
 #import "LBB_TagView.h"
+#import "LBB_PulishContain_ViewController.h"
+#import "LBB_PublishVideo_Contain_ViewController.h"
 
 @implementation LBB_TipImage_Pulish_ImageView
 
@@ -79,7 +81,12 @@
         }
         [self setTagViews];
         
-        [((LBB_PulishContain_ViewController *)[self viewController]) transTagsWithViewTag:self.tipArray viewTag:self.tag];
+        if([[self viewController] isKindOfClass:[LBB_PulishContain_ViewController class]])
+        {
+                [((LBB_PulishContain_ViewController *)[self viewController]) transTagsWithViewTag:self.tipArray viewTag:self.tag];
+        }else{
+               [((LBB_PublishVideo_Contain_ViewController *)[self viewController]) transTagsWithViewTag:self.tipArray viewTag:self.tag];
+        }
     };
     [[self viewController].navigationController pushViewController:Vc animated:YES];
 }

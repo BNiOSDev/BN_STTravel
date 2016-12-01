@@ -12,8 +12,14 @@
 #import "LBB_SpotAddress.h"
 #import "LBB_ZJMPhotoList.h"
 #import "FZJPhotoModel.h"
+#import "LBB_PublishUgcViewModel.h"
+#import "LBB_TagsViewModel.h"
 
 @interface LBB_EditPulishContain_Controller ()
+{
+    CGRect  frame;
+    __block NSArray *imageUrlArray;
+}
 @property(nonatomic,strong)UIScrollView   *backView;
 @property(nonatomic,strong)UITextView     *vistHead;
 @property(nonatomic,strong)UIButton         *pulishBtn;
@@ -29,14 +35,20 @@
     self.view.backgroundColor = WHITECOLOR;
     [self initView];
 }
-
+//重写返回方法
+-(void)leftButtonClick{
+    _imageContainView.frame = frame;
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)initView
 {
     [self.view addSubview:self.backView];
     
     _mapViewArray = [[NSMutableArray alloc]init];
-    _imageContainView = [[LBB_Pulish_ImageContain_View alloc]initWithFrame:CGRectMake(AUTO(5), 5, DeviceWidth - AUTO(10), DeviceWidth - AUTO(20))];
-    _imageContainView.imageArray = _imageArray;
+//    _imageContainView = [[LBB_Pulish_ImageContain_View alloc]initWithFrame:CGRectMake(AUTO(5), 5, DeviceWidth - AUTO(10), DeviceWidth - AUTO(20))];
+    frame = _imageContainView.frame;
+    _imageContainView.frame = CGRectMake(AUTO(5), 5, DeviceWidth - AUTO(10), DeviceWidth - AUTO(20));
+//    _imageContainView.imageArray = _imageArray;
     [self.view addSubview:_imageContainView];
     
     [self.backView addSubview:_imageContainView];
@@ -117,7 +129,6 @@
 
 - (void)publishFunc
 {
-   __block NSArray *imageUrlArray;
     NSMutableArray *imageArray = [[NSMutableArray alloc] init];
     for (FZJPhotoModel *model in _imageArray) {
         [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:PHImageManagerMaximumSize makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
@@ -129,7 +140,56 @@
     [request uploadfile:imageArray block:^(NSArray *files, NSError *error) {
         imageUrlArray = files;
         NSLog(@"获取的url个数：%ld",imageUrlArray.count);
+        [self upToSeverNet];
     }];
+}
+
+- (void)upToSeverNet
+{
+    LBB_PublishUgcViewModel  *model = [LBB_PublishUgcViewModel new];
+    [model setSquareUgc:1 url:@"" remark:_vistHead.text longitude:_addressInfo.longitude dimensionality:_addressInfo.dimensionality allSpotsId:_addressInfo.allSpotsId tags:[@[] mutableCopy] pics:[self getPicsArray] block:^(NSError *error) {
+        NSLog(@"%@",error);
+        if(!error)
+        {
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"goBack" object:self userInfo:nil];
+        }
+    }];
+}
+
+//获取标签id
+- (NSMutableArray *)getTagsNumber:(NSArray *)tagArray
+{
+    NSMutableArray  *tagIDNumber = [[NSMutableArray alloc]init];
+    
+    for(LBB_SquareTags *tagModel in tagArray)
+    {
+        NSNumber  *number = [[NSNumber alloc]initWithLong:tagModel.tagId];
+        [tagIDNumber addObject:number];
+    }
+    return tagIDNumber;
+}
+
+//获取标签id
+- (NSMutableArray *)getPicsArray
+{
+    NSMutableArray  *picArray = [[NSMutableArray alloc]init];
+    
+    for(int i = 0; i < imageUrlArray.count; i++)
+   {
+       BN_PublicPics *picModel = [[BN_PublicPics alloc]init];
+       picModel.imageUrl = imageUrlArray[i];
+       picModel.imageDesc = @" ";//页面没有体现出这个字段
+       if([_tagsViewArray[i] isKindOfClass:[NSArray class]])
+       {
+           picModel.tags = [self getTagsNumber:_tagsViewArray[i]];
+       }else
+       {
+           picModel.tags = [@[] mutableCopy];
+       }
+       [picArray addObject:picModel];
+   }
+    return picArray;
 }
 
 @end

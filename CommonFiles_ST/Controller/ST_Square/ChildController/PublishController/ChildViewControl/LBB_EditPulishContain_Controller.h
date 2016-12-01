@@ -11,4 +11,5 @@
 @interface LBB_EditPulishContain_Controller : Base_BaseViewController
 @property(nonatomic,strong)LBB_Pulish_ImageContain_View  *imageContainView;
 @property(nonatomic,strong)NSArray   *imageArray;
+@property(nonatomic,strong)NSMutableArray *tagsViewArray;//图片顺序的标签顺序
 @end

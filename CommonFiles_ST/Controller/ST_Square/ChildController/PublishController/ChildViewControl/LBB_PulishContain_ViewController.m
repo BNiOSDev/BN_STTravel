@@ -13,6 +13,9 @@
 #import "LBB_TagView.h"
 
 @interface LBB_PulishContain_ViewController ()
+{
+    BOOL    addTaged;//是否已添加标签
+}
 @property(nonatomic, strong)LBB_Pulish_ImageContain_View   *imageContainView;
 @property(nonatomic,strong)NSMutableArray   *tagsViewArray;
 @end
@@ -21,6 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //注册监听者。
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(back:) name:@"goBack" object:nil];
+    
     self.navigationItem.title = @"发布内容";
     self.view.backgroundColor = ColorWhite;
     
@@ -36,10 +43,25 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)back:(NSNotification *)notification
+{
+    [self backToController];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     [self.view addSubview:_imageContainView];
+}
+
 - (void)initView
 {
-    _tagsViewArray = [NSMutableArray arrayWithCapacity:_selectImageArray.count];
-    
+    _tagsViewArray = [[NSMutableArray alloc]init];
+    //初始化标签数组，为了后续使用代替方法
+    for (int i = 0; i < _selectImageArray.count; i++) {
+        [_tagsViewArray addObject:@""];
+    }
+
     UILabel  *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, AUTO(10.0), DeviceWidth, AUTO(20))];
     tipLabel.font = FONT(AUTO(12.0));
     tipLabel.textColor = MORELESSBLACKCOLOR;
@@ -67,14 +89,31 @@
 
 - (void)editPulish
 {
+    if(!addTaged)
+    {
+        [self showHudPrompt:@"至少选择一张照片添加标签"];
+        return;
+    }
     LBB_EditPulishContain_Controller *Vc = [[LBB_EditPulishContain_Controller alloc]init];
     Vc.imageArray = self.selectImageArray;
+    Vc.tagsViewArray = _tagsViewArray;
+    Vc.imageContainView = _imageContainView;
+//    Vc.imageContainView = [self duplicate:_imageContainView];
     [self.navigationController pushViewController:Vc animated:YES];
 }
 
 - (void)transTagsWithViewTag:(NSArray *)tagList viewTag:(NSInteger )tag
 {
-    
+    [_tagsViewArray replaceObjectAtIndex:tag withObject:tagList];
+    addTaged = YES;
+    NSLog(@"数组总长度%ld",_tagsViewArray.count);
+}
+
+//完全复制UIview，序列化
+- (UIView*)duplicate:(UIView*)view
+{
+    NSData * tempArchive = [NSKeyedArchiver archivedDataWithRootObject:view];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:tempArchive];
 }
 
 @end

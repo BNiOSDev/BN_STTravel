@@ -12,4 +12,7 @@
 @interface LBB_PublishVideo_Contain_ViewController : Base_BaseViewController
 @property(nonatomic,strong)NSURL     *videoUrl;
 @property(nonatomic,copy) PHAsset     *videoAsset;
+
+- (void)transTagsWithViewTag:(NSArray *)tagList viewTag:(NSInteger )tag;
+
 @end

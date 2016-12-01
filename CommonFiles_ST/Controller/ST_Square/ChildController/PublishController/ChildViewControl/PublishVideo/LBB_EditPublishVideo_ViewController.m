@@ -8,13 +8,24 @@
 
 #import "LBB_EditPublishVideo_ViewController.h"
 #import "UITextView+Placeholder.h"
+#import "LBB_AddressAddViewController.h"
+#import "LBB_SpotAddress.h"
+#import "LBB_ZJMPhotoList.h"
+#import "FZJPhotoModel.h"
+#import "LBB_PublishUgcViewModel.h"
+#import "LBB_TagsViewModel.h"
 
 @interface LBB_EditPublishVideo_ViewController ()
+{
+    CGRect  frame;
+    NSString *videoImageUrl;
+}
 @property(nonatomic,strong)UIScrollView   *backView;
 @property(nonatomic,strong)UITextView     *vistHead;
 @property(nonatomic,strong)UIButton         *pulishBtn;
 @property(nonatomic,strong)UIImageView    *pauseImage;
 @property(nonatomic,strong)NSMutableArray   *mapViewArray;
+@property(nonatomic,strong)LBB_SpotAddress *addressInfo;
 @end
 
 @implementation LBB_EditPublishVideo_ViewController
@@ -26,14 +37,21 @@
     [self initView];
 }
 
+//重写返回方法
+-(void)leftButtonClick{
+    _imageContainView.frame = frame;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)initView
 {
     [self.view addSubview:self.backView];
     
     _mapViewArray = [[NSMutableArray alloc]init];
-    
-    _imageContainView = [[LBB_Pulish_ImageContain_View alloc]initWithFrame:CGRectMake(AUTO(5), 5, DeviceWidth - AUTO(10), DeviceWidth - AUTO(20))];
-    _imageContainView.imageArray = _imageArray;
+    frame = _imageContainView.frame;
+    _imageContainView.frame =  CGRectMake(AUTO(5), 5, DeviceWidth - AUTO(10), DeviceWidth - AUTO(20));
+//    [[LBB_TipImage_Pulish_ImageView alloc]initWithFrame:CGRectMake(AUTO(5), 5, DeviceWidth - AUTO(10), DeviceWidth - AUTO(20))];
+//    _imageContainView.imageArray = _imageArray;
     [self.backView addSubview:_imageContainView];
     
     _pauseImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,AUTO(43), AUTO(43))];
@@ -73,6 +91,7 @@
     [_pulishBtn setTitleColor:WHITECOLOR forState:0];
     _pulishBtn.titleLabel.font = FONT(AUTO(13.0));
     _pulishBtn.backgroundColor = ColorBtnYellow;
+    [_pulishBtn addTarget:self action:@selector(publishFunc) forControlEvents:UIControlEventTouchUpInside];
     [self.backView addSubview:_pulishBtn];
 }
 
@@ -89,16 +108,89 @@
 
 - (void)addMap:(UIView *)btn
 {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, btn.bottom + AUTO(5), DeviceWidth, AUTO(100))];
-    view.backgroundColor = ColorRed;
-    [_mapViewArray addObject:view];
-    [self.backView addSubview:view];
+//    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, btn.bottom + AUTO(5), DeviceWidth, AUTO(100))];
+//    view.backgroundColor = ColorRed;
+//    [_mapViewArray addObject:view];
+//    [self.backView addSubview:view];
+//    
+//    _pulishBtn.bottom = view.bottom + AUTO(50);
+//    
+//    self.backView.contentSize = CGSizeMake(DeviceWidth, _pulishBtn.bottom+ 25);
     
-    _pulishBtn.bottom = view.bottom + AUTO(50);
-    
-    self.backView.contentSize = CGSizeMake(DeviceWidth, _pulishBtn.bottom+ 25);
+    __weak typeof (self) weakSelf = self;
+    LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
+    dest.click = ^(LBB_AddressAddViewController* add,LBB_SpotAddress* address){
+        //   [text setText:[NSString stringWithFormat:@"%ld",[index integerValue]]];
+        // [ws.dataArray addObject:index];//回调回来数据
+        _addressInfo = address;
+        NSLog(@"详细地址：%@",_addressInfo.address);
+        
+        //页面变化代码块
+        {
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, btn.bottom + AUTO(5), DeviceWidth, AUTO(100))];
+            view.backgroundColor = ColorRed;
+            [_mapViewArray addObject:view];
+            [self.backView addSubview:view];
+            
+            _pulishBtn.bottom = view.bottom + AUTO(50);
+            self.backView.contentSize = CGSizeMake(DeviceWidth, _pulishBtn.bottom+ 25);
+        }
+        
+        
+        [add.navigationController popViewControllerAnimated:YES];
+    };
+    [weakSelf.navigationController pushViewController:dest animated:YES];
+
 }
 
+- (void)publishFunc
+{
+    if(!_addressInfo)
+    {
+        [self showHudPrompt:@"您未选择地点"];
+        return;
+    }
+    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+    for (FZJPhotoModel *model in _imageArray) {
+        [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:PHImageManagerMaximumSize makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
+            [imageArray addObject:AssetImage];
+        }];
+        
+    }
+    BC_ToolRequest  *request = [BC_ToolRequest sharedManager];
+    [request uploadfile:imageArray block:^(NSArray *files, NSError *error) {
+        NSLog(@"获取的url个数：%ld",files.count);
+//        [self upToSeverNet];
+        if(files.count)
+            videoImageUrl = files[0];
+        [self upToSeverNet];
+    }];
+}
 
+- (void)upToSeverNet
+{
+    LBB_PublishUgcViewModel  *model = [LBB_PublishUgcViewModel new];
+    [model setSquareUgc:2 url:videoImageUrl remark:_vistHead.text longitude:_addressInfo.longitude dimensionality:_addressInfo.dimensionality allSpotsId:_addressInfo.allSpotsId tags:[self getTagsNumber:_tagsViewArray[0]] pics:[@[] mutableCopy] block:^(NSError *error) {
+        NSLog(@"%@",error);
+        if(!error)
+        {
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"goBack" object:self userInfo:nil];
+        }
+    }];
+}
+
+//获取标签id
+- (NSMutableArray *)getTagsNumber:(NSArray *)tagArray
+{
+    NSMutableArray  *tagIDNumber = [[NSMutableArray alloc]init];
+    
+    for(LBB_SquareTags *tagModel in tagArray)
+    {
+        NSNumber  *number = [[NSNumber alloc]initWithLong:tagModel.tagId];
+        [tagIDNumber addObject:number];
+    }
+    return tagIDNumber;
+}
 
 @end
