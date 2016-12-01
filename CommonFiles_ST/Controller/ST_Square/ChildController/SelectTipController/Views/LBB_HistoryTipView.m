@@ -45,7 +45,7 @@
     [clearBtn setTitleColor:MORELESSBLACKCOLOR forState:0];
     [topView addSubview:clearBtn];
     LRViewBorderRadius(topView, 0, 1.0, UIColorFromRGB(0xD5D6D7));
-
+    [clearBtn addTarget:self action:@selector(clearHistory) forControlEvents:UIControlEventTouchUpInside];
 }
 //底部的view
 - (void)bottomView
@@ -73,6 +73,10 @@
 {
     _historySearch = historySearch;
     
+    [self removeAllSubviews];
+    [self setup];
+    
+    self.height  = AUTO(45);
     CGFloat  marginX = AUTO(10);
     CGFloat  marginY = AUTO(10);
     CGFloat  btnWidth = (DeviceWidth - AUTO(50) - 2*marginX)/3.0;
@@ -111,5 +115,10 @@
      [self bottomView];
 }
 
+
+- (void)clearHistory
+{
+    self.clearBlock(0);
+}
 
 @end

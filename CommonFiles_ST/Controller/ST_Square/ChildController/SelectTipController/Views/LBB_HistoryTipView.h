@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#include "Header.h"
 @interface LBB_HistoryTipView : UIView
 @property(nonatomic,strong)NSArray   *historySearch;
+@property(nonatomic,copy)BtnFuncTion  clearBlock;
 @end

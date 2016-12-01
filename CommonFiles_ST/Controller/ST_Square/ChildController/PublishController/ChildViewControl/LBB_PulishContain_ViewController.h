@@ -10,4 +10,5 @@
 
 @interface LBB_PulishContain_ViewController : Base_BaseViewController
 @property(nonatomic,strong)NSArray  *selectImageArray;
+- (void)transTagsWithViewTag:(NSArray *)tagList viewTag:(NSInteger )tag;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "Base_BaseViewController.h"
-
+#import "Header.h"
 @interface LBB_SelectTip_History_ViewController : Base_BaseViewController
-
+@property(nonatomic,copy)BlockAddTip  transTags;
 @end

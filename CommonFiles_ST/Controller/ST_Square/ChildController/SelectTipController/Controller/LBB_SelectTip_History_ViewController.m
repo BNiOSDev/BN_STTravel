@@ -21,6 +21,7 @@
 @property(nonatomic,strong)UITableView      *mTableView;
 @property(nonatomic,strong)UITableView      *SearchTableView;
 @property(nonatomic,weak)LBB_HistoryTipView *tableHead;
+@property(nonatomic,strong)NSArray            *tagArray;
 @end
 
 @implementation LBB_SelectTip_History_ViewController
@@ -45,7 +46,9 @@
 {
 //    LBB_TagsViewModel  *model = [[LBB_TagsViewModel alloc]init];
     [LBB_SquareTags getConditionTagsClass: 1 type: 1 block:^(NSArray<LBB_SquareTags *> *files, NSError *error) {
-        NSLog(@"数组长度 %ld",files.count);
+         NSLog(@"files:%@",files);
+        _tagArray = files;
+        [_mTableView reloadData];
     }];
 }
 
@@ -53,9 +56,25 @@
 {
     LBB_HistoryTipView  *tableHeadVeiw = [[LBB_HistoryTipView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(207))];
     tableHeadVeiw.backgroundColor = WHITECOLOR;
+    tableHeadVeiw.clearBlock = ^(NSInteger tag){
+        NSArray *array = [TipHistory MR_findAll];
+        for(TipHistory *model in array)
+        {
+            [model MR_deleteEntity];
+        }
+        _tableHead.historySearch = nil;
+    };
     _tableHead = tableHeadVeiw;
     [self.view addSubview:self.mTableView];
-    _tableHead.historySearch = @[@"三朵金花",@"三朵金花",@"三朵金花",@"三朵金花"];
+//    _tableHead.historySearch = @[@"三朵金花",@"三朵金花",@"三朵金花",@"三朵金花"];
+    NSArray *array = [TipHistory  MR_findAll];
+    NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+    for(int i = 0;i  < array.count;i++)
+    {
+        TipHistory *model = array[i];
+        [dataArray addObject:model.searchKey];
+    }
+    _tableHead.historySearch = dataArray;
     [self.mTableView setTableHeaderView:_tableHead];
 }
 
@@ -92,6 +111,7 @@
         tableView.delegate = self;
         tableView.dataSource = self;
         _mTableView = tableView;
+        [self setExtraCellLineHidden:_mTableView];
     }
     return _mTableView;
 }
@@ -105,15 +125,30 @@
         tableView.delegate = self;
         tableView.dataSource = self;
         _SearchTableView = tableView;
+          [self setExtraCellLineHidden:_SearchTableView];
     }
     return _SearchTableView;
+}
+
+/**
+ *  隐藏多余tablecell
+ *
+ *  @param tableView void
+ */
+- (void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view = [UIView new];
+    
+    view.backgroundColor = [UIColor clearColor];
+    
+    [tableView setTableFooterView:view];
 }
 
 #pragma mark TableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _tagArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,13 +164,16 @@
     if (!cell) {
         cell = [[LBB_HotTipCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
-    cell.tipTitle = @"你喜欢我吗？";
+    LBB_SquareTags *tagModel = [_tagArray objectAtIndex:indexPath.row];
+    cell.tipTitle = tagModel.tagName;;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    LBB_SquareTags  * tagModel = [_tagArray objectAtIndex:indexPath.row];
+    self.transTags(tagModel);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark uitextFielddelegate
@@ -161,6 +199,15 @@
     TipHistory  *historyModel = [TipHistory MR_createEntity];
     historyModel.searchKey = inputTip.text;
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
+    NSArray *array = [TipHistory  MR_findAll];
+    NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+    for(int i = 0;i  < array.count;i++)
+    {
+        TipHistory *model = array[i];
+        [dataArray addObject:model.searchKey];
+    }
+    _tableHead.historySearch = dataArray;
 }
 
 @end

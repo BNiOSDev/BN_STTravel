@@ -517,6 +517,8 @@
 		3C455DE11DEEB7B40086B53D /* TipHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C455DDF1DEEB7B40086B53D /* TipHistory.xcdatamodeld */; };
 		3C455DFF1DEEBB080086B53D /* TipHistory+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C455DFC1DEEBB080086B53D /* TipHistory+CoreDataClass.m */; };
 		3C455E001DEEBB080086B53D /* TipHistory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C455DFE1DEEBB080086B53D /* TipHistory+CoreDataProperties.m */; };
+		3CE8E6881DEFB9550058EC65 /* LBB_TagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CE8E6871DEFB9550058EC65 /* LBB_TagView.m */; };
+		3CE8E68A1DEFB9AD0058EC65 /* zjmtag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CE8E6891DEFB9AD0058EC65 /* zjmtag@2x.png */; };
 		844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CB1DEAC7C500164DED /* libc++.tbd */; };
 		844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */; };
 		844065D01DEAC7D300164DED /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CF1DEAC7D300164DED /* libz.tbd */; };
@@ -1452,6 +1454,9 @@
 		3C455DFC1DEEBB080086B53D /* TipHistory+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TipHistory+CoreDataClass.m"; sourceTree = "<group>"; };
 		3C455DFD1DEEBB080086B53D /* TipHistory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TipHistory+CoreDataProperties.h"; sourceTree = "<group>"; };
 		3C455DFE1DEEBB080086B53D /* TipHistory+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TipHistory+CoreDataProperties.m"; sourceTree = "<group>"; };
+		3CE8E6861DEFB9550058EC65 /* LBB_TagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TagView.h; sourceTree = "<group>"; };
+		3CE8E6871DEFB9550058EC65 /* LBB_TagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TagView.m; sourceTree = "<group>"; };
+		3CE8E6891DEFB9AD0058EC65 /* zjmtag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmtag@2x.png"; sourceTree = "<group>"; };
 		844065CB1DEAC7C500164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		844065CF1DEAC7D300164DED /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -3992,6 +3997,7 @@
 		1DD9B9E21DED70E00003DFE6 /* 640 */ = {
 			isa = PBXGroup;
 			children = (
+				3CE8E6891DEFB9AD0058EC65 /* zjmtag@2x.png */,
 				1DD9B9E31DED70E00003DFE6 /* AssetsPickerChecked@2x.png */,
 				1DD9B9E41DED70E00003DFE6 /* back@2x.png */,
 				1DD9B9E51DED70E00003DFE6 /* cancelFocus@1x.png */,
@@ -4311,6 +4317,8 @@
 				1DD9BA8B1DED70E00003DFE6 /* LBB_HistoryTipView.m */,
 				1DD9BA8C1DED70E00003DFE6 /* LBB_HotTipCell.h */,
 				1DD9BA8D1DED70E00003DFE6 /* LBB_HotTipCell.m */,
+				3CE8E6861DEFB9550058EC65 /* LBB_TagView.h */,
+				3CE8E6871DEFB9550058EC65 /* LBB_TagView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5138,6 +5146,7 @@
 				1DD9BCA01DED70E20003DFE6 /* zjmhuangtime@2x.png in Resources */,
 				1DD9BBFB1DED70E10003DFE6 /* LBB_FollowViewCell.xib in Resources */,
 				1DD9BC171DED70E10003DFE6 /* PersonalInfoCell.xib in Resources */,
+				3CE8E68A1DEFB9AD0058EC65 /* zjmtag@2x.png in Resources */,
 				1DD9BC6B1DED70E20003DFE6 /* zjmback@2x.png in Resources */,
 				1DD9BBEA1DED70E10003DFE6 /* LBB_SquareNotificationViewCell.xib in Resources */,
 				1DD9BC4A1DED70E10003DFE6 /* IMG_0849.JPG in Resources */,
@@ -5551,6 +5560,7 @@
 				1DD9BB841DED70E00003DFE6 /* LBB_PoohMyFavoriteSubjectCell.m in Sources */,
 				1DD9BC291DED70E10003DFE6 /* SettingPushViewController.m in Sources */,
 				1DD9BB691DED70E00003DFE6 /* LBB_FoodsMainViewController.m in Sources */,
+				3CE8E6881DEFB9550058EC65 /* LBB_TagView.m in Sources */,
 				1DD9BB981DED70E10003DFE6 /* LBB_OrderWaitPayViewController.m in Sources */,
 				1DD9BD041DED70E20003DFE6 /* ContentImageView.m in Sources */,
 				1DD9BC331DED70E10003DFE6 /* LBB_TicketModel.m in Sources */,

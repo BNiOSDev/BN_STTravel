@@ -12,5 +12,5 @@
 @interface LBB_Pulish_ImageContain_View : UIView
 @property(nonatomic,strong)NSArray          *imageArray;
 @property(nonatomic,strong)NSArray          *picArray;
-@property(nonatomic,copy)BlockAddTip      _blockAddTip;
+@property(nonatomic,strong)BlockAddTip      _blockAddTip;
 @end

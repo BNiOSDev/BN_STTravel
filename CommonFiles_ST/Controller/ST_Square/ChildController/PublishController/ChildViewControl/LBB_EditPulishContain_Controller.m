@@ -10,6 +10,8 @@
 #import "UITextView+Placeholder.h"
 #import "LBB_AddressAddViewController.h"
 #import "LBB_SpotAddress.h"
+#import "LBB_ZJMPhotoList.h"
+#import "FZJPhotoModel.h"
 
 @interface LBB_EditPulishContain_Controller ()
 @property(nonatomic,strong)UIScrollView   *backView;
@@ -70,6 +72,7 @@
     [_pulishBtn setTitleColor:WHITECOLOR forState:0];
     _pulishBtn.titleLabel.font = FONT(AUTO(13.0));
     _pulishBtn.backgroundColor = ColorBtnYellow;
+    [_pulishBtn addTarget:self action:@selector(publishFunc) forControlEvents:UIControlEventTouchUpInside];
     [self.backView addSubview:_pulishBtn];
 }
 
@@ -110,6 +113,23 @@
     };
     [weakSelf.navigationController pushViewController:dest animated:YES];
 
+}
+
+- (void)publishFunc
+{
+   __block NSArray *imageUrlArray;
+    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+    for (FZJPhotoModel *model in _imageArray) {
+        [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:PHImageManagerMaximumSize makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
+            [imageArray addObject:AssetImage];
+        }];
+
+    }
+    BC_ToolRequest  *request = [BC_ToolRequest sharedManager];
+    [request uploadfile:imageArray block:^(NSArray *files, NSError *error) {
+        imageUrlArray = files;
+        NSLog(@"获取的url个数：%ld",imageUrlArray.count);
+    }];
 }
 
 @end

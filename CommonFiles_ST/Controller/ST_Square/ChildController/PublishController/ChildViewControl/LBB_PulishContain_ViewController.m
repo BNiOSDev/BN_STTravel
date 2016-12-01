@@ -10,9 +10,11 @@
 #import "Header.h"
 #import "LBB_Pulish_ImageContain_View.h"
 #import "LBB_EditPulishContain_Controller.h"
+#import "LBB_TagView.h"
 
 @interface LBB_PulishContain_ViewController ()
 @property(nonatomic, strong)LBB_Pulish_ImageContain_View   *imageContainView;
+@property(nonatomic,strong)NSMutableArray   *tagsViewArray;
 @end
 
 @implementation LBB_PulishContain_ViewController
@@ -36,6 +38,8 @@
 
 - (void)initView
 {
+    _tagsViewArray = [NSMutableArray arrayWithCapacity:_selectImageArray.count];
+    
     UILabel  *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, AUTO(10.0), DeviceWidth, AUTO(20))];
     tipLabel.font = FONT(AUTO(12.0));
     tipLabel.textColor = MORELESSBLACKCOLOR;
@@ -66,6 +70,11 @@
     LBB_EditPulishContain_Controller *Vc = [[LBB_EditPulishContain_Controller alloc]init];
     Vc.imageArray = self.selectImageArray;
     [self.navigationController pushViewController:Vc animated:YES];
+}
+
+- (void)transTagsWithViewTag:(NSArray *)tagList viewTag:(NSInteger )tag
+{
+    
 }
 
 @end

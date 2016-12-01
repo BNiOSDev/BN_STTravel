@@ -10,6 +10,6 @@
 #import "Header.h"
 
 @interface LBB_TipImage_Pulish_ImageView : UIImageView
-@property(nonatomic,strong)NSArray      *tipArray;
-@property(nonatomic,copy)BlockAddTip  _blockAddTip;
+@property(nonatomic,strong)NSMutableArray      *tipArray;
+@property(nonatomic,strong)BlockAddTip  _blockAddTip;
 @end

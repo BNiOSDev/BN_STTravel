@@ -48,12 +48,12 @@
 {
     if(self == [super initWithFrame:frame])
     {
-//        self.width = SCREEN_WIDTH - 75;
-//        self.height = AUTO(250);
+
+//        self._blockAddTip = ^(UIView *view){
+//            NSLog(@"块优质");
+//        };
         [self setup];
-        self._blockAddTip = ^(UIView *view){
-            NSLog(@"块优质");
-        };
+
     }
     return self;
 }
@@ -61,33 +61,23 @@
 - (void)setup
 {
     oneImage = [LBB_TipImage_Pulish_ImageView new];
-    oneImage._blockAddTip = self._blockAddTip;
-    
+    oneImage.tag = 0;
     twoImage = [LBB_TipImage_Pulish_ImageView new];
-    twoImage._blockAddTip = self._blockAddTip;
-    
+    twoImage.tag = 1;
     threeImage = [LBB_TipImage_Pulish_ImageView new];
-    threeImage._blockAddTip = self._blockAddTip;
-    
+    threeImage.tag = 2;
     fourImage = [LBB_TipImage_Pulish_ImageView new];
-    fourImage._blockAddTip = self._blockAddTip;
-    
+    fourImage.tag = 3;
     fiveImage = [LBB_TipImage_Pulish_ImageView new];
-    fiveImage._blockAddTip = self._blockAddTip;
-    
+    fiveImage.tag = 4;
     sixImage = [LBB_TipImage_Pulish_ImageView new];
-    sixImage._blockAddTip = self._blockAddTip;
-    
+    sixImage.tag = 5;
     sevenImage = [LBB_TipImage_Pulish_ImageView new];
-    sevenImage._blockAddTip = self._blockAddTip;
-    
+    sevenImage.tag = 6;
     eightImage = [LBB_TipImage_Pulish_ImageView new];
-    eightImage._blockAddTip = self._blockAddTip;
-    
+    eightImage.tag = 8;
     nightImage = [LBB_TipImage_Pulish_ImageView new];
-    nightImage._blockAddTip = self._blockAddTip;
-    
-    //    self.picArray = [temp copy];
+    nightImage.tag = 9;
 }
 
 - (void)set_blockAddTip:(BlockAddTip)_blockAddTip
@@ -406,6 +396,7 @@
         LBB_TipImage_Pulish_ImageView  *image = [[LBB_TipImage_Pulish_ImageView alloc]init];
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:nil];
         image._blockAddTip = self._blockAddTip;
+        image.tag = i;
         [self addSubview:image];
         CGFloat cellMargin = (i == 1 || i == 4) ? 0:2.5;
         image.sd_layout
@@ -453,6 +444,7 @@
         LBB_TipImage_Pulish_ImageView  *image = [[LBB_TipImage_Pulish_ImageView alloc]init];
         [image sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:_imageArray[i]];
         image._blockAddTip = self._blockAddTip;
+        image.tag = i;
         [self addSubview:image];
         CGFloat cellMargin = (i == 2 || i == 5) ? 0:2.5;
         image.sd_layout
@@ -482,6 +474,7 @@
         LBB_TipImage_Pulish_ImageView  *image = [[LBB_TipImage_Pulish_ImageView alloc]init];
         [image sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:_imageArray[i]];
         image._blockAddTip = self._blockAddTip;
+        image.tag = i;
         [self addSubview:image];
         CGFloat cellMargin = (i % 3 == 0) ? 0:2.5;
         image.sd_layout
