@@ -7,13 +7,12 @@
 //
 
 #import "LBB_MyPhotoViewCell.h"
-#import "LBBTravelContentImage.h"
 #import "Header.h"
-
+#import "LBB_MyContentImgView.h"
 
 @interface LBB_MyPhotoViewCell()
 {
-    LBBTravelContentImage  *contentImage;
+    LBB_MyContentImgView  *contentImage;
     UIButton    *zanBtn;
     UIButton    *pinBtn;
     UIButton    *deleteBtn;
@@ -44,13 +43,14 @@
 {
     [super prepareForReuse];
     [contentImage prepareForReuse];
+    zanBtn.selected = NO;
+    collecdtionBtn.selected = NO;
 }
 
 - (void)setup
 {
-    contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
+    contentImage = [[LBB_MyContentImgView alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
     [self addSubview:contentImage];
-    contentImage.backgroundColor = ColorLine;
     
     collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(self.width - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
     collecdtionBtn.enlargeInset = UIEdgeInsetsMake(AUTO(10), AUTO(20), AUTO(15), AUTO(10));
@@ -96,7 +96,7 @@
 {
     _model = model; 
     
-    contentImage.imageUrl = model.coverImageUrl;
+    contentImage.imageURL = model.coverImageUrl;
     deleteBtn.left = self.width - 10 - deleteBtn.width;
     [deleteBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [deleteBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];

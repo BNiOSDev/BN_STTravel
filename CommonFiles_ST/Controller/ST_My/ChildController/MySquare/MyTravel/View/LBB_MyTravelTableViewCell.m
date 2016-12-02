@@ -7,12 +7,12 @@
 //
 
 #import "LBB_MyTravelTableViewCell.h"
-#import "LBBTravelContentImage.h"
 #import "Header.h"
+#import "LBB_MyContentImgView.h"
 
 @implementation LBB_MyTravelTableViewCell
 {
-    LBBTravelContentImage  *contentImage;
+    LBB_MyContentImgView  *contentImage;
     UILabel     *contentLabel;
     UILabel     *timeLabel;
     UIButton    *zanBtn;
@@ -35,13 +35,15 @@
 {
     [super prepareForReuse];
     [contentImage prepareForReuse];
+    zanBtn.selected = NO;
+    heartBtn.selected = NO;
+    collecdtionBtn.selected = NO;
 }
 
 - (void)setup
 {
-    contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth,AUTO(180))];
+    contentImage = [[LBB_MyContentImgView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth,AUTO(180))];
     [self addSubview:contentImage];
-    contentImage.backgroundColor = ColorLine;
     
     collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(DeviceWidth - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
     collecdtionBtn.enlargeInset = UIEdgeInsetsMake(AUTO(10), AUTO(20), AUTO(15), AUTO(10));
@@ -158,7 +160,7 @@
 - (void)setModel:(LBB_TravelModel *)model
 {
     _model = model;
-    contentImage.imageUrl = model.travelNotePicUrl;
+    contentImage.imageURL = model.travelNotePicUrl;
     contentLabel.text  = model.travelNoteName;
     timeLabel.text = [NSString stringWithFormat:@"%@  %@   %@",model.releaseDate,@(model.dayCount),@(model.totalCollected)];
     
@@ -205,7 +207,7 @@
 - (void)setGuideModel:(LBB_TravelGuideModel *)guideModel
 {
     _guideModel = guideModel;
-    contentImage.imageUrl = _guideModel.coverImageUrl;
+    contentImage.imageURL = _guideModel.coverImageUrl;
     contentLabel.text  = _guideModel.name;
 //    timeLabel.text = [NSString stringWithFormat:@"%@  %@   %@",_guideModel.releaseDate,@(_guideModel.dayCount),@(_guideModel.totalCollected)];
     
@@ -229,6 +231,7 @@
     heartBtn.left = DeviceWidth - interval - heartBtn.width - deleteWidth;
     [heartBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [heartBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
+    heartBtn.selected = _guideModel.isCollected;
     
     NSString *pinTitle = getNumTitleStr(_guideModel.commentsNum);
     [pinBtn setTitle:pinTitle forState:0];
@@ -243,6 +246,7 @@
     zanBtn.left = pinBtn.left - zanBtn.width  - interval ;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    zanBtn.selected = _guideModel.isLiked;
 }
 
 - (void)btnFunc:(UIButton *)btn

@@ -7,12 +7,12 @@
 //
 
 #import "LBB_MyVideoViewCell.h"
-#import "LBBTravelContentImage.h"
+#import "LBB_MyContentImgView.h"
 #import "Header.h"
 
 @interface LBB_MyVideoViewCell()
 {
-    LBBTravelContentImage  *contentImage;
+    LBB_MyContentImgView  *contentImage;
     UIImageView     *playImage;
     UIButton    *zanBtn;
     UIButton    *pinBtn;
@@ -44,13 +44,14 @@
 {
     [super prepareForReuse];
     [contentImage prepareForReuse];
+    zanBtn.selected = NO;
+    collecdtionBtn.selected = NO;
 }
 
 - (void)setup
 {
-    contentImage = [[LBBTravelContentImage alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
+    contentImage = [[LBB_MyContentImgView alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
     [self addSubview:contentImage];
-    contentImage.backgroundColor = ColorLine;
     
     collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(self.width - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
     collecdtionBtn.enlargeInset = UIEdgeInsetsMake(AUTO(10), AUTO(20), AUTO(15), AUTO(10));
@@ -100,7 +101,13 @@
 {
     _model = model;
     
-    contentImage.imageUrl = model.videoUrl;
+    contentImage.imageURL = model.videoUrl;
+    NSMutableArray *tagList = [NSMutableArray arrayWithCapacity:0];
+    for (int i = 0; i < _model.tags.count; i++) {
+        LBB_MyVideoTagModel *tagModel = _model.tags[i];
+        [tagList addObject:tagModel.tagName];
+    } 
+    contentImage.tagList = tagList;
     collecdtionBtn.selected = _model.isCollected;
     [collecdtionBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     CGFloat deleteWidth = 0.f;
