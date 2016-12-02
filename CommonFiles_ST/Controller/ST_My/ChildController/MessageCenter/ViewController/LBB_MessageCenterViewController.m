@@ -13,6 +13,7 @@
 #import "LBB_PurchaseModuleViewController.h"
 #import "LBB_MyPropertyViewController.h"
 #import "LBB_MessageSquareViewController.h"
+#import "LBB_MessageCenterModel.h"
 
 @interface LBB_MessageCenterViewController ()
 <UITableViewDelegate,
@@ -21,6 +22,7 @@ UITableViewDataSource
 
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataSourceArray;
+@property (nonatomic,strong) LBB_MessageCenterModel *viewModel;
 
 @end
 
@@ -41,30 +43,95 @@ UITableViewDataSource
 {
     UINib *nib = [UINib nibWithNibName:@"LBB_MessageCenterViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"LBB_MessageCenterViewCell"];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[@{@"InfoType":[NSNumber numberWithInt:ePromotions],
-                                                                    @"Content":@"喜迎国庆,全场8折优惠（最新活动）",
-                                                                    @"Date":@"07-17"
-                                                                    },
-                                                                  @{@"InfoType":[NSNumber numberWithInt:eCustomer],
-                                                                    @"Content":@"点击查看您的最新客服会话记录",
-                                                                    @"Date":@"07-17"
-                                                                    },
-                                                                  @{@"InfoType":[NSNumber numberWithInt:ePurchageNotifion],
-                                                                    @"Content":@"已发货，您2016-07-16购买黑蒜...",
-                                                                    @"Date":@"07-17",
-                                                                    @"Image":@""
-                                                                    },
-                                                                  @{@"InfoType":[NSNumber numberWithInt:eNotice],
-                                                                    @"Content":@"提现成功，您2016-07-12申请100...",
-                                                                    @"Date":@"07-17"
-                                                                    },
-                                                                  @{@"InfoType":[NSNumber numberWithInt:eSquareTravel],
-                                                                    @"Content":@"您发布的游记XX被点赞了，快去看...",
-                                                                    @"Date":@"07-17"
-                                                                    }
-                                                                  ]];
+    
+    if (!self.viewModel) {
+        self.viewModel = [[LBB_MessageCenterModel alloc] init];
+    }
+    __weak typeof (self) weakSelf = self;
+    [self.viewModel.loadSupport setDataRefreshblock:^{
+        [weakSelf initDataSource];
+    }];
+    [self.viewModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code,NSString* remak){
+        
+    }];
+    [self.viewModel getMessage];
+   
 }
+
+- (void)initDataSource
+{
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:0];
+    if ([self.viewModel.onsaleTitle length]) {
+        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],
+                          @"Content":self.viewModel.onsaleTitle,
+                          @"Date":self.viewModel.onsaleTime
+                           }];
+    }
+    
+//    [array addObject:@{@"InfoType":[NSNumber numberWithInt:eCustomer],
+//                       @"Content":@"点击查看您的最新客服会话记录",
+//                       @"Date":@"07-17"
+//                       }];
+    
+    if ([self.viewModel.buyTitle length]) {
+        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],
+                           @"Content":self.viewModel.buyTitle,
+                           @"Date":self.viewModel.buyTime
+                           }];
+    }
+    
+    if ([self.viewModel.onsaleTitle length]) {
+        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],
+                           @"Content":self.viewModel.onsaleTitle,
+                           @"Date":self.viewModel.onsaleTime
+                           }];
+    }
+    
+    if ([self.viewModel.noticeTitle length]) {
+        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],
+                           @"Content":self.viewModel.noticeTitle,
+                           @"Date":self.viewModel.noticeTime
+                           }];
+    }
+    
+    if ([self.viewModel.squareName length]) {
+        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],
+                           @"Content":self.viewModel.squareName,
+                           @"Date":self.viewModel.squareTime
+                           }];
+    }
+  
+    if (!self.dataSourceArray) {
+        self.dataSourceArray = [[NSMutableArray alloc] initWithCapacity:0];
+     }
+    [self.dataSourceArray removeAllObjects];
+    [self.dataSourceArray addObjectsFromArray:array];
+    [self.tableView reloadData];
+    
+//    self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[@{@"InfoType":[NSNumber numberWithInt:ePromotions],
+//                                                                     @"Content":@"喜迎国庆,全场8折优惠（最新活动）",
+//                                                                     @"Date":@"07-17"
+//                                                                     },
+//                                                                   @{@"InfoType":[NSNumber numberWithInt:eCustomer],
+//                                                                     @"Content":@"点击查看您的最新客服会话记录",
+//                                                                     @"Date":@"07-17"
+//                                                                     },
+//                                                                   @{@"InfoType":[NSNumber numberWithInt:ePurchageNotifion],
+//                                                                     @"Content":@"已发货，您2016-07-16购买黑蒜...",
+//                                                                     @"Date":@"07-17",
+//                                                                     @"Image":@""
+//                                                                     },
+//                                                                   @{@"InfoType":[NSNumber numberWithInt:eNotice],
+//                                                                     @"Content":@"提现成功，您2016-07-12申请100...",
+//                                                                     @"Date":@"07-17"
+//                                                                     },
+//                                                                   @{@"InfoType":[NSNumber numberWithInt:eSquareTravel],
+//                                                                     @"Content":@"您发布的游记XX被点赞了，快去看...",
+//                                                                     @"Date":@"07-17"
+//                                                                     }
+//                                                                   ]];
+}
+
 
 #pragma mark - tableView delegate
 
@@ -82,8 +149,10 @@ UITableViewDataSource
 {
     CGFloat height = [tableView fd_heightForCellWithIdentifier:@"LBB_MessageCenterViewCell"
                                                  configuration:^(LBB_MessageCenterViewCell *cell) {
-                                                     NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath row]];
-                                                     [self configCell:cell Model:cellDict];
+                                                     if (indexPath.row < self.dataSourceArray.count) {
+                                                         NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath row]];
+                                                         [self configCell:cell Model:cellDict];
+                                                     }
                                                  }];
     return height;
     
@@ -99,14 +168,16 @@ UITableViewDataSource
     static NSString *CellIdentifier = @"LBB_MessageCenterViewCell";
     LBB_MessageCenterViewCell *cell = nil;
     
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:indexPath.row];
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[LBB_MessageCenterViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.accessoryView =  nil;
-    [self configCell:cell Model:cellDict];
+    if (indexPath.row < self.dataSourceArray.count) {
+        NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath row]];
+        [self configCell:cell Model:cellDict];
+    }
   
     return cell;
 }

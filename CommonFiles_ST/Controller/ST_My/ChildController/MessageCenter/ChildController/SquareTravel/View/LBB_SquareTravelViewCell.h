@@ -11,6 +11,7 @@
 
 @interface LBB_SquareTravelViewCell : UITableViewCell
 
-@property (nonatomic,strong) LBB_SquareTravelModelDetail *cellInfo;
+@property (nonatomic,strong) LBB_MessageSquareTravelModel *cellInfo;
+@property(nonatomic,assign) MessageCenterSquareTravelType messgeType;
 
 @end

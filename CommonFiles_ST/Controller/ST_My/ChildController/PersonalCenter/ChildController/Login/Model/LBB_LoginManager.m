@@ -129,7 +129,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
             
          }else{
              if (weakSelf.loginCompleteBlock) {
-                 weakSelf.loginCompleteBlock(remark,YES);
+                 weakSelf.loginCompleteBlock(remark,NO);
                  weakSelf.loginCompleteBlock = nil;
              }
          }

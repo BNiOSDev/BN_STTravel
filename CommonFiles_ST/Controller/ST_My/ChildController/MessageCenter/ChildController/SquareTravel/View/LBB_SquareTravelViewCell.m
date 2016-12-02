@@ -44,14 +44,32 @@
     // Configure the view for the selected state
 }
 
-- (void)setCellInfo:(LBB_SquareTravelModelDetail *)cellInfo
+- (void)setCellInfo:(LBB_MessageSquareTravelModel *)cellInfo
 {
     _cellInfo = cellInfo;
-    if ([_cellInfo.content length]) {
-        NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:_cellInfo.content];
+    NSString *contentText = [NSString stringWithFormat:@"%@关注了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+    switch (self.messgeType) {
+        case eMessageFollow:
+          contentText = [NSString stringWithFormat:@"%@关注了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            break;
+        case eMessageLike:
+            contentText = [NSString stringWithFormat:@"%@关注了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            break;
+         
+        case eMessageComment:
+            contentText = [NSString stringWithFormat:@"%@评论了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            break;
+        case eMessageCollection:
+            contentText = [NSString stringWithFormat:@"%@收藏了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            break;
+        default:
+            break;
+    }
+    if ([contentText length]) {
+        NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:contentText];
         //下划线 灰色字体
-        if ([_cellInfo.underLineContent length]) {
-            NSRange rang = [_cellInfo.content rangeOfString:_cellInfo.underLineContent];
+        if ([_cellInfo.objName length] && self.messgeType != eMessageFollow) {
+            NSRange rang = [contentText rangeOfString:_cellInfo.objName options:NSBackwardsSearch];
             
             NSDictionary *attributes = @{NSFontAttributeName:self.contentLabel.font,
                                          NSForegroundColorAttributeName:ColorLightGray,
@@ -66,8 +84,13 @@
         }
         self.contentLabel.attributedText = attributedStr;
     }
-    self.dateLabel.text = _cellInfo.dateStr;
-    self.userHeadImgView.image = IMAGE(_cellInfo.imagePath);
+    self.dateLabel.text = _cellInfo.createTime;
+    if([_cellInfo.userPicUrl length]) {
+        [self.userHeadImgView  sd_setImageWithURL:[NSURL URLWithString:_cellInfo.userPicUrl]
+                                 placeholderImage:UnLoginDefaultImage];
+    }else {
+        self.userHeadImgView.image = UnLoginDefaultImage;
+    }
 }
 
 @end

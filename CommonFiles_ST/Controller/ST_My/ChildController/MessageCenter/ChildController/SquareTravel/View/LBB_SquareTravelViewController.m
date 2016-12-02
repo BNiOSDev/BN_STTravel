@@ -17,8 +17,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *segmentBgViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
 @property (weak,nonatomic) IBOutlet UIView *segmentBgView;
-
-@property (strong,nonatomic) NSArray *dataSourceArray;
+@property (strong,nonatomic) LBB_MessageSquareTravelViewModel *viewModel;
 
 @end
 
@@ -38,8 +37,8 @@
 
 - (void)buildControls
 {
-    self.dataSourceArray = [[LBB_SquareTravelModel alloc] getDataWithType:self.messgeType];
     [self initTableview];
+    [self initDataSource];
 }
 
 - (void)initTableview
@@ -49,11 +48,59 @@
 }
 
 
+- (void)initDataSource
+{
+    self.viewModel = [[LBB_MessageSquareTravelViewModel alloc] init];
+  
+    __weak typeof (self) weakSelf = self;
+    [self.tableView setHeaderRefreshDatablock:^{
+        [weakSelf.viewModel getDataArrayWithType:[self getMsgType] IsClear:YES];
+    } footerRefreshDatablock:^{
+       [weakSelf.viewModel getDataArrayWithType:[self getMsgType] IsClear:NO];
+    }];
+    
+    //设置绑定数组
+    [self.tableView setTableViewData:self.viewModel.dataArray];
+    
+    
+    [self.viewModel.dataArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.tableView loadData:self.viewModel.dataArray];
+    
+    //刷新数据
+    [self.viewModel getDataArrayWithType:[self getMsgType] IsClear:YES];
+}
+
+//msgType = 4关注消息 5点赞提醒 6评论提醒 7收藏提醒
+- (int)getMsgType
+{
+    switch (self.messgeType) {
+        case eMessageFollow://关注
+            return 4;
+            break;
+        case eMessageLike://点赞
+              return 5;
+            break;
+        case eMessageComment://评论
+              return 6;
+            break;
+        case eMessageCollection://收藏
+              return 7;
+            break;
+        default:
+            break;
+    }
+    
+    return 4;
+}
+
 #pragma mark - tableView delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataSourceArray.count;
+    return self.viewModel.dataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,8 +112,10 @@
 {
     CGFloat height = [tableView fd_heightForCellWithIdentifier:@"LBB_SquareTravelViewCell"
                                                  configuration:^(LBB_SquareTravelViewCell *cell) {
-                                                     LBB_SquareTravelModelDetail *cellInfo = [self.dataSourceArray objectAtIndex:[indexPath row]];
-                                                     [cell setCellInfo:cellInfo];
+                                                     if (indexPath.row < self.viewModel.dataArray.count) {
+                                                         LBB_MessageSquareTravelModel *cellInfo = [self.viewModel.dataArray objectAtIndex:[indexPath row]];
+                                                         [cell setCellInfo:cellInfo];
+                                                     }
                                                  }];
     return height;
     
@@ -86,11 +135,14 @@
     if (!cell) {
         cell = [[LBB_SquareTravelViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    cell.messgeType = self.messgeType;
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.accessoryView =  nil;
-    LBB_SquareTravelModelDetail *cellInfo = [self.dataSourceArray objectAtIndex:[indexPath row]];
-    [cell setCellInfo:cellInfo];
-    
+    if (indexPath.row < self.viewModel.dataArray.count) {
+        LBB_MessageSquareTravelModel *cellInfo = [self.viewModel.dataArray objectAtIndex:[indexPath row]];
+        [cell setCellInfo:cellInfo];
+    }
+
     return cell;
 }
 
