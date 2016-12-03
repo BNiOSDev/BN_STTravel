@@ -143,7 +143,7 @@
             NSString *errorStr = [dic objectForKey:@"remark"];
             NSLog(@"失败  %@",errorStr);
         }
-        
+        weakSelf.travelGuideArray.networkTotal = [dic objectForKey:@"total"];
         weakSelf.travelGuideArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.travelGuideArray.loadSupport.loadEvent = NetLoadFailedEvent;

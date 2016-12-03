@@ -186,7 +186,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                               @"deviceId":deviceID
                               };
     
-    NSString *url = [NSString stringWithFormat:@"%@/mime/register",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/mime/third/login",BASEURL];
     __weak typeof(self) weakSelf = self;
     
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
@@ -194,27 +194,18 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                      NSDictionary *dict = (NSDictionary*)responseObject;
                                      NSLog(@"responseObject = %@",dict);
                                      int code = [[dict objectForKey:@"code"] intValue];
-                                     NSString *remark = [dict objectForKey:@"remark"];
-                                     NSString *token = [dict objectForKey:@"token"];
                                      if (code == 0) {
-                                         if (weakSelf.resgisterCompleteBlock) {
-                                             weakSelf.resgisterCompleteBlock(token,YES);
+                                         NSDictionary *result = [dict objectForKey:@"result"];
+                                         if (result && [result isKindOfClass:[NSDictionary class]]) {
+                                             weakSelf.userToken = [result objectForKey:@"token"];
                                          }
-                                         LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
-                                         loginCountInfo.account = weakSelf.account;
-                                         loginCountInfo.password = weakSelf.password;
-                                         [weakSelf saveLoginUserInfo:loginCountInfo];
+                                         [BC_ToolRequest sharedManager].token = weakSelf.userToken;
                                      }else{
-                                         if (weakSelf.resgisterCompleteBlock) {
-                                             weakSelf.resgisterCompleteBlock(remark,NO);
-                                         }
+                                        
                                      }
                                      
                                  } failure:^(NSURLSessionDataTask *operation, NSError *error){
-                                     if (weakSelf.resgisterCompleteBlock) {
-                                         weakSelf.resgisterCompleteBlock(nil,NO);
-                                     }
-                                     NSLog(@"error = %@",error);
+                                      NSLog(@"error = %@",error);
                                      
                                  }];
 }
@@ -266,11 +257,13 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                      NSLog(@"responseObject = %@",dict);
                                      int code = [[dict objectForKey:@"code"] intValue];
                                      NSString *remark = [dict objectForKey:@"remark"];
-                                     NSString *token = [dict objectForKey:@"token"];
                                      if (code == 0) {
-                                         if (weakSelf.resgisterCompleteBlock) {
-                                             weakSelf.resgisterCompleteBlock(token,YES);
+                                         NSDictionary *result = [dict objectForKey:@"result"];
+                                         if (result && [result isKindOfClass:[NSDictionary class]]) {
+                                             weakSelf.userToken = [result objectForKey:@"token"];
+                                             weakSelf.resgisterCompleteBlock(weakSelf.userToken,YES);
                                          }
+                                       
                                          LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
                                          loginCountInfo.account = weakSelf.account;
                                          loginCountInfo.password = weakSelf.password;

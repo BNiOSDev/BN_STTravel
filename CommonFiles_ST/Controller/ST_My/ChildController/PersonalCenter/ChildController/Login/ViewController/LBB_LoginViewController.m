@@ -73,7 +73,7 @@
         self.accountTextField.text = userInfo.account;
         //self.passwordTextField.text = userInfo.password;
         self.account = userInfo.account;
-        self.password = userInfo.password;
+//        self.password = userInfo.password;
     }
 }
 

@@ -173,7 +173,7 @@
             NSString *errorStr = [dic objectForKey:@"remark"];
             NSLog(@"失败  %@",errorStr);
         }
-        
+        weakSelf.photoArray.networkTotal = [dic objectForKey:@"total"];
         weakSelf.photoArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.photoArray.loadSupport.loadEvent = NetLoadFailedEvent;

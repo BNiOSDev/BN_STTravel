@@ -155,6 +155,7 @@
             weakSelf.addressArray.loadSupport.netRemark = remark;
             weakSelf.addressArray.loadSupport.loadFailEvent = codeNumber.intValue;
         }
+        weakSelf.addressArray.networkTotal = [dic objectForKey:@"total"];
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.loadSupport.loadFailEvent = NetLoadFailedEvent;

@@ -195,7 +195,7 @@
             NSString *errorStr = [dic objectForKey:@"remark"];
             NSLog(@"失败  %@",errorStr);
         }
-        
+        weakSelf.videoArray.networkTotal = [dic objectForKey:@"total"];
         weakSelf.videoArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.videoArray.loadSupport.loadEvent = NetLoadFailedEvent;

@@ -170,7 +170,7 @@
             NSString *errorStr = [dic objectForKey:@"remark"];
             NSLog(@"失败  %@",errorStr);
         }
-        
+        weakSelf.travelArray.networkTotal = [dic objectForKey:@"total"];
         weakSelf.travelArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.travelArray.loadSupport.loadEvent = NetLoadFailedEvent;
