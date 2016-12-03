@@ -522,7 +522,6 @@
 		8418FE4C1DF1225400C5C9D2 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8418FDC71DF1225400C5C9D2 /* MineViewController.m */; };
 		8418FE511DF149D100C5C9D2 /* LBB_MyContentImgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8418FE501DF149D100C5C9D2 /* LBB_MyContentImgView.m */; };
 		8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */; };
-		8420AF811DF2C2C600D98F86 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420AF801DF2C2C600D98F86 /* libWeChatSDK.a */; };
 		844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CB1DEAC7C500164DED /* libc++.tbd */; };
 		844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */; };
 		844065D01DEAC7D300164DED /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CF1DEAC7D300164DED /* libz.tbd */; };
@@ -1467,7 +1466,6 @@
 		8418FE501DF149D100C5C9D2 /* LBB_MyContentImgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MyContentImgView.m; sourceTree = "<group>"; };
 		8420AF7B1DF297C300D98F86 /* libTelephonyUtilDynamic.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libTelephonyUtilDynamic.tbd; path = usr/lib/libTelephonyUtilDynamic.tbd; sourceTree = SDKROOT; };
 		8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		8420AF801DF2C2C600D98F86 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		844065CB1DEAC7C500164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		844065CF1DEAC7D300164DED /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1502,7 +1500,6 @@
 				3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */,
 				844065D01DEAC7D300164DED /* libz.tbd in Frameworks */,
 				844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */,
-				8420AF811DF2C2C600D98F86 /* libWeChatSDK.a in Frameworks */,
 				844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */,
 				1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */,
 				1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */,
@@ -3319,7 +3316,6 @@
 		1DD9BB431DED70E00003DFE6 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				8420AF7F1DF2C2C600D98F86 /* Resource */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -5360,14 +5356,6 @@
 				8418FE501DF149D100C5C9D2 /* LBB_MyContentImgView.m */,
 			);
 			path = CustomViews;
-			sourceTree = "<group>";
-		};
-		8420AF7F1DF2C2C600D98F86 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				8420AF801DF2C2C600D98F86 /* libWeChatSDK.a */,
-			);
-			path = Resource;
 			sourceTree = "<group>";
 		};
 		C9C0E9431D9948F100575A7C = {
