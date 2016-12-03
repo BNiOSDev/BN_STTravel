@@ -56,6 +56,21 @@
     [centerBtn setBackgroundImage:IMAGE(@"SJR_TabMiddleBtn") forState:UIControlStateNormal];
     [centerBtn addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:centerBtn];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView setLoginBlock:^{
+            UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UINavigationController *navViewController = [main instantiateViewControllerWithIdentifier:@"BN_NavViewController"];
+            //香姐 加这里～
+            ;
+        }];
+    });
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
