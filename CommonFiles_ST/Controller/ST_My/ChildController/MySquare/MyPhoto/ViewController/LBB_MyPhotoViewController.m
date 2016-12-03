@@ -9,7 +9,7 @@
 #import "LBB_MyPhotoViewController.h"
 #import "LBB_MyPhotoViewCell.h"
 #import "Header.h" 
-#import "LBB_TravelDetailViewController.h"
+#import "LBBHostDetailViewController.h"
 #import "LBB_TravelCommentController.h"
 
 @interface LBB_MyPhotoViewController ()<
@@ -135,7 +135,10 @@ UICollectionViewDelegateFlowLayout>
     cell.cellBlock = ^(id info,UICollectionViewCellSignal signal){
         [self dealCellSignal:signal withIndex:indexPath Object:info];
     };
-    [cell setModel:[self.viewModel.photoArray objectAtIndex:indexPath.row]];
+    
+    if (self.viewModel.photoArray.count > indexPath.row) {
+        [cell setModel:[self.viewModel.photoArray objectAtIndex:indexPath.row]];
+    }
     
     return cell;
 }
@@ -143,9 +146,14 @@ UICollectionViewDelegateFlowLayout>
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-   
-    LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+    if (self.viewModel.photoArray.count > indexPath.row) {
+        LBB_MyPhotoModel *photoModel = [self.viewModel.photoArray objectAtIndex:indexPath.row];
+        vc.viewModel = [[LBB_SquareUgc alloc] init];
+        vc.viewModel.ugcId = photoModel.ugcId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark 处理点击cell上面的按钮
