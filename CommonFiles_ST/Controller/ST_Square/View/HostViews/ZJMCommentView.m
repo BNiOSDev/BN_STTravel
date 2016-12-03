@@ -67,6 +67,18 @@
         [self setupAutoHeightWithBottomView:lastTopView bottomMargin:0];
     }
 
+    if (commentArray.count <= 0) {
+        UILabel  *heightLabel = [[UILabel alloc]init];
+        [self addSubview:heightLabel];
+        
+        [heightLabel autoFit:@"" size:[UIFont systemFontOfSize:14.0] maxSize:CGSizeMake(DeviceWidth - 75, DeviceHeight)];
+        heightLabel.sd_layout
+        .topSpaceToView(self,0)
+        .leftSpaceToView(self,0)
+        .rightEqualToView(self)
+        .heightIs(0);
+        [self setupAutoHeightWithBottomView:heightLabel bottomMargin:0];
+    }
     NSLog(@"height");
 }
 
