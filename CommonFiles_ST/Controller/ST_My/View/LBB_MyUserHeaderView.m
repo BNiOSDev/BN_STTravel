@@ -128,14 +128,15 @@
 }
 
 - (IBAction)personCenterBtnClickEvent:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickPersonalCenter:)]) {
-        [self.delegate didClickPersonalCenter:self.viewModel];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickPersonalCenter:IsLogin:)]) {
+        [self.delegate didClickPersonalCenter:self.viewModel IsLogin:self.isLogin];
     }
 }
 
 - (IBAction)converPictureClickEvent:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickConverPicture:)]) {
-        [self.delegate didClickConverPicture:self.viewModel];
+
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickConverPicture:IsLogin:)]) {
+        [self.delegate didClickConverPicture:self.viewModel IsLogin:self.isLogin];
     }
 }
 

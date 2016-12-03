@@ -24,6 +24,7 @@
 #import "LBB_TicketModuleViewController.h"
 #import "LBB_TravelGuideViewController.h"
 #import "LBB_MyFavoriteSquareViewController.h"
+#import "LBB_LoginViewController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -87,38 +88,49 @@ LBB_MySectionHeadViewDelegate
      [self performSegueWithIdentifier:@"LBB_MessageCenterViewController" sender:nil];
 }
 
-- (void)didClickPersonalCenter:(id)userInfo
+- (void)didClickPersonalCenter:(id)userInfo IsLogin:(BOOL)isLogin
 {
-    [self performSegueWithIdentifier:@"PersonalCenterViewController" sender:nil];
+    if(!isLogin){
+        UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+        LBB_LoginViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_LoginViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        [self performSegueWithIdentifier:@"PersonalCenterViewController" sender:nil];
+    }
 }
 
-- (void)didClickConverPicture:(id)userInfo
+- (void)didClickConverPicture:(id)userInfo IsLogin:(BOOL)isLogin
 {
-    NSString *cameraStr = NSLocalizedString(@"相机", nil);
-    NSString *albumStr = NSLocalizedString(@"相册", nil);
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换封面图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    // Create the actions.
-    UIAlertAction *camraAction = [UIAlertAction actionWithTitle:cameraStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self showImagePickerView:UIImagePickerControllerSourceTypeCamera];
-    }];
-    
-    UIAlertAction *albumAction = [UIAlertAction actionWithTitle:albumStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self showImagePickerView:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
-    }];
-    
-    // Add the actions.
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    if (!isLogin) {
+        UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+        LBB_LoginViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_LoginViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        NSString *cameraStr = NSLocalizedString(@"相机", nil);
+        NSString *albumStr = NSLocalizedString(@"相册", nil);
         
-    }];
-    
-    // Add the actions.
-    [alertController addAction:camraAction];
-    [alertController addAction:albumAction];
-    [alertController addAction:cancelAction];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"更换封面图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        // Create the actions.
+        UIAlertAction *camraAction = [UIAlertAction actionWithTitle:cameraStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self showImagePickerView:UIImagePickerControllerSourceTypeCamera];
+        }];
+        
+        UIAlertAction *albumAction = [UIAlertAction actionWithTitle:albumStr style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self showImagePickerView:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+        }];
+        
+        // Add the actions.
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+        }];
+        
+        // Add the actions.
+        [alertController addAction:camraAction];
+        [alertController addAction:albumAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 - (void)showImagePickerView:(UIImagePickerControllerSourceType)sourceType

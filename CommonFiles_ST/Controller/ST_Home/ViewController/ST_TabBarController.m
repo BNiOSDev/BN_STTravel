@@ -12,6 +12,7 @@
 #import "ST_MallViewController.h"
 #import "MineViewController.h"
 #import "LBB_PublishTravel_Controller.h"
+#import "LBB_LoginViewController.h"
 
 @interface ST_TabBarController ()<UITabBarControllerDelegate>
 {
@@ -61,8 +62,10 @@
         [UIView setLoginBlock:^{
             UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             UINavigationController *navViewController = [main instantiateViewControllerWithIdentifier:@"BN_NavViewController"];
-            //香姐 加这里～
-            ;
+            UIStoryboard *mineStoryBoard = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+            LBB_LoginViewController* vc = [mineStoryBoard instantiateViewControllerWithIdentifier:@"LBB_LoginViewController"];
+            [navViewController pushViewController:vc animated:YES];
+            
         }];
     });
 }

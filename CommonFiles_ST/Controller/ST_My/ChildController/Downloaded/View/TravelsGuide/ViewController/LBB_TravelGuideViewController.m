@@ -113,9 +113,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]init];
-    
-    [self.navigationController pushViewController:dest animated:YES];
+    if (indexPath.row < self.viewModel.travelGuideArray.count) {
+        LBB_TravelGuideModel *guideModel = self.viewModel.travelGuideArray[indexPath.row];
+        LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]init];
+        dest.viewModel = [[LBB_DiscoveryModel alloc] init];
+        dest.viewModel.lineId = guideModel.lineId;
+        [self.navigationController pushViewController:dest animated:YES];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

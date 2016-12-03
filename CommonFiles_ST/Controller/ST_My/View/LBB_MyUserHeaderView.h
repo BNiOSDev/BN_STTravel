@@ -14,8 +14,8 @@
 @optional
 - (void)didClickSetting:(id)userInfo;
 - (void)didClickMessage:(id)userInfo;
-- (void)didClickPersonalCenter:(id)userInfo;
-- (void)didClickConverPicture:(id)userInfo;
+- (void)didClickPersonalCenter:(id)userInfo IsLogin:(BOOL)isLogin;
+- (void)didClickConverPicture:(id)userInfo IsLogin:(BOOL)isLogin;
 
 @end
 
