@@ -101,7 +101,7 @@
             NSString *errorStr = [dic objectForKey:@"remark"];
             NSLog(@"getPoohMyFavoriteData失败 errorStr: %@",errorStr);
         }
-        
+        weakSelf.favoriteArray.networkTotal = [dic objectForKey:@"total"];
         weakSelf.favoriteArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.favoriteArray.loadSupport.loadEvent = NetLoadFailedEvent;
@@ -215,7 +215,7 @@
             NSString *errorStr = [dic objectForKey:@"remark"];
             NSLog(@"getPoohMyFavoriteSpecialData失败errorStr:  %@",errorStr);
         }
-        
+        weakSelf.favoriteSpeciallArray.networkTotal = [dic objectForKey:@"total"];
         weakSelf.favoriteSpeciallArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.favoriteSpeciallArray.loadSupport.loadEvent = NetLoadFailedEvent;
