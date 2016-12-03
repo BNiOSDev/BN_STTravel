@@ -122,6 +122,15 @@
                                                               image:IMAGEOriginal(@"ST_TabImage4")
                                                       selectedImage:IMAGEOriginal(@"ST_TabImage4d")];
     
+    [viewController1.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:ColorBtnYellow} forState:UIControlStateSelected];
+    
+    [viewController2.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:ColorBtnYellow} forState:UIControlStateSelected];
+    
+    [viewController3.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:ColorBtnYellow} forState:UIControlStateSelected];
+    
+    [viewController4.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:ColorBtnYellow} forState:UIControlStateSelected];
+
+    
     viewController1.tabBarItem.imageInsets   = UIEdgeInsetsMake(0, -0, -0, 0);
     viewController2.tabBarItem.imageInsets   = UIEdgeInsetsMake(0, -0, -0, 0);
     viewController3.tabBarItem.imageInsets   = UIEdgeInsetsMake(0,0, -0, -0);
@@ -130,6 +139,8 @@
     self.viewControllers = @[navigationControllerHome,navigationControllerSquare,viewController5,navigationControllerMall,navigationControllerMy];
     
     self.delegate = self;
+    
+//     [self.tabBarItem setTitleTextAttributes:dictAttr forState:UIControlStateNormal];
 }
 
 
