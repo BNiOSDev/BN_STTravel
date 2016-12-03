@@ -132,23 +132,25 @@
         
         //认证信息
         UILabel* identity = [UILabel new];
-        [identity setText:@"认证"];
+        [identity setText:@""];
         [identity setTextColor:ColorLightGray];
         [identity setFont:Font13];
         [self.contentView addSubview:identity];
         [identity mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.nameLabel);
-            make.top.equalTo(ws.favoriteLabel.mas_bottom).offset(margin);
+            make.top.equalTo(ws.favoriteLabel.mas_bottom).offset(0/*margin*/);
         }];
+        identity.hidden = YES;
         
         self.identityLable = [UILabel new];
         [self.identityLable setFont:Font13];
-        [self.identityLable setText:@"健康导游"];
+        [self.identityLable setText:@""];
         [self.contentView addSubview:self.identityLable];
         [self.identityLable mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(identity.mas_right).offset(margin);
             make.centerY.equalTo(identity);
         }];
+        self.identityLable.hidden = YES;
         
         //认证信息
         UILabel* sign = [UILabel new];

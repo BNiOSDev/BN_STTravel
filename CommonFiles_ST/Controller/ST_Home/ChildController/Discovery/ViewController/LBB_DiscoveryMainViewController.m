@@ -12,6 +12,9 @@
 #import "LBB_DiscoveryCustomizedViewController.h"
 #import "LBB_DiscoveryDetailViewController.h"
 #import "LBB_FilterTableViewCell.h"
+#import "LBBPoohVerticalButton.h"
+#import "LBB_GuiderMainViewController.h"
+#import "LBB_DiscoveryViewModel.h"
 static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
 
@@ -20,6 +23,15 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 @property(nonatomic, retain)UITableView* tableView;
 @property(nonatomic, retain)SDCycleScrollView* cycScrollView;
 @property(nonatomic, strong)NSMutableArray *dataArray;
+
+@property(nonatomic, strong)LBB_DiscoveryViewModel* viewModel;
+
+
+@property(nonatomic, assign)BOOL isCustom;//是否是自定义路线
+@property(nonatomic, retain)NSArray<LBB_SquareTags*>* tagsArray;//标签数组
+@property(nonatomic, retain)NSArray<LBB_SpotAddress*>* scenicArray; //景区列表数据
+@property(nonatomic, retain)LBB_SquareTags* timeLine;
+
 
 @end
 
@@ -45,6 +57,40 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 }
 */
 
+
+-(void)initViewModel{
+
+    WS(ws);
+    self.viewModel = [[LBB_DiscoveryViewModel alloc] init];
+    
+    [self.viewModel getDiscoveryArrayClearData:YES];
+    
+    [self.viewModel.discoveryArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
+    [self.tableView setTableViewData:self.viewModel.discoveryArray];
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+        ws.isCustom = NO;
+        [ws.viewModel getDiscoveryArrayClearData:YES];
+
+        [ws.tableView.mj_header endRefreshing];
+        
+    } footerRefreshDatablock:^{
+        
+        if (ws.isCustom) {
+            [ws.viewModel getDiscoveryArrayClearData:ws.timeLine allSpots:ws.scenicArray tags:ws.tagsArray clear:NO];
+        }
+        else{
+            [ws.viewModel getDiscoveryArrayClearData:NO];
+        }
+
+        [ws.tableView.mj_footer endRefreshing];
+
+    }];
+}
+
 /*
  * setup navigation bar view
  */
@@ -65,6 +111,8 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.tableView registerClass:[LBB_DiscoveryMainTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    
+    [self initViewModel];
     [self.view addSubview:self.tableView];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = [self configTableHeaderView];
@@ -111,7 +159,83 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
         make.height.mas_equalTo(AutoSize(310/2));
     }];
     
-    UILabel* l = [UILabel new];
+    
+    UIView* bgView = [UIView new];
+    [bgView setBackgroundColor:[UIColor whiteColor]];
+    [v addSubview:bgView];
+    [bgView mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.top.equalTo(ws.cycScrollView.mas_bottom);
+        make.left.right.equalTo(v);
+        make.height.mas_equalTo(4*margin + AutoSize(48/2) + 2*margin);
+    }];
+    
+    UIView* v1 = [UIView new];
+    [bgView addSubview:v1];
+    UIView* v2 = [UIView new];
+    [bgView addSubview:v2];
+    
+    [v1 mas_makeConstraints:^(MASConstraintMaker* make){
+    
+        make.left.top.bottom.equalTo(bgView);
+    }];
+    [v2 mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.right.top.bottom.equalTo(bgView);
+        make.left.equalTo(v1.mas_right);
+        make.width.equalTo(v1);
+    }];
+    
+    LBBPoohVerticalButton* btn1 = [[LBBPoohVerticalButton alloc]init];
+    [btn1.titleLabel setText:@"定制个性化攻略"];
+    [btn1.titleLabel setTextColor:[UIColor blackColor]];
+    [btn1.titleLabel setFont:Font12];
+    [btn1.imageView setImage:IMAGE(@"ST_Discovery_攻略")];
+    [v1 addSubview:btn1];
+    [btn1 mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.center.equalTo(v1);
+    }];
+    [btn1 bk_addEventHandler:^(id sender){
+        
+        
+        LBB_DiscoveryCustomizedViewController* dest = [[LBB_DiscoveryCustomizedViewController alloc]init];
+        dest.click = ^(LBB_DiscoveryCustomizedViewController* vc ,LBB_SquareTags* timeLine , NSArray<LBB_SpotAddress*>*scenicArray , NSArray<LBB_SquareTags*>*tagsArray ){
+        
+            
+            ws.timeLine = timeLine;//[timeLine copy];
+            ws.scenicArray = scenicArray;//[scenicArray copy];
+            ws.tagsArray = tagsArray;//[tagsArray copy];
+            [ws.viewModel getDiscoveryArrayClearData:ws.timeLine allSpots:ws.scenicArray tags:ws.tagsArray clear:YES];
+
+            [vc.navigationController popViewControllerAnimated:YES];
+        };
+    
+        [ws.navigationController pushViewController:dest animated:YES];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    LBBPoohVerticalButton* btn2 = [[LBBPoohVerticalButton alloc]init];
+    [btn2.titleLabel setText:@"鹭岛导游推荐"];
+    [btn2.titleLabel setTextColor:[UIColor blackColor]];
+    [btn2.titleLabel setFont:Font12];
+    [btn2.imageView setImage:IMAGE(@"ST_Discovery_导游")];
+    [v2 addSubview:btn2];
+    [btn2 mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.center.equalTo(v2);
+    }];
+    [btn2 bk_addEventHandler:^(id sender){
+        
+        
+        LBB_GuiderMainViewController* dest = [[LBB_GuiderMainViewController alloc]init];
+        [ws.navigationController pushViewController:dest animated:YES];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
+
+    
+  /*  UILabel* l = [UILabel new];
     [l setText:@"鹭爸爸为您定制个性化厦门游攻略"];
     [l setTextColor:ColorGray];
     [l setFont:Font14];
@@ -144,14 +268,14 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
         
     } forControlEvents:UIControlEventTouchUpInside];
     
-    
+    */
     UIView* sep = [UIView new];
     [sep setBackgroundColor:ColorLine];
     [v addSubview:sep];
     [sep mas_makeConstraints:^(MASConstraintMaker* make){
         make.bottom.width.centerX.equalTo(v);
         make.height.mas_equalTo(10);
-        make.top.equalTo(b.mas_bottom).offset(2*margin);
+        make.top.equalTo(bgView.mas_bottom);//.offset(2*margin);
     }];
     
     return v;
@@ -229,6 +353,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     segmentedControl.layer.borderColor = ColorLine.CGColor;
     segmentedControl.menuArray = segmentArray;
     [v addSubview:segmentedControl];
+    segmentedControl.hidden = YES;
     
     UILabel* titleLabel = [UILabel new];
     [titleLabel setText:@"筛选"];
@@ -239,6 +364,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
         make.centerY.equalTo(v);
         make.right.equalTo(v).offset(-AutoSize(24));
     }];
+    titleLabel.hidden = YES;
     
     
     //返回section数组
@@ -395,17 +521,15 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 10;
+    return self.viewModel.discoveryArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     CGFloat height = [tableView fd_heightForCellWithIdentifier:cellIdentifier cacheByIndexPath:indexPath configuration:^(LBB_DiscoveryMainTableViewCell *cell) {
         
-        [cell setModelaaa:nil andRow:indexPath.row];
+        [cell setModel:self.viewModel.discoveryArray[indexPath.row]];
     }];
-    NSLog(@"height:%f",height);
-    
     return height;
 }
 
@@ -416,7 +540,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
         cell = [[LBB_DiscoveryMainTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_DiscoveryMainTableViewCell nil");
     }
-    [cell setModelaaa:nil andRow:indexPath.row];
+    [cell setModel:self.viewModel.discoveryArray[indexPath.row]];
     return cell;
     
 }
@@ -424,7 +548,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     
     //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
     LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]init];
-    
+    dest.viewModel = self.viewModel.discoveryArray[indexPath.row];
     [self.navigationController pushViewController:dest animated:YES];
 }
 

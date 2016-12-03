@@ -103,15 +103,38 @@
             make.centerY.equalTo(self.priceTitleLabel);
         }];
         
-        
+        [self.favoriteButton bk_whenTapped:^{
+            /**
+             *3.1.4 收藏(已测)
+             @parames allSpotsType	Int	1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记 8用户头像 9足迹  10 线路攻略11 美食专题 12民宿专题 13景点专题
+             */
+           // [ws.model collect:ws.model.allSpotsId];
+        }];
     
     }
     return self;
 }
 
--(void)setModel:(id)model{
+-(void)setModel:(LBB_PoohMyFavoriteModel*)model{
     
-    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"http://pic.58pic.com/58pic/13/72/07/55Z58PICKka_1024.jpg"] placeholderImage:IMAGE(@"poohtest")];
+    _model = model;
+    
+    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.allSpotsPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.titleLabel setText:model.allSpotsName];
+    [self.addressLabel setText:model.detailedAddr];
+    [self.priceLabel setText:[NSString stringWithFormat:@"￥%@/人",model.price]];
+    
+    @weakify(self);
+    //	收藏标志 0未收藏 1：收藏
+    [RACObserve(model, isCollected) subscribeNext:^(NSNumber* collected){
+        @strongify(self);
+        if ([collected intValue] == 0) {
+            [self.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
+        }
+        else{
+            [self.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
+        }
+    }];
 
 }
 

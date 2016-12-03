@@ -75,7 +75,7 @@
         [self.contentView addSubview:timeLabel];
         [timeLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(ws.contentView);
-            make.top.equalTo(contentLabel.mas_bottom).offset(margin);
+            make.top.equalTo(contentLabel.mas_bottom).offset(0/*margin*/);
             make.bottom.equalTo(ws.contentView).offset(-margin);
         }];
         
@@ -136,22 +136,13 @@
     return self;
 }
 
+-(void)setModel:(LBB_DiscoveryModel *)model{
 
--(void)setModelaaa:(id)model andRow:(NSInteger)row{
-    
-    if (row%2) {
-        [contentLabel setText:@"这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了,某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太"];
-    }
-    else{
-        [contentLabel setText:@"asdadjadhqhkhkjasasblkasdhjahajsfhasdhajkdhjhwqiudhdshajksdhquwidhiquhdqjkdh这是一个很悲伤的故事，SD在某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太不可思议了,某个框架上居然使用不了，我实在是很不理解这一个事情，编码真的太"];
-
-    }
-    [imageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-    [titleLabel setText:@"钟爱SD的男人"];
+    _model = model;
+    [contentLabel setText:model.lineDesc];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:model.coverImageUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [titleLabel setText:model.name];
     [contentLabel setNumberOfLines:0];
-    [timeLabel setText:[PoohAppHelper getStringFromDate:[NSDate new] withFormat:DateFormatFullDate]];
-    [greatButton setTitle:[NSString stringWithFormat:@"%ld",231] forState:UIControlStateNormal];
-    [commentsButton setTitle:[NSString stringWithFormat:@"%ld",372] forState:UIControlStateNormal];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_PoohMyFavoriteViewModel.h"
 
 @interface LBB_PoohMyFavoriteMainCell : LBBPoohBaseTableViewCell
 
@@ -17,6 +18,6 @@
 @property(nonatomic, retain)UILabel* priceTitleLabel;
 @property(nonatomic, retain)UILabel* priceLabel;
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)LBB_PoohMyFavoriteModel* model;
 
 @end

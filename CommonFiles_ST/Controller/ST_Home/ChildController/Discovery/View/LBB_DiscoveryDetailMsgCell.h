@@ -7,6 +7,8 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_DiscoveryViewModel.h"
+
 @interface LBB_DiscoveryDetailMsgCell : LBBPoohBaseTableViewCell
 
 @property(nonatomic, retain)UILabel* titleLabel;
@@ -21,7 +23,7 @@
 @property(nonatomic, retain)UIButton* hostelButton;
 
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)LBB_DiscoveryDetailModel* model;
 
 
 @end

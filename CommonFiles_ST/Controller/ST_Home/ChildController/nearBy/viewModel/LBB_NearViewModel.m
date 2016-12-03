@@ -75,7 +75,7 @@
                               @"curPage":[NSNumber numberWithInt:curPage],
                               @"pageNum":[NSNumber numberWithInt:10],
                               };
-    
+    NSLog(@"getSpotArrayLongitude paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/nearby/spots",BASEURL];
     __weak typeof(self) temp = self;
     __weak NSMutableArray *sportArray_block = sportArray;
@@ -86,7 +86,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getSpotArrayLongitude成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SpotModel mj_objectArrayWithKeyValuesArray:array];
             
@@ -105,27 +105,41 @@
         
         sportArray_block.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getUgcArrayClearData失败  %@",error.domain);
+        NSLog(@"getSpotArrayLongitude失败  %@",error.domain);
         
         sportArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
 
 /**
- 3.9.1	附近的商家 (已测)
+ 3.3.4	攻略列表(已测)
  
- @param longitude Y坐标
- @param dimensionality X坐标
+ @param lineTime 行程时间
+ @param allSpots 场景列表
+ @param tags 个性标签列表
  */
-- (void)getNearShopArrayLongitude:(NSString *)longitude
-                   dimensionality:(NSString *)dimensionality
+- (void)getNearShopArrayLineTime:(long)lineTime
+                        allSpots:(NSArray<LBB_SpotsTag*>*)allSpots
+                            tags:(NSArray<LBB_SpotAddress*>*)tags
 {
+    NSArray *allSpotsArray = [allSpots map:^id(LBB_SpotAddress *element) {
+        return @(element.allSpotsId);
+    }];
+    
+    NSArray *tagsArray = [tags map:^id(LBB_SpotsTag *element) {
+        return @(element.tagId);
+    }];
+    
+    NSString *allSpotsStr = [allSpotsArray componentsJoinedByString:@","];
+    NSString *tagsStr = [tagsArray componentsJoinedByString:@","];
+    
     NSDictionary *paraDic = @{
-                              @"longitude":longitude,
-                              @"dimensionality":dimensionality,
+                              @"lineTime":@(lineTime),
+                              @"allSpots":allSpotsStr,
+                              @"tags":tagsStr,
                               };
     
-    NSString *url = [NSString stringWithFormat:@"%@/nearby/map",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/line/list",BASEURL];
     __weak typeof(self) temp = self;
     self.nearShopArray.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -178,6 +192,7 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getNearSignInArrayClearData成功:%@",array);
             NSArray *returnArray = [LBB_NearSignIn mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
@@ -191,11 +206,15 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getNearSignInArrayClearData失败:%@",errorStr);
+
         }
         
         temp.nearSignInArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         temp.nearSignInArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getNearSignInArrayClearData error:%@",error.domain);
+
     }];
 }
 
@@ -215,7 +234,9 @@
             NSDictionary *result = [dic objectForKey:@"result"];
             temp.signInNum = [result[@"signInNum"] longLongValue];
             temp.rank = [result[@"rank"] intValue];
-            
+            NSLog(@"getSignInfo 成功 temp.signInNum:%ld",temp.signInNum);
+            NSLog(@"getSignInfo 成功 temp.rank:%d",temp.rank);
+
         }
         else
         {
@@ -251,6 +272,8 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getSignInUserArrayClearData成功:%@",array);
+
             NSArray *returnArray = [LBB_SignInUser mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
@@ -264,11 +287,15 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getSignInUserArrayClearData errorStr:%@",errorStr);
+
         }
         
         temp.signInUserArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         temp.signInUserArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getSignInUserArrayClearData error:%@",error.domain);
+
     }];
 }
 

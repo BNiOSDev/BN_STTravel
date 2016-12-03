@@ -7,10 +7,10 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_DiscoveryViewModel.h"
 
 @interface LBB_DiscoveryMainTableViewCell : LBBPoohBaseTableViewCell
 
--(void)setModelaaa:(id)model andRow:(NSInteger)row;
-
+@property(nonatomic, retain)LBB_DiscoveryModel* model;
 
 @end

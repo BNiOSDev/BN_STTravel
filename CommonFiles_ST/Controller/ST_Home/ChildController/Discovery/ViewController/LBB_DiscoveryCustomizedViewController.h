@@ -7,7 +7,11 @@
 //
 
 #import "PoohBaseViewController.h"
+#import "PoohCommon.h"
 
 @interface LBB_DiscoveryCustomizedViewController : Base_BaseViewController
+
+@property (nonatomic, strong) ClickBlockFour click;
+
 
 @end

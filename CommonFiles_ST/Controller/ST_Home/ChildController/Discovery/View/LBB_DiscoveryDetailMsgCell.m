@@ -201,5 +201,68 @@
     return self;
 }
 
+-(void)setModel:(LBB_DiscoveryDetailModel *)model{
+    
+    _model = model;
+    /*
+     
+     @property(nonatomic, retain)UIButton* greatButton;
+     @property(nonatomic, retain)UIButton* commentsButton;
+     @property(nonatomic, retain)UIButton* favoriteButton;
+     
+     @property(nonatomic, retain)UIButton* scenicButton;
+     @property(nonatomic, retain)UIButton* foodsButton;
+     @property(nonatomic, retain)UIButton* hostelButton;
+     */
+    /*
+     @property (nonatomic, assign)int totalFood ;// 美食个数
+     @property (nonatomic, assign)int totalHomestay ;// 民宿个数
+     @property (nonatomic, assign)int totalScenicSpots ;//景点个数
+
+     @property (nonatomic, strong)NSString *shareUrl ;// 分享URL
+     @property (nonatomic, strong)NSString *shareTitle ;// 分享标题
+     @property (nonatomic, strong)NSString *shareContent ;// 分享内容
+     @property (nonatomic, assign)int isCollected ;// 收藏标志 0未收藏 1：收藏
+     @property (nonatomic, assign)int isLiked ;// 点赞标志 0未点赞 1：点赞
+     */
+    [self.titleLabel setText:model.name];// 标题
+    [self.timeLabel setText:model.lineTime];// 线路时长 如:1日游
+    
+    @weakify(self);
+    [RACObserve(model, likeNum) subscribeNext:^(NSNumber* num){// 点赞次数
+        @strongify(self);
+        [self.greatButton setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
+    }];
+    
+    [RACObserve(model, commentsNum) subscribeNext:^(NSNumber* num){// 评论条数
+        @strongify(self);
+        [self.commentsButton setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
+    }];
+    
+    [RACObserve(model, collecteNum) subscribeNext:^(NSNumber* num){// 收藏次数
+        @strongify(self);
+        [self.favoriteButton setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
+    }];
+    
+
+    [self.self.scenicButton setTitle:[NSString stringWithFormat:@"景点%d",model.totalScenicSpots] forState:UIControlStateNormal];// 景点个数
+    [self.self.foodsButton setTitle:[NSString stringWithFormat:@"美食%d",model.totalFood] forState:UIControlStateNormal];// 美食个数
+    [self.self.hostelButton setTitle:[NSString stringWithFormat:@"民宿%d",model.totalHomestay] forState:UIControlStateNormal];// 民宿个数
+    
+    // 点赞标志 0未点赞 1：点赞
+    if (model.isLiked) {
+        [self.greatButton setImage:IMAGE(@"景点专题_点赞HL") forState:UIControlStateNormal];
+    }
+    else{
+        [self.greatButton setImage:IMAGE(@"景点专题_点赞") forState:UIControlStateNormal];
+    }
+    // 收藏标志 0未收藏 1：收藏
+    if (model.isCollected) {
+        [ self.favoriteButton setImage:IMAGE(@"景点专题_小收藏HL") forState:UIControlStateNormal];
+    }
+    else{
+        [ self.favoriteButton setImage:IMAGE(@"景点专题_小收藏") forState:UIControlStateNormal];
+    }
+}
 
 @end

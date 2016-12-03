@@ -8,6 +8,7 @@
 
 #import <BN_BaseDataModel.h>
 #import "LBB_SpotDetailsViewModel.h"
+#import "LBB_SquareAddressViewModel.h"
 
 @interface LBB_SignInUser : BN_BaseDataModel
 
@@ -66,14 +67,17 @@
                     clearData:(BOOL)clear;
 
 
-/**
- 3.9.1	附近的商家 (已测)
 
- @param longitude Y坐标
- @param dimensionality X坐标
+/**
+ 3.3.4	攻略列表(已测)
+
+ @param lineTime 行程时间
+ @param allSpots 场景列表
+ @param tags 个性标签列表
  */
-- (void)getNearShopArrayLongitude:(NSString *)longitude
-                   dimensionality:(NSString *)dimensionality;
+- (void)getNearShopArrayLineTime:(long)lineTime
+                        allSpots:(NSArray<LBB_SpotsTag*>*)allSpots
+                            tags:(NSArray<LBB_SpotAddress*>*)tags;
 
 
 /**

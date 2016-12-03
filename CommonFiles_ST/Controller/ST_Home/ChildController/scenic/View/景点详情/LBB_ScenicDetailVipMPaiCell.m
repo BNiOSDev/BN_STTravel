@@ -120,7 +120,6 @@
         } forControlEvents:UIControlEventTouchUpInside];
     }
     
-    @weakify(self);
     // 点赞次数
     [RACObserve(obj, likeNum) subscribeNext:^(NSNumber* num) {
         int likenum = [num intValue];

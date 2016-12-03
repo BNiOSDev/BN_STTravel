@@ -13,6 +13,8 @@
 -(id)init{
     
     if (self = [super init]) {
+        self.longitude = @"-1";
+        self.latitude = @"-1";
         self.locManager = [[CLLocationManager alloc] init];
         self.locManager.delegate = self;
         self.locManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -21,7 +23,7 @@
         [self.locManager requestWhenInUseAuthorization];//这句话ios8以上版本使用。
         [self.locManager startUpdatingLocation];
         
-        
+
         NSLog(@"[CLLocationManager authorizationStatus]:%d", [CLLocationManager authorizationStatus]);
     }
     return self;

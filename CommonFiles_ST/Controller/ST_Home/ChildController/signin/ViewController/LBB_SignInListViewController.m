@@ -29,6 +29,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)initViewModel{
+
+    WS(ws);
+    [self.noteLable setText:[NSString stringWithFormat:@"您已完成%ld个景点，目前排名第%d名",self.viewModel.signInNum,self.viewModel.rank]];
+
+    [self.viewModel getNearSignInArrayClearData:YES];
+    [self.viewModel.nearSignInArray.loadSupport setDataRefreshblock:^{
+        
+        [ws.tableView reloadData];
+    }];
+
+    //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
+    [self.tableView setTableViewData:self.viewModel.nearSignInArray];
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.tableView.mj_header endRefreshing];
+        
+        [ws.viewModel getNearSignInArrayClearData:YES];
+
+    } footerRefreshDatablock:^{
+        [ws.viewModel getNearSignInArrayClearData:NO];
+         [ws.tableView.mj_footer endRefreshing];
+    }];
+
+}
+
 /*
 #pragma mark - Navigation
 
@@ -70,6 +97,9 @@
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.tableView registerClass:[LBB_SignInListCell class] forCellReuseIdentifier:@"LBB_SignInListCell"];
+    
+    [self initViewModel];
+    
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -96,7 +126,9 @@
     [l setFrame:CGRectMake(0, 0, DeviceWidth, height)];
     [l setTextAlignment:NSTextAlignmentCenter];
     [l setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
-    [l setText:@"您已完成80个景点，目前排名第12名"];
+//    [l setText:@"您已完成80个景点，目前排名第12名"];
+    [l setText:[NSString stringWithFormat:@"您已完成%ld个景点，目前排名第%d名",self.viewModel.signInNum,self.viewModel.rank]];
+
     [l setTextColor:[UIColor whiteColor]];
     [l setFont:Font15];
 
@@ -107,7 +139,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 14;
+    return self.viewModel.nearSignInArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -125,7 +157,17 @@
         cell = [[LBB_SignInListCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_SignInListCell nil");
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell showSigninButton:YES];
+    
+    
+   LBB_NearSignIn* obj = [self.viewModel.nearSignInArray objectAtIndex:indexPath.row];
+
+    [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:obj.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [cell.titleLabel setText:obj.allSpotsName];
+    [cell.subTitleLabel setText:obj.signInTime];
+    
+    
     return cell;
     
 }

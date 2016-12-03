@@ -10,6 +10,7 @@
 #import "LBB_SignInListViewController.h"
 #import "LBB_SignInRankListViewController.h"
 #import "LBB_SigninPopView.h"
+#import "LBB_NearViewModel.h"
 
 @interface LBBSigninMainViewController ()
 
@@ -18,7 +19,9 @@
 @property(nonatomic, retain)UILabel* noteLable;
 
 @property(nonatomic, retain)LBB_SigninPopView* popView;
-
+//地理位置管理
+@property (nonatomic, retain)LBB_PoohCoreLocationManager* locationManager;
+@property (nonatomic, strong)LBB_NearViewModel* viewModel;
 @end
 
 @implementation LBBSigninMainViewController
@@ -33,6 +36,57 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)initViewModel{
+    
+    self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
+    
+    self.viewModel = [[LBB_NearViewModel alloc]init];
+    
+    @weakify(self);
+    [RACObserve(self.locationManager, latitude) subscribeNext:^(NSString* num) {
+        @strongify(self);
+        
+        //  [self.viewModel getNearShopArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude];
+    }];
+    
+    [RACObserve(self.locationManager, longitude) subscribeNext:^(NSString* num) {
+        @strongify(self);
+        
+     //   [self.viewModel getNearShopArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude];
+    }];
+    
+    
+    /**
+     3.9.4	附近–签到信息(已测)
+     */
+    [self.viewModel getSignInfo];
+    [RACObserve(self.viewModel, signInNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        [self.noteLable setText:[NSString stringWithFormat:@"您已完成%ld个景点，目前排名第%d名",self.viewModel.signInNum,self.viewModel.rank]];
+
+    }];
+    [RACObserve(self.viewModel, rank) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        [self.noteLable setText:[NSString stringWithFormat:@"您已完成%ld个景点，目前排名第%d名",self.viewModel.signInNum,self.viewModel.rank]];
+    }];
+    
+    /**
+     3.9.1	附近的商家 (已测)
+     
+     @param longitude Y坐标
+     @param dimensionality X坐标
+     */
+    
+   // [self.viewModel getNearShopArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude];
+
+    [self.viewModel.nearShopArray.loadSupport setDataRefreshblock:^{
+    
+        
+        
+    }];
+    
+    
+}
 /*
 #pragma mark - Navigation
 
@@ -133,7 +187,7 @@
         make.left.equalTo(sep.mas_right);
     }];
     
-
+    
     
     //map
     self.mapView = [UIView new];
@@ -147,7 +201,7 @@
     }];
     
     self.noteLable = [UILabel new];
-    [self.noteLable setText:@"您已完成80个景点，目前排名第12名"];
+    [self.noteLable setText:@"您已完成0个景点，目前排名第0名"];
     [self.noteLable setTextColor:[UIColor whiteColor]];
     [self.noteLable setTextAlignment:NSTextAlignmentCenter];
     [self.noteLable setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
@@ -162,6 +216,7 @@
     [signList bk_addEventHandler:^(id sender){
     
         LBB_SignInListViewController* v = [[LBB_SignInListViewController alloc]init];
+        v.viewModel = ws.viewModel;
         [ws.navigationController pushViewController:v animated:YES];
         
     } forControlEvents:UIControlEventTouchUpInside];
@@ -169,9 +224,13 @@
     [signRank bk_addEventHandler:^(id sender){
         
         LBB_SignInRankListViewController* v = [[LBB_SignInRankListViewController alloc]init];
+        v.viewModel = ws.viewModel;
         [ws.navigationController pushViewController:v animated:YES];
         
     } forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [self initViewModel];
     
 }
 @end

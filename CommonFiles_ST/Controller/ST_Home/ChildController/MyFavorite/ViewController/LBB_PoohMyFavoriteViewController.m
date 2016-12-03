@@ -11,11 +11,16 @@
 #import "LBB_PoohMyFavoriteSubjectCell.h"
 #import "LBB_ScenicDetailViewController.h"
 #import "LBB_ScenicDetailSubjectViewController.h"
+#import "LBB_PoohMyFavoriteViewModel.h"
+
 
 @interface LBB_PoohMyFavoriteViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic, retain)UITableView* tableView;
 @property(nonatomic, retain)HMSegmentedControl *segmentedControl;
+
+@property(nonatomic, retain)LBB_PoohMyFavoriteViewModel* favoriteViewModel;//收藏的ViewModel
+@property(nonatomic, retain)LBB_PoohMyFavoriteSpecialViewModel* subjectViewModel;//专题的ViewModel
 
 @end
 
@@ -40,6 +45,66 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+-(void)initViewModel{
+    WS(ws);
+    self.favoriteViewModel = [[LBB_PoohMyFavoriteViewModel alloc]init];
+    /**
+     *3.5.15 我的-收藏 广场 景点/美食/民宿 列表（已测）
+     @parames allSpotsType	1.美食 2.民宿 3景点
+     @parames isClear 是否清除缓存
+     */
+    [self.favoriteViewModel getPoohMyFavoriteData:self.favoriteType+1 Clear:YES];
+    [self.favoriteViewModel.favoriteArray.loadSupport setDataRefreshblock:^{
+    
+        [ws.tableView reloadData];
+    }];
+    
+    [self.tableView setTableViewData:self.favoriteViewModel.favoriteArray];
+    
+    
+    
+    self.subjectViewModel = [[LBB_PoohMyFavoriteSpecialViewModel alloc]init];
+    /**
+     *3.5.16 我的-收藏 广场 专题（已测）
+     @parames allSpotsType	1.美食 2.民宿 3景点
+     @parames isClear 是否清除缓存
+     */
+    [self.subjectViewModel getPoohMyFavoriteSpecialData:self.favoriteType+1 Clear:YES];
+    
+    [self.subjectViewModel.favoriteSpeciallArray.loadSupport setDataRefreshblock:^{
+        
+        [ws.tableView reloadData];
+    }];
+    
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+    
+        if (ws.segmentedControl.selectedSegmentIndex == 0) {//收藏
+            [ws.favoriteViewModel getPoohMyFavoriteData:self.favoriteType+1 Clear:YES];
+
+        }
+        else{//专题
+            [ws.subjectViewModel getPoohMyFavoriteSpecialData:self.favoriteType+1 Clear:YES];
+
+        }
+        
+        [ws.tableView.mj_header endRefreshing];
+    } footerRefreshDatablock:^{
+        if (ws.segmentedControl.selectedSegmentIndex == 0) {//收藏
+            [ws.favoriteViewModel getPoohMyFavoriteData:self.favoriteType+1 Clear:NO];
+            
+        }
+        else{//专题
+            [ws.subjectViewModel getPoohMyFavoriteSpecialData:self.favoriteType+1 Clear:NO];
+            
+        }
+        [ws.tableView.mj_footer endRefreshing];
+    }];
+
+}
+
 
 -(void)loadCustomNavigationButton{
 
@@ -90,6 +155,15 @@
     }];
     segmentedControl.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
+        
+        if (index == 0) {
+            [ws.tableView setTableViewData:ws.favoriteViewModel.favoriteArray];
+
+        }
+        else{
+            [ws.tableView setTableViewData:ws.subjectViewModel.favoriteSpeciallArray];
+
+        }
         [ws.tableView reloadData];
     };
     self.segmentedControl = segmentedControl;
@@ -99,6 +173,7 @@
     [self.tableView registerClass:[LBB_PoohMyFavoriteMainCell class] forCellReuseIdentifier:@"LBB_PoohMyFavoriteMainCell"];
     [self.tableView registerClass:[LBB_PoohMyFavoriteSubjectCell class] forCellReuseIdentifier:@"LBB_PoohMyFavoriteSubjectCell"];
     
+    [self initViewModel];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -119,7 +194,12 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    return 10;
+    if (self.segmentedControl.selectedSegmentIndex == 0) {
+        return self.favoriteViewModel.favoriteArray.count;
+    }
+    else{
+        return self.subjectViewModel.favoriteSpeciallArray.count;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -127,12 +207,13 @@
 
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         return [tableView fd_heightForCellWithIdentifier:@"LBB_PoohMyFavoriteMainCell" cacheByIndexPath:indexPath configuration:^(LBB_PoohMyFavoriteMainCell *cell) {
-            
+            [cell setModel:self.favoriteViewModel.favoriteArray[indexPath.row]];
+
         }];
     }
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_PoohMyFavoriteSubjectCell" cacheByIndexPath:indexPath configuration:^(LBB_PoohMyFavoriteSubjectCell *cell) {
-            
+            [cell setModel:self.subjectViewModel.favoriteSpeciallArray[indexPath.row]];
         }];
     }
     
@@ -152,7 +233,7 @@
             cell = [[LBB_PoohMyFavoriteMainCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
             NSLog(@"LBB_PoohMyFavoriteMainCell nil");
         }
-        [cell setModel:nil];
+        [cell setModel:self.favoriteViewModel.favoriteArray[indexPath.row]];
         return cell;
     }
     else{
@@ -162,7 +243,7 @@
             cell = [[LBB_PoohMyFavoriteSubjectCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
             NSLog(@"LBB_PoohMyFavoriteSubjectCell nil");
         }
-        [cell setModel:nil];
+        [cell setModel:self.subjectViewModel.favoriteSpeciallArray[indexPath.row]];
         return cell;
     }
 

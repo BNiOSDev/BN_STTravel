@@ -7,7 +7,9 @@
 //
 
 #import "PoohBaseViewController.h"
-
+#import "LBB_DiscoveryViewModel.h"
 @interface LBB_DiscoveryDetailViewController : Base_BaseViewController
+
+@property(nonatomic, retain)LBB_DiscoveryModel* viewModel;
 
 @end

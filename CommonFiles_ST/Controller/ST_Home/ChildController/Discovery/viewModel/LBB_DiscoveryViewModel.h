@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LBB_SpotAddress.h"
-
+#import "LBB_TagsViewModel.h"
 @interface LBB_DiscoveryDetailModel : BN_BaseDataModel
 
 @property (nonatomic, assign)long lineId ;// 路线ID
@@ -64,5 +64,19 @@
 - (void)getsTravelNotesDetailAllSpotsType:(int)allSpotsType name:(NSString *)name ClearData:(BOOL)clear;
 
 - (void)getDiscoveryArrayClearData:(BOOL)clear;
+
+/**
+ 3.3.4 攻略列表(已测)
+
+ @param lineTime  lineTime	Long	行程时间
+ @param allSpots  allSpots	String	场景列表  逗号隔开 1,2,3
+ @param tags      tags	String	个性标签列表 逗号隔开 1,2,3
+ @param clear    是否清空原数据
+ */
+- (void)getDiscoveryArrayClearData:(LBB_SquareTags*)lineTime
+                          allSpots:(NSArray<LBB_SpotAddress*>*)allSpots
+                              tags:(NSArray<LBB_SquareTags*>*)tags
+                             clear:(BOOL)clear;
+
 
 @end

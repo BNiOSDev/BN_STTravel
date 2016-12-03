@@ -202,6 +202,7 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getConditionTagsClass success:%@",array);
             NSArray *returnArray = [LBB_SquareTags mj_objectArrayWithKeyValuesArray:array];
             dataBlock(returnArray,nil);
         }

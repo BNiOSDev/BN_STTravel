@@ -30,8 +30,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        NSArray* titleArray = @[@"攻略", @"景点",@"导游",@"美食",@"民宿",];
-        NSArray* iconArray = @[@"ST_Home_Strategy",@"ST_Home_Tourism",@"ST_Home_TourGuide",@"ST_Home_Foods",@"ST_Home_HomeStay"];
+        NSArray* titleArray = @[@"攻略", @"景点",@"伴手礼",@"美食",@"民宿",];
+        NSArray* iconArray = @[@"ST_Home_Strategy",@"ST_Home_Tourism",@"ST_Home_Gift",@"ST_Home_Foods",@"ST_Home_HomeStay"];
         
         NSInteger count = [titleArray count];
         CGFloat margineLeft = 20;
@@ -72,7 +72,7 @@
                     case 1://景点
                         dest = [[LBB_ScenicMainViewController alloc] init];
                         break;
-                    case 2://导游
+                    case 2://伴手礼
                         dest = [[LBB_GuiderMainViewController alloc]init];
                         break;
                     case 3://美食

@@ -9,7 +9,7 @@
 #import "PoohBaseViewController.h"
 #import "LBB_SpotDetailsViewModel.h"
 
-@interface LBB_ScenicDetailViewController : Base_BaseViewController
+@interface LBB_ScenicDetailViewController : PoohBaseViewController
 
 @property(nonatomic, assign)LBBPoohHomeType homeType;
 @property(nonatomic, strong)LBB_SpotModel* spotModel;

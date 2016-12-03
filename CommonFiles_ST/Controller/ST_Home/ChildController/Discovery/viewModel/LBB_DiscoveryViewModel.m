@@ -10,6 +10,23 @@
 
 @implementation LBB_DiscoveryDetailModel
 
+-(id)init{
+    
+    if (self = [super init]) {
+        self.name = @"";// 标题
+        self.coverImagesUrl = @"";// 封面图片
+        self.lineTime = @"" ;// 线路时长 如:1日游
+
+        self.lineContent = @"" ;// 行程内容 为富文本
+        self.lineFeature = @"" ;// 路线特色 为富文本
+        self.shareUrl = @"" ;// 分享URL
+        self.shareTitle = @"" ;// 分享标题
+        self.shareContent = @"" ;// 分享内容
+
+    }
+    return self;
+}
+
 @end
 
 @implementation LBB_DiscoveryModel
@@ -29,25 +46,35 @@
 - (void)getDiscoveryDetailData
 {
     NSString *url = [NSString stringWithFormat:@"%@/line/detail",BASEURL];
+    NSDictionary *paraDic = @{
+                              @"lineId":@(self.lineId)
+                              };
+    NSLog(@"getDiscoveryDetailData paraDic:%@",paraDic);
+
     __weak typeof(self) temp = self;
     self.discoveryDetail.loadSupport.loadEvent = NetLoadingEvent;
     
-    [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
             [temp.discoveryDetail mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getDiscoveryDetailData success:%@",[dic objectForKey:@"result"]);
+
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            NSLog(@"失败  %@",errorStr);
+            NSLog(@"getDiscoveryDetailData faile:%@",errorStr);
+
         }
         
         temp.discoveryDetail.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         temp.discoveryDetail.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getDiscoveryDetailData error:%@",error.domain);
+
     }];
 }
 
@@ -72,7 +99,7 @@
                               @"curPage":[NSNumber numberWithInt:curPage],
                               @"pageNum":[NSNumber numberWithInt:10],
                               };
-    
+    NSLog(@"getDiscoveryArrayClearData paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/line/list",BASEURL];
     __weak typeof(self) temp = self;
     self.discoveryArray.loadSupport.loadEvent = NetLoadingEvent;
@@ -83,6 +110,8 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getDiscoveryArrayClearData success:%@",array);
+
             NSArray *returnArray = [LBB_DiscoveryModel mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
@@ -96,12 +125,96 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getDiscoveryArrayClearData faile:%@",errorStr);
+
         }
         
         temp.discoveryArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         
         temp.discoveryArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getDiscoveryArrayClearData error:%@",error.domain);
+
+    }];
+
+}
+
+/**
+ 3.3.4 攻略列表(已测)
+ 
+ @param lineTime  lineTime	Long	行程时间
+ @param allSpots  allSpots	String	场景列表  逗号隔开 1,2,3
+ @param tags      tags	String	个性标签列表 逗号隔开 1,2,3
+ @param clear    是否清空原数据
+ */
+- (void)getDiscoveryArrayClearData:(LBB_SquareTags*)lineTime
+                          allSpots:(NSArray<LBB_SpotAddress*>*)allSpotArray
+                              tags:(NSArray<LBB_SquareTags*>*)tagArray
+                             clear:(BOOL)clear{
+    int curPage = clear == YES ? 0 : round(self.discoveryArray.count/10.0);
+    
+    
+    NSString* tagString = @"";
+    for (int i = 0; i<tagArray.count; i++) {
+        LBB_SquareTags* tag = tagArray[i];
+       tagString = [tagString stringByAppendingString:[NSString stringWithFormat:@"%ld",tag.tagId]];
+        if (i < tagArray.count - 1) {
+           tagString = [tagString stringByAppendingString:@","];
+        }
+    }
+    
+    NSString* allSpotString = @"";
+    for (int i = 0; i<allSpotArray.count; i++) {
+        LBB_SpotAddress* tag = allSpotArray[i];
+       allSpotString = [allSpotString stringByAppendingString:[NSString stringWithFormat:@"%ld",tag.allSpotsId]];
+        if (i < allSpotArray.count - 1) {
+           allSpotString = [allSpotString stringByAppendingString:@","];
+        }
+    }
+
+    NSDictionary *paraDic = @{
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              @"lineTime":@(lineTime.tagId),
+                              @"tags":tagString,
+                              @"allSpots":allSpotString,
+                              };
+    NSLog(@"getDiscoveryArrayClearData paraDic:%@",paraDic);
+    NSString *url = [NSString stringWithFormat:@"%@/line/list",BASEURL];
+    __weak typeof(self) temp = self;
+    self.discoveryArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getDiscoveryArrayClearData success:%@",array);
+            
+            NSArray *returnArray = [LBB_DiscoveryModel mj_objectArrayWithKeyValuesArray:array];
+            
+            if (clear == YES)
+            {
+                [temp.discoveryArray removeAllObjects];
+            }
+            
+            [temp.discoveryArray addObjectsFromArray:returnArray];
+            temp.discoveryArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getDiscoveryArrayClearData faile:%@",errorStr);
+            
+        }
+        
+        temp.discoveryArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        
+        temp.discoveryArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getDiscoveryArrayClearData error:%@",error.domain);
+        
     }];
 
 }

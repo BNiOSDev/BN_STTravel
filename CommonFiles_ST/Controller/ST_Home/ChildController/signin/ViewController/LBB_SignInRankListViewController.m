@@ -39,6 +39,33 @@
 }
 */
 
+
+-(void)initViewModel{
+    
+    WS(ws);
+    [self.noteLable setText:[NSString stringWithFormat:@"您已完成%ld个景点，目前排名第%d名",self.viewModel.signInNum,self.viewModel.rank]];
+    
+    [self.viewModel getSignInUserArrayClearData:YES];
+    [self.viewModel.signInUserArray.loadSupport setDataRefreshblock:^{
+        
+        [ws.tableView reloadData];
+    }];
+    
+    //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
+    [self.tableView setTableViewData:self.viewModel.signInUserArray];
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.tableView.mj_header endRefreshing];
+        
+        [ws.viewModel getSignInUserArrayClearData:YES];
+        
+    } footerRefreshDatablock:^{
+        [ws.viewModel getSignInUserArrayClearData:NO];
+        [ws.tableView.mj_footer endRefreshing];
+    }];
+    
+}
+
 /*
  * setup navigation bar view
  */
@@ -80,6 +107,7 @@
         make.bottom.equalTo(ws.view);
     }];
     
+    [self initViewModel];
 }
 
 #pragma tableView Delegate
@@ -95,7 +123,8 @@
     [l setFrame:CGRectMake(0, 0, DeviceWidth, height)];
     [l setTextAlignment:NSTextAlignmentCenter];
     [l setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
-    [l setText:@"您已完成80个景点，目前排名第12名"];
+    //[l setText:@"您已完成80个景点，目前排名第12名"];
+    [l setText:[NSString stringWithFormat:@"您已完成%ld个景点，目前排名第%d名",self.viewModel.signInNum,self.viewModel.rank]];
     [l setTextColor:[UIColor whiteColor]];
     [l setFont:Font15];
     
@@ -105,7 +134,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 14;
+    return self.viewModel.signInUserArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -124,7 +153,32 @@
         NSLog(@"LBB_SignInListCell nil");
     }
     [cell showRankMsg:YES];
-        
+    
+    LBB_SignInUser* obj = [self.viewModel.signInUserArray objectAtIndex:indexPath.row];
+    [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:obj.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [cell.titleLabel setText:obj.userName];
+    [cell.subTitleLabel setText:[NSString stringWithFormat:@"已签到%ld个",obj.signInNum]];
+    [cell.rankLabel setText:[NSString stringWithFormat:@"第%ld名",indexPath.row+1]];
+    
+    cell.rankImageView.hidden = YES;
+    switch (indexPath.row) {
+        case 0:
+            cell.rankImageView.hidden = NO;
+            [cell.rankImageView setImage:IMAGE(@"ST_Sign_Num1Icon")];
+            break;
+        case 1:
+            cell.rankImageView.hidden = NO;
+            [cell.rankImageView setImage:IMAGE(@"ST_Sign_Num2Icon")];
+            break;
+        case 2:
+            cell.rankImageView.hidden = NO;
+            [cell.rankImageView setImage:IMAGE(@"ST_Sign_Num3Icon")];
+            break;
+            
+        default:
+            break;
+    }
+    
     return cell;
     
 }

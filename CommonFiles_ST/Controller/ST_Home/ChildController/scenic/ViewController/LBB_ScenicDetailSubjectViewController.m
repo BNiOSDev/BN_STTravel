@@ -16,7 +16,8 @@
 #import "LBB_ScenicDetailCommentsCell.h"
 #import "LBB_ScenicDetailTravelRecommendCell.h"
 
-
+static const NSInteger kSearchButtonMarginRight = -10;
+static const NSInteger kButtonWidth = 45;
 typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     LBBScenicDetailSectionHeaderType = 0,//header部分
     LBBScenicDetailSectionSubjectType,//专题项
@@ -40,6 +41,12 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self addBackButton:nil];
+    [self setBaseNavigationBarHidden:NO];
+    [self setBaseNavigationBarBackgroundColor:[UIColor clearColor]];
+    [self setupFullContentView];
+    [self setupNavigationUI];
+    [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,35 +66,46 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
 /*
  * setup Navigation UI
  */
-
--(void)loadCustomNavigationButton{
-    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+/*
+ * setup Navigation UI
+ */
+-(void)setupNavigationUI{
+    
+    WS(ws);
     UIButton *share = [[UIButton alloc] init];
-    [share setBackgroundImage:IMAGE(@"景点详情_分享") forState:UIControlStateNormal];
-    share.frame = CGRectMake(0, 0, 27, 27);
+    [share setImage:IMAGE(@"景点详情_分享") forState:UIControlStateNormal];
+    [self.baseNavigationBarView addSubview:share];
+    [share mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(kButtonWidth);
+        make.bottom.equalTo(ws.baseNavigationBarView);
+        make.right.equalTo(ws.baseNavigationBarView).offset(kSearchButtonMarginRight);
+    }];
     [share bk_addEventHandler:^(id sender){
+        
         
     }forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithCustomView:share];
-    
     UIButton *favorite = [[UIButton alloc] init];
-    [favorite setBackgroundImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
-    favorite.frame = CGRectMake(0, 0, 27, 27);
+    [favorite setImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
+    [self.baseNavigationBarView addSubview:favorite];
+    [favorite mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(kButtonWidth);
+        make.bottom.equalTo(ws.baseNavigationBarView);
+        make.right.equalTo(share.mas_left).offset(kSearchButtonMarginRight);
+    }];
+    
     [favorite bk_addEventHandler:^(id sender){
         
     }forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *favoriteItem = [[UIBarButtonItem alloc] initWithCustomView:favorite];
-    
-    self.navigationItem.rightBarButtonItems = @[searchItem,favoriteItem];
 }
+
 
 /*
  * setup UI
  */
 
--(void)buildControls{
+-(void)setupUI{
     
     WS(ws);
     
@@ -101,12 +119,12 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
                           ];
     
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.baseContentView setBackgroundColor:[UIColor whiteColor]];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self registerTableViewCell];
-    [self.view addSubview:self.tableView];
+    [self.baseContentView addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];

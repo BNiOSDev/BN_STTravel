@@ -99,5 +99,19 @@
 }
 
 
+-(void)setModel:(LBB_SpotModel *)model{
+
+    _model = model;
+    
+    self.portraitImageView.layer.cornerRadius = 5;
+    self.portraitImageView.layer.masksToBounds = YES;
+    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    
+    [self.titleLabel setText:model.allSpotsName];
+    [self.subTitleLabel setText:model.picRemark];
+    [self.descLabel setText:[NSString stringWithFormat:@"%0.1fkm",model.distance]];
+    
+    
+}
 
 @end

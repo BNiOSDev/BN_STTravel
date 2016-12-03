@@ -13,4 +13,5 @@
 
 @property(nonatomic, strong)ClickBlockEx click;
 
+@property(nonatomic, retain)NSArray<LBB_SpotAddress*>* selectedArray;
 @end

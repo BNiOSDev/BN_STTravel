@@ -8,7 +8,7 @@
 
 #import "PoohBaseViewController.h"
 
-@interface LBB_ScenicDetailSubjectViewController : Base_BaseViewController
+@interface LBB_ScenicDetailSubjectViewController : PoohBaseViewController
 
 @property(nonatomic, assign)LBBPoohHomeType homeType;
 

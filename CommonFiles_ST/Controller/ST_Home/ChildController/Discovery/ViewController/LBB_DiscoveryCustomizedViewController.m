@@ -8,10 +8,11 @@
 
 #import "LBB_DiscoveryCustomizedViewController.h"
 #import "LBB_DiscoveryCustomizedSelectView.h"
-#import "PoohCommon.h"
 #import "LBB_AddressAddViewController.h"
 #import "UITextField+TPCategory.h"
 #import "LBB_DiscoveryCustomizedPopView.h"
+#import "LBB_TagsViewModel.h"
+#import "LBB_DiscoveryCustomizedLabelView.h"
 
 static CGFloat margin = 8;
 static CGFloat height = 45;
@@ -23,18 +24,19 @@ static CGFloat height = 45;
 @property(nonatomic, retain)LBB_DiscoveryCustomizedSelectView* areaSelectView;
 @property(nonatomic, retain)LBB_DiscoveryCustomizedSelectView* addMoreAreaView;
 
-@property(nonatomic, retain)UIButton* tag1;
-@property(nonatomic, retain)UIButton* tag2;
-@property(nonatomic, retain)UIButton* tag3;
-
-@property(nonatomic, assign)NSInteger tagIndex;
+@property(nonatomic, retain)LBB_DiscoveryCustomizedLabelView* tagView;
 
 @property(nonatomic, retain)LBB_DiscoveryCustomizedPopView* popView;
 
-@property(nonatomic, retain)NSMutableArray* dataArray;
 @property(nonatomic, retain)UIView* scenicPanel;
-@property(nonatomic, retain) UIScrollView *mainScrollView;
+@property(nonatomic, retain)UIScrollView *mainScrollView;
 @property(nonatomic, retain)UIButton* submitButton;
+
+
+@property(nonatomic, retain)NSArray<LBB_SquareTags*>* selectTimeArray;//行程时间数组
+@property(nonatomic, retain)NSMutableArray<LBB_SquareTags*>* tagsArray;//标签数组
+@property(nonatomic, retain)NSMutableArray<LBB_SpotAddress*>* scenicArray; //景区列表数据
+@property(nonatomic, retain)LBB_SquareTags* timeLine;
 
 @end
 
@@ -69,6 +71,35 @@ static CGFloat height = 45;
 }
 */
 
+-(void)initViewModel{
+
+    /**
+     3.1.13	筛选标签列表(已测)
+     
+     @param classes 1美食 2 民宿 3 景点 4 伴手礼  10 线路攻略11 美食专题 12民宿专题 13景点专题 14伴手礼专题 15  用户/导游
+     @param type 1.热门推荐 2标签 3价格 4类别 5、设施 6、退票及预约提示 7、品牌 8、适合人群 9、个性标签 10、行程时长 11  导游类型  12  从业时间
+     @param dataBlock 返回标签数据
+     */
+    WS(ws);
+    [LBB_SquareTags getConditionTagsClass:10 type:10 block:^(NSArray<LBB_SquareTags*> *files, NSError *error){
+    
+        NSLog(@"获取行程时间files:%@",files);
+        ws.selectTimeArray = files;
+    }];
+    
+    
+    [LBB_SquareTags getConditionTagsClass:10 type:9 block:^(NSArray<LBB_SquareTags*> *files, NSError *error){
+        
+        NSLog(@"获取个性标签files:%@",files);
+        ws.tagsArray = [NSMutableArray arrayWithArray:files];
+        [ws.tagView configContentView:ws.tagsArray];
+        [ws.view layoutSubviews];
+    }];
+}
+
+
+
+
 /*
  * setup navigation bar view
  */
@@ -84,7 +115,7 @@ static CGFloat height = 45;
     WS(ws);
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    self.dataArray = [NSMutableArray new];
+    self.scenicArray = [NSMutableArray new];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.mainScrollView = [UIScrollView new];
@@ -143,7 +174,7 @@ static CGFloat height = 45;
     [tagView mas_makeConstraints:^(MASConstraintMaker* make){
         
         make.top.equalTo(ws.addMoreAreaView.mas_bottom).offset(2*margin);
-        make.centerX.width.height.equalTo(ws.startTimeSelectView);
+        make.centerX.width.equalTo(ws.startTimeSelectView);
     }];
     UILabel* l = [UILabel new];
     [l setText:@"个性标签"];
@@ -151,53 +182,20 @@ static CGFloat height = 45;
     [l setTextAlignment:NSTextAlignmentCenter];
     [tagView addSubview:l];
     [l mas_makeConstraints:^(MASConstraintMaker* make){
-        make.left.centerY.equalTo(tagView);
+        make.left.top.equalTo(tagView);
         make.width.equalTo(@100);
     }];
     
-    self.tag1 = [[UIButton alloc]init];
-    [self.tag1.titleLabel setFont:Font13];
-    [self.tag1 setImage:IMAGE(@"ST_Discovery_Select") forState:UIControlStateNormal];
-    [self.tag1 setTitle:@"我是吃货" forState:UIControlStateNormal];
-    [self.tag1 setTitleColor:ColorBlack forState:UIControlStateNormal];
-    [self.tag1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
-    [tagView addSubview:self.tag1];
-    
-    self.tag2 = [[UIButton alloc]init];
-    [self.tag2.titleLabel setFont:Font13];
-    [self.tag2 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
-    [self.tag2 setTitle:@"潮男潮女" forState:UIControlStateNormal];
-    [self.tag2 setTitleColor:ColorBlack forState:UIControlStateNormal];
-    [self.tag2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
-    [tagView addSubview:self.tag2];
-    
-    self.tag3 = [[UIButton alloc]init];
+    self.tagView = [[LBB_DiscoveryCustomizedLabelView alloc]init];
+    [tagView addSubview:self.tagView];
 
-    [self.tag3.titleLabel setFont:Font13];
-    [self.tag3 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
-    [self.tag3 setTitle:@"运动达人" forState:UIControlStateNormal];
-    [self.tag3 setTitleColor:ColorBlack forState:UIControlStateNormal];
-    [self.tag3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, -5)];
-    [tagView addSubview:self.tag3];
-    
-    
-    [self.tag1 mas_makeConstraints:^(MASConstraintMaker* make){
-        make.centerY.top.bottom.equalTo(tagView);
+    [self.tagView mas_makeConstraints:^(MASConstraintMaker* make){
+        make.top.bottom.equalTo(tagView);
         make.left.equalTo(l.mas_right);
-       // make.height.equalTo(@18);
-        
+        make.right.equalTo(tagView);
     }];
-    [self.tag2 mas_makeConstraints:^(MASConstraintMaker* make){
-        make.centerY.equalTo(tagView);
-        make.left.equalTo(self.tag1.mas_right);
-        make.height.width.equalTo(self.tag1);
-    }];
-    [self.tag3 mas_makeConstraints:^(MASConstraintMaker* make){
-        make.centerY.equalTo(tagView);
-        make.left.equalTo(self.tag2.mas_right);
-        make.height.width.equalTo(self.tag1);
-        make.right.equalTo(tagView).offset(-2*margin);
-    }];
+    
+    [self.tagView configContentView:self.tagsArray];
     
     UIView* sep = [UIView new];
     [sep setBackgroundColor:ColorLine];
@@ -227,87 +225,30 @@ static CGFloat height = 45;
     }];
     self.submitButton = submit;
     
-#pragma action
-    
-    @weakify(self);
-    [RACObserve(self, tagIndex) subscribeNext:^(NSNumber* index) {
-        @strongify(self);
-        [self.tag1 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
-        [self.tag2 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
-        [self.tag3 setImage:IMAGE(@"ST_Discovery_DeSelect") forState:UIControlStateNormal];
-        switch ([index integerValue]) {
-            case 0:
-                [self.tag1 setImage:IMAGE(@"ST_Discovery_Select") forState:UIControlStateNormal];
-                break;
-            case 1:
-                [self.tag2 setImage:IMAGE(@"ST_Discovery_Select") forState:UIControlStateNormal];
-                break;
-            case 2:
-                [self.tag3 setImage:IMAGE(@"ST_Discovery_Select") forState:UIControlStateNormal];
-                break;
-            default:
-                break;
-        }
-    }];
-    
-    [self.tag1 bk_whenTapped:^{
-        ws.tagIndex = 0;
-    }];
-    [self.tag2 bk_whenTapped:^{
-        ws.tagIndex = 1;
-    }];
-    [self.tag3 bk_whenTapped:^{
-        ws.tagIndex = 2;
-    }];
-    
 
     self.startTimeSelectView.bgCtrlView.bk_shouldBeginEditingBlock = ^(UITextField* text){
         
         UIAlertController *c = [UIAlertController alertControllerWithTitle:@"请选择行程时间" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
-        UIAlertAction *oneDayAction = [UIAlertAction actionWithTitle:@"1天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-            [text setText:@"1天"];
-        }];
-        UIAlertAction *twoDayAction = [UIAlertAction actionWithTitle:@"2天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [text setText:@"2天"];
-
-        }];
-        UIAlertAction *threeDayAction = [UIAlertAction actionWithTitle:@"3天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [text setText:@"3天"];
-
-        }];
-        UIAlertAction *fourDayAction = [UIAlertAction actionWithTitle:@"4天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [text setText:@"4天"];
-
-        }];
-        UIAlertAction *manyDayAction = [UIAlertAction actionWithTitle:@"5-7天" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [text setText:@"5-7天"];
-
-        }];
-        
-        UIAlertAction *oneWeekAction = [UIAlertAction actionWithTitle:@"一周" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [text setText:@"一周"];
-
-        }];
-        [c addAction:oneDayAction];
-        [c addAction:twoDayAction];
-        [c addAction:threeDayAction];
-        [c addAction:fourDayAction];
-        [c addAction:manyDayAction];
-        [c addAction:oneWeekAction];
+        for (LBB_SquareTags* tag in ws.selectTimeArray) {
+            UIAlertAction *action = [UIAlertAction actionWithTitle:tag.tagName style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                
+                [text setText:tag.tagName];
+                ws.timeLine = tag;
+            }];
+            [c addAction:action];
+        }
         [ws presentViewController:c animated:YES completion:nil];
 
         return NO;
     };
     self.areaSelectView.bgCtrlView.bk_shouldBeginEditingBlock = ^(UITextField* text){
     
-        
         [text resignFirstResponder];
         LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
-        dest.click = ^(LBB_AddressAddViewController* add,NSNumber* index){
-            NSLog(@"回调地址:%ld",[index integerValue]);
-            [ws.dataArray addObject:index];//回调回来数据
+        dest.selectedArray = ws.scenicArray;
+        dest.click = ^(LBB_AddressAddViewController* add,LBB_SpotAddress* address){
+            [ws.scenicArray addObject:address];//回调回来数据
             [ws refreshScenicPanel];
             [add.navigationController popViewControllerAnimated:YES];
         };
@@ -319,9 +260,9 @@ static CGFloat height = 45;
         
         [text resignFirstResponder];
         LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
+        dest.selectedArray = ws.scenicArray;
         dest.click = ^(LBB_AddressAddViewController* add,LBB_SpotAddress* address){
-         //   [text setText:[NSString stringWithFormat:@"%ld",[index integerValue]]];
-           // [ws.dataArray addObject:index];//回调回来数据
+            [ws.scenicArray addObject:address];//回调回来数据
             [ws refreshScenicPanel];
             [add.navigationController popViewControllerAnimated:YES];
         };
@@ -330,6 +271,22 @@ static CGFloat height = 45;
     };
     
     [submit bk_addEventHandler:^(id sender){
+        
+        if (!ws.timeLine) {
+            [ws showHudPrompt:@"请选择行程时间!"];
+            return ;
+        }
+        
+        if (ws.scenicArray.count <= 0) {
+            [ws showHudPrompt:@"请选择景点!"];
+            return ;
+        }
+        
+        if (ws.tagView.selectArray.count <= 0) {
+            [ws showHudPrompt:@"请选择标签!"];
+            return ;
+        }
+        
         
         NSLog(@"sign touch");
         if (!ws.popView) {
@@ -342,10 +299,14 @@ static CGFloat height = 45;
             ws.popView.hidden = YES;
             [ws.popView resignKeyWindow];
             ws.popView = nil;
-            [ws.navigationController popViewControllerAnimated:YES];
+            ws.click(ws,ws.timeLine,ws.scenicArray,ws.tagView.selectArray);
+            
+         //   [ws.navigationController popViewControllerAnimated:YES];
         } forControlEvents:UIControlEventTouchUpInside];
         
     } forControlEvents:UIControlEventTouchUpInside];
+    
+    [self initViewModel];
     
 }
 
@@ -355,13 +316,13 @@ static CGFloat height = 45;
     WS(ws);
     [self.scenicPanel removeAllSubviews];
     
-    NSInteger count = self.dataArray.count;
+    NSInteger count = self.scenicArray.count;
     for (int i = 0; i < count; i++) {
         
-        NSNumber* num = [self.dataArray objectAtIndex:i];
+        LBB_SpotAddress* address = [self.scenicArray objectAtIndex:i];
         LBB_DiscoveryCustomizedSelectView* scenic = [[LBB_DiscoveryCustomizedSelectView alloc]init];
         [scenic showDeleteImageView:YES];
-        [scenic.bgCtrlView setText:[NSString stringWithFormat:@"%ld",[num integerValue]]];
+        [scenic.bgCtrlView setText:[NSString stringWithFormat:@"%@",address.allSpotsName]];
         [scenic.bgCtrlView setPlaceholder:@""];
         [scenic setTag:i];
         [self.scenicPanel addSubview:scenic];
@@ -375,7 +336,7 @@ static CGFloat height = 45;
         }];
         [scenic.rightButton bk_addEventHandler:^(id sender){
             NSLog(@"arrowImageView tab");
-            [ws.dataArray removeObjectAtIndex:i];
+            [ws.scenicArray removeObjectAtIndex:i];
             [ws refreshScenicPanel];
         } forControlEvents:UIControlEventTouchUpInside];
     }

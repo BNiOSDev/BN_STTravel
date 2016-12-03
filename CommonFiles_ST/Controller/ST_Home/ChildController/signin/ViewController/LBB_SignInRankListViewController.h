@@ -7,7 +7,10 @@
 //
 
 #import "Base_BaseViewController.h"
+#import "LBB_NearViewModel.h"
 
 @interface LBB_SignInRankListViewController : Base_BaseViewController
+
+@property (nonatomic, strong)LBB_NearViewModel* viewModel;
 
 @end

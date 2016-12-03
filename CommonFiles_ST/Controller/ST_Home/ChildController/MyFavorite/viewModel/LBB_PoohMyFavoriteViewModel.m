@@ -77,7 +77,7 @@
                               @"pageNum":[NSNumber numberWithInt:10],
                               @"allSpotsType" : [NSNumber numberWithInt:allSpotsType]
                               };
-    
+    NSLog(@"getPoohMyFavoriteData parames:%@",parames);
     __weak typeof(self) weakSelf = self;
     self.favoriteArray.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -87,6 +87,8 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getPoohMyFavoriteData 成功:%@",array);
+
             NSArray *returnArray = [LBB_PoohMyFavoriteModel mj_objectArrayWithKeyValuesArray:array];
             if (isClear) {
                 [weakSelf.favoriteArray removeAllObjects];
@@ -97,12 +99,14 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            NSLog(@"失败  %@",errorStr);
+            NSLog(@"getPoohMyFavoriteData失败 errorStr: %@",errorStr);
         }
         
         weakSelf.favoriteArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.favoriteArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getPoohMyFavoriteData失败 error: %@",error.domain);
+
     }];
 }
 
@@ -125,7 +129,8 @@
                               @"allSpotsId":@(self.specialId),
                               @"allSpotsType" :@(allSpotsType)
                               };
-    
+    NSLog(@"collect parames:%@",parames);
+
     __weak typeof(self) weakSelf = self;
     [[BC_ToolRequest sharedManager] POST:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
@@ -136,16 +141,22 @@
             int collecteState = [[result objectForKey:@"collecteState"] intValue];
             weakSelf.isCollected = collecteState;
             weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+            NSLog(@"collect 成功:%@",result);
+
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
             weakSelf.loadSupport.netRemark = errorStr;
             weakSelf.loadSupport.loadFailEvent =  codeNumber.intValue;
+            NSLog(@"collect 失败errorStr:%@",errorStr);
+
         }
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"collect 失败error:%@",error.domain);
+
     }];
 }
 
@@ -180,7 +191,8 @@
                               @"pageNum":[NSNumber numberWithInt:10],
                               @"type" : [NSNumber numberWithInt:allSpotsType]
                               };
-    
+    NSLog(@"getPoohMyFavoriteSpecialData parames:%@",parames);
+
     __weak typeof(self) weakSelf = self;
     self.favoriteSpeciallArray.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -190,6 +202,8 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getPoohMyFavoriteSpecialData 成功:%@",array);
+
             NSArray *returnArray = [LBB_PoohMyFavoriteSpecialModel mj_objectArrayWithKeyValuesArray:array];
             if (isClear) {
                 [weakSelf.favoriteSpeciallArray removeAllObjects];
@@ -199,12 +213,14 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            NSLog(@"失败  %@",errorStr);
+            NSLog(@"getPoohMyFavoriteSpecialData失败errorStr:  %@",errorStr);
         }
         
         weakSelf.favoriteSpeciallArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.favoriteSpeciallArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getPoohMyFavoriteSpecialData失败error:  %@",error.domain);
+
     }];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_NearViewModel.h"
 
 @interface LBBNearbyMenuListTableViewCell : LBBPoohBaseTableViewCell
 
@@ -17,5 +18,7 @@
 @property(nonatomic, retain)UIImageView* arrowImageView;
 
 @property(nonatomic, retain)UIView* sep;
+
+@property(nonatomic, retain)LBB_SpotModel* model;
 
 @end

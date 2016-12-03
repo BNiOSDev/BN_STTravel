@@ -39,6 +39,24 @@
 }
 */
 
+-(void)initViewModel{
+
+    WS(ws);
+    [self.viewModel getDiscoveryDetailData];
+    [self.viewModel.discoveryDetail.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.viewModel getDiscoveryDetailData];
+        [ws.tableView.mj_header endRefreshing];
+
+    } footerRefreshDatablock:^{
+    
+    }];
+    
+}
+
 -(void)loadCustomNavigationButton{
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     UIButton *download = [[UIButton alloc] init];
@@ -76,6 +94,7 @@
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self registerTableViewCell];
+    [self initViewModel];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -127,7 +146,6 @@
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
     return 3;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -153,7 +171,7 @@
         if (indexPath.row == 0) {
             return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
                 [cell setCycleScrollViewHeight:AutoSize(344/2)];
-                [cell setCycleScrollViewUrls:nil];
+                [cell setCycleScrollViewUrls:@[self.viewModel.discoveryDetail.coverImagesUrl]];
             }];
         }
         else{
@@ -163,9 +181,14 @@
         }
 
     }
+    else if(indexPath.section == 1){
+        return [tableView fd_heightForCellWithIdentifier:@"LBB_PoohAttributedTextCell" cacheByIndexPath:indexPath configuration:^(LBB_PoohAttributedTextCell* cell){
+            [cell setAttributedText:self.viewModel.discoveryDetail.lineContent];
+        }];
+    }
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_PoohAttributedTextCell" cacheByIndexPath:indexPath configuration:^(LBB_PoohAttributedTextCell* cell){
-            [cell setAttributedText:nil];
+            [cell setAttributedText:self.viewModel.discoveryDetail.lineFeature];
         }];
     }
     
@@ -184,7 +207,7 @@
                 NSLog(@"LBBPoohCycleScrollCell nil");
             }
             [cell setCycleScrollViewHeight:AutoSize(344/2)];
-            [cell setCycleScrollViewUrls:nil];
+            [cell setCycleScrollViewUrls:@[self.viewModel.discoveryDetail.coverImagesUrl]];
             return cell;
         }
         else{
@@ -194,6 +217,7 @@
                 cell = [[LBB_DiscoveryDetailMsgCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
                 NSLog(@"LBB_DiscoveryDetailMsgCell nil");
             }
+            [cell setModel:self.viewModel.discoveryDetail];
             return cell;
         }
         
@@ -206,7 +230,13 @@
             cell = [[LBB_PoohAttributedTextCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
             NSLog(@"LBB_PoohAttributedTextCell nil");
         }
-        [cell setAttributedText:nil];
+        
+        if (indexPath.section == 1) {
+            [cell setAttributedText:self.viewModel.discoveryDetail.lineContent];
+        }
+        else{
+            [cell setAttributedText:self.viewModel.discoveryDetail.lineFeature];
+        }
         return cell;
     }
     
