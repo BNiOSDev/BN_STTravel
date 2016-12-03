@@ -41,15 +41,18 @@ UICollectionViewDelegateFlowLayout>
 {
     UICollectionViewFlowLayout *horizontalCellLayout = [UICollectionViewFlowLayout new];
     horizontalCellLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    horizontalCellLayout.sectionInset = UIEdgeInsetsMake(3, 15, 15, 9);
+
+    horizontalCellLayout.sectionInset = UIEdgeInsetsMake(3,3,10,3);
     horizontalCellLayout.minimumInteritemSpacing = 1;
-    horizontalCellLayout.minimumLineSpacing = 1;
-    horizontalCellLayout.itemSize = CGSizeMake(AUTO(150), AUTO(170));
+    horizontalCellLayout.minimumLineSpacing = 10;
+    CGSize mainSize = [[UIScreen mainScreen] bounds].size;
+    CGFloat width = mainSize.width/2.0 - 10;
+    horizontalCellLayout.itemSize = CGSizeMake(width, width + 25.f);
     
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:horizontalCellLayout];
     self.view .autoresizesSubviews = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
     if (self.squareType == MySquarePhotoViewFravorite) {
-        horizontalCellLayout.itemSize = CGSizeMake(AUTO(150), AUTO(150));
+        horizontalCellLayout.itemSize = CGSizeMake(width, width);
     }
     _collectionView.backgroundColor = ColorBackground;
     _collectionView.showsHorizontalScrollIndicator = NO;

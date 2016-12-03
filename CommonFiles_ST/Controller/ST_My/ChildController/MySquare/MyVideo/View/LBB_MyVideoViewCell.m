@@ -50,7 +50,9 @@
 
 - (void)setup
 {
-    contentImage = [[LBB_MyContentImgView alloc]initWithFrame:CGRectMake(0, 0, AUTO(140),AUTO(140))];
+    CGSize mainSize = [[UIScreen mainScreen] bounds].size;
+    CGFloat width = mainSize.width/2.0 - 10.f;
+    contentImage = [[LBB_MyContentImgView alloc]initWithFrame:CGRectMake(0, 0, width,width)];
     [self addSubview:contentImage];
     
     collecdtionBtn = [[EnlargeButton alloc]initWithFrame:CGRectMake(self.width - AUTO(35), AUTO(10), AUTO(20), AUTO(15))];
