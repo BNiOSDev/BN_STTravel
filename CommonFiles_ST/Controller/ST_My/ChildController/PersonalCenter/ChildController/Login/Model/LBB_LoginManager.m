@@ -8,6 +8,12 @@
 
 #import "LBB_LoginManager.h"
 #import <CommonCrypto/CommonDigest.h>
+#import <WXApi.h>
+
+#define WeiXinAPPID         @"wx94b0ac5b1ba8e1c3"
+#define WeiXinAppsecret     @"1ef86c4ca4dcbe00b93064c4186bda4b"
+
+static NSString *kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_friend,snsapi_contact";
 
 @implementation LoginUserInfo
 
@@ -15,7 +21,7 @@
 @end
 
 
-@interface LBB_LoginManager()
+@interface LBB_LoginManager()<WXApiDelegate>
 
 @property(nonatomic,copy) NSString *account;
 @property(nonatomic,copy) NSString *password;
@@ -26,7 +32,7 @@
 @property(nonatomic,assign) LoginType loginType;
 @property(nonatomic,assign) BOOL isLogin;
 @property(nonatomic,strong) UIImage *userHeadImage;
-
+@property(nonatomic,assign) int  thirdType;//第三方登录类型 1：微信 2：QQ
 @end
 
 @implementation LBB_LoginManager
@@ -145,6 +151,79 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 }
 
 /*
+ * 3.5.19 我的-第三方登录（已测）
+ *@parames thirdType 1 微信 2 QQ
+ */
+- (BOOL)loginWithThirdParty:(int)thirdType ViewController:(UIViewController*)vc;
+{
+    self.thirdType = thirdType;
+    BOOL isSuccess = NO;
+    
+    if (![WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未安装微信app,或者版本不支持" message:@"是否马上去下载更新微信?" delegate:self cancelButtonTitle:@"不了" otherButtonTitles:@"去下载", nil];
+        [alertView show];
+        return isSuccess;
+    }
+ 
+    if(self.thirdType == 1){
+        SendAuthReq* req = [[SendAuthReq alloc] init];
+        req.scope = kAuthScope;
+        isSuccess = [WXApi sendAuthReq:req
+                             viewController:vc
+                                   delegate:self];
+    }
+   
+    return isSuccess;
+}
+
+- (void)thirdPartyLogin:(NSString*)openID
+{
+    NSString *deviceID  =  [self uuid];
+    NSDictionary *paraDic = @{
+                              @"thirdType":@(self.thirdType),
+                              @"openId":openID,
+                              @"deviceSystemType":@(2),
+                              @"deviceId":deviceID
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/mime/register",BASEURL];
+    __weak typeof(self) weakSelf = self;
+    
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
+                                 success:^(NSURLSessionDataTask *operation, id responseObject){
+                                     NSDictionary *dict = (NSDictionary*)responseObject;
+                                     NSLog(@"responseObject = %@",dict);
+                                     int code = [[dict objectForKey:@"code"] intValue];
+                                     NSString *remark = [dict objectForKey:@"remark"];
+                                     NSString *token = [dict objectForKey:@"token"];
+                                     if (code == 0) {
+                                         if (weakSelf.resgisterCompleteBlock) {
+                                             weakSelf.resgisterCompleteBlock(token,YES);
+                                         }
+                                         LoginUserInfo *loginCountInfo = [[LoginUserInfo alloc] init];
+                                         loginCountInfo.account = weakSelf.account;
+                                         loginCountInfo.password = weakSelf.password;
+                                         [weakSelf saveLoginUserInfo:loginCountInfo];
+                                     }else{
+                                         if (weakSelf.resgisterCompleteBlock) {
+                                             weakSelf.resgisterCompleteBlock(remark,NO);
+                                         }
+                                     }
+                                     
+                                 } failure:^(NSURLSessionDataTask *operation, NSError *error){
+                                     if (weakSelf.resgisterCompleteBlock) {
+                                         weakSelf.resgisterCompleteBlock(nil,NO);
+                                     }
+                                     NSLog(@"error = %@",error);
+                                     
+                                 }];
+}
+
+- (void)weiXinRegisterApp
+{
+  [WXApi registerApp:WeiXinAPPID];
+}
+/*
  * 3.5.20 我的-注册（已测）
  */
 - (void)registered:(LoginType)loginType
@@ -168,7 +247,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     if (address) {
         self.address = address;
     }
-    //todo 调用注册接口
+   
     NSString *deviceID  =  [self uuid];
     NSDictionary *paraDic = @{
                               @"phoneNum":self.account,
@@ -432,19 +511,51 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     }
 }
 
-//
-//- (NSString *) md5:(NSString *)str
-//{
-//      const char *cStr = [str UTF8String];
-//   unsigned char result[16];
-//     CC_MD5( cStr, strlen(cStr), result );
-//    return [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
-//                                             result[0], result[1], result[2], result[3],
-//                                          result[4], result[5], result[6], result[7],
-//                                              result[8], result[9], result[10], result[11],
-//                                           result[12], result[13], result[14], result[15]
-//                   ];
-//    }
+#pragma mark - WXApiDelegate
+- (void)onResp:(BaseResp *)resp {
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
+        SendAuthResp *authResp = (SendAuthResp *)resp;
+        if (authResp.code && [authResp.code length]) {
+             [self getWeiXinOpenID:authResp.code];
+        }
+    }
+}
+
+- (void)getWeiXinOpenID:(NSString*)code
+{
+    NSString *url = [NSString stringWithFormat:@" https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",WeiXinAPPID,WeiXinAppsecret,code];
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:nil
+                                 success:^(NSURLSessionDataTask *operation, id responseObject){
+                                     NSDictionary *dict = (NSDictionary*)responseObject;
+                                     NSLog(@"responseObject = %@",dict);
+//                                     NSString *access_token = [dict objectForKey:@"access_token"];
+//                                     NSString *expires_in = [dict objectForKey:@"expires_in"];
+//                                     NSString *refresh_token = [dict objectForKey:@"refresh_token"];
+//                                     NSString *scope = [dict objectForKey:@"scope"];
+                                     NSNumber *errcode = [dict objectForKey:@"errcode"];
+                                     NSString *openid = [dict objectForKey:@"openid"];
+                                     if(openid && [openid length]){
+                                         [weakSelf thirdPartyLogin:openid];
+                                     }
+                                     
+                                 } failure:^(NSURLSessionDataTask *operation, NSError *error){
+                                     
+                                     NSLog(@"error = %@",error);
+                                 }];
+}
+#pragma mark - alertView delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"buttonIndex = %ld",buttonIndex);
+    if (buttonIndex == 1 && self.thirdType == 1) {//去下载微信
+        NSString *weixinURL = [WXApi getWXAppInstallUrl];
+        if (weixinURL) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:weixinURL]];
+        }
+    }
+}
+
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CoreData+MagicalRecord.h"
+#import "LBB_LoginManager.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [MagicalRecord setupAutoMigratingCoreDataStack];
+    [[LBB_LoginManager shareInstance] weiXinRegisterApp];
     return YES;
 }
 

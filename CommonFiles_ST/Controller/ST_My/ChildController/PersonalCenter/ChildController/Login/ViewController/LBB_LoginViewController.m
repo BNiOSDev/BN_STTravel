@@ -114,13 +114,11 @@
     __weak typeof (self) weakSelf = self;
     
     if ([self.account length] && [self.password length]) {
-        [self showHud:YES];
         LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
         [loginManager login:self.loignType
                     Account:self.account
                    Password:self.password
               CompleteBlock:^(NSString *userToken,BOOL result){
-                  [weakSelf showHud:NO];
                   if (result) {
                       [weakSelf.navigationController popViewControllerAnimated:YES];
                   }else {
@@ -149,9 +147,12 @@
     
 }
 - (IBAction)wechatLoginBtnClickAction:(id)sender {
+    
+    [[LBB_LoginManager shareInstance] loginWithThirdParty:1 ViewController:self];
 }
 
 - (IBAction)QQLoginBtnClickAction:(id)sender {
+    
 }
 
 
@@ -168,15 +169,5 @@
     return nil;
 }
 
-#pragma mark - textfield delegate
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField
-//{
-//    if (self.accountTextField == textField) {
-//        self.account = [self removeWhiteSpaceWithOrignString:self.account];
-//        self.password = [self removeWhiteSpaceWithOrignString:self.password];
-//    }
-//    
-//    return YES;
-//}
 
 @end

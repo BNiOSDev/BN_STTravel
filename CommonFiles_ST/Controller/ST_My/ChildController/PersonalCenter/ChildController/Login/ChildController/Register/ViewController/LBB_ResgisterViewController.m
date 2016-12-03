@@ -144,7 +144,7 @@
     
     if (self.account && self.password && self.comfirmPassword) {
         LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
-        [self showHud:YES];
+ 
         __weak typeof (self) weakSelf = self;
         [loginManager registered:self.loignType
                    UserHeadImage:self.userHeadImage
@@ -154,8 +154,6 @@
                              Sex:self.sex
                          Address:self.address
                    CompleteBlock:^(NSString *userToken,BOOL result){
-                       
-                          [weakSelf showHud:YES];
                        if (result) {
                            [weakSelf.navigationController popViewControllerAnimated:YES];
                        }else {

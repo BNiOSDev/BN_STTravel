@@ -153,7 +153,6 @@ UITextFieldDelegate
             [loginManager changePassword:self.orignPassword
                              NewPassword:self.secondPassword
                            CompleteBlock:^(NSString* message,BOOL result){
-                               [weakSelf showHud:NO];
                                if (result) {
                                    [weakSelf backToLoginView];
                                }else if(message){
@@ -167,13 +166,11 @@ UITextFieldDelegate
             break;
         case eResetPassword: //调回登录页面
         {
-            [self showHud:YES];
             LBB_LoginManager *loginManager = [LBB_LoginManager shareInstance];
             [loginManager findPassword:self.account
                              CheckNum:self.checkNum
                              Password:self.secondPassword
                         CompleteBlock:^(NSString* userToken,BOOL result){
-                            [weakSelf showHud:NO];
                             if (result) {
                                 [weakSelf backToLoginView];
                             }else if(userToken){
