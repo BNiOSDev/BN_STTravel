@@ -60,11 +60,9 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView setLoginBlock:^{
-            UIStoryboard *main = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UINavigationController *navViewController = [main instantiateViewControllerWithIdentifier:@"BN_NavViewController"];
             UIStoryboard *mineStoryBoard = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
             LBB_LoginViewController* vc = [mineStoryBoard instantiateViewControllerWithIdentifier:@"LBB_LoginViewController"];
-            [navViewController pushViewController:vc animated:YES];
+            [self.navigationController pushViewController:vc animated:YES];
             
         }];
     });
