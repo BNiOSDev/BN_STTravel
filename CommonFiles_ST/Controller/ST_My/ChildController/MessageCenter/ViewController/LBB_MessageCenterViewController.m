@@ -57,6 +57,15 @@ UITableViewDataSource
     [self.viewModel getMessage];
    
 }
+- (NSString *)stringFromDate:(NSDate *)date{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    return destDateString;
+}
 
 - (void)initDataSource
 {
@@ -67,11 +76,12 @@ UITableViewDataSource
                           @"Date":self.viewModel.onsaleTime
                            }];
     }
+    NSDate *date = [NSDate date];
     
-//    [array addObject:@{@"InfoType":[NSNumber numberWithInt:eCustomer],
-//                       @"Content":@"点击查看您的最新客服会话记录",
-//                       @"Date":@"07-17"
-//                       }];
+    [array addObject:@{@"InfoType":[NSNumber numberWithInt:eCustomer],
+                       @"Content":@"点击查看您的最新客服会话记录",
+                       @"Date":[self stringFromDate:date]
+                       }];
     
     if ([self.viewModel.buyTitle length]) {
         [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],

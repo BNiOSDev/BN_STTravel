@@ -153,17 +153,21 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
  * 3.5.19 我的-第三方登录（已测）
  *@parames thirdType 1 微信 2 QQ
  */
-- (BOOL)loginWithThirdParty:(int)thirdType ViewController:(UIViewController*)vc;
+- (BOOL)loginWithThirdParty:(int)thirdType
+             ViewController:(UIViewController*)vc
+              CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 {
     self.thirdType = thirdType;
     BOOL isSuccess = NO;
     
-//    if (![WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未安装微信app,或者版本不支持" message:@"是否马上去下载更新微信?" delegate:self cancelButtonTitle:@"不了" otherButtonTitles:@"去下载", nil];
-//        [alertView show];
-//        return isSuccess;
-//    }
- 
+    if (![WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未安装微信app,或者版本不支持" message:@"是否马上去下载更新微信?" delegate:self cancelButtonTitle:@"不了" otherButtonTitles:@"去下载", nil];
+        [alertView show];
+        return isSuccess;
+    }
+    
+    self.loginCompleteBlock = completeBlock;
+    
     if(self.thirdType == 1){
         SendAuthReq* req = [[SendAuthReq alloc] init];
         req.scope = kAuthScope;
@@ -175,15 +179,20 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     return isSuccess;
 }
 
-- (void)thirdPartyLogin:(NSString*)openID
+- (void)thirdPartyLogin:(NSString*)openID username:(NSString*)username userPicUrl:(NSString*)userPicUrl
 {
     NSString *deviceID  =  [self uuid];
-    NSDictionary *paraDic = @{
-                              @"thirdType":@(self.thirdType),
-                              @"openId":openID,
-                              @"deviceSystemType":@(2),
-                              @"deviceId":deviceID
-                              };
+    NSMutableDictionary *paraDic = [NSMutableDictionary dictionaryWithCapacity:0];
+    [paraDic setObject:@(self.thirdType) forKey:@"thirdType"];
+    [paraDic setObject:openID forKey:@"openId"];
+    [paraDic setObject:@(2) forKey:@"deviceSystemType"];
+    [paraDic setObject:deviceID forKey:@"deviceId"];
+    if ([userPicUrl length]) {
+        [paraDic setObject:userPicUrl forKey:@"userPicUrl"];
+    }
+    if ([username length]) {
+        [paraDic setObject:username forKey:@"username"];
+    }
     
     NSString *url = [NSString stringWithFormat:@"%@/mime/third/login",BASEURL];
     __weak typeof(self) weakSelf = self;
@@ -193,19 +202,30 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                      NSDictionary *dict = (NSDictionary*)responseObject;
                                      NSLog(@"responseObject = %@",dict);
                                      int code = [[dict objectForKey:@"code"] intValue];
+                                     NSString *remark = [dict objectForKey:@"remark"];
                                      if (code == 0) {
                                          NSDictionary *result = [dict objectForKey:@"result"];
                                          if (result && [result isKindOfClass:[NSDictionary class]]) {
                                              weakSelf.userToken = [result objectForKey:@"token"];
                                          }
                                          [BC_ToolRequest sharedManager].token = weakSelf.userToken;
+                                         if (weakSelf.loginCompleteBlock) {
+                                             weakSelf.loginCompleteBlock(weakSelf.userToken,YES);
+                                             weakSelf.loginCompleteBlock = nil;
+                                         }
                                      }else{
-                                        
+                                         if (weakSelf.loginCompleteBlock) {
+                                             weakSelf.loginCompleteBlock(weakSelf.userToken,NO);
+                                             weakSelf.loginCompleteBlock = nil;
+                                         }
                                      }
                                      
                                  } failure:^(NSURLSessionDataTask *operation, NSError *error){
                                       NSLog(@"error = %@",error);
-                                     
+                                     if (weakSelf.loginCompleteBlock) {
+                                         weakSelf.loginCompleteBlock(weakSelf.userToken,NO);
+                                         weakSelf.loginCompleteBlock = nil;
+                                     }
                                  }];
 }
 
@@ -526,14 +546,15 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                  success:^(NSURLSessionDataTask *operation, id responseObject){
                                      NSDictionary *dict = (NSDictionary*)responseObject;
                                      NSLog(@"responseObject = %@",dict);
+                                     
+//                                     NSString *expires_in = [dict objectForKey:@"expires_in"];
+//                                     NSString *refresh_token = [dict objectForKey:@"refresh_token"];
+//                                     NSString *scope = [dict objectForKey:@"scope"];
+//                                     NSNumber *errcode = [dict objectForKey:@"errcode"];
                                      NSString *access_token = [dict objectForKey:@"access_token"];
-                                     NSString *expires_in = [dict objectForKey:@"expires_in"];
-                                     NSString *refresh_token = [dict objectForKey:@"refresh_token"];
-                                     NSString *scope = [dict objectForKey:@"scope"];
-                                     NSNumber *errcode = [dict objectForKey:@"errcode"];
                                      NSString *openid = [dict objectForKey:@"openid"];
-                                     if(openid && [openid length]){
-                                         [weakSelf thirdPartyLogin:openid];
+                                     if([openid length] && [access_token length] ){
+                                         [weakSelf getWeiXinUserInfo:access_token OpenID:openid];
                                      }
                                      
                                  } failure:^(NSURLSessionDataTask *operation, NSError *error){
@@ -541,6 +562,30 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                      NSLog(@"error = %@",error);
                                  }];
 }
+
+- (void)getWeiXinUserInfo:(NSString*)accessToken OpenID:(NSString*)openID
+{
+    NSString *url = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openID];
+    __weak typeof(self) weakSelf = self;
+    [[BC_ToolRequest sharedManager] GET:url parameters:nil
+                                success:^(NSURLSessionDataTask *operation, id responseObject){
+                                    NSDictionary *dict = (NSDictionary*)responseObject;
+                                    NSLog(@"responseObject = %@",dict);
+                                    NSNumber *errcode = [dict objectForKey:@"errcode"];
+                                    NSString *openid = [dict objectForKey:@"openid"];
+                                    NSString *nickName = [dict objectForKey:@"nickname"];
+                                    NSString *headimgurl = [dict objectForKey:@"headimgurl"];
+                                    
+                                    if(openid && [openid length]){
+                                        [weakSelf thirdPartyLogin:openid username:nickName userPicUrl:headimgurl];
+                                    }
+                                    
+                                } failure:^(NSURLSessionDataTask *operation, NSError *error){
+                                    
+                                    NSLog(@"error = %@",error);
+                                }];
+}
+
 #pragma mark - alertView delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

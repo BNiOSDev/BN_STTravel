@@ -148,7 +148,14 @@
 }
 - (IBAction)wechatLoginBtnClickAction:(id)sender {
     
-    [[LBB_LoginManager shareInstance] loginWithThirdParty:1 ViewController:self];
+    __weak typeof (self) weakSelf = self;
+    [[LBB_LoginManager shareInstance] loginWithThirdParty:1 ViewController:self CompleteBlock:^(NSString *userToken,BOOL result){
+        if (result) {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }else {
+            [weakSelf showHudPrompt:userToken];
+        }
+    }];
 }
 
 - (IBAction)QQLoginBtnClickAction:(id)sender {

@@ -65,7 +65,9 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 /*
  * 3.5.19 我的-第三方登录（已测）
  */
-- (BOOL)loginWithThirdParty:(int)thirdType ViewController:(UIViewController*)vc;
+- (BOOL)loginWithThirdParty:(int)thirdType
+             ViewController:(UIViewController*)vc
+              CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock;
 
 //注册微信app
 - (void)weiXinRegisterApp;
