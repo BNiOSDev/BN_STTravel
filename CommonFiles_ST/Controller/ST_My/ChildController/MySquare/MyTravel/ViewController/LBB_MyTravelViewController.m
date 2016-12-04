@@ -66,7 +66,7 @@
     _mTableView.backgroundColor = [UIColor whiteColor];
     
     [self.mTableView registerClass:[LBB_MyTravelTableViewCell class] forCellReuseIdentifier:MyTravelNormal];
-     [self.view  addSubview:_mTableView];
+    [self.view  addSubview:_mTableView];
 }
 
 - (void)initDataSource
@@ -130,9 +130,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
+    if(self.squareType == MySquareViewFravorite)
+    {
+         return AUTO(190);
+    }
     return AUTO(215);
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1f;
+}
 #pragma mark 处理点击cell上面的按钮
 - (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject
 {

@@ -8,7 +8,6 @@
 
 #import "LBB_LoginManager.h"
 #import <CommonCrypto/CommonDigest.h>
-#import <WXApi.h>
 
 #define WeiXinAPPID         @"wx94b0ac5b1ba8e1c3"
 #define WeiXinAppsecret     @"1ef86c4ca4dcbe00b93064c4186bda4b"
@@ -21,7 +20,7 @@ static NSString *kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_friend,sns
 @end
 
 
-@interface LBB_LoginManager()<WXApiDelegate>
+@interface LBB_LoginManager()
 
 @property(nonatomic,copy) NSString *account;
 @property(nonatomic,copy) NSString *password;
@@ -159,11 +158,11 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     self.thirdType = thirdType;
     BOOL isSuccess = NO;
     
-    if (![WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未安装微信app,或者版本不支持" message:@"是否马上去下载更新微信?" delegate:self cancelButtonTitle:@"不了" otherButtonTitles:@"去下载", nil];
-        [alertView show];
-        return isSuccess;
-    }
+//    if (![WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未安装微信app,或者版本不支持" message:@"是否马上去下载更新微信?" delegate:self cancelButtonTitle:@"不了" otherButtonTitles:@"去下载", nil];
+//        [alertView show];
+//        return isSuccess;
+//    }
  
     if(self.thirdType == 1){
         SendAuthReq* req = [[SendAuthReq alloc] init];
@@ -212,7 +211,9 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 
 - (void)weiXinRegisterApp
 {
-  [WXApi registerApp:WeiXinAPPID];
+    [WXApi registerApp:@"wx94b0ac5b1ba8e1c3" withDescription:@"demo 2.0"];
+    
+//  [WXApi registerApp:WeiXinAPPID];
 }
 /*
  * 3.5.20 我的-注册（已测）
@@ -513,19 +514,22 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
         }
     }
 }
-
+-(void) onReq:(BaseReq*)req
+{
+    NSLog(@"adfa");
+}
 - (void)getWeiXinOpenID:(NSString*)code
 {
-    NSString *url = [NSString stringWithFormat:@" https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",WeiXinAPPID,WeiXinAppsecret,code];
+    NSString *url = [NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",WeiXinAPPID,WeiXinAppsecret,code];
     __weak typeof(self) weakSelf = self;
-    [[BC_ToolRequest sharedManager] POST:url parameters:nil
+    [[BC_ToolRequest sharedManager] GET:url parameters:nil
                                  success:^(NSURLSessionDataTask *operation, id responseObject){
                                      NSDictionary *dict = (NSDictionary*)responseObject;
                                      NSLog(@"responseObject = %@",dict);
-//                                     NSString *access_token = [dict objectForKey:@"access_token"];
-//                                     NSString *expires_in = [dict objectForKey:@"expires_in"];
-//                                     NSString *refresh_token = [dict objectForKey:@"refresh_token"];
-//                                     NSString *scope = [dict objectForKey:@"scope"];
+                                     NSString *access_token = [dict objectForKey:@"access_token"];
+                                     NSString *expires_in = [dict objectForKey:@"expires_in"];
+                                     NSString *refresh_token = [dict objectForKey:@"refresh_token"];
+                                     NSString *scope = [dict objectForKey:@"scope"];
                                      NSNumber *errcode = [dict objectForKey:@"errcode"];
                                      NSString *openid = [dict objectForKey:@"openid"];
                                      if(openid && [openid length]){

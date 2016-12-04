@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <WXApi.h>
 
 @interface LoginUserInfo : NSObject
 
@@ -26,7 +27,7 @@ typedef NS_ENUM(NSInteger,LoginType)
     eLoginWeChat//微信登录
 };
 
-@interface LBB_LoginManager : NSObject
+@interface LBB_LoginManager : NSObject<WXApiDelegate>
 
 //登录完成回调 返回是否成功和失败信息
 @property (nonatomic,copy) LoginBlock loginCompleteBlock;
