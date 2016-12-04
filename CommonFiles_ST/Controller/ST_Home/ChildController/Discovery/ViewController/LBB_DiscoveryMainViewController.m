@@ -330,8 +330,8 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
         
         make.centerY.equalTo(v);
         make.height.mas_equalTo(20);
-        make.left.equalTo(v).mas_offset(2*margin);
-        make.width.mas_offset(SeparateLineWidth);
+        make.left.equalTo(v).mas_offset(margin);
+        make.width.mas_offset(SeparateLineWidth*2);
     }];
     
     UILabel* l = [UILabel new];
@@ -341,7 +341,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     [v addSubview:l];
     [l mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerY.equalTo(v);
-        make.left.equalTo(sep.mas_right).offset(2);
+        make.left.equalTo(sep.mas_right).offset(4);
     }];
     
     NSArray* segmentArray = @[@""];

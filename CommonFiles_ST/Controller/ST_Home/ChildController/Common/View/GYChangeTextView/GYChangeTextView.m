@@ -59,6 +59,7 @@ typedef NS_ENUM(NSUInteger, GYTitlePosition) {
 - (void)animationWithTexts:(NSArray *)textAry {
     self.contentsAry = textAry;
     self.textLabel.text = [textAry objectAtIndex:0];
+    [self.textLabel setFont:Font12];
     [self startAnimation];
 }
 

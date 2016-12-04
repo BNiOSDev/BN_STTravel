@@ -73,7 +73,7 @@
         CGFloat btnWidth = AutoSize(108/2);
         self.styleButton = [UIButton new];
         [self.styleButton setTitle:@"浪漫风暴" forState:UIControlStateNormal];
-        [self.styleButton setTitleColor:ColorGray forState:UIControlStateNormal];
+        [self.styleButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
         self.styleButton.layer.cornerRadius = btnHeight/2;
         self.styleButton.layer.borderWidth = 1;
         self.styleButton.layer.borderColor = ColorLine.CGColor;

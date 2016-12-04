@@ -81,11 +81,11 @@
         UILabel* note = [UILabel new];
         [note setText:@"请确认定位是否准确"];
         [note setTextColor:ColorLightGray];
-        [note setFont:Font10];
+        [note setFont:Font12];
         [bg addSubview:note];
         [note mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(bg);
-            make.top.equalTo(ws.signinButton.mas_bottom).offset(10);
+            make.top.equalTo(ws.signinButton.mas_bottom).offset(15);
             make.bottom.equalTo(bg).offset(-30);
         }];
         self.noteLabel = note;

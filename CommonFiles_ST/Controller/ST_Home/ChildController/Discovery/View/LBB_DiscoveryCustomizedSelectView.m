@@ -42,6 +42,8 @@
         self.bgCtrlView.layer.borderWidth = 1;
         self.bgCtrlView.layer.masksToBounds = YES;
         [self.bgCtrlView setPlaceholder:@"请选择"];
+        [self.bgCtrlView setValue:Font14 forKeyPath:@"_placeholderLabel.font"];
+
         [self.bgCtrlView setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:self.bgCtrlView];
         [self.bgCtrlView mas_makeConstraints:^(MASConstraintMaker* make){

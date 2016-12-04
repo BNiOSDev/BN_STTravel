@@ -41,7 +41,7 @@
             [btn setTag:i];
             [btn.titleLabel setText:[titleArray objectAtIndex:i]];
             [btn.titleLabel setTextColor:[UIColor blackColor]];
-            [btn.titleLabel setFont:Font14];
+            [btn.titleLabel setFont:Font12];
             [btn.imageView setImage:IMAGE([iconArray objectAtIndex:i])];
             [sub addSubview:btn];
             [btn mas_makeConstraints:^(MASConstraintMaker* make){

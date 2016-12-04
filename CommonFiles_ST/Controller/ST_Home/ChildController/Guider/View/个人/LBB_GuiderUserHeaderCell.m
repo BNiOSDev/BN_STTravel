@@ -42,6 +42,7 @@
         [self.favoriteButton setImage:IMAGE(@"导游_关注") forState:UIControlStateNormal];
         [self.favoriteButton setTitle:@"关注" forState:UIControlStateNormal];
         [self.favoriteButton.titleLabel setFont:Font10];
+        [self.favoriteButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [self.favoriteButton setTitleColor:ColorWhite forState:UIControlStateNormal];
         [self.contentView addSubview:self.favoriteButton];
         [self.favoriteButton mas_makeConstraints:^(MASConstraintMaker* make){
@@ -58,6 +59,7 @@
         [self.privateLetterButton setImage:IMAGE(@"导游_私信") forState:UIControlStateNormal];
         [self.privateLetterButton setTitle:@"私信" forState:UIControlStateNormal];
         [self.privateLetterButton.titleLabel setFont:Font10];
+        [self.privateLetterButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [self.privateLetterButton setTitleColor:ColorWhite forState:UIControlStateNormal];
         [self.contentView addSubview:self.privateLetterButton];
         [self.privateLetterButton mas_makeConstraints:^(MASConstraintMaker* make){

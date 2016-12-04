@@ -83,9 +83,9 @@
     WS(ws);
     LBBPoohVerticalButton *back = [[LBBPoohVerticalButton alloc] init];
 
-    back.titleLabel.font = Font13;
+    back.titleLabel.font = Font10;
     back.titleLabel.text = @"附近";
-    back.frame = CGRectMake(0, 0, 45, 45);
+    back.frame = CGRectMake(0, 0, 45, 35);
     [back.imageView setImage:IMAGE(@"ST_Home_Nearby")];
     [back bk_whenTapped:^{
         
@@ -97,9 +97,9 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
     LBBPoohVerticalButton *sign = [[LBBPoohVerticalButton alloc] init];
-    sign.titleLabel.font = Font13;
+    sign.titleLabel.font = Font10;
     sign.titleLabel.text = @"签到";
-    sign.frame = CGRectMake(0, 0, 45, 45);
+    sign.frame = CGRectMake(0, 0, 45, 35);
     [sign.imageView setImage:IMAGE(@"ST_Home_Signin")];
     [sign bk_whenTapped:^{
         
@@ -121,16 +121,24 @@
     
     bar.layer.borderColor = [UIColor blackColor].CGColor;
     bar.layer.borderWidth = 0.8;
-    bar.layer.cornerRadius = height/2;
+    bar.layer.cornerRadius = 26/2;
     bar.layer.masksToBounds = YES;
     [bar setBackgroundImage:[UIImage new]];
     bar.delegate = self;
     bar.placeholder = @"请输入 景点 美食 民宿";
     [bar setContentMode:UIViewContentModeLeft];
+    
+    //一下代码为修改placeholder字体的颜色和大小
+    UITextField * searchField = [bar valueForKey:@"_searchField"];
+  //  [searchField setValue:[UIColor redColor] forKeyPath:@"_placeholderLabel.textColor"];
+    [searchField setValue:Font12 forKeyPath:@"_placeholderLabel.font"];
+
+    
     self.searchBar = bar;
     [titleView addSubview:bar];
     [bar mas_makeConstraints:^(MASConstraintMaker* make){
-        make.center.width.height.equalTo(titleView);
+        make.center.width.equalTo(titleView);
+        make.height.mas_equalTo(26);
     }];
     
     [self.navigationItem.titleView sizeToFit];

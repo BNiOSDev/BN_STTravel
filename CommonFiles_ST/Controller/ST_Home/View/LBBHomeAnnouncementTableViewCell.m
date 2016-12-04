@@ -70,7 +70,7 @@
         title = [UILabel new];
         [title setText:@"鹭爸公告"];
         [title setTextColor:[UIColor blackColor]];
-        [title setFont:Font15];
+        [title setFont:[UIFont boldSystemFontOfSize:15]];
         [self.contentView addSubview:title];
         [title mas_makeConstraints:^(MASConstraintMaker* make){
             

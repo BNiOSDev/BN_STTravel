@@ -409,6 +409,14 @@
     else{
         cell.item2.hidden = YES;
     }
+    
+    NSInteger row = ceil(self.viewModel.ugcArray.count / 2.0);
+    if (indexPath.row == row) {
+        cell.sep.hidden = NO;
+    }
+    else{
+        cell.sep.hidden = YES;
+    }
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForSquareCenterSectionRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -38,9 +38,9 @@
         UIView* sub = [UIView new];
         [self addSubview:sub];
         [sub mas_makeConstraints:^(MASConstraintMaker* make){
-            make.top.equalTo(ws.bgImageView.mas_bottom).offset(8);
+            make.top.equalTo(ws.bgImageView.mas_bottom).offset(5);
             make.bottom.left.right.equalTo(ws);
-            make.height.equalTo(@35);
+            make.height.mas_equalTo(AutoSize(36/2));
 
         }];
         
@@ -50,9 +50,9 @@
         [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.left.top.bottom.equalTo(sub);
-            make.width.equalTo(@35);
+            make.width.height.mas_equalTo(AutoSize(36/2));
         }];
-        self.portraitImageView.layer.cornerRadius = 35/2;
+        self.portraitImageView.layer.cornerRadius = AutoSize(36/2)/2;
         self.portraitImageView.layer.masksToBounds = YES;
         
         self.userLable = [UILabel new];
@@ -60,17 +60,13 @@
         [self.userLable setFont:Font12];
         [self.userLable setTextColor:ColorLightGray];
         [sub addSubview:self.userLable];
-        [self.userLable mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.equalTo(ws.portraitImageView.mas_right).offset(5);
-            make.centerY.equalTo(ws.portraitImageView);
-        }];
 
         self.commentsView = [[UIButton alloc]init];
         [self.commentsView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
         [self.commentsView setTitle:@"32" forState:UIControlStateNormal];
         [self.commentsView.titleLabel setFont:Font12];
-        [self.commentsView setTitleColor:ColorGray forState:UIControlStateNormal];
-        [self.commentsView setTitleEdgeInsets:UIEdgeInsetsMake(0, 1, 0, -1)];
+        [self.commentsView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.commentsView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [sub addSubview:self.commentsView];
         [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -82,8 +78,8 @@
         [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
         [self.greetView setTitle:@"32" forState:UIControlStateNormal];
         [self.greetView.titleLabel setFont:Font12];
-        [self.greetView setTitleColor:ColorGray forState:UIControlStateNormal];
-        [self.greetView setTitleEdgeInsets:UIEdgeInsetsMake(0, 1, 0, -1)];
+        [self.greetView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.greetView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [sub addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -91,6 +87,13 @@
             make.centerY.height.equalTo(ws.commentsView);
         }];
 
+        [self.userLable mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.portraitImageView.mas_right).offset(5);
+            make.centerY.equalTo(ws.portraitImageView);
+           // make.right.equalTo(ws.greetView.mas_left).offset(-3).priorityLow();
+            make.width.lessThanOrEqualTo(@(AutoSize(70)));
+        }];
+        //[self.userLable setPreferredMaxLayoutWidth:AutoSize(40)];
         
         self.videoButton = [UIButton new];
         [self.videoButton setBackgroundImage:IMAGE(@"景点详情_播放") forState:UIControlStateNormal];
@@ -153,7 +156,7 @@
         [self.sep mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.bottom.equalTo(ws.contentView);
             make.height.mas_equalTo(SeparateLineWidth);
-            make.top.equalTo(ws.item1.mas_bottom).offset(2*interval);
+            make.top.equalTo(ws.item1.mas_bottom).offset(interval);
         }];
         
         [self.item1 bk_whenTapped:^{

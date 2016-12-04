@@ -41,7 +41,7 @@
 -(void)initViewModel{
 
     
-    int distance = 1500;
+    int distance = 13500;
     self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
 
     self.viewModel = [[LBB_NearViewModel alloc]init];
@@ -225,9 +225,9 @@
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
     segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
-    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+    segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font14,
                                              NSForegroundColorAttributeName:ColorLightGray};
-    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font15,
+    segmentedControl.selectedTitleTextAttributes = @{NSFontAttributeName:Font14,
                                                      NSForegroundColorAttributeName:ColorBtnYellow};
     segmentedControl.selectionIndicatorColor = [UIColor clearColor];
     segmentedControl.verticalDividerWidth = SeparateLineWidth;
@@ -254,13 +254,13 @@
     NSInteger row = 0;
     switch (self.selectType) {
         case LBBPoohSegmCtrlScenicType://景点
-            row = self.viewModel.spotArray.count;
+            row = self.viewModel.spotArray.count + 1;
             break;
         case LBBPoohSegmCtrlFoodsType://美食
-            row = self.viewModel.foodsArray.count;
+            row = self.viewModel.foodsArray.count + 1;
             break;
         case LBBPoohSegmCtrlHostelType://民宿
-            row = self.viewModel.hostelArray.count;
+            row = self.viewModel.hostelArray.count + 1;
             break;
     }
     
@@ -281,13 +281,13 @@
             LBB_SpotModel* obj;
             switch (self.selectType) {
                 case LBBPoohSegmCtrlScenicType://景点
-                    obj = self.viewModel.spotArray[indexPath.row];
+                    obj = self.viewModel.spotArray[indexPath.row - 1];
                     break;
                 case LBBPoohSegmCtrlFoodsType://美食
-                    obj = self.viewModel.foodsArray[indexPath.row];
+                    obj = self.viewModel.foodsArray[indexPath.row - 1];
                     break;
                 case LBBPoohSegmCtrlHostelType://民宿
-                    obj = self.viewModel.hostelArray[indexPath.row];
+                    obj = self.viewModel.hostelArray[indexPath.row - 1];
                     break;
             }
             
@@ -324,13 +324,13 @@
         LBB_SpotModel* obj;
         switch (self.selectType) {
             case LBBPoohSegmCtrlScenicType://景点
-                obj = self.viewModel.spotArray[indexPath.row];
+                obj = self.viewModel.spotArray[indexPath.row - 1];
                 break;
             case LBBPoohSegmCtrlFoodsType://美食
-                obj = self.viewModel.foodsArray[indexPath.row];
+                obj = self.viewModel.foodsArray[indexPath.row - 1];
                 break;
             case LBBPoohSegmCtrlHostelType://民宿
-                obj = self.viewModel.hostelArray[indexPath.row];
+                obj = self.viewModel.hostelArray[indexPath.row - 1];
                 break;
         }
         

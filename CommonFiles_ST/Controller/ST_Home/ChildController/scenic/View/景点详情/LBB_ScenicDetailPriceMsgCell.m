@@ -120,7 +120,7 @@
         [v addSubview: self.commentsView];
         [self.commentsView mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.greatView.mas_right).offset(margin);
+            make.left.equalTo(ws.greatView.mas_right).offset(margin+4);
             make.centerY.height.equalTo(ws.greatView);
         }];
         
@@ -141,7 +141,7 @@
         [v addSubview: self.favoriteView];
         [self.favoriteView mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.commentsView.mas_right).offset(margin);
+            make.left.equalTo(ws.commentsView.mas_right).offset(margin+4);
             make.centerY.height.equalTo(ws.greatView);
             make.right.equalTo(v);
         }];

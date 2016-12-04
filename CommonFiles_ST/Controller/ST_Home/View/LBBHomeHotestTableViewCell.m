@@ -36,14 +36,14 @@
     
         HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
         segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
-        segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
+        segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font12,
                                                  NSForegroundColorAttributeName:ColorLightGray};
         segmentedControl.selectionIndicatorColor = ColorLightGray;
         segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
         [self.contentView addSubview:segmentedControl];
         [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.centerX.equalTo(ws.contentView);
-            make.height.mas_equalTo(TopSegmmentControlHeight);
+            make.height.mas_equalTo(25);
             make.width.mas_equalTo(AutoSize(300/2));
         }];
 
@@ -55,7 +55,7 @@
         horizontalCellLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         horizontalCellLayout.minimumInteritemSpacing = 6;
         horizontalCellLayout.minimumLineSpacing = 6;
-        horizontalCellLayout.itemSize = CGSizeMake(AutoSize(250/2), AutoSize(250/2));
+        horizontalCellLayout.itemSize = CGSizeMake(AutoSize(250/2), AutoSize(260/2));
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:horizontalCellLayout];
 
@@ -152,7 +152,25 @@
     [cell.titleLabel setText:obj.allSpotsName];//场景名称
     [cell.disView setTitle:[NSString stringWithFormat:@"%d",obj.commentsNum] forState:UIControlStateNormal];//评论条数
     [cell.greetView setTitle:[NSString stringWithFormat:@"%d",obj.likeNum] forState:UIControlStateNormal];//点赞次数
-    [cell.priceLabel setText:[NSString stringWithFormat:@"%@元起/人",obj.price]];//价格
+   // [cell.priceLabel setText:[NSString stringWithFormat:@"%@元起/人",obj.price]];//价格
+    
+    //单价设置
+    NSString* strFormat1 = [NSString stringWithFormat:@"%@元起/人",obj.price];
+    NSString* strFormat2 = @"元";
+    UIColor* fontColor = ColorBtnYellow;
+    NSDictionary* attrsDic = @{NSForegroundColorAttributeName:fontColor,
+                               NSFontAttributeName:Font12};    //显示的字符串进行富文本转换
+    NSMutableAttributedString* strAttr = [[NSMutableAttributedString alloc]initWithString:strFormat1];
+    //字体设置
+    NSRange rang = [strFormat1 rangeOfString:strFormat2];
+    if (rang.location != NSNotFound) {
+        NSLog(@"found at location = %d, length = %d",rang.location,rang.length);
+        [strAttr addAttributes:attrsDic range:NSMakeRange(0, rang.location)];
+    }else{
+        NSLog(@"Not Found");
+    }
+    cell.priceLabel.attributedText = strAttr;
+    
     
    // @weakify (self);
     [RACObserve(self.curObj, isCollected) subscribeNext:^(NSNumber* isCollected) {
@@ -280,7 +298,7 @@
         self.pagerView.hidden = NO;
         
         [self.pagerView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(TopSegmmentControlHeight);
+            make.height.mas_equalTo(AutoSize(20));
             make.width.mas_equalTo(AutoSize(300/2));
             make.top.centerX.equalTo(ws.contentView);
         }];

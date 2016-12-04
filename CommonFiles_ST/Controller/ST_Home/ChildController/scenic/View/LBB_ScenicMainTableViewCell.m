@@ -67,6 +67,7 @@
 
             make.left.equalTo(ws.titleLabel);
             make.top.equalTo(ws.titleLabel.mas_bottom).offset(margin);
+            make.width.lessThanOrEqualTo(@(120));
         }];
         
         UIView* sep = [UIView new];
@@ -144,6 +145,7 @@
         [self.greatButton setTitle:@"190" forState:UIControlStateNormal];
         [self.greatButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
         [self.greatButton.titleLabel setFont:Font12];
+        [self.greatButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [self.contentView addSubview:self.greatButton];
         [self.greatButton mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -163,10 +165,11 @@
         [self.commentsButton setTitle:@"190" forState:UIControlStateNormal];
         [self.commentsButton setTitleColor:ColorLightGray forState:UIControlStateNormal];
         [self.commentsButton.titleLabel setFont:Font12];
+        [self.commentsButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [self.contentView addSubview: self.commentsButton];
         [ self.commentsButton mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.greatButton.mas_right).offset(margin/2);
+            make.left.equalTo(ws.greatButton.mas_right).offset(margin);
             make.centerY.height.equalTo(ws.greatButton);
         }];
         

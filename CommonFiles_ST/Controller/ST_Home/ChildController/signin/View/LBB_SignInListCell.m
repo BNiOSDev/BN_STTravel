@@ -58,16 +58,11 @@
         }];
         
         self.subTitleLabel = [UILabel new];
-        [self.subTitleLabel setFont:Font13];
+        [self.subTitleLabel setFont:Font12];
         [self.subTitleLabel setTextColor:ColorLightGray];
         [self.subTitleLabel setText:@"船票25/人"];
         [self.contentView addSubview:self.subTitleLabel];
-        [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker* make){
-            
-            make.left.equalTo(ws.portraitImageView.mas_right).offset(interval);
-            make.top.equalTo(ws.portraitImageView.mas_centerY).offset(5);
-            make.right.equalTo(ws.contentView).offset(-interval);
-        }];
+
         
         
         self.signinButton = [UIButton new];
@@ -109,11 +104,18 @@
         [self.contentView addSubview:self.arrowImageView];
         [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.contentView);
-            make.right.equalTo(ws.contentView).offset(-8);
+            make.right.equalTo(ws.contentView).offset(-12);
             make.width.mas_equalTo(10);
             make.height.equalTo(@15);
         }];
 
+        [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker* make){
+            
+            make.left.equalTo(ws.portraitImageView.mas_right).offset(interval);
+            make.top.equalTo(ws.portraitImageView.mas_centerY).offset(5);
+            make.right.equalTo(ws.arrowImageView).offset(-interval);
+        }];
+        
         self.sep = [UIView new];
         [self.sep setBackgroundColor:ColorLine];
         [self.contentView addSubview:self.sep];

@@ -52,7 +52,7 @@
         }];
         
         self.textField = [UITextField new];
-        [self.textField setFont:Font13];
+        [self.textField setFont:Font12];
         [self addSubview:self.textField];
         [self.textField mas_makeConstraints:^(MASConstraintMaker* make){
             
