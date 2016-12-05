@@ -97,6 +97,80 @@
     _tags = array;
 }
 
+
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.travelNotesId),
+                              @"allSpotsType":@(7),
+                              };
+    NSLog(@"collecte paraDic:%@",paraDic);
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            temp.isCollected = [[result objectForKey:@"collecteState"] boolValue];
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.travelNotesId),
+                              @"allSpotsType":@(7),
+                              };
+    NSLog(@"like paraDic:%@",paraDic);
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/like",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            temp.isLiked = [[result objectForKey:@"likedState"] boolValue];
+            //   temp.isLiked = YES;
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
 @end
 
 @implementation BN_HomeSpotsList
@@ -112,7 +186,8 @@
                               @"allSpotsId":@(self.allSpotsId),
                               @"allSpotsType":@(self.allSpotsType),
                               };
-    
+    NSLog(@"collecte paraDic:%@",paraDic);
+
     NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
     __weak typeof(self) temp = self;
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
@@ -120,7 +195,8 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            temp.isCollected = YES;
+            id result = [dic objectForKey:@"result"];
+            temp.isCollected = [[result objectForKey:@"collecteState"] boolValue];
             block(nil);
         }
         else
@@ -146,7 +222,7 @@
                               @"allSpotsId":@(self.allSpotsId),
                               @"allSpotsType":@(self.allSpotsType),
                               };
-    
+    NSLog(@"like paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/like",BASEURL];
     __weak typeof(self) temp = self;
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
@@ -154,7 +230,9 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            temp.isLiked = YES;
+            id result = [dic objectForKey:@"result"];
+            temp.isLiked = [[result objectForKey:@"likedState"] boolValue];
+         //   temp.isLiked = YES;
             block(nil);
         }
         else
@@ -268,7 +346,7 @@
     __weak typeof(self) temp = self;
     self.spotAdvertisementArray.loadSupport.loadEvent = NetLoadingEvent;
     
-    [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)

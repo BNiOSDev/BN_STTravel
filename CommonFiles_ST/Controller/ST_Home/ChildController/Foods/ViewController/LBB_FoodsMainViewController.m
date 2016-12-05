@@ -48,6 +48,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //菜单选项的选择项
+    self.areaSelectIndex = -1;//区域
+    self.distanceSelectIndex = -1;//距离
+    
+    self.typeSelectIndex = -1;//类别
+    self.orderSelectIndex = -1;//排序
+    self.hotRecommendSelectIndex = -1;//热门推荐
+    self.tagsSelectIndex = -1;//标签
+    self.priceSelectIndex = -1;//价格
 }
 
 - (void)didReceiveMemoryWarning {
@@ -150,38 +159,52 @@
     int distanceKey = -1;//距离
     
     if (self.viewModel.foodsCondition.type.count > 0) {
-        LBB_FoodsConditionOption* typeObj = [self.viewModel.foodsCondition.type objectAtIndex:self.typeSelectIndex];
-        typeKey = typeObj.key;
+        if (self.typeSelectIndex >= 0) {
+            LBB_FoodsConditionOption* typeObj = [self.viewModel.foodsCondition.type objectAtIndex:self.typeSelectIndex];
+            typeKey = typeObj.key;
+        }
     }
     
     if (self.viewModel.foodsCondition.order.count > 0) {
-        LBB_FoodsConditionOption* orderObj = [self.viewModel.foodsCondition.order objectAtIndex:self.orderSelectIndex];
-        orderKey = orderObj.key;
+        if (self.orderSelectIndex >= 0) {
+            LBB_FoodsConditionOption* orderObj = [self.viewModel.foodsCondition.order objectAtIndex:self.orderSelectIndex];
+            orderKey = orderObj.key;
+        }
     }
     
     if (self.viewModel.foodsCondition.hotRecommend.count > 0) {
-        LBB_FoodsConditionOption* hotRecommendObj = [self.viewModel.foodsCondition.hotRecommend objectAtIndex:self.hotRecommendSelectIndex];
-        hotRecommendKey = hotRecommendObj.key;
+        if (self.hotRecommendSelectIndex >= 0) {
+            LBB_FoodsConditionOption* hotRecommendObj = [self.viewModel.foodsCondition.hotRecommend objectAtIndex:self.hotRecommendSelectIndex];
+            hotRecommendKey = hotRecommendObj.key;
+        }
     }
     
     if (self.viewModel.foodsCondition.tags.count > 0) {
-        LBB_FoodsConditionOption* tagsObj = [self.viewModel.foodsCondition.tags objectAtIndex:self.tagsSelectIndex];
-        tagsKey = tagsObj.key;
+        if (self.tagsSelectIndex >= 0) {
+            LBB_FoodsConditionOption* tagsObj = [self.viewModel.foodsCondition.tags objectAtIndex:self.tagsSelectIndex];
+            tagsKey = tagsObj.key;
+        }
     }
     
     if (self.viewModel.foodsCondition.price.count > 0) {
-        LBB_FoodsConditionOption* priceObj = [self.viewModel.foodsCondition.price objectAtIndex:self.priceSelectIndex];
-        priceKey = priceObj.key;
+        if (self.priceSelectIndex >= 0) {
+            LBB_FoodsConditionOption* priceObj = [self.viewModel.foodsCondition.price objectAtIndex:self.priceSelectIndex];
+            priceKey = priceObj.key;
+        }
     }
     
     if (self.viewModel.foodsCondition.tradingArea.count > 0) {
-        LBB_FoodsConditionOption* areaObj = [self.viewModel.foodsCondition.tradingArea objectAtIndex:self.typeSelectIndex];
-        areaKey = areaObj.key;
+        if (self.areaSelectIndex >= 0) {
+            LBB_FoodsConditionOption* areaObj = [self.viewModel.foodsCondition.tradingArea objectAtIndex:self.areaSelectIndex];
+            areaKey = areaObj.key;
+        }
     }
     
     if (self.viewModel.foodsCondition.distance.count > 0) {
-        LBB_FoodsConditionOption* distanceObj = [self.viewModel.foodsCondition.distance objectAtIndex:self.typeSelectIndex];
-        distanceKey = distanceObj.key;
+        if (self.distanceSelectIndex >= 0) {
+            LBB_FoodsConditionOption* distanceObj = [self.viewModel.foodsCondition.distance objectAtIndex:self.distanceSelectIndex];
+            distanceKey = distanceObj.key;
+        }
     }
     
     NSLog(@"纬度latitude:%@",self.locationManager.latitude);
@@ -196,8 +219,8 @@
     areaKey = -1;//区域
     distanceKey = -1;//距离
 
-    [self.viewModel getFoodsArrayLongitude:@"-1"//精度
-                           dimensionality:@"-1"//维度
+    [self.viewModel getFoodsArrayLongitude:self.locationManager.longitude//精度
+                           dimensionality:self.locationManager.latitude//维度
                             tradingAreaKey:areaKey
                                   distance:distanceKey
                                   typeKey:typeKey
@@ -588,7 +611,9 @@
             ws.orderSelectIndex = indexPath.row;
             [segmentedControl closeMenu];
         }
-
+        if (index != 0) {
+            [ws getSpotArrayLongitude:YES];
+        }
     }];
     
     //返回bottomView
@@ -633,6 +658,7 @@
         
         [confirmButton bk_whenTapped:^{
             [segmentedControl closeMenu];
+            [ws getSpotArrayLongitude:YES];
         }];
         
         return bottomView;
@@ -659,7 +685,11 @@
     //子菜单点击事件
     [segmentedControl.subFilterView didDeselectRowAtIndexPathBlock:^(NSInteger SupIndex, NSIndexPath *indexPath, id SupData, id data) {
         ws.distanceSelectIndex = indexPath.row;
+        if (ws.areaSelectIndex <= 0) {
+            ws.areaSelectIndex = 0;
+        }
         [segmentedControl closeMenu];
+        [ws getSpotArrayLongitude:YES];
     }];
     
     //子菜单行高

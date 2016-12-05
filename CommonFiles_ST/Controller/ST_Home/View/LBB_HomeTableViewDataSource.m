@@ -264,7 +264,6 @@
 
 #pragma  //热门推荐
 -(UITableViewCell*)tableView:(UITableView *)tableView hotSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    WS(ws);
     if (indexPath.row == 0) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
@@ -495,6 +494,45 @@
 #pragma 选择动作
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (indexPath.section) {
+        case LBBHomeSectionMenuType:
+        {
+            
+        }
+            break;
+        case LBBHomeSectionHotestType:
+        {
+        }
+            break;
+        case LBBHomeSectionTravelRecommendType:
+        {
+            NSLog(@"需跳转到老郑的游记详情页面");
+            
+        }
+            break;
+        case LBBHomeSectionVipRecommendType:
+        {
+            
+        }
+            break;
+        case LBBHomeSectionSquareCenterType:
+        {
+            
+        }
+            break;
+        case LBBHomeSectionTravelProductType:
+        {
+            
+        }
+            break;
+        default:
+        {
+            
+        }
+            break;
+    }
+    
 }
 
 

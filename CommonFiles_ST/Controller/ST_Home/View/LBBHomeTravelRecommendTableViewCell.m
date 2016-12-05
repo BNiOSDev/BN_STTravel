@@ -43,12 +43,6 @@
             make.right.equalTo(ws.contentView).offset(-16);
           //  make.height.width.mas_equalTo(20);
         }];
-        [self.favoriteButton bk_addEventHandler:^(id sender){
-            
-            NSLog(@"favoriteButton touch");
-            
-        } forControlEvents:UIControlEventTouchUpInside];
-        
         
         self.portraitImageView = [UIImageView new];
         [self.contentView addSubview:self.portraitImageView];
@@ -94,12 +88,7 @@
           //  make.height.equalTo(@16);
         }];
         
-        [self.commentsView bk_whenTapped:^{
-            
-            NSLog(@"commentsView touch");
-            
-        }];
-        
+
         
         self.greetView = [[UIButton alloc]init];
         [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
@@ -113,11 +102,7 @@
             make.right.equalTo(ws.commentsView.mas_left).offset(-12);
             make.centerY.equalTo(ws.commentsView);
         }];
-        [self.greetView bk_whenTapped:^{
-            
-            NSLog(@"greetView touch");
-            
-        }];
+
         
         //specialLabelButton
         self.specialLabelButton1 = [UIButton new];
@@ -228,48 +213,83 @@
         }];
     
         
-        [self blindData];
+    //    [self blindData];
     }
     return self;
 }
 
 
+-(void)setModel:(BN_HomeTravelNotes *)model{
+
+    _model = model;
+    [self blindData];
+}
+
 -(void)blindData{
 
     @weakify (self);
-    [RACObserve(self, model) subscribeNext:^(BN_HomeTravelNotes* model) {
+    
+    [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
         @strongify(self);
-        
-        [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.travelNotesPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//游记标题
-        [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//用户头像
-        [self.portraitImageView bk_whenTapped:^{
-            
-            LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
-            [[self getViewController].navigationController pushViewController:dest animated:YES];
-        }];
-        
-        [self.travlTitleLable setText:model.travelNotesName];//游记标题
-        [self.userLable setText:model.userName];//用户名
-        
-        [self.greetView setTitle:[NSString stringWithFormat:@"%d",model.likeNum] forState:UIControlStateNormal];//收藏数
-        [self.commentsView setTitle:[NSString stringWithFormat:@"%d",model.commentsNum] forState:UIControlStateNormal];//评论条数
-        
-        //点赞次数
-        if (!model.isLiked) {
+   
+        //是否点赞
+        BOOL sts = [num boolValue];
+        if (!sts) {
             [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
         }
         else{
             [self.greetView setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
         }
+    }];
+    
+    [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
         
         //是否收藏
-        if (!model.isCollected) {
+        BOOL sts = [num boolValue];
+        if (!sts) {
             [self.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
         }
         else{
             [self.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
         }
-
+    }];
+    
+    [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //点赞次数
+        int sts = [num intValue];
+        [self.greetView setTitle:[NSString stringWithFormat:@"%d",sts] forState:UIControlStateNormal];
+    }];
+    
+    
+    [RACObserve(self.model, commentsNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //评论条数
+        int sts = [num intValue];
+        [self.commentsView setTitle:[NSString stringWithFormat:@"%d",sts] forState:UIControlStateNormal];//收藏数
+    }];
+    
+    
+    [RACObserve(self, model) subscribeNext:^(BN_HomeTravelNotes* model) {
+        @strongify(self);
+        
+        [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.travelNotesPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//游记标题
+        [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//用户头像
+        [self.portraitImageView bk_whenTapped:^{//跳转到个人中心页面
+            
+            LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.userId = model.userId;
+            dest.viewModel = viewModel;
+            [[self getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+        
+        [self.travlTitleLable setText:model.travelNotesName];//游记标题
+        [self.userLable setText:model.userName];//用户名
+    
         //标签
         self.specialLabelButton1.hidden = YES;
         self.specialLabelButton2.hidden = YES;
@@ -345,6 +365,29 @@
                 [[self getViewController].navigationController pushViewController:dest animated:YES];
             }];
         }
+        
+    }];
+    
+    [self.favoriteButton bk_addEventHandler:^(id sender){
+        
+        NSLog(@"favoriteButton touch");
+        [_model collecte:^(NSError* error){
+            NSLog(@"collecte error:%@",error);
+
+        }];
+        
+    } forControlEvents:UIControlEventTouchUpInside];
+    [self.commentsView bk_whenTapped:^{
+        
+        NSLog(@"commentsView touch 需跳转到全部评论页面");
+        
+    }];
+    [self.greetView bk_whenTapped:^{
+        
+        NSLog(@"greetView touch");
+        [_model like:^(NSError* error){
+            NSLog(@"like error:%@",error);
+        }];
         
     }];
     

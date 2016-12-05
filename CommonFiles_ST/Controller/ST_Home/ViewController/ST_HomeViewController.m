@@ -216,7 +216,6 @@
      3.1.3 公告轮播
      @param clear 是否清空原数据
      */
-#pragma 没有数据
     [self.viewModel getNoticesArrayClearData:YES];
     [self.viewModel.noticesArray.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];//data reload
@@ -419,7 +418,9 @@
     return [self.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.dataSource tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 
 
 @end

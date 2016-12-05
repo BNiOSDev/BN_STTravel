@@ -255,9 +255,9 @@
     self.priceLabel.attributedText = strAttr;
     
     //删除的价格设置
-    NSLog(@"model.standardPcice:%@",model.standardPcice);
+    NSLog(@"model.standardPrice:%@",model.standardPrice);
 
-    NSAttributedString *attrStr = [[NSAttributedString alloc]initWithString:model.standardPcice?model.standardPcice:@""
+    NSAttributedString *attrStr = [[NSAttributedString alloc]initWithString:model.standardPrice?model.standardPrice:@""
                                   attributes:
        @{NSFontAttributeName:Font10,
     NSForegroundColorAttributeName:ColorLightGray,

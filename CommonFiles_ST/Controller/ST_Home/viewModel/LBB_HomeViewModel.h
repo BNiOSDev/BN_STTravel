@@ -58,6 +58,22 @@
 @property (nonatomic, strong)NSString *userPicUrl;//发布者头像URL
 @property (nonatomic, assign)BOOL isCollected;//收藏标志 0未收藏 1：收藏
 @property (nonatomic, assign)BOOL isLiked;//点赞标志 0未点赞 1：点赞
+@property (nonatomic, assign)int userId;//用户id
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block;
+
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block;
 
 @end
 

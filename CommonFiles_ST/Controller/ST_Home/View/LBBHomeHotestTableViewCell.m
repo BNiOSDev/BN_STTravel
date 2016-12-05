@@ -11,8 +11,6 @@
 #import "LBB_ScenicDetailViewController.h"
 @interface LBBHomeHotestTableViewCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property(nonatomic, retain)BN_HomeSpotsList* curObj;
-
 @end
 
 @implementation LBBHomeHotestTableViewCell
@@ -121,7 +119,6 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    WS(ws);
     LBBHomeHotestTableViewCellItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBBHomeHotestTableViewCellItem"forIndexPath:indexPath];
     
     [cell sizeToFit];
@@ -146,8 +143,6 @@
                 break;
         }
     }
-    self.curObj = obj;
-   
     [cell.mainImageView sd_setImageWithURL:[NSURL URLWithString:obj.allSpotsPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//场景图片
     [cell.titleLabel setText:obj.allSpotsName];//场景名称
     [cell.disView setTitle:[NSString stringWithFormat:@"%d",obj.commentsNum] forState:UIControlStateNormal];//评论条数
@@ -164,7 +159,7 @@
     //字体设置
     NSRange rang = [strFormat1 rangeOfString:strFormat2];
     if (rang.location != NSNotFound) {
-        NSLog(@"found at location = %d, length = %d",rang.location,rang.length);
+        NSLog(@"found at location = %ld, length = %ld",rang.location,rang.length);
         [strAttr addAttributes:attrsDic range:NSMakeRange(0, rang.location)];
     }else{
         NSLog(@"Not Found");
@@ -173,7 +168,7 @@
     
     
    // @weakify (self);
-    [RACObserve(self.curObj, isCollected) subscribeNext:^(NSNumber* isCollected) {
+    [RACObserve(obj, isCollected) subscribeNext:^(NSNumber* isCollected) {
       //  @strongify(self);
         
         BOOL status = [isCollected boolValue];
@@ -187,7 +182,7 @@
         
     }];
     
-    [RACObserve(self.curObj, isLiked) subscribeNext:^(NSNumber* isLiked) {
+    [RACObserve(obj, isLiked) subscribeNext:^(NSNumber* isLiked) {
       //  @strongify(self);
         BOOL status = [isLiked boolValue];
         if (status) {
@@ -202,7 +197,7 @@
     [cell.greetView bk_whenTapped:^{
         
         NSLog(@"greetView touch");
-        [ws.curObj like:^(NSError* error){
+        [obj like:^(NSError* error){
             NSLog(@"like error:%@",error);
 
         }];
@@ -216,7 +211,7 @@
     [cell.favoriteButton bk_addEventHandler:^(id sender){
         
         NSLog(@"favoriteButton touch");
-        [ws.curObj collecte:^(NSError* error){
+        [obj collecte:^(NSError* error){
             NSLog(@"collecte error:%@",error);
         }];
     } forControlEvents:UIControlEventTouchUpInside];
@@ -250,11 +245,12 @@
                 break;
         }
     }
-    self.curObj = obj;
-    
     
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
-    switch (self.curObj.allSpotsType) {//	1.美食 2.民宿 3景点
+    LBB_SpotModel* viewModel = [[LBB_SpotModel alloc]init];
+    viewModel.allSpotsId = obj.allSpotsId;
+    dest.spotModel = viewModel;
+    switch (obj.allSpotsType) {//	1.美食 2.民宿 3景点
         case 1://美食
             dest.homeType = LBBPoohHomeTypeFoods;
             break;

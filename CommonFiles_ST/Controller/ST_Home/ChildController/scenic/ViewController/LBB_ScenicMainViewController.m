@@ -45,6 +45,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //菜单选项的选择项
+    self.typeSelectIndex = -1;//类别
+    self.orderSelectIndex = -1;//排序
+    self.hotRecommendSelectIndex = -1;//热门推荐
+    self.tagsSelectIndex = -1;//标签
+    self.priceSelectIndex = -1;//价格
 }
 
 - (void)didReceiveMemoryWarning {
@@ -146,28 +152,39 @@
 
     
     if (self.viewModel.scenicSpotCondition.type.count > 0) {
-        LBB_ScenicSpotConditionOption* typeObj = [self.viewModel.scenicSpotCondition.type objectAtIndex:self.typeSelectIndex];
-        typeKey = typeObj.key;
+        
+        if (self.typeSelectIndex >= 0) {
+            LBB_ScenicSpotConditionOption* typeObj = [self.viewModel.scenicSpotCondition.type objectAtIndex:self.typeSelectIndex];
+            typeKey = typeObj.key;
+        }
     }
     
     if (self.viewModel.scenicSpotCondition.order.count > 0) {
-        LBB_ScenicSpotConditionOption* orderObj = [self.viewModel.scenicSpotCondition.order objectAtIndex:self.orderSelectIndex];
-        orderKey = orderObj.key;
+        if (self.orderSelectIndex >= 0) {
+            LBB_ScenicSpotConditionOption* orderObj = [self.viewModel.scenicSpotCondition.order objectAtIndex:self.orderSelectIndex];
+            orderKey = orderObj.key;
+        }
     }
     
     if (self.viewModel.scenicSpotCondition.hotRecommend.count > 0) {
-        LBB_ScenicSpotConditionOption* hotRecommendObj = [self.viewModel.scenicSpotCondition.hotRecommend objectAtIndex:self.hotRecommendSelectIndex];
-        hotRecommendKey = hotRecommendObj.key;
+        if (self.hotRecommendSelectIndex >= 0) {
+            LBB_ScenicSpotConditionOption* hotRecommendObj = [self.viewModel.scenicSpotCondition.hotRecommend objectAtIndex:self.hotRecommendSelectIndex];
+            hotRecommendKey = hotRecommendObj.key;
+        }
     }
     
     if (self.viewModel.scenicSpotCondition.tags.count > 0) {
-        LBB_ScenicSpotConditionOption* tagsObj = [self.viewModel.scenicSpotCondition.tags objectAtIndex:self.tagsSelectIndex];
-        tagsKey = tagsObj.key;
+        if (self.tagsSelectIndex >= 0) {
+            LBB_ScenicSpotConditionOption* tagsObj = [self.viewModel.scenicSpotCondition.tags objectAtIndex:self.tagsSelectIndex];
+            tagsKey = tagsObj.key;
+        }
     }
     
     if (self.viewModel.scenicSpotCondition.price.count > 0) {
-        LBB_ScenicSpotConditionOption* priceObj = [self.viewModel.scenicSpotCondition.price objectAtIndex:self.priceSelectIndex];
-        priceKey = priceObj.key;
+        if (self.priceSelectIndex >= 0) {
+            LBB_ScenicSpotConditionOption* priceObj = [self.viewModel.scenicSpotCondition.price objectAtIndex:self.priceSelectIndex];
+            priceKey = priceObj.key;
+        }
     }
     
     
@@ -180,7 +197,7 @@
      hotRecommendKey = -1;//热门推荐
      tagsKey = -1;//标签
      priceKey = -1;//价格
-    
+   
     
     [self.viewModel getSpotArrayLongitude:@"-1"//精度
                            dimensionality:@"-1"//维度
@@ -466,7 +483,8 @@
             ws.orderSelectIndex = indexPath.row;
             [segmentedControl closeMenu];
         }
- 
+        [ws getSpotArrayLongitude:YES];
+
     }];
     
     //返回bottomView
@@ -511,6 +529,7 @@
         
         [confirmButton bk_whenTapped:^{
             [segmentedControl closeMenu];
+            [ws getSpotArrayLongitude:YES];
         }];
         
         return bottomView;

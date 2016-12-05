@@ -141,7 +141,7 @@
 @property (nonatomic,assign)double distance ;// 距离 (单位km)
 @property (nonatomic,assign)int likeNum ;// 点赞次数
 @property (nonatomic,assign)int commentsNum ;// 评论条数
-@property (nonatomic,strong)NSString *standardPcice ;// 原价
+@property (nonatomic,strong)NSString *standardPrice ;// 原价
 @property (nonatomic,strong)NSString *realPrice ;// 实际价格
 @property (nonatomic,assign)BOOL isCollected ;// 收藏标志 0未收藏 1：收藏
 @property (nonatomic,assign)BOOL isLiked ;// 点赞标志 0未点赞 1：点赞

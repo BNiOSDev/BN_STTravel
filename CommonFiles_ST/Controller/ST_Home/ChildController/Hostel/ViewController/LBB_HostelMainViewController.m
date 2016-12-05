@@ -43,6 +43,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //菜单选项的选择项
+    self.typeSelectIndex = -1;//类别
+    self.orderSelectIndex = -1;//排序
+    self.hotRecommendSelectIndex = -1;//热门推荐
+    self.tagsSelectIndex = -1;//标签
+    self.priceSelectIndex = -1;//价格
 }
 
 - (void)didReceiveMemoryWarning {
@@ -144,18 +150,24 @@
     
     
     if (self.viewModel.hostelCondition.type.count > 0) {
-        LBB_HostelConditionOption* typeObj = [self.viewModel.hostelCondition.type objectAtIndex:self.typeSelectIndex];
-        typeKey = typeObj.key;
+        if (self.typeSelectIndex >= 0) {
+            LBB_HostelConditionOption* typeObj = [self.viewModel.hostelCondition.type objectAtIndex:self.typeSelectIndex];
+            typeKey = typeObj.key;
+        }
     }
     
     if (self.viewModel.hostelCondition.order.count > 0) {
-        LBB_HostelConditionOption* orderObj = [self.viewModel.hostelCondition.order objectAtIndex:self.orderSelectIndex];
-        orderKey = orderObj.key;
+        if (self.orderSelectIndex >= 0) {
+            LBB_HostelConditionOption* orderObj = [self.viewModel.hostelCondition.order objectAtIndex:self.orderSelectIndex];
+            orderKey = orderObj.key;
+        }
     }
     
     if (self.viewModel.hostelCondition.hotRecommend.count > 0) {
-        LBB_HostelConditionOption* hotRecommendObj = [self.viewModel.hostelCondition.hotRecommend objectAtIndex:self.hotRecommendSelectIndex];
-        hotRecommendKey = hotRecommendObj.key;
+        if (self.hotRecommendSelectIndex >= 0) {
+            LBB_HostelConditionOption* hotRecommendObj = [self.viewModel.hostelCondition.hotRecommend objectAtIndex:self.hotRecommendSelectIndex];
+            hotRecommendKey = hotRecommendObj.key;
+        }
     }
     
     if (self.viewModel.hostelCondition.tags.count > 0) {
@@ -164,8 +176,10 @@
     }
     
     if (self.viewModel.hostelCondition.price.count > 0) {
-        LBB_HostelConditionOption* priceObj = [self.viewModel.hostelCondition.price objectAtIndex:self.priceSelectIndex];
-        priceKey = priceObj.key;
+        if (self.priceSelectIndex >= 0) {
+            LBB_HostelConditionOption* priceObj = [self.viewModel.hostelCondition.price objectAtIndex:self.priceSelectIndex];
+            priceKey = priceObj.key;
+        }
     }
     
     
@@ -178,8 +192,8 @@
     hotRecommendKey = -1;//热门推荐
     tagsKey = -1;//标签
     priceKey = -1;//价格
-    [self.viewModel getHostelArrayLongitude:@"-1"//精度
-                           dimensionality:@"-1"//维度
+    [self.viewModel getHostelArrayLongitude:self.locationManager.longitude//精度
+                           dimensionality:self.locationManager.latitude//维度
                                   typeKey:typeKey
                                  orderKey:orderKey
                           hotRecommendKey:hotRecommendKey
@@ -460,6 +474,7 @@
             ws.orderSelectIndex = indexPath.row;
             [segmentedControl closeMenu];
         }
+        [ws getHostelArrayLongitude:YES];
     }];
     
     //返回bottomView
@@ -504,6 +519,7 @@
         
         [confirmButton bk_whenTapped:^{
             [segmentedControl closeMenu];
+            [ws getHostelArrayLongitude:YES];
         }];
         
         return bottomView;
