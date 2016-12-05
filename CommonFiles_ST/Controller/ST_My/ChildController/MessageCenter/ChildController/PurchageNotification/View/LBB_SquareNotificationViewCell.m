@@ -28,6 +28,7 @@
     [super prepareForReuse];
     self.titleLabel.text = nil;
     self.contentLabel.text = nil;
+    [self.iconImgView prepareForReuse];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

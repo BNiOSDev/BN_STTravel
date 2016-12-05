@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBB_MyContentImgView.h"
 
 @interface LBB_SquareNotificationViewCell : UITableViewCell
 
-@property (nonatomic,weak) IBOutlet UIImageView *iconImgView;
+@property (nonatomic,weak) IBOutlet LBB_MyContentImgView *iconImgView;
 @property (nonatomic,weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic,weak) IBOutlet UILabel *contentLabel;
 @property (nonatomic,weak) IBOutlet UILabel *dateLabel;

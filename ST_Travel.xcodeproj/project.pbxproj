@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B2085481DF5A5F90065DE6F /* LBB_CommentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085471DF5A5F90065DE6F /* LBB_CommentViewModel.m */; };
 		1B20854B1DF5AF7B0065DE6F /* LBB_NearSign.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B20854A1DF5AF7B0065DE6F /* LBB_NearSign.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
@@ -528,6 +529,8 @@
 		844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CB1DEAC7C500164DED /* libc++.tbd */; };
 		844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */; };
 		844065D01DEAC7D300164DED /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CF1DEAC7D300164DED /* libz.tbd */; };
+		84D80DB01DF50A64005D4ED0 /* LBB_PromotionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D80DAF1DF50A64005D4ED0 /* LBB_PromotionModel.m */; };
+		84D80DB71DF5570D005D4ED0 /* LBB_NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D80DB61DF5570D005D4ED0 /* LBB_NoticeDetailViewController.m */; };
 		B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */; };
 		C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F610B1D9F559C004FE75C /* QuartzCore.framework */; };
 		C9C0E9511D9948F100575A7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C0E9501D9948F100575A7C /* main.m */; };
@@ -557,6 +560,8 @@
 
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B2085461DF5A5F90065DE6F /* LBB_CommentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_CommentViewModel.h; sourceTree = "<group>"; };
+		1B2085471DF5A5F90065DE6F /* LBB_CommentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_CommentViewModel.m; sourceTree = "<group>"; };
 		1B2085491DF5AF7B0065DE6F /* LBB_NearSign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NearSign.h; sourceTree = "<group>"; };
 		1B20854A1DF5AF7B0065DE6F /* LBB_NearSign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NearSign.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1474,6 +1479,10 @@
 		844065CB1DEAC7C500164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		844065CF1DEAC7D300164DED /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		84D80DAE1DF50A64005D4ED0 /* LBB_PromotionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PromotionModel.h; sourceTree = "<group>"; };
+		84D80DAF1DF50A64005D4ED0 /* LBB_PromotionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PromotionModel.m; sourceTree = "<group>"; };
+		84D80DB51DF5570D005D4ED0 /* LBB_NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NoticeDetailViewController.h; sourceTree = "<group>"; };
+		84D80DB61DF5570D005D4ED0 /* LBB_NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NoticeDetailViewController.m; sourceTree = "<group>"; };
 		8CDEFBCFA054569A602B95F5 /* Pods-ST_Travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.release.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.release.xcconfig"; sourceTree = "<group>"; };
 		A7A2B62D3C5383CC61730E93 /* Pods-ST_Travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ST_Travel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ST_Travel/Pods-ST_Travel.debug.xcconfig"; sourceTree = "<group>"; };
 		C91F610A1D9F5408004FE75C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -2601,6 +2610,7 @@
 		1DB14AFE1DF3110D0023A740 /* Notice */ = {
 			isa = PBXGroup;
 			children = (
+				84D80DB11DF5565D005D4ED0 /* ChildController */,
 				1DB14AFF1DF3110D0023A740 /* Model */,
 				1DB14B021DF3110D0023A740 /* View */,
 				1DB14B061DF3110D0023A740 /* ViewController */,
@@ -2639,6 +2649,7 @@
 		1DB14B091DF3110D0023A740 /* Promotions */ = {
 			isa = PBXGroup;
 			children = (
+				84D80DAD1DF50A30005D4ED0 /* Model */,
 				1DB14B0A1DF3110D0023A740 /* View */,
 				1DB14B0E1DF3110D0023A740 /* ViewController */,
 			);
@@ -4855,6 +4866,8 @@
 		1DB14E201DF3110E0023A740 /* DBModel */ = {
 			isa = PBXGroup;
 			children = (
+				1B2085461DF5A5F90065DE6F /* LBB_CommentViewModel.h */,
+				1B2085471DF5A5F90065DE6F /* LBB_CommentViewModel.m */,
 				1DB14E211DF3110E0023A740 /* LBB_SpotAddress.h */,
 				1DB14E221DF3110E0023A740 /* LBB_SpotAddress.m */,
 				1DB14E231DF3110E0023A740 /* LBB_TagsViewModel.h */,
@@ -4881,6 +4894,32 @@
 			children = (
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		84D80DAD1DF50A30005D4ED0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84D80DAE1DF50A64005D4ED0 /* LBB_PromotionModel.h */,
+				84D80DAF1DF50A64005D4ED0 /* LBB_PromotionModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		84D80DB11DF5565D005D4ED0 /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				84D80DB41DF5565D005D4ED0 /* ViewController */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		84D80DB41DF5565D005D4ED0 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84D80DB51DF5570D005D4ED0 /* LBB_NoticeDetailViewController.h */,
+				84D80DB61DF5570D005D4ED0 /* LBB_NoticeDetailViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		C9C0E9431D9948F100575A7C = {
@@ -5029,7 +5068,7 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = XQV8Z7QVUF;
+						DevelopmentTeam = 8NT4E7BWNP;
 						ProvisioningStyle = Automatic;
 					};
 					C9C0E9641D9948F300575A7C = {
@@ -5332,6 +5371,7 @@
 				1DB14EBA1DF3110F0023A740 /* LBB_MyComomFun.m in Sources */,
 				1DB14F471DF311100023A740 /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				1DB14FFE1DF311110023A740 /* JHPieChart.m in Sources */,
+				84D80DB71DF5570D005D4ED0 /* LBB_NoticeDetailViewController.m in Sources */,
 				1DB14E7D1DF3110E0023A740 /* LBB_NewOrderViewController.m in Sources */,
 				1DB14E4A1DF3110E0023A740 /* LBB_DiscoveryCustomizedLabelView.m in Sources */,
 				1DB14E4F1DF3110E0023A740 /* LBB_FoodsMainMenuCell.m in Sources */,
@@ -5384,6 +5424,7 @@
 				1DB150071DF311110023A740 /* UIView+ZJFrame.m in Sources */,
 				1DB14ECF1DF3110F0023A740 /* LBB_PurchaseNotificationViewController.m in Sources */,
 				1DB14E971DF3110F0023A740 /* LBB_SignInListCell.m in Sources */,
+				84D80DB01DF50A64005D4ED0 /* LBB_PromotionModel.m in Sources */,
 				1DB14F4E1DF311100023A740 /* NSManagedObjectContext+MagicalChainSave.m in Sources */,
 				1DB14E641DF3110E0023A740 /* LBB_LabelDetailHeaderView.m in Sources */,
 				1DB14F011DF3110F0023A740 /* PersonalCenterViewController.m in Sources */,
@@ -5636,6 +5677,7 @@
 				1DB14EAE1DF3110F0023A740 /* LBBHomeMenuTableViewCell.m in Sources */,
 				1DB14E601DF3110E0023A740 /* LBB_GuiderMainViewController.m in Sources */,
 				1DB14FD71DF311100023A740 /* LBB_AddTextToVistNote_Controller.m in Sources */,
+				1B2085481DF5A5F90065DE6F /* LBB_CommentViewModel.m in Sources */,
 				1DB1500F1DF311110023A740 /* ContentImageView.m in Sources */,
 				1DB14E561DF3110E0023A740 /* LBB_GuiderUserDeatilMsgCell.m in Sources */,
 				1DB14EF81DF3110F0023A740 /* LBB_AddressPickerView.m in Sources */,
@@ -5821,7 +5863,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = XQV8Z7QVUF;
+				DEVELOPMENT_TEAM = 8NT4E7BWNP;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -5903,7 +5945,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = XQV8Z7QVUF;
+				DEVELOPMENT_TEAM = 8NT4E7BWNP;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;

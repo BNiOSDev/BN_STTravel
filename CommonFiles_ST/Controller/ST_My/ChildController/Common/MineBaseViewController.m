@@ -197,9 +197,9 @@
            self.navigationItem.title = NSLocalizedString(@"我的拼团", nil);
         }
             break;
-        case eRoute://我的线路
+        case eMineFollow://关注
         {
-            self.navigationItem.title = NSLocalizedString(@"我的线路", nil);
+            self.navigationItem.title = NSLocalizedString(@"关注", nil);
         }
             break;
         case eSetting: //我的设置

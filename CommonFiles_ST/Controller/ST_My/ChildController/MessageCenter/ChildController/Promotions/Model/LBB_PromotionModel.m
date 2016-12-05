@@ -1,35 +1,34 @@
 //
-//  LBB_PurchaseModel.m
+//  LBB_PromotionModel.m
 //  ST_Travel
 //
-//  Created by 晨曦 on 16/11/19.
+//  Created by 晨曦 on 16/12/5.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBB_PurchaseModel.h"
+#import "LBB_PromotionModel.h"
 
-@implementation LBB_PurchaseModel
+@implementation LBB_PromotionModel
 
 @end
 
+@implementation LBB_PromotionViewModel
 
-@implementation LBB_PurchaseViewModel
-
-- (id)init
+ - (id)init
 {
     self = [super init];
-    if (self) {
+    if(self) {
         self.dataArray = [[NSMutableArray alloc] initFromNet];
     }
     return self;
 }
 
 /**
- *3.10.3 消息-购买通知(已测)
+ *3.10.4 优惠促销列表(已测)
  */
-- (void)getPurchaseDataArray:(BOOL)isClear
+- (void)getPromotionDataArray:(BOOL)isClear
 {
-    NSString *url = [NSString stringWithFormat:@"%@/msg/mallMsgList",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/promotion/list",BASEURL];
     int curPage = isClear == YES ? 0 : round(self.dataArray.count/10.0);
     
     NSDictionary *parames = @{
@@ -46,7 +45,7 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
-            NSArray *returnArray = [LBB_PurchaseModel mj_objectArrayWithKeyValuesArray:array];
+            NSArray *returnArray = [LBB_PromotionModel mj_objectArrayWithKeyValuesArray:array];
             if (isClear) {
                 [weakSelf.dataArray removeAllObjects];
             }

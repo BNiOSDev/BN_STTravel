@@ -10,14 +10,14 @@
 #import "LBB_NoticeViewCell.h"
 #import "LBB_NoticeModel.h"
 #import "LBB_WebViewController.h"
+#import "LBB_NoticeDetailViewController.h"
 
 @interface LBB_NoticeViewController ()
 <UITableViewDataSource,
 UITableViewDelegate
 >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSArray *dataSourceArray;
-@property (strong,nonatomic) LBB_NoticeModel *noticeModel;
+@property (strong,nonatomic) LBB_NoticeViewModel *viewModel;
 
 @end
 
@@ -39,17 +39,39 @@ UITableViewDelegate
 {
     UINib *nib = [UINib nibWithNibName:@"LBB_NoticeViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"LBB_NoticeViewCell"];
-    self.tableView.showsVerticalScrollIndicator = NO;
-    if (!self.noticeModel) {
-        self.noticeModel = [[LBB_NoticeModel alloc] init];
+    [self initDataSource];
+}
+
+- (void)initDataSource
+{
+    if (!self.viewModel) {
+        self.viewModel = [[LBB_NoticeViewModel alloc] init];
     }
-    self.dataSourceArray = [self.noticeModel getData];
+    __weak typeof (self) weakSelf = self;
+    [self.tableView setHeaderRefreshDatablock:^{
+        [weakSelf.viewModel getNoticeDataArray:YES];
+    } footerRefreshDatablock:^{
+        [weakSelf.viewModel getNoticeDataArray:NO];
+    }];
+    
+    //设置绑定数组
+    [self.tableView setTableViewData:self.viewModel.dataArray];
+    
+    
+    [self.viewModel.dataArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.tableView loadData:self.viewModel.dataArray];
+    
+    //刷新数据
+    [weakSelf.viewModel getNoticeDataArray:YES];
 }
 
 #pragma mark - tableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dataSourceArray.count;
+    return self.viewModel.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -71,8 +93,10 @@ UITableViewDelegate
 {
     CGFloat height = [tableView fd_heightForCellWithIdentifier:@"LBB_NoticeViewCell"
                                                  configuration:^(LBB_NoticeViewCell *cell) {
-                                                     LBB_NoticeDetailModel *detailModel = [self.dataSourceArray objectAtIndex:[indexPath section]];
-                                                     [self configCell:cell Model:detailModel];
+                                                     if (indexPath.section < self.viewModel.dataArray.count) {
+                                                         LBB_NoticeModel *cellModel = self.viewModel.dataArray[indexPath.section];
+                                                         [self configCell:cell Model:cellModel];
+                                                     }
                                                  }];
     return height;
     
@@ -85,8 +109,11 @@ UITableViewDelegate
     timeLabel.font = Font12;
     timeLabel.textAlignment = NSTextAlignmentCenter;
     timeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-    LBB_NoticeDetailModel *detailModel = [self.dataSourceArray objectAtIndex:section];
-    timeLabel.text = detailModel.detailDateStr;
+    if (section < self.viewModel.dataArray.count) {
+         LBB_NoticeModel *cellModel = self.viewModel.dataArray[section];
+         timeLabel.text = cellModel.createTime;
+    }
+   
     timeLabel.backgroundColor = [UIColor clearColor];
     
     return timeLabel;
@@ -97,7 +124,6 @@ UITableViewDelegate
     static NSString *CellIdentifier = @"LBB_NoticeViewCell";
     LBB_NoticeViewCell *cell = nil;
     
-    LBB_NoticeDetailModel *detailModel = [self.dataSourceArray objectAtIndex:[indexPath section]];
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[LBB_NoticeViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -105,28 +131,33 @@ UITableViewDelegate
     cell.accessoryType = UITableViewCellAccessoryNone;
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
-    [self configCell:cell Model:detailModel];
+    if (indexPath.section < self.viewModel.dataArray.count) {
+        LBB_NoticeModel *cellModel = self.viewModel.dataArray[indexPath.section];
+        [self configCell:cell Model:cellModel];
+    }
+    
     
     return cell;
 }
 
-- (void)configCell:(LBB_NoticeViewCell*)cell Model:(LBB_NoticeDetailModel*)detailModel
+- (void)configCell:(LBB_NoticeViewCell*)cell Model:(LBB_NoticeModel*)cellModel
 {
-    cell.titleLabel.text = detailModel.title;
-    cell.dateLabel.text = detailModel.dateStr;
-    cell.contentLabel.text = detailModel.content;
+    cell.titleLabel.text = cellModel.title;
+    cell.dateLabel.text = cellModel.createTime;
+    cell.contentLabel.text = cellModel.content;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    LBB_NoticeDetailModel *detailModel = [self.dataSourceArray objectAtIndex:[indexPath section]];
-    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
-    LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
-    vc.baseViewType = eNoticeDetail;
-    vc.webViewURL = detailModel.detailURL;
-    [self.navigationController pushViewController:vc animated:YES];
- 
+    if (indexPath.section < self.viewModel.dataArray.count) {
+        LBB_NoticeModel *cellModel = self.viewModel.dataArray[indexPath.section];
+        UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+        LBB_NoticeDetailViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_NoticeDetailViewController"];
+        vc.baseViewType = eNoticeDetail;
+        vc.viewModel = cellModel;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

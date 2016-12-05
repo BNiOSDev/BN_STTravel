@@ -8,6 +8,7 @@
 
 #import "LBB_PromotionsViewController.h"
 #import "LBB_PromotionsViewCell.h"
+#import "LBB_PromotionModel.h"
 
 
 @interface LBB_PromotionsViewController ()
@@ -15,7 +16,7 @@
 UITableViewDelegate
 >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSMutableArray *dataSourceArray;
+@property (strong,nonatomic) LBB_PromotionViewModel *viewModel;
 
 @end
 
@@ -37,39 +38,39 @@ UITableViewDelegate
 {
     UINib *nib = [UINib nibWithNibName:@"LBB_PromotionsViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"LBB_PromotionsViewCell"];
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[@{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"喜迎国庆,全场8折优惠（最新活动）",
-                                                                     @"State":@"活动结束",
-                                                                     @"Date":@"07-17"
-                                                                     },
-                                                                   @{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"点击查看您的最新客服会话记录",
-                                                                     @"Date":@"07-17"
-                                                                     },
-                                                                   @{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"已发货，您2016-07-16购买黑蒜106斤那是不可能给人吃的有毒",
-                                                                     @"Date":@"07-17"
-                                                                     },
-                                                                   @{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"提现成功，您2016-07-12申请人民币100元至今为归还给我，请赔偿$17000W",
-                                                                     @"Date":@"07-17"
-                                                                     },
-                                                                   @{@"Image":@"19.pic.jpg",
-                                                                     @"Title":@"优惠促销标题",
-                                                                     @"Content":@"您发布的游记XX被点赞了，快去看...",
-                                                                     @"Date":@"07-17"
-                                                                     }
-                                                                   ]];
+    [self initDataSource];
 }
+
+- (void)initDataSource
+{
+    if (!self.viewModel) {
+        self.viewModel = [[LBB_PromotionViewModel alloc] init];
+    }
+    __weak typeof (self) weakSelf = self;
+    [self.tableView setHeaderRefreshDatablock:^{
+        [weakSelf.viewModel getPromotionDataArray:YES];
+    } footerRefreshDatablock:^{
+        [weakSelf.viewModel getPromotionDataArray:NO];
+    }];
+    
+    //设置绑定数组
+    [self.tableView setTableViewData:self.viewModel.dataArray];
+    
+    
+    [self.viewModel.dataArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.tableView loadData:self.viewModel.dataArray];
+    
+    //刷新数据
+    [weakSelf.viewModel getPromotionDataArray:YES];
+}
+
 #pragma mark - tableView delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dataSourceArray.count;
+    return self.viewModel.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -91,8 +92,10 @@ UITableViewDelegate
 {
     CGFloat height = [tableView fd_heightForCellWithIdentifier:@"LBB_PromotionsViewCell"
                                                  configuration:^(LBB_PromotionsViewCell *cell) {
-                                                     NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath row]];
-                                                     [self configCell:cell Model:cellDict];
+                                                     if (indexPath.section < self.viewModel.dataArray.count) {
+                                                         LBB_PromotionModel *cellModel = self.viewModel.dataArray[indexPath.section];
+                                                         [self configCell:cell Model:cellModel];
+                                                     }
                                                  }];
     return height;
     
@@ -105,8 +108,11 @@ UITableViewDelegate
     timeLabel.font = Font12;
     timeLabel.textAlignment = NSTextAlignmentCenter;
     timeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:section];
-    timeLabel.text = [cellDict objectForKey:@"Date"];
+    if (section < self.viewModel.dataArray.count) {
+        LBB_PromotionModel *cellModel = self.viewModel.dataArray[section];
+        timeLabel.text = cellModel.publishTime;
+    }
+   
     timeLabel.backgroundColor = [UIColor clearColor];
 
     return timeLabel;
@@ -117,24 +123,30 @@ UITableViewDelegate
     static NSString *CellIdentifier = @"LBB_PromotionsViewCell";
     LBB_PromotionsViewCell *cell = nil;
     
-    NSDictionary *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[LBB_PromotionsViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
-    [self configCell:cell Model:cellDict];
+    if (indexPath.section < self.viewModel.dataArray.count) {
+        LBB_PromotionModel *cellModel = self.viewModel.dataArray[indexPath.section];
+         [self configCell:cell Model:cellModel];
+    }
     
     return cell;
 }
 
-- (void)configCell:(LBB_PromotionsViewCell*)cell Model:(NSDictionary*)cellDict
+- (void)configCell:(LBB_PromotionsViewCell*)cell Model:(LBB_PromotionModel*)cellModel
 {
-    cell.iconImgView.image = IMAGE([cellDict objectForKey:@"Image"]);
-    cell.titleLabel.text = [cellDict objectForKey:@"Title"];
-    cell.contentLabel.text = [cellDict objectForKey:@"Content"];
-    cell.stateLabel.text = [cellDict objectForKey:@"State"];//活动状态
+    cell.iconImgView.imageURL = cellModel.imageUrl;
+    cell.titleLabel.text = cellModel.title;
+    cell.contentLabel.text = cellModel.describe;
+    if (cellModel.isEnd) {
+        cell.stateLabel.text = @"活 动 结 束";
+    }else {
+        cell.stateLabel.text = nil;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

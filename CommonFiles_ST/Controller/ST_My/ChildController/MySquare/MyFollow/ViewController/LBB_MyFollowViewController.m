@@ -109,6 +109,7 @@
 -(void)addChildViewController{
     
     self.chatVC = [[LBB_MyChatViewController alloc] init];
+    self.chatVC.baseViewType = self.baseViewType;
     [self addChildViewController:self.chatVC];
     
     self.fansVC = [[LBB_FollowViewController alloc]init];
