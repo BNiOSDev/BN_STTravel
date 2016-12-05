@@ -172,6 +172,62 @@
             
         }];
         
+       
+        
+        @weakify(self);
+        [self.item1.greetView bk_whenTapped:^{
+            @strongify(self);
+            
+            [self.model1 like:^(NSError* error){
+                
+            }];
+            NSLog(@"item1 greetView touch");
+        }];
+        [self.item1.favoriteButton bk_whenTapped:^{
+            @strongify(self);
+            
+            NSLog(@"item1 favoriteButton touch");
+            [self.model1 collecte:^(NSError* error){
+                
+            }];
+            
+        }];
+        [self.item1.videoButton bk_addEventHandler:^(id sender){
+            
+            NSLog(@"videoButton touch");
+            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
+            webViewController.url = [NSURL URLWithString:self.model1.ugcVideoUrl];
+            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        //model1
+    
+        [self.item2.greetView bk_whenTapped:^{
+            @strongify(self);
+            
+            [self.model2 like:^(NSError* error){
+                
+            }];
+            NSLog(@"item2 greetView touch");
+        }];
+        [self.item2.favoriteButton bk_whenTapped:^{
+            @strongify(self);
+            
+            NSLog(@"item2 favoriteButton touch");
+            [self.model2 collecte:^(NSError* error){
+                
+            }];
+            
+        }];
+        [self.item2.videoButton bk_addEventHandler:^(id sender){
+            
+            NSLog(@"videoButton touch");
+            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
+            webViewController.url = [NSURL URLWithString:self.model2.ugcVideoUrl];
+            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
+            
+        } forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -187,17 +243,7 @@
     self.item1.videoButton.hidden = YES;
     if (model1.ugcType == 2){//视频
         self.item1.videoButton.hidden = NO;
-        [self.item1.videoButton bk_addEventHandler:^(id sender){
-            
-            NSLog(@"videoButton touch");
-            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
-            webViewController.url = [NSURL URLWithString:model1.ugcVideoUrl];
-            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
-            
-        } forControlEvents:UIControlEventTouchUpInside];
     }
-
-    
     @weakify(self);
     [RACObserve(self.model1, likeNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
@@ -230,27 +276,6 @@
             [self.item1.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
         }
     }];
-    
-    
-    [self.item1.greetView bk_whenTapped:^{
-        @strongify(self);
-
-        [self.model1 like:^(NSError* error){
-        
-        }];
-        NSLog(@"item1 greetView touch");
-    }];
-    [self.item1.favoriteButton bk_whenTapped:^{
-        @strongify(self);
-
-        NSLog(@"item1 favoriteButton touch");
-        [self.model1 collecte:^(NSError* error){
-            
-        }];
-        
-    }];
-    
-    
 }
 
 -(void)setModel2:(BN_HomeUgcList *)model2{
@@ -262,17 +287,7 @@
     self.item2.videoButton.hidden = YES;
     if (model2.ugcType == 2){//视频
         self.item2.videoButton.hidden = NO;
-        [self.item2.videoButton bk_addEventHandler:^(id sender){
-            
-            NSLog(@"videoButton touch");
-            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
-            webViewController.url = [NSURL URLWithString:model2.ugcVideoUrl];
-            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
-            
-        } forControlEvents:UIControlEventTouchUpInside];
     }
-    
-    
     @weakify(self);
     [RACObserve(self.model2, likeNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
@@ -305,27 +320,6 @@
             [self.item2.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
         }
     }];
-    
-    
-    [self.item2.greetView bk_whenTapped:^{
-        @strongify(self);
-        
-        [self.model2 like:^(NSError* error){
-            
-        }];
-        NSLog(@"item2 greetView touch");
-    }];
-    [self.item2.favoriteButton bk_whenTapped:^{
-        @strongify(self);
-        
-        NSLog(@"item2 favoriteButton touch");
-        [self.model2 collecte:^(NSError* error){
-            
-        }];
-        
-    }];
-
-
 }
 
 @end

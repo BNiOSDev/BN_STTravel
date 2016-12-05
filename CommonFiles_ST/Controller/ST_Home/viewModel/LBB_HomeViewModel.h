@@ -142,7 +142,6 @@
 
 @property (nonatomic,strong)BN_HomeUgcList *model;
 @property(nonatomic,assign)NetLoadEvent modelEvent;
-
 /**
  3.1.2 广告轮播 1.首页最顶部
 

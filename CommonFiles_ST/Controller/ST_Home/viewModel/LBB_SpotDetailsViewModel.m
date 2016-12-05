@@ -146,7 +146,6 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SpotsNearbyRecommendData mj_objectArrayWithKeyValuesArray:array];
             
@@ -165,7 +164,6 @@
         
         temp.nearbyRecommends.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getUgcArrayClearData失败  %@",error.domain);
         
         temp.nearbyRecommends.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
@@ -210,13 +208,11 @@
         if(codeNumber.intValue == 0)
         {
             [temp.spotDetails mj_setKeyValues:[dic objectForKey:@"result"]];
-            NSLog(@"getSpotDetailsData 成功  %@",[dic objectForKey:@"result"]);
 
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            NSLog(@"getSpotDetailsData 失败  %@",errorStr);
             
         }
         

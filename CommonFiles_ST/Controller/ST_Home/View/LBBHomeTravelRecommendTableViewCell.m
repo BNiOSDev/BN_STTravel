@@ -212,8 +212,77 @@
             make.height.mas_equalTo(SeparateLineWidth);
         }];
     
+#pragma action
+        [self.favoriteButton bk_addEventHandler:^(id sender){
+            
+            [_model collecte:^(NSError* error){
+                NSLog(@"collecte error:%@",error);
+                
+            }];
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+        [self.commentsView bk_whenTapped:^{
+            
+            NSLog(@"commentsView touch 需跳转到全部评论页面");
+            
+        }];
+        [self.greetView bk_whenTapped:^{
+            
+            [_model like:^(NSError* error){
+                NSLog(@"like error:%@",error);
+            }];
+            
+        }];
         
-    //    [self blindData];
+        [self.portraitImageView bk_whenTapped:^{//跳转到个人中心页面
+            
+            LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.userId = ws.model.userId;
+            dest.viewModel = viewModel;
+            [[self getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+
+        [self.specialLabelButton1 bk_whenTapped:^{
+            
+            NSLog(@"specialLabelButton1 touch");
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:0];
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[self getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+
+        [self.specialLabelButton2 bk_whenTapped:^{
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:1];
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[self getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+
+        [self.specialLabelButton3 bk_whenTapped:^{
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:2];
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[self getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+
+        [self.specialLabelButton4 bk_whenTapped:^{
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:3];
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[self getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+    
+        [self.specialLabelButton5 bk_whenTapped:^{
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:4];
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[self getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+    
+
+        [self.specialLabelButton6 bk_whenTapped:^{
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:5];
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[self getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+        
+        
     }
     return self;
 }
@@ -278,15 +347,6 @@
         
         [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.travelNotesPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//游记标题
         [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//用户头像
-        [self.portraitImageView bk_whenTapped:^{//跳转到个人中心页面
-            
-            LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
-            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
-            viewModel.userId = model.userId;
-            dest.viewModel = viewModel;
-            [[self getViewController].navigationController pushViewController:dest animated:YES];
-        }];
-        
         [self.travlTitleLable setText:model.travelNotesName];//游记标题
         [self.userLable setText:model.userName];//用户名
     
@@ -303,94 +363,34 @@
             self.specialLabelButton1.hidden = NO;
             BN_HomeTag* tag = [model.tags objectAtIndex:0];
             [self.specialLabelButton1 setTitle:tag.tagName forState:UIControlStateNormal];
-            [self.specialLabelButton1 bk_whenTapped:^{
-                
-                NSLog(@"specialLabelButton1 touch");
-                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-                [[self getViewController].navigationController pushViewController:dest animated:YES];
-            }];
         }
         if (count > 1){
             self.specialLabelButton2.hidden = NO;
             BN_HomeTag* tag = [model.tags objectAtIndex:1];
             [self.specialLabelButton2 setTitle:tag.tagName forState:UIControlStateNormal];
-            [self.specialLabelButton2 bk_whenTapped:^{
-                
-                NSLog(@"specialLabelButton1 touch");
-                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-                [[self getViewController].navigationController pushViewController:dest animated:YES];
-            }];
         }
         if (count > 2){
             self.specialLabelButton3.hidden = NO;
             BN_HomeTag* tag = [model.tags objectAtIndex:2];
             [self.specialLabelButton3 setTitle:tag.tagName forState:UIControlStateNormal];
-            [self.specialLabelButton3 bk_whenTapped:^{
-                
-                NSLog(@"specialLabelButton1 touch");
-                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-                [[self getViewController].navigationController pushViewController:dest animated:YES];
-            }];
         }
         if (count > 3){
             self.specialLabelButton4.hidden = NO;
             BN_HomeTag* tag = [model.tags objectAtIndex:3];
             [self.specialLabelButton4 setTitle:tag.tagName forState:UIControlStateNormal];
-            [self.specialLabelButton4 bk_whenTapped:^{
-                
-                NSLog(@"specialLabelButton1 touch");
-                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-                [[self getViewController].navigationController pushViewController:dest animated:YES];
-            }];
         }
         if (count > 4){
             self.specialLabelButton5.hidden = NO;
             BN_HomeTag* tag = [model.tags objectAtIndex:4];
             [self.specialLabelButton5 setTitle:tag.tagName forState:UIControlStateNormal];
-            [self.specialLabelButton5 bk_whenTapped:^{
-                
-                NSLog(@"specialLabelButton1 touch");
-                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-                [[self getViewController].navigationController pushViewController:dest animated:YES];
-            }];
         }
         if (count > 5){
             self.specialLabelButton6.hidden = NO;
             BN_HomeTag* tag = [model.tags objectAtIndex:5];
             [self.specialLabelButton6 setTitle:tag.tagName forState:UIControlStateNormal];
-            [self.specialLabelButton6 bk_whenTapped:^{
-                
-                NSLog(@"specialLabelButton1 touch");
-                LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-                [[self getViewController].navigationController pushViewController:dest animated:YES];
-            }];
         }
         
     }];
-    
-    [self.favoriteButton bk_addEventHandler:^(id sender){
-        
-        NSLog(@"favoriteButton touch");
-        [_model collecte:^(NSError* error){
-            NSLog(@"collecte error:%@",error);
-
-        }];
-        
-    } forControlEvents:UIControlEventTouchUpInside];
-    [self.commentsView bk_whenTapped:^{
-        
-        NSLog(@"commentsView touch 需跳转到全部评论页面");
-        
-    }];
-    [self.greetView bk_whenTapped:^{
-        
-        NSLog(@"greetView touch");
-        [_model like:^(NSError* error){
-            NSLog(@"like error:%@",error);
-        }];
-        
-    }];
-    
 }
 
 @end

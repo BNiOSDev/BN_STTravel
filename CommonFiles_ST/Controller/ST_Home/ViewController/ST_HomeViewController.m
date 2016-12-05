@@ -89,7 +89,6 @@
     [back.imageView setImage:IMAGE(@"ST_Home_Nearby")];
     [back bk_whenTapped:^{
         
-        NSLog(@"back touch");
         LBBNearbyMainViewController* v = [[LBBNearbyMainViewController alloc]init];
         [ws.navigationController pushViewController:v animated:YES];
     }];
@@ -103,7 +102,6 @@
     [sign.imageView setImage:IMAGE(@"ST_Home_Signin")];
     [sign bk_whenTapped:^{
         
-        NSLog(@"signButton touch");
         LBBSigninMainViewController* v = [[LBBSigninMainViewController alloc]init];
         [ws.navigationController pushViewController:v animated:YES];
         
@@ -304,7 +302,6 @@
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
-    NSLog(@"searchBarSearchButtonClicked");
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
@@ -374,8 +371,6 @@
     }];
     
     [btn bk_addEventHandler:^(id sender){
-    
-        NSLog(@"touch section header");
         
         if (section == LBBHomeSectionTravelRecommendType) {//游记推荐，跳转到游记
             [self.tabBarController setSelectedIndex:1];

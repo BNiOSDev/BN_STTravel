@@ -94,10 +94,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    if (self.spotsArray) {
-        return self.spotsArray.count;
-    }
-    else{
+    
+    if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
                 return self.footSpotsArray.count;
@@ -113,6 +111,9 @@
                 break;
         }
     }
+    else if (self.type == LBBHomeHotestTableViewCellHotType){
+        return self.spotsArray.count;
+    }
     
     return 8;
 }
@@ -127,10 +128,7 @@
     }
     
     BN_HomeSpotsList* obj;
-    if (self.spotsArray) {
-        obj = [self.spotsArray objectAtIndex:indexPath.row];
-    }
-    else{
+    if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
                 obj = [self.footSpotsArray objectAtIndex:indexPath.row];
@@ -143,96 +141,39 @@
                 break;
         }
     }
-    [cell.mainImageView sd_setImageWithURL:[NSURL URLWithString:obj.allSpotsPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//场景图片
-    [cell.titleLabel setText:obj.allSpotsName];//场景名称
-    [cell.disView setTitle:[NSString stringWithFormat:@"%d",obj.commentsNum] forState:UIControlStateNormal];//评论条数
-    [cell.greetView setTitle:[NSString stringWithFormat:@"%d",obj.likeNum] forState:UIControlStateNormal];//点赞次数
-   // [cell.priceLabel setText:[NSString stringWithFormat:@"%@元起/人",obj.price]];//价格
-    
-    //单价设置
-    NSString* strFormat1 = [NSString stringWithFormat:@"%@元起/人",obj.price];
-    NSString* strFormat2 = @"元";
-    UIColor* fontColor = ColorBtnYellow;
-    NSDictionary* attrsDic = @{NSForegroundColorAttributeName:fontColor,
-                               NSFontAttributeName:Font12};    //显示的字符串进行富文本转换
-    NSMutableAttributedString* strAttr = [[NSMutableAttributedString alloc]initWithString:strFormat1];
-    //字体设置
-    NSRange rang = [strFormat1 rangeOfString:strFormat2];
-    if (rang.location != NSNotFound) {
-        NSLog(@"found at location = %ld, length = %ld",rang.location,rang.length);
-        [strAttr addAttributes:attrsDic range:NSMakeRange(0, rang.location)];
-    }else{
-        NSLog(@"Not Found");
+    else if (self.type == LBBHomeHotestTableViewCellHotType){
+        obj = [self.spotsArray objectAtIndex:indexPath.row];
     }
-    cell.priceLabel.attributedText = strAttr;
-    
-    
-   // @weakify (self);
-    [RACObserve(obj, isCollected) subscribeNext:^(NSNumber* isCollected) {
-      //  @strongify(self);
-        
-        BOOL status = [isCollected boolValue];
-        
-        if (status) {
-            [cell.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
-        }
-        else{
-            [cell.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
-        }
-        
-    }];
-    
-    [RACObserve(obj, isLiked) subscribeNext:^(NSNumber* isLiked) {
-      //  @strongify(self);
-        BOOL status = [isLiked boolValue];
-        if (status) {
-            [cell.greetView setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
-        }
-        else{
-            [cell.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
-        }
-        
-    }];
-    
+    [cell setModel:obj];
     [cell.greetView bk_whenTapped:^{
         
         NSLog(@"greetView touch");
         [obj like:^(NSError* error){
             NSLog(@"like error:%@",error);
-
+            
         }];
     }];
     
     [cell.disView bk_whenTapped:^{
         
-        NSLog(@"disView touch");
+        NSLog(@"disView touch 需跳转到全部评论页面");
         
     }];
     [cell.favoriteButton bk_addEventHandler:^(id sender){
         
-        NSLog(@"favoriteButton touch");
+        NSLog(@"favoriteButton touch indexPath.row:%ld",indexPath.row);
         [obj collecte:^(NSError* error){
             NSLog(@"collecte error:%@",error);
         }];
     } forControlEvents:UIControlEventTouchUpInside];
-    
-
-    
-    
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.isMarket) {
-        return;
-    }
     
     BN_HomeSpotsList* obj;
-    if (self.spotsArray) {
-        obj = [self.spotsArray objectAtIndex:indexPath.row];
-    }
-    else{
+    if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
                 obj = [self.footSpotsArray objectAtIndex:indexPath.row];
@@ -244,6 +185,10 @@
                 obj = [self.scenicSpotsArray objectAtIndex:indexPath.row];
                 break;
         }
+    }
+    else if (self.type == LBBHomeHotestTableViewCellHotType) {
+
+        obj = [self.spotsArray objectAtIndex:indexPath.row];
     }
     
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];

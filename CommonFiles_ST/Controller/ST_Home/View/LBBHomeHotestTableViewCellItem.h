@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LBB_HomeViewModel.h"
 @interface LBBHomeHotestTableViewCellItem : UICollectionViewCell
 
 @property(nonatomic, retain)UIImageView* mainImageView;
@@ -16,5 +16,7 @@
 @property(nonatomic, retain)UIButton* greetView;
 @property(nonatomic, retain)UILabel* priceLabel;
 @property(nonatomic, retain)UIButton* favoriteButton;
+
+@property(nonatomic, retain)BN_HomeSpotsList* model;
 
 @end

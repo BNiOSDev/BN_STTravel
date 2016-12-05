@@ -286,8 +286,9 @@
             cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
+        cell.type = LBBHomeHotestTableViewCellHotType;
         [cell setPagerViewHidden:YES];
-        [cell setSpotsArray:self.viewModel.spotsArray];
+     //   [cell setSpotsArray:self.viewModel.spotsArray];
         return cell;
     }
     else{
@@ -349,6 +350,7 @@
         cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         NSLog(@"LBBHomeHotestTableViewCell nil");
     }
+    cell.type = LBBHomeHotestTableViewCellVipRecommendType;
     [cell setPagerViewHidden:NO];
     [cell.pagerView setSelectedSegmentIndex:self.vipRecommendType];
     cell.pagerView.indexChangeBlock = ^(NSInteger index){
@@ -357,7 +359,7 @@
         [ws.tableView reloadData];
     };
     
-    switch (self.vipRecommendType) {
+ /*   switch (self.vipRecommendType) {
         case LBBPoohSegmCtrlFoodsType:
             [cell setFootSpotsArray:self.viewModel.footSpotsArray];
             break;
@@ -371,7 +373,7 @@
         default:
             break;
     }
-    
+   */
     return cell;
     
 }
@@ -459,7 +461,7 @@
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
         [cell setPagerViewHidden:NO];
-        cell.isMarket = YES;
+        cell.type = LBBHomeHotestTableViewCellTravelProductType;
         [cell.pagerView setSelectedSegmentIndex:self.giftRecommendType];
         cell.pagerView.indexChangeBlock = ^(NSInteger index){
             NSLog(@"segmentedControl select:%ld",index);
