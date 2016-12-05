@@ -61,7 +61,7 @@ UITableViewDataSource
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 //    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *destDateString = [dateFormatter stringFromDate:date];
     return destDateString;
@@ -84,28 +84,23 @@ UITableViewDataSource
                        }];
     
     if ([self.viewModel.buyTitle length]) {
-        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],
+        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePurchageNotifion],
                            @"Content":self.viewModel.buyTitle,
                            @"Date":self.viewModel.buyTime
                            }];
     }
     
-    if ([self.viewModel.onsaleTitle length]) {
-        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],
-                           @"Content":self.viewModel.onsaleTitle,
-                           @"Date":self.viewModel.onsaleTime
-                           }];
-    }
     
     if ([self.viewModel.noticeTitle length]) {
-        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],
+        [array addObject:@{@"InfoType":[NSNumber numberWithInt:eNotice],
                            @"Content":self.viewModel.noticeTitle,
                            @"Date":self.viewModel.noticeTime
                            }];
     }
     
+    
     if ([self.viewModel.squareName length]) {
-        [array addObject:@{@"InfoType":[NSNumber numberWithInt:ePromotions],
+        [array addObject:@{@"InfoType":[NSNumber numberWithInt:eSquareTravel],
                            @"Content":self.viewModel.squareName,
                            @"Date":self.viewModel.squareTime
                            }];
@@ -117,29 +112,6 @@ UITableViewDataSource
     [self.dataSourceArray removeAllObjects];
     [self.dataSourceArray addObjectsFromArray:array];
     [self.tableView reloadData];
-    
-//    self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[@{@"InfoType":[NSNumber numberWithInt:ePromotions],
-//                                                                     @"Content":@"喜迎国庆,全场8折优惠（最新活动）",
-//                                                                     @"Date":@"07-17"
-//                                                                     },
-//                                                                   @{@"InfoType":[NSNumber numberWithInt:eCustomer],
-//                                                                     @"Content":@"点击查看您的最新客服会话记录",
-//                                                                     @"Date":@"07-17"
-//                                                                     },
-//                                                                   @{@"InfoType":[NSNumber numberWithInt:ePurchageNotifion],
-//                                                                     @"Content":@"已发货，您2016-07-16购买黑蒜...",
-//                                                                     @"Date":@"07-17",
-//                                                                     @"Image":@""
-//                                                                     },
-//                                                                   @{@"InfoType":[NSNumber numberWithInt:eNotice],
-//                                                                     @"Content":@"提现成功，您2016-07-12申请100...",
-//                                                                     @"Date":@"07-17"
-//                                                                     },
-//                                                                   @{@"InfoType":[NSNumber numberWithInt:eSquareTravel],
-//                                                                     @"Content":@"您发布的游记XX被点赞了，快去看...",
-//                                                                     @"Date":@"07-17"
-//                                                                     }
-//                                                                   ]];
 }
 
 

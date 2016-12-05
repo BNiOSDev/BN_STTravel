@@ -2705,6 +2705,68 @@
             </objects>
             <point key="canvasLocation" x="-3350" y="3213"/>
         </scene>
+        <!--LBB_NoticeDetailViewController-->
+        <scene sceneID="Nu8-8h-EfM">
+            <objects>
+                <viewController storyboardIdentifier="LBB_NoticeDetailViewController" id="PZ6-UH-SSp" userLabel="LBB_NoticeDetailViewController" customClass="LBB_NoticeDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BkZ-WM-g9L"/>
+                        <viewControllerLayoutGuide type="bottom" id="djs-Hp-r27"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T7u-4g-0tI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公告标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Arl-mh-fcc">
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-01-01 12:09" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAg-OC-rtc">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBP-Y3-GqM">
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="nhJ-ad-35D"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="公告内容" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yPc-bW-wpt">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eAg-OC-rtc" firstAttribute="centerX" secondItem="Arl-mh-fcc" secondAttribute="centerX" id="9Te-Rk-mFa"/>
+                            <constraint firstItem="djs-Hp-r27" firstAttribute="top" secondItem="yPc-bW-wpt" secondAttribute="bottom" id="ADy-E6-1Uh"/>
+                            <constraint firstItem="JBP-Y3-GqM" firstAttribute="top" secondItem="eAg-OC-rtc" secondAttribute="bottom" constant="15" id="CmB-VS-Yeo"/>
+                            <constraint firstItem="yPc-bW-wpt" firstAttribute="trailing" secondItem="JBP-Y3-GqM" secondAttribute="trailing" id="EjB-iY-h53"/>
+                            <constraint firstItem="JBP-Y3-GqM" firstAttribute="leading" secondItem="T7u-4g-0tI" secondAttribute="leadingMargin" constant="30" id="Ju6-I4-TPD"/>
+                            <constraint firstItem="Arl-mh-fcc" firstAttribute="top" secondItem="BkZ-WM-g9L" secondAttribute="bottom" constant="40" id="RQI-Wt-Gz8"/>
+                            <constraint firstItem="yPc-bW-wpt" firstAttribute="leading" secondItem="JBP-Y3-GqM" secondAttribute="leading" id="agB-BV-gL2"/>
+                            <constraint firstItem="eAg-OC-rtc" firstAttribute="top" secondItem="Arl-mh-fcc" secondAttribute="bottom" constant="8" id="cTR-z2-B8r"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JBP-Y3-GqM" secondAttribute="trailing" constant="30" id="p92-Ih-cUb"/>
+                            <constraint firstItem="Arl-mh-fcc" firstAttribute="centerX" secondItem="T7u-4g-0tI" secondAttribute="centerX" id="qrv-Pq-z2A"/>
+                            <constraint firstItem="yPc-bW-wpt" firstAttribute="top" secondItem="JBP-Y3-GqM" secondAttribute="bottom" constant="15" id="tHu-zc-lpQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomViewBottomContraint" destination="ADy-E6-1Uh" id="yLl-h5-qtm"/>
+                        <outlet property="lineView" destination="JBP-Y3-GqM" id="674-NJ-wLM"/>
+                        <outlet property="textView" destination="yPc-bW-wpt" id="3tg-yI-7aC"/>
+                        <outlet property="timeLabel" destination="eAg-OC-rtc" id="eto-MS-hdk"/>
+                        <outlet property="titleLabel" destination="Arl-mh-fcc" id="5vx-FX-Em5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jwE-sQ-FVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4914.3999999999996" y="3986.3568215892055"/>
+        </scene>
         <!--LBB_PromotionsViewController-->
         <scene sceneID="9AL-kF-sqt">
             <objects>

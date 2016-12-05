@@ -77,7 +77,12 @@
 - (void)setImageURL:(NSString *)imageURL
 {
     _imageURL = imageURL;
-    [self  sd_setImageWithURL:[NSURL URLWithString:_imageURL] placeholderImage:DEFAULTIMAGE];
+    if ([_imageURL length]) {
+        [self  sd_setImageWithURL:[NSURL URLWithString:_imageURL] placeholderImage:DEFAULTIMAGE];
+    }else {
+        self.image = nil;
+    }
+    
 }
 
 
