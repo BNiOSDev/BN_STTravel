@@ -171,8 +171,10 @@
     }
     
     if (self.viewModel.hostelCondition.tags.count > 0) {
-        LBB_HostelConditionOption* tagsObj = [self.viewModel.hostelCondition.tags objectAtIndex:self.tagsSelectIndex];
-        tagsKey = tagsObj.key;
+        if (self.tagsSelectIndex >= 0) {
+            LBB_HostelConditionOption* tagsObj = [self.viewModel.hostelCondition.tags objectAtIndex:self.tagsSelectIndex];
+            tagsKey = tagsObj.key;
+        }
     }
     
     if (self.viewModel.hostelCondition.price.count > 0) {
@@ -216,7 +218,7 @@
     search.titleLabel.font = Font14;
     // [search setTitle:@"搜索" forState:UIControlStateNormal];
     // [search setImage:IMAGE(@"景区列表_搜索") forState:UIControlStateNormal];
-    [search setBackgroundImage:IMAGE(@"景区列表_搜索") forState:UIControlStateNormal];
+    [search setImage:IMAGE(@"景区列表_搜索") forState:UIControlStateNormal];
     
     [search setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     search.frame = CGRectMake(0, 0, 25, 25);

@@ -131,6 +131,9 @@
      @property(nonatomic, strong)NSString *userPicUrl ;// 收藏头像URL
 
      */
+    
+    [self.titleLable setText:[NSString stringWithFormat:@"%ld位达人已收藏",collectedRecord.count]];
+
     //标签
     self.favoriteImageView1.hidden = YES;
     self.favoriteImageView2.hidden = YES;

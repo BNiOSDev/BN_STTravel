@@ -146,8 +146,12 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
    
     [favorite bk_addEventHandler:^(id sender){
         
+        [ws.spotModel.spotDetails collecte:^(NSError* error){
+        
+        }];
+        
     }forControlEvents:UIControlEventTouchUpInside];
-
+    self.favoriteButton = favorite;
 }
 
 /*
@@ -352,7 +356,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(img.mas_bottom).offset(8);
             make.centerX.equalTo(v);
-            make.height.mas_equalTo(TopSegmmentControlHeight);
+            make.height.mas_equalTo(AutoSize(25));
             make.width.equalTo(@200);
           //  make.bottom.equalTo(v);
         }];

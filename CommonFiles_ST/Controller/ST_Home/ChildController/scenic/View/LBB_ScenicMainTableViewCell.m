@@ -7,6 +7,7 @@
 //
 
 #import "LBB_ScenicMainTableViewCell.h"
+#import "LBB_StarRatingViewController.h"
 
 
 @implementation LBB_ScenicMainTableViewCell
@@ -153,12 +154,7 @@
             make.top.equalTo(ws.addressLabel.mas_bottom).offset(margin);
             //make.height.mas_equalTo(@15);
         }];
-        [self.greatButton bk_whenTapped:^{
-            
-            NSLog(@"greetView touch");
-            
-        }];
-        
+
         
         self.commentsButton = [[UIButton alloc]init];
         [self.commentsButton setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
@@ -175,8 +171,42 @@
         
         [self.commentsButton bk_whenTapped:^{
 
+            NSLog(@"跳转到五星评论页面");
+            LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc]init];
+            //1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记 10 线路攻略11 美食专题 12民宿专题 13景点专题
+            switch (ws.model.allSpotsType) {
+                case 1:
+                    dest.themeTitle = @"美食评价";
+                    break;
+                case 2:
+                    dest.themeTitle = @"民宿评价";
+                    break;
+                case 3:
+                    dest.themeTitle = @"景点评价";
+                    break;
+                default:
+                    dest.themeTitle = @"美食评价";
+                    break;
+            }
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
         
+        [self.favoriteButton bk_addEventHandler:^(id sender){
+            
+            [_model collecte:^(NSError* error){
+                NSLog(@"collecte error:%@",error);
+                
+            }];
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+
+        [self.greatButton bk_whenTapped:^{
+            
+            [_model like:^(NSError* error){
+                NSLog(@"like error:%@",error);
+            }];
+            
+        }];
         
         UIView* sep2 = [UIView new];
         [sep2 setBackgroundColor:ColorLine];
@@ -220,22 +250,48 @@
     [self.titleLabel setText:model.picRemark];
     
     [self.distanceLabel setText:[NSString stringWithFormat:@"%.0fkm",model.distance]];
-    [self.greatButton setTitle:[NSString stringWithFormat:@"%d",model.likeNum] forState:UIControlStateNormal];
     [self.commentsButton setTitle:[NSString stringWithFormat:@"%d",model.commentsNum] forState:UIControlStateNormal];
 
-    if (model.isCollected) {
-        [self.favoriteButton setImage:IMAGE(@"景点详情_收藏HL") forState:UIControlStateNormal];
-    }
-    else{
-        [self.favoriteButton setImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
-    }
     
-    if (model.isLiked) {
-        [self.greatButton setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
-    }
-    else{
-        [self.greatButton setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
-    }
+    @weakify (self);
+    
+    [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //是否点赞
+        BOOL sts = [num boolValue];
+        if (sts) {
+            [self.greatButton setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.greatButton setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        }
+    }];
+    
+    [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //是否收藏
+        BOOL sts = [num boolValue];
+        if (sts) {
+            [self.favoriteButton setImage:IMAGE(@"景点详情_收藏HL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.favoriteButton setImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
+        }
+    }];
+    
+    [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //点赞次数
+        int sts = [num intValue];
+        [self.greatButton setTitle:[NSString stringWithFormat:@"%d",sts] forState:UIControlStateNormal];
+    }];
+    
+
+    
+
     
     //单价设置
     NSString* strFormat1 = [NSString stringWithFormat:@"%@元起/人",model.realPrice];

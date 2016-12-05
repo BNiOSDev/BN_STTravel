@@ -288,7 +288,7 @@
         }
         cell.type = LBBHomeHotestTableViewCellHotType;
         [cell setPagerViewHidden:YES];
-     //   [cell setSpotsArray:self.viewModel.spotsArray];
+        [cell setSpotsArray:self.viewModel.spotsArray];
         return cell;
     }
     else{
@@ -307,8 +307,6 @@
         }];
     }
     else{
-     //   return [LBBHomeHotestTableViewCell getCellHeight];
-        
           return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
               [cell setPagerViewHidden:YES];
          }];
@@ -359,7 +357,7 @@
         [ws.tableView reloadData];
     };
     
- /*   switch (self.vipRecommendType) {
+    switch (self.vipRecommendType) {
         case LBBPoohSegmCtrlFoodsType:
             [cell setFootSpotsArray:self.viewModel.footSpotsArray];
             break;
@@ -373,7 +371,7 @@
         default:
             break;
     }
-   */
+  
     return cell;
     
 }

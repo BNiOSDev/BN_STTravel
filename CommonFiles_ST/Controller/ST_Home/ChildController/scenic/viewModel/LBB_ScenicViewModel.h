@@ -67,5 +67,4 @@
                      priceKey:(int)priceKey
                     clearData:(BOOL)clear;
 
-
 @end
