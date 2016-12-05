@@ -89,7 +89,27 @@
         
         [self layoutSubviews];//it must to be done to layouts subviews
     
-       
+        [self.greetView bk_whenTapped:^{
+            
+            NSLog(@"greetView touch");
+            [ws.model like:^(NSError* error){
+                NSLog(@"like error:%@",error);
+                
+            }];
+        }];
+        
+        [self.disView bk_whenTapped:^{
+            
+            NSLog(@"disView touch 需跳转到全部评论页面");
+            
+        }];
+        [self.favoriteButton bk_addEventHandler:^(id sender){
+            
+            [ws.model collecte:^(NSError* error){
+                NSLog(@"collecte error:%@",error);
+            }];
+        } forControlEvents:UIControlEventTouchUpInside];
+ 
         
     }
     return self;
@@ -120,7 +140,8 @@
         NSLog(@"Not Found");
     }
     self.priceLabel.attributedText = strAttr;
-     @weakify (self);
+    
+    @weakify (self);
     [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* isCollected) {
         @strongify(self);
         
@@ -133,7 +154,7 @@
             [self.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
         }
     }];
-    
+
     [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* isLiked) {
         @strongify(self);
         BOOL status = [isLiked boolValue];
@@ -151,5 +172,7 @@
         int status = [num intValue];
         [self.greetView setTitle:[NSString stringWithFormat:@"%d",status] forState:UIControlStateNormal];//点赞次数
     }];
+   
 }
+
 @end

@@ -121,7 +121,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     LBBHomeHotestTableViewCellItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBBHomeHotestTableViewCellItem"forIndexPath:indexPath];
-    
+    NSLog(@"AAAAAAAA %@",cell);
     [cell sizeToFit];
     if (!cell) {
         NSLog(@"无法创建LBBHomeHotestTableViewCellItem时打印，自定义的cell就不可能进来了。");
@@ -145,27 +145,7 @@
         obj = [self.spotsArray objectAtIndex:indexPath.row];
     }
     [cell setModel:obj];
-    [cell.greetView bk_whenTapped:^{
-        
-        NSLog(@"greetView touch");
-        [obj like:^(NSError* error){
-            NSLog(@"like error:%@",error);
-            
-        }];
-    }];
-    
-    [cell.disView bk_whenTapped:^{
-        
-        NSLog(@"disView touch 需跳转到全部评论页面");
-        
-    }];
-    [cell.favoriteButton bk_addEventHandler:^(id sender){
-        
-        NSLog(@"favoriteButton touch indexPath.row:%ld",indexPath.row);
-        [obj collecte:^(NSError* error){
-            NSLog(@"collecte error:%@",error);
-        }];
-    } forControlEvents:UIControlEventTouchUpInside];
+
     return cell;
 }
 

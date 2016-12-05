@@ -189,11 +189,11 @@
     NSLog(@"经度longitude:%@",self.locationManager.longitude);
     
 #pragma 以下全部使用默认值，测试数据
-    typeKey = -1;//类别
+  /*  typeKey = -1;//类别
     orderKey = -1;//排序
     hotRecommendKey = -1;//热门推荐
     tagsKey = -1;//标签
-    priceKey = -1;//价格
+    priceKey = -1;//价格*/
     [self.viewModel getHostelArrayLongitude:self.locationManager.longitude//精度
                            dimensionality:self.locationManager.latitude//维度
                                   typeKey:typeKey
