@@ -165,6 +165,7 @@
 @property (nonatomic,strong)NSMutableArray<LBB_SpotsTag*> *tags ;// 标签
 @property (nonatomic,strong)NSString* dimensionality;//维度
 @property (nonatomic,strong)NSString* longitude;//精度
+@property (nonatomic,strong)NSString* address;//地址
 
 
 

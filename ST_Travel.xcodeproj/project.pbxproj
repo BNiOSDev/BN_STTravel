@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B2085481DF5A5F90065DE6F /* LBB_CommentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085471DF5A5F90065DE6F /* LBB_CommentViewModel.m */; };
 		1B20854B1DF5AF7B0065DE6F /* LBB_NearSign.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B20854A1DF5AF7B0065DE6F /* LBB_NearSign.m */; };
+		1B2085521DF5CE960065DE6F /* LBB_SearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085511DF5CE960065DE6F /* LBB_SearchViewModel.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DB14E2B1DF3110E0023A740 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB149741DF3110D0023A740 /* PoohBaseTableViewController.m */; };
@@ -564,6 +565,8 @@
 		1B2085471DF5A5F90065DE6F /* LBB_CommentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_CommentViewModel.m; sourceTree = "<group>"; };
 		1B2085491DF5AF7B0065DE6F /* LBB_NearSign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_NearSign.h; sourceTree = "<group>"; };
 		1B20854A1DF5AF7B0065DE6F /* LBB_NearSign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NearSign.m; sourceTree = "<group>"; };
+		1B2085501DF5CE960065DE6F /* LBB_SearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SearchViewModel.h; sourceTree = "<group>"; };
+		1B2085511DF5CE960065DE6F /* LBB_SearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SearchViewModel.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DB149731DF3110D0023A740 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
@@ -1554,6 +1557,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1B20854F1DF5CE7A0065DE6F /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1B2085501DF5CE960065DE6F /* LBB_SearchViewModel.h */,
+				1B2085511DF5CE960065DE6F /* LBB_SearchViewModel.m */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
 		1DB1496F1DF3110D0023A740 /* CommonFiles_ST */ = {
 			isa = PBXGroup;
 			children = (
@@ -2184,6 +2196,7 @@
 		1DB14A701DF3110D0023A740 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				1B20854F1DF5CE7A0065DE6F /* viewModel */,
 				1DB14A711DF3110D0023A740 /* View */,
 				1DB14A781DF3110D0023A740 /* ViewController */,
 			);
@@ -5466,6 +5479,7 @@
 				1DB14F281DF3110F0023A740 /* AddCardViewController.m in Sources */,
 				1DB14E871DF3110E0023A740 /* LBB_ScenicDetailPriceMsgCell.m in Sources */,
 				1DB150001DF311110023A740 /* JHPieItemsView.m in Sources */,
+				1B2085521DF5CE960065DE6F /* LBB_SearchViewModel.m in Sources */,
 				1DB14E7C1DF3110E0023A740 /* LBB_NewOrderTicketTypeInfoView.m in Sources */,
 				1DB150051DF311110023A740 /* UILabel+AutoFit.m in Sources */,
 				1DB14E901DF3110E0023A740 /* LBB_ScenicDetailViewController.m in Sources */,
