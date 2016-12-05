@@ -54,6 +54,10 @@
 {
     _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
     _mTableView.height = _mTableView.height - 40 - 64;
+    if (self.baseViewType == eRecentChat) {
+        _mTableView.height = DeviceHeight - 64;
+        self.navigationItem.title = NSLocalizedString(@"最近联系人", nil);
+    }
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
     _mTableView.backgroundColor = ColorBackground;

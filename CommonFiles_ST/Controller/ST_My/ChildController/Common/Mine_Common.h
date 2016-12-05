@@ -63,7 +63,7 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     ePhoto, //照片
     eVideo,//视频
     eTravels ,//我的游记
-    eLove,//关注
+    eRecentChat,//聊天
     /* 我的收藏 */
     eSquare,//广场
     eScenicSpot,//景点
@@ -76,7 +76,7 @@ typedef NS_ENUM(NSInteger,MineBaseViewType) {
     /* 我的积分 */
     ePoints,//我的积分
     eDownload ,//我的下载
-    eRoute ,//定制线路
+    eMineFollow ,//关注
     eSetting, //我的设置
     ePointConvert ,//积分兑换
     ePointDetail, //积分明细

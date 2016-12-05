@@ -15,7 +15,6 @@
 #import "LBB_MineViewDataController.h"
 #import "LBB_ImagePickerViewController.h"
 #import "LBB_DownloadedViewController.h"
-#import "LBB_RouteViewController.h"
 #import "LBB_MyTravelViewController.h"
 #import "LBB_MyPhotoViewController.h"
 #import "LBB_MyVideoViewController.h"
@@ -25,6 +24,7 @@
 #import "LBB_TravelGuideViewController.h"
 #import "LBB_MyFavoriteSquareViewController.h"
 #import "LBB_LoginViewController.h"
+#import "LBB_MyChatViewController.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -196,10 +196,11 @@ LBB_MySectionHeadViewDelegate
             [self.navigationController pushViewController:myTravel animated:YES];
         }
            break;
-        case  eLove://关注
+        case  eRecentChat://聊天
         {
-            LBB_MyFollowViewController *followVC = [[LBB_MyFollowViewController alloc] init];
-            [self.navigationController pushViewController:followVC animated:YES];
+            LBB_MyChatViewController *chatVC = [[LBB_MyChatViewController alloc] init];
+            chatVC.baseViewType = eRecentChat;
+            [self.navigationController pushViewController:chatVC animated:YES];
         }
             break;
 /* 我的收藏 */
@@ -256,10 +257,11 @@ LBB_MySectionHeadViewDelegate
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case eRoute://定制线路
+        case eMineFollow://关注
         {
-            LBB_RouteViewController *vc = [[LBB_RouteViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            LBB_MyFollowViewController *followVC = [[LBB_MyFollowViewController alloc] init];
+            followVC.baseViewType = eMineFollow;
+            [self.navigationController pushViewController:followVC animated:YES];
         }
             break;
         case eSetting: //我的设置

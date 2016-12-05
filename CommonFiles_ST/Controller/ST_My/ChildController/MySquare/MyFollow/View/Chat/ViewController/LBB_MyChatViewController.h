@@ -6,8 +6,8 @@
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MineBaseViewController.h"
 
-@interface LBB_MyChatViewController : UIViewController
+@interface LBB_MyChatViewController : MineBaseViewController
 
 @end
