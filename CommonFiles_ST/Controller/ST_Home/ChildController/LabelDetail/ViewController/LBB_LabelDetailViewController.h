@@ -7,7 +7,9 @@
 //
 
 #import "PoohBaseViewController.h"
+#import "LBB_TagsViewModel.h"
+@interface LBB_LabelDetailViewController : PoohBaseViewController
 
-@interface LBB_LabelDetailViewController : Base_BaseViewController
+@property(nonatomic, strong)LBB_SquareTags* viewModel;
 
 @end

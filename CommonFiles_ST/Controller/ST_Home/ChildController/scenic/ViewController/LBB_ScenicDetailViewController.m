@@ -186,8 +186,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.top.centerX.equalTo(ws.view);
-        make.bottom.equalTo(ws.view);
+        make.width.top.centerX.equalTo(ws.baseContentView);
+        make.bottom.equalTo(ws.baseContentView);
     }];
     
     

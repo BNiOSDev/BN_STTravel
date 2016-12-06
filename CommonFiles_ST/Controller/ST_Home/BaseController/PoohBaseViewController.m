@@ -23,7 +23,7 @@
     [super viewDidLoad];
     WS(ws);
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     self.baseNavigationBarView = [UIView new];
     [self.view addSubview:self.baseNavigationBarView];
     [self.baseNavigationBarView mas_makeConstraints:^(MASConstraintMaker *make) {

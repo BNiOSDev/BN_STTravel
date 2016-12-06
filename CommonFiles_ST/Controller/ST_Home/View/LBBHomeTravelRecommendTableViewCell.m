@@ -248,30 +248,45 @@
             NSLog(@"specialLabelButton1 touch");
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:0];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
 
         [self.specialLabelButton2 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:1];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
 
         [self.specialLabelButton3 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:2];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
 
         [self.specialLabelButton4 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:3];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
     
         [self.specialLabelButton5 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:4];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
     
@@ -279,6 +294,9 @@
         [self.specialLabelButton6 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:5];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
         

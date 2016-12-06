@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LBB_TagsViewModel.h"
 
 @interface LBB_LabelDetailHeaderView : UIView
 
@@ -23,6 +24,6 @@
 
 +(CGFloat)getHeight;
 
-@property(nonatomic,retain)id model;
+@property(nonatomic,retain)LBB_TagsViewModel* model;
 
 @end

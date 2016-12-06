@@ -115,6 +115,7 @@
         if(codeNumber.intValue == 0)
         {
             [temp.tagsViewModel mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getTagsViewModelData success:%@",[dic objectForKey:@"result"]);
         }
         else
         {

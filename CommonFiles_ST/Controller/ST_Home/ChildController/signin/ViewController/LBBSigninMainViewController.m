@@ -11,10 +11,11 @@
 #import "LBB_SignInRankListViewController.h"
 #import "LBB_SigninPopView.h"
 #import "LBB_NearViewModel.h"
+#import <BN_MapView.h>
 
 @interface LBBSigninMainViewController ()
 
-@property(nonatomic, retain)UIView* mapView;
+@property(nonatomic, retain)BN_MapView* mapView;
 
 @property(nonatomic, retain)UILabel* noteLable;
 
@@ -78,11 +79,11 @@
      */
     
    // [self.viewModel getNearShopArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude];
-
+    WS(ws);
     [self.viewModel.nearShopArray.loadSupport setDataRefreshblock:^{
     
-        
-        
+        [ws.mapView setDelta:10000.0 Latitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
+        [ws.mapView andAnnotationLatitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
     }];
     
     
@@ -190,14 +191,13 @@
     
     
     //map
-    self.mapView = [UIView new];
-    [self.mapView setBackgroundColor:[UIColor yellowColor]];
+    self.mapView = [[BN_MapView alloc] init];
     [self.view addSubview:self.mapView];
     [self.mapView mas_makeConstraints:^(MASConstraintMaker* make){
         
-        make.centerX.width.equalTo(ws.view);
+        make.centerX.bottom.width.equalTo(ws.view);
         make.top.equalTo(signList.mas_bottom);
-        make.height.mas_equalTo(DeviceWidth*3/2);
+      //  make.height.mas_equalTo(DeviceWidth*3/2);
     }];
     
     self.noteLable = [UILabel new];
