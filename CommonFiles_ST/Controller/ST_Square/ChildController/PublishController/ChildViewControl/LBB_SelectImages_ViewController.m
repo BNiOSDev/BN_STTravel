@@ -20,6 +20,7 @@
 @interface LBB_SelectImages_ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UITableViewDelegate,UITableViewDataSource,TransImageDelegate,PHPhotoLibraryChangeObserver>
 {
      BOOL        showList;
+    BOOL        TAKEPHOTO;
 }
 @property(nonatomic,strong)UITableView     *imageCollect;
 @property(nonatomic,strong)UICollectionView  *imageList;
@@ -31,6 +32,7 @@
  *  存放已经选择的照片
  */
 @property(nonatomic,strong)NSMutableArray * selectedPhoto;
+
 @end
 
 @implementation LBB_SelectImages_ViewController
@@ -60,6 +62,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    TAKEPHOTO = NO;
     [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1.0;
     [self.view addSubview:self.mTableView];
     [self registerChangeObserver];
@@ -107,7 +110,7 @@
 
 - (void)createCollectView
 {
-    _selectedPhoto = [NSMutableArray array];
+    _selectedPhoto = [[NSMutableArray alloc]init];
     
     //确定是水平滚动，还是垂直滚动
     UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
@@ -314,6 +317,7 @@
 {
     if(indexPath.row == 0)
     {
+        TAKEPHOTO = YES;
         ZYCameraViewComtroller *Vc = [[ZYCameraViewComtroller alloc]init];
         Vc.TransDelegate = self;
         [self presentViewController:Vc animated:YES completion:nil];
@@ -422,8 +426,14 @@
 #pragma mark -- TransDelegate
 - (void)transCameraImage:(UIImage *)image PHAsset:(PHAsset *)imageAsset
 {
-    _fetchResult  = [[FZJPhotoTool alloc] getAllAssetInPhotoAblumWithAscending:YES];
+//    _fetchResult  = [[FZJPhotoTool alloc] getAllAssetInPhotoAblumWithAscending:YES];
+//    [_imageList reloadData];
+    FZJPhotoModel * model = [[FZJPhotoModel alloc]init];
+    model.asset = imageAsset;
+    model.imageName = [imageAsset valueForKey:@"filename"];
+    [_selectedPhoto addObject:model];
     [_imageList reloadData];
+ 
 }
 
 
@@ -434,12 +444,11 @@
     // Call might come on any background queue. Re-dispatch to the main queue to handle it.
     NSLog(@"跟新资源文件");
     dispatch_async(dispatch_get_main_queue(), ^{
-        
         NSMutableArray *updatedFetchResults = nil;
         updatedFetchResults = [[[[FZJPhotoTool alloc]init]  getAllAssetInPhotoAblumWithAscending:YES] mutableCopy];
         if (updatedFetchResults)
         {
-            self.fetchResult = updatedFetchResults;
+            self.fetchResult = [[updatedFetchResults reverseObjectEnumerator] allObjects];//倒序
         }
         [_imageList reloadData];
     });

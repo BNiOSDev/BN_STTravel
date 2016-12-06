@@ -56,12 +56,11 @@
 - (void)initNaviStyle
 {
     //将搜索条放在一个UIView上
-    ZJMSearchBar *searchBar = [[ZJMSearchBar alloc]initWithFrame:CGRectMake(0, 0, 0, 40)];
+    ZJMSearchBar *searchBar = [[ZJMSearchBar alloc]initWithFrame:CGRectMake(0, 0, 0, 25)];
     searchBar.placeholder = @"请搜索 标签 用户";
     searchBar.delegate = self;
-    searchBar.layer.borderWidth = AUTO(0.5);
+    searchBar.layer.borderWidth = 1.0;
     searchBar.layer.borderColor = ColorBlack.CGColor;
-    searchBar.layer.cornerRadius = 20.0;
     _JMSearchBar = searchBar;
     self.navigationItem.titleView = searchBar;
     

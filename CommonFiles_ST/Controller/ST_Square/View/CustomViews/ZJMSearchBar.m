@@ -6,6 +6,7 @@
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 #define SEARCH_WIDTH  DeviceWidth * (2.0/3.0)
+#import "Header.h"
 #import "ZJMSearchBar.h"
 
 @implementation ZJMSearchBar
@@ -20,7 +21,8 @@
 }
 
 - (void)setFrame:(CGRect)frame {
-    [super setFrame:CGRectMake((DeviceWidth - SEARCH_WIDTH) / 2.0,5, SEARCH_WIDTH, self.superview.bounds.size.height - 10)];
+    [super setFrame:CGRectMake((DeviceWidth - SEARCH_WIDTH) / 2.0,AUTO(7.5), SEARCH_WIDTH, self.superview.bounds.size.height - AUTO(15))];
+    self.layer.cornerRadius = (self.superview.bounds.size.height - AUTO(15) ) / 2.0;
 }
 
 @end

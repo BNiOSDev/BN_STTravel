@@ -24,7 +24,8 @@
 #define LG_segmentW AUTO(190)
 @interface LBB_PublishTravel_Controller ()<UIScrollViewDelegate,SegmentDelegate,UITableViewDelegate,UITableViewDataSource>
 {
-    LBB_SelectImages_ViewController *vc1;
+    
+    
 }
 @property(nonatomic)NSInteger      currentIndex;
 @property(nonatomic,  strong) NSMutableArray *buttonList;
@@ -33,6 +34,8 @@
 @property (nonatomic, strong) UIScrollView *contentScrollView;
 @property(nonatomic,  strong) HMSegmentedControl *segmentedControl;
 @property(nonatomic,  strong)  UIView     * imagePickGroundView;
+@property(nonatomic,  strong)LBB_SelectImages_ViewController   *vc1;
+@property(nonatomic,  strong)LBB_ImagePick_ViewController        *viewVC;
 @end
 
 @implementation LBB_PublishTravel_Controller
@@ -69,6 +72,15 @@
     [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
         NSLog(@"index = %ld",index);
         [weakSelf.contentScrollView setContentOffset:CGPointMake(DeviceWidth * index, 0) animated:YES];
+        if(index == 0)
+        {
+            [weakSelf.viewVC unregisterChangeObserver];
+            
+        }else if(index == 1)
+        {
+            [weakSelf.vc1 unregisterChangeObserver];
+        }
+            
     }];
     [self.view addSubview:_segmentedControl];
     
@@ -118,24 +130,24 @@
 //加载3个ViewController
 -(void)addChildViewController{
     
-    vc1 = [[LBB_SelectImages_ViewController alloc]init];
-    vc1.view.backgroundColor = [UIColor whiteColor];    
-    UINavigationController  *nav1 = [[UINavigationController alloc]initWithRootViewController:vc1];
+    _vc1 = [[LBB_SelectImages_ViewController alloc]init];
+    _vc1.view.backgroundColor = [UIColor whiteColor];
+    UINavigationController  *nav1 = [[UINavigationController alloc]initWithRootViewController:_vc1];
     __weak typeof (self) _weakSelf = self;
-    vc1.addNum = 9;
-    vc1._blockHideControl = ^(id obj){
+    _vc1.addNum = 9;
+    _vc1._blockHideControl = ^(id obj){
         [_weakSelf dismissViewControllerAnimated:YES completion:nil];
     };
-    vc1._blockJumpControl = ^(UIViewController *obj){
+    _vc1._blockJumpControl = ^(UIViewController *obj){
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:obj];
         [_weakSelf presentViewController:nav animated:YES completion:nil];
     };
     [self addChildViewController:nav1];
     
-    LBB_ImagePick_ViewController *viewVC = [[LBB_ImagePick_ViewController alloc]init];
-    viewVC.view.backgroundColor = WHITECOLOR;
-    UINavigationController  *nav2 = [[UINavigationController alloc]initWithRootViewController:viewVC];
-    viewVC._blockJumpControl = ^(UIViewController *obj){
+    _viewVC = [[LBB_ImagePick_ViewController alloc]init];
+    _viewVC.view.backgroundColor = WHITECOLOR;
+    UINavigationController  *nav2 = [[UINavigationController alloc]initWithRootViewController:_viewVC];
+    _viewVC._blockJumpControl = ^(UIViewController *obj){
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:obj];
         [_weakSelf presentViewController:nav animated:YES completion:nil];
     };
@@ -147,6 +159,14 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGFloat pageWidth = scrollView.frame.size.width;
     NSInteger page = scrollView.contentOffset.x / pageWidth;
+    if(page == 0)
+    {
+        [self.viewVC unregisterChangeObserver];
+        
+    }else if(page == 1)
+    {
+        [self.vc1 unregisterChangeObserver];
+    }
     if(page == 2)
     {
         [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x - scrollView.frame.size.width, scrollView.top)];

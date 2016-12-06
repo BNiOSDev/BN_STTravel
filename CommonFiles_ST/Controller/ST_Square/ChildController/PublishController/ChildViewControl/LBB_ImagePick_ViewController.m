@@ -132,6 +132,10 @@
         cell.selectBtn.hidden = NO;
         cell.contentImage.hidden = NO;
         cell.selectBtn.tag = indexPath.row;
+        if(indexPath == _selectIndexPath)
+        {
+             [cell.selectBtn setBackgroundImage:IMAGE(@"zjmxuanzhong") forState:0];
+        }
         cell._blockVideo = ^(NSInteger index,BOOL select){
             if(select)
             {
@@ -228,7 +232,7 @@
 #pragma transCameraVideo
 - (void)transCameraVideo:(NSData *)video
 {
-    
+    NSLog(@"视频回传");
 }
 
 - (void)checkPulish
@@ -248,7 +252,7 @@
 {
     for(int i = 1; i < _videoArray.count+1;i++)
     {
-           NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         LBBVideoCollectionViewCell  *cell = (LBBVideoCollectionViewCell *)[_imageList cellForItemAtIndexPath:indexPath];
         if(indexPath == _selectIndexPath)
         {
