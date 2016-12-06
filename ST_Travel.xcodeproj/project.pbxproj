@@ -434,7 +434,6 @@
 		1DB14FD11DF311100023A740 /* LBB_TipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB14D4C1DF3110E0023A740 /* LBB_TipView.m */; };
 		1DB14FD21DF311100023A740 /* LBB_PublishTravel_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB14D4F1DF3110E0023A740 /* LBB_PublishTravel_Controller.m */; };
 		1DB14FD31DF311100023A740 /* LBB_AddClass_Button.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB14D551DF3110E0023A740 /* LBB_AddClass_Button.m */; };
-		1DB14FD41DF311100023A740 /* LBB_AddFootprint_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB14D571DF3110E0023A740 /* LBB_AddFootprint_ViewController.m */; };
 		1DB14FD51DF311100023A740 /* LBB_Date_SengeMent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB14D591DF3110E0023A740 /* LBB_Date_SengeMent.m */; };
 		1DB14FD61DF311100023A740 /* LBB_TraveNoteHead_View.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB14D5B1DF3110E0023A740 /* LBB_TraveNoteHead_View.m */; };
 		1DB14FD71DF311100023A740 /* LBB_AddTextToVistNote_Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB14D5E1DF3110E0023A740 /* LBB_AddTextToVistNote_Controller.m */; };
@@ -523,6 +522,7 @@
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
+		3C53FE2D1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */; };
 		8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */; };
 		844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CB1DEAC7C500164DED /* libc++.tbd */; };
 		844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */; };
@@ -1294,8 +1294,6 @@
 		1DB14D4F1DF3110E0023A740 /* LBB_PublishTravel_Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PublishTravel_Controller.m; sourceTree = "<group>"; };
 		1DB14D541DF3110E0023A740 /* LBB_AddClass_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_AddClass_Button.h; sourceTree = "<group>"; };
 		1DB14D551DF3110E0023A740 /* LBB_AddClass_Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AddClass_Button.m; sourceTree = "<group>"; };
-		1DB14D561DF3110E0023A740 /* LBB_AddFootprint_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_AddFootprint_ViewController.h; sourceTree = "<group>"; };
-		1DB14D571DF3110E0023A740 /* LBB_AddFootprint_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AddFootprint_ViewController.m; sourceTree = "<group>"; };
 		1DB14D581DF3110E0023A740 /* LBB_Date_SengeMent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_Date_SengeMent.h; sourceTree = "<group>"; };
 		1DB14D591DF3110E0023A740 /* LBB_Date_SengeMent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_Date_SengeMent.m; sourceTree = "<group>"; };
 		1DB14D5A1DF3110E0023A740 /* LBB_TraveNoteHead_View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TraveNoteHead_View.h; sourceTree = "<group>"; };
@@ -1466,6 +1464,8 @@
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DB1502E1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3C53FE2B1DF54C27003C6148 /* LBB_AddFootprint_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_AddFootprint_ViewController.h; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/View/LBB_AddFootprint_ViewController.h; sourceTree = SOURCE_ROOT; };
+		3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_AddFootprint_ViewController.m; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/View/LBB_AddFootprint_ViewController.m; sourceTree = SOURCE_ROOT; };
 		8420AF7B1DF297C300D98F86 /* libTelephonyUtilDynamic.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libTelephonyUtilDynamic.tbd; path = usr/lib/libTelephonyUtilDynamic.tbd; sourceTree = SDKROOT; };
 		8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		844065CB1DEAC7C500164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -4376,6 +4376,8 @@
 		1DB14D511DF3110E0023A740 /* ChileViewController */ = {
 			isa = PBXGroup;
 			children = (
+				3C53FE2B1DF54C27003C6148 /* LBB_AddFootprint_ViewController.h */,
+				3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */,
 			);
 			path = ChileViewController;
 			sourceTree = "<group>";
@@ -4392,8 +4394,6 @@
 			children = (
 				1DB14D541DF3110E0023A740 /* LBB_AddClass_Button.h */,
 				1DB14D551DF3110E0023A740 /* LBB_AddClass_Button.m */,
-				1DB14D561DF3110E0023A740 /* LBB_AddFootprint_ViewController.h */,
-				1DB14D571DF3110E0023A740 /* LBB_AddFootprint_ViewController.m */,
 				1DB14D581DF3110E0023A740 /* LBB_Date_SengeMent.h */,
 				1DB14D591DF3110E0023A740 /* LBB_Date_SengeMent.m */,
 				1DB14D5A1DF3110E0023A740 /* LBB_TraveNoteHead_View.h */,
@@ -5024,8 +5024,8 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8NT4E7BWNP;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 7V268D74T3;
+						ProvisioningStyle = Manual;
 					};
 					C9C0E9641D9948F300575A7C = {
 						CreatedOnToolsVersion = 8.0;
@@ -5237,7 +5237,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
@@ -5294,6 +5294,7 @@
 				1DB14F1B1DF3110F0023A740 /* LBB_TicketCommentViewController.m in Sources */,
 				1DB14E5F1DF3110E0023A740 /* LBB_GuiderApplyViewController.m in Sources */,
 				1DB14FE11DF311100023A740 /* LBB_Travel_Bill_Account_TableViewCell.m in Sources */,
+				3C53FE2D1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m in Sources */,
 				1DB14EC21DF3110F0023A740 /* LBB_CustomerViewController.m in Sources */,
 				1DB14ED61DF3110F0023A740 /* LBB_SquareTravelViewController.m in Sources */,
 				1DB14E5A1DF3110E0023A740 /* LBB_GuiderUserFunsDataSource.m in Sources */,
@@ -5643,7 +5644,6 @@
 				1DB150261DF311110023A740 /* LBB_TagsViewModel.m in Sources */,
 				1DB14E771DF3110E0023A740 /* LBB_OrderTicketPriceCell.m in Sources */,
 				1DB14F3D1DF3110F0023A740 /* LBB_MyViewCell.m in Sources */,
-				1DB14FD41DF311100023A740 /* LBB_AddFootprint_ViewController.m in Sources */,
 				1DB14FE41DF311100023A740 /* LBB_TravelCommentController.m in Sources */,
 				1DB150231DF311110023A740 /* LBB_UserShowViewModel.m in Sources */,
 				1DB14E741DF3110E0023A740 /* LBB_OrderTextCell.m in Sources */,
@@ -5814,8 +5814,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: dawei che (8475DELD6B)";
+				DEVELOPMENT_TEAM = 7V268D74T3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -5883,10 +5883,10 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "25597a68-6b24-449d-9017-52bfdc52a215";
+				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
 			};
 			name = Debug;
 		};
@@ -5896,8 +5896,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: dawei che (8475DELD6B)";
+				DEVELOPMENT_TEAM = 7V268D74T3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -5965,10 +5965,10 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "25597a68-6b24-449d-9017-52bfdc52a215";
+				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
 			};
 			name = Release;
 		};

@@ -45,7 +45,8 @@
 {
     [self.view addSubview:self.mTableView];
     [_mTableView setTableHeaderView:self.headView];
-    self.headView.coverImage = IMAGE(@"zjmtakephotoing");
+//    self.headView.coverImage = IMAGE(@"zjmtakephotoing");
+    self.headView.backgroundColor = ColorBtnYellow;
     self.headView.travelName = @"this is shit";
     self.headView.travelTime = @"2016-09-09";
     self.headView.btnFunction = ^(NSInteger tag)
@@ -95,7 +96,7 @@
 
 - (void)initNav
 {
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 43, DeviceWidth, 1.0)];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 43, DeviceWidth, 0.5)];
     line.backgroundColor = ColorWhite;
     [self.navigationController.navigationBar addSubview:line];
     
@@ -121,6 +122,11 @@
 {
     NSLog(@"editTextFunc");
     LBB_AddTextToVistNote_Controller *vc = [[LBB_AddTextToVistNote_Controller alloc]init];
+    if(!_mapPointArray)
+    {
+        _mapPointArray = [[NSMutableArray alloc]init];
+    }
+    vc.mapPointArray = _mapPointArray;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -196,7 +202,7 @@
 {
     if(!_mTableView)
     {
-        UITableView  *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -64, DeviceWidth, DeviceHeight) style:0];
+        UITableView  *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -64, DeviceWidth, DeviceHeight - 44) style:0];
         tableView.backgroundColor = ColorWhite;
         tableView.delegate = self;
         tableView.dataSource = self;
@@ -241,7 +247,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return _mapPointArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -252,7 +258,10 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
-
+    if(_mapPointArray.count)
+    {
+        cell.textLabel.text = @"地点信息";
+    }
     return cell;
 }
 

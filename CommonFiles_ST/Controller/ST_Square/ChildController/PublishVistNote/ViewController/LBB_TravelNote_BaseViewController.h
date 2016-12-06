@@ -9,5 +9,5 @@
 #import "Base_BaseViewController.h"
 
 @interface LBB_TravelNote_BaseViewController : Base_BaseViewController
-
+@property(nonatomic,strong)NSArray   *mapPointArray;
 @end

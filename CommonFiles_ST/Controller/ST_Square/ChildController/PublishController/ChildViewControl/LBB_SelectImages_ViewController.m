@@ -62,7 +62,7 @@
     [super viewWillAppear:animated];
     [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1.0;
     [self.view addSubview:self.mTableView];
-    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+    [self registerChangeObserver];
     if(_fatherNum > 0)
     {
         _imageList.height = DeviceHeight - 64;
@@ -72,6 +72,17 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [self unregisterChangeObserver];
+}
+
+#pragma mark - Photo library change observer
+- (void)registerChangeObserver
+{
+    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+}
+
+- (void)unregisterChangeObserver
+{
     [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
 }
 

@@ -25,8 +25,8 @@
 @interface LBB_PublishTravel_Controller ()<UIScrollViewDelegate,SegmentDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     LBB_SelectImages_ViewController *vc1;
-    NSInteger    currentIndex;
 }
+@property(nonatomic)NSInteger      currentIndex;
 @property(nonatomic,  strong) NSMutableArray *buttonList;
 @property (nonatomic, weak)   LGSegment *segment;
 @property(nonatomic,  weak)   CALayer *LGLayer;
@@ -79,15 +79,15 @@
         {
             LBB_TravelNote_BaseViewController * vc3 = [[LBB_TravelNote_BaseViewController alloc]init];
             UINavigationController  *nav3 = [[UINavigationController alloc]initWithRootViewController:vc3];
-            [weckSelf.segmentedControl setSelectedSegmentIndex:currentIndex animated:YES];
+            [weckSelf.segmentedControl setSelectedSegmentIndex:weckSelf.currentIndex animated:YES];
             [weckSelf presentViewController:nav3 animated:YES completion:nil];
             
         }else if(index == 0)
         {
-            currentIndex = index;
+            _currentIndex = index;
             [weckSelf.contentScrollView setContentOffset:CGPointMake(0, weckSelf.contentScrollView.top)];
         }else{
-            currentIndex = index;
+            _currentIndex = index;
             [weckSelf.contentScrollView setContentOffset:CGPointMake(weckSelf.contentScrollView.width, weckSelf.contentScrollView.top)];
         }
     }];
@@ -154,7 +154,7 @@
         UINavigationController  *nav3 = [[UINavigationController alloc]initWithRootViewController:vc3];
         [self presentViewController:nav3 animated:YES completion:nil];
     }else{
-        currentIndex = page;
+        _currentIndex = page;
         [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
     }
 }

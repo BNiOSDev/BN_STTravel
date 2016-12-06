@@ -25,15 +25,26 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self registerChangeObserver];
     
-    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-        [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+    [self unregisterChangeObserver];
+}
+
+#pragma mark - Photo library change observer
+- (void)registerChangeObserver
+{
+    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+}
+
+- (void)unregisterChangeObserver
+{
+    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -98,6 +109,7 @@
         cell.backgroundView = takePhoto;
         cell.pauseImage.hidden = YES;
         cell.selectBtn.hidden = YES;
+        cell.contentImage.hidden = YES;
         return cell;
     }else{
         CGSize size = CGSizeMake(cell.size.width, cell.size.height);
@@ -118,6 +130,7 @@
         cell.pauseImage.centerY = cell.size.height / 2;
         cell.pauseImage.hidden = NO;
         cell.selectBtn.hidden = NO;
+        cell.contentImage.hidden = NO;
         cell.selectBtn.tag = indexPath.row;
         cell._blockVideo = ^(NSInteger index,BOOL select){
             if(select)
@@ -176,7 +189,6 @@
         PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
         options.version = PHImageRequestOptionsVersionCurrent;
         options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
-    
         PHImageManager *manager = [PHImageManager defaultManager];
         [manager requestAVAssetForVideo:phAsset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
             AVURLAsset *urlAsset = (AVURLAsset *)asset;
@@ -213,6 +225,7 @@
             _videoArray = [[videoGet getAllAssetInVideoAblumWithAscending:YES] mutableCopy];
         }
         [_imageList reloadData];
+        [_imageList setContentOffset:CGPointMake(0, _imageList.contentSize.height - _imageList.bounds.size.height) animated:YES];
     });
 }
 

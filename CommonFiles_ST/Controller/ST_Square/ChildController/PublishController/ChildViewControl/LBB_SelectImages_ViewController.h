@@ -38,4 +38,8 @@ typedef void (^returnBackPhotoArr)(id data);
 @property(nonatomic,strong)hideBaseController   _blockHideControl;
 @property(nonatomic,strong)JumpToController     _blockJumpControl;
 
+#pragma mark - Photo library change observer
+- (void)registerChangeObserver;
+- (void)unregisterChangeObserver;
+
 @end

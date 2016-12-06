@@ -16,11 +16,23 @@
 #import "FZJPhotoModel.h"
 #import "ZYCameraViewComtroller.h"
 #import "LBB_SelectImages_ViewController.h"
+#import "LBB_AddressAddViewController.h"
+#import "LBB_SpotAddress.h"
+#import "LBB_EditShopRecoder_Controller.h"
+#import "LBB_SelectTip_History_ViewController.h"
+#import "LBB_TagsViewModel.h"
+#import "BN_SquareTravelNotesModel.h"
 
 @interface LBB_AddFootprint_ViewController ()<TransImageDelegate>
 @property(nonatomic,strong)LBB_Date_SengeMent    *headSegment;
 @property(nonatomic,strong)UITextView                       *contentText;
 @property(nonatomic,strong)UIScrollView                     *imageScrollView;
+@property(nonatomic,strong)LBB_SpotAddress            *addressInfo;
+@property(nonatomic,copy)NSString                             *dateStr;
+@property(nonatomic,copy)NSString                             *timeStr;
+@property(nonatomic,strong)NSMutableArray              *tagsArray;
+@property(nonatomic,strong)TravelNotesDetails          *footprintModel;
+@property(nonatomic,strong)NSMutableArray<TravelNotesPics *> *imageUrlArray;
 @end
 
 @implementation LBB_AddFootprint_ViewController
@@ -131,16 +143,50 @@
 - (void)addAddressFunc
 {
     NSLog(@"nicai");
+    __weak typeof (self) weakSelf = self;
+    LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
+    dest.click = ^(LBB_AddressAddViewController* add,LBB_SpotAddress* address){
+        _addressInfo = address;
+        NSLog(@"详细地址：%@",_addressInfo.address);
+        //页面变化代码块
+        {
+            //地图显示，修改布局
+        }
+        
+        [add.navigationController popViewControllerAnimated:YES];
+    };
+    [weakSelf.navigationController pushViewController:dest animated:YES];
 }
 
 - (void)addSaleFunc
 {
     NSLog(@"asdfasf");
+    LBB_EditShopRecoder_Controller  *vc = [[LBB_EditShopRecoder_Controller alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)publishFunc
 {
-    NSLog(@"publishFunc");
+    [self getImageUrl];
+
+    if(!_addressInfo)
+    {
+        [self showHudPrompt:@"请添加地点信息"];
+        return;
+    }
+    _footprintModel.picRemark = _contentText.text;
+    _footprintModel.name = @"";
+    _footprintModel.picUrl = @"";
+    _footprintModel.consumptionDesc = @"";
+    _footprintModel.pics = _imageUrlArray;
+    [_footprintModel saveTravelTrackData:YES address:_addressInfo block:^(NSError *error) {
+        if(!error)
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        NSLog(@"error=%@",error);
+    }];
+
 }
 
 - (void)setDate:(NSString *)dateStr
@@ -152,6 +198,7 @@
                                      doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
                                          NSLog(@"selectedDate =  %@",selectedDate);
                                          weakSelf.headSegment.dateStr = [weakSelf stringFromDate:selectedDate];
+                                         _footprintModel.releaseDate = [weakSelf stringFromDate:selectedDate];
                                      }
                                    cancelBlock:^(ActionSheetDatePicker *picker){
                                        
@@ -167,6 +214,7 @@
                                      doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
                                          NSLog(@"selectedDate =  %@",selectedDate);
                                          weakSelf.headSegment.timeStr = [weakSelf stringFromTime:selectedDate];
+                                         _footprintModel.releaseTime = [weakSelf stringFromTime:selectedDate];
                                      }
                                    cancelBlock:^(ActionSheetDatePicker *picker){
                                        
@@ -211,44 +259,54 @@
     
     __weak typeof (self) weakSelf = self;
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"从相册选取" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        //处理点击从相册选取
-        LBB_SelectImages_ViewController *Vc = [[LBB_SelectImages_ViewController alloc]init];
-        Vc.addNum = 5;
-        Vc.fatherNum = 2;
-        Vc.returnBlock = ^(NSMutableArray *array){
-            NSLog(@"图片数组");
-            _selectImageArray = array;
-            [_imageScrollView removeAllSubviews];
-            UIButton  *addImage = [[UIButton alloc]initWithFrame:CGRectMake(AUTO(5), AUTO(5), AUTO(90), AUTO(90))];
-            LRViewBorderRadius(addImage, 0, 0.5, LINECOLOR);
-            [addImage setImage:IMAGE(@"zjmadd") forState:0];
-            [addImage addTarget:self action:@selector(addimageFunc) forControlEvents:UIControlEventTouchUpInside];
-            [_imageScrollView addSubview:addImage];
-            for(int i = 0;i < _selectImageArray.count;i++)
-            {
-                UIImageView  *image = [[UIImageView alloc]initWithFrame:CGRectMake(AUTO(5) + (AUTO(5) + AUTO(90)) * (i), AUTO(5), AUTO(90), AUTO(90))];
-                
-                CGSize size = image.size;
-                size.width *= [UIScreen mainScreen].scale;
-                size.height *= [UIScreen mainScreen].scale;
-                FZJPhotoModel  *model = self.selectImageArray[i];
-                [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:size makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
-                    image.image = AssetImage;
-                }];
-                
-                [_imageScrollView addSubview:image];
-                
-                addImage.left = image.right + AUTO(5);
-                _imageScrollView.contentSize = CGSizeMake(addImage.right + AUTO(5), AUTO(100));
-            }
-
-        };
-        Vc._blockJumpControl = ^(UIViewController *obj){
-            [weakSelf.navigationController pushViewController:obj animated:YES];
-        };
         
-        [self.navigationController pushViewController:Vc animated:YES];
-        
+        UIAlertController   *alterView = [UIAlertController alertControllerWithTitle: @"重选照片" message: nil preferredStyle:UIAlertControllerStyleAlert];
+        //添加Button
+        [alterView addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                return ;
+        }]];
+        [alterView addAction: [UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            //处理点击从相册选取
+            LBB_SelectImages_ViewController *Vc = [[LBB_SelectImages_ViewController alloc]init];
+            Vc.addNum = 5;
+            Vc.fatherNum = 2;
+            Vc.returnBlock = ^(NSMutableArray *array){
+                NSLog(@"图片数组");
+                _selectImageArray = array;
+                [_imageScrollView removeAllSubviews];
+                UIButton  *addImage = [[UIButton alloc]initWithFrame:CGRectMake(AUTO(5), AUTO(5), AUTO(90), AUTO(90))];
+                LRViewBorderRadius(addImage, 0, 0.5, LINECOLOR);
+                [addImage setImage:IMAGE(@"zjmadd") forState:0];
+                [addImage addTarget:self action:@selector(addimageFunc) forControlEvents:UIControlEventTouchUpInside];
+                [_imageScrollView addSubview:addImage];
+                for(int i = 0;i < _selectImageArray.count;i++)
+                {
+                    UIImageView  *image = [[UIImageView alloc]initWithFrame:CGRectMake(AUTO(5) + (AUTO(5) + AUTO(90)) * (i), AUTO(5), AUTO(90), AUTO(90))];
+                    
+                    CGSize size = image.size;
+                    size.width *= [UIScreen mainScreen].scale;
+                    size.height *= [UIScreen mainScreen].scale;
+                    FZJPhotoModel  *model = self.selectImageArray[i];
+                    [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:size makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
+                        image.image = AssetImage;
+                    }];
+                    
+                    [_imageScrollView addSubview:image];
+                    
+                    addImage.left = image.right + AUTO(5);
+                    _imageScrollView.contentSize = CGSizeMake(addImage.right + AUTO(5), AUTO(100));
+                }
+                
+            };
+            Vc._blockJumpControl = ^(UIViewController *obj){
+                [weakSelf.navigationController pushViewController:obj animated:YES];
+            };
+            
+            [self.navigationController pushViewController:Vc animated:YES];
+        }]];
+        [self presentViewController: alterView animated: YES completion: nil];
+  
     }]];
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:nil]];
     
@@ -286,6 +344,39 @@
         addImage.left = image.right + AUTO(5);
         _imageScrollView.contentSize = CGSizeMake(addImage.right + AUTO(5), AUTO(100));
     }
+    //满五张之后，隐藏添加图片按钮
+    if(_selectImageArray.count >= 5)
+    {
+        addImage.hidden = YES;
+    }
+
+}
+
+- (void)getImageUrl
+{
+    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+    for (FZJPhotoModel *model in _selectImageArray) {
+        [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:PHImageManagerMaximumSize makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
+            [imageArray addObject:AssetImage];
+        }];
+        
+    }
+    
+    BC_ToolRequest  *request = [BC_ToolRequest sharedManager];
+    [request uploadfile:imageArray block:^(NSArray *files, NSError *error) {
+        NSLog(@"%@",files);
+        if(!_imageUrlArray)
+        {
+            _imageUrlArray = [[NSMutableArray alloc]init];
+        }
+        __weak typeof (_imageUrlArray) weakImageUrlArray = _imageUrlArray;
+        [files enumerateObjectsUsingBlock:^(NSString  * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            TravelNotesPics *model = [[TravelNotesPics  alloc]init];
+            model.imageUrl = obj;
+            model.picId = obj.longLongValue;
+            [weakImageUrlArray addObject:model];
+        }];
+    }];
 
 }
 
