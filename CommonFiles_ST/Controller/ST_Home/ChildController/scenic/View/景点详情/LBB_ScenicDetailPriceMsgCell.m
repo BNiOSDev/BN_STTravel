@@ -9,6 +9,8 @@
 #import "LBB_ScenicDetailPriceMsgCell.h"
 #import "PoohCommon.h"
 #import "LBB_StarRatingViewController.h"
+#import "LBB_NearSign.h"
+
 @implementation LBB_ScenicDetailPriceMsgCell
 
 /*
@@ -63,15 +65,16 @@
         }];
         [self.signButton bk_whenTapped:^{
             
-            BOOL status = ws.model.isSigned;
-            Base_BaseViewController* curVC = (Base_BaseViewController*)[ws getViewController];
-            if (status) {
-                [curVC showHudPrompt:@"已签到"];
-            }
-            else{
-                [curVC showHudPrompt:@"未签到"];
-            }
-            
+            [LBB_NearSign signObjId:ws.model.allSpotsId type:(int)ws.model.allSpotsType block:^(NSError* error){
+                if (!error) {
+                    ws.model.isSigned = YES;
+                }
+                else{
+                    Base_BaseViewController* curVC = (Base_BaseViewController*)[ws getViewController];
+                    [curVC showHudPrompt:error.domain];
+
+                }
+            }];
     
         }];
         

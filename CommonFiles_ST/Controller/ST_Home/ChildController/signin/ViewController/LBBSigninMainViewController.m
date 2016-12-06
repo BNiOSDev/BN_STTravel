@@ -46,13 +46,13 @@
     [RACObserve(self.locationManager, latitude) subscribeNext:^(NSString* num) {
         @strongify(self);
         
-        //  [self.viewModel getNearShopArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude];
+          [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude dimensionality:self.locationManager.latitude clear:YES];
     }];
     
     [RACObserve(self.locationManager, longitude) subscribeNext:^(NSString* num) {
         @strongify(self);
         
-     //   [self.viewModel getNearShopArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude];
+        [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude dimensionality:self.locationManager.latitude clear:YES];
     }];
     
     

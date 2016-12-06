@@ -10,6 +10,7 @@
 #import "LBB_SpotDetailsViewModel.h"
 #import "LBB_SquareAddressViewModel.h"
 
+
 @interface LBB_SignInUser : BN_BaseDataModel
 
 @property (nonatomic,assign)long userId ;// 用户ID
@@ -45,11 +46,12 @@
 @property (nonatomic,strong)NSMutableArray<LBB_SpotModel *> *hostelArray;
 @property (nonatomic,strong)NSMutableArray<LBB_SpotModel *> *spotArray;
 
-@property (nonatomic,strong)NSMutableArray<LBB_NearShopModel *> *nearShopArray;
+@property (nonatomic,strong)NSMutableArray<LBB_NearShopModel *> *nearShopArray;//附近商家
 @property (nonatomic,strong)NSMutableArray<LBB_NearSignIn *> *nearSignInArray;
 @property (nonatomic,assign)long signInNum;
 @property (nonatomic,assign)int rank;
 @property (nonatomic,strong)NSMutableArray<LBB_SignInUser *> *signInUserArray;
+
 
 /**
  3.9.2	附近 –美食\名宿\景点列表(已测)
@@ -100,5 +102,14 @@
  @param clear 清空原数据
  */
 - (void)getSignInUserArrayClearData:(BOOL)clear;
+
+/**
+ 3.9.1 附近的商家 (已测)
+ 
+ @param clear 清空原数据
+ */
+- (void)getNearSignInMapArrayClearData:(NSString *)longitude
+                        dimensionality:(NSString *)dimensionality
+                                 clear:(BOOL)clear;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "LBB_NearViewModel.h"
 
+
 @implementation LBB_SignInUser
 
 @end
@@ -299,4 +300,54 @@
     }];
 }
 
+
+/**
+ 3.9.1 附近的商家 (已测)
+ 
+ @param clear 清空原数据
+ */
+- (void)getNearSignInMapArrayClearData:(NSString *)longitude
+                        dimensionality:(NSString *)dimensionality
+                                 clear:(BOOL)clear
+{
+    NSDictionary *paraDic = @{
+                              @"longitude":longitude,
+                              @"dimensionality":dimensionality,
+                              };
+    NSLog(@"getNearSignInMapArrayClearData para:%@",paraDic);
+    NSString *url = [NSString stringWithFormat:@"%@/nearby/map",BASEURL];
+    __weak typeof(self) temp = self;
+    self.nearShopArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getNearSignInMapArrayClearData成功:%@",array);
+            
+            NSArray *returnArray = [LBB_NearShopModel mj_objectArrayWithKeyValuesArray:array];
+            
+            if (clear == YES)
+            {
+                [temp.nearShopArray removeAllObjects];
+            }
+            
+            [temp.nearShopArray addObjectsFromArray:returnArray];
+            temp.nearShopArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getNearSignInMapArrayClearData errorStr:%@",errorStr);
+        }
+        
+        temp.nearShopArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        temp.nearShopArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        NSLog(@"getNearSignInMapArrayClearData error:%@",error.domain);
+        
+    }];
+}
 @end
