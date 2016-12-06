@@ -199,7 +199,6 @@
             [self presentViewController:vc animated:NO completion:nil];
         }];
     }
-
 }
 
 //返回这个UICollectionView是否可以被选择

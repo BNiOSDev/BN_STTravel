@@ -7,12 +7,10 @@
 //
 
 #import "LBBVideoPlayerViewController.h"
-#import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
 
 @interface LBBVideoPlayerViewController ()
-@property (nonatomic,strong)AVPlayer *player;//播放器对象
 @property (nonatomic,strong)UIImageView     *videoBack;
 @property (nonatomic,strong)UIButton            *selectBtn;
 @property (strong, nonatomic) MPMoviePlayerViewController *moviePlayerView;
@@ -59,18 +57,16 @@
     [_moviePlayerView.view setFrame:self.view.bounds];
     
     //播放完后的通知
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(movieFinishedCallback:)
-//                                                 name:MPMoviePlayerPlaybackDidFinishNotification                                                      object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movieFinishedCallback:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification                                                      object:nil];
     //离开全屏时通知，因为默认点击Done是是退出全屏，要离开播放器就有覆盖掉这个事件
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitFullScreen:) name: MPMoviePlayerDidExitFullscreenNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitFullScreen:) name: MPMoviePlayerDidExitFullscreenNotification object:nil];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self toPlay];
-    NSLog(@"yuanyin :%@",self.player.reasonForWaitingToPlay);
-    NSLog(@"zhuangtai:%ld",(long)self.player.timeControlStatus);
 }
 
 - (void)myMovieFinishedCallBack:(NSNotification *)notify
@@ -85,26 +81,37 @@
  *
  *  @return 播放器对象
  */
--(AVPlayer *)player{
-    if (!_player) {
+//-(AVPlayer *)player{
+//    if (!_player) {
+//
+//        AVPlayerItem *playerItem=[AVPlayerItem playerItemWithURL:_videoUrl];
+//    
+//        _player=[AVPlayer playerWithPlayerItem:playerItem];
+//        if([[UIDevice currentDevice] systemVersion].intValue>=10){
+//            //      增加下面这行可以解决ios10兼容性问题了
+//            NSLog(@"这是iOS10以上");
+//            self.player.automaticallyWaitsToMinimizeStalling = NO;
+//        }
+//    }
+//    return _player;
+//}
 
-        AVPlayerItem *playerItem=[AVPlayerItem playerItemWithURL:_videoUrl];
-    
-        _player=[AVPlayer playerWithPlayerItem:playerItem];
-        if([[UIDevice currentDevice] systemVersion].intValue>=10){
-            //      增加下面这行可以解决ios10兼容性问题了
-            NSLog(@"这是iOS10以上");
-            self.player.automaticallyWaitsToMinimizeStalling = NO;
-        }
-    }
-    return _player;
+//播放结束后离开播放器,点击上一曲、下一曲也是播放结束
+-(void)movieFinishedCallback:(NSNotification*)notify {
+    MPMoviePlayerController* theMovie = [notify object];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:theMovie];
+    [theMovie.view removeFromSuperview];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)exitFullScreen:(NSNotification *)notification{
+    [_moviePlayerView.view removeFromSuperview];
+}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self.player pause];
-    self.player = nil;
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
