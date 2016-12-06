@@ -53,6 +53,15 @@
         }];
         self.favoriteButton.layer.cornerRadius = buttonHeight/2;
         self.favoriteButton.layer.masksToBounds = YES;
+        [self.favoriteButton bk_addEventHandler:^(id sender){
+            
+            [ws.model attention:^(NSError* error){
+            
+            }];
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
         
         self.privateLetterButton = [UIButton new];
         [self.privateLetterButton setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
@@ -105,7 +114,6 @@
             make.width.mas_equalTo(AutoSize(60));
             make.height.mas_equalTo(AutoSize(15));
         }];
-  
         
         self.labelButton2 = [UIButton new];
         [self.labelButton2 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
@@ -118,6 +126,61 @@
             make.left.width.height.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton1.mas_top).offset(-10);
         }];
+
+        self.labelButton3 = [UIButton new];
+        [self.labelButton3 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.labelButton3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+        [self.labelButton3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.labelButton3.titleLabel setFont:Font12];
+        [self.labelButton3 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
+        [self.contentView addSubview:self.labelButton3];
+        [self.labelButton3 mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.width.height.equalTo(ws.labelButton1);
+            make.bottom.equalTo(ws.labelButton2.mas_top).offset(-10);
+        }];
+        
+        self.labelButton4 = [UIButton new];
+        [self.labelButton4 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.labelButton4 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+        [self.labelButton4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.labelButton4.titleLabel setFont:Font12];
+        [self.labelButton4 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
+        [self.contentView addSubview:self.labelButton4];
+        [self.labelButton4 mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.width.height.equalTo(ws.labelButton1);
+            make.bottom.equalTo(ws.labelButton3.mas_top).offset(-10);
+        }];
+        
+        self.labelButton5 = [UIButton new];
+        [self.labelButton5 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.labelButton5 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+        [self.labelButton5 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.labelButton5.titleLabel setFont:Font12];
+        [self.labelButton5 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
+        [self.contentView addSubview:self.labelButton5];
+        [self.labelButton5 mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.width.height.equalTo(ws.labelButton1);
+            make.bottom.equalTo(ws.labelButton4.mas_top).offset(-10);
+        }];
+
+        self.labelButton6 = [UIButton new];
+        [self.labelButton6 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [self.labelButton6 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+        [self.labelButton6 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.labelButton6.titleLabel setFont:Font12];
+        [self.labelButton6 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
+        [self.contentView addSubview:self.labelButton6];
+        [self.labelButton6 mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.width.height.equalTo(ws.labelButton1);
+            make.bottom.equalTo(ws.labelButton5.mas_top).offset(-10);
+        }];
+        
+        self.labelButton1.hidden = YES;
+        self.labelButton2.hidden = YES;
+        self.labelButton3.hidden = YES;
+        self.labelButton4.hidden = YES;
+        self.labelButton5.hidden = YES;
+        self.labelButton6.hidden = YES;
         
         //头像部分
         CGFloat portraitHeight = AutoSize(84/2);
@@ -191,20 +254,48 @@
             make.height.mas_equalTo(SeparateLineWidth);
             make.top.equalTo(ws.portraitImageView.mas_bottom).offset(margin);
         }];
+        
+        [self.labelButton1 bk_whenTapped:^{
+            NSLog(@"labelButton1 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        
+        [self.labelButton2 bk_whenTapped:^{
+            NSLog(@"labelButton2 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
     }
     return self;
 }
 
 -(void)setModel:(LBB_UserShowViewModel*)model{
     
-    WS(ws);
-    
     _model = model;
     NSLog(@"model.coverImg:%@",model.coverImg);
     [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.coverImg] placeholderImage:IMAGE(PlaceHolderImage)];// 封面图片
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];// 用户头像
     [self.nameLabel setText:model.userName];// 用户名称
-    [self.locationLabel setText:model.area];// 地址区域名称
+    
+    // 0女  1男  2未知（保密)
+    switch (model.gender) {
+        case 0:
+            [self.locationLabel setText:[NSString stringWithFormat:@"女 %@",model.area]];// 地址区域名称
+            break;
+        case 1:
+            [self.locationLabel setText:[NSString stringWithFormat:@"男 %@",model.area]];// 地址区域名称
+            break;
+        case 2:
+            [self.locationLabel setText:[NSString stringWithFormat:@"保密 %@",model.area]];// 地址区域名称
+            break;
+        default:
+            [self.locationLabel setText:[NSString stringWithFormat:@"女 %@",model.area]];// 地址区域名称
+            break;
+    }
+    
     [self.photoNumLabel setText:[NSString stringWithFormat:@"%d张照片",model.photoNum]];// 照片数量
     [self.levelButton setTitle:[NSString stringWithFormat:@"Lv.%d",model.level] forState:UIControlStateNormal];// 级别
     
@@ -236,23 +327,46 @@
         [self.greatButton setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];
     }];
     
+    //标签
+    self.labelButton1.hidden = YES;
+    self.labelButton2.hidden = YES;
+    self.labelButton3.hidden = YES;
+    self.labelButton4.hidden = YES;
+    self.labelButton5.hidden = YES;
+    self.labelButton6.hidden = YES;
     
-    
-    
-    [self.labelButton1 bk_whenTapped:^{
-        NSLog(@"labelButton1 touch");
-        LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-        [[ws getViewController].navigationController pushViewController:dest animated:YES];
-        
-    }];
-    
-    [self.labelButton2 bk_whenTapped:^{
-        NSLog(@"labelButton2 touch");
-        LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-        [[ws getViewController].navigationController pushViewController:dest animated:YES];
-        
-    }];
-    
+    NSInteger count = model.tags.count;
+    if (count > 0) {
+        self.labelButton1.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:0];
+        [self.labelButton1 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 1){
+        self.labelButton2.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:1];
+        [self.labelButton2 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 2){
+        self.labelButton3.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:2];
+        [self.labelButton3 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 3){
+        self.labelButton4.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:3];
+        [self.labelButton4 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 4){
+        self.labelButton5.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:4];
+        [self.labelButton5 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 5){
+        self.labelButton6.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:5];
+        [self.labelButton6 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+
 }
 
 @end

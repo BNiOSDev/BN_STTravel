@@ -10,6 +10,48 @@
 
 @implementation LBB_UserOther
 
+
+/**
+ 3.4.3	广场-广场主页-好友关注（已测）
+ 
+ @param block 回调block
+ */
+- (void)attention:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"beUserId":@(self.userId),
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/square/friends/attention",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            int attentionState = [[result objectForKey:@"attentionState"] intValue];
+            if (attentionState != 0) {
+                temp.followState = [[result objectForKey:@"followState"] intValue];
+            }
+            else{
+                temp.followState = 0;
+            }
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
+
 @end
 
 @implementation LBB_UserAction
@@ -35,6 +77,17 @@
         self.userFansArray = [[NSMutableArray alloc]initFromNet];
     }
     return self;
+}
+
+- (void)setTags:(NSArray<BN_HomeTag *> *)tags
+{
+    NSMutableArray *array = [@[] mutableCopy];
+    [tags enumerateObjectsUsingBlock:^(BN_HomeTag * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSDictionary *dic = (NSDictionary *)obj;
+        BN_HomeTag *tag = [BN_HomeTag mj_objectWithKeyValues:dic];
+        [array addObject:tag];
+    }];
+    _tags = array;
 }
 
 /**
@@ -177,5 +230,41 @@
     }];
 
 }
+
+
+/**
+ 3.4.3	广场-广场主页-好友关注（已测）
+ 
+ @param block 回调block
+ */
+- (void)attention:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"beUserId":@(self.userId),
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/square/friends/attention",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            temp.isFollow = [[result objectForKey:@"attentionState"] intValue];
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
 
 @end

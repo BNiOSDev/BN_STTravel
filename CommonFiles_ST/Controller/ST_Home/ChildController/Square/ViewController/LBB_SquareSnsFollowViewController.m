@@ -87,7 +87,21 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
          */
         [temp.viewModel.userShowViewModel getUserFansArrayClearData:YES];
         //默认是动态
-        [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userActionArray];
+        switch (temp.selectType) {
+            case LBB_SquareSnsFollowlDynamic://动态
+                [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userActionArray];
+                
+                break;
+            case LBB_SquareSnsFollowlFavorite://关注
+                [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userAttentionArray];
+                
+                break;
+            case LBB_SquareSnsFollowFuns://粉丝
+                [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userFansArray];
+                break;
+            default:
+                break;
+        }
         [temp.tableView reloadData];
     }];
     
@@ -118,19 +132,6 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
         }
         
     }];
-    [self.viewModel.userShowViewModel.userAttentionArray.loadSupport setDataRefreshblock:^{
-        [temp.tableView reloadData];
-
-    }];
-    [self.viewModel.userShowViewModel.userFansArray.loadSupport setDataRefreshblock:^{
-        [temp.tableView reloadData];
-
-    }];
-    [self.viewModel.userShowViewModel.userActionArray.loadSupport setDataRefreshblock:^{
-        [temp.tableView reloadData];
-
-    }];
-  
 }
 
 

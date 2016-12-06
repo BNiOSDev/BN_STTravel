@@ -8,7 +8,7 @@
 
 #import <BN_BaseDataModel.h>
 #import "LBB_TagsViewModel.h"
-
+#import "LBB_HomeViewModel.h"
 @interface LBB_UserOther : BN_BaseDataModel
 
 @property (nonatomic, assign)long userId ;// 用户ID
@@ -16,6 +16,13 @@
 @property (nonatomic, strong)NSString *userPicUrl ;// 用户头像
 @property (nonatomic, strong)NSString *signature ;// 签名
 @property (nonatomic, assign)int followState;//	Int	关注关系 0未关注1：已关注 2：互相关注
+
+/**
+ 3.4.3	广场-广场主页-好友关注（已测）
+ 
+ @param block 回调block
+ */
+- (void)attention:(void (^)(NSError *error))block;
 
 @end
 
@@ -58,6 +65,7 @@
 @property (nonatomic, strong)NSString *districtName ;// 地区名
 @property (nonatomic, strong)NSString *tourAWords ;// 导游简介
 @property (nonatomic, strong)NSString *tourDetails ;// 导游介绍
+@property (nonatomic, strong)NSArray<BN_HomeTag*> *tags;//标签集合
 
 
 @property (nonatomic, strong)NSMutableArray<LBB_UserAction *> *userActionArray;
@@ -86,5 +94,15 @@
  @param clear 清空原数据
  */
 - (void)getUserFansArrayClearData:(BOOL)clear;
+
+
+
+/**
+ 3.4.3	广场-广场主页-好友关注（已测）
+ 
+ @param block 回调block
+ */
+- (void)attention:(void (^)(NSError *error))block;
+
 
 @end

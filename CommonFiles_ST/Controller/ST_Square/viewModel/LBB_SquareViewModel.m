@@ -134,7 +134,9 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            temp.AttentionStatus = YES;
+           // temp.AttentionStatus = YES;
+            id result = [dic objectForKey:@"result"];
+            temp.AttentionStatus = [[result objectForKey:@"attentionState"] intValue];
             block(nil);
         }
         else
