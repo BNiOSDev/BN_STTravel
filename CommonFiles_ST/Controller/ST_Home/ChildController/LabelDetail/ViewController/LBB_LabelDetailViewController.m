@@ -175,8 +175,13 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.hotDataSource = [[LBB_LabelDetailHotDataSource alloc] initWithTableView:self.tableView];
+    self.hotDataSource.showImageArray = self.viewModel.showImageHotArray;
+    
     self.timeDataSource = [[LBB_LabelDetailHotDataSource alloc] initWithTableView:self.tableView];
+    self.timeDataSource.showImageArray = self.viewModel.showImageTimeArray;
+    
     self.userDataSource = [[LBB_LabelDetailUserDataSource alloc] initWithTableView:self.tableView];
+    
     self.userDataSource.parentViewController = self;
     [self initViewModel];
     [self.baseContentView addSubview:self.tableView];
@@ -245,6 +250,23 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         [b bk_addEventHandler:^(id sender){
         
             ws.selectType = i;
+            //默认是动态
+            switch (self.selectType) {
+                case LBB_LabelDetailHot://热门
+                    [self.tableView setTableViewData:self.viewModel.showImageHotArray];
+                    
+                    break;
+                case LBB_LabelDetailTime://时间
+                    [self.tableView setTableViewData:self.viewModel.showImageTimeArray];
+                    
+                    break;
+                case LBB_LabelDetailUser://用户
+                    // [self.tableView setTableViewData:self.viewModel.userShowViewModel.userFansArray];
+                    break;
+                default:
+                    break;
+            }
+            
             [ws.tableView reloadData];
         } forControlEvents:UIControlEventTouchUpInside];
     }
@@ -262,7 +284,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         }];
     }
 
-
+    
     return v;
 }
 
