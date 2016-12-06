@@ -222,7 +222,6 @@
             _videoArray = [[videoGet getAllAssetInVideoAblumWithAscending:YES] mutableCopy];
         }
         [_imageList reloadData];
-        [_imageList setContentOffset:CGPointMake(0, _imageList.contentSize.height - _imageList.bounds.size.height) animated:YES];
     });
 }
 
