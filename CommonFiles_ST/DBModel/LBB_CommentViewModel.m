@@ -33,12 +33,22 @@
     __weak typeof(self) temp = self;
     __weak NSString *block_remark = remark;
     [[BC_ToolRequest sharedManager] uploadfile:images block:^(NSArray *files, NSError *error) {
+        
+        NSMutableArray *imageArray = (NSMutableArray *)[files map:^id(NSString *element) {
+            
+            NSDictionary* dic = @{@"imageUrl":element,
+                                  @"imageDesc":@""};
+            return dic;
+        }];
+        
+        NSLog(@"commentObjId imageArray:%@",imageArray);
+        
         NSDictionary *paraDic = @{
                                   @"objId":@(objId),
                                   @"type":@(type),
                                   @"scores":@(scores),
-                                  @"remark":block_remark,
-                                  @"images":files,
+                                  @"remark":remark,
+                                  @"images":imageArray,
                                   @"parentId":@(parentId),
                                   };
         

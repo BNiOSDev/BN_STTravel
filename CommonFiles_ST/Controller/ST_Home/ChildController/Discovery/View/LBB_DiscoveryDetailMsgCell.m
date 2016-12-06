@@ -108,6 +108,8 @@
         [self.commentsButton bk_whenTapped:^{
             
             LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc] init];
+            dest.allSpotsType = 10;// 场景类型 1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题
+            dest.allSpotsId = ws.model.lineId;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -204,27 +206,7 @@
 -(void)setModel:(LBB_DiscoveryDetailModel *)model{
     
     _model = model;
-    /*
-     
-     @property(nonatomic, retain)UIButton* greatButton;
-     @property(nonatomic, retain)UIButton* commentsButton;
-     @property(nonatomic, retain)UIButton* favoriteButton;
-     
-     @property(nonatomic, retain)UIButton* scenicButton;
-     @property(nonatomic, retain)UIButton* foodsButton;
-     @property(nonatomic, retain)UIButton* hostelButton;
-     */
-    /*
-     @property (nonatomic, assign)int totalFood ;// 美食个数
-     @property (nonatomic, assign)int totalHomestay ;// 民宿个数
-     @property (nonatomic, assign)int totalScenicSpots ;//景点个数
 
-     @property (nonatomic, strong)NSString *shareUrl ;// 分享URL
-     @property (nonatomic, strong)NSString *shareTitle ;// 分享标题
-     @property (nonatomic, strong)NSString *shareContent ;// 分享内容
-     @property (nonatomic, assign)int isCollected ;// 收藏标志 0未收藏 1：收藏
-     @property (nonatomic, assign)int isLiked ;// 点赞标志 0未点赞 1：点赞
-     */
     [self.titleLabel setText:model.name];// 标题
     [self.timeLabel setText:model.lineTime];// 线路时长 如:1日游
     
