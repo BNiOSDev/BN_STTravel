@@ -29,7 +29,8 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            temp.isCollected = YES;
+            id result = [dic objectForKey:@"result"];
+            temp.isCollected = [[result objectForKey:@"collecteState"] boolValue];
             block(nil);
         }
         else
@@ -63,7 +64,17 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            temp.isLiked = YES;
+            id result = [dic objectForKey:@"result"];
+            BOOL likedState = [[result objectForKey:@"likedState"] boolValue];
+            if (likedState != temp.isLiked) {//状态有变化的时候
+                temp.isLiked = likedState;
+                if (temp.isLiked) {
+                    temp.likeNum = temp.likeNum + 1;
+                }
+                else{
+                    temp.likeNum = temp.likeNum - 1;
+                }
+            }
             block(nil);
         }
         else
@@ -97,6 +108,86 @@
     _tags = array;
 }
 
+
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.travelNotesId),
+                              @"allSpotsType":@(7),
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            temp.isCollected = [[result objectForKey:@"collecteState"] boolValue];
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.travelNotesId),
+                              @"allSpotsType":@(7),
+                              };
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/like",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            BOOL likedState = [[result objectForKey:@"likedState"] boolValue];
+            if (likedState != temp.isLiked) {//状态有变化的时候
+                temp.isLiked = likedState;
+                if (temp.isLiked) {
+                    temp.likeNum = temp.likeNum + 1;
+                }
+                else{
+                    temp.likeNum = temp.likeNum - 1;
+                }
+            }
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
 @end
 
 @implementation BN_HomeSpotsList
@@ -112,7 +203,7 @@
                               @"allSpotsId":@(self.allSpotsId),
                               @"allSpotsType":@(self.allSpotsType),
                               };
-    
+    NSLog(@"collecte paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
     __weak typeof(self) temp = self;
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
@@ -120,7 +211,8 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            temp.isCollected = YES;
+            id result = [dic objectForKey:@"result"];
+            temp.isCollected = [[result objectForKey:@"collecteState"] boolValue];
             block(nil);
         }
         else
@@ -146,7 +238,8 @@
                               @"allSpotsId":@(self.allSpotsId),
                               @"allSpotsType":@(self.allSpotsType),
                               };
-    
+    NSLog(@"like paraDic:%@",paraDic);
+
     NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/like",BASEURL];
     __weak typeof(self) temp = self;
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
@@ -154,7 +247,17 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            temp.isLiked = YES;
+            id result = [dic objectForKey:@"result"];
+            BOOL likedState = [[result objectForKey:@"likedState"] boolValue];
+            if (likedState != temp.isLiked) {//状态有变化的时候
+                temp.isLiked = likedState;
+                if (temp.isLiked) {
+                    temp.likeNum = temp.likeNum + 1;
+                }
+                else{
+                    temp.likeNum = temp.likeNum - 1;
+                }
+            }
             block(nil);
         }
         else
@@ -221,7 +324,6 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getAdvertisementListArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
             
@@ -236,14 +338,11 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            NSLog(@"失败  %@",errorStr);
 
         }
         
         temp.advertisementArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getAdvertisementListArrayClearData失败  %@",error.domain);
-
         temp.advertisementArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
@@ -268,12 +367,11 @@
     __weak typeof(self) temp = self;
     self.spotAdvertisementArray.loadSupport.loadEvent = NetLoadingEvent;
     
-    [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getSpotAdvertisementListArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
             
@@ -292,7 +390,6 @@
         
         temp.spotAdvertisementArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getSpotAdvertisementListArrayClearData失败  %@",error.domain);
 
         temp.spotAdvertisementArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
@@ -320,7 +417,6 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getNoticesArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeNotices mj_objectArrayWithKeyValuesArray:array];
             
@@ -339,7 +435,6 @@
         
         temp.noticesArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getNoticesArrayClearData失败  %@",error.domain);
         temp.noticesArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
@@ -366,7 +461,6 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getSpotsArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeSpotsList mj_objectArrayWithKeyValuesArray:array];
             
@@ -385,7 +479,6 @@
         
         temp.spotsArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getSpotsArrayClearData失败  %@",error.domain);
 
         temp.spotsArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
@@ -413,7 +506,6 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getTravelNotesArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeTravelNotes mj_objectArrayWithKeyValuesArray:array];
             
@@ -432,7 +524,6 @@
         
         temp.travelNotesArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getTravelNotesArrayClearData失败  %@",error.domain);
 
         temp.travelNotesArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
@@ -446,7 +537,9 @@
 - (void)getSpotsArrayWithType:(NSInteger)Type
 {
     NSString *url = [NSString stringWithFormat:@"%@/homePage/master/spotsList",BASEURL];
-    
+    NSDictionary *paraDic = @{
+                              @"type":@(Type)
+                              };
     NSMutableArray *spotsArray = nil;
     switch (Type) {
         case 1:
@@ -467,15 +560,13 @@
     
     __weak typeof(self) temp = self;
     __weak NSMutableArray *spotsArray_block = spotsArray;
-    [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getSpotsArrayWithType成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeSpotsList mj_objectArrayWithKeyValuesArray:array];
-            
             [spotsArray_block removeAllObjects];
             
             [spotsArray_block addObjectsFromArray:returnArray];
@@ -488,7 +579,6 @@
         
         spotsArray_block.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getSpotsArrayWithType失败  %@",error.domain);
         spotsArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
@@ -515,10 +605,10 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getUgcArrayClearData成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [BN_HomeUgcList mj_objectArrayWithKeyValuesArray:array];
-            
+            NSLog(@"getUgcArrayClearData:%@",array);
+
             if (clear == YES)
             {
                 [temp.ugcArray removeAllObjects];
@@ -534,7 +624,6 @@
         
         temp.ugcArray.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getUgcArrayClearData失败  %@",error.domain);
 
         temp.ugcArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];

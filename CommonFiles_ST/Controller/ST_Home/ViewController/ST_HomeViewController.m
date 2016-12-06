@@ -89,7 +89,6 @@
     [back.imageView setImage:IMAGE(@"ST_Home_Nearby")];
     [back bk_whenTapped:^{
         
-        NSLog(@"back touch");
         LBBNearbyMainViewController* v = [[LBBNearbyMainViewController alloc]init];
         [ws.navigationController pushViewController:v animated:YES];
     }];
@@ -103,7 +102,6 @@
     [sign.imageView setImage:IMAGE(@"ST_Home_Signin")];
     [sign bk_whenTapped:^{
         
-        NSLog(@"signButton touch");
         LBBSigninMainViewController* v = [[LBBSigninMainViewController alloc]init];
         [ws.navigationController pushViewController:v animated:YES];
         
@@ -216,7 +214,6 @@
      3.1.3 公告轮播
      @param clear 是否清空原数据
      */
-#pragma 没有数据
     [self.viewModel getNoticesArrayClearData:YES];
     [self.viewModel.noticesArray.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];//data reload
@@ -305,7 +302,6 @@
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
-    NSLog(@"searchBarSearchButtonClicked");
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
@@ -375,8 +371,6 @@
     }];
     
     [btn bk_addEventHandler:^(id sender){
-    
-        NSLog(@"touch section header");
         
         if (section == LBBHomeSectionTravelRecommendType) {//游记推荐，跳转到游记
             [self.tabBarController setSelectedIndex:1];
@@ -419,7 +413,9 @@
     return [self.dataSource tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.dataSource tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 
 
 @end

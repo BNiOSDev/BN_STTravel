@@ -113,13 +113,6 @@
 
 -(void)setCycleScrollViewUrls:(NSArray*)urlArray{
 
-    NSArray* imagesURLStrings = @[@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg",
-                                  @"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690",
-                                  @"http://img5.poco.cn/mypoco/myphoto/20080721/19/43214503200807211940527014829584496_033_640.jpg",
-                                  @"http://img2.ph.126.net/O_N-vMFrIBv-vaXfC40fcA==/1679279711155879130.jpg",
-                                  @"http://upload.sanqin.com/2014/0820/1408524577544.jpg",
-                                  ];
-  //  imagesURLStrings = @[@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg" ];
     cycleScrollView.imageURLStringsGroup = urlArray;
 
 }
@@ -195,6 +188,9 @@
             case 3://详情
             {
                 LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc] init];
+                LBB_SpotModel* viewModel = [[LBB_SpotModel alloc]init];
+                viewModel.allSpotsId = model.objId;//主键Id
+                dest.spotModel = viewModel;
                 switch (model.type) {
                     case 1://美食
                         dest.homeType = LBBPoohHomeTypeFoods;

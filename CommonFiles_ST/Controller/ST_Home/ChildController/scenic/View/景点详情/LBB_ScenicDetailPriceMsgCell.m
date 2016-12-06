@@ -105,11 +105,7 @@
             make.left.top.bottom.equalTo(v);
             //make.height.mas_equalTo(@15);
         }];
-        [self.greatView bk_whenTapped:^{
-            
-            NSLog(@"greetView touch");
-            
-        }];
+
         
         self.commentsView = [[UIButton alloc]init];
         [self.commentsView setImage:IMAGE(@"景点专题_评论")forState:UIControlStateNormal];
@@ -122,14 +118,6 @@
             
             make.left.equalTo(ws.greatView.mas_right).offset(margin+4);
             make.centerY.height.equalTo(ws.greatView);
-        }];
-        
-
-        [self.commentsView bk_whenTapped:^{
-            
-            LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc] init];
-            [[ws getViewController].navigationController pushViewController:dest animated:YES];
-            
         }];
         
         self.favoriteView = [[UIButton alloc]init];
@@ -146,9 +134,7 @@
             make.right.equalTo(v);
         }];
         
-        [self.favoriteView bk_whenTapped:^{
-            
-        }];
+
         
         
         UIView* sep2 = [UIView new];
@@ -158,6 +144,27 @@
             make.bottom.centerX.width.equalTo(ws.contentView);
             make.height.mas_equalTo(SeparateLineWidth);
             make.top.equalTo(v.mas_bottom).offset(2*margin);
+        }];
+        
+#pragma action
+        [self.commentsView bk_whenTapped:^{
+            
+            LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc] init];
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        [self.greatView bk_whenTapped:^{
+            
+            NSLog(@"greetView touch");
+            [ws.model like:^(NSError* error){
+            
+            }];
+            
+        }];
+        [self.favoriteView bk_whenTapped:^{
+            [ws.model collecte:^(NSError* error){
+                
+            }];
         }];
     }
     return self;
@@ -172,7 +179,7 @@
     
     // 点赞标志 0未点赞 1：点赞
     @weakify(self);
-    [RACObserve(self.model, isSigned) subscribeNext:^(NSNumber* num) {
+    [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         BOOL status = [num boolValue];
@@ -201,6 +208,31 @@
         @strongify(self);
         int likenum = [num intValue];
         [self.favoriteView setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
+    }];
+    
+    // 是否收藏
+    [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        BOOL status = [num boolValue];
+        if (status) {
+            [self.favoriteView setImage:IMAGE(@"景点专题_小收藏HL")forState:UIControlStateNormal];
+        }
+        else{
+            [self.favoriteView setImage:IMAGE(@"景点专题_小收藏")forState:UIControlStateNormal];
+        }
+    }];
+    
+    
+    // 是否签到
+    [RACObserve(self.model, isSigned) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        BOOL status = [num boolValue];
+        if (status) {
+            [self.signLabel setText:@"已签到"];
+        }
+        else{
+            [self.signLabel setText:@"签到"];
+        }
     }];
     
     //单价设置

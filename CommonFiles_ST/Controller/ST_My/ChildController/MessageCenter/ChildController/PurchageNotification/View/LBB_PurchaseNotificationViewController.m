@@ -18,9 +18,8 @@
 UITableViewDelegate
 >
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic) NSMutableArray *dataSourceArray; 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
-@property (nonatomic,strong) LBB_PurchaseDataModel *dataModel;
+@property (nonatomic,strong) LBB_PurchaseViewModel *viewModel;
 
 @end
 
@@ -45,18 +44,37 @@ UITableViewDelegate
 {
     UINib *nib = [UINib nibWithNibName:@"LBB_SquareNotificationViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"LBB_SquareNotificationViewCell"];
-    
-    if (!self.dataModel) {
-        self.dataModel = [[LBB_PurchaseDataModel alloc] init];
-    }
-    self.dataSourceArray = [self.dataModel getData];
+    [self initDataSource];
 }
-
+- (void)initDataSource
+{
+    if (!self.viewModel) {
+        self.viewModel = [[LBB_PurchaseViewModel alloc] init];
+    }
+    __weak typeof (self) weakSelf = self;
+    [self.tableView setHeaderRefreshDatablock:^{
+        [weakSelf.viewModel getPurchaseDataArray:YES];
+    } footerRefreshDatablock:^{
+        [weakSelf.viewModel getPurchaseDataArray:NO];
+    }];
+    
+    //设置绑定数组
+    [self.tableView setTableViewData:self.viewModel.dataArray];
+    
+    [self.viewModel.dataArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"数据刷新了");
+    }];
+    
+    [self.tableView loadData:self.viewModel.dataArray];
+    
+    //刷新数据
+    [weakSelf.viewModel getPurchaseDataArray:YES];
+}
 #pragma mark - tableView delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dataSourceArray.count;
+    return self.viewModel.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -78,8 +96,10 @@ UITableViewDelegate
 {
     CGFloat height = [tableView fd_heightForCellWithIdentifier:@"LBB_SquareNotificationViewCell"
                                                  configuration:^(LBB_SquareNotificationViewCell *cell) {
-                                                     LBB_PurchaseModel *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
-                                                     [self configCell:cell Model:cellDict];
+                                                     if (indexPath.section < self.viewModel.dataArray.count) {
+                                                         LBB_PurchaseModel *cellModel = self.viewModel.dataArray[indexPath.section];
+                                                         [self configCell:cell Model:cellModel];
+                                                     }
                                                  }];
     return height;
     
@@ -93,8 +113,10 @@ UITableViewDelegate
     timeLabel.font = Font12;
     timeLabel.textAlignment = NSTextAlignmentCenter;
     timeLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-    LBB_PurchaseModel *cellDict = [self.dataSourceArray objectAtIndex:section];
-    timeLabel.text = cellDict.dateStr;
+    if (section < self.viewModel.dataArray.count) {
+        LBB_PurchaseModel *cellModel = self.viewModel.dataArray[section];
+         timeLabel.text = cellModel.createtime;
+    }
     timeLabel.backgroundColor = [UIColor clearColor];
     
     return timeLabel;
@@ -106,24 +128,26 @@ UITableViewDelegate
     static NSString *CellIdentifier = @"LBB_SquareNotificationViewCell";
     LBB_SquareNotificationViewCell *cell = nil;
     
-    LBB_PurchaseModel *cellDict = [self.dataSourceArray objectAtIndex:[indexPath section]];
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[LBB_SquareNotificationViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectedBackgroundView.backgroundColor = RGB(240, 240, 240);
-    [self configCell:cell Model:cellDict];
+    if (indexPath.section < self.viewModel.dataArray.count) {
+        LBB_PurchaseModel *cellModel = self.viewModel.dataArray[indexPath.section];
+        [self configCell:cell Model:cellModel];
+    }
     
     return cell;
 }
 
-- (void)configCell:(LBB_SquareNotificationViewCell*)cell Model:(LBB_PurchaseModel*)cellDict
+- (void)configCell:(LBB_SquareNotificationViewCell*)cell Model:(LBB_PurchaseModel*)cellModel
 {
-   [cell.iconImgView  sd_setImageWithURL:[NSURL URLWithString:cellDict.imageURL] placeholderImage:nil];;
-    cell.titleLabel.text = cellDict.title;
-    cell.contentLabel.text = cellDict.content;
-    cell.dateLabel.text = cellDict.dateStr;
+    cell.iconImgView.imageURL = cellModel.msg_image;
+    cell.titleLabel.text = cellModel.title;
+    cell.contentLabel.text = cellModel.msg_abstract;
+    cell.dateLabel.text = cellModel.createtime;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

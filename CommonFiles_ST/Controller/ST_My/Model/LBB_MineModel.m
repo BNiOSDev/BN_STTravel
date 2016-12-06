@@ -272,10 +272,10 @@
                 detailInfo.detailContent = @"游记";
             }
                 break;
-            case eLove:
+            case eRecentChat:
             {
                 detailInfo.detailImage = @"关注.png";
-                detailInfo.detailContent = @"关注";
+                detailInfo.detailContent = @"聊天";
             }
                 break;
             default:
@@ -369,10 +369,10 @@
                 detailInfo.detailContent = @"下载";
             }
                 break;
-            case eRoute:
+            case eMineFollow:
             {
-                detailInfo.detailImage = @"定制线路.png";
-                detailInfo.detailContent = @"定制线路";
+                detailInfo.detailImage = @"关注.png";
+                detailInfo.detailContent = @"关注";
             }
                 break;
             case eSetting:

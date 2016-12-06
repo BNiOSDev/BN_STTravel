@@ -87,6 +87,7 @@
 @interface LBB_SpotDetailsViewModel : BN_BaseDataModel
 
 @property(nonatomic, assign)long allSpotsId ;// 场景ID
+@property (nonatomic,assign)long allSpotsType ;// 场景类型
 @property(nonatomic, strong)NSMutableArray<LBB_SpotsPics*> *allSpotsPics ;// 场景图片集合
 @property(nonatomic, strong)NSMutableArray<LBB_PurchaseRecords*> *purchaseRecords ;// 最近6条购买记录
 @property(nonatomic, assign)BOOL isCollected ;// 收藏标志 0未收藏 1：收藏
@@ -130,22 +131,42 @@
                      dimensionality:(NSString*)dimensionality
                           clearData:(BOOL)clear;
 
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block;
+
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block;
+
 @end
 
 @interface LBB_SpotModel : BN_BaseDataModel
 
 @property (nonatomic,assign)long allSpotsId ;// 场景ID
+@property (nonatomic,assign)long allSpotsType ;// 场景类型
 @property (nonatomic,strong)NSString *allSpotsName ;// 场景名称
 @property (nonatomic,strong)NSString *picUrl ;// 场景图片
 @property (nonatomic,strong)NSString *picRemark ;// 场景图片描述
 @property (nonatomic,assign)double distance ;// 距离 (单位km)
 @property (nonatomic,assign)int likeNum ;// 点赞次数
 @property (nonatomic,assign)int commentsNum ;// 评论条数
-@property (nonatomic,strong)NSString *standardPcice ;// 原价
+@property (nonatomic,strong)NSString *standardPrice ;// 原价
 @property (nonatomic,strong)NSString *realPrice ;// 实际价格
 @property (nonatomic,assign)BOOL isCollected ;// 收藏标志 0未收藏 1：收藏
 @property (nonatomic,assign)BOOL isLiked ;// 点赞标志 0未点赞 1：点赞
 @property (nonatomic,strong)NSMutableArray<LBB_SpotsTag*> *tags ;// 标签
+@property (nonatomic,strong)NSString* dimensionality;//维度
+@property (nonatomic,strong)NSString* longitude;//精度
+
+
 
 @property (nonatomic,strong)LBB_SpotDetailsViewModel *spotDetails;
 
@@ -156,6 +177,20 @@
 - (void)getSpotDetailsData:(BOOL)clear;
 
 
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block;
+
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block;
 @end
 
 

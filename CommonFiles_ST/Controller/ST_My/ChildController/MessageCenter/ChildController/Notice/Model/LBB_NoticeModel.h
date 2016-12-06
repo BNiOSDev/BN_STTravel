@@ -8,20 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LBB_NoticeDetailModel : NSObject
+@interface LBB_NoticeModel : BN_BaseDataModel
 
-@property(nonatomic,copy) NSString *detailID;
-@property(nonatomic,copy) NSString *detailDateStr;
-@property(nonatomic,copy) NSString *title;
-@property(nonatomic,copy) NSString *dateStr;
-@property(nonatomic,copy) NSString *content;
-@property(nonatomic,copy) NSString *detailURL;
+@property(nonatomic,assign) long noticesId;//主键
+@property(nonatomic,copy) NSString* title;//标题
+@property(nonatomic,copy) NSString* content;//内容
+@property(nonatomic,copy) NSString* createTime;//创建时间
 
 @end
 
-@interface LBB_NoticeModel : NSObject
+@interface LBB_NoticeViewModel : BN_BaseDataModel
 
+@property(nonatomic,strong) NSMutableArray<LBB_NoticeModel*>* dataArray;
 
-- (NSArray<LBB_NoticeDetailModel*>*)getData;
+/**
+ *3.10.7 公告列表(已测)
+ */
+- (void)getNoticeDataArray:(BOOL)isClear;
 
 @end

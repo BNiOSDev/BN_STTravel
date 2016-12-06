@@ -47,20 +47,20 @@
 - (void)setCellInfo:(LBB_MessageSquareTravelModel *)cellInfo
 {
     _cellInfo = cellInfo;
-    NSString *contentText = [NSString stringWithFormat:@"%@关注了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+    NSString *contentText = nil;
     switch (self.messgeType) {
         case eMessageFollow:
-          contentText = [NSString stringWithFormat:@"%@关注了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            contentText = [NSString stringWithFormat:@"%@关注了您",_cellInfo.userName];
             break;
         case eMessageLike:
-            contentText = [NSString stringWithFormat:@"%@关注了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            contentText = [NSString stringWithFormat:@"%@赞了您发布的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
             break;
          
         case eMessageComment:
-            contentText = [NSString stringWithFormat:@"%@评论了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            contentText = [NSString stringWithFormat:@"%@评论了您发布的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
             break;
         case eMessageCollection:
-            contentText = [NSString stringWithFormat:@"%@收藏了您的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            contentText = [NSString stringWithFormat:@"%@收藏了您发布的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
             break;
         default:
             break;

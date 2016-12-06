@@ -8,33 +8,61 @@
 
 #import "LBB_NoticeModel.h"
 
-@implementation LBB_NoticeDetailModel
-
+@implementation LBB_NoticeModel
 
 @end
 
 
-@implementation LBB_NoticeModel
+@implementation LBB_NoticeViewModel
 
-- (NSArray<LBB_NoticeDetailModel*>*)getData
+- (id)init
 {
-    NSMutableArray *detailArray = [[NSMutableArray alloc] initWithCapacity:0];
-    for (int i = 0; i < 9; i++) {
-        LBB_NoticeDetailModel *detailModel = [[LBB_NoticeDetailModel alloc] init];
-        detailModel.detailID = @"11";
-        detailModel.detailDateStr = @"12:21";
-        detailModel.title = @"公告标题";
-        detailModel.dateStr =  @"7月7日 12:21";
-        detailModel.detailURL = @"https://www.baidu.com/";
-        if (i%2 == 0) {
-            detailModel.content = @"公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容，公告内容";
-        }else {
-            detailModel.content = @"公告内容，公告内容，公告内容，公告内容";
-        }
-        [detailArray addObject:detailModel];
-        
+    self = [super init];
+    if (self) {
+        self.dataArray = [[NSMutableArray alloc] initFromNet];
     }
-    return detailArray;
+    return self;
+}
+
+/**
+ *3.10.7 公告列表(已测)
+ */
+- (void)getNoticeDataArray:(BOOL)isClear
+{
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/notices/list",BASEURL];
+    int curPage = isClear == YES ? 0 : round(self.dataArray.count/10.0);
+
+    NSDictionary *parames = @{
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              };
+    
+    __weak typeof(self) weakSelf = self;
+    self.dataArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:parames success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_NoticeModel mj_objectArrayWithKeyValuesArray:array];
+            if (isClear) {
+                [weakSelf.dataArray removeAllObjects];
+            }
+            
+            [weakSelf.dataArray addObjectsFromArray:returnArray];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"失败  %@",errorStr);
+        }
+        weakSelf.dataArray.networkTotal = [dic objectForKey:@"total"];
+        weakSelf.dataArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        weakSelf.dataArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
 }
 
 @end

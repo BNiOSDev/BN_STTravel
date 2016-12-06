@@ -41,7 +41,7 @@
 -(void)initViewModel{
 
     
-    int distance = 13500;
+    int distance = 135000;
     self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
 
     self.viewModel = [[LBB_NearViewModel alloc]init];

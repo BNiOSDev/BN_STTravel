@@ -11,6 +11,14 @@
 #import "HMSegmentedControl.h"
 #import "LBB_HomeViewModel.h"
 
+
+typedef NS_ENUM(NSInteger, LBBHomeHotestTableViewCellType) {
+    LBBHomeHotestTableViewCellHotType = 0,//热门推荐
+    LBBHomeHotestTableViewCellVipRecommendType,//达人推荐
+    LBBHomeHotestTableViewCellTravelProductType ,//旅游产品
+    
+};
+
 @interface LBBHomeHotestTableViewCell : LBBPoohBaseTableViewCell
 
 
@@ -18,7 +26,7 @@
 @property (nonatomic, retain) HMSegmentedControl* pagerView;
 -(void)setPagerViewHidden:(BOOL)isHidden;
 
-@property(nonatomic, assign)BOOL isMarket;
+@property(nonatomic, assign)LBBHomeHotestTableViewCellType type;
 
 
 //热门推荐

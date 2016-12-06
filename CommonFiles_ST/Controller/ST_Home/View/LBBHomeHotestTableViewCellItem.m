@@ -88,9 +88,91 @@
         }];
         
         [self layoutSubviews];//it must to be done to layouts subviews
-
+    
+        [self.greetView bk_whenTapped:^{
+            
+            NSLog(@"greetView touch");
+            [ws.model like:^(NSError* error){
+                NSLog(@"like error:%@",error);
+                
+            }];
+        }];
+        
+        [self.disView bk_whenTapped:^{
+            
+            NSLog(@"disView touch 需跳转到全部评论页面");
+            
+        }];
+        [self.favoriteButton bk_addEventHandler:^(id sender){
+            
+            [ws.model collecte:^(NSError* error){
+                NSLog(@"collecte error:%@",error);
+            }];
+        } forControlEvents:UIControlEventTouchUpInside];
+ 
+        
     }
     return self;
+}
+
+
+-(void)setModel:(BN_HomeSpotsList *)model{
+
+    _model = model;
+    
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.allSpotsPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//场景图片
+    [self.titleLabel setText:model.allSpotsName];//场景名称
+    [self.disView setTitle:[NSString stringWithFormat:@"%d",model.commentsNum] forState:UIControlStateNormal];//评论条数
+    
+    //单价设置
+    NSString* strFormat1 = [NSString stringWithFormat:@"%@元起/人",model.price];
+    NSString* strFormat2 = @"元";
+    UIColor* fontColor = ColorBtnYellow;
+    NSDictionary* attrsDic = @{NSForegroundColorAttributeName:fontColor,
+                               NSFontAttributeName:Font12};    //显示的字符串进行富文本转换
+    NSMutableAttributedString* strAttr = [[NSMutableAttributedString alloc]initWithString:strFormat1];
+    //字体设置
+    NSRange rang = [strFormat1 rangeOfString:strFormat2];
+    if (rang.location != NSNotFound) {
+        NSLog(@"found at location = %ld, length = %ld",rang.location,rang.length);
+        [strAttr addAttributes:attrsDic range:NSMakeRange(0, rang.location)];
+    }else{
+        NSLog(@"Not Found");
+    }
+    self.priceLabel.attributedText = strAttr;
+    
+    @weakify (self);
+    [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* isCollected) {
+        @strongify(self);
+        
+        BOOL status = [isCollected boolValue];
+        
+        if (status) {
+            [self.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
+        }
+    }];
+
+    [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* isLiked) {
+        @strongify(self);
+        BOOL status = [isLiked boolValue];
+        if (status) {
+            [self.greetView setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
+        }
+        
+    }];
+    
+    [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        int status = [num intValue];
+        [self.greetView setTitle:[NSString stringWithFormat:@"%d",status] forState:UIControlStateNormal];//点赞次数
+    }];
+   
 }
 
 @end

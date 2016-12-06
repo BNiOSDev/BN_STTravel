@@ -11,8 +11,6 @@
 #import "LBB_ScenicDetailViewController.h"
 @interface LBBHomeHotestTableViewCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property(nonatomic, retain)BN_HomeSpotsList* curObj;
-
 @end
 
 @implementation LBBHomeHotestTableViewCell
@@ -96,10 +94,8 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    if (self.spotsArray) {
-        return self.spotsArray.count;
-    }
-    else{
+    
+    if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
                 return self.footSpotsArray.count;
@@ -115,25 +111,24 @@
                 break;
         }
     }
+    else if (self.type == LBBHomeHotestTableViewCellHotType){
+        return self.spotsArray.count;
+    }
     
     return 8;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    WS(ws);
     LBBHomeHotestTableViewCellItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LBBHomeHotestTableViewCellItem"forIndexPath:indexPath];
-    
+    NSLog(@"AAAAAAAA %@",cell);
     [cell sizeToFit];
     if (!cell) {
         NSLog(@"无法创建LBBHomeHotestTableViewCellItem时打印，自定义的cell就不可能进来了。");
     }
     
     BN_HomeSpotsList* obj;
-    if (self.spotsArray) {
-        obj = [self.spotsArray objectAtIndex:indexPath.row];
-    }
-    else{
+    if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
                 obj = [self.footSpotsArray objectAtIndex:indexPath.row];
@@ -146,98 +141,19 @@
                 break;
         }
     }
-    self.curObj = obj;
-   
-    [cell.mainImageView sd_setImageWithURL:[NSURL URLWithString:obj.allSpotsPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//场景图片
-    [cell.titleLabel setText:obj.allSpotsName];//场景名称
-    [cell.disView setTitle:[NSString stringWithFormat:@"%d",obj.commentsNum] forState:UIControlStateNormal];//评论条数
-    [cell.greetView setTitle:[NSString stringWithFormat:@"%d",obj.likeNum] forState:UIControlStateNormal];//点赞次数
-   // [cell.priceLabel setText:[NSString stringWithFormat:@"%@元起/人",obj.price]];//价格
-    
-    //单价设置
-    NSString* strFormat1 = [NSString stringWithFormat:@"%@元起/人",obj.price];
-    NSString* strFormat2 = @"元";
-    UIColor* fontColor = ColorBtnYellow;
-    NSDictionary* attrsDic = @{NSForegroundColorAttributeName:fontColor,
-                               NSFontAttributeName:Font12};    //显示的字符串进行富文本转换
-    NSMutableAttributedString* strAttr = [[NSMutableAttributedString alloc]initWithString:strFormat1];
-    //字体设置
-    NSRange rang = [strFormat1 rangeOfString:strFormat2];
-    if (rang.location != NSNotFound) {
-        NSLog(@"found at location = %d, length = %d",rang.location,rang.length);
-        [strAttr addAttributes:attrsDic range:NSMakeRange(0, rang.location)];
-    }else{
-        NSLog(@"Not Found");
+    else if (self.type == LBBHomeHotestTableViewCellHotType){
+        obj = [self.spotsArray objectAtIndex:indexPath.row];
     }
-    cell.priceLabel.attributedText = strAttr;
-    
-    
-   // @weakify (self);
-    [RACObserve(self.curObj, isCollected) subscribeNext:^(NSNumber* isCollected) {
-      //  @strongify(self);
-        
-        BOOL status = [isCollected boolValue];
-        
-        if (status) {
-            [cell.favoriteButton setImage:IMAGE(@"ST_Home_FavoriteHL") forState:UIControlStateNormal];
-        }
-        else{
-            [cell.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
-        }
-        
-    }];
-    
-    [RACObserve(self.curObj, isLiked) subscribeNext:^(NSNumber* isLiked) {
-      //  @strongify(self);
-        BOOL status = [isLiked boolValue];
-        if (status) {
-            [cell.greetView setImage:IMAGE(@"ST_Home_GreatHL") forState:UIControlStateNormal];
-        }
-        else{
-            [cell.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
-        }
-        
-    }];
-    
-    [cell.greetView bk_whenTapped:^{
-        
-        NSLog(@"greetView touch");
-        [ws.curObj like:^(NSError* error){
-            NSLog(@"like error:%@",error);
+    [cell setModel:obj];
 
-        }];
-    }];
-    
-    [cell.disView bk_whenTapped:^{
-        
-        NSLog(@"disView touch");
-        
-    }];
-    [cell.favoriteButton bk_addEventHandler:^(id sender){
-        
-        NSLog(@"favoriteButton touch");
-        [ws.curObj collecte:^(NSError* error){
-            NSLog(@"collecte error:%@",error);
-        }];
-    } forControlEvents:UIControlEventTouchUpInside];
-    
-
-    
-    
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.isMarket) {
-        return;
-    }
     
     BN_HomeSpotsList* obj;
-    if (self.spotsArray) {
-        obj = [self.spotsArray objectAtIndex:indexPath.row];
-    }
-    else{
+    if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
                 obj = [self.footSpotsArray objectAtIndex:indexPath.row];
@@ -250,11 +166,16 @@
                 break;
         }
     }
-    self.curObj = obj;
-    
+    else if (self.type == LBBHomeHotestTableViewCellHotType) {
+
+        obj = [self.spotsArray objectAtIndex:indexPath.row];
+    }
     
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
-    switch (self.curObj.allSpotsType) {//	1.美食 2.民宿 3景点
+    LBB_SpotModel* viewModel = [[LBB_SpotModel alloc]init];
+    viewModel.allSpotsId = obj.allSpotsId;
+    dest.spotModel = viewModel;
+    switch (obj.allSpotsType) {//	1.美食 2.民宿 3景点
         case 1://美食
             dest.homeType = LBBPoohHomeTypeFoods;
             break;

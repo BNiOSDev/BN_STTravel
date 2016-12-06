@@ -264,7 +264,6 @@
 
 #pragma  //热门推荐
 -(UITableViewCell*)tableView:(UITableView *)tableView hotSectionCellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    WS(ws);
     if (indexPath.row == 0) {
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
@@ -287,6 +286,7 @@
             cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
+        cell.type = LBBHomeHotestTableViewCellHotType;
         [cell setPagerViewHidden:YES];
         [cell setSpotsArray:self.viewModel.spotsArray];
         return cell;
@@ -307,8 +307,6 @@
         }];
     }
     else{
-     //   return [LBBHomeHotestTableViewCell getCellHeight];
-        
           return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
               [cell setPagerViewHidden:YES];
          }];
@@ -350,6 +348,7 @@
         cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         NSLog(@"LBBHomeHotestTableViewCell nil");
     }
+    cell.type = LBBHomeHotestTableViewCellVipRecommendType;
     [cell setPagerViewHidden:NO];
     [cell.pagerView setSelectedSegmentIndex:self.vipRecommendType];
     cell.pagerView.indexChangeBlock = ^(NSInteger index){
@@ -372,7 +371,7 @@
         default:
             break;
     }
-    
+  
     return cell;
     
 }
@@ -460,7 +459,7 @@
             NSLog(@"LBBHomeHotestTableViewCell nil");
         }
         [cell setPagerViewHidden:NO];
-        cell.isMarket = YES;
+        cell.type = LBBHomeHotestTableViewCellTravelProductType;
         [cell.pagerView setSelectedSegmentIndex:self.giftRecommendType];
         cell.pagerView.indexChangeBlock = ^(NSInteger index){
             NSLog(@"segmentedControl select:%ld",index);
@@ -495,6 +494,45 @@
 #pragma 选择动作
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (indexPath.section) {
+        case LBBHomeSectionMenuType:
+        {
+            
+        }
+            break;
+        case LBBHomeSectionHotestType:
+        {
+        }
+            break;
+        case LBBHomeSectionTravelRecommendType:
+        {
+            NSLog(@"需跳转到老郑的游记详情页面");
+            
+        }
+            break;
+        case LBBHomeSectionVipRecommendType:
+        {
+            
+        }
+            break;
+        case LBBHomeSectionSquareCenterType:
+        {
+            
+        }
+            break;
+        case LBBHomeSectionTravelProductType:
+        {
+            
+        }
+            break;
+        default:
+        {
+            
+        }
+            break;
+    }
+    
 }
 
 
