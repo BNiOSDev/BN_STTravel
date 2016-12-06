@@ -81,6 +81,24 @@
 
 @end
 
+//3.4.12 广场-广场主页-标签主页-用户（已测）
+@implementation LBB_TagShowViewUsersObjs
+
+
+@end
+
+@implementation LBB_TagShowViewUsers
+
+-(void)setObjs:(NSMutableArray<LBB_TagShowViewUsersObjs *> *)objs
+{
+    NSMutableArray *array = (NSMutableArray *)[objs map:^id(NSDictionary *element) {
+        return [LBB_SquareTags mj_objectWithKeyValues:element];
+    }];
+    _objs = array;
+}
+
+@end
+
 @implementation LBB_SquareTags
 
 - (instancetype)init
@@ -90,6 +108,8 @@
         self.tagsViewModel = [[LBB_TagsViewModel alloc]init];
         self.showImageHotArray = [[NSMutableArray alloc]initFromNet];
          self.showImageTimeArray = [[NSMutableArray alloc]initFromNet];
+        self.showViewUsersArray = [[NSMutableArray alloc]initFromNet];
+
     }
     return self;
 }
@@ -147,7 +167,7 @@
                               @"curPage":[NSNumber numberWithInt:curPage],
                               @"pageNum":[NSNumber numberWithInt:10],
                               };
-    
+    NSLog(@"getShowImageArrayOrderType paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/square/tags/view/list",BASEURL];
     __weak typeof(self) temp = self;
     __weak NSMutableArray *showArray_block = showArray;
@@ -179,6 +199,58 @@
         showArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
     
+}
+
+/**
+ 3.4.12 广场-广场主页-标签主页-用户（已测）
+ 
+ @param clear 清空原数据
+ */
+- (void)getShowViewUSersArray:(BOOL)clear{
+
+    
+    int curPage = clear == YES ? 0 : round(self.showViewUsersArray.count/10.0);
+    NSDictionary *paraDic = @{
+                              @"tagId":@(self.tagId),
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              };
+    NSLog(@"getShowViewUSersArray paraDic:%@",paraDic);
+    NSString *url = [NSString stringWithFormat:@"%@square/tags/view/users",BASEURL];
+    __weak typeof(self) temp = self;
+    self.showViewUsersArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSLog(@"getShowViewUSersArray成功  %@",[dic objectForKey:@"rows"]);
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_TagShowViewUsers mj_objectArrayWithKeyValuesArray:array];
+            
+            if (clear == YES)
+            {
+                [temp.showViewUsersArray removeAllObjects];
+            }
+            
+            [temp.showViewUsersArray addObjectsFromArray:returnArray];
+            temp.showViewUsersArray.networkTotal = [dic objectForKey:@"total"];
+            NSLog(@"getShowViewUSersArray squareTravelArray 成功  %@", temp.showViewUsersArray);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getShowViewUSersArray失败 errorStr %@",errorStr);
+            
+        }
+        
+        temp.showViewUsersArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getShowViewUSersArray失败  %@",error.domain);
+        
+        temp.showViewUsersArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
 }
 
 /**

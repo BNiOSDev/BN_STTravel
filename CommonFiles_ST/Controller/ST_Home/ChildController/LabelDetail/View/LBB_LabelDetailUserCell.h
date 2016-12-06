@@ -7,6 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_TagsViewModel.h"
 
 @interface LBB_LabelDetailUserCell : LBBPoohBaseTableViewCell
 
@@ -20,7 +21,7 @@
 @property(nonatomic, retain)UIImageView* rightImageView2;
 @property(nonatomic, retain)UIImageView* rightImageView3;
 
-@property(nonatomic,retain)id model;
+@property(nonatomic,retain)LBB_TagShowViewUsers* model;
 
 
 @end

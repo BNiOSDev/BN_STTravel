@@ -30,7 +30,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.showViewUsersArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"LBB_LabelDetailUserCell";
@@ -39,9 +39,8 @@
         cell = [[LBB_LabelDetailUserCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_LabelDetailUserCell nil");
     }
-    [cell setModel:nil];
-    
-    
+    [cell setModel:self.showViewUsersArray[indexPath.row]];
+        
     return cell;
 }
 
@@ -49,7 +48,7 @@
     
     return [tableView fd_heightForCellWithIdentifier:@"LBB_LabelDetailUserCell" cacheByIndexPath:indexPath configuration:^(LBB_LabelDetailUserCell *cell) {
         
-        [cell setModel:nil];
+        [cell setModel:self.showViewUsersArray[indexPath.row]];
     }];
 }
 

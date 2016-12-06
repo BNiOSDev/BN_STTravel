@@ -163,36 +163,36 @@
         [self.specialLabelButton1 mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.equalTo(ws.contentView).offset(-8);
-            make.height.mas_equalTo(height);
-            make.width.mas_equalTo(width);
+          //  make.height.mas_equalTo(height);
+          //  make.width.mas_equalTo(width);
             make.bottom.equalTo(ws.bgImageView).offset(-2*interval);
         }];
         
         [self.specialLabelButton2 mas_makeConstraints:^(MASConstraintMaker* make){
         
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton1.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton1.mas_top).offset(-interval);
         }];
         
         [self.specialLabelButton3 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton2.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton2.mas_top).offset(-interval);
         }];
         [self.specialLabelButton4 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton3.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton3.mas_top).offset(-interval);
         }];
         [self.specialLabelButton5 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton4.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton4.mas_top).offset(-interval);
         }];
         [self.specialLabelButton6 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton5.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton5.mas_top).offset(-interval);
         }];
         
         [self.specialLabelButton6 setHidden:YES];

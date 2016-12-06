@@ -89,6 +89,12 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         [ws.tableView reloadData];
     }];
     
+    //用户
+    [self.viewModel getShowViewUSersArray:YES];
+    [self.viewModel.showViewUsersArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
     //默认是动态
     switch (self.selectType) {
         case LBB_LabelDetailHot://热门
@@ -100,7 +106,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
             
             break;
         case LBB_LabelDetailUser://用户
-           // [self.tableView setTableViewData:self.viewModel.userShowViewModel.userFansArray];
+            [self.tableView setTableViewData:self.viewModel.showViewUsersArray];
             break;
         default:
             break;
@@ -111,7 +117,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         [ws.viewModel getTagsViewModelData];
         [ws.viewModel getShowImageArrayOrderType:2 ClearData:YES];
         [ws.viewModel getShowImageArrayOrderType:1 ClearData:YES];
-        
+        [ws.viewModel getShowViewUSersArray:YES];
         
     } footerRefreshDatablock:^{
         [ws.tableView.mj_footer endRefreshing];
@@ -125,7 +131,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
                 
                 break;
             case LBB_LabelDetailUser://用户
-               // [temp.viewModel.userShowViewModel getUserFansArrayClearData:NO];
+                [ws.viewModel getShowViewUSersArray:NO];
                 break;
             default:
                 break;
@@ -181,6 +187,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
     self.timeDataSource.showImageArray = self.viewModel.showImageTimeArray;
     
     self.userDataSource = [[LBB_LabelDetailUserDataSource alloc] initWithTableView:self.tableView];
+    self.userDataSource.showViewUsersArray = self.viewModel.showViewUsersArray;
     
     self.userDataSource.parentViewController = self;
     [self initViewModel];
@@ -261,7 +268,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
                     
                     break;
                 case LBB_LabelDetailUser://用户
-                    // [self.tableView setTableViewData:self.viewModel.userShowViewModel.userFansArray];
+                     [self.tableView setTableViewData:self.viewModel.showViewUsersArray];
                     break;
                 default:
                     break;
@@ -276,7 +283,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         [l setBackgroundColor:ColorLine];
         [l setTextColor:ColorLightGray];
         [l setFont:Font12];
-        [l setText:@"  共有179位达人"];
+        [l setText:[NSString stringWithFormat:@"  共有%ld位达人",self.viewModel.showViewUsersArray.count]];
         [v addSubview:l];
         [l mas_makeConstraints:^(MASConstraintMaker* make){
             make.bottom.width.equalTo(v);

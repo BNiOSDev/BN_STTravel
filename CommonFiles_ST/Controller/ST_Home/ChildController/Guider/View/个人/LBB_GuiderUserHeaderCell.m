@@ -111,8 +111,8 @@
         [self.labelButton1 mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.contentView).offset(51);
             make.bottom.equalTo(ws.bgImageView).offset(-AutoSize(70/2));
-            make.width.mas_equalTo(AutoSize(60));
-            make.height.mas_equalTo(AutoSize(15));
+         //   make.width.mas_equalTo(AutoSize(60));
+          //  make.height.mas_equalTo(AutoSize(15));
         }];
         
         self.labelButton2 = [UIButton new];
@@ -123,7 +123,7 @@
         [self.labelButton2 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self.contentView addSubview:self.labelButton2];
         [self.labelButton2 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.width.height.equalTo(ws.labelButton1);
+            make.left.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton1.mas_top).offset(-10);
         }];
 
@@ -135,7 +135,7 @@
         [self.labelButton3 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self.contentView addSubview:self.labelButton3];
         [self.labelButton3 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.width.height.equalTo(ws.labelButton1);
+            make.left.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton2.mas_top).offset(-10);
         }];
         
@@ -147,7 +147,7 @@
         [self.labelButton4 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self.contentView addSubview:self.labelButton4];
         [self.labelButton4 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.width.height.equalTo(ws.labelButton1);
+            make.left.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton3.mas_top).offset(-10);
         }];
         
@@ -159,7 +159,7 @@
         [self.labelButton5 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self.contentView addSubview:self.labelButton5];
         [self.labelButton5 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.width.height.equalTo(ws.labelButton1);
+            make.left.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton4.mas_top).offset(-10);
         }];
 
@@ -171,7 +171,7 @@
         [self.labelButton6 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self.contentView addSubview:self.labelButton6];
         [self.labelButton6 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.width.height.equalTo(ws.labelButton1);
+            make.left.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton5.mas_top).offset(-10);
         }];
         
@@ -258,6 +258,9 @@
         [self.labelButton1 bk_whenTapped:^{
             NSLog(@"labelButton1 touch");
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:0];
+            viewModel.tagId = tag.tagId;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -265,6 +268,55 @@
         [self.labelButton2 bk_whenTapped:^{
             NSLog(@"labelButton2 touch");
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:1];
+            viewModel.tagId = tag.tagId;
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        [self.labelButton2 bk_whenTapped:^{
+            NSLog(@"labelButton2 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:1];
+            viewModel.tagId = tag.tagId;
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        [self.labelButton3 bk_whenTapped:^{
+            NSLog(@"labelButton3 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:2];
+            viewModel.tagId = tag.tagId;
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        [self.labelButton4 bk_whenTapped:^{
+            NSLog(@"labelButton4 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:3];
+            viewModel.tagId = tag.tagId;
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        [self.labelButton5 bk_whenTapped:^{
+            NSLog(@"labelButton5 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:4];
+            viewModel.tagId = tag.tagId;
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            
+        }];
+        
+        [self.labelButton6 bk_whenTapped:^{
+            NSLog(@"labelButton6 touch");
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
+            BN_HomeTag* tag = [ws.model.tags objectAtIndex:5];
+            viewModel.tagId = tag.tagId;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
