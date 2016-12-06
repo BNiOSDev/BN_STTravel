@@ -22,9 +22,20 @@
 @property(nonatomic, retain)LBB_PoohMyFavoriteViewModel* favoriteViewModel;//收藏的ViewModel
 @property(nonatomic, retain)LBB_PoohMyFavoriteSpecialViewModel* subjectViewModel;//专题的ViewModel
 
+@property(nonatomic, assign)int requestType;
+
 @end
 
 @implementation LBB_PoohMyFavoriteViewController
+
+-(id)init{
+    
+    if (self = [super init]) {
+        self.requestType = 3;
+
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,7 +66,22 @@
      @parames allSpotsType	1.美食 2.民宿 3景点
      @parames isClear 是否清除缓存
      */
-    [self.favoriteViewModel getPoohMyFavoriteData:self.favoriteType+1 Clear:YES];
+    switch (self.favoriteType) {
+        case LBBPoohSegmCtrlScenicType://景点
+            self.requestType = 3;
+            break;
+        case LBBPoohSegmCtrlFoodsType://美食
+            self.requestType = 1;
+            break;
+        case LBBPoohSegmCtrlHostelType://民宿
+            self.requestType = 2;
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self.favoriteViewModel getPoohMyFavoriteData:self.requestType Clear:YES];
     [self.favoriteViewModel.favoriteArray.loadSupport setDataRefreshblock:^{
     
         [ws.tableView reloadData];
@@ -71,7 +97,7 @@
      @parames allSpotsType	1.美食 2.民宿 3景点
      @parames isClear 是否清除缓存
      */
-    [self.subjectViewModel getPoohMyFavoriteSpecialData:self.favoriteType+1 Clear:YES];
+    [self.subjectViewModel getPoohMyFavoriteSpecialData:self.requestType Clear:YES];
     
     [self.subjectViewModel.favoriteSpeciallArray.loadSupport setDataRefreshblock:^{
         
@@ -82,22 +108,22 @@
     [self.tableView setHeaderRefreshDatablock:^{
     
         if (ws.segmentedControl.selectedSegmentIndex == 0) {//收藏
-            [ws.favoriteViewModel getPoohMyFavoriteData:self.favoriteType+1 Clear:YES];
+            [ws.favoriteViewModel getPoohMyFavoriteData:ws.requestType Clear:YES];
 
         }
         else{//专题
-            [ws.subjectViewModel getPoohMyFavoriteSpecialData:self.favoriteType+1 Clear:YES];
+            [ws.subjectViewModel getPoohMyFavoriteSpecialData:ws.requestType Clear:YES];
 
         }
         
         [ws.tableView.mj_header endRefreshing];
     } footerRefreshDatablock:^{
         if (ws.segmentedControl.selectedSegmentIndex == 0) {//收藏
-            [ws.favoriteViewModel getPoohMyFavoriteData:self.favoriteType+1 Clear:NO];
+            [ws.favoriteViewModel getPoohMyFavoriteData:ws.requestType Clear:NO];
             
         }
         else{//专题
-            [ws.subjectViewModel getPoohMyFavoriteSpecialData:self.favoriteType+1 Clear:NO];
+            [ws.subjectViewModel getPoohMyFavoriteSpecialData:ws.requestType Clear:NO];
             
         }
         [ws.tableView.mj_footer endRefreshing];

@@ -9,6 +9,7 @@
 #import <BN_BaseDataModel.h>
 #import "LBB_SpotDetailsViewModel.h"
 #import "LBB_SquareAddressViewModel.h"
+#import "LBB_HomeCommonModel.h"
 
 
 @interface LBB_SignInUser : BN_BaseDataModel
@@ -51,6 +52,12 @@
 @property (nonatomic,assign)long signInNum;
 @property (nonatomic,assign)int rank;
 @property (nonatomic,strong)NSMutableArray<LBB_SignInUser *> *signInUserArray;
+
+
+//广告轮播
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *spotAdvertisementArray;
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *foodAdvertisementArray;
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *hostelAdvertisementArray;
 
 
 /**
@@ -112,4 +119,26 @@
                         dimensionality:(NSString *)dimensionality
                                  clear:(BOOL)clear;
 
+
+/**
+ 3.1.1 广告轮播 8 附近景点广告
+ 
+ @param clear 是否清空原数据
+ */
+
+- (void)getSpotAdvertisementListArrayClearData:(BOOL)clear;
+/**
+ 3.1.1 广告轮播 9附近美食广告
+ 
+ @param clear 是否清空原数据
+ */
+
+- (void)getFoodAdvertisementListArrayClearData:(BOOL)clear;
+/**
+ 3.1.1 广告轮播 10 附近民宿广告
+ 
+ @param clear 是否清空原数据
+ */
+
+- (void)getHostelAdvertisementListArrayClearData:(BOOL)clear;
 @end

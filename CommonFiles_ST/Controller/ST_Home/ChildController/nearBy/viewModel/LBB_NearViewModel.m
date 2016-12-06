@@ -33,6 +33,10 @@
         self.nearShopArray = [[NSMutableArray alloc]initFromNet];
         self.nearSignInArray = [[NSMutableArray alloc]initFromNet];
         self.signInUserArray = [[NSMutableArray alloc]initFromNet];
+        
+        self.spotAdvertisementArray = [[NSMutableArray alloc]initFromNet];
+        self.foodAdvertisementArray = [[NSMutableArray alloc]initFromNet];
+        self.hostelAdvertisementArray = [[NSMutableArray alloc]initFromNet];
     }
     return self;
 }
@@ -350,4 +354,139 @@
         
     }];
 }
+
+#pragma AD
+/**
+ 3.1.1 广告轮播 8 附近景点广告
+ 
+ @param clear 是否清空原数据
+ */
+
+- (void)getSpotAdvertisementListArrayClearData:(BOOL)clear{
+    NSDictionary *paraDic = @{
+                              @"position":@(8)
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/advertisementList",BASEURL];
+    __weak typeof(self) temp = self;
+    self.spotAdvertisementArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
+            NSLog(@"getSpotAdvertisementListArrayClearData:%@",array);
+
+            if (clear == YES)
+            {
+                [temp.spotAdvertisementArray removeAllObjects];
+            }
+            
+            [temp.spotAdvertisementArray addObjectsFromArray:returnArray];
+            temp.spotAdvertisementArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.spotAdvertisementArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        
+        temp.spotAdvertisementArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+
+}
+/**
+ 3.1.1 广告轮播 9附近美食广告
+ 
+ @param clear 是否清空原数据
+ */
+
+- (void)getFoodAdvertisementListArrayClearData:(BOOL)clear{
+    NSDictionary *paraDic = @{
+                              @"position":@(9)
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/advertisementList",BASEURL];
+    __weak typeof(self) temp = self;
+    self.foodAdvertisementArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getFoodAdvertisementListArrayClearData:%@",array);
+            NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
+            
+            if (clear == YES)
+            {
+                [temp.foodAdvertisementArray removeAllObjects];
+            }
+            
+            [temp.foodAdvertisementArray addObjectsFromArray:returnArray];
+            temp.foodAdvertisementArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.foodAdvertisementArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        
+        temp.foodAdvertisementArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+
+}
+/**
+ 3.1.1 广告轮播 10 附近民宿广告
+ 
+ @param clear 是否清空原数据
+ */
+
+- (void)getHostelAdvertisementListArrayClearData:(BOOL)clear{
+    NSDictionary *paraDic = @{
+                              @"position":@(10)
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/advertisementList",BASEURL];
+    __weak typeof(self) temp = self;
+    self.hostelAdvertisementArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
+            NSLog(@"getHostelAdvertisementListArrayClearData:%@",array);
+
+            if (clear == YES)
+            {
+                [temp.hostelAdvertisementArray removeAllObjects];
+            }
+            
+            [temp.hostelAdvertisementArray addObjectsFromArray:returnArray];
+            temp.hostelAdvertisementArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.hostelAdvertisementArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        
+        temp.hostelAdvertisementArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+
+}
+
 @end
