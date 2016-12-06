@@ -172,6 +172,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model1.tags objectAtIndex:0];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
         [self.item1.labelButton2 bk_whenTapped:^{
@@ -180,6 +181,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model1.tags objectAtIndex:1];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -189,6 +191,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model1.tags objectAtIndex:2];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -198,6 +201,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model1.tags objectAtIndex:3];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -207,6 +211,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model1.tags objectAtIndex:4];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -217,6 +222,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model1.tags objectAtIndex:5];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -229,6 +235,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model2.tags objectAtIndex:0];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
         [self.item2.labelButton2 bk_whenTapped:^{
@@ -237,6 +244,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model2.tags objectAtIndex:1];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -246,6 +254,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model2.tags objectAtIndex:2];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -255,6 +264,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model2.tags objectAtIndex:3];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -264,6 +274,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model2.tags objectAtIndex:4];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];
@@ -274,6 +285,7 @@
             LBB_SquareTags* viewModel = [[LBB_SquareTags alloc] init];
             LBB_SquareTags* tag = [ws.model2.tags objectAtIndex:5];
             viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];

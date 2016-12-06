@@ -92,7 +92,7 @@
 -(void)setObjs:(NSMutableArray<LBB_TagShowViewUsersObjs *> *)objs
 {
     NSMutableArray *array = (NSMutableArray *)[objs map:^id(NSDictionary *element) {
-        return [LBB_SquareTags mj_objectWithKeyValues:element];
+        return [LBB_TagShowViewUsersObjs mj_objectWithKeyValues:element];
     }];
     _objs = array;
 }
@@ -216,7 +216,7 @@
                               @"pageNum":[NSNumber numberWithInt:10],
                               };
     NSLog(@"getShowViewUSersArray paraDic:%@",paraDic);
-    NSString *url = [NSString stringWithFormat:@"%@square/tags/view/users",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/square/tags/view/users",BASEURL];
     __weak typeof(self) temp = self;
     self.showViewUsersArray.loadSupport.loadEvent = NetLoadingEvent;
     

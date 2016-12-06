@@ -55,7 +55,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    LBB_TagShowViewUsers* user = [self.showViewUsersArray objectAtIndex:indexPath.row];
     LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
+    LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+    viewModel.userId = user.userId;
+    dest.viewModel = viewModel;
     [self.parentViewController.navigationController pushViewController:dest animated:YES];
 }
 

@@ -68,8 +68,18 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
-    [self setNavigationBarHidden:YES];
+//    [super viewWillAppear:YES];
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [(Base_UITabBarBaseController*)self.tabBarController setTabBarHidden:YES animated:YES];
+    
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.9961 green:1.0 blue:1.0 alpha:1.0]];
+    NSDictionary * dict=[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:0.0392 green:0.2 blue:0.4392 alpha:1.0],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:16],NSFontAttributeName, nil];
+    
+    self.navigationController.navigationBar.titleTextAttributes = dict;
+    self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setShadowImage:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

@@ -63,6 +63,9 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     
     [self.viewModel getUserShowViewModelData];
     [self.viewModel.userShowViewModel.loadSupport setDataRefreshblock:^{
+        
+        temp.title = temp.viewModel.userShowViewModel.userName;
+        
         /**
          3.4.7	广场-广场主页-个人主页-动态（已测）
          
