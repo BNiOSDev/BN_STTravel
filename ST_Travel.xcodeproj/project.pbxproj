@@ -524,6 +524,7 @@
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
+		3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C518C541DF66F22002653EC /* MediaPlayer.framework */; };
 		3C53FE2D1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */; };
 		8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */; };
 		844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CB1DEAC7C500164DED /* libc++.tbd */; };
@@ -1472,6 +1473,7 @@
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DB1502E1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3C518C541DF66F22002653EC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3C53FE2B1DF54C27003C6148 /* LBB_AddFootprint_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_AddFootprint_ViewController.h; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/View/LBB_AddFootprint_ViewController.h; sourceTree = SOURCE_ROOT; };
 		3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_AddFootprint_ViewController.m; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/View/LBB_AddFootprint_ViewController.m; sourceTree = SOURCE_ROOT; };
 		8420AF7B1DF297C300D98F86 /* libTelephonyUtilDynamic.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libTelephonyUtilDynamic.tbd; path = usr/lib/libTelephonyUtilDynamic.tbd; sourceTree = SDKROOT; };
@@ -1508,6 +1510,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */,
 				8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */,
 				3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */,
 				844065D01DEAC7D300164DED /* libz.tbd in Frameworks */,
@@ -1540,6 +1543,7 @@
 		04A976604EE4577D70DCD075 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3C518C541DF66F22002653EC /* MediaPlayer.framework */,
 				8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */,
 				8420AF7B1DF297C300D98F86 /* libTelephonyUtilDynamic.tbd */,
 				3C455DDD1DEEB6090086B53D /* CoreData.framework */,

@@ -177,7 +177,7 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%ld",indexPath.row);
+    NSLog(@"indexPath.row = %ld",indexPath.row);
     if(indexPath.row == 0)
     {
         ZYCameraViewComtroller *Vc = [[ZYCameraViewComtroller alloc]init];
@@ -191,14 +191,12 @@
         options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
         PHImageManager *manager = [PHImageManager defaultManager];
         [manager requestAVAssetForVideo:phAsset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+            
             AVURLAsset *urlAsset = (AVURLAsset *)asset;
-        
             NSURL *url = urlAsset.URL;
             LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc] init];
             vc.videoUrl = url;
-
             [self presentViewController:vc animated:NO completion:nil];
-    
         }];
     }
 
