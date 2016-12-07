@@ -9,7 +9,7 @@
 #import "LBB_MyVideoViewController.h"
 #import "LBB_MyVideoViewCell.h"
 #import "Header.h"
-#import "LBBHostDetailViewController.h"
+#import "LBB_VideoDetailViewController.h"
 #import "LBBVideoPlayerViewController.h"
 
 @interface LBB_MyVideoViewController ()
@@ -101,22 +101,7 @@ UICollectionViewDelegateFlowLayout>
     [self.collectionView loadData:self.viewModel.videoArray];
 
 }
-//#warning  模拟测试数据
-//- (void)dataForTest
-//{
-//    if (TextEnvironment) {
-//        NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:10];
-//        for (int i = 0; i < 10; i++) {
-//            LBB_MyVideoModel  *model = [[LBB_MyVideoModel alloc]init];
-//            model.videoUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-//            model.totalComment = 9909;
-//            model.totalLike = 999;
-//            [array addObject:model];
-//        }
-//        self.viewModel.videoArray = array;
-//        [self.collectionView reloadData];
-//    }
-//}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -184,7 +169,7 @@ UICollectionViewDelegateFlowLayout>
             break;
         case UICollectionViewCellComment://评论
         {
-            LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+            LBB_VideoDetailViewController *vc = [[LBB_VideoDetailViewController alloc]init];
             vc.viewModel = [[LBB_SquareUgc alloc] init];
             vc.viewModel.ugcId = videoModel.ugcId;
             [self.navigationController pushViewController:vc animated:YES];
