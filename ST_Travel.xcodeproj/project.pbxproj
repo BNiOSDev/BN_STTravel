@@ -5096,12 +5096,7 @@
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 						ProvisioningStyle = Automatic;
-=======
-						DevelopmentTeam = 7V268D74T3;
-						ProvisioningStyle = Manual;
->>>>>>> Stashed changes
 =======
 						DevelopmentTeam = 7V268D74T3;
 						ProvisioningStyle = Manual;
@@ -5905,11 +5900,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 				DEVELOPMENT_TEAM = "";
-=======
-				DEVELOPMENT_TEAM = 7V268D74T3;
->>>>>>> Stashed changes
 =======
 				DEVELOPMENT_TEAM = 7V268D74T3;
 >>>>>>> Stashed changes
@@ -5995,11 +5986,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 				DEVELOPMENT_TEAM = "";
-=======
-				DEVELOPMENT_TEAM = 7V268D74T3;
->>>>>>> Stashed changes
 =======
 				DEVELOPMENT_TEAM = 7V268D74T3;
 >>>>>>> Stashed changes
