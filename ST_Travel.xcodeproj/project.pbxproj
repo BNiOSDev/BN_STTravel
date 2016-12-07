@@ -5095,7 +5095,12 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
+<<<<<<< Updated upstream
 						ProvisioningStyle = Automatic;
+=======
+						DevelopmentTeam = 7V268D74T3;
+						ProvisioningStyle = Manual;
+>>>>>>> Stashed changes
 					};
 					C9C0E9641D9948F300575A7C = {
 						CreatedOnToolsVersion = 8.0;
@@ -5307,7 +5312,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
@@ -5894,7 +5899,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+<<<<<<< Updated upstream
 				DEVELOPMENT_TEAM = "";
+=======
+				DEVELOPMENT_TEAM = 7V268D74T3;
+>>>>>>> Stashed changes
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -5964,8 +5973,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "25597a68-6b24-449d-9017-52bfdc52a215";
+				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
 			};
 			name = Debug;
 		};
@@ -5976,7 +5985,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+<<<<<<< Updated upstream
 				DEVELOPMENT_TEAM = "";
+=======
+				DEVELOPMENT_TEAM = 7V268D74T3;
+>>>>>>> Stashed changes
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -6046,8 +6059,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "25597a68-6b24-449d-9017-52bfdc52a215";
+				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
 			};
 			name = Release;
 		};
