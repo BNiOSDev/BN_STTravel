@@ -76,6 +76,7 @@
 @interface LBB_SpotsNearbyRecommendData : BN_BaseDataModel
 
 @property(nonatomic, assign)long allSpotsId ;// 场景ID
+@property(nonatomic, assign)long allSpotsType ;// 场景类型
 @property(nonatomic, strong)NSString *allSpotsName ;// 场景名称
 @property(nonatomic, strong)NSString *picUrl ;// 场景图片
 @property(nonatomic, strong)NSString *picRemark ;// 场景图片描述
@@ -117,18 +118,17 @@
 @property(nonatomic, strong)NSMutableArray<LBB_SpotsCollectedRecord*> *collectedRecord ;// 收藏记录（具体几个后台控制）
 @property(nonatomic, strong)NSMutableArray<LBB_SpotsCommentsRecord*> *commentsRecord ;// 评论记录（具体几个后台控制）
 
-@property(nonatomic, strong)NSMutableArray<LBB_SpotsNearbyRecommendData*> *nearbyRecommends;
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsNearbyRecommendData*> *nearbySpotRecommends;
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsNearbyRecommendData*> *nearbyFoodRecommends;
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsNearbyRecommendData*> *nearbyHostelRecommends;
+
 /**
  3.2.8	周边推荐(已测)
 
  @param type 1.景点 2.美食 3.民宿
- @param longitude Y坐标
- @param dimensionality X坐标
  @param clear 是否清空原数据
  */
 - (void)getSpotNearbyRecommendsType:(int)type
-                          Longitude:(NSString*)longitude
-                     dimensionality:(NSString*)dimensionality
                           clearData:(BOOL)clear;
 
 /**

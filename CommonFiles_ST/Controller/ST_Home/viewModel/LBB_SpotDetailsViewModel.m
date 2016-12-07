@@ -54,7 +54,10 @@
 {
     self = [super init];
     if (self) {
-        self.nearbyRecommends = [[NSMutableArray alloc]initFromNet];
+        self.nearbySpotRecommends = [[NSMutableArray alloc]initFromNet];
+        self.nearbyFoodRecommends = [[NSMutableArray alloc]initFromNet];
+        self.nearbyHostelRecommends = [[NSMutableArray alloc]initFromNet];
+
     }
     return self;
 }
@@ -119,28 +122,43 @@
  3.2.8	周边推荐(已测)
  
  @param type 1.景点 2.美食 3.民宿
- @param longitude Y坐标
- @param dimensionality X坐标
  @param clear 是否清空原数据
  */
 - (void)getSpotNearbyRecommendsType:(int)type
-                          Longitude:(NSString*)longitude
-                     dimensionality:(NSString*)dimensionality
                           clearData:(BOOL)clear
 {
-    int curPage = clear == YES ? 0 : round(self.nearbyRecommends.count/10.0);
+    
+    NSMutableArray *spotsArray = nil;
+    switch (type) {
+        case 1:
+            spotsArray = self.nearbySpotRecommends;
+            break;
+        case 2:
+            spotsArray = self.nearbyFoodRecommends;
+            break;
+        case 3:
+            spotsArray = self.nearbyHostelRecommends;
+            break;
+        default:
+            spotsArray = self.nearbySpotRecommends;
+            break;
+    }
+    int curPage = clear == YES ? 0 : round(spotsArray.count/10.0);
     NSDictionary *paraDic = @{
-                              @"longitude":longitude,
-                              @"dimensionality":dimensionality,
+                              @"longitude":self.longitude,
+                              @"dimensionality":self.dimensionality,
                               @"type":@(type),
                               @"curPage":[NSNumber numberWithInt:curPage],
                               @"pageNum":[NSNumber numberWithInt:10],
                               };
-    
+    NSLog(@"getSpotNearbyRecommendsType paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/spot/nearbyRecommends",BASEURL];
-    __weak typeof(self) temp = self;
-    self.nearbyRecommends.loadSupport.loadEvent = NetLoadingEvent;
+
     
+    spotsArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    __weak typeof(self) temp = self;
+    __weak NSMutableArray *spotsArray_block = spotsArray;
     [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
@@ -148,24 +166,22 @@
         {
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SpotsNearbyRecommendData mj_objectArrayWithKeyValuesArray:array];
-            
-            if (clear == YES)
-            {
-                [temp.nearbyRecommends removeAllObjects];
+            if (clear) {
+                [spotsArray_block removeAllObjects];
             }
-            
-            [temp.nearbyRecommends addObjectsFromArray:returnArray];
-            temp.nearbyRecommends.networkTotal = [dic objectForKey:@"total"];
+            NSLog(@"getSpotNearbyRecommendsType succ type:%d total:%@ data:%@",type,[dic objectForKey:@"total"],array);
+
+            [spotsArray_block addObjectsFromArray:returnArray];
+            spotsArray_block.networkTotal = [dic objectForKey:@"total"];
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
-        temp.nearbyRecommends.loadSupport.loadEvent = codeNumber.intValue;
+        spotsArray_block.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        
-        temp.nearbyRecommends.loadSupport.loadEvent = NetLoadFailedEvent;
+        spotsArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
 
