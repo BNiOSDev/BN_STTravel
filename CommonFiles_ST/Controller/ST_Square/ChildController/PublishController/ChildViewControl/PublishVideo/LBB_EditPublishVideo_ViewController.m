@@ -127,11 +127,12 @@
         
         //页面变化代码块
         {
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, btn.bottom + AUTO(5), DeviceWidth, AUTO(100))];
-            view.backgroundColor = ColorRed;
+            BN_MapView *view = [[BN_MapView alloc]init];
+            [view setFrame:CGRectMake(0, btn.bottom + AUTO(5), DeviceWidth, AUTO(100))];
+            [view andAnnotationLatitude:[_addressInfo.dimensionality floatValue] longitude:[_addressInfo.longitude floatValue]];
             [_mapViewArray addObject:view];
             [self.backView addSubview:view];
-            
+
             _pulishBtn.bottom = view.bottom + AUTO(50);
             self.backView.contentSize = CGSizeMake(DeviceWidth, _pulishBtn.bottom+ 25);
         }

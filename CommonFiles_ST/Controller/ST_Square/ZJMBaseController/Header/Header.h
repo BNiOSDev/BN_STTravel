@@ -14,12 +14,14 @@
 #import "UILabel+AutoFit.h"
 #import "UIView+SDAutoLayout.h"
 #import <MJRefresh/MJRefresh.h>
+#import "BN_MapView.h"
+#import "LBB_CommentViewModel.h"
 
 typedef NS_ENUM(NSInteger, UITableViewCellViewSignal)
 {
     UITableViewCellPraise = 0,              //赞
-    UITableViewCellCollect,             //收藏
-    UITableViewCellConment,         //评论
+    UITableViewCellCollect,              //收藏
+    UITableViewCellConment,          //评论
     UITableViewCellFocus,               //关注
     UITableViewCellSendMessage   //发送评论
 };
