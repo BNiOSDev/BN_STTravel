@@ -55,6 +55,10 @@
     rightBrBtn.tintColor = UIColorFromRGB(0xAC793B);
     self.navigationItem.rightBarButtonItem = rightBrBtn;
     
+    UIBarButtonItem  *leftBrBtn = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"back") style:0 target:self action:@selector(backControl)];
+    leftBrBtn.tintColor = UIColorFromRGB(0x333333);
+    self.navigationItem.leftBarButtonItem = leftBrBtn;
+    
     //初始化资源
     _videoArray = [[NSMutableArray alloc]init];
     FZJPhotoTool  *videoGet = [[FZJPhotoTool alloc]init];
@@ -65,6 +69,11 @@
     [self createCollectView];
 }
 
+#pragma mark  返回
+- (void)backControl
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)createCollectView
 {
@@ -233,6 +242,18 @@
 - (void)transCameraVideo:(NSData *)video
 {
     NSLog(@"视频回传");
+}
+
+- (void)transCameraImage:(UIImage *)image PHAsset:(PHAsset *)imageAsset
+{
+    NSLog(@"视频回传了");
+    _selectVideoAsset = imageAsset;
+    if(imageAsset.mediaType == 2)
+    {
+        [self checkPulish];
+    }else{
+        [self showHudPrompt:@"这不是视频文件"];
+    }
 }
 
 - (void)checkPulish

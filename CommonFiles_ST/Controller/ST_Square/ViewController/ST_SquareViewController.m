@@ -21,6 +21,9 @@
 #import "CoreData+MagicalRecord.h"
 
 @interface ST_SquareViewController ()<UISearchBarDelegate,UIScrollViewDelegate>
+{
+    NSInteger  currentPage;
+}
 @property(nonatomic, weak)UISearchBar         *JMSearchBar;
 @property (nonatomic, strong) UIScrollView      *scrollView;
 @property(nonatomic, strong)ZJMTravelsViewController    *travelContrller;
@@ -136,6 +139,7 @@
 //实现LGSegment代理方法
 -(void)scrollToPage:(int)Page {
     CGPoint offset = self.contentScrollView.contentOffset;
+    currentPage = Page;
     offset.x = self.view.frame.size.width * Page;
     [UIView animateWithDuration:0.3 animations:^{
         self.contentScrollView.contentOffset = offset;
@@ -145,12 +149,10 @@
 // 只要滚动UIScrollView就会调用
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    //计算当前index
     int  pageIndex = (int)(scrollView.contentOffset.x / DeviceWidth);
     NSLog(@"%d",(int)(scrollView.contentOffset.x / DeviceWidth));
-    //滑动更改self.segment颜色和cylayer的位置
-//    [self.segment moveToOffsetX:offsetX AndIndex:(int)(scrollView.contentOffset.x / LG_segmentW)];
-    [self scrollToPage:pageIndex];//修复页面自动滚动偏差
+
+    [self scrollToPage:(int)currentPage];//修复页面自动滚动偏差
 }
 
 

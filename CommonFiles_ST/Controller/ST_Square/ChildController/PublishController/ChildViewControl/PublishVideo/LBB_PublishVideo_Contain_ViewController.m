@@ -27,10 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //注册监听者。
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(back:) name:@"goBack" object:nil];
-    
+    // Do any additional setup after loading the view.    
     [super viewDidLoad];
     self.navigationItem.title = @"发布内容";
     self.view.backgroundColor = ColorWhite;

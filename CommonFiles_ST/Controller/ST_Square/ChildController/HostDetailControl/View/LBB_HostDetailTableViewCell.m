@@ -89,6 +89,10 @@
     
     UIView *contentView = self.contentView;
     CGFloat margin = 10;
+    _addressImage.image = IMAGE(@"zjmaddress");
+    _timeImage.image = IMAGE(@"zjmtime");
+    UIImage *addressImage = IMAGE(@"zjmaddress");
+    UIImage *timeImage = IMAGE(@"zjmtime");
     
     _iconImage.sd_layout
     .leftSpaceToView(contentView, margin + 5)
@@ -104,27 +108,28 @@
     
     _timeImage.sd_layout
     .leftSpaceToView(_iconImage,margin)
-    .topSpaceToView(_nameLable,2.0)
-    .heightIs(18)
-    .widthIs(18);
+    .topSpaceToView(_nameLable,5.0)
+    .heightIs(timeImage.size.height)
+    .widthIs(timeImage.size.width);
     
     _timeLabel.sd_layout
     .leftSpaceToView(_timeImage, margin - 5)
-    .topEqualToView(_timeImage)
+    //    .topEqualToView(_timeImage)
+    .centerYEqualToView(_timeImage)
     .heightIs(18);
-    //    .widthIs(300);
+    //        .widthIs(300);
     
     _addressImage.sd_layout
     .leftSpaceToView(_timeLabel,margin)
-    .topSpaceToView(_nameLable,2.0)
-    .heightIs(18)
-    .widthIs(12);
+    .topSpaceToView(_nameLable,5.0)
+    .heightIs(addressImage.size.height)
+    .widthIs(addressImage.size.width);
     
     _addressNameLabel.sd_layout
     .leftSpaceToView(_addressImage, margin - 5)
-    .topEqualToView(_addressImage)
+    //    .topEqualToView(_addressImage)
+    .centerYEqualToView(_addressImage)
     .heightIs(18);
-    
 }
 
 
@@ -212,7 +217,10 @@
     else{//视频
         [_contentLabel autoFit:model.videoRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 15, DeviceHeight)];
     }
-    
+    if(_contentLabel.text.length == 0)
+    {
+        _contentLabel.height = 0;
+    }
     _contentImage.sd_layout
     .leftEqualToView(self.contentView)
     .topSpaceToView(_contentLabel, 0)

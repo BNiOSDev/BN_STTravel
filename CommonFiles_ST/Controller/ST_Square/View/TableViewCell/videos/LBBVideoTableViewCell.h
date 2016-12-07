@@ -10,7 +10,9 @@
 #import "ZJMHostModel.h"
 #import "UIView+SDAutoLayout.h"
 #import "LBB_SquareViewModel.h"
+#import "Header.h"
 
 @interface LBBVideoTableViewCell : UITableViewCell
 @property(nonatomic, strong) LBB_SquareUgc   *model;
+@property(nonatomic, copy)BtnFuncTion             blockBtnFunc;
 @end

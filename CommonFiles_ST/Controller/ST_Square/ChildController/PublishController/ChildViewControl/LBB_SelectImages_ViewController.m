@@ -75,7 +75,11 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self unregisterChangeObserver];
+}
+
+- (void)dealloc
+{
+     [self unregisterChangeObserver];
 }
 
 #pragma mark - Photo library change observer
@@ -98,9 +102,9 @@
     [_centerBtn addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = _centerBtn;
     
-    UIBarButtonItem  *backItem = [[UIBarButtonItem alloc] initWithTitle:@"back" style:0 target:self action:@selector(notifiTionBaseControl)];
-    backItem.tintColor = [UIColor blueColor];
-    self.navigationItem.leftBarButtonItem = backItem;
+    UIBarButtonItem  *leftBrBtn = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"back") style:0 target:self action:@selector(notifiTionBaseControl)];
+    leftBrBtn.tintColor = UIColorFromRGB(0x333333);
+    self.navigationItem.leftBarButtonItem = leftBrBtn;
     
     UIBarButtonItem  *rightBrBtn = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"zjmcorfirm") style:0 target:self action:@selector(checkPulish)];
     rightBrBtn.tintColor = UIColorFromRGB(0xAC793B);

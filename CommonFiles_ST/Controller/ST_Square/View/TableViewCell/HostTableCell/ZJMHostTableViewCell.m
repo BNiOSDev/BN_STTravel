@@ -203,6 +203,10 @@
     .leftEqualToView(_nameLable)
     .topSpaceToView(_iconImage, 5);
     [_contentLabel autoFit:model.picsRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 75, DeviceHeight)];
+    if(_contentLabel.text.length == 0)
+    {
+        _contentLabel.height = 0;
+    }
     
     CGFloat   contentImageHeight;
     CGFloat   contentMargnHeight;
