@@ -42,6 +42,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //注册监听者。
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(back:) name:@"goBack" object:nil];
+    
     self.view.backgroundColor = BACKVIEWCOLOR;
     self.navigationController.navigationBar.hidden = YES;
     //加载Segment
@@ -52,6 +56,11 @@
     [self setContentScrollView];
 }
 
+- (void)dealloc
+{
+    //移除本控制器的通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -59,6 +68,10 @@
     [self.view bringSubviewToFront:_segmentedControl];
 }
 
+- (void)back:(NSNotification *)notification
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 -(void)setSegment {
     _segmentedControl = [[HMSegmentedControl alloc]initWithFrame:CGRectMake(0, DeviceHeight  -LG_segmentH, DeviceWidth, LG_segmentH)];

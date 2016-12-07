@@ -43,6 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = NSLocalizedString(@"游记", nil);
     [self createTable];
     [self initDataSource];
 }
@@ -55,11 +56,11 @@
 
 - (void)createTable
 {
-    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
-    _mTableView.height = _mTableView.height - TopSegmmentControlHeight - 64;
-    if(self.travelviewType == MyTravelsViewFravorite) {
-        _mTableView.height = DeviceHeight - 64;
-        self.navigationItem.title = NSLocalizedString(@"游记", nil);
+    CGRect mainRect = CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64.f);
+    _mTableView = [[UITableView alloc]initWithFrame:mainRect style:UITableViewStyleGrouped];
+   
+    if(self.squareType == MyTravelsViewFravorite) {
+         _mTableView.height = DeviceHeight - TopSegmmentControlHeight - 64;
     }
     _mTableView.delegate = self;
     _mTableView.dataSource = self;

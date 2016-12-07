@@ -5,7 +5,6 @@
 //  Created by 许为锴 on 2016/11/22.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
-
 #import <BN_BaseDataModel.h>
 #import "LBB_UserShowViewModel.h"
 

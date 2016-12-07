@@ -49,10 +49,12 @@ UICollectionViewDelegateFlowLayout>
     CGFloat width = mainSize.width/2.0 - 10;
     horizontalCellLayout.itemSize = CGSizeMake(width, width + 25.f);
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:horizontalCellLayout];
+    CGRect mainRect = CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64.f);
+    _collectionView = [[UICollectionView alloc] initWithFrame:mainRect collectionViewLayout:horizontalCellLayout];
     self.view .autoresizesSubviews = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
     if (self.squareType == MySquarePhotoViewFravorite) {
         horizontalCellLayout.itemSize = CGSizeMake(width, width);
+        _collectionView.frame = CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64.f - TopSegmmentControlHeight);
     }
     _collectionView.backgroundColor = ColorBackground;
     _collectionView.showsHorizontalScrollIndicator = NO;

@@ -129,6 +129,11 @@
 
 - (void)publishFunc
 {
+    if(!_addressInfo)
+    {
+        [self showHudPrompt:@"请选择添加地点信息"];
+        return;
+    }
     NSMutableArray *imageArray = [[NSMutableArray alloc] init];
     for (FZJPhotoModel *model in _imageArray) {
         [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:PHImageManagerMaximumSize makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
@@ -151,7 +156,7 @@
         NSLog(@"%@",error);
         if(!error)
         {
-            [self.navigationController popToRootViewControllerAnimated:NO];
+//            [self.navigationController popToRootViewControllerAnimated:NO];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"goBack" object:self userInfo:nil];
         }
     }];
