@@ -13,10 +13,11 @@
 #import "LBB_ScenicDetailViewController.h"
 #import "LBB_NearViewModel.h"
 #import "LBB_NearSign.h"
+#import <BN_MapView.h>
 
 @interface LBBNearbyMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic, retain) UIView* mapView;
+@property (nonatomic, retain) BN_MapView* mapView;
 @property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, assign)  LBBPoohSegmCtrlType selectType;
 
@@ -41,7 +42,7 @@
 -(void)initViewModel{
 
     
-    int distance = 135000;
+    int distance = 1350000;
     self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
 
     self.viewModel = [[LBB_NearViewModel alloc]init];
@@ -68,40 +69,41 @@
         [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
         //民宿
         [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
-    }];
-    
-    [RACObserve(self.locationManager, longitude) subscribeNext:^(NSString* num) {
-        @strongify(self);
         
-        //景点
-        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:3 clearData:YES];
-        //美食
-        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
-        //民宿
-        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
+        //附近的商家
+        [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude  dimensionality:self.locationManager.latitude clear:YES];
+
     }];
-    
+    WS(ws);
+    [self.viewModel.nearShopArray.loadSupport setDataRefreshblock:^{
+        
+        [ws.mapView removeAllAnnotation];
+        [ws.mapView setDelta:0.2 Latitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
+        for (LBB_NearShopModel* model in ws.viewModel.nearShopArray) {
+            
+            [ws.mapView andAnnotationLatitude:[model.dimensionality floatValue] longitude:[model.longitude floatValue]];
+        }
+    }];
     //景点
-    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:3 clearData:YES];
+  //  [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:3 clearData:YES];
     
     [self.viewModel.spotArray.loadSupport setDataRefreshblock:^{
         @strongify(self);
         [self.tableView reloadData];
     }];
     //美食
-    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
+ //   [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
     [self.viewModel.foodsArray.loadSupport setDataRefreshblock:^{
         @strongify(self);
         [self.tableView reloadData];
     }];
     //民宿
-    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
+ //   [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
     [self.viewModel.hostelArray.loadSupport setDataRefreshblock:^{
         @strongify(self);
         [self.tableView reloadData];
     }];
     
-    WS(ws);
     //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
     [self.tableView setTableViewData:self.viewModel.spotArray];
 
@@ -217,7 +219,7 @@
     WS(ws);
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
 
-    self.mapView = [UIView new];
+    self.mapView = [[BN_MapView alloc] init];
     [self.mapView setBackgroundColor:[UIColor colorWithRGBA:0x000000a0]];
     [self.mapView setFrame:CGRectMake(0, 0, DeviceWidth, AutoSize(490/2))];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];

@@ -77,13 +77,21 @@
      @param longitude Y坐标
      @param dimensionality X坐标
      */
+    [RACObserve(self.locationManager, longitude) subscribeNext:^(NSString* num) {
+        @strongify(self);
+        [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude  dimensionality:self.locationManager.latitude clear:YES];
+
+    }];
     
-   // [self.viewModel getNearShopArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude];
     WS(ws);
     [self.viewModel.nearShopArray.loadSupport setDataRefreshblock:^{
     
-        [ws.mapView setDelta:10000.0 Latitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
-        [ws.mapView andAnnotationLatitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
+        [ws.mapView removeAllAnnotation];
+        [ws.mapView setDelta:0.2 Latitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
+        for (LBB_NearShopModel* model in ws.viewModel.nearShopArray) {
+            
+            [ws.mapView andAnnotationLatitude:[model.dimensionality floatValue] longitude:[model.longitude floatValue]];
+        }
     }];
     
     

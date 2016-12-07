@@ -75,7 +75,7 @@
     NSDictionary *paraDic = @{
                               @"longitude":longitude,
                               @"dimensionality":dimensionality,
-                              @"distance":@(distance),
+                            //  @"distance":@(distance),
                               @"allSpotsType":@(allSpotsType),
                               @"curPage":[NSNumber numberWithInt:curPage],
                               @"pageNum":[NSNumber numberWithInt:10],
@@ -106,6 +106,7 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getSpotArrayLongitude errorStr  %@",errorStr);
         }
         
         sportArray_block.loadSupport.loadEvent = codeNumber.intValue;

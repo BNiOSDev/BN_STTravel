@@ -9,7 +9,7 @@
 #import "LBBHomeTravelRecommendTableViewCell.h"
 #import "LBB_LabelDetailViewController.h"
 #import "LBB_SquareSnsFollowViewController.h"
-
+#import "LBB_TravelCommentController.h"
 @implementation LBBHomeTravelRecommendTableViewCell
 
 /*
@@ -224,6 +224,8 @@
         [self.commentsView bk_whenTapped:^{
             
             NSLog(@"commentsView touch 需跳转到全部评论页面");
+            LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
+            [[ws getViewController].navigationController pushViewController:vc animated:YES];
             
         }];
         [self.greetView bk_whenTapped:^{
