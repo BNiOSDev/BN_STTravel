@@ -89,14 +89,7 @@
     _collectBtn.titleLabel.font = FONT(11.0);
     commetView = [ZJMCommentView new];
     
-    __weak typeof(self) weakSelf = self;
     boxView = [CommentBoxView new];
-    boxView.sendBlock = ^(id object, UITableViewCellViewSignal signal){
-        if(signal == UITableViewCellSendMessage)
-        {
-            weakSelf.btnBlock(object,signal);
-        }
-    };
     
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");

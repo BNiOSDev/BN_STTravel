@@ -40,7 +40,6 @@
     commentBtn = [UIButton new];
     commentBtn.titleLabel.font = [UIFont systemFontOfSize:13.0];
     [commentBtn setTitle:@"发送" forState:UIControlStateNormal];
-    [commentBtn addTarget:self action:@selector(sendFunc) forControlEvents:UIControlEventTouchUpInside];
     [commentBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     
     NSArray  *views = @[contentText,line,commentBtn];
@@ -64,11 +63,4 @@
     .topSpaceToView(self,0)
     .bottomSpaceToView(self,0);
 }
-
-- (void)sendFunc
-{
-    //发送评论
-    self.sendBlock(contentText.text,UITableViewCellSendMessage);
-}
-
 @end

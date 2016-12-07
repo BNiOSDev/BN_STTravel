@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Header.h"
 
 @interface CommentBoxView : UIView
-@property(nonatomic,copy)CellBlockVIew    sendBlock;
+
 @end
