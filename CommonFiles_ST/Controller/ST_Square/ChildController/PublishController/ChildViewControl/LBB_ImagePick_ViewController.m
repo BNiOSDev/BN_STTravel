@@ -207,6 +207,11 @@
             
             AVURLAsset *urlAsset = (AVURLAsset *)asset;
             NSURL *url = urlAsset.URL;
+            if(!url)
+            {
+                [self showHudPrompt:@"视频格式暂不支持播放"];
+                return ;
+            }
             LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc] init];
             vc.videoUrl = url;
             [self presentViewController:vc animated:NO completion:nil];
