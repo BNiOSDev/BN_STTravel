@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LBB_SquareViewModel.h"
 #import "UIView+SDAutoLayout.h"
+#import "Header.h"
 
 @interface ZJMHostTableViewCell : UITableViewCell
 @property(nonatomic, strong) LBB_SquareUgc   *model;
+@property(nonatomic,copy)CellBlockVIew            btnBlock;
 @end
