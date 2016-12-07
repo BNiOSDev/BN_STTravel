@@ -26,6 +26,7 @@
         self.foodSpotsArray = [[NSMutableArray alloc]initFromNet];
         self.hostelSpotsArray = [[NSMutableArray alloc]initFromNet];
         self.allSpotWordArray = [[NSMutableArray alloc]initFromNet];
+        self.userArray = [[NSMutableArray alloc]initFromNet];
     }
     return self;
 }
@@ -182,4 +183,55 @@
         temp.allSpotWordArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
+
+
+/**
+ 3.6.6 搜索-用户（已测）
+ 
+ @param name   搜索名称
+ @param clear 清空原数据
+ */
+-(void)getUserArrayName:(NSString*)name
+              clearData:(BOOL)clear{
+
+    int curPage = clear == YES ? 0 : round(self.userArray.count/10.0);
+    NSDictionary *paraDic = @{
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              @"name":name,
+                              };
+    NSLog(@"getUserArrayName paraDic: %@",paraDic);
+    
+    NSString *url = [NSString stringWithFormat:@"%@/search/users",BASEURL];
+    __weak typeof(self) temp = self;
+    self.userArray.loadSupport.loadEvent = NetLoadingEvent;
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSLog(@"getUserArrayName 成功  %@",[dic objectForKey:@"rows"]);
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_UserOther mj_objectArrayWithKeyValuesArray:array];
+            
+            if (clear) {
+                [temp.userArray removeAllObjects];
+            }
+            [temp.userArray addObjectsFromArray:returnArray];
+            temp.userArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.userArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getUserArrayName失败  %@",error.domain);
+        
+        temp.userArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+    
+}
+
 @end

@@ -20,6 +20,9 @@
 #import "XDPopupListView.h"
 #import "LBB_SearchViewModel.h"
 #import "LBB_ScenicDetailViewController.h"
+#import "LBB_SquareSnsFollowViewController.h"
+
+
 static const NSInteger kSearchButtonMarginRight = -10;
 static const NSInteger kButtonWidth = 45;
 
@@ -217,7 +220,15 @@ static const NSInteger kButtonWidth = 45;
         [ws.tableView reloadData];
     }];
     
-    
+    /**
+     3.6.6 搜索-用户（已测）
+     
+     @param name   搜索名称
+     @param clear 清空原数据
+     */
+    [self.viewModel.userArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
 }
 
 //搜索动作
@@ -257,7 +268,7 @@ static const NSInteger kButtonWidth = 45;
             break;
         case LBBPoohHomeSearchTypeUser://用户
         {
-
+            [self.viewModel getUserArrayName:self.searchBar.text clearData:YES];
         }
             break;
         case LBBPoohHomeSearchTypeSquare://广场
@@ -542,7 +553,7 @@ static const NSInteger kButtonWidth = 45;
                 break;
             case LBBPoohHomeSearchTypeUser://用户
             {
-                return 10;
+                return self.viewModel.userArray.count;
             }
                 break;
             case LBBPoohHomeSearchTypeSquare://广场
@@ -726,10 +737,9 @@ static const NSInteger kButtonWidth = 45;
                     
                     NSLog(@"LBB_GuiderUserFunsListCell nil");
                 }
-                cell.vImageView.hidden = NO;
-                cell.levelButton.hidden = NO;
-                cell.identityLable.hidden = NO;
-                [cell setModel:nil];
+     
+                LBB_UserOther* obj = self.viewModel.userArray[indexPath.row];
+                [cell setModel:obj isTour:YES show:YES];
                 return cell;
             }
                 break;
@@ -828,7 +838,13 @@ static const NSInteger kButtonWidth = 45;
             break;
         case LBBPoohHomeSearchTypeUser://用户
         {
-            
+            LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc] init];
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            LBB_UserOther* obj = self.viewModel.userArray[indexPath.row];
+            viewModel.userId = obj.userId;
+            dest.viewModel = viewModel;
+            [self.navigationController pushViewController:dest animated:YES];
+
         }
             break;
         case LBBPoohHomeSearchTypeSquare://广场

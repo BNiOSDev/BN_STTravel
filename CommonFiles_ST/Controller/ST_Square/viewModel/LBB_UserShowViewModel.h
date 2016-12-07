@@ -16,6 +16,11 @@
 @property (nonatomic, strong)NSString *userPicUrl ;// 用户头像
 @property (nonatomic, strong)NSString *signature ;// 签名
 @property (nonatomic, assign)int followState;//	Int	关注关系 0未关注1：已关注 2：互相关注
+@property (nonatomic, assign)int level;//	int	级别
+@property (nonatomic, assign)int auditState;//	int	用户认证状态：0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+@property (nonatomic, assign)int tourAuditState;//	int	导游认证状态：0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+
+
 
 /**
  3.4.3	广场-广场主页-好友关注（已测）

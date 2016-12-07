@@ -44,7 +44,7 @@
     [cell.rightButton setBackgroundColor:ColorWhite];
     [cell.rightButton setTitleColor:ColorGray forState:UIControlStateNormal];
     [cell.rightButton setTitle:@"已关注" forState:UIControlStateNormal];
-    [cell setModel:self.userFansArray[indexPath.row]];
+    [cell setModel:self.userFansArray[indexPath.row] isTour:NO show:NO];
     
     
     return cell;
@@ -53,8 +53,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderUserFunsListCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderUserFunsListCell *cell) {
-        
-        [cell setModel:self.userFansArray[indexPath.row]];
+        [cell setModel:self.userFansArray[indexPath.row] isTour:NO show:NO];
     }];
 }
 
