@@ -8,6 +8,7 @@
 
 #import "LBB_LabelDetailHeaderView.h"
 #import "PoohCommon.h"
+#import "UIImageView+LBBlurredImage.h"
 @implementation LBB_LabelDetailHeaderView
 
 /*
@@ -32,6 +33,7 @@
             make.centerX.width.top.equalTo(ws);
             make.height.mas_equalTo(AutoSize(150));
         }];
+
         
         self.portraitImageView = [UIImageView new];
         [self addSubview:self.portraitImageView];
@@ -155,6 +157,82 @@
             make.centerX.width.equalTo(ws);
             make.height.equalTo(sep);
         }];
+        
+        [self.labelButton1 bk_whenTapped:^{
+            NSLog(@"labelButton1 touch");
+            LBB_SquareTags* tags = [ws.model.tags objectAtIndex:0];
+            [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:tags.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+                
+                [ws.bgImageView setImageToBlur:image
+                                    blurRadius:kLBBlurredImageDefaultBlurRadius
+                               completionBlock:^(){
+                                   NSLog(@"The blurred image has been set");
+                               }];
+            }];
+            [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:tags.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+            
+            [self.typeLabel setText:tags.tagName];
+            [self.numLabel setText:[NSString stringWithFormat:@"%d 张照片",tags.tagsViewModel.photoNum]];
+            
+        }];
+        
+        [self.labelButton2 bk_whenTapped:^{
+            NSLog(@"labelButton2 touch");
+            
+            LBB_SquareTags* tags = [ws.model.tags objectAtIndex:1];
+            
+            [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:tags.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+                
+                [ws.bgImageView setImageToBlur:image
+                                    blurRadius:kLBBlurredImageDefaultBlurRadius
+                               completionBlock:^(){
+                                   NSLog(@"The blurred image has been set");
+                               }];
+            }];
+            [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:tags.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+            
+            [self.typeLabel setText:tags.tagName];
+            [self.numLabel setText:[NSString stringWithFormat:@"%d 张照片",tags.tagsViewModel.photoNum]];
+        }];
+        
+        [self.labelButton3 bk_whenTapped:^{
+            NSLog(@"labelButton3 touch");
+            
+            LBB_SquareTags* tags = [ws.model.tags objectAtIndex:2];
+            
+            [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:tags.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+                
+                [ws.bgImageView setImageToBlur:image
+                                    blurRadius:kLBBlurredImageDefaultBlurRadius
+                               completionBlock:^(){
+                                   NSLog(@"The blurred image has been set");
+                               }];
+            }];
+            [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:tags.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+            
+            [self.typeLabel setText:tags.tagName];
+            [self.numLabel setText:[NSString stringWithFormat:@"%d 张照片",tags.tagsViewModel.photoNum]];
+        }];
+        
+        [self.labelButton4 bk_whenTapped:^{
+            NSLog(@"labelButton4 touch");
+            
+            LBB_SquareTags* tags = [ws.model.tags objectAtIndex:3];
+            
+            [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:tags.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+                
+                [ws.bgImageView setImageToBlur:image
+                                    blurRadius:kLBBlurredImageDefaultBlurRadius
+                               completionBlock:^(){
+                                   NSLog(@"The blurred image has been set");
+                               }];
+            }];
+            [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:tags.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+            
+            [self.typeLabel setText:tags.tagName];
+            [self.numLabel setText:[NSString stringWithFormat:@"%d 张照片",tags.tagsViewModel.photoNum]];
+        }];
+        
     }
     return self;
 }
@@ -170,40 +248,78 @@
     return height;
 }
 
--(void)setModel:(id)model{
+-(void)setModel:(LBB_TagsViewModel*)model{
     WS(ws);
-    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1478007203&di=a3c6cc46c613fc8dff8bef3d33a28e64&src=http://f.hiphotos.baidu.com/image/pic/item/5ab5c9ea15ce36d358d27ee43ef33a87e850b114.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1478007203&di=a3c6cc46c613fc8dff8bef3d33a28e64&src=http://f.hiphotos.baidu.com/image/pic/item/5ab5c9ea15ce36d358d27ee43ef33a87e850b114.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
     
+    _model = model;
+  //  [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+        
+        [ws.bgImageView setImageToBlur:image
+                              blurRadius:kLBBlurredImageDefaultBlurRadius
+                         completionBlock:^(){
+                             NSLog(@"The blurred image has been set");
+                         }];
+    }];
+    
+    [self.typeLabel setText:model.tagName];
+    [self.numLabel setText:[NSString stringWithFormat:@"%d 张照片",model.photoNum]];
    
-    [self.labelButton1 bk_whenTapped:^{
-        NSLog(@"labelButton1 touch");
-        
-        [ws.typeLabel setText:ws.labelButton1.titleLabel.text];
-        
-    }];
+    self.labelButton1.hidden = YES;
+    self.labelButton2.hidden = YES;
+    self.labelButton3.hidden = YES;
+    self.labelButton4.hidden = YES;
+
+    NSInteger count = model.tags.count;
+    if (count > 0) {
+        self.labelButton1.hidden = NO;
+        LBB_SquareTags* tags = [model.tags objectAtIndex:0];
+        [self.labelButton1 setTitle:tags.tagName forState:UIControlStateNormal];
+        [tags getTagsViewModelData];
+        __weak LBB_SquareTags *tags_block = tags;
+        [tags.tagsViewModel.loadSupport setDataRefreshblock:^{
+            UIImageView* imageView = [UIImageView new];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:tags_block.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage) ];
+        }];
+    }
     
-    [self.labelButton2 bk_whenTapped:^{
-        NSLog(@"labelButton2 touch");
-        
-        [ws.typeLabel setText:ws.labelButton2.titleLabel.text];
-        
-    }];
+    if (count > 1) {
+        self.labelButton2.hidden = NO;
+        LBB_SquareTags* tags = [model.tags objectAtIndex:1];
+        [self.labelButton2 setTitle:tags.tagName forState:UIControlStateNormal];
+        [tags getTagsViewModelData];
+        __weak LBB_SquareTags *tags_block = tags;
+        [tags.tagsViewModel.loadSupport setDataRefreshblock:^{
+            UIImageView* imageView = [UIImageView new];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:tags_block.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage) ];
+        }];
+    }
     
-    [self.labelButton3 bk_whenTapped:^{
-        NSLog(@"labelButton3 touch");
-        
-        [ws.typeLabel setText:ws.labelButton3.titleLabel.text];
-        
-    }];
+    if (count > 2) {
+        self.labelButton3.hidden = NO;
+        LBB_SquareTags* tags = [model.tags objectAtIndex:2];
+        [self.labelButton3 setTitle:tags.tagName forState:UIControlStateNormal];
+        [tags getTagsViewModelData];
+        __weak LBB_SquareTags *tags_block = tags;
+        [tags.tagsViewModel.loadSupport setDataRefreshblock:^{
+            UIImageView* imageView = [UIImageView new];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:tags_block.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage) ];
+        }];
+    }
     
-    [self.labelButton4 bk_whenTapped:^{
-        NSLog(@"labelButton4 touch");
-        
-        [ws.typeLabel setText:ws.labelButton4.titleLabel.text];
-        
-    }];
-    
+    if (count > 3) {
+        self.labelButton4.hidden = NO;
+        LBB_SquareTags* tags = [model.tags objectAtIndex:3];
+        [self.labelButton4 setTitle:tags.tagName forState:UIControlStateNormal];
+        [tags getTagsViewModelData];
+        __weak LBB_SquareTags *tags_block = tags;
+        [tags.tagsViewModel.loadSupport setDataRefreshblock:^{
+            UIImageView* imageView = [UIImageView new];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:tags_block.tagsViewModel.picUrl] placeholderImage:IMAGE(PlaceHolderImage) ];
+        }];
+    }
+
 }
 
 @end

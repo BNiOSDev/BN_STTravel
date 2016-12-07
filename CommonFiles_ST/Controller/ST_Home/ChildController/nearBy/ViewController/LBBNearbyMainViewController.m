@@ -12,7 +12,7 @@
 #import "LBBNearbyMenuListTableViewCell.h"
 #import "LBB_ScenicDetailViewController.h"
 #import "LBB_NearViewModel.h"
-
+#import "LBB_NearSign.h"
 
 @interface LBBNearbyMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -63,39 +63,39 @@
         @strongify(self);
         
         //景点
-        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
-        //美食
-        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
-        //民宿
         [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:3 clearData:YES];
+        //美食
+        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
+        //民宿
+        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
     }];
     
     [RACObserve(self.locationManager, longitude) subscribeNext:^(NSString* num) {
         @strongify(self);
         
         //景点
-        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
-        //美食
-        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
-        //民宿
         [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:3 clearData:YES];
+        //美食
+        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
+        //民宿
+        [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
     }];
     
     //景点
-    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
+    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:3 clearData:YES];
     
     [self.viewModel.spotArray.loadSupport setDataRefreshblock:^{
         @strongify(self);
         [self.tableView reloadData];
     }];
     //美食
-    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
+    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
     [self.viewModel.foodsArray.loadSupport setDataRefreshblock:^{
         @strongify(self);
         [self.tableView reloadData];
     }];
     //民宿
-    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:3 clearData:YES];
+    [self.viewModel getSpotArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
     [self.viewModel.hostelArray.loadSupport setDataRefreshblock:^{
         @strongify(self);
         [self.tableView reloadData];
@@ -104,8 +104,7 @@
     WS(ws);
     //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
     [self.tableView setTableViewData:self.viewModel.spotArray];
-    [self.tableView setTableViewData:self.viewModel.foodsArray];
-    [self.tableView setTableViewData:self.viewModel.hostelArray];
+
     
     //3.1上拉和下拉的动作
     [self.tableView setHeaderRefreshDatablock:^{
@@ -113,17 +112,20 @@
         switch (ws.selectType) {
             case LBBPoohSegmCtrlScenicType://景点
             {
-                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
+                [ws.viewModel getSpotAdvertisementListArrayClearData:YES];
+                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:3 clearData:YES];
             }
                 break;
             case LBBPoohSegmCtrlFoodsType://美食
             {
-                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
+                [ws.viewModel getFoodAdvertisementListArrayClearData:YES];
+                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:1 clearData:YES];
             }
                 break;
             case LBBPoohSegmCtrlHostelType://民宿
             {
-                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:3 clearData:YES];
+                [ws.viewModel getHostelAdvertisementListArrayClearData:YES];
+                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:2 clearData:YES];
                 
             }
                 break;
@@ -133,17 +135,17 @@
         switch (ws.selectType) {
             case LBBPoohSegmCtrlScenicType://景点
             {
-                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:1 clearData:NO];
+                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:3 clearData:NO];
             }
                 break;
             case LBBPoohSegmCtrlFoodsType://美食
             {
-                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:2 clearData:NO];
+                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:1 clearData:NO];
             }
                 break;
             case LBBPoohSegmCtrlHostelType://民宿
             {
-                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:3 clearData:NO];
+                [ws.viewModel getSpotArrayLongitude:ws.locationManager.longitude dimensionality:ws.locationManager.latitude distance:distance allSpotsType:2 clearData:NO];
                 
             }
                 break;
@@ -152,6 +154,39 @@
         
     }];
     
+    
+#pragma AD
+    
+    /**
+     3.1.1 广告轮播 8 附近景点广告
+     
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getSpotAdvertisementListArrayClearData:YES];
+    [self.viewModel.spotAdvertisementArray.loadSupport setDataRefreshblock:^{
+        @strongify(self);
+        [self.tableView reloadData];
+    }];
+    /**
+     3.1.1 广告轮播 9附近美食广告
+     
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getFoodAdvertisementListArrayClearData:YES];
+    [self.viewModel.foodAdvertisementArray.loadSupport setDataRefreshblock:^{
+        @strongify(self);
+        [self.tableView reloadData];
+    }];
+    /**
+     3.1.1 广告轮播 10 附近民宿广告
+     
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getHostelAdvertisementListArrayClearData:YES];
+    [self.viewModel.hostelAdvertisementArray.loadSupport setDataRefreshblock:^{
+        @strongify(self);
+        [self.tableView reloadData];
+    }];
     
 }
 
@@ -242,6 +277,20 @@
     segmentedControl.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
         ws.selectType = index;
+        switch (ws.selectType) {
+            case LBBPoohSegmCtrlScenicType://景点
+                [ws.tableView setTableViewData:ws.viewModel.spotArray];
+                break;
+            case LBBPoohSegmCtrlFoodsType://美食
+                [ws.tableView setTableViewData:ws.viewModel.foodsArray];
+                
+                break;
+            case LBBPoohSegmCtrlHostelType://民宿
+                [ws.tableView setTableViewData:ws.viewModel.hostelArray];
+                break;
+            default:
+                break;
+        }
         [ws.tableView reloadData];
     };
 
@@ -268,11 +317,21 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     if (indexPath.row == 0) {
         return  [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
             [cell setCycleScrollViewHeight:AutoSize(226/2)];
-            [cell setCycleScrollViewUrls:nil];
+            switch (self.selectType) {
+                case LBBPoohSegmCtrlScenicType://景点
+                    [cell setAdModelArray:ws.viewModel.spotAdvertisementArray];
+                    break;
+                case LBBPoohSegmCtrlFoodsType://美食
+                    [cell setAdModelArray:ws.viewModel.foodAdvertisementArray];
+                    break;
+                case LBBPoohSegmCtrlHostelType://民宿
+                    [cell setAdModelArray:ws.viewModel.hostelAdvertisementArray];
+                    break;
+            }
         }];
     }
     else{
@@ -281,13 +340,13 @@
             LBB_SpotModel* obj;
             switch (self.selectType) {
                 case LBBPoohSegmCtrlScenicType://景点
-                    obj = self.viewModel.spotArray[indexPath.row - 1];
+                    obj = ws.viewModel.spotArray[indexPath.row - 1];
                     break;
                 case LBBPoohSegmCtrlFoodsType://美食
-                    obj = self.viewModel.foodsArray[indexPath.row - 1];
+                    obj = ws.viewModel.foodsArray[indexPath.row - 1];
                     break;
                 case LBBPoohSegmCtrlHostelType://民宿
-                    obj = self.viewModel.hostelArray[indexPath.row - 1];
+                    obj = ws.viewModel.hostelArray[indexPath.row - 1];
                     break;
             }
             
@@ -308,8 +367,17 @@
             NSLog(@"LBBPoohCycleScrollCell nil");
         }
         [cell setCycleScrollViewHeight:AutoSize(226/2)];
-        [cell setCycleScrollViewUrls:nil];
-        
+        switch (self.selectType) {
+            case LBBPoohSegmCtrlScenicType://景点
+                [cell setAdModelArray:self.viewModel.spotAdvertisementArray];
+                break;
+            case LBBPoohSegmCtrlFoodsType://美食
+                [cell setAdModelArray:self.viewModel.foodAdvertisementArray];
+                break;
+            case LBBPoohSegmCtrlHostelType://民宿
+                [cell setAdModelArray:self.viewModel.hostelAdvertisementArray];
+                break;
+        }
         return cell;
     }
     else{

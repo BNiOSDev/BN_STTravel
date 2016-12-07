@@ -9,9 +9,8 @@
 #import "LBB_MyVideoViewController.h"
 #import "LBB_MyVideoViewCell.h"
 #import "Header.h"
-#import "LBB_TravelCommentController.h"
-#import "LBB_TravelDetailViewController.h"
-
+#import "LBBHostDetailViewController.h"
+#import "LBBVideoPlayerViewController.h"
 
 @interface LBB_MyVideoViewController ()
 <
@@ -148,9 +147,14 @@ UICollectionViewDelegateFlowLayout>
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 
-    LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-
+    if (indexPath.row < self.viewModel.videoArray.count) {
+        LBB_MyVideoModel *cellModel = self.viewModel.videoArray[indexPath.row];
+        if ([cellModel.videoUrl length]) {
+            LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc] init];
+            vc.videoUrl = [NSURL URLWithString:cellModel.videoUrl];
+            [self presentViewController:vc animated:YES completion:nil];
+        }
+    }
 }
 
 #pragma mark 处理点击cell上面的按钮
@@ -181,7 +185,9 @@ UICollectionViewDelegateFlowLayout>
             break;
         case UICollectionViewCellComment://评论
         {
-            LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
+            LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+            vc.viewModel = [[LBB_SquareUgc alloc] init];
+            vc.viewModel.ugcId = videoModel.ugcId;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

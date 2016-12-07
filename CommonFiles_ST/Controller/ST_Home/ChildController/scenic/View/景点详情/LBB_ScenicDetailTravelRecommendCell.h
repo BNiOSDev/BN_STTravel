@@ -7,6 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_SpotDetailsViewModel.h"
 
 @interface LBB_ScenicDetailTravelRecommendCell : LBBPoohBaseTableViewCell
 
@@ -16,6 +17,6 @@
 @property(nonatomic,retain)UILabel* priceLable;
 @property(nonatomic,retain)UIButton* styleButton;
 
-@property(nonatomic,retain)id model;
+@property(nonatomic,retain)LBB_SpotsNearbyRecommendData* model;
 
 @end

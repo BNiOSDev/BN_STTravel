@@ -98,12 +98,15 @@
     if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
+                NSLog(@"达人推荐美食行数:%d",self.footSpotsArray.count);
                 return self.footSpotsArray.count;
                 break;
             case LBBPoohSegmCtrlHostelType:
+                NSLog(@"达人推荐民宿行数:%d",self.liveSpotsArray.count);
                 return self.liveSpotsArray.count;
                 break;
             case LBBPoohSegmCtrlScenicType:
+                NSLog(@"达人推荐景点行数:%d",self.scenicSpotsArray.count);
                 return self.scenicSpotsArray.count;
                 break;
                 
@@ -131,12 +134,15 @@
     if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
+                NSLog(@"达人推荐数据美食:%d",indexPath.row);
                 obj = [self.footSpotsArray objectAtIndex:indexPath.row];
                 break;
             case LBBPoohSegmCtrlHostelType:
+                NSLog(@"达人推荐数据民宿:%d",indexPath.row);
                 obj = [self.liveSpotsArray objectAtIndex:indexPath.row];
                 break;
             case LBBPoohSegmCtrlScenicType:
+                NSLog(@"达人推荐数据景点:%d",indexPath.row);
                 obj = [self.scenicSpotsArray objectAtIndex:indexPath.row];
                 break;
         }
@@ -212,7 +218,7 @@
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(ws.pagerView.mas_bottom);
             make.left.right.bottom.equalTo(ws.contentView);
-            make.height.mas_equalTo(AutoSize(300/2));
+            make.height.mas_equalTo(AutoSize(310/2));
         }];
     }
     else{
@@ -226,7 +232,7 @@
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(ws.pagerView.mas_bottom);
             make.left.right.bottom.equalTo(ws.contentView);
-            make.height.mas_equalTo(AutoSize(300/2));
+            make.height.mas_equalTo(AutoSize(310/2));
         }];
     }
     [self.contentView layoutSubviews];

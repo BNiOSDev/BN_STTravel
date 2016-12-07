@@ -11,7 +11,8 @@
 
 #import "LBB_LabelDetailHotDataSource.h"
 #import "LBB_LabelDetailUserDataSource.h"
-
+static const NSInteger kSearchButtonMarginRight = -10;
+static const NSInteger kButtonWidth = 45;
 typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
     LBB_LabelDetailHot = 0,//热门
     LBB_LabelDetailTime,//时间
@@ -36,6 +37,12 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self addBackButton:nil];
+    [self setBaseNavigationBarHidden:NO];
+    [self setBaseNavigationBarBackgroundColor:[UIColor clearColor]];
+    [self setupFullContentView];
+    [self setupNavigationUI];
+    [self setupUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,56 +59,147 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)initViewModel{
+    WS(ws);
+    /**
+     1.1.1	广场-广场主页-标签主页-列表（已测）
+     */
+    [self.viewModel getTagsViewModelData];
+    [self.viewModel.tagsViewModel.loadSupport setDataRefreshblock:^{
+        [ws.headerView setModel:ws.viewModel.tagsViewModel];
+        [ws.tableView reloadData];
+    }];
+    
+    
+    
+    /**
+     3.4.11	广场-广场主页-标签主页-列表（已测）
+     @param type 标签类型 1：热门排序 2：时间排序
+     @param clear 清空原数据
+     */
+    [self.viewModel getShowImageArrayOrderType:1 ClearData:YES];
+    [self.viewModel.showImageHotArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
+    //时间排序
+    [self.viewModel getShowImageArrayOrderType:2 ClearData:YES];
+    [self.viewModel.showImageTimeArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
+    //用户
+    [self.viewModel getShowViewUSersArray:YES];
+    [self.viewModel.showViewUsersArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
+    //默认是动态
+    switch (self.selectType) {
+        case LBB_LabelDetailHot://热门
+            [self.tableView setTableViewData:self.viewModel.showImageHotArray];
+            
+            break;
+        case LBB_LabelDetailTime://时间
+            [self.tableView setTableViewData:self.viewModel.showImageTimeArray];
+            
+            break;
+        case LBB_LabelDetailUser://用户
+            [self.tableView setTableViewData:self.viewModel.showViewUsersArray];
+            break;
+        default:
+            break;
+    }
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.tableView.mj_header endRefreshing];
+        [ws.viewModel getTagsViewModelData];
+        [ws.viewModel getShowImageArrayOrderType:2 ClearData:YES];
+        [ws.viewModel getShowImageArrayOrderType:1 ClearData:YES];
+        [ws.viewModel getShowViewUSersArray:YES];
+        
+    } footerRefreshDatablock:^{
+        [ws.tableView.mj_footer endRefreshing];
+        switch (ws.selectType) {
+            case LBB_LabelDetailHot://热门
+                [ws.viewModel getShowImageArrayOrderType:1 ClearData:NO];
+                
+                break;
+            case LBB_LabelDetailTime://时间
+                [ws.viewModel getShowImageArrayOrderType:2 ClearData:NO];
+                
+                break;
+            case LBB_LabelDetailUser://用户
+                [ws.viewModel getShowViewUSersArray:NO];
+                break;
+            default:
+                break;
+        }
+        
+    }];
+    
+}
+
+
 /*
  * setup navigation bar view
  */
--(void)loadCustomNavigationButton{
+-(void)setupNavigationUI{
     
     WS(ws);
+    [self setBaseNavigationBarTitle:@"标签详情"];
+    [self setBaseNavigationBarColor:ColorWhite];
+
     UIButton *shareButton = [[UIButton alloc] init];
-    shareButton.titleLabel.font = Font14;
     [shareButton setImage:IMAGE(@"标签详情_分享") forState:UIControlStateNormal];
-    [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    shareButton.frame = CGRectMake(0, 0, 45, 45);
+    [self.baseNavigationBarView addSubview:shareButton];
+    [shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.width.mas_equalTo(kButtonWidth);
+        make.bottom.equalTo(ws.baseNavigationBarView);
+        make.right.equalTo(ws.baseNavigationBarView).offset(kSearchButtonMarginRight);
+    }];
     [shareButton bk_addEventHandler:^(id sender){
         
         
         
     }forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
-    self.navigationItem.rightBarButtonItem = shareItem;
-    
+
 }
 
 /*
  * setup UI
  */
--(void)buildControls{
+-(void)setupUI{
     
     WS(ws);
     
-
+    self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     self.headerView = [[LBB_LabelDetailHeaderView alloc]init];
     [self.headerView setFrame:CGRectMake(0, 0, DeviceWidth, [LBB_LabelDetailHeaderView getHeight])];
-    [self.headerView setModel:nil];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.baseContentView setBackgroundColor:[UIColor whiteColor]];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.hotDataSource = [[LBB_LabelDetailHotDataSource alloc] initWithTableView:self.tableView];
-    self.timeDataSource = [[LBB_LabelDetailHotDataSource alloc] initWithTableView:self.tableView];
-    self.userDataSource = [[LBB_LabelDetailUserDataSource alloc] initWithTableView:self.tableView];
-    self.userDataSource.parentViewController = self;
+    self.hotDataSource.showImageArray = self.viewModel.showImageHotArray;
     
-    [self.view addSubview:self.tableView];
+    self.timeDataSource = [[LBB_LabelDetailHotDataSource alloc] initWithTableView:self.tableView];
+    self.timeDataSource.showImageArray = self.viewModel.showImageTimeArray;
+    
+    self.userDataSource = [[LBB_LabelDetailUserDataSource alloc] initWithTableView:self.tableView];
+    self.userDataSource.showViewUsersArray = self.viewModel.showViewUsersArray;
+    
+    self.userDataSource.parentViewController = self;
+    [self initViewModel];
+    [self.baseContentView addSubview:self.tableView];
     self.tableView.tableFooterView = [UIView new];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.centerX.top.equalTo(ws.view);
-        make.bottom.equalTo(ws.view);
+        make.width.top.centerX.equalTo(ws.baseContentView);
+        make.bottom.equalTo(ws.baseContentView);
     }];
     
 }
@@ -159,6 +257,23 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         [b bk_addEventHandler:^(id sender){
         
             ws.selectType = i;
+            //默认是动态
+            switch (self.selectType) {
+                case LBB_LabelDetailHot://热门
+                    [self.tableView setTableViewData:self.viewModel.showImageHotArray];
+                    
+                    break;
+                case LBB_LabelDetailTime://时间
+                    [self.tableView setTableViewData:self.viewModel.showImageTimeArray];
+                    
+                    break;
+                case LBB_LabelDetailUser://用户
+                     [self.tableView setTableViewData:self.viewModel.showViewUsersArray];
+                    break;
+                default:
+                    break;
+            }
+            
             [ws.tableView reloadData];
         } forControlEvents:UIControlEventTouchUpInside];
     }
@@ -168,7 +283,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         [l setBackgroundColor:ColorLine];
         [l setTextColor:ColorLightGray];
         [l setFont:Font12];
-        [l setText:@"  共有179位达人"];
+        [l setText:[NSString stringWithFormat:@"  共有%ld位达人",self.viewModel.showViewUsersArray.count]];
         [v addSubview:l];
         [l mas_makeConstraints:^(MASConstraintMaker* make){
             make.bottom.width.equalTo(v);
@@ -176,7 +291,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         }];
     }
 
-
+    
     return v;
 }
 

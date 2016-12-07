@@ -50,6 +50,28 @@
 
 @end
 
+//3.4.12 广场-广场主页-标签主页-用户（已测）
+@interface LBB_TagShowViewUsersObjs : BN_BaseDataModel
+
+@property (nonatomic, assign)long objId;//	Long	对象主键
+@property (nonatomic, assign)int actionType;//	int	5 ugc图片 6 ugc视频 7 游记
+@property (nonatomic, strong)NSString *picUrl;//	String	图片地址
+
+@end
+
+@interface LBB_TagShowViewUsers : BN_BaseDataModel
+
+@property (nonatomic, assign)long userId;//	Long	用户ID
+@property (nonatomic, strong)NSString *userName;	//String	用户名称
+@property (nonatomic, strong)NSString *userPicUrl;//	String	用户头像
+@property (nonatomic, assign)int photoNum;//	Int	照片数量
+@property (nonatomic, assign)int auditState	;//int	用户认证状态：0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+@property (nonatomic, strong)NSMutableArray<LBB_TagShowViewUsersObjs*> *objs;//	List	对象列表
+
+
+@end
+
+
 @interface LBB_SquareTags : BN_BaseDataModel
 
 @property (nonatomic, assign)long tagId ;// 标签ID
@@ -59,6 +81,7 @@
 @property (nonatomic, strong)NSMutableArray<LBB_TagShowViewData *> *showImageHotArray;//标签图热门排序
 @property (nonatomic, strong)NSMutableArray<LBB_TagShowViewData *> *showImageTimeArray;//标签图时间排序
 
+@property (nonatomic, strong)NSMutableArray<LBB_TagShowViewUsers *> *showViewUsersArray;//标签图用户数据
 
 /**
  1.1.1	广场-广场主页-标签主页-列表（已测）
@@ -73,6 +96,13 @@
  @param clear 清空原数据
  */
 - (void)getShowImageArrayOrderType:(int)type ClearData:(BOOL)clear;
+
+/**
+3.4.12 广场-广场主页-标签主页-用户（已测）
+ 
+ @param clear 清空原数据
+ */
+- (void)getShowViewUSersArray:(BOOL)clear;
 
 /**
  3.1.13	筛选标签列表(已测)

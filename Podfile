@@ -15,5 +15,5 @@ pod 'SWTableViewCell'
 pod 'ASIHTTPRequest'
 pod 'AutoScrollLabel'
 pod 'NJKWebViewProgress'
-
+pod 'LBBlurredImage'
 end

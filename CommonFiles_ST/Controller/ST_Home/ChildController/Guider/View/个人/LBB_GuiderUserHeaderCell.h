@@ -18,6 +18,10 @@
 
 @property(nonatomic, retain)UIButton* labelButton1;//标签1
 @property(nonatomic, retain)UIButton* labelButton2;//标签2
+@property(nonatomic, retain)UIButton* labelButton3;//标签2
+@property(nonatomic, retain)UIButton* labelButton4;//标签2
+@property(nonatomic, retain)UIButton* labelButton5;//标签2
+@property(nonatomic, retain)UIButton* labelButton6;//标签2
 
 @property(nonatomic, retain)UILabel* locationLabel;//地点
 @property(nonatomic, retain)UILabel* photoNumLabel;//几张照片

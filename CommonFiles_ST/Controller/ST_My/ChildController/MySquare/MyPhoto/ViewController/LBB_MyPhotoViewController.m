@@ -183,7 +183,9 @@ UICollectionViewDelegateFlowLayout>
             break;
         case UICollectionViewCellComment://评论
         {
-            LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
+            LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+            vc.viewModel = [[LBB_SquareUgc alloc] init];
+            vc.viewModel.ugcId = photoModel.ugcId;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

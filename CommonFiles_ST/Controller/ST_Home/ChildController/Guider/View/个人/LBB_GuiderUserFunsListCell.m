@@ -123,6 +123,16 @@
         self.levelButton.hidden = YES;
         self.identityLable.hidden = YES;
         
+        [self.rightButton bk_addEventHandler:^(id sender){
+        
+            [ws.model attention:^(NSError* error){
+            
+                if (error) {
+                    [(Base_BaseViewController*)[ws getViewController] showHudPrompt:error.domain];
+                }
+            }];
+        } forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return self;
 }

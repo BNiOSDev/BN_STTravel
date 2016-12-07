@@ -188,6 +188,8 @@
                     dest.themeTitle = @"美食评价";
                     break;
             }
+            dest.allSpotsType = (int)ws.model.allSpotsType;// 场景类型 1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题
+            dest.allSpotsId = ws.model.allSpotsId;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
         

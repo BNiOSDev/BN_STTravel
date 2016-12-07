@@ -63,6 +63,9 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     
     [self.viewModel getUserShowViewModelData];
     [self.viewModel.userShowViewModel.loadSupport setDataRefreshblock:^{
+        
+        temp.title = temp.viewModel.userShowViewModel.userName;
+        
         /**
          3.4.7	广场-广场主页-个人主页-动态（已测）
          
@@ -87,9 +90,36 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
          */
         [temp.viewModel.userShowViewModel getUserFansArrayClearData:YES];
         //默认是动态
-        [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userActionArray];
+        switch (temp.selectType) {
+            case LBB_SquareSnsFollowlDynamic://动态
+                [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userActionArray];
+                
+                break;
+            case LBB_SquareSnsFollowlFavorite://关注
+                [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userAttentionArray];
+                
+                break;
+            case LBB_SquareSnsFollowFuns://粉丝
+                [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userFansArray];
+                break;
+            default:
+                break;
+        }
         [temp.tableView reloadData];
     }];
+    
+    [self.viewModel.userShowViewModel.userActionArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"userActionArray reloadData");
+        [temp.tableView reloadData];
+    }];
+    [self.viewModel.userShowViewModel.userAttentionArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+    }];
+    [self.viewModel.userShowViewModel.userFansArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+    }];
+    
+    
     
     [self.tableView setHeaderRefreshDatablock:^{
         [temp.tableView.mj_header endRefreshing];
@@ -118,19 +148,6 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
         }
         
     }];
-    [self.viewModel.userShowViewModel.userAttentionArray.loadSupport setDataRefreshblock:^{
-        [temp.tableView reloadData];
-
-    }];
-    [self.viewModel.userShowViewModel.userFansArray.loadSupport setDataRefreshblock:^{
-        [temp.tableView reloadData];
-
-    }];
-    [self.viewModel.userShowViewModel.userActionArray.loadSupport setDataRefreshblock:^{
-        [temp.tableView reloadData];
-
-    }];
-  
 }
 
 
@@ -157,11 +174,8 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
  *  setup UI
  */
 -(void)buildControls{
-    
-    
+
     WS(ws);
-    
-    
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.tableView registerClass:[LBB_GuiderUserHeaderCell class] forCellReuseIdentifier:@"LBB_GuiderUserHeaderCell"];

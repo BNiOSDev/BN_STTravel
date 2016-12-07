@@ -36,6 +36,8 @@
         [self.tableView registerClass:[LBBHomeMenuTableViewCell class] forCellReuseIdentifier:@"LBBHomeMenuTableViewCell"];
         [self.tableView registerClass:[LBBHomeAnnouncementTableViewCell class] forCellReuseIdentifier:@"LBBHomeAnnouncementTableViewCell"];
         [self.tableView registerClass:[LBBHomeHotestTableViewCell class] forCellReuseIdentifier:@"LBBHomeHotestTableViewCell"];
+        [self.tableView registerClass:[LBBHomeHotestTableViewCell class] forCellReuseIdentifier:@"LBBHomeVIPRecommendTableViewCell"];
+
         [self.tableView registerClass:[LBBHomeTravelRecommendTableViewCell class] forCellReuseIdentifier:@"LBBHomeTravelRecommendTableViewCell"];
         [self.tableView registerClass:[LBBHomeSquareCenterTableViewCell class] forCellReuseIdentifier:@"LBBHomeSquareCenterTableViewCell"];
         self.tableView.delegate = self;
@@ -342,7 +344,7 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView vipRecommendCellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     WS(ws);
-    static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
+    static NSString *cellIdentifier = @"LBBHomeVIPRecommendTableViewCell";
     LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
@@ -378,7 +380,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForVipRecommendSectionRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
+    return [tableView fd_heightForCellWithIdentifier:@"LBBHomeVIPRecommendTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
         [cell setPagerViewHidden:NO];
      
      }];

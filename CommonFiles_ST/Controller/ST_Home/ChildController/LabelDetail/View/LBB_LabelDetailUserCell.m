@@ -113,15 +113,51 @@
     return self;
 }
 
--(void)setModel:(id)model{
-    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
+-(void)setModel:(LBB_TagShowViewUsers*)model{
+    
+    _model = model;
+    /*
+     @property (nonatomic, assign)long userId;//	Long	用户ID
+     @property (nonatomic, strong)NSString *userName;	//String	用户名称
+     @property (nonatomic, strong)NSString *userPicUrl;//	String	用户头像
+     @property (nonatomic, assign)int photoNum;//	Int	照片数量
+     @property (nonatomic, assign)int auditState	;//int	用户认证状态：0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+     @property (nonatomic, strong)NSMutableArray<LBB_TagShowViewUsersObjs*> *objs;//	List	对象列表
+
+     */
+    
+    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    
+    [self.titleLabel setText:model.userName];
+    [self.subTitleLabel setText:[NSString stringWithFormat:@"%d张照片",model.photoNum]];
+    
     [self.vipImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
 
-    [self.rightImageView1 sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
+    
+    self.rightImageView1.hidden = YES;
+    self.rightImageView2.hidden = YES;
+    self.rightImageView3.hidden = YES;
 
-    [self.rightImageView2 sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
+    NSInteger count = model.objs.count;
+    
+    if (count > 0) {
+        self.rightImageView1.hidden = NO;
+        LBB_TagShowViewUsersObjs* obj = [model.objs objectAtIndex:0];
+        [self.rightImageView1 sd_setImageWithURL:[NSURL URLWithString:obj.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+    
+    if (count > 1) {
+        self.rightImageView2.hidden = NO;
+        LBB_TagShowViewUsersObjs* obj = [model.objs objectAtIndex:1];
+        [self.rightImageView2 sd_setImageWithURL:[NSURL URLWithString:obj.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
+    
+    if (count > 2) {
+        self.rightImageView3.hidden = NO;
+        LBB_TagShowViewUsersObjs* obj = [model.objs objectAtIndex:2];
+        [self.rightImageView3 sd_setImageWithURL:[NSURL URLWithString:obj.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    }
 
-    [self.rightImageView3 sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
 
 }
 

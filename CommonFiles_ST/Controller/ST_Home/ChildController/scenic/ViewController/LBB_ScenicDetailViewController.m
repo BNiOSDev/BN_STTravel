@@ -49,6 +49,9 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 
 @property (nonatomic, retain)UIButton* favoriteButton;
 
+@property (nonatomic, assign)  LBBPoohSegmCtrlType nearbyRecommendsSelectType;
+
+
 @end
 
 @implementation LBB_ScenicDetailViewController
@@ -82,26 +85,92 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 
 -(void)initViewModel{
     WS(ws);
+
     [self.spotModel getSpotDetailsData:YES];
     [self.spotModel.spotDetails.loadSupport setDataRefreshblock:^{
+        
+        /**
+         3.2.8	周边推荐(已测)
+         
+         @param type 1.景点 2.美食 3.民宿
+         @param longitude Y坐标
+         @param dimensionality X坐标
+         @param clear 是否清空原数据
+         */
+        [ws.spotModel.spotDetails getSpotNearbyRecommendsType:1 clearData:YES];
+        [ws.spotModel.spotDetails getSpotNearbyRecommendsType:2 clearData:YES];
+        [ws.spotModel.spotDetails getSpotNearbyRecommendsType:3 clearData:YES];
+        
+        switch (ws.nearbyRecommendsSelectType) {
+            case LBBPoohSegmCtrlFoodsType:
+                [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyFoodRecommends];
+                break;
+            case LBBPoohSegmCtrlHostelType:
+                [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyHostelRecommends];
+                break;
+            case LBBPoohSegmCtrlScenicType:
+                [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbySpotRecommends];
+                break;
+                
+            default:
+                break;
+        }
+        
         [ws.tableView reloadData];//data reload
     }];
+    
+    //附近数据更新时，刷新
+    [self.spotModel.spotDetails.nearbySpotRecommends.loadSupport setDataRefreshblock:^{
+       // NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBScenicDetailSectionTravelRecommendType];
+       // [ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+        [ws.tableView reloadData];//data reload
+
+    }];
+    [self.spotModel.spotDetails.nearbyHostelRecommends.loadSupport setDataRefreshblock:^{
+       // NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBScenicDetailSectionTravelRecommendType];
+      //  [ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+        [ws.tableView reloadData];//data reload
+
+    }];
+    [self.spotModel.spotDetails.nearbyFoodRecommends.loadSupport setDataRefreshblock:^{
+       // NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBScenicDetailSectionTravelRecommendType];
+        //[ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+        [ws.tableView reloadData];//data reload
+
+    }];
+    
+    
     
     //3.1上拉和下拉的动作
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.tableView.mj_header endRefreshing];
         
         [ws.spotModel getSpotDetailsData:YES];
+        [ws.spotModel.spotDetails getSpotNearbyRecommendsType:1 clearData:YES];
+        [ws.spotModel.spotDetails getSpotNearbyRecommendsType:2 clearData:YES];
+        [ws.spotModel.spotDetails getSpotNearbyRecommendsType:3 clearData:YES];
         
     } footerRefreshDatablock:^{
-       // [ws.tableView.mj_footer endRefreshing];
-       // [ws getSpotArrayLongitude:NO];
+        [ws.tableView.mj_footer endRefreshing];
+        
+        switch (ws.nearbyRecommendsSelectType) {
+            case LBBPoohSegmCtrlFoodsType:
+                [ws.spotModel.spotDetails getSpotNearbyRecommendsType:2 clearData:NO];
+                break;
+            case LBBPoohSegmCtrlHostelType:
+                [ws.spotModel.spotDetails getSpotNearbyRecommendsType:3 clearData:NO];
+                break;
+            case LBBPoohSegmCtrlScenicType:
+                [ws.spotModel.spotDetails getSpotNearbyRecommendsType:1 clearData:NO];
+                break;
+                
+            default:
+                break;
+        }
+        
     }];
-    
-    
-    
-#pragma 数据绑定
     @weakify(self);
+#pragma 数据绑定
     [RACObserve(self.spotModel.spotDetails, isCollected) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
@@ -178,6 +247,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
  
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
     [self registerTableViewCell];
     [self initViewModel];
     [self.baseContentView addSubview:self.tableView];
@@ -186,8 +256,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.top.centerX.equalTo(ws.view);
-        make.bottom.equalTo(ws.view);
+        make.width.top.centerX.equalTo(ws.baseContentView);
+        make.bottom.equalTo(ws.baseContentView);
     }];
     
     
@@ -219,7 +289,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         [b setImage:[UIImage imageNamed:@"景点详情_电话底部"] forState:UIControlStateNormal];
         [b setTitleColor:ColorBtnYellow forState:UIControlStateNormal];
         //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right
-        b.imageEdgeInsets = UIEdgeInsetsMake(0, 133, 0, 0);
+        b.imageEdgeInsets = UIEdgeInsetsMake(0, AutoSize(110.55), 0, 0);
         b.titleLabel.font = Font15;
         //  b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         
@@ -236,7 +306,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         [b1 setImage:[UIImage imageNamed:@"景点详情_箭头Right"] forState:UIControlStateNormal];
         [b1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right
-        b1.imageEdgeInsets = UIEdgeInsetsMake(0, 130, 0, 0);
+        b1.imageEdgeInsets = UIEdgeInsetsMake(0, AutoSize(112), 0, 0);
         b1.titleLabel.font = Font15;
         [b1 bk_addEventHandler:^(id sender){
             
@@ -323,7 +393,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     if (section == LBBScenicDetailSectionHeaderType) {
         return [UIView new];
     }
-    
+    WS(ws);
     UIView* v = [UIView new];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
@@ -352,6 +422,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
                                                  NSForegroundColorAttributeName:ColorLightGray};
         segmentedControl.selectionIndicatorColor = ColorLightGray;
         segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
+        [segmentedControl setSelectedSegmentIndex:self.nearbyRecommendsSelectType];
         [v addSubview:segmentedControl];
         [segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(img.mas_bottom).offset(8);
@@ -362,7 +433,24 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         }];
         segmentedControl.indexChangeBlock = ^(NSInteger index){
             NSLog(@"segmentedControl select:%ld",index);
-            
+            ws.nearbyRecommendsSelectType = index;
+            switch (ws.nearbyRecommendsSelectType) {
+                case LBBPoohSegmCtrlFoodsType:
+                    [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyFoodRecommends];
+                    break;
+                case LBBPoohSegmCtrlHostelType:
+                    [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyHostelRecommends];
+                    break;
+                case LBBPoohSegmCtrlScenicType:
+                    [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbySpotRecommends];
+                    break;
+                    
+                default:
+                    break;
+            }
+            [ws.tableView reloadData];
+        //    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBScenicDetailSectionTravelRecommendType];
+          //  [ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
         };
     }
 
@@ -396,7 +484,23 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return 4;
             break;
         case LBBScenicDetailSectionTravelRecommendType://周边推荐
-            return 5;
+        {
+            switch (self.nearbyRecommendsSelectType) {
+                case LBBPoohSegmCtrlFoodsType:
+                    return self.spotModel.spotDetails.nearbyFoodRecommends.count;
+                    break;
+                case LBBPoohSegmCtrlHostelType:
+                    return self.spotModel.spotDetails.nearbyHostelRecommends.count;
+                    break;
+                case LBBPoohSegmCtrlScenicType:
+                    return self.spotModel.spotDetails.nearbySpotRecommends.count;
+                    break;
+                    
+                default:
+                    return 0;
+                    break;
+            }
+        }
             break;
         default:
             break;
@@ -468,8 +572,43 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == LBBScenicDetailSectionTravelRecommendType) {//周边推荐
+        
+        LBB_SpotsNearbyRecommendData* obj;
+        switch (self.nearbyRecommendsSelectType) {
+            case LBBPoohSegmCtrlFoodsType:
+                obj = self.spotModel.spotDetails.nearbyFoodRecommends[indexPath.row];
+                break;
+            case LBBPoohSegmCtrlHostelType:
+                obj = self.spotModel.spotDetails.nearbyHostelRecommends[indexPath.row];
+                break;
+            case LBBPoohSegmCtrlScenicType:
+                obj = self.spotModel.spotDetails.nearbySpotRecommends[indexPath.row];
+                break;
+            default:
+                break;
+        }
+        
         LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
-        dest.homeType = LBBPoohHomeTypeScenic;
+        LBB_SpotModel* spotModel = [[LBB_SpotModel alloc] init];
+        spotModel.allSpotsId = obj.allSpotsId;
+        dest.spotModel = spotModel;
+        switch (obj.allSpotsType) {//场景类型 1美食 2 民宿 3 景点
+
+            case 1://美食
+                dest.homeType = LBBPoohHomeTypeFoods;
+                break;
+            case 2://民宿
+                dest.homeType = LBBPoohHomeTypeHostel;
+                break;
+            case 3://景点
+                dest.homeType = LBBPoohHomeTypeScenic;
+                break;
+            case 4://伴手礼
+                break;
+            default:
+                break;
+        }
+        
         [self.navigationController pushViewController:dest animated:YES];
         
     }
@@ -643,7 +782,24 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         
         NSLog(@"LBB_ScenicDetailTravelRecommendCell nil");
     }
-    [cell setModel:nil];
+    
+    LBB_SpotsNearbyRecommendData* obj;
+    switch (self.nearbyRecommendsSelectType) {
+        case LBBPoohSegmCtrlFoodsType:
+            obj = self.spotModel.spotDetails.nearbyFoodRecommends[indexPath.row];
+            break;
+        case LBBPoohSegmCtrlHostelType:
+            obj = self.spotModel.spotDetails.nearbyHostelRecommends[indexPath.row];
+            break;
+        case LBBPoohSegmCtrlScenicType:
+            obj = self.spotModel.spotDetails.nearbySpotRecommends[indexPath.row];
+            break;
+            
+        default:
+            break;
+    }
+    
+    [cell setModel:obj];
     return cell;
     
 }
@@ -748,9 +904,25 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 }
 #pragma 周边推荐
 -(CGFloat)tableView:(UITableView *)tableView heightForTravelRecommendRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailTravelRecommendCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailTravelRecommendCell* cell){
-        [cell setModel:nil];
+        LBB_SpotsNearbyRecommendData* obj;
+        switch (ws.nearbyRecommendsSelectType) {
+            case LBBPoohSegmCtrlFoodsType:
+                obj = ws.spotModel.spotDetails.nearbyFoodRecommends[indexPath.row];
+                break;
+            case LBBPoohSegmCtrlHostelType:
+                obj = ws.spotModel.spotDetails.nearbyHostelRecommends[indexPath.row];
+                break;
+            case LBBPoohSegmCtrlScenicType:
+                obj = ws.spotModel.spotDetails.nearbySpotRecommends[indexPath.row];
+                break;
+                
+            default:
+                break;
+        }
+        
+        [cell setModel:obj];
     }];
 }
 @end

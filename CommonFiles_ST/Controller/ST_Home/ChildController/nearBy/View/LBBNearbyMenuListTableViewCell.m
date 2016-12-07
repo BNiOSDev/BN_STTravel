@@ -28,7 +28,6 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
 
-        
         CGFloat interval = 10;
         
         self.portraitImageView = [UIImageView new];

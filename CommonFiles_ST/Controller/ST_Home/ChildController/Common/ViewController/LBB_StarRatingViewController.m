@@ -10,6 +10,7 @@
 #import "CWStarRateView.h"
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
 #import <CTAssetsPickerController/CTAssetsPageViewController.h>
+#import "LBB_CommentViewModel.h"
 
 static const NSInteger kViewMarginLeft = 15;
 static const NSInteger kPictureMaxCol = 4;
@@ -104,8 +105,8 @@ static const NSInteger kPictureInterval = 10;
     CGFloat starHeigth = 30;
     self.starRatingView = [[CWStarRateView alloc] initWithFrame:CGRectMake(0, 0, starWidth, starHeigth)
                                                      numberOfStars:5];
-    self.starRatingView.scorePercent = 0.9;
-    self.starRatingView.allowIncompleteStar = YES;
+    self.starRatingView.scorePercent = 0.8;
+    self.starRatingView.allowIncompleteStar = NO;
     self.starRatingView.hasAnimation = YES;
     self.starRatingView.delegate = self;
     [v1 addSubview:self.starRatingView];
@@ -129,7 +130,7 @@ static const NSInteger kPictureInterval = 10;
     }];
     
     self.textField = [UITextView new];
-    self.textField.placeholder = @"请输入您的评论内容";
+    self.textField.placeholder = @"请输入您的体验感受";
     [self.textField setFont:Font14];
     self.textField.layer.borderColor = ColorLine.CGColor;
     self.textField.layer.borderWidth = SeparateLineWidth;
@@ -171,7 +172,33 @@ static const NSInteger kPictureInterval = 10;
     }];
     [self.submitButton bk_addEventHandler:^(id sender){
         
-        [ws showHudPrompt:@"提交啦"];
+        if (ws.textField.text.length <= 0) {
+            [ws showHudPrompt:@"请输入评论内容!"];
+            return;
+        }
+        
+        if (ws.pictures.count <= 0) {
+            [ws showHudPrompt:@"请至少选择一张照片!"];
+            return;
+        }
+        //objId	Long	场景ID
+      //  type	Int	1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题 13景点专题
+
+        int scores = ws.starRatingView.scorePercent *100;
+        NSString* remark = ws.textField.text;
+        [LBB_CommentViewModel commentObjId:ws.allSpotsId type:ws.allSpotsType scores:scores remark:remark images:ws.pictures parentId:ws.parentId block:^(NSDictionary*dic, NSError *error){
+        
+            if (error) {
+                [ws showHudPrompt:error.domain];
+            }
+            else{
+                
+                NSLog(@"commentObjId return dic:%@",dic);
+                [ws.navigationController popViewControllerAnimated:YES];
+            }
+            
+        }]; 
+        
         
     } forControlEvents:UIControlEventTouchUpInside];
     

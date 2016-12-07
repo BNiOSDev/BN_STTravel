@@ -9,6 +9,8 @@
 #import "LBB_ScenicDetailPriceMsgCell.h"
 #import "PoohCommon.h"
 #import "LBB_StarRatingViewController.h"
+#import "LBB_NearSign.h"
+
 @implementation LBB_ScenicDetailPriceMsgCell
 
 /*
@@ -63,15 +65,16 @@
         }];
         [self.signButton bk_whenTapped:^{
             
-            BOOL status = ws.model.isSigned;
-            Base_BaseViewController* curVC = (Base_BaseViewController*)[ws getViewController];
-            if (status) {
-                [curVC showHudPrompt:@"已签到"];
-            }
-            else{
-                [curVC showHudPrompt:@"未签到"];
-            }
-            
+            [LBB_NearSign signObjId:ws.model.allSpotsId type:(int)ws.model.allSpotsType block:^(NSError* error){
+                if (!error) {
+                    ws.model.isSigned = YES;
+                }
+                else{
+                    Base_BaseViewController* curVC = (Base_BaseViewController*)[ws getViewController];
+                    [curVC showHudPrompt:error.domain];
+
+                }
+            }];
     
         }];
         
@@ -150,6 +153,8 @@
         [self.commentsView bk_whenTapped:^{
             
             LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc] init];
+            dest.allSpotsType = (int)ws.model.allSpotsType;// 场景类型 1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题
+            dest.allSpotsId = ws.model.allSpotsId;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
             
         }];

@@ -9,6 +9,8 @@
 #import <BN_BaseDataModel.h>
 #import "LBB_SpotDetailsViewModel.h"
 #import "LBB_SquareAddressViewModel.h"
+#import "LBB_HomeCommonModel.h"
+
 
 @interface LBB_SignInUser : BN_BaseDataModel
 
@@ -45,11 +47,18 @@
 @property (nonatomic,strong)NSMutableArray<LBB_SpotModel *> *hostelArray;
 @property (nonatomic,strong)NSMutableArray<LBB_SpotModel *> *spotArray;
 
-@property (nonatomic,strong)NSMutableArray<LBB_NearShopModel *> *nearShopArray;
+@property (nonatomic,strong)NSMutableArray<LBB_NearShopModel *> *nearShopArray;//附近商家
 @property (nonatomic,strong)NSMutableArray<LBB_NearSignIn *> *nearSignInArray;
 @property (nonatomic,assign)long signInNum;
 @property (nonatomic,assign)int rank;
 @property (nonatomic,strong)NSMutableArray<LBB_SignInUser *> *signInUserArray;
+
+
+//广告轮播
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *spotAdvertisementArray;
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *foodAdvertisementArray;
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *hostelAdvertisementArray;
+
 
 /**
  3.9.2	附近 –美食\名宿\景点列表(已测)
@@ -101,4 +110,35 @@
  */
 - (void)getSignInUserArrayClearData:(BOOL)clear;
 
+/**
+ 3.9.1 附近的商家 (已测)
+ 
+ @param clear 清空原数据
+ */
+- (void)getNearSignInMapArrayClearData:(NSString *)longitude
+                        dimensionality:(NSString *)dimensionality
+                                 clear:(BOOL)clear;
+
+
+/**
+ 3.1.1 广告轮播 8 附近景点广告
+ 
+ @param clear 是否清空原数据
+ */
+
+- (void)getSpotAdvertisementListArrayClearData:(BOOL)clear;
+/**
+ 3.1.1 广告轮播 9附近美食广告
+ 
+ @param clear 是否清空原数据
+ */
+
+- (void)getFoodAdvertisementListArrayClearData:(BOOL)clear;
+/**
+ 3.1.1 广告轮播 10 附近民宿广告
+ 
+ @param clear 是否清空原数据
+ */
+
+- (void)getHostelAdvertisementListArrayClearData:(BOOL)clear;
 @end

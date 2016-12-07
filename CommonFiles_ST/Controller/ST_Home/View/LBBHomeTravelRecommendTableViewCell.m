@@ -163,36 +163,36 @@
         [self.specialLabelButton1 mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.equalTo(ws.contentView).offset(-8);
-            make.height.mas_equalTo(height);
-            make.width.mas_equalTo(width);
+          //  make.height.mas_equalTo(height);
+          //  make.width.mas_equalTo(width);
             make.bottom.equalTo(ws.bgImageView).offset(-2*interval);
         }];
         
         [self.specialLabelButton2 mas_makeConstraints:^(MASConstraintMaker* make){
         
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton1.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton1.mas_top).offset(-interval);
         }];
         
         [self.specialLabelButton3 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton2.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton2.mas_top).offset(-interval);
         }];
         [self.specialLabelButton4 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton3.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton3.mas_top).offset(-interval);
         }];
         [self.specialLabelButton5 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton4.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton4.mas_top).offset(-interval);
         }];
         [self.specialLabelButton6 mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.right.width.height.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton5.mas_top).offset(-interval/2);
+            make.right.equalTo(ws.specialLabelButton1);
+            make.bottom.equalTo(ws.specialLabelButton5.mas_top).offset(-interval);
         }];
         
         [self.specialLabelButton6 setHidden:YES];
@@ -248,30 +248,45 @@
             NSLog(@"specialLabelButton1 touch");
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:0];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
 
         [self.specialLabelButton2 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:1];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
 
         [self.specialLabelButton3 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:2];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
 
         [self.specialLabelButton4 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:3];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
     
         [self.specialLabelButton5 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:4];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
     
@@ -279,6 +294,9 @@
         [self.specialLabelButton6 bk_whenTapped:^{
             BN_HomeTag* tag = [ws.model.tags objectAtIndex:5];
             LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = tag.tagId;
+            dest.viewModel = viewModel;
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
         

@@ -96,19 +96,35 @@
             make.height.mas_equalTo(SeparateLineWidth);
             make.bottom.equalTo(ws.contentView);
         }];
-        [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
     }
     return self;
 }
 
 
--(void)setModel:(id)model{
+-(void)setModel:(LBB_SpotsNearbyRecommendData*)model{
 
-    NSInteger price = 120;
-    NSInteger num = 1;
+    /*
+     @property(nonatomic, assign)long allSpotsId ;// 场景ID
+     @property(nonatomic, strong)NSString *allSpotsName ;// 场景名称
+     @property(nonatomic, strong)NSString *picUrl ;// 场景图片
+     @property(nonatomic, strong)NSString *picRemark ;// 场景图片描述
+     @property(nonatomic, strong)NSString *realPrice ;// 价格(实际价格)
+     @property(nonatomic, strong)NSMutableArray<LBB_SpotsTag*> *tags ;// 标签集合
+     */
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+
+    [self.titleLabel setText:model.allSpotsName];
+    [self.addressLabel setText:model.picRemark];
+    
+    self.styleButton.hidden = YES;
+    if (model.tags.count > 0) {
+        self.styleButton.hidden = NO;
+        LBB_SpotsTag* tag = [model.tags objectAtIndex:0];
+        [self.styleButton setTitle:tag.name forState:UIControlStateNormal];
+    }
     
     //单价设置
-    NSString* strFormat1 = [NSString stringWithFormat:@"%ld元起/%ld人",price,num];
+    NSString* strFormat1 = [NSString stringWithFormat:@"%@元起/人",model.realPrice];
     NSString* strFormat2 = @"元";
     UIColor* fontColor = ColorBtnYellow;
     NSDictionary* attrsDic = @{NSForegroundColorAttributeName:fontColor,
@@ -123,6 +139,8 @@
         NSLog(@"Not Found");
     }
     self.priceLable.attributedText = strAttr;
+    
+    
     
 }
 
