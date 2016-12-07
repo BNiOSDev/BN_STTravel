@@ -129,7 +129,9 @@
         NSLog(@"保存视频过程中发生错误，错误信息:%@",error.localizedDescription);
     }else {
         NSLog(@"视频保存成功");
+        PHAsset  *videoAsset = [FZJPhotoTool  latestAsset];
         [self.TransDelegate transCameraVideo:nil];
+        [self.TransDelegate transCameraImage:nil PHAsset:videoAsset];
     }
 }
 

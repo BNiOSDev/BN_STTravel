@@ -16,6 +16,8 @@
 #import "LBB_SquareViewModel.h"
 #import "Header.h"
 #define VideoCell @"zjmVideoCell"
+#import "LBBVideoPlayerViewController.h"
+#import "LBB_VideoDetailViewController.h"
 
 @interface LBBVideoViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)UITableView     *tableView;
@@ -34,13 +36,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 30 - 64 - 44 - 20)];
     [self initViewModel];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-    
     [self.tableView registerClass:[LBBVideoTableViewCell class] forCellReuseIdentifier:VideoCell];
 }
 
@@ -94,12 +94,31 @@
     ///////////////////////////////////////////////////////////////////////
     
     cell.model = self.viewModel.ugcVideoArray[indexPath.row];
+    __weak typeof (self) weakSelf = self;
+    cell.blockBtnFunc = ^(NSInteger tag)
+    {
+        if(tag == 0)
+        {
+            LBB_SquareUgc *model = weakSelf.viewModel.ugcVideoArray[indexPath.row];
+            LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc]init];
+            vc.videoUrl = [NSURL URLWithString:model.videoUrl];
+            [self presentViewController:vc animated:YES completion:nil];
+//            [self.navigationController pushViewController:vc animated:YES];
+        }
+    };
+    
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LBB_SquareUgc  *model = self.viewModel.ugcVideoArray[indexPath.row];
+    NSLog(@"视频链接：%@",model.videoUrl);
+    LBB_VideoDetailViewController *Vc = [[LBB_VideoDetailViewController alloc]init];
+    Vc.viewModel = self.viewModel.ugcVideoArray[indexPath.row];
+     [self.navigationController pushViewController:Vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

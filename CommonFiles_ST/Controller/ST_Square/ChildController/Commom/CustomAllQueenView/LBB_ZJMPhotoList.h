@@ -75,4 +75,7 @@
  */
 + (PHAsset *)latestAsset;
 
++(UIImage *)getThumbnailImage:(NSString *)videoURL;
+- (void)getThumbnailImage:(NSString *)videoURL Block:(void(^)(UIImage *resultImage))completeImageBlock;
+
 @end

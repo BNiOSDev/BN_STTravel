@@ -524,6 +524,8 @@
 		1DB1502A1DF311110023A740 /* ST_Square.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DB14E291DF3110E0023A740 /* ST_Square.xcassets */; };
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
+		3C022EA91DF7F315002ED79A /* LBB_VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */; };
+		3C022EAC1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EAB1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
 		3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C518C541DF66F22002653EC /* MediaPlayer.framework */; };
 		3C53FE2D1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */; };
@@ -1475,6 +1477,10 @@
 		1DB14E291DF3110E0023A740 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DB1502E1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3C022EA71DF7F315002ED79A /* LBB_VideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_VideoDetailViewController.h; sourceTree = "<group>"; };
+		3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_VideoDetailViewController.m; sourceTree = "<group>"; };
+		3C022EAA1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_VideoDetailTableViewCell.h; sourceTree = "<group>"; };
+		3C022EAB1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_VideoDetailTableViewCell.m; sourceTree = "<group>"; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3C518C541DF66F22002653EC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3C53FE2B1DF54C27003C6148 /* LBB_AddFootprint_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_AddFootprint_ViewController.h; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/View/LBB_AddFootprint_ViewController.h; sourceTree = SOURCE_ROOT; };
@@ -3916,6 +3922,8 @@
 				1DB14D141DF3110E0023A740 /* LBBFriendViewController.m */,
 				1DB14D151DF3110E0023A740 /* LBBHostDetailViewController.h */,
 				1DB14D161DF3110E0023A740 /* LBBHostDetailViewController.m */,
+				3C022EA71DF7F315002ED79A /* LBB_VideoDetailViewController.h */,
+				3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */,
 				1DB14D171DF3110E0023A740 /* PublishController */,
 				1DB14D501DF3110E0023A740 /* PublishVistNote */,
 				1DB14D611DF3110E0023A740 /* SelectTipController */,
@@ -4141,6 +4149,8 @@
 				1DB14CB81DF3110E0023A740 /* LBB_HostDetailHeadView.m */,
 				1DB14CB91DF3110E0023A740 /* LBB_HostDetailTableViewCell.h */,
 				1DB14CBA1DF3110E0023A740 /* LBB_HostDetailTableViewCell.m */,
+				3C022EAA1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.h */,
+				3C022EAB1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5080,12 +5090,11 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = LBB;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = GL_RunMan;
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8NT4E7BWNP;
 						ProvisioningStyle = Automatic;
 					};
 					C9C0E9641D9948F300575A7C = {
@@ -5345,6 +5354,7 @@
 				1DB14FC51DF311100023A740 /* FZJPhotoModel.m in Sources */,
 				1DB14E3F1DF3110E0023A740 /* SKTag.m in Sources */,
 				1DB14FD51DF311100023A740 /* LBB_Date_SengeMent.m in Sources */,
+				3C022EAC1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m in Sources */,
 				1DB14E481DF3110E0023A740 /* LBB_DiscoveryDetailMsgCell.m in Sources */,
 				1DB14E391DF3110E0023A740 /* LBBPoohBaseTableSectionHeaderView.m in Sources */,
 				1DB14E8B1DF3110E0023A740 /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */,
@@ -5597,6 +5607,7 @@
 				1DB1501A1DF311110023A740 /* ZJMTravelCell.m in Sources */,
 				1DB14E801DF3110E0023A740 /* LBB_ScenicMainTableViewCell.m in Sources */,
 				1DB14F5F1DF311100023A740 /* ImageContentView.m in Sources */,
+				3C022EA91DF7F315002ED79A /* LBB_VideoDetailViewController.m in Sources */,
 				1DB14E921DF3110E0023A740 /* LBB_ScenicViewModel.m in Sources */,
 				1DB14EDE1DF3110F0023A740 /* LBB_ChatViewCell.m in Sources */,
 				1DB14EBC1DF3110F0023A740 /* MineBaseViewController.m in Sources */,
@@ -5788,6 +5799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -5836,6 +5848,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -5881,7 +5894,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -5963,7 +5976,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;

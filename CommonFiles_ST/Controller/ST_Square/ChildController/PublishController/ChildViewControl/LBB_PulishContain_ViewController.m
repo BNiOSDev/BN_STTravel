@@ -25,9 +25,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //注册监听者。
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(back:) name:@"goBack" object:nil];
-    
     self.navigationItem.title = @"发布内容";
     self.view.backgroundColor = ColorWhite;
     
@@ -41,11 +38,6 @@
 - (void)backToController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)back:(NSNotification *)notification
-{
-    [self backToController];
 }
 
 - (void)viewWillAppear:(BOOL)animated

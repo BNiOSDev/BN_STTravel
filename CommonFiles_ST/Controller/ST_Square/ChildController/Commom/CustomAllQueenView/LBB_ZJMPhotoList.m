@@ -175,4 +175,41 @@
     return [assetsFetchResults firstObject];
 }
 
+- (void)getThumbnailImage:(NSString *)videoURL Block:(void(^)(UIImage *resultImage))completeImageBlock
+{
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        if ([videoURL length] == 0) {
+            if (completeImageBlock) {
+                completeImageBlock(nil);
+            }
+        }
+        
+        AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL URLWithString:videoURL] options:nil];
+        
+        AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+        
+        gen.appliesPreferredTrackTransform = YES;
+        
+        CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+        
+        NSError *error = nil;
+        
+        CMTime actualTime;
+        
+        CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+        
+        UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
+        
+        CGImageRelease(image);
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completeImageBlock) {
+                completeImageBlock(thumb);
+            }
+        });
+    });
+}
+
 @end

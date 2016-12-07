@@ -174,7 +174,7 @@
         NSLog(@"%@",error);
         if(!error)
         {
-            [self.navigationController popToRootViewControllerAnimated:NO];
+//            [self.navigationController popToRootViewControllerAnimated:NO];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"goBack" object:self userInfo:nil];
         }
     }];

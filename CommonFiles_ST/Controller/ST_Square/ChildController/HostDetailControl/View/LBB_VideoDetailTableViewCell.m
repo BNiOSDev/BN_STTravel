@@ -1,12 +1,12 @@
 //
-//  LBBVideoTableViewCell.m
+//  LBB_VideoDetailTableViewCell.m
 //  ST_Travel
 //
-//  Created by dawei che on 2016/10/22.
+//  Created by dawei che on 2016/12/7.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
-#import "LBBVideoTableViewCell.h"
+#import "LBB_VideoDetailTableViewCell.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
 #import "PraiseView.h"
@@ -14,16 +14,12 @@
 #import "CommentBoxView.h"
 #import "ContentImageView.h"
 #import "Header.h"
-#import <MediaPlayer/MediaPlayer.h>
-#import <MediaPlayer/MPMoviePlayerController.h>
 #import "LBB_ZJMPhotoList.h"
 
-
-@implementation LBBVideoTableViewCell
+@implementation LBB_VideoDetailTableViewCell
 {
     UIButton       *_iconImage;//大头像
     UIButton       *_collectBtn;
-    UIButton       *_playBtn;
     UILabel         *_nameLable;//用户名
     UILabel         *_timeLabel;//时间
     UILabel         *_addressNameLabel;//地址
@@ -35,7 +31,6 @@
     PraiseView                  *praiseView;         //
     ZJMCommentView      *commetView;      //
     CommentBoxView       *boxView;             //
-    MPMoviePlayerViewController *moviePlayerView;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -88,12 +83,8 @@
     
     boxView = [CommentBoxView new];
     
-    _playBtn =  [UIButton new];
-    [_playBtn setImage:IMAGE(@"zjmbofang") forState:0];
-    [_playBtn addTarget:self action:@selector(playFunc) forControlEvents:UIControlEventTouchUpInside];
-    
     NSArray   *views = @[_iconImage,_nameLable,_timeImage,_timeLabel,_addressImage,_addressNameLabel,_contentLabel,
-    _contentImage,praiseView,_collectBtn,commetView,boxView,_playBtn];
+                         _contentImage,praiseView,_collectBtn,commetView,boxView];
     [self.contentView sd_addSubviews:views];
     
     UIView *contentView = self.contentView;
@@ -114,7 +105,7 @@
     .topEqualToView(_iconImage)
     .heightIs(20)
     .widthIs(300);
-
+    
     _timeImage.sd_layout
     .leftSpaceToView(_iconImage,margin)
     .topSpaceToView(_nameLable,5.0)
@@ -139,24 +130,27 @@
     //    .topEqualToView(_addressImage)
     .centerYEqualToView(_addressImage)
     .heightIs(18);
-
+    
 }
 
-
-- (void)setModel:(LBB_SquareUgc *)model
+- (void)setModel:(LBB_SquareDetailViewModel *)model
 {
+    
     _model = model;
     
     /*
      
-     @property (nonatomic, assign)long ugcId ;// 主键
-     @property (nonatomic, assign)int ugcType ;// 1.照片 2.视频
+     @property (nonatomic,assign)long ugcId ;// 主键
+     @property (nonatomic, strong)NSString *shareUrl ;// 分享URL
+     @property (nonatomic, strong)NSString *shareTitle ;// 分享标题
+     @property (nonatomic, strong)NSString *shareContent ;// 分享内容
+     @property (nonatomic, assign)int type ;// 1.照片 2.视频
      @property (nonatomic, strong)NSString *videoUrl ;// 视频地址(类型为2)
-     @property (nonatomic, assign)long userId ;// 用户ID
+     @property (nonatomic,assign)long userId ;// 用户ID
      @property (nonatomic, strong)NSString *userName ;// 用户名称
-     @property (nonatomic, strong)NSString *userPicUrl ;// 用户头像
-     @property (nonatomic, assign)long timeDistance ;// 时间距离(分)
-     @property (nonatomic, assign)long allSpotsId ;// 场景ID
+     @property (nonatomic, strong)NSString *createTime ;// 创建时间
+     @property (nonatomic, strong)NSString *timeDistance ;// 时间距离
+     @property (nonatomic,assign)long allSpotsId ;// 场景ID
      @property (nonatomic, strong)NSString *allSpotsName ;// 场景名称
      @property (nonatomic, strong)NSMutableArray<LBB_SquarePics *> *pics ;// 图片集合
      @property (nonatomic, strong)NSMutableArray<LBB_SquareTags *> *tags ;// 视频标签
@@ -164,28 +158,29 @@
      @property (nonatomic, strong)NSString *picsRemark ;// 图片描述
      @property (nonatomic, strong)NSString *videoRemark ;// 视频描述
      @property (nonatomic, assign)int likeNum ;// 点赞次数
-     @property (nonatomic, assign)int isLiked ;// 是否点赞 0 否 1是
+     @property (nonatomic, assign)int isLiked ;// 是否点赞
      @property (nonatomic, strong)NSMutableArray<LBB_SquareLikeList *> *likeList ;// 点赞集合
-     @property (nonatomic, assign)int isCollected ;// 是否收藏0 否 1是
+     @property (nonatomic, assign)int isCollected ;// 是否收藏
      @property (nonatomic, strong)NSMutableArray<LBB_SquareComments *> *comments ;// 评论集合
-     
-     @property (nonatomic, strong)LBB_SquareDetailViewModel *squareDetailViewModel;
-     
-     @property (nonatomic, strong)LBB_UserShowViewModel *userShowViewModel;
      */
-    
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");
-    _addressNameLabel.text = model.allSpotsName;
-    _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
-    _contentLabel.text = model.videoRemark;//视频描述
-
+    _addressNameLabel.text = model.allSpotsName;// 场景名称
+    _timeLabel.text = model.createTime;
+    if (model.type == 1) {//照片
+        _contentLabel.text = model.picsRemark;
+    }
+    else{//视频
+        _contentLabel.text = model.videoRemark;
+    }
+    
+    //图片集合
     FZJPhotoTool  *tool = [[FZJPhotoTool alloc]init];
     __block UIImage  *videoImage;
     [tool getThumbnailImage:model.videoUrl Block:^(UIImage *resultImage) {
-                videoImage = resultImage;
+        videoImage = resultImage;
     }];
     if(!videoImage)
     {
@@ -193,7 +188,6 @@
     }else{
         _contentImage.image = videoImage;
     }
-
     
     //点赞人数
     NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {
@@ -217,35 +211,33 @@
         return model;
     }];
     commetView.commentArray = commentModelArray;
-
     _contentLabel.sd_layout
-    .leftEqualToView(_nameLable)
-    .topSpaceToView(_iconImage, 5);
-    [_contentLabel autoFit:model.videoRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 75, DeviceHeight)];
+    .leftSpaceToView(self.contentView,10)
+    .rightSpaceToView(self.contentView,5)
+    .topSpaceToView(_iconImage, 2.5);
+    if (model.type == 1) {//照片
+        [_contentLabel autoFit:model.picsRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 15, DeviceHeight)];
+    }
+    else{//视频
+        [_contentLabel autoFit:model.videoRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 15, DeviceHeight)];
+    }
     if(_contentLabel.text.length == 0)
     {
         _contentLabel.height = 0;
     }
-    
     _contentImage.sd_layout
-    .leftEqualToView(_nameLable)
-    .topSpaceToView(_contentLabel, 5)
-    .rightSpaceToView(self.contentView, 10)
-    .heightIs(AUTO(155));
-    
-    _playBtn.sd_layout
-    .centerXEqualToView(_contentImage)
-    .centerYEqualToView(_contentImage)
-    .heightIs(50)
-    .widthIs(50);
+    .leftEqualToView(self.contentView)
+    .topSpaceToView(_contentLabel, 0)
+    .rightSpaceToView(self.contentView, 0)
+    .heightIs(AUTO(320));
     
     praiseView.sd_layout
-    .leftEqualToView(_contentImage)
+    .leftSpaceToView(self.contentView,10)
     .topSpaceToView(_contentImage,5.0)
     .widthIs(300);
     
     _collectBtn.sd_layout
-    .rightEqualToView(_contentImage)
+    .rightSpaceToView(self.contentView,10)
     .topSpaceToView(_contentImage,5.0)
     .widthIs(AUTO(40))
     .heightIs(18);
@@ -253,24 +245,15 @@
     commetView.sd_layout
     .leftEqualToView(praiseView)
     .topSpaceToView(praiseView,10.0)
-    .rightEqualToView(_contentImage);
+    .rightSpaceToView(self.contentView,10);
     
     boxView.sd_layout
     .leftEqualToView(commetView)
     .topSpaceToView(commetView,10.0)
-    .rightEqualToView(_contentImage)
-    .heightIs(AUTO(30));
-
+    .rightSpaceToView(self.contentView,10)
+    .heightIs(40);
+    
     [self setupAutoHeightWithBottomViewsArray:@[boxView,_contentLabel] bottomMargin:10];
 }
-
-- (void)playFunc
-{
-    if(_blockBtnFunc)
-    {
-        self.blockBtnFunc(0);
-    }
-}
-
 
 @end
