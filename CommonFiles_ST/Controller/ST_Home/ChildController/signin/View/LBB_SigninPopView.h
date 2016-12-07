@@ -15,7 +15,7 @@
 @property(nonatomic, retain)UILabel* locationLabel;
 @property(nonatomic, retain)UILabel* noteLabel;
 
--(void)showPopView:(LBB_NearSignIn*)obj;
+-(void)showPopView:(LBB_NearShopModel*)obj;
 -(void)dismissPopView;
 -(void)setSigninStatus:(BOOL)signin;
 

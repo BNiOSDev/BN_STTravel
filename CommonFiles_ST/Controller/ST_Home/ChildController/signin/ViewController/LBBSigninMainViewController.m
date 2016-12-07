@@ -43,8 +43,6 @@
     
     self.viewModel = [[LBB_NearViewModel alloc]init];
     
-    [self.viewModel getNearSignInArrayClearData:YES];
-
     @weakify(self);
 
     /**
@@ -119,14 +117,14 @@
     [sign bk_addEventHandler:^(id sender){
         
         
-        if (ws.viewModel.nearSignInArray.count <= 0) {
+        if (ws.viewModel.nearShopArray.count <= 0) {
             [ws showHudPrompt:@"附近没有可签到的信息"];
             return ;
         }
         
         
-       // LBB_NearShopModel* obj = [ws.viewModel.nearShopArray objectAtIndex:0];
-        LBB_NearSignIn* obj = [ws.viewModel.nearSignInArray objectAtIndex:0];
+        LBB_NearShopModel* obj = [ws.viewModel.nearShopArray objectAtIndex:0];
+       // LBB_NearSignIn* obj = [ws.viewModel.nearSignInArray objectAtIndex:0];
         NSLog(@"sign touch");
         if (!ws.popView) {
             ws.popView = [[LBB_SigninPopView alloc]init];
