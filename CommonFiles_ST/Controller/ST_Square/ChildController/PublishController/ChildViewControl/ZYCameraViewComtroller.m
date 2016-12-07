@@ -106,7 +106,6 @@
         //视频上传
 //        [self uploadVideoWithData:videoData];
          NSLog(@"这是一段视频");
-        [self.TransDelegate transCameraVideo:videoData];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -130,6 +129,7 @@
         NSLog(@"保存视频过程中发生错误，错误信息:%@",error.localizedDescription);
     }else {
         NSLog(@"视频保存成功");
+        [self.TransDelegate transCameraVideo:nil];
     }
 }
 

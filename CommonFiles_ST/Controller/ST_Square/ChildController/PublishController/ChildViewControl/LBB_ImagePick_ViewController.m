@@ -25,15 +25,26 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self registerChangeObserver];
     
-    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-        [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
+    [self unregisterChangeObserver];
+}
+
+#pragma mark - Photo library change observer
+- (void)registerChangeObserver
+{
+    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+}
+
+- (void)unregisterChangeObserver
+{
+    [[PHPhotoLibrary sharedPhotoLibrary] unregisterChangeObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -98,6 +109,7 @@
         cell.backgroundView = takePhoto;
         cell.pauseImage.hidden = YES;
         cell.selectBtn.hidden = YES;
+        cell.contentImage.hidden = YES;
         return cell;
     }else{
         CGSize size = CGSizeMake(cell.size.width, cell.size.height);
@@ -118,7 +130,12 @@
         cell.pauseImage.centerY = cell.size.height / 2;
         cell.pauseImage.hidden = NO;
         cell.selectBtn.hidden = NO;
+        cell.contentImage.hidden = NO;
         cell.selectBtn.tag = indexPath.row;
+        if(indexPath == _selectIndexPath)
+        {
+             [cell.selectBtn setBackgroundImage:IMAGE(@"zjmxuanzhong") forState:0];
+        }
         cell._blockVideo = ^(NSInteger index,BOOL select){
             if(select)
             {
@@ -164,7 +181,7 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%ld",indexPath.row);
+    NSLog(@"indexPath.row = %ld",indexPath.row);
     if(indexPath.row == 0)
     {
         ZYCameraViewComtroller *Vc = [[ZYCameraViewComtroller alloc]init];
@@ -176,20 +193,16 @@
         PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
         options.version = PHImageRequestOptionsVersionCurrent;
         options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
-    
         PHImageManager *manager = [PHImageManager defaultManager];
         [manager requestAVAssetForVideo:phAsset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+            
             AVURLAsset *urlAsset = (AVURLAsset *)asset;
-        
             NSURL *url = urlAsset.URL;
             LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc] init];
             vc.videoUrl = url;
-
             [self presentViewController:vc animated:NO completion:nil];
-    
         }];
     }
-
 }
 
 //返回这个UICollectionView是否可以被选择
@@ -219,7 +232,7 @@
 #pragma transCameraVideo
 - (void)transCameraVideo:(NSData *)video
 {
-    
+    NSLog(@"视频回传");
 }
 
 - (void)checkPulish
@@ -239,7 +252,7 @@
 {
     for(int i = 1; i < _videoArray.count+1;i++)
     {
-           NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         LBBVideoCollectionViewCell  *cell = (LBBVideoCollectionViewCell *)[_imageList cellForItemAtIndexPath:indexPath];
         if(indexPath == _selectIndexPath)
         {

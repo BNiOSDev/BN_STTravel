@@ -91,6 +91,11 @@
     
     boxView = [CommentBoxView new];
     
+    _addressImage.image = IMAGE(@"zjmaddress");
+    _timeImage.image = IMAGE(@"zjmtime");
+    UIImage *addressImage = IMAGE(@"zjmaddress");
+    UIImage *timeImage = IMAGE(@"zjmtime");
+    
     NSArray   *views = @[_iconImage,_nameLable,_timeImage,_timeLabel,_addressImage,_addressNameLabel,_contentLabel,
                          _contentImage,praiseView,_collectBtn,commetView,boxView];
     [self.contentView sd_addSubviews:views];
@@ -112,25 +117,27 @@
     
     _timeImage.sd_layout
     .leftSpaceToView(_iconImage,margin)
-    .topSpaceToView(_nameLable,2.0)
-    .heightIs(18)
-    .widthIs(18);
+    .topSpaceToView(_nameLable,5.0)
+    .heightIs(timeImage.size.height)
+    .widthIs(timeImage.size.width);
     
     _timeLabel.sd_layout
     .leftSpaceToView(_timeImage, margin - 5)
-    .topEqualToView(_timeImage)
+//    .topEqualToView(_timeImage)
+    .centerYEqualToView(_timeImage)
     .heightIs(18);
-    //    .widthIs(300);
+//        .widthIs(300);
     
     _addressImage.sd_layout
     .leftSpaceToView(_timeLabel,margin)
-    .topSpaceToView(_nameLable,2.0)
-    .heightIs(18)
-    .widthIs(12);
+    .topSpaceToView(_nameLable,5.0)
+    .heightIs(addressImage.size.height)
+    .widthIs(addressImage.size.width);
     
     _addressNameLabel.sd_layout
     .leftSpaceToView(_addressImage, margin - 5)
-    .topEqualToView(_addressImage)
+//    .topEqualToView(_addressImage)
+    .centerYEqualToView(_addressImage)
     .heightIs(18);
     
     //    _contentLabel.sd_layout
@@ -158,8 +165,7 @@
 
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
-    _addressImage.image = IMAGE(@"zjmaddress");
-    _timeImage.image = IMAGE(@"zjmtime");
+    
     _addressNameLabel.text = model.allSpotsName ;// 场景名称;
     _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
     _contentLabel.text = model.picsRemark ;// 图片描述
@@ -169,7 +175,6 @@
         NSString* dic = element.imageUrl;
         return dic;
     }];
-    _contentImage.imageArray = imageArray;
     
     //点赞人数
     NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {
@@ -181,7 +186,7 @@
         return dic;
     }];
     praiseView.praiseArray = praiseModelArray;
-    
+    _contentImage.imageArray = imageArray;
     
     //评论内容
     NSMutableArray *commentModelArray = (NSMutableArray *)[model.comments map:^id(LBB_SquareComments *element) {
@@ -199,15 +204,26 @@
     .topSpaceToView(_iconImage, 5);
     [_contentLabel autoFit:model.picsRemark size:_contentLabel.font maxSize:CGSizeMake(DeviceWidth - 75, DeviceHeight)];
     
+    CGFloat   contentImageHeight;
+    CGFloat   contentMargnHeight;
+    if(imageArray.count == 0)
+    {
+        contentImageHeight = 0;
+        contentMargnHeight = 0;
+    }else{
+        contentMargnHeight = 5.0;
+        contentImageHeight = AUTO(250);
+    }
+    
     _contentImage.sd_layout
     .leftEqualToView(_nameLable)
     .topSpaceToView(_contentLabel, 5)
     .rightSpaceToView(self.contentView, 10)
-    .heightIs(AUTO(250));
+    .heightIs(contentImageHeight);
     
     praiseView.sd_layout
     .leftEqualToView(_contentImage)
-    .topSpaceToView(_contentImage,5.0)
+    .topSpaceToView(_contentImage,contentMargnHeight)
     .widthIs(300);
     
     _collectBtn.sd_layout

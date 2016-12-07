@@ -62,7 +62,6 @@
     //初始化标签数组，为了后续使用代替方法
     [_tagsViewArray addObject:@""];
 
-    
     UILabel  *tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, AUTO(10.0), DeviceWidth, AUTO(20))];
     tipLabel.font = FONT(AUTO(12.0));
     tipLabel.textColor = MORELESSBLACKCOLOR;

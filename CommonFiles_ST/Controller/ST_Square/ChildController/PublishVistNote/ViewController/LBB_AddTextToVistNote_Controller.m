@@ -12,17 +12,32 @@
 #import "LBB_AddClass_Button.h"
 #import "ActionSheetDatePicker.h"
 #import "UITextView+Placeholder.h"
+#import "LBB_AddressAddViewController.h"
+#import "LBB_SpotAddress.h"
+#import "LBB_EditShopRecoder_Controller.h"
+#import "LBB_SelectTip_History_ViewController.h"
+#import "LBB_TagsViewModel.h"
+#import "BN_SquareTravelNotesModel.h"
 
 @interface LBB_AddTextToVistNote_Controller ()
 @property(nonatomic,strong)LBB_Date_SengeMent    *headSegment;
 @property(nonatomic,strong)UITextView                       *contentText;
+@property(nonatomic,strong)LBB_SpotAddress            *addressInfo;
+@property(nonatomic,copy)NSString                             *dateStr;
+@property(nonatomic,copy)NSString                             *timeStr;
+@property(nonatomic,strong)NSMutableArray              *tagsArray;
+@property(nonatomic,strong)TravelNotesDetails          *footprintModel;
 @end
 
 @implementation LBB_AddTextToVistNote_Controller
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.view.backgroundColor = WHITECOLOR;
+    
+    _footprintModel = [[TravelNotesDetails alloc]init];
+    
     [self initNav];
     [self initView];
 }
@@ -51,8 +66,14 @@
 
 - (void)initView
 {
+    
+    LBB_AddClass_Button  *addTags = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(35))];
+    addTags.titleStr = @"添加标签";
+    [addTags addTarget:self action:@selector(addTagsFunc) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addTags];
+    
     __weak typeof (self) weakSelf = self;
-    _headSegment = [[LBB_Date_SengeMent alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(32))];
+    _headSegment = [[LBB_Date_SengeMent alloc]initWithFrame:CGRectMake(0, addTags.bottom - 1, DeviceWidth, AUTO(32))];
     _headSegment.dateStr = [self stringFromDate:[NSDate date]];
     _headSegment.timeStr = [self stringFromTime:[NSDate date]];
     _headSegment.blockDatepick = ^(NSInteger tag)
@@ -95,19 +116,70 @@
     [self.view addSubview:publishBtn];
 }
 
+- (void)addTagsFunc
+{
+    NSLog(@"nicai");
+    if(_tagsArray.count >= 3)
+    {
+        [self showHudPrompt:@"最多添加三个标签"];
+        return;
+    }
+    LBB_SelectTip_History_ViewController  *vc = [[LBB_SelectTip_History_ViewController alloc]init];
+    vc.transTags = ^(id object){
+        if(!_tagsArray)
+        {
+            _tagsArray = [[NSMutableArray alloc]init];
+        }
+        [_tagsArray addObject:object];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)addAddressFunc
 {
     NSLog(@"nicai");
+    __weak typeof (self) weakSelf = self;
+    LBB_AddressAddViewController* dest = [[LBB_AddressAddViewController alloc]init];
+    dest.click = ^(LBB_AddressAddViewController* add,LBB_SpotAddress* address){
+        _addressInfo = address;
+        NSLog(@"详细地址：%@",_addressInfo.address);
+        //页面变化代码块
+        {
+            //地图显示，修改布局
+        }
+        
+        [add.navigationController popViewControllerAnimated:YES];
+    };
+    [weakSelf.navigationController pushViewController:dest animated:YES];
+
 }
 
 - (void)addSaleFunc
 {
     NSLog(@"asdfasf");
+    LBB_EditShopRecoder_Controller  *vc = [[LBB_EditShopRecoder_Controller alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)publishFunc
 {
     NSLog(@"publishFunc");
+    if(!_addressInfo)
+    {
+        [self showHudPrompt:@"请添加地点信息"];
+        return;
+    }
+    _footprintModel.picRemark = _contentText.text;
+    _footprintModel.name = @"";
+    _footprintModel.picUrl = @"";
+    _footprintModel.consumptionDesc = @"";
+    _footprintModel.pics = @[];
+    [_footprintModel saveTravelTrackData:YES address:_addressInfo block:^(NSError *error) {
+        if(!error)
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 - (void)setDate:(NSString *)dateStr
@@ -119,6 +191,7 @@
                                      doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
                                          NSLog(@"selectedDate =  %@",selectedDate);
                                        weakSelf.headSegment.dateStr = [weakSelf stringFromDate:selectedDate];
+                                         _footprintModel.releaseDate = [weakSelf stringFromDate:selectedDate];
                                      }
                                    cancelBlock:^(ActionSheetDatePicker *picker){
                                        
@@ -134,6 +207,7 @@
                                      doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin){
                                          NSLog(@"selectedDate =  %@",selectedDate);
                                         weakSelf.headSegment.timeStr = [weakSelf stringFromTime:selectedDate];
+                                        _footprintModel.releaseTime = [weakSelf stringFromTime:selectedDate];
                                      }
                                    cancelBlock:^(ActionSheetDatePicker *picker){
                                        

@@ -53,10 +53,10 @@
     [self.view addSubview:self.shopMoney];
      self.shopMoney.top = shopMoney.bottom;
     
-    UIButton    *sureBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, self.shopMoney.bottom + AUTO(50), DeviceWidth - 40, AUTO(50))];
+    UIButton    *sureBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, self.shopMoney.bottom + AUTO(50), DeviceWidth - 40, AUTO(40))];
     sureBtn.backgroundColor = ColorBtnYellow;
     sureBtn.titleLabel.font = FONT(AUTO(14.0));
-    [sureBtn setTitle:@"确定" forState:0];
+    [sureBtn setTitle:@"确   定" forState:0];
     [sureBtn setTitleColor:WHITECOLOR forState:0];
     [self.view addSubview:sureBtn];
 }

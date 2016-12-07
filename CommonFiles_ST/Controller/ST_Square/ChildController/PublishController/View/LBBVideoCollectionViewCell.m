@@ -46,16 +46,6 @@
     self._blockVideo(btn.tag,self.beSelect);
 }
 
-//- (void)setBeSelect:(BOOL)beSelect
-//{
-//    if(self.beSelect)
-//    {
-//        [_selectBtn setBackgroundImage:IMAGE(@"zjmweixuanzhong") forState:0];
-//        self.beSelect = NO;
-//    }else{
-//        [_selectBtn setBackgroundImage:IMAGE(@"zjmxuanzhong") forState:0];
-//        self.beSelect = YES;
-//    }
-//}
+
 
 @end

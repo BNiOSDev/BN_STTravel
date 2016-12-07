@@ -144,6 +144,7 @@
     [result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [arr addObject:obj];
     }];
+    arr = (NSMutableArray *)[[arr reverseObjectEnumerator] allObjects];
     return arr;
 }
 
@@ -161,7 +162,7 @@
         PHAsset *asset = (PHAsset *)obj;
         [assets addObject:asset];
     }];
-    
+    assets = (NSMutableArray *)[[assets reverseObjectEnumerator] allObjects];
     return assets;
 }
 

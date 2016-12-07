@@ -11,4 +11,8 @@
 
 @interface LBB_ImagePick_ViewController : Base_BaseViewController
 @property(nonatomic,strong)JumpToController   _blockJumpControl;
+
+#pragma mark - Photo library change observer
+- (void)registerChangeObserver;
+- (void)unregisterChangeObserver;
 @end

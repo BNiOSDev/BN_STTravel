@@ -80,7 +80,7 @@
     UIButtonExt * quit = [UIButtonExt buttonWithType:UIButtonTypeCustom];
     [quit setBackgroundImage:[UIImage imageNamed:@"zjmweixuanzhong"] forState:UIControlStateNormal];
     [quit setBackgroundImage:[UIImage imageNamed:@"zjmxuanzhong"] forState:UIControlStateSelected];
-    quit.frame = CGRectMake(0, 0, 30, 30);
+    quit.frame = CGRectMake(0, 0, 20, 20);
     [quit addTarget:self action:@selector(selectStatus:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:quit];
     _selectStatus = quit;
