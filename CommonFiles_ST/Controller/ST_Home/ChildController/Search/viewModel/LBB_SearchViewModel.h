@@ -9,10 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "LBB_SpotDetailsViewModel.h"
 
+@interface LBB_SearchHotWordModel : NSObject
+
+@property(nonatomic, strong)NSString* name;
+
+@end
+
 @interface LBB_SearchViewModel : NSObject
 
-@property (nonatomic, strong)NSMutableArray *hotWordArray;
-@property (nonatomic, strong)NSMutableArray<LBB_SpotModel*> *allSpotsArray;
+@property (nonatomic, strong)NSMutableArray<LBB_SearchHotWordModel*> *hotWordArray;
+@property (nonatomic, strong)NSMutableArray<LBB_SpotModel*> *scenicSpotsArray;
+@property (nonatomic, strong)NSMutableArray<LBB_SpotModel*> *foodSpotsArray;
+@property (nonatomic, strong)NSMutableArray<LBB_SpotModel*> *hostelSpotsArray;
 
 
 /**

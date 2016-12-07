@@ -151,6 +151,9 @@
                 if (!sectionInfo.needCheckAll) {
                     view.rightBtn.hidden = YES;
                     view.arrowImgView.hidden = YES;
+                }else {
+                    view.rightBtn.hidden = NO;
+                    view.arrowImgView.hidden = NO;
                 }
                 if ((indexPath.section == self.mineViewModel.sectionInfo.count) || (indexPath.section == 0)) {
                     view.lineView.hidden = YES;

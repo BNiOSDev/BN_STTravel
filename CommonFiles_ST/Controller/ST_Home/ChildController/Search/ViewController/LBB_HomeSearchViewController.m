@@ -18,6 +18,7 @@
 #import <BN_FilterMenu.h>
 #import "LBB_FilterListTableViewCell.h"
 #import "XDPopupListView.h"
+#import "LBB_SearchViewModel.h"
 
 static const NSInteger kSearchButtonMarginRight = -10;
 static const NSInteger kButtonWidth = 45;
@@ -35,6 +36,9 @@ static const NSInteger kButtonWidth = 45;
 
 @property(nonatomic, retain)NSArray* menuArray;
 
+@property(nonatomic, retain)LBB_SearchViewModel* viewModel;
+//地理位置管理
+@property (nonatomic,retain)LBB_PoohCoreLocationManager* locationManager;
 @end
 
 @implementation LBB_HomeSearchViewController
@@ -78,8 +82,8 @@ static const NSInteger kButtonWidth = 45;
     NSLog(@"searchBarSearchButtonClicked");
     
     self.showType = self.searchType;//按下搜索按钮，展示搜索结果
-    
-    [self.tableView reloadData];
+    [self search];
+ //   [self.tableView reloadData];
     
 }
  // called when text changes (including clear)
@@ -94,6 +98,111 @@ static const NSInteger kButtonWidth = 45;
     [self.searchBar becomeFirstResponder];
     return YES;
 }
+
+-(void)initViewModel{
+    WS(ws);
+    self.viewModel = [[LBB_SearchViewModel alloc]init];
+    
+    self.locationManager = [[LBB_PoohCoreLocationManager alloc] init];
+
+    /**
+     3.6.1	搜索-热门搜索词汇（已测）
+     */
+    
+    [self.viewModel getHotWordArray];
+    [self.viewModel.hotWordArray.loadSupport setDataRefreshblock:^{
+        if (ws.searchBar.text.length <= 0) {
+            [ws.tableView reloadData];
+        }
+    }];
+    
+    /**
+     3.6.4	搜索-景点/美食/民宿（已测）
+     
+     @param longitude Y坐标
+     @param dimensionality X坐标
+     @param allSpotsType 1.美食 2.民宿 3景点
+     @param name 搜索名称
+     @param clear 清空原数据
+     */
+    
+    @weakify(self);
+    [RACObserve(self.locationManager, latitude) subscribeNext:^(NSString* num) {
+        @strongify(self);
+        
+        [self search];
+
+    }];
+    
+    [self.viewModel.scenicSpotsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
+    [self.viewModel.foodSpotsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
+    [self.viewModel.hostelSpotsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
+    
+}
+
+//搜索动作
+-(void)search{
+    switch (self.searchType) {
+        case LBBPoohHomeSearchTypeGoods://伴手礼
+        {
+
+        }
+            break;
+        case LBBPoohHomeSearchTypeScenic://景点
+        {
+            /**
+             3.6.4	搜索-景点/美食/民宿（已测）
+             
+             @param longitude Y坐标
+             @param dimensionality X坐标
+             @param allSpotsType 1.美食 2.民宿 3景点
+             @param name 搜索名称
+             @param clear 清空原数据
+             */
+            [self.viewModel getAllSpotsArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude allSpotsType:3 name:self.searchBar.text clearData:YES];
+        }
+            break;
+        case LBBPoohHomeSearchTypeFoods://美食
+        {
+            [self.viewModel getAllSpotsArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude allSpotsType:1 name:self.searchBar.text clearData:YES];
+        }
+            break;
+        case LBBPoohHomeSearchTypeHostel://民宿
+            
+        {
+             [self.viewModel getAllSpotsArrayLongitude:self.locationManager.longitude dimensionality:self.locationManager.latitude allSpotsType:2 name:self.searchBar.text clearData:YES];
+        }
+            break;
+        case LBBPoohHomeSearchTypeUser://用户
+        {
+
+        }
+            break;
+        case LBBPoohHomeSearchTypeSquare://广场
+
+            break;
+        case LBBPoohHomeSearchTypeTravel://游记
+            
+            
+            break;
+        case LBBPoohHomeSearchTypeDefault://展示搜索关键词
+   
+            
+            break;
+    }
+
+}
+
+
 
 /*
  *  setup UI
@@ -124,7 +233,8 @@ static const NSInteger kButtonWidth = 45;
         [ws.mDropDownListView show];
     }];
     
-    
+    [self.filterMenuButton setTitle:[self.menuArray objectAtIndex:self.searchType] forState:UIControlStateNormal];
+
     
     UISearchBar *bar = [UISearchBar new];
     bar.barStyle = UIBarStyleDefault;
@@ -165,6 +275,7 @@ static const NSInteger kButtonWidth = 45;
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self loadCustomCell];
+    [self initViewModel];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -219,7 +330,8 @@ static const NSInteger kButtonWidth = 45;
     [self.filterMenuButton setTitle:[self.menuArray objectAtIndex:indexPath.row] forState:UIControlStateNormal];
     self.searchType = indexPath.row;
     self.showType = self.searchType;
-    [self.tableView reloadData];
+    [self search];
+  //  [self.tableView reloadData];
 }
 - (UITableViewCell *)itemCell:(NSIndexPath *)indexPath
 {
@@ -324,16 +436,64 @@ static const NSInteger kButtonWidth = 45;
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if ([self.searchBar.text length] <= 0) {
+        
+        if (section == 0) {//历史
+            return 3;
+        }
+        else{
+            return ceil(self.viewModel.hotWordArray.count / 3.0);
+        }
         return 3;
     }
     else{
-        return 10;
+        switch (self.showType) {
+            case LBBPoohHomeSearchTypeGoods://伴手礼
+            {
+                return 10;
+            }
+                break;
+            case LBBPoohHomeSearchTypeScenic://景点
+            {
+                return self.viewModel.scenicSpotsArray.count;
+            }
+                break;
+            case LBBPoohHomeSearchTypeFoods://美食
+            {
+                return self.viewModel.foodSpotsArray.count;
+            }
+                break;
+            case LBBPoohHomeSearchTypeHostel://民宿
+            {
+                return self.viewModel.hostelSpotsArray.count;
+            }
+                break;
+            case LBBPoohHomeSearchTypeUser://用户
+            {
+                return 10;
+            }
+                break;
+            case LBBPoohHomeSearchTypeSquare://广场
+            {
+                return 10;
+            }
+                break;
+            case LBBPoohHomeSearchTypeTravel://游记
+            {
+                return 10;
+            }
+                break;
+            case LBBPoohHomeSearchTypeDefault://展示搜索关键词
+            {
+                return 10;
+            }
+                break;
+        }
     }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-   
+    WS(ws);
     if ([self.searchBar.text length] <= 0) {
         return [tableView fd_heightForCellWithIdentifier:@"LBB_HomeSearchKeyWordCell" cacheByIndexPath:indexPath configuration:^(LBB_HomeSearchKeyWordCell* cell){
         }];
@@ -354,7 +514,16 @@ static const NSInteger kButtonWidth = 45;
             {
                 return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicMainTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicMainTableViewCell *cell) {
                     
-                    [cell setModel:nil];
+                    
+                    if (self.showType == LBBPoohHomeSearchTypeScenic) {
+                        [cell setModel:ws.viewModel.scenicSpotsArray[indexPath.row]];
+                    }
+                    else if(self.showType == LBBPoohHomeSearchTypeFoods){
+                        [cell setModel:ws.viewModel.foodSpotsArray[indexPath.row]];
+                    }
+                    else{
+                        [cell setModel:ws.viewModel.hostelSpotsArray[indexPath.row]];
+                    }
                 }];
             }
                 break;
@@ -400,6 +569,37 @@ static const NSInteger kButtonWidth = 45;
             
         }
         
+        if (indexPath.section == 0) {//搜索历史
+            
+        }
+        else{
+        
+            NSInteger idx1 = indexPath.row * 3;
+            NSInteger idx2 = indexPath.row * 3+1;
+            NSInteger idx3 = indexPath.row * 3+2;
+
+            LBB_SearchHotWordModel *obj1 = [self.viewModel.hotWordArray objectAtIndex:idx1];
+            [cell.labelButton1 setTitle:obj1.name forState:UIControlStateNormal];
+            
+            if (idx2 < self.viewModel.hotWordArray.count) {
+                LBB_SearchHotWordModel *obj2 = [self.viewModel.hotWordArray objectAtIndex:idx2];
+                [cell.labelButton2 setTitle:obj2.name forState:UIControlStateNormal];
+                cell.labelButton2.hidden = NO;
+            }
+            else{
+                cell.labelButton2.hidden = YES;
+            }
+            
+            if (idx3 < self.viewModel.hotWordArray.count) {
+                LBB_SearchHotWordModel *obj3 = [self.viewModel.hotWordArray objectAtIndex:idx3];
+                [cell.labelButton3 setTitle:obj3.name forState:UIControlStateNormal];
+                cell.labelButton3.hidden = NO;
+            }
+            else{
+                cell.labelButton3.hidden = YES;
+            }
+            
+        }
         return cell;
     }
     else{
@@ -428,7 +628,18 @@ static const NSInteger kButtonWidth = 45;
                     
                     NSLog(@"LBB_ScenicMainTableViewCell nil");
                 }
-                [cell setModel:nil];
+                
+                
+                if (self.showType == LBBPoohHomeSearchTypeScenic) {
+                    [cell setModel:self.viewModel.scenicSpotsArray[indexPath.row]];
+                }
+                else if(self.showType == LBBPoohHomeSearchTypeFoods){
+                    [cell setModel:self.viewModel.foodSpotsArray[indexPath.row]];
+                }
+                else{
+                    [cell setModel:self.viewModel.hostelSpotsArray[indexPath.row]];
+                }
+                
                 return cell;
             }
                 break;
@@ -513,7 +724,8 @@ static const NSInteger kButtonWidth = 45;
         
         self.searchBar.text = @"鼓浪屿啦啦啦";
         self.showType = self.searchType;
-        [self.tableView reloadData];
+        [self search];
+       // [self.tableView reloadData];
     }
 }
 

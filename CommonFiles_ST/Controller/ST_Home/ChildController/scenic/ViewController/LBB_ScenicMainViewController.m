@@ -16,7 +16,7 @@
 #import "LBB_FilterListTableViewCell.h"
 #import "LBB_ScenicViewModel.h"
 #import "LBB_PoohCoreLocationManager.h"
-
+#import "LBB_HomeSearchViewController.h"
 @interface LBB_ScenicMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
@@ -228,7 +228,7 @@
     search.frame = CGRectMake(0, 0, 45, 45);
     [search bk_addEventHandler:^(id sender){
         
-        LBB_ScenicSearchViewController* dest = [[LBB_ScenicSearchViewController alloc]init];
+       /* LBB_ScenicSearchViewController* dest = [[LBB_ScenicSearchViewController alloc]init];
         dest.placeHolderString = @"输入关键字搜索景点";
         dest.click = ^(LBB_ScenicSearchViewController* v , NSIndexPath* indexPath){
             
@@ -236,6 +236,11 @@
             [v.navigationController popViewControllerAnimated:YES];
         };
         [ws.navigationController pushViewController:dest animated:YES];
+        */
+        
+        LBB_HomeSearchViewController* searchVC = [[LBB_HomeSearchViewController alloc]init];
+        searchVC.searchType = LBBPoohHomeSearchTypeScenic;
+        [self.navigationController pushViewController:searchVC animated:YES];
         
     }forControlEvents:UIControlEventTouchUpInside];
     
