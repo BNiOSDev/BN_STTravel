@@ -40,6 +40,7 @@
 //重写返回方法
 -(void)leftButtonClick{
     _imageContainView.frame = frame;
+    _imageContainView.userInteractionEnabled = YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -50,6 +51,7 @@
     _mapViewArray = [[NSMutableArray alloc]init];
     frame = _imageContainView.frame;
     _imageContainView.frame =  CGRectMake(AUTO(5), 5, DeviceWidth - AUTO(10), DeviceWidth - AUTO(20));
+    _imageContainView.userInteractionEnabled = NO;
 //    [[LBB_TipImage_Pulish_ImageView alloc]initWithFrame:CGRectMake(AUTO(5), 5, DeviceWidth - AUTO(10), DeviceWidth - AUTO(20))];
 //    _imageContainView.imageArray = _imageArray;
     [self.backView addSubview:_imageContainView];

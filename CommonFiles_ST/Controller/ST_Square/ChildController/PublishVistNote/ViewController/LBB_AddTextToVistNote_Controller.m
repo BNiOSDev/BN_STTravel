@@ -20,6 +20,10 @@
 #import "BN_SquareTravelNotesModel.h"
 
 @interface LBB_AddTextToVistNote_Controller ()
+{
+    LBB_AddClass_Button  *addAddres;
+    LBB_AddClass_Button  *addSale;
+}
 @property(nonatomic,strong)LBB_Date_SengeMent    *headSegment;
 @property(nonatomic,strong)UITextView                       *contentText;
 @property(nonatomic,strong)LBB_SpotAddress            *addressInfo;
@@ -66,7 +70,6 @@
 
 - (void)initView
 {
-    
     LBB_AddClass_Button  *addTags = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(35))];
     addTags.titleStr = @"添加标签";
     [addTags addTarget:self action:@selector(addTagsFunc) forControlEvents:UIControlEventTouchUpInside];
@@ -93,16 +96,12 @@
     _contentText.placeholder = @"添加文字";
     [self.view addSubview:_contentText];
     
-    LBB_AddClass_Button  *addAddres = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, _contentText.bottom, DeviceWidth, AUTO(35))];
+    addAddres = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, _contentText.bottom, DeviceWidth, AUTO(35))];
     addAddres.titleStr = @"点击添加地点信息";
     [addAddres addTarget:self action:@selector(addAddressFunc) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addAddres];
     
-    UIView  *mapView = [[UIView alloc]initWithFrame:CGRectMake(0, addAddres.bottom + 5, DeviceWidth, AUTO(100))];
-    mapView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:mapView];
-    
-    LBB_AddClass_Button  *addSale = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, mapView.bottom + 5, DeviceWidth, AUTO(35))];
+    addSale = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, addAddres.bottom + 5, DeviceWidth, AUTO(35))];
     addSale.titleStr = @"添加消费记录";
     [addSale addTarget:self action:@selector(addSaleFunc) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addSale];
@@ -145,7 +144,10 @@
         NSLog(@"详细地址：%@",_addressInfo.address);
         //页面变化代码块
         {
-            //地图显示，修改布局
+            BN_MapView  *mapView = [[BN_MapView alloc]init];
+            [mapView setFrame:CGRectMake(0, addAddres.bottom + 5, DeviceWidth, AUTO(100))];
+            [mapView andAnnotationLatitude:[_addressInfo.dimensionality longLongValue]longitude:[_addressInfo.longitude longLongValue]];
+            [self.view addSubview:mapView];
         }
         
         [add.navigationController popViewControllerAnimated:YES];
