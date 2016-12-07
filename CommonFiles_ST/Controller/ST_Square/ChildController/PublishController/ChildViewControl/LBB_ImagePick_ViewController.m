@@ -206,12 +206,12 @@
         [manager requestAVAssetForVideo:phAsset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
             
             AVURLAsset *urlAsset = (AVURLAsset *)asset;
-            NSURL *url = urlAsset.URL;
-            if(!url)
+            if([urlAsset isKindOfClass:[AVComposition class]])
             {
                 [self showHudPrompt:@"视频格式暂不支持播放"];
                 return ;
             }
+            NSURL *url = urlAsset.URL;
             LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc] init];
             vc.videoUrl = url;
             [self presentViewController:vc animated:NO completion:nil];
