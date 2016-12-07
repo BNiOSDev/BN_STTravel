@@ -330,7 +330,7 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
-            NSLog(@"getNearSignInMapArrayClearData成功:%@",array);
+            NSLog(@"getNearSignInMapArrayClearData 成功:%@",array);
             
             NSArray *returnArray = [LBB_NearShopModel mj_objectArrayWithKeyValuesArray:array];
             

@@ -12,7 +12,7 @@
 #import "LBB_SigninPopView.h"
 #import "LBB_NearViewModel.h"
 #import <BN_MapView.h>
-
+#import "LBB_NearSign.h"
 @interface LBBSigninMainViewController ()
 
 @property(nonatomic, retain)BN_MapView* mapView;
@@ -44,19 +44,7 @@
     self.viewModel = [[LBB_NearViewModel alloc]init];
     
     @weakify(self);
-    [RACObserve(self.locationManager, latitude) subscribeNext:^(NSString* num) {
-        @strongify(self);
-        
-          [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude dimensionality:self.locationManager.latitude clear:YES];
-    }];
-    
-    [RACObserve(self.locationManager, longitude) subscribeNext:^(NSString* num) {
-        @strongify(self);
-        
-        [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude dimensionality:self.locationManager.latitude clear:YES];
-    }];
-    
-    
+
     /**
      3.9.4	附近–签到信息(已测)
      */
@@ -77,10 +65,16 @@
      @param longitude Y坐标
      @param dimensionality X坐标
      */
+    [RACObserve(self.locationManager, latitude) subscribeNext:^(NSString* num) {
+        @strongify(self);
+        
+        [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude dimensionality:self.locationManager.latitude clear:YES];
+    }];
+    
     [RACObserve(self.locationManager, longitude) subscribeNext:^(NSString* num) {
         @strongify(self);
-        [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude  dimensionality:self.locationManager.latitude clear:YES];
-
+        
+        [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude dimensionality:self.locationManager.latitude clear:YES];
     }];
     
     WS(ws);
@@ -122,15 +116,32 @@
     [sign setFrame:CGRectMake(0, 0, AutoSize(60), AutoSize(30))];
     [sign bk_addEventHandler:^(id sender){
         
+        
+        if (ws.viewModel.nearShopArray.count <= 0) {
+            [ws showHudPrompt:@"附近没有可签到的信息"];
+            return ;
+        }
+        
+        
+        LBB_NearShopModel* obj = [ws.viewModel.nearShopArray objectAtIndex:0];
         NSLog(@"sign touch");
         if (!ws.popView) {
             ws.popView = [[LBB_SigninPopView alloc]init];
         }
-        [ws.popView showPopView];
+        [ws.popView showPopView:obj];
         [ws.popView.signinButton bk_addEventHandler:^(id sender){
             NSLog(@"ws.popView.signinButton touch");
             
-            [ws.popView setSigninStatus:NO];
+            [LBB_NearSign signObjId:obj.allSpotsId type:/*(int)obj.allSpotsType*/0 block:^(NSError* error){
+                if (!error) {
+                    [ws.popView setSigninStatus:YES];
+                }
+                else{
+                    [ws.popView setSigninStatus:NO];
+                    [ws.popView.noteLabel setText:error.domain];
+                }
+            }];
+            
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 ws.popView.hidden = YES;
                 [ws.popView resignKeyWindow];
