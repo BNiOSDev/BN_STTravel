@@ -289,7 +289,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         [b setImage:[UIImage imageNamed:@"景点详情_电话底部"] forState:UIControlStateNormal];
         [b setTitleColor:ColorBtnYellow forState:UIControlStateNormal];
         //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right
-        b.imageEdgeInsets = UIEdgeInsetsMake(0, 133, 0, 0);
+        b.imageEdgeInsets = UIEdgeInsetsMake(0, AutoSize(110.55), 0, 0);
         b.titleLabel.font = Font15;
         //  b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         
@@ -306,7 +306,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         [b1 setImage:[UIImage imageNamed:@"景点详情_箭头Right"] forState:UIControlStateNormal];
         [b1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         //(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right
-        b1.imageEdgeInsets = UIEdgeInsetsMake(0, 130, 0, 0);
+        b1.imageEdgeInsets = UIEdgeInsetsMake(0, AutoSize(112), 0, 0);
         b1.titleLabel.font = Font15;
         [b1 bk_addEventHandler:^(id sender){
             
