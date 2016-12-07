@@ -43,6 +43,8 @@
     
     self.viewModel = [[LBB_NearViewModel alloc]init];
     
+    [self.viewModel getNearSignInArrayClearData:YES];
+
     @weakify(self);
 
     /**
@@ -81,7 +83,7 @@
     [self.viewModel.nearShopArray.loadSupport setDataRefreshblock:^{
     
         [ws.mapView removeAllAnnotation];
-        [ws.mapView setDelta:0.2 Latitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
+        [ws.mapView setDelta:0.01 Latitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
         for (LBB_NearShopModel* model in ws.viewModel.nearShopArray) {
             
             [ws.mapView andAnnotationLatitude:[model.dimensionality floatValue] longitude:[model.longitude floatValue]];
@@ -117,13 +119,14 @@
     [sign bk_addEventHandler:^(id sender){
         
         
-        if (ws.viewModel.nearShopArray.count <= 0) {
+        if (ws.viewModel.nearSignInArray.count <= 0) {
             [ws showHudPrompt:@"附近没有可签到的信息"];
             return ;
         }
         
         
-        LBB_NearShopModel* obj = [ws.viewModel.nearShopArray objectAtIndex:0];
+       // LBB_NearShopModel* obj = [ws.viewModel.nearShopArray objectAtIndex:0];
+        LBB_NearSignIn* obj = [ws.viewModel.nearSignInArray objectAtIndex:0];
         NSLog(@"sign touch");
         if (!ws.popView) {
             ws.popView = [[LBB_SigninPopView alloc]init];
@@ -132,7 +135,7 @@
         [ws.popView.signinButton bk_addEventHandler:^(id sender){
             NSLog(@"ws.popView.signinButton touch");
             
-            [LBB_NearSign signObjId:obj.allSpotsId type:/*(int)obj.allSpotsType*/0 block:^(NSError* error){
+            [LBB_NearSign signObjId:obj.allSpotsId type:(int)obj.allSpotsType block:^(NSError* error){
                 if (!error) {
                     [ws.popView setSigninStatus:YES];
                 }

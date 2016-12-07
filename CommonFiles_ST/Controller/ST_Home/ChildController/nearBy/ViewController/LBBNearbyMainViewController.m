@@ -78,7 +78,7 @@
     [self.viewModel.nearShopArray.loadSupport setDataRefreshblock:^{
         
         [ws.mapView removeAllAnnotation];
-        [ws.mapView setDelta:0.2 Latitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
+        [ws.mapView setDelta:0.01 Latitude:[ws.locationManager.latitude floatValue] longitude:[ws.locationManager.longitude floatValue]];
         for (LBB_NearShopModel* model in ws.viewModel.nearShopArray) {
             
             [ws.mapView andAnnotationLatitude:[model.dimensionality floatValue] longitude:[model.longitude floatValue]];

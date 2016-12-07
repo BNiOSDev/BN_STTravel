@@ -95,7 +95,7 @@
     return self;
 }
 
--(void)showPopView:(LBB_NearShopModel*)obj{
+-(void)showPopView:(LBB_NearSignIn*)obj{
 
     [self.locationLabel setText:obj.allSpotsName];
 
