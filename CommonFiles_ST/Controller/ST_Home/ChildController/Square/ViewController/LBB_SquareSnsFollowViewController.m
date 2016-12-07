@@ -108,6 +108,19 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
         [temp.tableView reloadData];
     }];
     
+    [self.viewModel.userShowViewModel.userActionArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"userActionArray reloadData");
+        [temp.tableView reloadData];
+    }];
+    [self.viewModel.userShowViewModel.userAttentionArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+    }];
+    [self.viewModel.userShowViewModel.userFansArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+    }];
+    
+    
+    
     [self.tableView setHeaderRefreshDatablock:^{
         [temp.tableView.mj_header endRefreshing];
         [temp.viewModel getUserShowViewModelData];
@@ -161,11 +174,8 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
  *  setup UI
  */
 -(void)buildControls{
-    
-    
+
     WS(ws);
-    
-    
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.tableView registerClass:[LBB_GuiderUserHeaderCell class] forCellReuseIdentifier:@"LBB_GuiderUserHeaderCell"];
