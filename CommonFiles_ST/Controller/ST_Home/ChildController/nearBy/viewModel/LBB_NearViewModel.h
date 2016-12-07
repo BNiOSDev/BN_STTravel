@@ -38,6 +38,7 @@
 @property (nonatomic,strong)NSString *longitude ;// Y坐标
 @property (nonatomic,strong)NSString *dimensionality ;// X坐标
 @property (nonatomic,assign)int isSignIn ;// 是否签到
+@property (nonatomic,assign)int allSpotsType ;// 1.美食 2.民宿 3景点
 
 @end
 

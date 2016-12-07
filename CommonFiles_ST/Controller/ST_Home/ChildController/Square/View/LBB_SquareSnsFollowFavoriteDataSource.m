@@ -39,9 +39,7 @@
         cell = [[LBB_GuiderUserFunsListCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_GuiderUserFavoriteListCell nil");
     }
-    [cell setModel:self.userAttentionArray[indexPath.row]];
-    
-    
+    [cell setModel:self.userAttentionArray[indexPath.row] isTour:NO show:NO];
     return cell;
 }
 
@@ -49,7 +47,8 @@
     
     return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderUserFavoriteListCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderUserFunsListCell *cell) {
         
-        [cell setModel:self.userAttentionArray[indexPath.row]];
+        [cell setModel:self.userAttentionArray[indexPath.row] isTour:NO show:NO];
+
     }];
 }
 

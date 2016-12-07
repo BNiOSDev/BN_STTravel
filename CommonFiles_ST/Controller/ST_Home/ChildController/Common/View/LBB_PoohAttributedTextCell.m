@@ -56,26 +56,13 @@
     if (!att) {
         att = @"";
     }
-//    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[text dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-//    self.attributedTextLabel.attributedText = attrStr;
+
+//    self.attributedTextLabel.text = text;
+
     
     NSMutableAttributedString *htmlString =[[NSMutableAttributedString alloc] initWithData:[att dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:[NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:NULL error:nil];
-    
-   // [htmlString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} range:NSMakeRange(0, htmlString.length)];
-    
-    //CGSize textSize = [htmlString boundingRectWithSize:(CGSize){self.frame.size.width - 20, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-    
     self.attributedTextLabel.attributedText = htmlString;
-   /*self.attributedTextLabel.frame = CGRectMake(self.attributedTextLabel.frame.size.width
-                                                , self.attributedTextLabel.frame.size.height,
-                                                textSize.width,
-                                                textSize.height);*/
-   /* [self.attributedTextLabel loadHTMLString:text baseURL:nil];
-    self.attributedTextLabel.delegate = self;
-    self.attributedTextLabel.scrollView.bounces = NO;
-    self.attributedTextLabel.scrollView.alwaysBounceVertical = NO;
-    self.attributedTextLabel.scrollView.alwaysBounceHorizontal = NO;
-*/
+   
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView

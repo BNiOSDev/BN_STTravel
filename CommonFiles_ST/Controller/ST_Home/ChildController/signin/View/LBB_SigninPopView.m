@@ -95,7 +95,9 @@
     return self;
 }
 
--(void)showPopView{
+-(void)showPopView:(LBB_NearShopModel*)obj{
+
+    [self.locationLabel setText:obj.allSpotsName];
 
     [self makeKeyAndVisible];//关键语句,显示window
 

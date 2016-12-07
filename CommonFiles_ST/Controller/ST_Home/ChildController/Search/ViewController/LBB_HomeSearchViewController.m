@@ -19,6 +19,9 @@
 #import "LBB_FilterListTableViewCell.h"
 #import "XDPopupListView.h"
 #import "LBB_SearchViewModel.h"
+#import "LBB_ScenicDetailViewController.h"
+#import "LBB_SquareSnsFollowViewController.h"
+
 
 static const NSInteger kSearchButtonMarginRight = -10;
 static const NSInteger kButtonWidth = 45;
@@ -39,6 +42,10 @@ static const NSInteger kButtonWidth = 45;
 @property(nonatomic, retain)LBB_SearchViewModel* viewModel;
 //地理位置管理
 @property (nonatomic,retain)LBB_PoohCoreLocationManager* locationManager;
+
+@property (nonatomic, strong) NSTimer *timer;
+
+
 @end
 
 @implementation LBB_HomeSearchViewController
@@ -90,14 +97,71 @@ static const NSInteger kButtonWidth = 45;
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     
     self.showType = LBBPoohHomeSearchTypeDefault;//有输入文字的时候，设置为关键词联想展示
-    [self.tableView reloadData];
+  //  [self.tableView reloadData];
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
     
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerSearch) userInfo:nil repeats:NO];
 }
 
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    [self.searchBar becomeFirstResponder];
+ //   [self.searchBar becomeFirstResponder];
+
     return YES;
 }
+
+- (void)timerSearch{
+
+    switch (self.searchType) {
+        case LBBPoohHomeSearchTypeGoods://伴手礼
+        {
+            
+        }
+            break;
+        case LBBPoohHomeSearchTypeScenic://景点
+        {
+            /**
+             3.6.5 搜索-景点/美食/民宿 词汇（已测）
+             
+             @param allSpotsType 1.美食 2.民宿 3景点
+             @param name         搜索名称
+             */
+            [self.viewModel getSearchAllSpotsWordsArrayWithType:3 name:self.searchBar.text];
+        }
+            break;
+        case LBBPoohHomeSearchTypeFoods://美食
+        {
+            [self.viewModel getSearchAllSpotsWordsArrayWithType:1 name:self.searchBar.text];
+        }
+            break;
+        case LBBPoohHomeSearchTypeHostel://民宿
+        {
+            [self.viewModel getSearchAllSpotsWordsArrayWithType:2 name:self.searchBar.text];
+        }
+            break;
+        case LBBPoohHomeSearchTypeUser://用户
+        {
+            
+        }
+            break;
+        case LBBPoohHomeSearchTypeSquare://广场
+            
+            break;
+        case LBBPoohHomeSearchTypeTravel://游记
+            
+            
+            break;
+        case LBBPoohHomeSearchTypeDefault://展示搜索关键词
+            
+            
+            break;
+    }
+
+
+}
+
 
 -(void)initViewModel{
     WS(ws);
@@ -146,11 +210,31 @@ static const NSInteger kButtonWidth = 45;
         [ws.tableView reloadData];
     }];
     
+    /**
+     3.6.5 搜索-景点/美食/民宿 词汇（已测）
+     
+     @param allSpotsType 1.美食 2.民宿 3景点
+     @param name         搜索名称
+     */
+    [self.viewModel.allSpotWordArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
     
+    /**
+     3.6.6 搜索-用户（已测）
+     
+     @param name   搜索名称
+     @param clear 清空原数据
+     */
+    [self.viewModel.userArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
 }
 
 //搜索动作
 -(void)search{
+    [self.searchBar resignFirstResponder];
+
     switch (self.searchType) {
         case LBBPoohHomeSearchTypeGoods://伴手礼
         {
@@ -184,7 +268,7 @@ static const NSInteger kButtonWidth = 45;
             break;
         case LBBPoohHomeSearchTypeUser://用户
         {
-
+            [self.viewModel getUserArrayName:self.searchBar.text clearData:YES];
         }
             break;
         case LBBPoohHomeSearchTypeSquare://广场
@@ -469,7 +553,7 @@ static const NSInteger kButtonWidth = 45;
                 break;
             case LBBPoohHomeSearchTypeUser://用户
             {
-                return 10;
+                return self.viewModel.userArray.count;
             }
                 break;
             case LBBPoohHomeSearchTypeSquare://广场
@@ -484,7 +568,7 @@ static const NSInteger kButtonWidth = 45;
                 break;
             case LBBPoohHomeSearchTypeDefault://展示搜索关键词
             {
-                return 10;
+                return self.viewModel.allSpotWordArray.count;
             }
                 break;
         }
@@ -544,7 +628,8 @@ static const NSInteger kButtonWidth = 45;
                 break;
             case LBBPoohHomeSearchTypeDefault://展示搜索关键词
                 return [tableView fd_heightForCellWithIdentifier:@"LBB_HomeSearchDefaultCell" cacheByIndexPath:indexPath configuration:^(LBB_HomeSearchDefaultCell* cell){
-                    [cell.contentLabel setText:@"鼓浪屿啦啦啦"];
+                    NSString* string = ws.viewModel.allSpotWordArray[indexPath.row].name;
+                    [cell.contentLabel setText:string];
 
                 }];
                 
@@ -652,10 +737,9 @@ static const NSInteger kButtonWidth = 45;
                     
                     NSLog(@"LBB_GuiderUserFunsListCell nil");
                 }
-                cell.vImageView.hidden = NO;
-                cell.levelButton.hidden = NO;
-                cell.identityLable.hidden = NO;
-                [cell setModel:nil];
+     
+                LBB_UserOther* obj = self.viewModel.userArray[indexPath.row];
+                [cell setModel:obj isTour:YES show:YES];
                 return cell;
             }
                 break;
@@ -705,8 +789,8 @@ static const NSInteger kButtonWidth = 45;
                     NSLog(@"LBB_HomeSearchDefaultCell nil");
                 }
                 
-                [cell.contentLabel setText:@"鼓浪屿啦啦啦"];
-                
+                NSString* string = self.viewModel.allSpotWordArray[indexPath.row].name;
+                [cell.contentLabel setText:string];
                 return cell;
                 
             }
@@ -720,12 +804,65 @@ static const NSInteger kButtonWidth = 45;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.showType == LBBPoohHomeSearchTypeDefault ) {
-        
-        self.searchBar.text = @"鼓浪屿啦啦啦";
-        self.showType = self.searchType;
-        [self search];
-       // [self.tableView reloadData];
+    
+    switch (self.showType) {
+        case LBBPoohHomeSearchTypeGoods://伴手礼
+        {
+            
+        }
+            break;
+        case LBBPoohHomeSearchTypeScenic://景点
+        {
+            LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
+            dest.homeType = LBBPoohHomeTypeScenic;
+            dest.spotModel = [self.viewModel.scenicSpotsArray objectAtIndex:indexPath.row];
+            [self.navigationController pushViewController:dest animated:YES];
+        }
+            break;
+        case LBBPoohHomeSearchTypeFoods://美食
+        {
+            LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
+            dest.homeType = LBBPoohHomeTypeFoods;
+            dest.spotModel = [self.viewModel.foodSpotsArray objectAtIndex:indexPath.row];
+            [self.navigationController pushViewController:dest animated:YES];
+        }
+            break;
+        case LBBPoohHomeSearchTypeHostel://民宿
+            
+        {
+            LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
+            dest.homeType = LBBPoohHomeTypeHostel;
+            dest.spotModel = [self.viewModel.hostelSpotsArray objectAtIndex:indexPath.row];
+            [self.navigationController pushViewController:dest animated:YES];
+        }
+            break;
+        case LBBPoohHomeSearchTypeUser://用户
+        {
+            LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc] init];
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            LBB_UserOther* obj = self.viewModel.userArray[indexPath.row];
+            viewModel.userId = obj.userId;
+            dest.viewModel = viewModel;
+            [self.navigationController pushViewController:dest animated:YES];
+
+        }
+            break;
+        case LBBPoohHomeSearchTypeSquare://广场
+            
+            break;
+        case LBBPoohHomeSearchTypeTravel://游记
+            
+            
+            break;
+        case LBBPoohHomeSearchTypeDefault://展示搜索关键词
+        {
+            NSString* string = self.viewModel.allSpotWordArray[indexPath.row].name;
+            self.searchBar.text = string;
+            self.showType = self.searchType;
+            [self search];
+        }
+            
+            break;
     }
 }
 
