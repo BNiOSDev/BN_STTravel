@@ -8,6 +8,12 @@
 
 #import "LBB_SearchViewModel.h"
 
+@implementation LBB_SearchHotWordModel
+
+
+
+@end
+
 @implementation LBB_SearchViewModel
 
 
@@ -16,7 +22,10 @@
     self = [super init];
     if (self) {
         self.hotWordArray = [[NSMutableArray alloc]initFromNet];
-        self.allSpotsArray = [[NSMutableArray alloc]initFromNet];
+        self.scenicSpotsArray = [[NSMutableArray alloc]initFromNet];
+        self.foodSpotsArray = [[NSMutableArray alloc]initFromNet];
+        self.hostelSpotsArray = [[NSMutableArray alloc]initFromNet];
+
     }
     return self;
 }
@@ -37,8 +46,8 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
-            NSArray *returnArray = array;
-            
+            NSArray *returnArray = [LBB_SearchHotWordModel mj_objectArrayWithKeyValuesArray:array];
+            NSLog(@"getHotWordArray success:%@",returnArray);
             [temp.hotWordArray removeAllObjects];
             [temp.hotWordArray addObjectsFromArray:returnArray];
             temp.hotWordArray.networkTotal = [dic objectForKey:@"total"];
@@ -55,13 +64,36 @@
     }];
 }
 
+/**
+ 3.6.4	搜索-景点/美食/民宿（已测）
+ 
+ @param longitude Y坐标
+ @param dimensionality X坐标
+ @param allSpotsType 1.美食 2.民宿 3景点
+ @param name 搜索名称
+ @param clear 清空原数据
+ */
 - (void)getAllSpotsArrayLongitude:(NSString *)longitude
                  dimensionality:(NSString *)dimensionality
                    allSpotsType:(int)allSpotsType
                            name:(NSString*)name
                       clearData:(BOOL)clear
 {
-    int curPage = clear == YES ? 0 : round(self.allSpotsArray.count/10.0);
+    NSMutableArray *sportArray;
+    switch (allSpotsType) {
+        case 1:
+            sportArray = self.foodSpotsArray;
+            break;
+        case 2:
+            sportArray = self.hostelSpotsArray;
+            break;
+        case 3:
+            sportArray = self.scenicSpotsArray;
+            break;
+        default:
+            break;
+    }
+    int curPage = clear == YES ? 0 : round(sportArray.count/10.0);
     NSDictionary *paraDic = @{
                               @"longitude":longitude,
                               @"dimensionality":dimensionality,
@@ -73,8 +105,8 @@
     
     NSString *url = [NSString stringWithFormat:@"%@/search/allSpots",BASEURL];
     __weak typeof(self) temp = self;
-    self.allSpotsArray.loadSupport.loadEvent = NetLoadingEvent;
-    
+    __weak NSMutableArray *sportArray_block = sportArray;
+    sportArray.loadSupport.loadEvent = NetLoadingEvent;
     [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
@@ -86,23 +118,22 @@
             
             if (clear == YES)
             {
-                [temp.allSpotsArray removeAllObjects];
+                [sportArray_block removeAllObjects];
             }
             
-            [temp.allSpotsArray addObjectsFromArray:returnArray];
-            temp.allSpotsArray.networkTotal = [dic objectForKey:@"total"];
+            [sportArray_block addObjectsFromArray:returnArray];
+            sportArray_block.networkTotal = [dic objectForKey:@"total"];
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
-        temp.allSpotsArray.loadSupport.loadEvent = codeNumber.intValue;
+        sportArray_block.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"getHostelArrayLongitude失败  %@",error.domain);
         
-        temp.allSpotsArray.loadSupport.loadEvent = NetLoadFailedEvent;
+        sportArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
-    
 }
 @end

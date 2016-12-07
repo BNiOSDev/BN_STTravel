@@ -21,5 +21,6 @@ typedef NS_ENUM(NSInteger, LBBPoohHomeSearchType) {
 @interface LBB_HomeSearchViewController : Base_BaseViewController
 
 @property(nonatomic, assign)LBBPoohHomeSearchType searchType;
+@property(nonatomic, strong)ClickBlockEx click;
 
 @end
