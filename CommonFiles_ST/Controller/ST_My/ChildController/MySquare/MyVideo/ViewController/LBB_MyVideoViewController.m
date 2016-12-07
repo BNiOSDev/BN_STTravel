@@ -51,11 +51,11 @@ UICollectionViewDelegateFlowLayout>
     if (self.squareType == MySquareVideoViewFravorite) {
         horizontalCellLayout.itemSize = CGSizeMake(width, width);
     }
-    
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:horizontalCellLayout];
+    CGRect mainRect = CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64.f);
+    _collectionView = [[UICollectionView alloc] initWithFrame:mainRect collectionViewLayout:horizontalCellLayout];
     self.view .autoresizesSubviews = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
     if (self.squareType == MySquareVideoViewFravorite) {
-        _collectionView.frame = CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64);
+        _collectionView.frame = CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64.f - TopSegmmentControlHeight);
     }
     _collectionView.backgroundColor = ColorBackground;
     _collectionView.showsHorizontalScrollIndicator = NO;
@@ -64,7 +64,6 @@ UICollectionViewDelegateFlowLayout>
     _collectionView.scrollEnabled = YES;
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
-    
     [self.view addSubview:_collectionView];
     
     [_collectionView registerClass:NSClassFromString(@"LBB_MyVideoViewCell")
