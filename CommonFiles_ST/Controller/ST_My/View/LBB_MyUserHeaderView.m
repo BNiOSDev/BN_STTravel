@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIView *levelGuideBgView;
 @property (weak, nonatomic) IBOutlet UIButton *coverPictureBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *userHeadImgView;
-
 @end
 
 
@@ -81,10 +80,19 @@
 //    self.guideLabel.text = [self getAuthMessage:_viewModel.tourAuditState];
     self.signatureLabel.text = _viewModel.signature;
     if (self.isLogin) {
-        self.levelImgView.hidden = NO;
-        self.levelLabel.hidden = NO;
-        self.guideImgView.hidden = NO;
-        self.guideLabel.hidden = NO;
+        if (_viewModel.level > 0) {
+            self.levelImgView.hidden = NO;
+            self.levelLabel.hidden = NO;
+        }else {
+            self.levelImgView.hidden = YES;
+            self.levelLabel.hidden = YES;
+        } 
+        if (_viewModel.auditState == 2) {
+            self.guideImgView.hidden = NO;
+            self.guideLabel.hidden = NO;
+        }else {self.guideImgView.hidden = YES;
+            self.guideLabel.hidden = YES;
+        }
     }else {
         self.levelImgView.hidden = YES;
         self.levelLabel.hidden = YES;
