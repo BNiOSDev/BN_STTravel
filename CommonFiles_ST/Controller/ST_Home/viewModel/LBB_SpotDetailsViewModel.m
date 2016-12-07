@@ -316,7 +316,7 @@
             [temp.spotDetails mj_setKeyValues:[dic objectForKey:@"result"]];
             NSLog(@"getSpotDetailsData success:%@",[dic objectForKey:@"result"]);
             //pooh add detail allSpotsType
-            temp.spotDetails.allSpotsType = temp.allSpotsType;
+          //  temp.spotDetails.allSpotsType = temp.allSpotsType;
         }
         else
         {
