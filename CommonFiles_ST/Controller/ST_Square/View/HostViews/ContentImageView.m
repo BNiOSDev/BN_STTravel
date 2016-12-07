@@ -25,6 +25,7 @@
 #import "ContentImageView.h"
 #import "UIView+SDAutoLayout.h"
 #import "UIImageView+WebCache.h"
+#import "Header.h"
 
 @implementation ContentImageView
 {
@@ -165,7 +166,7 @@
 
 - (void)setImageFor_One
 {
-    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:nil];
+    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
     oneImage.sd_layout
     .topSpaceToView(self,0)
     .leftSpaceToView(self,0)
@@ -175,8 +176,8 @@
 }
 - (void)setImageFor_Two
 {
-    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:nil];
-    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
+    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
+    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -193,9 +194,9 @@
 }
 - (void)setImageFor_Three
 {
-    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:nil];
-    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
-    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
+    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
+    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
+    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:DEFAULTIMAGE];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -218,10 +219,10 @@
 }
 - (void)setImageFor_Four
 {
-    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:nil];
-    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
-    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
-    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
+    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
+    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
+    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:DEFAULTIMAGE];
+    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:DEFAULTIMAGE];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -250,11 +251,11 @@
 
 - (void)setImageFor_Five
 {
-    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:nil];
-    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
-    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
-    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
-    [fiveImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:nil];
+    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
+    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
+    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:DEFAULTIMAGE];
+    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:DEFAULTIMAGE];
+    [fiveImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:DEFAULTIMAGE];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -296,12 +297,12 @@
     UIImageView         *Image_6 = [UIImageView new];
     NSArray   *array = @[Image_1,Image_2,Image_3,Image_4,Image_5,Image_6];
     [self sd_addSubviews:array];
-    [Image_1 sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:nil];
-    [Image_2 sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
-    [Image_3 sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
-    [Image_4 sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
-    [Image_5 sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:nil];
-    [Image_6 sd_setImageWithURL:[NSURL URLWithString:_imageArray[5]] placeholderImage:nil];
+    [Image_1 sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
+    [Image_2 sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
+    [Image_3 sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:DEFAULTIMAGE];
+    [Image_4 sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:DEFAULTIMAGE];
+    [Image_5 sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:DEFAULTIMAGE];
+    [Image_6 sd_setImageWithURL:[NSURL URLWithString:_imageArray[5]] placeholderImage:DEFAULTIMAGE];
     
     CGFloat cellWith = (VIEWWIDTH - 5)/3.0;
     CGFloat cellHeight = (VIEWHEIGHT - 5)/3.0;
@@ -344,7 +345,7 @@
 }
 - (void)setImageFor_Seven
 {
-    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:nil];
+    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
 //    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
 //    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
 //    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
@@ -366,7 +367,7 @@
     for(int i = 1; i < _imageArray.count;i++)
     {
         UIImageView  *image = [[UIImageView alloc]init];
-        [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:nil];
+        [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
         [self addSubview:image];
         CGFloat cellMargin = (i == 1 || i == 4) ? 0:2.5;
         image.sd_layout
@@ -386,8 +387,8 @@
 }
 - (void)setImageFor_Eight
 {
-    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:nil];
-    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
+    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
+    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
 //    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
 //    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
     
@@ -411,7 +412,7 @@
     for(int i = 2; i < _imageArray.count;i++)
     {
         UIImageView  *image = [[UIImageView alloc]init];
-        [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:nil];
+        [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
         [self addSubview:image];
         CGFloat cellMargin = (i == 2 || i == 5) ? 0:2.5;
         image.sd_layout
@@ -439,7 +440,7 @@
     for(int i = 0; i < _imageArray.count;i++)
     {
         UIImageView  *image = [[UIImageView alloc]init];
-        [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:nil];
+        [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
         [self addSubview:image];
         CGFloat cellMargin = (i % 3 == 0) ? 0:2.5;
         image.sd_layout

@@ -527,6 +527,7 @@
 		3C022EA91DF7F315002ED79A /* LBB_VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */; };
 		3C022EAC1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EAB1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
+		3C4669261DF856E800F6DEA2 /* defaultimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4669251DF856E800F6DEA2 /* defaultimage@2x.png */; };
 		3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C518C541DF66F22002653EC /* MediaPlayer.framework */; };
 		3C53FE2D1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */; };
 		8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */; };
@@ -1482,6 +1483,7 @@
 		3C022EAA1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_VideoDetailTableViewCell.h; sourceTree = "<group>"; };
 		3C022EAB1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_VideoDetailTableViewCell.m; sourceTree = "<group>"; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3C4669251DF856E800F6DEA2 /* defaultimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultimage@2x.png"; sourceTree = "<group>"; };
 		3C518C541DF66F22002653EC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3C53FE2B1DF54C27003C6148 /* LBB_AddFootprint_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_AddFootprint_ViewController.h; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/View/LBB_AddFootprint_ViewController.h; sourceTree = SOURCE_ROOT; };
 		3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_AddFootprint_ViewController.m; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/View/LBB_AddFootprint_ViewController.m; sourceTree = SOURCE_ROOT; };
@@ -4167,6 +4169,7 @@
 		1DB14CBC1DF3110E0023A740 /* 640 */ = {
 			isa = PBXGroup;
 			children = (
+				3C4669251DF856E800F6DEA2 /* defaultimage@2x.png */,
 				1DB14CBD1DF3110E0023A740 /* AssetsPickerChecked@2x.png */,
 				1DB14CBE1DF3110E0023A740 /* back@2x.png */,
 				1DB14CBF1DF3110E0023A740 /* cancelFocus@1x.png */,
@@ -5231,6 +5234,7 @@
 				1DB150271DF311110023A740 /* ST_Home.xcassets in Resources */,
 				1DB14F691DF311100023A740 /* No.png in Resources */,
 				1DB14EE41DF3110F0023A740 /* LBB_FollowViewCell.xib in Resources */,
+				3C4669261DF856E800F6DEA2 /* defaultimage@2x.png in Resources */,
 				1DB14F6B1DF311100023A740 /* zjm Sync@2x.png in Resources */,
 				1DB14FB21DF311100023A740 /* zjmtravelhouseed@2x.png in Resources */,
 				1DB14F6A1DF311100023A740 /* praiseComment@2x.png in Resources */,

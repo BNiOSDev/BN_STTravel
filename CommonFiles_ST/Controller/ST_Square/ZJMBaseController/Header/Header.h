@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, UITableViewCellViewSignal)
 [View.layer setBorderWidth:(Width)];\
 [View.layer setBorderColor:[Color CGColor]]
 
-#define DEFAULTIMAGE                  [UIImage imageNamed:@""]
+#define DEFAULTIMAGE                  [UIImage imageNamed:@"defaultimage"]
 #define FONT(x)                               [UIFont systemFontOfSize:x]
 //#define LINECOLOR                        UIColorFromRGB(0xE0E0E0)
 
