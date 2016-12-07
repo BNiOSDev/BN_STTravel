@@ -83,6 +83,21 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 */
 
 
+-(void)reloadTableSnap{
+
+    UIView *view = [self.view snapshotViewAfterScreenUpdates:NO];
+    [self.view addSubview:view];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [view removeFromSuperview];
+    });
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    
+    
+}
+
 -(void)initViewModel{
     WS(ws);
 
@@ -101,42 +116,52 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         [ws.spotModel.spotDetails getSpotNearbyRecommendsType:2 clearData:YES];
         [ws.spotModel.spotDetails getSpotNearbyRecommendsType:3 clearData:YES];
         
-        switch (ws.nearbyRecommendsSelectType) {
-            case LBBPoohSegmCtrlFoodsType:
-                [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyFoodRecommends];
-                break;
-            case LBBPoohSegmCtrlHostelType:
-                [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyHostelRecommends];
-                break;
-            case LBBPoohSegmCtrlScenicType:
-                [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbySpotRecommends];
-                break;
-                
-            default:
-                break;
-        }
         
-        [ws.tableView reloadData];//data reload
+        
+        UIView *view = [ws.view snapshotViewAfterScreenUpdates:NO];
+        [ws.view addSubview:view];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [view removeFromSuperview];
+        });
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            switch (ws.nearbyRecommendsSelectType) {
+                case LBBPoohSegmCtrlFoodsType:
+                    [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyFoodRecommends];
+                    break;
+                case LBBPoohSegmCtrlHostelType:
+                    [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyHostelRecommends];
+                    break;
+                case LBBPoohSegmCtrlScenicType:
+                    [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbySpotRecommends];
+                    break;
+                    
+                default:
+                    break;
+            }
+            [ws.tableView reloadData];//data reload
+        });
+        
     }];
     
     //附近数据更新时，刷新
     [self.spotModel.spotDetails.nearbySpotRecommends.loadSupport setDataRefreshblock:^{
        // NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBScenicDetailSectionTravelRecommendType];
        // [ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-        [ws.tableView reloadData];//data reload
-
+       // [ws.tableView reloadData];//data reload
+        [ws reloadTableSnap];
     }];
     [self.spotModel.spotDetails.nearbyHostelRecommends.loadSupport setDataRefreshblock:^{
        // NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBScenicDetailSectionTravelRecommendType];
       //  [ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-        [ws.tableView reloadData];//data reload
-
+       // [ws.tableView reloadData];//data reload
+        [ws reloadTableSnap];
     }];
     [self.spotModel.spotDetails.nearbyFoodRecommends.loadSupport setDataRefreshblock:^{
        // NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBScenicDetailSectionTravelRecommendType];
         //[ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-        [ws.tableView reloadData];//data reload
-
+      //  [ws.tableView reloadData];//data reload
+        [ws reloadTableSnap];
     }];
     
     
@@ -433,22 +458,32 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         }];
         segmentedControl.indexChangeBlock = ^(NSInteger index){
             NSLog(@"segmentedControl select:%ld",index);
-            ws.nearbyRecommendsSelectType = index;
-            switch (ws.nearbyRecommendsSelectType) {
-                case LBBPoohSegmCtrlFoodsType:
-                    [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyFoodRecommends];
-                    break;
-                case LBBPoohSegmCtrlHostelType:
-                    [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyHostelRecommends];
-                    break;
-                case LBBPoohSegmCtrlScenicType:
-                    [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbySpotRecommends];
-                    break;
-                    
-                default:
-                    break;
-            }
-            [ws.tableView reloadData];
+            
+            UIView *view = [ws.view snapshotViewAfterScreenUpdates:NO];
+            [ws.view addSubview:view];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [view removeFromSuperview];
+            });
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                ws.nearbyRecommendsSelectType = index;
+                switch (ws.nearbyRecommendsSelectType) {
+                    case LBBPoohSegmCtrlFoodsType:
+                        [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyFoodRecommends];
+                        break;
+                    case LBBPoohSegmCtrlHostelType:
+                        [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbyHostelRecommends];
+                        break;
+                    case LBBPoohSegmCtrlScenicType:
+                        [ws.tableView setTableViewData:ws.spotModel.spotDetails.nearbySpotRecommends];
+                        break;
+                        
+                    default:
+                        break;
+                }
+            });
+            
+//            [ws.tableView reloadData];
         //    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBScenicDetailSectionTravelRecommendType];
           //  [ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
         };

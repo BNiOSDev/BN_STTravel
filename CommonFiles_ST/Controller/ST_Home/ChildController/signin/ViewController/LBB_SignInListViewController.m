@@ -9,7 +9,7 @@
 #import "LBB_SignInListViewController.h"
 #import "LBB_SignInListCell.h"
 #import "PoohCommon.h"
-
+#import "LBB_NearSign.h"
 @interface LBB_SignInListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic, retain)UILabel* noteLable;
@@ -165,9 +165,7 @@
 
     [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:obj.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
     [cell.titleLabel setText:obj.allSpotsName];
-    [cell.subTitleLabel setText:obj.signInTime];
-    
-    
+    [cell.subTitleLabel setText:obj.signInTime];    
     return cell;
     
 }

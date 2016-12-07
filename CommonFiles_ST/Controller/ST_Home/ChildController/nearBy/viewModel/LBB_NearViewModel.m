@@ -75,7 +75,7 @@
     NSDictionary *paraDic = @{
                               @"longitude":longitude,
                               @"dimensionality":dimensionality,
-                              @"distance":@(distance),
+                            //  @"distance":@(distance),
                               @"allSpotsType":@(allSpotsType),
                               @"curPage":[NSNumber numberWithInt:curPage],
                               @"pageNum":[NSNumber numberWithInt:10],
@@ -106,6 +106,7 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getSpotArrayLongitude errorStr  %@",errorStr);
         }
         
         sportArray_block.loadSupport.loadEvent = codeNumber.intValue;
@@ -329,7 +330,7 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
-            NSLog(@"getNearSignInMapArrayClearData成功:%@",array);
+            NSLog(@"getNearSignInMapArrayClearData 成功:%@",array);
             
             NSArray *returnArray = [LBB_NearShopModel mj_objectArrayWithKeyValuesArray:array];
             

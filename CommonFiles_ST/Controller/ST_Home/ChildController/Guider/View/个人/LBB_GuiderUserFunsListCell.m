@@ -137,10 +137,10 @@
     return self;
 }
 
--(void)setModel:(LBB_UserOther*)model{
+-(void)setModel:(LBB_UserOther*)model isTour:(BOOL)isTour show:(BOOL)isShow{
     
     _model = model;
-    
+    WS(ws);
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
     [self.titleLabel setText:model.userName];
     [self.subTitleLabel setText:model.signature];
@@ -167,6 +167,96 @@
         }
     }];
     
+    self.vImageView.hidden = YES;
+    self.levelButton.hidden = YES;
+
+    [self.levelButton setTitle:@"" forState:UIControlStateNormal];
+    if (model.level > 0) {
+        [self.vImageView mas_remakeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(ws.titleLabel);
+            make.left.equalTo(ws.titleLabel.mas_right).offset(3);
+        }];
+        [self.levelButton mas_remakeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(ws.titleLabel);
+            make.left.equalTo(ws.vImageView.mas_right).offset(3);
+            make.height.mas_equalTo(AutoSize(12));
+        }];
+        self.vImageView.hidden = NO;
+        self.levelButton.hidden = NO;
+        [self.levelButton setTitle:[NSString stringWithFormat:@"Lv.%d",model.level] forState:UIControlStateNormal];
+    }
+    else{
+        [self.vImageView mas_remakeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(ws.titleLabel);
+            make.left.equalTo(ws.titleLabel.mas_right).offset(3);
+            make.width.equalTo(@0);
+        }];
+        [self.levelButton mas_remakeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(ws.titleLabel);
+            make.left.equalTo(ws.vImageView.mas_right).offset(3);
+            make.height.mas_equalTo(AutoSize(12));
+            make.width.equalTo(@0);
+        }];
+        
+    }
+
+    if (!isShow) {
+        self.identityLable.hidden = YES;
+        [self.identityLable setText:@""];
+    }
+    else{
+        self.identityLable.hidden = NO;
+        if (isTour) {//导游
+            //	int	导游认证状态：0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+            switch (model.tourAuditState) {
+                case 0:
+                    [self.identityLable setText:@"未认证"];
+                    break;
+                case 1:
+                    [self.identityLable setText:@"审核中"];
+                    break;
+                case 2:
+                    [self.identityLable setText:@"认证导游"];
+                    break;
+                case 3:
+                    [self.identityLable setText:@"认证失败"];
+                    break;
+                    
+                default:
+                    [self.identityLable setText:@""];
+                    break;
+            }
+            
+            
+        }
+        else{
+            //	int	用户认证状态：0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+            switch (model.auditState) {
+                case 0:
+                    [self.identityLable setText:@"未认证"];
+                    break;
+                case 1:
+                    [self.identityLable setText:@"审核中"];
+                    break;
+                case 2:
+                    [self.identityLable setText:@"实名认证"];
+                    break;
+                case 3:
+                    [self.identityLable setText:@"认证失败"];
+                    break;
+                    
+                default:
+                    [self.identityLable setText:@""];
+                    break;
+            }
+        }
+    }
+
+    [self layoutSubviews];
 }
 
 @end

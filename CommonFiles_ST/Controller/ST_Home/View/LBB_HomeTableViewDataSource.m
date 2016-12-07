@@ -14,7 +14,7 @@
 #import "LBBHomeTravelRecommendTableViewCell.h"
 #import "LBBHomeSquareCenterTableViewCell.h"
 #import "LBB_ScenicDetailSubjectViewController.h"
-
+#import "LBB_TravelDetailViewController.h"
 @interface LBB_HomeTableViewDataSource()
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -510,6 +510,8 @@
         case LBBHomeSectionTravelRecommendType:
         {
             NSLog(@"需跳转到老郑的游记详情页面");
+            LBB_TravelDetailViewController* dest = [[LBB_TravelDetailViewController alloc] init];
+            [self.parentViewController.navigationController pushViewController:dest animated:YES];
             
         }
             break;

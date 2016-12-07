@@ -9,6 +9,16 @@
 #import "LBBHomeHotestTableViewCellItem.h"
 #import "PoohCommon.h"
 
+@interface LBBHomeHotestTableViewCellItem()
+{
+    RACDisposable* racIsCollected;
+    RACDisposable* racIsLike;
+    RACDisposable* racLikeNum;
+
+}
+
+@end
+
 @implementation LBBHomeHotestTableViewCellItem
 
 
@@ -141,8 +151,13 @@
     }
     self.priceLabel.attributedText = strAttr;
     
+    [racIsCollected dispose];
+    [racIsLike dispose];
+    [racLikeNum dispose];
+
+    
     @weakify (self);
-    [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* isCollected) {
+    racIsCollected = [RACObserve(model, isCollected) subscribeNext:^(NSNumber* isCollected) {
         @strongify(self);
         
         BOOL status = [isCollected boolValue];
@@ -155,7 +170,7 @@
         }
     }];
 
-    [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* isLiked) {
+    racIsLike = [RACObserve(model, isLiked) subscribeNext:^(NSNumber* isLiked) {
         @strongify(self);
         BOOL status = [isLiked boolValue];
         if (status) {
@@ -167,7 +182,7 @@
         
     }];
     
-    [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
+    racLikeNum = [RACObserve(model, likeNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         int status = [num intValue];
         [self.greetView setTitle:[NSString stringWithFormat:@"%d",status] forState:UIControlStateNormal];//点赞次数
