@@ -20,7 +20,19 @@
 
 @end
 
+@implementation LBB_SpotsCommentsRecordPics
+
+
+@end
+
 @implementation LBB_SpotsCommentsRecord
+
+-(void)setPics:(NSMutableArray<LBB_SpotsCommentsRecordPics *> *)pics{
+    NSMutableArray *array = (NSMutableArray *)[pics map:^id(NSDictionary *element) {
+        return [LBB_SpotsCommentsRecordPics mj_objectWithKeyValues:element];
+    }];
+    _pics = array;
+}
 
 @end
 

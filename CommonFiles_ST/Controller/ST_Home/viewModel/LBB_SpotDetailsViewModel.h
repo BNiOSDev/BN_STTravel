@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@interface LBB_SpotsCommentsRecordPics : NSObject
 
+@property(nonatomic, strong)NSString *imageUrl ;// URL
+
+@end
 
 @interface LBB_SpotsCommentsRecord : NSObject
 
 @property(nonatomic, assign)long commentId ;// 主键
 @property(nonatomic, strong)NSString *remark ;// 评论描述
-@property(nonatomic, strong)NSMutableArray *pics ;// 评论图片集合
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsCommentsRecordPics*> *pics ;// 评论图片集合
 @property(nonatomic, strong)NSString *commentDate ;// 评论日期
 @property(nonatomic, assign)int commentsNum ;// 评论条数
 @property(nonatomic, assign)long userId ;// 发布者Id
