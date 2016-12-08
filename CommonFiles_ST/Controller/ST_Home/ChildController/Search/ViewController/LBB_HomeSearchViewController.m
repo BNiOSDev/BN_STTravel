@@ -25,6 +25,8 @@
 #import "LBBVideoPlayerViewController.h"
 #import "LBB_VideoDetailViewController.h"
 #import "LBBHostDetailViewController.h"
+#import "LBB_TravelCommentController.h"
+#import "LBB_TravelDetailViewController.h"
 
 static const NSInteger kSearchButtonMarginRight = -10;
 static const NSInteger kButtonWidth = 45;
@@ -155,7 +157,9 @@ static const NSInteger kButtonWidth = 45;
         }
             break;
         case LBBPoohHomeSearchTypeTravel://游记
-            
+        {
+            [self.viewModel getSearchTravelNotesWordsArray:self.searchBar.text];
+        }
             
             break;
         case LBBPoohHomeSearchTypeDefault://展示搜索关键词
@@ -199,7 +203,11 @@ static const NSInteger kButtonWidth = 45;
     [RACObserve(self.locationManager, latitude) subscribeNext:^(NSString* num) {
         @strongify(self);
         
-        [self search];
+        if ((self.searchType == LBBPoohHomeSearchTypeScenic)
+            ||(self.searchType == LBBPoohHomeSearchTypeFoods)
+            ||(self.searchType == LBBPoohHomeSearchTypeHostel)) {
+            [self search];
+        }
 
     }];
     
@@ -240,6 +248,14 @@ static const NSInteger kButtonWidth = 45;
      @param name 搜索名称
      */
     [self.viewModel.ugcArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
+    
+    /**
+     3.6.8 搜索-游记（已测）
+     @param name 搜索名称
+     */
+    [self.viewModel.travelNoteArray.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];
     }];
 }
@@ -290,7 +306,9 @@ static const NSInteger kButtonWidth = 45;
         }
             break;
         case LBBPoohHomeSearchTypeTravel://游记
-            
+        {
+            [self.viewModel getSquareTravelNoteArray:self.searchBar.text clearData:YES];
+        }
             
             break;
         case LBBPoohHomeSearchTypeDefault://展示搜索关键词
@@ -580,7 +598,7 @@ static const NSInteger kButtonWidth = 45;
                 break;
             case LBBPoohHomeSearchTypeTravel://游记
             {
-                return 10;
+                return self.viewModel.travelNoteArray.count;
             }
                 break;
             case LBBPoohHomeSearchTypeDefault://展示搜索关键词
@@ -810,22 +828,14 @@ static const NSInteger kButtonWidth = 45;
             {
                 LBBTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBBTravelTableViewCell"];
                 cell.cellBlock = ^(id view,UITableViewCellViewSignal signal){
+                    [self dealCellSignal:signal withIndex:indexPath];
                 };
                 ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+                
                 [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
                 
-                ZJMTravelModel  *model = [[ZJMTravelModel alloc]init];
-                model.iconName = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-                model.imageUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-                model.name = @"钟爱SD的男人";
-                model.msgContent = @"开启说走就走的旅行吧";
-                model.timeStr = @"2016-09-09";
-                model.daysStr = @"5 days";
-                model.vistNum = @"1080";
-                model.praiseNum = @"999";
-                model.commentNum = @"999";
-                model.collectNum = @"9999";
-                cell.model = model;
+                
+                cell.model = self.viewModel.travelNoteArray[indexPath.row];
                 return cell;
             }
                 break;
@@ -917,7 +927,10 @@ static const NSInteger kButtonWidth = 45;
         }
             break;
         case LBBPoohHomeSearchTypeTravel://游记
-            
+        {
+            LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             
             break;
         case LBBPoohHomeSearchTypeDefault://展示搜索关键词
@@ -942,6 +955,33 @@ static const NSInteger kButtonWidth = 45;
         width = [UIScreen mainScreen].bounds.size.height;
     }
     return width;
+}
+
+#pragma mark 处理点击cell上面的按钮
+- (void)dealCellSignal:(UITableViewCellViewSignal)signel  withIndex:(NSIndexPath *)indexPath
+{
+    NSLog(@"indexPath = %ld",(long)indexPath.row);
+    switch (signel) {
+        case UITableViewCellCollect:
+        {
+            
+        }
+            break;
+        case UITableViewCellConment:
+        {
+            LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case UITableViewCellPraise:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
     
 @end

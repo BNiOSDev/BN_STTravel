@@ -11,7 +11,11 @@
 #import "LBB_StarRatingViewController.h"
 
 @implementation LBB_DiscoveryDetailMsgCell
-
+{
+    RACDisposable* racCollecteNum;
+    RACDisposable* racLikeNum;
+    RACDisposable* racCommentsNum;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -211,17 +215,21 @@
     [self.timeLabel setText:model.lineTime];// 线路时长 如:1日游
     
     @weakify(self);
-    [RACObserve(model, likeNum) subscribeNext:^(NSNumber* num){// 点赞次数
+    [racCollecteNum dispose];
+    [racLikeNum dispose];
+    [racCommentsNum dispose];
+
+    racLikeNum = [RACObserve(model, likeNum) subscribeNext:^(NSNumber* num){// 点赞次数
         @strongify(self);
         [self.greatButton setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
     }];
     
-    [RACObserve(model, commentsNum) subscribeNext:^(NSNumber* num){// 评论条数
+    racCommentsNum = [RACObserve(model, commentsNum) subscribeNext:^(NSNumber* num){// 评论条数
         @strongify(self);
         [self.commentsButton setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
     }];
     
-    [RACObserve(model, collecteNum) subscribeNext:^(NSNumber* num){// 收藏次数
+    racCollecteNum = [RACObserve(model, collecteNum) subscribeNext:^(NSNumber* num){// 收藏次数
         @strongify(self);
         [self.favoriteButton setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
     }];

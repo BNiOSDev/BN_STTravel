@@ -307,7 +307,7 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
 
     LBB_HomeSearchViewController* searchVC = [[LBB_HomeSearchViewController alloc]init];
-    searchVC.searchType = LBBPoohHomeSearchTypeSquare;
+    searchVC.searchType = LBBPoohHomeSearchTypeScenic;
     [self.navigationController pushViewController:searchVC animated:YES];
     return NO;
 }

@@ -11,7 +11,12 @@
 
 
 @implementation LBB_ScenicMainTableViewCell
+{
+    RACDisposable* racIsCollected;
+    RACDisposable* racIsLike;
+    RACDisposable* racLikeNum;
 
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -256,8 +261,11 @@
 
     
     @weakify (self);
-    
-    [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
+    [racIsCollected dispose];
+    [racIsLike dispose];
+    [racLikeNum dispose];
+
+    racIsLike = [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         //是否点赞
@@ -270,7 +278,7 @@
         }
     }];
     
-    [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
+    racIsCollected = [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         //是否收藏
@@ -283,7 +291,7 @@
         }
     }];
     
-    [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
+    racLikeNum = [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         //点赞次数

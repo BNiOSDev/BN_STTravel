@@ -46,6 +46,7 @@
         self.allSpotWordArray = [[NSMutableArray alloc]initFromNet];
         self.userArray = [[NSMutableArray alloc]initFromNet];
         self.ugcArray = [[NSMutableArray alloc]initFromNet];
+        self.travelNoteArray = [[NSMutableArray alloc]initFromNet];
     }
     return self;
 }
@@ -385,6 +386,94 @@
 
 }
 
+/**
+ 3.6.9 搜索-游记 词汇（已测）
+ @param name 搜索名称
+ */
+- (void)getSearchTravelNotesWordsArray:(NSString*)name{
+    
+    NSDictionary *paraDic = @{
+                              @"name":name,
+                              };
+    NSLog(@"getSearchTravelNotesWordsArray paraDic: %@",paraDic);
+    
+    NSString *url = [NSString stringWithFormat:@"%@/search/travelNotes/words",BASEURL];
+    __weak typeof(self) temp = self;
+    self.allSpotWordArray.loadSupport.loadEvent = NetLoadingEvent;
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSLog(@"getSearchTravelNotesWordsArray成功  %@",[dic objectForKey:@"rows"]);
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_SearchHotWordModel mj_objectArrayWithKeyValuesArray:array];
+            
+            
+            [temp.allSpotWordArray removeAllObjects];
+            
+            [temp.allSpotWordArray addObjectsFromArray:returnArray];
+            temp.allSpotWordArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.allSpotWordArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getSearchTravelNotesWordsArray失败  %@",error.domain);
+        
+        temp.allSpotWordArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
 
+}
+
+/**
+ 3.6.8 搜索-游记（已测）
+ @param name 搜索名称
+ */
+- (void)getSquareTravelNoteArray:(NSString*)name
+                       clearData:(BOOL)clear{
+    int curPage = clear == YES ? 0 : round(self.travelNoteArray.count/10.0);
+    NSDictionary *paraDic = @{
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              @"name":name,
+                              };
+    NSLog(@"getSquareTravelNoteArray paraDic: %@",paraDic);
+    
+    NSString *url = [NSString stringWithFormat:@"%@/search/travelNotes",BASEURL];
+    __weak typeof(self) temp = self;
+    self.travelNoteArray.loadSupport.loadEvent = NetLoadingEvent;
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSLog(@"getSquareTravelNoteArray 成功  %@",[dic objectForKey:@"rows"]);
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [BN_SquareTravelList mj_objectArrayWithKeyValuesArray:array];
+            
+            if (clear) {
+                [temp.travelNoteArray removeAllObjects];
+            }
+            [temp.travelNoteArray addObjectsFromArray:returnArray];
+            temp.travelNoteArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.travelNoteArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getSquareTravelNoteArray失败  %@",error.domain);
+        
+        temp.travelNoteArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+
+
+}
 
 @end

@@ -13,6 +13,14 @@
 
 @implementation LBB_ScenicDetailPriceMsgCell
 
+{
+    RACDisposable* commentsNum;
+    RACDisposable* racIsLike;
+    RACDisposable* racLikeNum;
+    RACDisposable* isCollected;
+    RACDisposable* collecteNum;
+    RACDisposable* isSigned;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -182,9 +190,16 @@
     
     [self.titleLabel setText:model.allSpotsName];
     
+    [commentsNum dispose];
+    [racIsLike dispose];
+    [racLikeNum dispose];
+    [isCollected dispose];
+    [collecteNum dispose];
+    [isSigned dispose];
+
     // 点赞标志 0未点赞 1：点赞
     @weakify(self);
-    [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
+    racIsLike = [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         BOOL status = [num boolValue];
@@ -197,26 +212,26 @@
     }];
     
     // 点赞次数
-    [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
+    racLikeNum = [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         int likenum = [num intValue];
         [self.greatView setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
     }];
     // 评论条数
-    [RACObserve(self.model, commentsNum) subscribeNext:^(NSNumber* num) {
+    commentsNum = [RACObserve(self.model, commentsNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         int likenum = [num intValue];
         [self.commentsView setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
     }];
     // 收藏次数
-    [RACObserve(self.model, collecteNum) subscribeNext:^(NSNumber* num) {
+    collecteNum = [RACObserve(self.model, collecteNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         int likenum = [num intValue];
         [self.favoriteView setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
     }];
     
     // 是否收藏
-    [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
+    isCollected = [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         BOOL status = [num boolValue];
         if (status) {
@@ -229,7 +244,7 @@
     
     
     // 是否签到
-    [RACObserve(self.model, isSigned) subscribeNext:^(NSNumber* num) {
+    isSigned = [RACObserve(self.model, isSigned) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         BOOL status = [num boolValue];
         if (status) {

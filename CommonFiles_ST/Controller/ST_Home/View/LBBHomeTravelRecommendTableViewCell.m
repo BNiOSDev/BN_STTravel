@@ -11,7 +11,12 @@
 #import "LBB_SquareSnsFollowViewController.h"
 #import "LBB_TravelCommentController.h"
 @implementation LBBHomeTravelRecommendTableViewCell
-
+{
+    RACDisposable* racIsCollected;
+    RACDisposable* racIsLike;
+    RACDisposable* racLikeNum;
+    RACDisposable* racCommentsNum;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -311,14 +316,19 @@
 -(void)setModel:(BN_HomeTravelNotes *)model{
 
     _model = model;
-    [self blindData];
+    [self blindData:model];
 }
 
--(void)blindData{
+-(void)blindData:(BN_HomeTravelNotes *)model{
 
     @weakify (self);
     
-    [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
+    [racIsCollected dispose];
+    [racIsLike dispose];
+    [racLikeNum dispose];
+    [racCommentsNum dispose];
+    
+    racIsLike = [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
         @strongify(self);
    
         //是否点赞
@@ -331,7 +341,7 @@
         }
     }];
     
-    [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
+    racIsCollected = [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         //是否收藏
@@ -344,7 +354,7 @@
         }
     }];
     
-    [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
+    racLikeNum = [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         //点赞次数
@@ -353,7 +363,7 @@
     }];
     
     
-    [RACObserve(self.model, commentsNum) subscribeNext:^(NSNumber* num) {
+    racCommentsNum = [RACObserve(self.model, commentsNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         //评论条数
@@ -362,55 +372,53 @@
     }];
     
     
-    [RACObserve(self, model) subscribeNext:^(BN_HomeTravelNotes* model) {
-        @strongify(self);
-        
-        [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.travelNotesPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//游记标题
-        [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//用户头像
-        [self.travlTitleLable setText:model.travelNotesName];//游记标题
-        [self.userLable setText:model.userName];//用户名
+
+    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.travelNotesPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//游记标题
+    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];//用户头像
+    [self.travlTitleLable setText:model.travelNotesName];//游记标题
+    [self.userLable setText:model.userName];//用户名
+
+    //标签
+    self.specialLabelButton1.hidden = YES;
+    self.specialLabelButton2.hidden = YES;
+    self.specialLabelButton3.hidden = YES;
+    self.specialLabelButton4.hidden = YES;
+    self.specialLabelButton5.hidden = YES;
+    self.specialLabelButton6.hidden = YES;
     
-        //标签
-        self.specialLabelButton1.hidden = YES;
-        self.specialLabelButton2.hidden = YES;
-        self.specialLabelButton3.hidden = YES;
-        self.specialLabelButton4.hidden = YES;
-        self.specialLabelButton5.hidden = YES;
-        self.specialLabelButton6.hidden = YES;
-        
-        NSInteger count = model.tags.count;
-        if (count > 0) {
-            self.specialLabelButton1.hidden = NO;
-            BN_HomeTag* tag = [model.tags objectAtIndex:0];
-            [self.specialLabelButton1 setTitle:tag.tagName forState:UIControlStateNormal];
-        }
-        if (count > 1){
-            self.specialLabelButton2.hidden = NO;
-            BN_HomeTag* tag = [model.tags objectAtIndex:1];
-            [self.specialLabelButton2 setTitle:tag.tagName forState:UIControlStateNormal];
-        }
-        if (count > 2){
-            self.specialLabelButton3.hidden = NO;
-            BN_HomeTag* tag = [model.tags objectAtIndex:2];
-            [self.specialLabelButton3 setTitle:tag.tagName forState:UIControlStateNormal];
-        }
-        if (count > 3){
-            self.specialLabelButton4.hidden = NO;
-            BN_HomeTag* tag = [model.tags objectAtIndex:3];
-            [self.specialLabelButton4 setTitle:tag.tagName forState:UIControlStateNormal];
-        }
-        if (count > 4){
-            self.specialLabelButton5.hidden = NO;
-            BN_HomeTag* tag = [model.tags objectAtIndex:4];
-            [self.specialLabelButton5 setTitle:tag.tagName forState:UIControlStateNormal];
-        }
-        if (count > 5){
-            self.specialLabelButton6.hidden = NO;
-            BN_HomeTag* tag = [model.tags objectAtIndex:5];
-            [self.specialLabelButton6 setTitle:tag.tagName forState:UIControlStateNormal];
-        }
-        
-    }];
+    NSInteger count = model.tags.count;
+    if (count > 0) {
+        self.specialLabelButton1.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:0];
+        [self.specialLabelButton1 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 1){
+        self.specialLabelButton2.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:1];
+        [self.specialLabelButton2 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 2){
+        self.specialLabelButton3.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:2];
+        [self.specialLabelButton3 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 3){
+        self.specialLabelButton4.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:3];
+        [self.specialLabelButton4 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 4){
+        self.specialLabelButton5.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:4];
+        [self.specialLabelButton5 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 5){
+        self.specialLabelButton6.hidden = NO;
+        BN_HomeTag* tag = [model.tags objectAtIndex:5];
+        [self.specialLabelButton6 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    
+    
 }
 
 @end

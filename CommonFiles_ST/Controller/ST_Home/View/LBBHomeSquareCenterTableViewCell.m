@@ -111,7 +111,19 @@
 
 
 @implementation LBBHomeSquareCenterTableViewCell
+{
+    
+        RACDisposable* racIsCollected1;
+        RACDisposable* racIsLike1;
+        RACDisposable* racLikeNum1;
+        RACDisposable* racCommentsNum1;
 
+        RACDisposable* racIsCollected2;
+        RACDisposable* racIsLike2;
+        RACDisposable* racLikeNum2;
+        RACDisposable* racCommentsNum2;
+    
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -244,19 +256,25 @@
     if (model1.ugcType == 2){//视频
         self.item1.videoButton.hidden = NO;
     }
+    
+    [racIsCollected1 dispose];
+    [racIsLike1 dispose];
+    [racLikeNum1 dispose];
+    [racCommentsNum1 dispose];
+    
     @weakify(self);
-    [RACObserve(self.model1, likeNum) subscribeNext:^(NSNumber* num) {
+    racLikeNum1 = [RACObserve(self.model1, likeNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         [self.item1.greetView setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
     }];
     
-    [RACObserve(self.model1, commentsNum) subscribeNext:^(NSNumber* num) {
+    racCommentsNum1 = [RACObserve(self.model1, commentsNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         [self.item1.commentsView setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
     }];
     
-    [RACObserve(self.model1, isCollected) subscribeNext:^(NSNumber* num) {
+    racIsCollected1 = [RACObserve(self.model1, isCollected) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         if ([num boolValue]) {
@@ -266,7 +284,7 @@
             [self.item1.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
         }
     }];
-    [RACObserve(self.model1, isLiked) subscribeNext:^(NSNumber* num) {
+    racIsLike1 = [RACObserve(self.model1, isLiked) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         if ([num boolValue]) {
@@ -288,19 +306,20 @@
     if (model2.ugcType == 2){//视频
         self.item2.videoButton.hidden = NO;
     }
+    
     @weakify(self);
-    [RACObserve(self.model2, likeNum) subscribeNext:^(NSNumber* num) {
+    racLikeNum2 = [RACObserve(self.model2, likeNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         [self.item2.greetView setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
     }];
     
-    [RACObserve(self.model2, commentsNum) subscribeNext:^(NSNumber* num) {
+    racCommentsNum2 = [RACObserve(self.model2, commentsNum) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         [self.item2.commentsView setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
     }];
     
-    [RACObserve(self.model2, isCollected) subscribeNext:^(NSNumber* num) {
+    racIsCollected2 = [RACObserve(self.model2, isCollected) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         if ([num boolValue]) {
@@ -310,7 +329,7 @@
             [self.item2.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];
         }
     }];
-    [RACObserve(self.model2, isLiked) subscribeNext:^(NSNumber* num) {
+    racIsLike2 = [RACObserve(self.model2, isLiked) subscribeNext:^(NSNumber* num) {
         @strongify(self);
         
         if ([num boolValue]) {

@@ -9,7 +9,9 @@
 #import "LBB_PoohMyFavoriteMainCell.h"
 
 @implementation LBB_PoohMyFavoriteMainCell
-
+{
+    RACDisposable* racisCollected;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -126,7 +128,8 @@
     
     @weakify(self);
     //	收藏标志 0未收藏 1：收藏
-    [RACObserve(model, isCollected) subscribeNext:^(NSNumber* collected){
+    [racisCollected dispose];
+    racisCollected = [RACObserve(model, isCollected) subscribeNext:^(NSNumber* collected){
         @strongify(self);
         if ([collected intValue] == 0) {
             [self.favoriteButton setImage:IMAGE(@"ST_Home_Favorite") forState:UIControlStateNormal];

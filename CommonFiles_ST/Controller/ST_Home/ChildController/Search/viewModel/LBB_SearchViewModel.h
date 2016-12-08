@@ -10,6 +10,7 @@
 #import "LBB_SpotDetailsViewModel.h"
 #import "LBB_UserShowViewModel.h"
 #import "LBB_SquareViewModel.h"
+#import "LBB_SquareTravelListViewModel.h"
 @interface LBB_SearchHotWordModel : NSObject
 
 @property(nonatomic, strong)NSString* name;
@@ -44,6 +45,7 @@
 
 @property (nonatomic, strong)NSMutableArray<LBB_SearchHotWordModel*> *allSpotWordArray;//美食、景点、民宿的热词
 @property (nonatomic, strong)NSMutableArray<LBB_SearchSquareUgc*> *ugcArray;//展示图片/视频数据列表
+@property (nonatomic, strong)NSMutableArray<BN_SquareTravelList*> *travelNoteArray;//游记
 
 
 @property (nonatomic, strong)NSMutableArray<LBB_UserOther*> *userArray;//搜索到的用户信息
@@ -110,5 +112,17 @@
 - (void)getSquareUgcArray:(NSString*)name
                 clearData:(BOOL)clear;
 
+/**
+3.6.9 搜索-游记 词汇（已测）
+ @param name 搜索名称
+ */
+- (void)getSearchTravelNotesWordsArray:(NSString*)name;
+
+/**
+ 3.6.8 搜索-游记（已测）
+ @param name 搜索名称
+ */
+- (void)getSquareTravelNoteArray:(NSString*)name
+                clearData:(BOOL)clear;
 
 @end

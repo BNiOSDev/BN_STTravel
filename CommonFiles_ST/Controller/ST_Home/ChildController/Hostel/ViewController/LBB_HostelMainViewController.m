@@ -15,7 +15,7 @@
 #import "LBB_FilterTableViewCell.h"
 #import "LBB_FilterListTableViewCell.h"
 #import "LBB_HostelViewModel.h"
-
+#import "LBB_HomeSearchViewController.h"
 @interface LBB_HostelMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
@@ -224,7 +224,7 @@
     search.frame = CGRectMake(0, 0, 25, 25);
     [search bk_addEventHandler:^(id sender){
         
-        LBB_ScenicSearchViewController* dest = [[LBB_ScenicSearchViewController alloc]init];
+      /*  LBB_ScenicSearchViewController* dest = [[LBB_ScenicSearchViewController alloc]init];
         dest.placeHolderString = @"输入关键字搜索民宿";
         dest.click = ^(LBB_ScenicSearchViewController* v , NSIndexPath* indexPath){
             
@@ -232,7 +232,10 @@
             [v.navigationController popViewControllerAnimated:YES];
         };
         [ws.navigationController pushViewController:dest animated:YES];
-        
+        */
+        LBB_HomeSearchViewController* searchVC = [[LBB_HomeSearchViewController alloc]init];
+        searchVC.searchType = LBBPoohHomeSearchTypeHostel;
+        [self.navigationController pushViewController:searchVC animated:YES];
     }forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithCustomView:search];
