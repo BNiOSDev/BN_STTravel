@@ -132,9 +132,19 @@
     //    .topEqualToView(_addressImage)
     .centerYEqualToView(_addressImage)
     .heightIs(18);
-
+    
+    [_iconImage addTarget:self action:@selector(userShow) forControlEvents:UIControlEventTouchUpInside];
 }
 
+-(void)userShow{//点击头像，显示用户个人主页
+    
+    LBB_SquareSnsFollowViewController* vc = [[LBB_SquareSnsFollowViewController alloc] init];
+    LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+    viewModel.userId = self.model.userId;
+    vc.viewModel = viewModel;
+    [[self getViewController].navigationController pushViewController:vc animated:YES];
+    
+}
 
 - (void)setModel:(LBB_SearchSquareUgc *)model
 {
