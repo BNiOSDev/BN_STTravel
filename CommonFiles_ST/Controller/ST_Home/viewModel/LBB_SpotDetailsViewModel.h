@@ -34,7 +34,7 @@
 @interface LBB_SpotsFacilities : NSObject
 
 @property(nonatomic, assign)long tagId ;// 主键
-@property(nonatomic, strong)NSString *name ;// 设施名称
+@property(nonatomic, strong)NSString *tagName ;// 设施名称
 
 @end
 

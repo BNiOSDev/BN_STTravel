@@ -7,7 +7,10 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_SpotDetailsViewModel.h"
 
 @interface LBB_ScenicDetailEquipmentCell : LBBPoohBaseTableViewCell
+
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsFacilities*> *facilities ;// 设施
 
 @end

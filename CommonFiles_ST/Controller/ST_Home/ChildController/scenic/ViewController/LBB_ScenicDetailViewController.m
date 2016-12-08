@@ -750,7 +750,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         
         NSLog(@"LBB_ScenicDetailEquipmentCell nil");
     }
-
+    [cell setFacilities:self.spotModel.spotDetails.facilities];
     return cell;
     
 }
@@ -906,7 +906,10 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 #pragma 景区设施
 -(CGFloat)tableView:(UITableView *)tableView heightForEquipmentRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    WS(ws);
     return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailEquipmentCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailEquipmentCell* cell){
+        
+        [cell setFacilities:ws.spotModel.spotDetails.facilities];
     }];
 }
 
