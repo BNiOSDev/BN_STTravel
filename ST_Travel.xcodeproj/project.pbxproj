@@ -10,6 +10,8 @@
 		1B2085481DF5A5F90065DE6F /* LBB_CommentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085471DF5A5F90065DE6F /* LBB_CommentViewModel.m */; };
 		1B20854B1DF5AF7B0065DE6F /* LBB_NearSign.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B20854A1DF5AF7B0065DE6F /* LBB_NearSign.m */; };
 		1B2085521DF5CE960065DE6F /* LBB_SearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085511DF5CE960065DE6F /* LBB_SearchViewModel.m */; };
+		1D49DC0E1DF90E17005043AD /* LBB_HomeSearchSquareVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D49DC0A1DF90E17005043AD /* LBB_HomeSearchSquareVideoCell.m */; };
+		1D49DC0F1DF90E17005043AD /* LBB_HomeSearchSquareImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D49DC0C1DF90E17005043AD /* LBB_HomeSearchSquareImageCell.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DB14E2B1DF3110E0023A740 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB149741DF3110D0023A740 /* PoohBaseTableViewController.m */; };
@@ -571,6 +573,10 @@
 		1B20854A1DF5AF7B0065DE6F /* LBB_NearSign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_NearSign.m; sourceTree = "<group>"; };
 		1B2085501DF5CE960065DE6F /* LBB_SearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SearchViewModel.h; sourceTree = "<group>"; };
 		1B2085511DF5CE960065DE6F /* LBB_SearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SearchViewModel.m; sourceTree = "<group>"; };
+		1D49DC0A1DF90E17005043AD /* LBB_HomeSearchSquareVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchSquareVideoCell.m; sourceTree = "<group>"; };
+		1D49DC0B1DF90E17005043AD /* LBB_HomeSearchSquareVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeSearchSquareVideoCell.h; sourceTree = "<group>"; };
+		1D49DC0C1DF90E17005043AD /* LBB_HomeSearchSquareImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_HomeSearchSquareImageCell.m; sourceTree = "<group>"; };
+		1D49DC0D1DF90E17005043AD /* LBB_HomeSearchSquareImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_HomeSearchSquareImageCell.h; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DB149731DF3110D0023A740 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
@@ -2218,6 +2224,10 @@
 		1DB14A711DF3110D0023A740 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D49DC0A1DF90E17005043AD /* LBB_HomeSearchSquareVideoCell.m */,
+				1D49DC0B1DF90E17005043AD /* LBB_HomeSearchSquareVideoCell.h */,
+				1D49DC0C1DF90E17005043AD /* LBB_HomeSearchSquareImageCell.m */,
+				1D49DC0D1DF90E17005043AD /* LBB_HomeSearchSquareImageCell.h */,
 				1DB14A721DF3110D0023A740 /* LBB_HomeSearchDefaultCell.h */,
 				1DB14A731DF3110D0023A740 /* LBB_HomeSearchDefaultCell.m */,
 				1DB14A741DF3110D0023A740 /* LBB_HomeSearchGoodsCell.h */,
@@ -5692,6 +5702,7 @@
 				1DB14EF21DF3110F0023A740 /* LBB_ResgisterViewController.m in Sources */,
 				1DB14E8F1DF3110E0023A740 /* LBB_ScenicDetailSubjectViewController.m in Sources */,
 				1DB14FE61DF311100023A740 /* LBB_PraiseWithCommentView.m in Sources */,
+				1D49DC0F1DF90E17005043AD /* LBB_HomeSearchSquareImageCell.m in Sources */,
 				1DB14FE71DF311100023A740 /* LBB_ToolsBtnView.m in Sources */,
 				1DB14EB41DF3110F0023A740 /* ST_TabBarController.m in Sources */,
 				1DB1500B1DF311110023A740 /* ZJScrollSegmentView.m in Sources */,
@@ -5722,6 +5733,7 @@
 				1DB14F091DF3110F0023A740 /* LBB_RouteViewController.m in Sources */,
 				1DB14E671DF3110E0023A740 /* LBB_LabelDetailUserCell.m in Sources */,
 				1DB14F121DF3110F0023A740 /* SettingPushViewController.m in Sources */,
+				1D49DC0E1DF90E17005043AD /* LBB_HomeSearchSquareVideoCell.m in Sources */,
 				1DB14F3F1DF3110F0023A740 /* MineViewController.m in Sources */,
 				1DB150261DF311110023A740 /* LBB_TagsViewModel.m in Sources */,
 				1DB14E771DF3110E0023A740 /* LBB_OrderTicketPriceCell.m in Sources */,

@@ -14,6 +14,24 @@
 
 @end
 
+@implementation LBB_SearchSquareUgc
+- (void)setPics:(NSMutableArray<LBB_SquarePics *> *)pics
+{
+    NSMutableArray *array = (NSMutableArray *)[pics map:^id(NSDictionary *element) {
+        return [LBB_SquarePics mj_objectWithKeyValues:element];
+    }];
+    _pics = array;
+}
+
+- (void)setTags:(NSMutableArray<LBB_SquareTags *> *)tags
+{
+    NSMutableArray *array = (NSMutableArray *)[tags map:^id(NSDictionary *element) {
+        return [LBB_SquareTags mj_objectWithKeyValues:element];
+    }];
+    _tags = array;
+}
+@end
+
 @implementation LBB_SearchViewModel
 
 
@@ -27,6 +45,7 @@
         self.hostelSpotsArray = [[NSMutableArray alloc]initFromNet];
         self.allSpotWordArray = [[NSMutableArray alloc]initFromNet];
         self.userArray = [[NSMutableArray alloc]initFromNet];
+        self.ugcArray = [[NSMutableArray alloc]initFromNet];
     }
     return self;
 }
@@ -275,5 +294,97 @@
         temp.allSpotWordArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
+
+/**
+ 3.6.2 搜索-广场（已测）
+ @param name 搜索名称
+ */
+- (void)getSquareUgcArray:(NSString*)name
+                clearData:(BOOL)clear
+{
+    int curPage = clear == YES ? 0 : round(self.ugcArray.count/10.0);
+    NSDictionary *paraDic = @{
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              @"name":name,
+                              };
+    NSLog(@"getSquareUgcArray paraDic: %@",paraDic);
+    
+    NSString *url = [NSString stringWithFormat:@"%@/search/square",BASEURL];
+    __weak typeof(self) temp = self;
+    self.ugcArray.loadSupport.loadEvent = NetLoadingEvent;
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSLog(@"getSquareUgcArray 成功  %@",[dic objectForKey:@"rows"]);
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_SearchSquareUgc mj_objectArrayWithKeyValuesArray:array];
+            
+            if (clear) {
+                [temp.ugcArray removeAllObjects];
+            }
+            [temp.ugcArray addObjectsFromArray:returnArray];
+            temp.ugcArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.ugcArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getSquareUgcArray失败  %@",error.domain);
+        
+        temp.ugcArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+
+}
+
+/**
+ 3.6.3 搜索-广场 词汇（已测）
+ @param name 搜索名称
+ */
+- (void)getSearchSquareWordsArray:(NSString*)name{
+    
+    NSDictionary *paraDic = @{
+                              @"name":name,
+                              };
+    NSLog(@"getSearchSquareWordsArray paraDic: %@",paraDic);
+    
+    NSString *url = [NSString stringWithFormat:@"%@/search/square/words",BASEURL];
+    __weak typeof(self) temp = self;
+    self.allSpotWordArray.loadSupport.loadEvent = NetLoadingEvent;
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSLog(@"getSearchSquareWordsArray成功  %@",[dic objectForKey:@"rows"]);
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_SearchHotWordModel mj_objectArrayWithKeyValuesArray:array];
+            
+            
+            [temp.allSpotWordArray removeAllObjects];
+            
+            [temp.allSpotWordArray addObjectsFromArray:returnArray];
+            temp.allSpotWordArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.allSpotWordArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getSearchSquareWordsArray失败  %@",error.domain);
+        
+        temp.allSpotWordArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+
+}
+
+
 
 @end

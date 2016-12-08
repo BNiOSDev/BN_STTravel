@@ -9,10 +9,29 @@
 #import <Foundation/Foundation.h>
 #import "LBB_SpotDetailsViewModel.h"
 #import "LBB_UserShowViewModel.h"
-
+#import "LBB_SquareViewModel.h"
 @interface LBB_SearchHotWordModel : NSObject
 
 @property(nonatomic, strong)NSString* name;
+
+@end
+
+@interface LBB_SearchSquareUgc : BN_BaseDataModel
+
+
+@property (nonatomic, assign)long ugcId;//	Long	主键
+@property (nonatomic, assign)int ugcType;//	Int	5：图片 6视频
+@property (nonatomic, assign)long userId;//	Long	用户ID
+@property (nonatomic, strong)NSString *userName;//	String	用户名称
+@property (nonatomic, strong)NSString *userPicUrl;//	String	用户头像
+@property (nonatomic, strong)NSString *remark;//	String	备注
+@property (nonatomic, strong)NSString *videoUrl;//	String	视频地址(视频)
+@property (nonatomic, strong)NSMutableArray<LBB_SquarePics *> *pics;//	List	图片集合
+@property (nonatomic, assign)long timeDistance;//	Long	时间距离(分)
+@property (nonatomic, assign)long allSpotsId;//	Long	场景ID
+@property (nonatomic, assign)int allSpotsType;//	Int	1.美食 2.民宿 3景点
+@property (nonatomic, strong)NSString *allSpotsName;//	String	场景名称
+@property (nonatomic, strong)NSMutableArray<LBB_SquareTags *> *tags;//	List	标签集合
 
 @end
 
@@ -24,6 +43,8 @@
 @property (nonatomic, strong)NSMutableArray<LBB_SpotModel*> *hostelSpotsArray;
 
 @property (nonatomic, strong)NSMutableArray<LBB_SearchHotWordModel*> *allSpotWordArray;//美食、景点、民宿的热词
+@property (nonatomic, strong)NSMutableArray<LBB_SearchSquareUgc*> *ugcArray;//展示图片/视频数据列表
+
 
 @property (nonatomic, strong)NSMutableArray<LBB_UserOther*> *userArray;//搜索到的用户信息
 
@@ -75,4 +96,19 @@
  @param name 搜索名称
  */
 - (void)getSearchUserWordsArray:(NSString*)name;
+
+/**
+ 3.6.3 搜索-广场 词汇（已测）
+ @param name 搜索名称
+ */
+- (void)getSearchSquareWordsArray:(NSString*)name;
+
+/**
+ 3.6.2 搜索-广场（已测）
+ @param name 搜索名称
+ */
+- (void)getSquareUgcArray:(NSString*)name
+                clearData:(BOOL)clear;
+
+
 @end

@@ -8,12 +8,13 @@
 
 #import "LBB_HomeSearchViewController.h"
 #import "LBB_HomeSearchKeyWordCell.h"//关键词
-#import "LBB_GuiderUserDynamicCell.h"//广场
 #import "LBB_ScenicMainTableViewCell.h"//景点
 #import "LBBTravelTableViewCell.h"//游记
 #import "LBB_HomeSearchDefaultCell.h"//默认的
 #import "LBB_GuiderUserFunsListCell.h"//用户
 #import "LBB_HomeSearchGoodsCell.h"//商品
+#import "LBB_HomeSearchSquareImageCell.h"//广场-图片
+#import "LBB_HomeSearchSquareVideoCell.h"//广场视频
 
 #import <BN_FilterMenu.h>
 #import "LBB_FilterListTableViewCell.h"
@@ -21,7 +22,9 @@
 #import "LBB_SearchViewModel.h"
 #import "LBB_ScenicDetailViewController.h"
 #import "LBB_SquareSnsFollowViewController.h"
-
+#import "LBBVideoPlayerViewController.h"
+#import "LBB_VideoDetailViewController.h"
+#import "LBBHostDetailViewController.h"
 
 static const NSInteger kSearchButtonMarginRight = -10;
 static const NSInteger kButtonWidth = 45;
@@ -147,7 +150,9 @@ static const NSInteger kButtonWidth = 45;
         }
             break;
         case LBBPoohHomeSearchTypeSquare://广场
-            
+        {
+            [self.viewModel getSearchSquareWordsArray:self.searchBar.text];
+        }
             break;
         case LBBPoohHomeSearchTypeTravel://游记
             
@@ -229,6 +234,14 @@ static const NSInteger kButtonWidth = 45;
     [self.viewModel.userArray.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];
     }];
+    
+    /**
+     3.6.2 搜索-广场（已测）
+     @param name 搜索名称
+     */
+    [self.viewModel.ugcArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];
+    }];
 }
 
 //搜索动作
@@ -272,7 +285,9 @@ static const NSInteger kButtonWidth = 45;
         }
             break;
         case LBBPoohHomeSearchTypeSquare://广场
-
+        {
+            [self.viewModel getSquareUgcArray:self.searchBar.text clearData:YES];
+        }
             break;
         case LBBPoohHomeSearchTypeTravel://游记
             
@@ -378,8 +393,10 @@ static const NSInteger kButtonWidth = 45;
     
     //标签关键字默认的
     [self.tableView registerClass:[LBB_HomeSearchKeyWordCell class] forCellReuseIdentifier:@"LBB_HomeSearchKeyWordCell"];
-    //广场
-    [self.tableView registerClass:[LBB_GuiderUserDynamicCell class] forCellReuseIdentifier:@"LBB_GuiderUserDynamicCell"];
+    //广场-图片
+    [self.tableView registerClass:[LBB_HomeSearchSquareImageCell class] forCellReuseIdentifier:@"LBB_HomeSearchSquareImageCell"];
+    //广场-视频
+    [self.tableView registerClass:[LBB_HomeSearchSquareVideoCell class] forCellReuseIdentifier:@"LBB_HomeSearchSquareVideoCell"];
     //景点、美食、民宿
     [self.tableView registerClass:[LBB_ScenicMainTableViewCell class] forCellReuseIdentifier:@"LBB_ScenicMainTableViewCell"];
 
@@ -558,7 +575,7 @@ static const NSInteger kButtonWidth = 45;
                 break;
             case LBBPoohHomeSearchTypeSquare://广场
             {
-                return 10;
+                return self.viewModel.ugcArray.count;
             }
                 break;
             case LBBPoohHomeSearchTypeTravel://游记
@@ -618,8 +635,19 @@ static const NSInteger kButtonWidth = 45;
             }
                 break;
             case LBBPoohHomeSearchTypeSquare://广场
-                return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderUserDynamicCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderUserDynamicCell* cell){
-                }];
+            {
+                // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
+                LBB_SearchSquareUgc* model = self.viewModel.ugcArray[indexPath.row];
+                
+                
+                if (model.ugcType == 5) {	//Int	5：图片 6视频
+                        return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[LBB_HomeSearchSquareImageCell class] contentViewWidth:[self cellContentViewWith]];
+                }
+                else{
+                    return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[LBB_HomeSearchSquareVideoCell class] contentViewWidth:[self cellContentViewWith]];
+                }
+          
+            }
                 break;
             case LBBPoohHomeSearchTypeTravel://游记
                 
@@ -745,16 +773,37 @@ static const NSInteger kButtonWidth = 45;
                 break;
             case LBBPoohHomeSearchTypeSquare://广场
             {
-                static NSString *cellIdentifier = @"LBB_GuiderUserDynamicCell";
-                LBB_GuiderUserDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-                if (cell == nil) {
-                    cell = [[LBB_GuiderUserDynamicCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-                    NSLog(@"LBB_GuiderUserDynamicCell nil");
+                LBB_SearchSquareUgc* model = self.viewModel.ugcArray[indexPath.row];
+
+                if (model.ugcType == 5) {	//Int	5：图片 6视频
+                    
+                    LBB_HomeSearchSquareImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_HomeSearchSquareImageCell"];
+                    ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+                    
+                    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
+                    cell.model = self.viewModel.ugcArray[indexPath.row];
+                    return cell;
+                
                 }
-               // [cell setModel:nil];
-                
-                
-                return cell;
+                else{
+                    
+                    LBB_HomeSearchSquareVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_HomeSearchSquareVideoCell"];
+                    ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+                    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
+                    cell.model = self.viewModel.ugcArray[indexPath.row];
+                    __weak typeof (self) weakSelf = self;
+                    cell.blockBtnFunc = ^(NSInteger tag)
+                    {
+                        if(tag == 0)
+                        {
+                            LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc]init];
+                            vc.videoUrl = [NSURL URLWithString:model.videoUrl];
+                            [weakSelf presentViewController:vc animated:YES completion:nil];
+                        }
+                    };
+                    return cell;
+                }
+   
             }
                 break;
             case LBBPoohHomeSearchTypeTravel://游记
@@ -848,7 +897,24 @@ static const NSInteger kButtonWidth = 45;
         }
             break;
         case LBBPoohHomeSearchTypeSquare://广场
-            
+        {
+        
+            LBB_SearchSquareUgc  *model = self.viewModel.ugcArray[indexPath.row];
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.ugcId = model.ugcId;
+            NSLog(@"视频链接：%@",model.videoUrl);
+            if (model.ugcType == 5) {	//Int	5：图片 6视频
+                LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+                vc.viewModel = viewModel;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                LBB_VideoDetailViewController *Vc = [[LBB_VideoDetailViewController alloc]init];
+                Vc.viewModel = viewModel;
+                [self.navigationController pushViewController:Vc animated:YES];
+            }
+
+        }
             break;
         case LBBPoohHomeSearchTypeTravel://游记
             
@@ -867,6 +933,15 @@ static const NSInteger kButtonWidth = 45;
 }
 
 
-
+- (CGFloat)cellContentViewWith
+{
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    
+    // 适配ios7横屏
+    if ([UIApplication sharedApplication].statusBarOrientation != UIInterfaceOrientationPortrait && [[UIDevice currentDevice].systemVersion floatValue] < 8) {
+        width = [UIScreen mainScreen].bounds.size.height;
+    }
+    return width;
+}
     
 @end

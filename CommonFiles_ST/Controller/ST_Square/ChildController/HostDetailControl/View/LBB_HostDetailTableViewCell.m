@@ -165,6 +165,7 @@
      */
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
+    NSLog(@"model.userName:%@",model.userName);
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");
     _addressNameLabel.text = model.allSpotsName;// 场景名称
