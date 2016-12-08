@@ -133,7 +133,7 @@
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            NSLog(@"getHostelArrayLongitude成功  %@",[dic objectForKey:@"rows"]);
+            NSLog(@"getAllSpotsArrayLongitude成功 allSpotsType:%d, data %@",allSpotsType,[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
             NSArray *returnArray = [LBB_SpotModel mj_objectArrayWithKeyValuesArray:array];
             
@@ -152,7 +152,7 @@
         
         sportArray_block.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        NSLog(@"getHostelArrayLongitude失败  %@",error.domain);
+        NSLog(@"getAllSpotsArrayLongitude失败  %@",error.domain);
         
         sportArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];

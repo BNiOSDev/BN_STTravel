@@ -14,4 +14,6 @@
 @property(nonatomic, retain)UIButton* labelButton2;
 @property(nonatomic, retain)UIButton* labelButton3;
 
+@property(nonatomic, strong)ClickBlock click;
+
 @end

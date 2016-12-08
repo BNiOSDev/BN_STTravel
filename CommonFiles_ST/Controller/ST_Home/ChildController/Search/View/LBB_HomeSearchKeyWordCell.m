@@ -77,6 +77,21 @@
             make.right.equalTo(ws.contentView).offset(-2*margin);
         }];
         
+        [self.labelButton1 bk_whenTapped:^{
+            
+            ws.click(@0);
+        }];
+        
+        [self.labelButton2 bk_whenTapped:^{
+            
+            ws.click(@1);
+        }];
+        
+        [self.labelButton3 bk_whenTapped:^{
+            
+            ws.click(@2);
+        }];
+        
     }
     return self;
 }
