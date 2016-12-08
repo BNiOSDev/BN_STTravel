@@ -143,7 +143,7 @@ static const NSInteger kButtonWidth = 45;
             break;
         case LBBPoohHomeSearchTypeUser://用户
         {
-            
+            [self.viewModel getSearchUserWordsArray:self.searchBar.text];
         }
             break;
         case LBBPoohHomeSearchTypeSquare://广场

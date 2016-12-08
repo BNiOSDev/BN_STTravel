@@ -68,4 +68,11 @@
  */
 -(void)getUserArrayName:(NSString*)name
               clearData:(BOOL)clear;
+
+
+/**
+ 3.6.7 搜索-用户 词汇（已测）
+ @param name 搜索名称
+ */
+- (void)getSearchUserWordsArray:(NSString*)name;
 @end

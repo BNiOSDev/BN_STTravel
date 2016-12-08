@@ -234,4 +234,46 @@
     
 }
 
+/**
+ 3.6.7 搜索-用户 词汇（已测）
+ @param name 搜索名称
+ */
+- (void)getSearchUserWordsArray:(NSString*)name{
+
+    NSDictionary *paraDic = @{
+                              @"name":name,
+                              };
+    NSLog(@"getSearchUserWordsArray paraDic: %@",paraDic);
+    
+    NSString *url = [NSString stringWithFormat:@"%@/search/users/words",BASEURL];
+    __weak typeof(self) temp = self;
+    self.allSpotWordArray.loadSupport.loadEvent = NetLoadingEvent;
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSLog(@"getSearchUserWordsArray成功  %@",[dic objectForKey:@"rows"]);
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_SearchHotWordModel mj_objectArrayWithKeyValuesArray:array];
+            
+            
+            [temp.allSpotWordArray removeAllObjects];
+            
+            [temp.allSpotWordArray addObjectsFromArray:returnArray];
+            temp.allSpotWordArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.allSpotWordArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getSearchUserWordsArray失败  %@",error.domain);
+        
+        temp.allSpotWordArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
 @end
