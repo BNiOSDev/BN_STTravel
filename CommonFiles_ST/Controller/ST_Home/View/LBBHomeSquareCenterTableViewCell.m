@@ -8,8 +8,10 @@
 
 #import "LBBHomeSquareCenterTableViewCell.h"
 #import "LBB_TravelCommentController.h"
-
-
+#import "LBBHostDetailViewController.h"
+#import "LBB_VideoDetailViewController.h"
+#import "LBB_SquareViewModel.h"
+#import "LBBVideoPlayerViewController.h"
 @implementation LBBHomeSquareCenterTableViewCellItem
 
 -(id)init{
@@ -173,14 +175,34 @@
         
         [self.item1 bk_whenTapped:^{
             
-            LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
-            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.ugcId = ws.model1.ugcId;
+            if (ws.model1.ugcType == 1) {	//1.照片 2.视频
+                LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+                vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                LBB_VideoDetailViewController *Vc = [[LBB_VideoDetailViewController alloc]init];
+                Vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:Vc animated:YES];
+            }
             
         }];
         [self.item2 bk_whenTapped:^{
             
-            LBB_TravelCommentController* dest = [[LBB_TravelCommentController alloc]init];
-            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.ugcId = ws.model2.ugcId;
+            if (ws.model2.ugcType == 1) {	//1.照片 2.视频
+                LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+                vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                LBB_VideoDetailViewController *Vc = [[LBB_VideoDetailViewController alloc]init];
+                Vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:Vc animated:YES];
+            }
             
         }];
         
@@ -195,6 +217,22 @@
             }];
             NSLog(@"item1 greetView touch");
         }];
+        [self.item1.commentsView bk_whenTapped:^{
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.ugcId = ws.model1.ugcId;
+            if (ws.model1.ugcType == 1) {	//1.照片 2.视频
+                LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+                vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                LBB_VideoDetailViewController *Vc = [[LBB_VideoDetailViewController alloc]init];
+                Vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:Vc animated:YES];
+            }
+            
+            NSLog(@"item1 greetView touch");
+        }];
         [self.item1.favoriteButton bk_whenTapped:^{
             @strongify(self);
             
@@ -207,9 +245,11 @@
         [self.item1.videoButton bk_addEventHandler:^(id sender){
             
             NSLog(@"videoButton touch");
-            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
-            webViewController.url = [NSURL URLWithString:self.model1.ugcVideoUrl];
-            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
+            
+            LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc]init];
+            vc.videoUrl = [NSURL URLWithString:ws.model1.ugcVideoUrl];
+            [[ws getViewController] presentViewController:vc animated:YES completion:nil];
+         
             
         } forControlEvents:UIControlEventTouchUpInside];
         
@@ -223,6 +263,21 @@
             }];
             NSLog(@"item2 greetView touch");
         }];
+        [self.item2.commentsView bk_whenTapped:^{
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.ugcId = ws.model2.ugcId;
+            if (ws.model2.ugcType == 1) {	//1.照片 2.视频
+                LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+                vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                LBB_VideoDetailViewController *Vc = [[LBB_VideoDetailViewController alloc]init];
+                Vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:Vc animated:YES];
+            }
+            NSLog(@"item1 greetView touch");
+        }];
         [self.item2.favoriteButton bk_whenTapped:^{
             @strongify(self);
             
@@ -235,9 +290,9 @@
         [self.item2.videoButton bk_addEventHandler:^(id sender){
             
             NSLog(@"videoButton touch");
-            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
-            webViewController.url = [NSURL URLWithString:self.model2.ugcVideoUrl];
-            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
+            LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc]init];
+            vc.videoUrl = [NSURL URLWithString:ws.model2.ugcVideoUrl];
+            [[ws getViewController] presentViewController:vc animated:YES completion:nil];
             
         } forControlEvents:UIControlEventTouchUpInside];
     }

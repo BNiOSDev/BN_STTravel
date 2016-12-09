@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LBB_SpotAddress.h"
 #import "LBB_TagsViewModel.h"
+#import "LBB_HomeCommonModel.h"
 @interface LBB_DiscoveryDetailModel : BN_BaseDataModel
 
 @property (nonatomic, assign)long lineId ;// 路线ID
@@ -28,6 +29,21 @@
 @property (nonatomic, assign)int likeNum ;// 点赞次数
 @property (nonatomic, assign)int commentsNum ;// 评论条数
 @property (nonatomic, assign)int collecteNum ;// 收藏次数
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block;
+
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block;
 
 @end
 
@@ -54,6 +70,9 @@
 
 @property (nonatomic,strong)NSMutableArray<LBB_SpotAddress*> *squareSpotsArray;
 
+//首页广告
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *advertisementArray;
+
 /**
  3.4.26	主页-游记添加地址（已测）
  
@@ -77,6 +96,14 @@
                           allSpots:(NSArray<LBB_SpotAddress*>*)allSpots
                               tags:(NSArray<LBB_SquareTags*>*)tags
                              clear:(BOOL)clear;
+
+
+/**
+ 3.1.2 广告轮播 1.首页最顶部
+ 
+ @param clear 是否清空原数据
+ */
+- (void)getAdvertisementListArrayClearData:(BOOL)clear;
 
 
 @end

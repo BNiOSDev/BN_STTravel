@@ -67,6 +67,8 @@
         if(codeNumber.intValue == 0)
         {
             [temp.squareDetailViewModel mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getSquareDetailViewModelData succ:  %@",[dic objectForKey:@"result"]);
+
         }
         else
         {

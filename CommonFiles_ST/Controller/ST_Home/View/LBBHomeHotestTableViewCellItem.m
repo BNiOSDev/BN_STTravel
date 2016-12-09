@@ -8,6 +8,7 @@
 
 #import "LBBHomeHotestTableViewCellItem.h"
 #import "PoohCommon.h"
+#import "LBB_ScenicAllCommentViewController.h"
 
 @interface LBBHomeHotestTableViewCellItem()
 {
@@ -111,6 +112,13 @@
         [self.disView bk_whenTapped:^{
             
             NSLog(@"disView touch 需跳转到全部评论页面");
+            LBB_ScenicAllCommentViewController* vc = [[LBB_ScenicAllCommentViewController alloc] init];
+            LBB_SpotDetailsViewModel *spotDetailModel = [[LBB_SpotDetailsViewModel alloc] init];
+            spotDetailModel.allSpotsId = ws.model.allSpotsId;
+            spotDetailModel.allSpotsType = ws.model.allSpotsType;
+            vc.spotDetailModel = spotDetailModel;
+            [[ws getViewController].navigationController pushViewController:vc animated:YES];
+
             
         }];
         [self.favoriteButton bk_addEventHandler:^(id sender){

@@ -15,6 +15,10 @@
 #import "LBBPoohVerticalButton.h"
 #import "LBB_GuiderMainViewController.h"
 #import "LBB_DiscoveryViewModel.h"
+#import "LBB_FoodsMainViewController.h"
+#import "LBB_HostelMainViewController.h"
+#import "LBB_ScenicMainViewController.h"
+#import "LBB_ScenicDetailViewController.h"
 static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
 
@@ -62,6 +66,19 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
     WS(ws);
     self.viewModel = [[LBB_DiscoveryViewModel alloc] init];
+    
+    
+    /**
+     3.1.2 广告轮播 1.首页最顶部
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getAdvertisementListArrayClearData:YES];
+    
+    //1.监听数据，用来刷新数据，数据变化才会调用
+    [self.viewModel.advertisementArray.loadSupport setDataRefreshblock:^{
+        
+        [ws setCycleScrollViewUrls:ws.viewModel.advertisementArray];
+    }];
     
     [self.viewModel getDiscoveryArrayClearData:YES];
     
@@ -234,41 +251,6 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
         
     } forControlEvents:UIControlEventTouchUpInside];
 
-    
-  /*  UILabel* l = [UILabel new];
-    [l setText:@"鹭爸爸为您定制个性化厦门游攻略"];
-    [l setTextColor:ColorGray];
-    [l setFont:Font14];
-    [l setTextAlignment:NSTextAlignmentCenter];
-    [v addSubview:l];
-    [l mas_makeConstraints:^(MASConstraintMaker* make){
-        
-        make.top.equalTo(ws.cycScrollView.mas_bottom).offset(4*margin);
-        make.left.right.equalTo(v);
-        make.height.mas_equalTo(2*margin);
-    }];
-    
-    UIButton* b = [UIButton new];
-    [b setTitle:@"立即定制" forState:UIControlStateNormal];
-    [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [b.titleLabel setFont:Font13];
-    [b setBackgroundColor:ColorBtnYellow];
-    [v addSubview:b];
-    [b mas_makeConstraints:^(MASConstraintMaker* make){
-        make.centerX.equalTo(v);
-        make.top.equalTo(l.mas_bottom).offset(2*margin);
-        make.height.mas_equalTo(AutoSize(48/2));
-        make.width.mas_equalTo(AutoSize(168/2));
-    }];
-    [b bk_addEventHandler:^(id sender){
-        
-        
-        LBB_DiscoveryCustomizedViewController* dest = [[LBB_DiscoveryCustomizedViewController alloc]init];
-        [ws.navigationController pushViewController:dest animated:YES];
-        
-    } forControlEvents:UIControlEventTouchUpInside];
-    
-    */
     UIView* sep = [UIView new];
     [sep setBackgroundColor:ColorLine];
     [v addSubview:sep];
@@ -282,21 +264,86 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 }
 
 
--(void)setCycleScrollViewUrls:(NSArray*)urlArray{
+-(void)setCycleScrollViewUrls:(NSMutableArray<BN_HomeAdvertisement *> *)adModelArray{
     
-    NSArray* imagesURLStrings = @[@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg",
-                                  @"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690",
-                                  @"http://img5.poco.cn/mypoco/myphoto/20080721/19/43214503200807211940527014829584496_033_640.jpg",
-                                  @"http://img2.ph.126.net/O_N-vMFrIBv-vaXfC40fcA==/1679279711155879130.jpg",
-                                  @"http://upload.sanqin.com/2014/0820/1408524577544.jpg",
-                                  ];
-    //  imagesURLStrings = @[@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg" ];
-    self.cycScrollView.imageURLStringsGroup = imagesURLStrings;
+    NSMutableArray* urls = [NSMutableArray new];
+    for (BN_HomeAdvertisement* obj in adModelArray) {
+        
+        [urls addObject:obj.picUrl];
+    }
+    NSLog(@"urls:%@",urls);
+    self.cycScrollView.imageURLStringsGroup = urls;
 }
 #pragma SDCycleScrollView Delegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     NSLog(@"cycleScrollView didSelectItemAtIndex:%ld",index);
+    BN_HomeAdvertisement* model = [self.viewModel.advertisementArray objectAtIndex:index];
+    NSLog(@"cycleScrollView didSelect :%@",model);
+    
+    switch (model.classes) {
+        case 1://外部链接
+        {
+            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
+            webViewController.url = [NSURL URLWithString:model.hrefUrl];
+            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
+        }
+            break;
+        case 2://列表
+        {
+            UIViewController* dest;
+            switch (model.type) {
+                case 1://美食
+                    dest = [[LBB_FoodsMainViewController alloc] init];
+                    break;
+                case 2://民宿
+                    dest = [[LBB_HostelMainViewController alloc] init];
+                    break;
+                case 3://景点
+                    dest = [[LBB_ScenicMainViewController alloc] init];
+                    break;
+                case 4://伴手礼
+                    break;
+                default:
+                    break;
+            }
+            if (dest) {
+                [self.navigationController pushViewController:dest animated:YES];
+            }
+            
+        }
+            break;
+        case 3://详情
+        {
+            LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc] init];
+            LBB_SpotModel* viewModel = [[LBB_SpotModel alloc]init];
+            viewModel.allSpotsId = model.objId;//主键Id
+            dest.spotModel = viewModel;
+            switch (model.type) {
+                case 1://美食
+                    dest.homeType = LBBPoohHomeTypeFoods;
+                    break;
+                case 2://民宿
+                    dest.homeType = LBBPoohHomeTypeHostel;
+                    break;
+                case 3://景点
+                    dest.homeType = LBBPoohHomeTypeScenic;
+                    break;
+                case 4://伴手礼
+                    break;
+                default:
+                    break;
+            }
+            if (dest) {
+                [self.navigationController pushViewController:dest animated:YES];
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+
 }
 
 #pragma tableView Delegate

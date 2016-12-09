@@ -15,6 +15,9 @@
     RACDisposable* racCollecteNum;
     RACDisposable* racLikeNum;
     RACDisposable* racCommentsNum;
+    RACDisposable* racIsLike;
+    RACDisposable* racIsCollected;
+
 }
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -93,6 +96,9 @@
         [self.greatButton bk_whenTapped:^{
             
             NSLog(@"greetView touch");
+            [ws.model like:^(NSError* error){
+            
+            }];
             
         }];
         
@@ -134,7 +140,9 @@
         
         [self.favoriteButton bk_whenTapped:^{
             
+            [ws.model collecte:^(NSError* error){
             
+            }];
             
         }];
         
@@ -218,7 +226,9 @@
     [racCollecteNum dispose];
     [racLikeNum dispose];
     [racCommentsNum dispose];
-
+    [racIsLike dispose];
+    [racIsCollected dispose];
+    
     racLikeNum = [RACObserve(model, likeNum) subscribeNext:^(NSNumber* num){// 点赞次数
         @strongify(self);
         [self.greatButton setTitle:[NSString stringWithFormat:@"%d",[num intValue]] forState:UIControlStateNormal];
@@ -240,19 +250,30 @@
     [self.self.hostelButton setTitle:[NSString stringWithFormat:@"民宿%d",model.totalHomestay] forState:UIControlStateNormal];// 民宿个数
     
     // 点赞标志 0未点赞 1：点赞
-    if (model.isLiked) {
-        [self.greatButton setImage:IMAGE(@"景点专题_点赞HL") forState:UIControlStateNormal];
-    }
-    else{
-        [self.greatButton setImage:IMAGE(@"景点专题_点赞") forState:UIControlStateNormal];
-    }
-    // 收藏标志 0未收藏 1：收藏
-    if (model.isCollected) {
-        [ self.favoriteButton setImage:IMAGE(@"景点专题_小收藏HL") forState:UIControlStateNormal];
-    }
-    else{
-        [ self.favoriteButton setImage:IMAGE(@"景点专题_小收藏") forState:UIControlStateNormal];
-    }
+    racIsLike = [RACObserve(model, isLiked) subscribeNext:^(NSNumber* num){// 点赞次数
+        @strongify(self);
+        
+        int like = [num intValue];
+        if (like == 0) {
+            [self.greatButton setImage:IMAGE(@"景点专题_点赞") forState:UIControlStateNormal];
+        }
+        else{
+            [self.greatButton setImage:IMAGE(@"景点专题_点赞HL") forState:UIControlStateNormal];
+        }
+    }];
+    
+
+    racIsCollected = [RACObserve(model, isCollected) subscribeNext:^(NSNumber* num){// 点赞次数
+        @strongify(self);
+        
+        int like = [num intValue];
+        if (like == 0) {
+            [ self.favoriteButton setImage:IMAGE(@"景点专题_小收藏") forState:UIControlStateNormal];
+        }
+        else{
+            [ self.favoriteButton setImage:IMAGE(@"景点专题_小收藏HL") forState:UIControlStateNormal];
+        }
+    }];
 }
 
 @end

@@ -999,7 +999,6 @@ static const NSInteger kButtonWidth = 45;
             LBB_SearchSquareUgc  *model = self.viewModel.ugcArray[indexPath.row];
             LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
             viewModel.ugcId = model.ugcId;
-            NSLog(@"视频链接：%@",model.videoUrl);
             if (model.ugcType == 5) {	//Int	5：图片 6视频
                 LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
                 vc.viewModel = viewModel;
