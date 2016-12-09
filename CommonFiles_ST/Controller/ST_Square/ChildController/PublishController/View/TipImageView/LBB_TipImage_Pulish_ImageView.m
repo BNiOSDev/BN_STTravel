@@ -14,19 +14,15 @@
 #import "LBB_TagView.h"
 #import "LBB_PulishContain_ViewController.h"
 #import "LBB_PublishVideo_Contain_ViewController.h"
-#import "LBB_LabelDetailViewController.h"
 
 @implementation LBB_TipImage_Pulish_ImageView
-{
-    UITapGestureRecognizer  *tapTouch;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self  == [super initWithFrame:frame])
     {
         self.userInteractionEnabled = YES;
-        tapTouch = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchAddTip:)];
+        UITapGestureRecognizer  *tapTouch = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchAddTip:)];
         [self addGestureRecognizer:tapTouch];
     }
     return self;
@@ -46,14 +42,7 @@
     {
         LBB_SquareTags  *tagsModel = [_tipArray objectAtIndex:i];
         LBB_TagView   *tagView = [[LBB_TagView alloc]initWithFrame:CGRectMake(self.width - AUTO(80), self.height - AUTO(25) - (AUTO(25) * i), AUTO(80), AUTO(20))];
-        tagView.tagModel = tagsModel;
-        __weak typeof(tagView) weakTagView = tagView;
-        tagView.blockTagFunc = ^(LBB_TagView *view)
-        {
-            weakTagView.left = self.width - view.width - 5;
-        };
         tagView.tagTitleStr = tagsModel.tagName;
-//        [tagView addTarget:self action:@selector(tagsDetailFunc:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:tagView];
     }
 }
@@ -70,23 +59,16 @@
     for(int i = 0;i < _tipArray.count;i++)
     {
         LBB_SquareTags  *tagsModel = [_tipArray objectAtIndex:i];
-        LBB_TagView   *tagView = [[LBB_TagView alloc]initWithFrame:CGRectMake(0, self.height - AUTO(25) - (AUTO(25) * i), AUTO(80), AUTO(20))];
-        tagView.tagModel = tagsModel;
-        __weak typeof(tagView) weakTagView = tagView;
-        tagView.blockTagFunc = ^(LBB_TagView *view)
-        {
-            weakTagView.left = self.width - view.width - 5;
-        };
+        LBB_TagView   *tagView = [[LBB_TagView alloc]initWithFrame:CGRectMake(self.width - AUTO(80), self.height - AUTO(25) - (AUTO(25) * i), AUTO(80), AUTO(20))];
         tagView.tagTitleStr = tagsModel.tagName;
-//        [tagView addTarget:self action:@selector(tagsDetailFunc:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:tagView];
-
     }
 }
 
 - (void)touchAddTip:(UITapGestureRecognizer *)tag
 {
     NSLog(@"添加标签");
+//    self._blockAddTip(self);
     LBB_SelectTip_History_ViewController  *Vc =[[LBB_SelectTip_History_ViewController alloc]init];
     Vc.transTags = ^(id tags){
         if(!self.tipArray)
@@ -99,7 +81,6 @@
         }
         [self setTagViews];
         
-        //回传数据，上传数据使用
         if([[self viewController] isKindOfClass:[LBB_PulishContain_ViewController class]])
         {
                 [((LBB_PulishContain_ViewController *)[self viewController]) transTagsWithViewTag:self.tipArray viewTag:self.tag];
@@ -131,19 +112,6 @@
         }
     }
     return NO;
-}
-
-#pragma mark -- 跳转标签详情
-//- (void)tagsDetailFunc:(LBB_TagView *)tagView
-//{
-//    LBB_LabelDetailViewController  *vc = [[LBB_LabelDetailViewController alloc]init];
-//    vc.viewModel = tagView.tagModel;
-//    [[self viewController].navigationController pushViewController:vc animated:YES];
-//}
-
-- (void)clearNotifi
-{
-    [self removeGestureRecognizer:tapTouch];
 }
 
 @end

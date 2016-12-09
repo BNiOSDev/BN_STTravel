@@ -38,6 +38,7 @@
 
 - (void)setup
 {
+    
     vistImage = [UIImageView new];
     
     timeImage = [UIImageView new];
@@ -67,6 +68,7 @@
     .topEqualToView(self)
     .rightEqualToView(self)
     .heightIs(AUTO(225));
+    
 }
 
 - (void)setModel

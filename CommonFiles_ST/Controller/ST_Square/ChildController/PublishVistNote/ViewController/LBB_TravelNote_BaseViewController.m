@@ -15,21 +15,11 @@
 #import "ZYCameraViewComtroller.h"
 #import "LBB_SelectImages_ViewController.h"
 #import "FZJPhotoModel.h"
-#import "LBB_SerCover_CollectionViewController.h"
-#import "UITableView+SDAutoTableViewCellHeight.h"
-#import "UIView+SDAutoLayout.h"
-#import "LBB_TravelDetailViewCell.h"
-#import "ZJMTravelModel.h"
-#import "LBB_TravelCommentCell.h"
-#import "LBB_TravelNote_ListViewCell.h"
-#import "LBB_TravelDraftViewModel.h"
 
 @interface LBB_TravelNote_BaseViewController ()<UITableViewDelegate,UITableViewDataSource,TransImageDelegate>
 @property(nonatomic,strong)UIView       *whiteLine;
 @property(nonatomic,weak)LBB_TraveNoteHead_View   *headView;
 @property(nonatomic,weak)UITableView  *mTableView;
-@property(nonatomic, strong)NSMutableArray  *dataArray;
-@property(nonatomic, strong)LBB_TravelDraftViewModel  *dataModel;
 @end
 
 @implementation LBB_TravelNote_BaseViewController
@@ -38,14 +28,8 @@
     [super viewDidLoad];
     self.navigationItem.title = @"游记";
     self.view.backgroundColor = WHITECOLOR;
-    [self initData];
     [self initView];
-}
-
-- (void)initData
-{
-    _dataModel = [[LBB_TravelDraftViewModel alloc]init];
-    [_dataModel getTravelDraftData];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -56,17 +40,10 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage createImageWithColor:[UIColor whiteColor]]];
     [self initNav];
 }
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1.0;
-    [self.navigationController.navigationBar setShadowImage:[UIImage createImageWithColor:[UIColor grayColor]]];
-}
 
 - (void)initView
 {
     [self.view addSubview:self.mTableView];
-    [_mTableView registerClass:[LBB_TravelNote_ListViewCell class] forCellReuseIdentifier:@"LBB_TravelNote_ListViewCell"];
     [_mTableView setTableHeaderView:self.headView];
 //    self.headView.coverImage = IMAGE(@"zjmtakephotoing");
     self.headView.backgroundColor = ColorBtnYellow;
@@ -79,9 +56,6 @@
             NSLog(@"添加标签");
         }else{
             NSLog(@"设置封面");
-            LBB_SerCover_CollectionViewController *Vc = [[LBB_SerCover_CollectionViewController alloc]init];
-            Vc.view.backgroundColor = WHITECOLOR;
-            [self.navigationController pushViewController:Vc animated:YES];
         }
     };
     
@@ -232,7 +206,6 @@
         tableView.backgroundColor = ColorWhite;
         tableView.delegate = self;
         tableView.dataSource = self;
-        
         [self setExtraCellLineHidden:tableView];
         _mTableView = tableView;
         return  tableView;
@@ -269,82 +242,28 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%ld",_dataModel.travelDraftModel.travelNotesDetails.count);
-    return _dataModel.travelDraftModel.travelNotesDetails.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return AUTO(25);
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(25))];
-        headView.backgroundColor = WHITECOLOR;
-        
-        UIView *ballView = [[UIView alloc]initWithFrame:CGRectMake(14, 0, AUTO(12.0), AUTO(12.0))];
-        LRViewBorderRadius(ballView, ballView.height / 2.0, 0, [UIColor clearColor]);
-        ballView.backgroundColor = BLACKCOLOR;
-        [headView addSubview:ballView];
-        
-        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(20, ballView.bottom, 1.0, AUTO(13.0))];
-        line.backgroundColor = BLACKCOLOR;
-        [headView addSubview:line];
-        
-        ballView.centerX = line.centerX;
-        
-        UILabel *sectionLabel = [[UILabel alloc]initWithFrame:CGRectMake(ballView.right + 5, 0, DeviceWidth - (ballView.right + 5), AUTO(15))];
-        sectionLabel.font = FONT(AUTO(13.0));
-        sectionLabel.text = @"第一天 2016-09-10";
-        sectionLabel.centerY = ballView.centerY;
-        [headView addSubview:sectionLabel];
-        return headView;
-    
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    static NSString *cellID = @"TravelCell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//    
-//    if (!cell) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-//    }
-//    if(_mapPointArray.count)
-//    {
-//        cell.textLabel.text = @"地点信息";
-//    }
-    LBB_TravelNote_ListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_TravelNote_ListViewCell"];
-    cell.accessoryType = 0;
-    TravelNotesDetails *model = [_dataModel.travelDraftModel.travelNotesDetails objectAtIndex:indexPath.row];
-    cell.model = model;
-    ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-    
-    return cell;
- 
+    return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-    id model = self.dataArray[indexPath.row];
-    return [_mTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[LBB_TravelNote_ListViewCell class] contentViewWidth:[self cellContentViewWith]];
+    return _mapPointArray.count;
 }
 
-- (CGFloat)cellContentViewWith
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    static NSString *cellID = @"TravelCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
-    // 适配ios7横屏
-    if ([UIApplication sharedApplication].statusBarOrientation != UIInterfaceOrientationPortrait && [[UIDevice currentDevice].systemVersion floatValue] < 8) {
-        width = [UIScreen mainScreen].bounds.size.height;
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
-    return width;
+    if(_mapPointArray.count)
+    {
+        cell.textLabel.text = @"地点信息";
+    }
+    return cell;
 }
-
 
 #pragma mark -- TransDelegate
 - (void)transCameraImage:(UIImage *)image PHAsset:(PHAsset *)imageAsset

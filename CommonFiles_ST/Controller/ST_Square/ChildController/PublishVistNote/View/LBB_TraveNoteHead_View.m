@@ -22,9 +22,7 @@
 {
     if(self == [super initWithFrame:frame])
     {
-        self.backgroundColor = LINECOLOR;
-        
-        backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height - 10)];
+        backImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
         [self addSubview:backImage];
         
         setCover = [[UIButton alloc]initWithFrame:CGRectMake(DeviceWidth - AUTO(75), 74, AUTO(65), AUTO(17.5))];

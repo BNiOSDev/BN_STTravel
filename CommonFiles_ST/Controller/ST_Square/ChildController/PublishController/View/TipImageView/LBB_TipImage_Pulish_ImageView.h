@@ -12,5 +12,4 @@
 @interface LBB_TipImage_Pulish_ImageView : UIImageView
 @property(nonatomic,strong)NSMutableArray      *tipArray;
 @property(nonatomic,strong)BlockAddTip  _blockAddTip;
-- (void)clearNotifi;
 @end

@@ -18,6 +18,7 @@
  */
 -(void)getTravelDraftData;
 
+
 /**
  3.4.22 主页-游记修改草稿保存（已测）
  */
@@ -32,6 +33,9 @@
 3.4.24 主页-游记发布（已测）
  */
 -(void)publicTravelDraftData:(void (^)(NSError *error))block;;
+
+
+
 
 
 @end

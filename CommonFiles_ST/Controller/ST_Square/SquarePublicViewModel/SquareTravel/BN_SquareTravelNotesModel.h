@@ -39,7 +39,7 @@
 @property(nonatomic, assign)long objId;//	Long	场景ID，就是选择的地址id
 @property(nonatomic, assign)int allSpotsType;//	int	场景类型 1美食 2 民宿 3 景点
 @property(nonatomic, strong)NSString* allSpotsTypeName;//	String	场景类型名称
-@property(nonatomic, strong)NSString* name;//String	名称
+@property(nonatomic, strong)NSString* name;//	String	名称
 @property(nonatomic, strong)NSString* longitude;//	String	经度
 @property(nonatomic, strong)NSString* dimensionality;//	String	纬度
 @property(nonatomic, strong)NSString* billAmount;//	String	账单金额
