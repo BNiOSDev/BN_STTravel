@@ -24,6 +24,10 @@
 #import "BN_SquareTravelNotesModel.h"
 
 @interface LBB_AddFootprint_ViewController ()<TransImageDelegate>
+{
+    LBB_AddClass_Button  *addAddres;
+    LBB_AddClass_Button  *addSale;
+}
 @property(nonatomic,strong)LBB_Date_SengeMent    *headSegment;
 @property(nonatomic,strong)UITextView                       *contentText;
 @property(nonatomic,strong)UIScrollView                     *imageScrollView;
@@ -68,6 +72,7 @@
 
 - (void)initView
 {
+    _footprintModel = [[TravelNotesDetails alloc]init];
     __weak typeof (self) weakSelf = self;
     _headSegment = [[LBB_Date_SengeMent alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(32))];
     _headSegment.dateStr = [self stringFromDate:[NSDate date]];
@@ -117,16 +122,12 @@
     _contentText.placeholder = @"添加文字";
     [self.view addSubview:_contentText];
     
-    LBB_AddClass_Button  *addAddres = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, _contentText.bottom, DeviceWidth, AUTO(35))];
+    addAddres = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, _contentText.bottom, DeviceWidth, AUTO(35))];
     addAddres.titleStr = @"点击添加地点信息";
     [addAddres addTarget:self action:@selector(addAddressFunc) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addAddres];
     
-    UIView  *mapView = [[UIView alloc]initWithFrame:CGRectMake(0, addAddres.bottom + 5, DeviceWidth, AUTO(100))];
-    mapView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:mapView];
-    
-    LBB_AddClass_Button  *addSale = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, mapView.bottom + 5, DeviceWidth, AUTO(35))];
+    addSale = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, addAddres.bottom + 5, DeviceWidth, AUTO(35))];
     addSale.titleStr = @"添加消费记录";
     [addSale addTarget:self action:@selector(addSaleFunc) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addSale];
@@ -151,6 +152,11 @@
         //页面变化代码块
         {
             //地图显示，修改布局
+            BN_MapView  *mapView = [[BN_MapView alloc]init];
+            [mapView setFrame:CGRectMake(0, addAddres.bottom + 5, DeviceWidth, AUTO(100))];
+            [mapView andAnnotationLatitude:[_addressInfo.dimensionality longLongValue]longitude:[_addressInfo.longitude longLongValue]];
+            [self.view addSubview:mapView];
+             addSale.top = mapView.bottom + 5;
         }
         
         [add.navigationController popViewControllerAnimated:YES];
@@ -167,26 +173,12 @@
 
 - (void)publishFunc
 {
-    [self getImageUrl];
-
     if(!_addressInfo)
     {
         [self showHudPrompt:@"请添加地点信息"];
         return;
     }
-    _footprintModel.picRemark = _contentText.text;
-    _footprintModel.name = @"";
-    _footprintModel.picUrl = @"";
-    _footprintModel.consumptionDesc = @"";
-    _footprintModel.pics = _imageUrlArray;
-    [_footprintModel saveTravelTrackData:YES address:_addressInfo block:^(NSError *error) {
-        if(!error)
-        {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        NSLog(@"error=%@",error);
-    }];
-
+    [self getImageUrl];
 }
 
 - (void)setDate:(NSString *)dateStr
@@ -375,6 +367,20 @@
             model.imageUrl = obj;
             model.picId = obj.longLongValue;
             [weakImageUrlArray addObject:model];
+            
+            _footprintModel.picRemark = _contentText.text;
+            _footprintModel.name = @"";
+            _footprintModel.picUrl = @"";
+            _footprintModel.consumptionDesc = @"";
+            _footprintModel.pics = _imageUrlArray;
+            [_footprintModel saveTravelTrackData:YES address:_addressInfo block:^(NSError *error) {
+                if(!error)
+                {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                NSLog(@"error=%@",error);
+            }];
+            
         }];
     }];
 

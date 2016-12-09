@@ -148,6 +148,8 @@
             [mapView setFrame:CGRectMake(0, addAddres.bottom + 5, DeviceWidth, AUTO(100))];
             [mapView andAnnotationLatitude:[_addressInfo.dimensionality longLongValue]longitude:[_addressInfo.longitude longLongValue]];
             [self.view addSubview:mapView];
+            
+            addSale.top = mapView.bottom + 5;
         }
         
         [add.navigationController popViewControllerAnimated:YES];

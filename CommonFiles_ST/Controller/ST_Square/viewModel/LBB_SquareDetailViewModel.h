@@ -28,7 +28,7 @@
 
 @property (nonatomic, assign)long picId ;// 图片ID
 @property (nonatomic, strong)NSString *imageUrl ;// 图片url
-@property (nonatomic, strong)NSMutableArray *tags ;// 图片标签
+@property (nonatomic, strong)NSMutableArray<LBB_SquareTags*> *tags ;// 图片标签
 
 @end
 
