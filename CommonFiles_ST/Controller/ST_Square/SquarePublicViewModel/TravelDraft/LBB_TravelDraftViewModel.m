@@ -173,7 +173,6 @@
         {
             NSLog(@"publicTravelDraftData成功:%d",[codeNumber intValue]);
             block(nil);
-            
         }
         else
         {

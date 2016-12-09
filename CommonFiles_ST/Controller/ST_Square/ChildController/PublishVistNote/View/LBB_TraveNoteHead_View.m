@@ -14,7 +14,7 @@
     UIButton         *addTip;
     UIImageView  *backImage;
     UIImageView  *headImage;
-    UILabel           *travelNameLabel;
+    UITextField      *travelNameLabel;
     UILabel           *travelTimeLabel;
 }
 
@@ -50,9 +50,11 @@
         [headImage sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:DEFAULTIMAGE];
         [self addSubview:headImage];
         
-        travelNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(headImage.right + AUTO(10), headImage.top + 2, DeviceWidth, AUTO(20))];
+        travelNameLabel = [[UITextField alloc]initWithFrame:CGRectMake(headImage.right + AUTO(10), headImage.top + 2, DeviceWidth, AUTO(20))];
         travelNameLabel.textColor = WHITECOLOR;
         travelNameLabel.font = FONT(AUTO(15.0));
+        travelNameLabel.placeholder = @"输入游记名称";
+        travelNameLabel.delegate = self;
         [self addSubview:travelNameLabel];
         
         travelTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(headImage.right + AUTO(10), travelNameLabel.bottom + 2, DeviceWidth, AUTO(15))];
@@ -70,6 +72,7 @@
 
 - (void)setTravelName:(NSString *)travelName
 {
+    _travelName = travelName;
     travelNameLabel.text = travelName;
 }
 
@@ -87,4 +90,11 @@
         self.btnFunction(0);
     }
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    _travelTime = string;
+    return YES;
+}
+
 @end

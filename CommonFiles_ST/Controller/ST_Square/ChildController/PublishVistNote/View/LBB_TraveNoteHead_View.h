@@ -10,7 +10,7 @@
 #import "Header.h"
 
 
-@interface LBB_TraveNoteHead_View : UIView
+@interface LBB_TraveNoteHead_View : UIView<UITextFieldDelegate>
 @property(nonatomic,strong)UIImage   *coverImage;
 @property(nonatomic,copy)NSString     *travelName;
 @property(nonatomic,copy)NSString     *travelTime;
