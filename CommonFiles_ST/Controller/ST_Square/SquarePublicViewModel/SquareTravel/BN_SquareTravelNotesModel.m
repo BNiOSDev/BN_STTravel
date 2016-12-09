@@ -147,13 +147,9 @@
  @param block 结果回调
  */
 -(void)deleteTravelTrackData:(void (^)(NSError *error))block{
-
     NSDictionary *paraDic = @{
                               @"travelNotesDetailId":@(self.travelNotesDetailId),
                     };
-    
-
-    
     
     NSLog(@"deleteTravelTrackData paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/square/travelNotesDetail/delete",BASEURL];
