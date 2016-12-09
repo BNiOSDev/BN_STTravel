@@ -152,6 +152,79 @@
 
 @end
 
+
+@interface LBB_SpotSpecialRecommendSpecials : NSObject
+
+@property(nonatomic, assign)long specialId;//	Long	主键
+@property(nonatomic, assign)int type;//	Int	1美食 2 民宿 3 景点  4 伴手礼
+@property(nonatomic, strong)NSString *name;//	String	名称
+@property(nonatomic, strong)NSString *coverImagesUrl;//	String	封面图片
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsTag*> *tags;//	List	标签列表
+
+@end
+
+@interface LBB_SpotSpecialList : NSObject
+
+@property(nonatomic, assign)long relId;//	Long	专题与对象关系ID
+@property(nonatomic, assign)int type;//	int	对象类型 1美食 2 民宿 3 景点  4 伴手礼
+@property(nonatomic, assign)long objId;//	Long	对应的对象ID 如类型是景点,则本ID为关联的景点id
+@property(nonatomic, strong)NSString *titleDisplay;//	String	显示标题
+@property(nonatomic, strong)NSString *viceTitleDisplay;//	String	副显示标题
+@property(nonatomic, strong)NSString *imageUrl1;//	图片1
+@property(nonatomic, strong)NSString *imageUrl2;//	图片2
+@property(nonatomic, strong)NSString *contentDisplay;//	String	显示内容富文本
+@property(nonatomic, assign)int likeNum;//	Int	点赞次数
+@property(nonatomic, assign)int commentsNum;//	Int	评论条数
+@property(nonatomic, assign)int collecteNum;//	Int	收藏次数
+@property(nonatomic, assign)int isCollected;//	int	收藏标志 0未收藏 1：收藏
+@property(nonatomic, assign)int isLiked;//	int	点赞标志 0未点赞 1：点赞
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block;
+
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block;
+@end
+
+@interface LBB_SpotSpecialDetailsViewModel : BN_BaseDataModel //专题详情页
+
+@property(nonatomic, assign)long specialId;//	Long	专题ID
+@property (nonatomic,assign)long type;//	Int	1美食 2 民宿 3 景点  4 伴手礼
+@property(nonatomic, strong)NSString *name;//	String	名称
+@property(nonatomic, strong)NSString *content;//	String	专题描述 为纯文本
+@property(nonatomic, strong)NSString *coverImagesUrl;//	String	封面图片
+@property(nonatomic, strong)NSString *shareUrl;//	String	分享URL
+@property(nonatomic, strong)NSString *shareTitle;//	String	分享标题
+@property(nonatomic, strong)NSString *shareContent;//	String	分享内容
+@property(nonatomic, assign)int isCollected;//	int	收藏标志 0未收藏 1：收藏
+@property(nonatomic, assign)int collecteNum;//	Int	收藏次数
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsTag*> *tags;//	List	标签列表
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsCollectedRecord*> *collectedRecord;//	List	收藏记录（具体几个后台控制）
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsCommentsRecord*> *commentsRecord;//	List	评论记录（具体几个后台控制）
+@property(nonatomic, strong)NSMutableArray<LBB_SpotSpecialRecommendSpecials*> *recommendSpecials;//	List	推荐专题
+
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block;
+
+
+@end
+
+
+
 @interface LBB_SpotModel : BN_BaseDataModel
 
 @property (nonatomic,assign)long allSpotsId ;// 场景ID
@@ -174,6 +247,9 @@
 
 
 @property (nonatomic,strong)LBB_SpotDetailsViewModel *spotDetails;
+@property (nonatomic,strong)LBB_SpotSpecialDetailsViewModel *spotSpecialDetails;//专题内容详情
+
+@property (nonatomic,strong)NSMutableArray<LBB_SpotSpecialList*> *spotSpecialList ;// 专题内容列表
 
 
 /**
@@ -196,6 +272,19 @@
  @param block 回调函数
  */
 - (void)like:(void (^)(NSError *error))block;
+
+
+/**
+3.2.9 专题详情(已测)
+ */
+- (void)getSpotSpecialDetailsData:(long)SpecialId;
+
+/**
+3.2.10 专题列表内容(已测)
+ */
+- (void)getSpotSpecialListArray:(long)SpecialId
+                          clear:(BOOL)clear;
+
 @end
 
 

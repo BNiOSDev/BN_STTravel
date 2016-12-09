@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
 
 @property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, retain) NSArray* sectionArray;
+@property (nonatomic, retain)UIButton* favoriteButton;
 
 @end
 
@@ -63,9 +64,74 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
  // Pass the selected object to the new view controller.
  }
  */
-/*
- * setup Navigation UI
- */
+
+
+-(void)reloadTableSnap{
+    
+    UIView *view = [self.view snapshotViewAfterScreenUpdates:NO];
+    [self.view addSubview:view];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [view removeFromSuperview];
+    });
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    
+    
+}
+
+-(void)initViewModel{
+    WS(ws);
+    
+    if (!self.spotModel) {
+        self.spotModel = [[LBB_SpotModel alloc] init];
+    }
+    
+    [self.spotModel getSpotSpecialDetailsData:0];
+    [self.spotModel.spotSpecialDetails.loadSupport setDataRefreshblock:^{
+        
+        [ws reloadTableSnap];
+    }];
+    
+    [self.spotModel getSpotSpecialListArray:0 clear:YES];
+    
+    [self.spotModel.spotSpecialList.loadSupport setDataRefreshblock:^{
+        
+        [ws reloadTableSnap];
+    }];
+    
+    [self.tableView setTableViewData:self.spotModel.spotSpecialList];
+    
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.tableView.mj_header endRefreshing];
+        
+        [ws.spotModel getSpotSpecialDetailsData:0];
+        [ws.spotModel getSpotSpecialListArray:0 clear:YES];
+
+        
+    } footerRefreshDatablock:^{
+        [ws.tableView.mj_footer endRefreshing];
+        
+        [ws.spotModel getSpotSpecialListArray:0 clear:NO];
+
+    }];
+    @weakify(self);
+#pragma 数据绑定
+    [RACObserve(self.spotModel.spotSpecialDetails, isCollected) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        BOOL status = [num boolValue];
+        if (status) {
+            [self.favoriteButton setImage:IMAGE(@"景点详情_收藏HL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.favoriteButton setImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
+        }
+    }];
+    
+}
 /*
  * setup Navigation UI
  */
@@ -97,7 +163,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     [favorite bk_addEventHandler:^(id sender){
         
     }forControlEvents:UIControlEventTouchUpInside];
-    
+    self.favoriteButton = favorite;
+
 }
 
 
@@ -201,16 +268,16 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     
     switch (section) {
         case LBBScenicDetailSectionHeaderType://header部分
-            return 4;
+            return 3;
             break;
         case LBBScenicDetailSectionSubjectType://专题项
-            return 3;
+            return self.spotModel.spotSpecialList.count;
             break;
         case LBBScenicDetailSectionSubjectFavoriteType:///专题收藏
             return 2;
             break;
         case LBBScenicDetailSectionSubjectRecommendType://专题推荐
-            return 5;
+            return self.spotModel.spotSpecialDetails.recommendSpecials.count;
             break;
         default:
             break;
@@ -275,12 +342,12 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
             cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
             NSLog(@"LBBPoohCycleScrollCell nil");
         }
-        // [cell setCycleScrollViewHeight:AutoSize(386/2)];
-        [cell setCycleScrollViewUrls:nil];
+        [cell setCycleScrollViewHeight:AutoSize(386/2)];
+        [cell setCycleScrollViewUrls:@[self.spotModel.spotSpecialDetails.coverImagesUrl]];
         return cell;
         
     }
-    else if(indexPath.row == 1 || indexPath.row == 2){//msg
+    else if(indexPath.row == 1){//msg
         
         static NSString *cellIdentifier = @"LBB_ScenicDetailSubjectLableCell";
         LBB_ScenicDetailSubjectLableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -289,6 +356,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
             
             NSLog(@"LBB_ScenicDetailSubjectLableCell nil");
         }
+        [cell setTags:self.spotModel.spotSpecialDetails.tags];
         return cell;
     }
     else{//address
@@ -301,6 +369,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
         }
         [cell setLineInset:16 andHeight:0.6];
         [cell.sepLineView setBackgroundColor:ColorLightGray];
+        cell.contentLabel.text = self.spotModel.spotSpecialDetails.content;
         return cell;
         
     }
@@ -315,7 +384,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
         
         NSLog(@"LBB_ScenicDetailSubjectContentCell nil");
     }
-    [cell setModel:nil];
+    [cell setModel:self.spotModel.spotSpecialList[indexPath.row]];
     return cell;
     
 }
@@ -331,6 +400,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
             
             NSLog(@"LBB_ScenicDetailVipFavoriteCell nil");
         }
+        [cell setCollectedRecord:self.spotModel.spotSpecialDetails.collectedRecord];
         return cell;
     }
     else{
@@ -341,6 +411,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
             
             NSLog(@"LBB_ScenicDetailCommentsCell nil");
         }
+        [cell setCommentsRecord:self.spotModel.spotSpecialDetails.commentsRecord];
         return cell;
     }
     
@@ -360,6 +431,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     cell.priceLable.hidden = YES;
     [cell.styleButton setTitleColor:ColorBtnYellow forState:UIControlStateNormal];
     cell.styleButton.layer.borderColor = ColorBtnYellow.CGColor;
+    [cell setSpecialsModel:self.spotModel.spotSpecialDetails.recommendSpecials[indexPath.row]];
+    
     return cell;
     
 }
@@ -369,22 +442,26 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
 #pragma header 部分
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderSectionRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    WS(ws);
     if (indexPath.row == 0) {
         
         return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
             [cell setCycleScrollViewHeight:AutoSize(386/2)];
-            [cell setCycleScrollViewUrls:nil];
+            [cell setCycleScrollViewUrls:@[ws.spotModel.spotSpecialDetails.coverImagesUrl]];
         }];
     }
-    else if (indexPath.row == 1 || indexPath.row == 2){
+    else if (indexPath.row == 1){
         
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailSubjectLableCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailSubjectLableCell* cell){
-            
+            [cell setTags:ws.spotModel.spotSpecialDetails.tags];
+
         }];
     }
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicTextTableViewCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicTextTableViewCell* cell){
+            [cell setLineInset:16 andHeight:0.6];
+            [cell.sepLineView setBackgroundColor:ColorLightGray];
+            cell.contentLabel.text = ws.spotModel.spotSpecialDetails.content;
         }];
     }
 }
@@ -392,8 +469,9 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
 #pragma 专题项
 -(CGFloat)tableView:(UITableView *)tableView heightForSubjectsRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    WS(ws);
     return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailSubjectContentCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailSubjectContentCell* cell){
-        [cell setModel:nil];
+        [cell setModel:ws.spotModel.spotSpecialList[indexPath.row]];
     }];
     
 }
@@ -401,7 +479,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
 
 #pragma 达人收藏
 -(CGFloat)tableView:(UITableView *)tableView heightForSubjectFavoriteRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     if(indexPath.row == 0){
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailVipFavoriteCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailVipFavoriteCell* cell){
             
@@ -409,16 +487,19 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     }
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailCommentsCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailCommentsCell* cell){
-            
+            [cell setCommentsRecord:ws.spotModel.spotSpecialDetails.commentsRecord];
+
         }];
     }
 }
 #pragma 周边推荐
 -(CGFloat)tableView:(UITableView *)tableView heightForTravelRecommendRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailTravelRecommendCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailTravelRecommendCell* cell){
         [cell setModel:nil];
         cell.priceLable.hidden = YES;
+        [cell setSpecialsModel:ws.spotModel.spotSpecialDetails.recommendSpecials[indexPath.row]];
+
     }];
 }
 @end

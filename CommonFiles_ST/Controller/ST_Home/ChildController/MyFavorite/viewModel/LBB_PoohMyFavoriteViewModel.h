@@ -17,13 +17,14 @@
 @property(nonatomic,copy)NSString* detailedAddr;//地址
 @property(nonatomic,copy)NSString* price;//价格
 @property(nonatomic,assign)int isCollected;//	收藏标志 0未收藏 1：收藏
+@property(nonatomic,assign)int allSpotsType;//	int	场景类型 1.美食 2.民宿 3景点
 
 /**
  *3.1.4 收藏(已测)
  @parames allSpotsType	Int	1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记 8用户头像 9足迹  10 线路攻略11 美食专题 12民宿专题 13景点专题
  */
 
-- (void)collect:(int)allSpotsType;
+- (void)collecte:(void (^)(NSError *error))block;
 
 @end
 

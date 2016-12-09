@@ -110,7 +110,10 @@
              *3.1.4 收藏(已测)
              @parames allSpotsType	Int	1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记 8用户头像 9足迹  10 线路攻略11 美食专题 12民宿专题 13景点专题
              */
-           // [ws.model collect:ws.model.allSpotsId];
+            [ws.model collecte:^(NSError* error){
+                
+                
+            }];
         }];
     
     }

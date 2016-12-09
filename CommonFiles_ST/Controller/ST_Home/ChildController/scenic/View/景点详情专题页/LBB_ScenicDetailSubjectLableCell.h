@@ -7,12 +7,15 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_SpotDetailsViewModel.h"
 
 @interface LBB_ScenicDetailSubjectLableCell : LBBPoohBaseTableViewCell
 
 @property(nonatomic, retain)UIButton* labelButton1;
 @property(nonatomic, retain)UIButton* labelButton2;
 @property(nonatomic, retain)UIButton* labelButton3;
+
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsTag*> *tags;//	List	标签列表
 
 
 @end

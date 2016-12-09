@@ -19,4 +19,7 @@
 
 @property(nonatomic,retain)LBB_SpotsNearbyRecommendData* model;
 
+@property(nonatomic,retain)LBB_SpotSpecialRecommendSpecials* specialsModel;
+
+
 @end

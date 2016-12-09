@@ -8,6 +8,20 @@
 
 #import "LBB_ScenicDetailSubjectContentCell.h"
 
+@interface LBB_ScenicDetailSubjectContentCell()
+{
+    RACDisposable* racIsCollected;
+    RACDisposable* racIsLike;
+    RACDisposable* racLikeNum;
+    RACDisposable* racCommentsNum;
+    RACDisposable* racCollecteNum;
+
+    
+}
+
+
+@end
+
 @implementation LBB_ScenicDetailSubjectContentCell
 
 /*
@@ -72,6 +86,9 @@
         [self.greatView bk_whenTapped:^{
             
             NSLog(@"greetView touch");
+            [ws.model like:^(NSError* error){
+                
+            }];
             
         }];
         
@@ -107,6 +124,10 @@
         }];
         
         [self.favoriteView bk_whenTapped:^{
+            
+            [ws.model collecte:^(NSError* error){
+            
+            }];
             
         }];
         
@@ -174,14 +195,104 @@
 }
 
 
--(void)setModel:(id)model{
+-(void)setModel:(LBB_SpotSpecialList*)model{
+    
+    
+    _model = model;
+    
+    /*
+     @property(nonatomic, assign)long relId;//	Long	专题与对象关系ID
+     @property(nonatomic, assign)int type;//	int	对象类型 1美食 2 民宿 3 景点  4 伴手礼
+     @property(nonatomic, assign)long objId;//	Long	对应的对象ID 如类型是景点,则本ID为关联的景点id
+
+     @property(nonatomic, assign)int likeNum;//	Int	点赞次数
+     @property(nonatomic, assign)int commentsNum;//	Int	评论条数
+     @property(nonatomic, assign)int collecteNum;//	Int	收藏次数
+     @property(nonatomic, assign)int isCollected;//	int	收藏标志 0未收藏 1：收藏
+     @property(nonatomic, assign)int isLiked;//	int	点赞标志 0未点赞 1：点赞
+     */
+    
+    /*
+     
+     @property(nonatomic, retain)UIButton* commentsView;
+     @property(nonatomic, retain)UIButton* favoriteView;
+     
+     @property(nonatomic, retain)UIImageView* imageView1;
+     @property(nonatomic, retain)UIImageView* imageView2;
+     @property(nonatomic, retain)UILabel* contentLabel;
+     
+     @property(nonatomic, retain)UIButton* moreButton;
+     @property(nonatomic, retain)UIView* sepLineView;
+     */
     
     CGFloat margin = 8;
-    [self.imageView1 sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(PlaceHolderImage)];
-    [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(PlaceHolderImage)];
-    [self.contentLabel setText:@"这里通过设置 UIImageView的 layer.mask 来设置约束，这里通过一张图片，去图片的边缘部分组成一个path，path以内的部分将会显示出来，path以外的部分将不会显示，backImage 决定了path的形状！当然了这里还可以设置其它的layer作为uiview的mask里通过设置 UIImageView的 layer.mask 来设置约束，这里通过一张图片，去图片的边缘部分组成一个path，path以内的部分将kkkppp"];
+    [self.imageView1 sd_setImageWithURL:[NSURL URLWithString:model.imageUrl1] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:model.imageUrl2] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.contentLabel setText:model.contentDisplay];
     [self.contentLabel setLineSpace:margin];
 
+    [self.titleLabel setText:model.titleDisplay];
+    [self.subTitleLabel setText:model.viceTitleDisplay];
+    
+    @weakify (self);
+    [racIsCollected dispose];
+    [racIsLike dispose];
+    [racLikeNum dispose];
+    [racCollecteNum dispose];
+    [racCommentsNum dispose];
+
+    
+    racCollecteNum = [RACObserve(self.model, collecteNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //点赞次数
+        int sts = [num intValue];
+        [self.favoriteView setTitle:[NSString stringWithFormat:@"%d",sts] forState:UIControlStateNormal];
+    }];
+    
+    
+    racCommentsNum = [RACObserve(self.model, commentsNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //点赞次数
+        int sts = [num intValue];
+        [self.commentsView setTitle:[NSString stringWithFormat:@"%d",sts] forState:UIControlStateNormal];
+    }];
+    
+    racIsLike = [RACObserve(self.model, isLiked) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //是否点赞
+        BOOL sts = [num boolValue];
+        if (sts) {
+            [self.greatView setImage:IMAGE(@"景点专题_点赞HL") forState:UIControlStateNormal];
+        }
+        else{
+            [self.greatView setImage:IMAGE(@"景点专题_点赞") forState:UIControlStateNormal];
+        }
+    }];
+    
+    racIsCollected = [RACObserve(self.model, isCollected) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //是否收藏
+        BOOL sts = [num boolValue];
+        if (sts) {
+            [self.favoriteView setImage:IMAGE(@"景点专题_小收藏") forState:UIControlStateNormal];
+        }
+        else{
+            [self.favoriteView setImage:IMAGE(@"景点专题_小收藏") forState:UIControlStateNormal];
+        }
+    }];
+    
+    racLikeNum = [RACObserve(self.model, likeNum) subscribeNext:^(NSNumber* num) {
+        @strongify(self);
+        
+        //点赞次数
+        int sts = [num intValue];
+        [self.greatView setTitle:[NSString stringWithFormat:@"%d",sts] forState:UIControlStateNormal];
+    }];
+    
 }
 
 @end

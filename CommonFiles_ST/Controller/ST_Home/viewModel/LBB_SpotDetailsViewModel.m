@@ -289,6 +289,188 @@
 
 @end
 
+
+@implementation LBB_SpotSpecialRecommendSpecials
+
+- (void)setTags:(NSMutableArray<LBB_SpotsTag *> *)tags
+{
+    NSMutableArray *array = (NSMutableArray *)[tags map:^id(NSDictionary *element) {
+        return [LBB_SpotsTag mj_objectWithKeyValues:element];
+    }];
+    _tags = array;
+}
+
+
+@end
+
+@implementation LBB_SpotSpecialList
+
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.objId),
+                              @"allSpotsType":@(self.type),
+                              };
+    NSLog(@"collecte paraDic:%@",paraDic);
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            temp.isCollected = [[result objectForKey:@"collecteState"] boolValue];
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.objId),
+                              @"allSpotsType":@(self.type),
+                              };
+    NSLog(@"like paraDic:%@",paraDic);
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/like",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            BOOL likedState = [[result objectForKey:@"likedState"] boolValue];
+            if (likedState != temp.isLiked) {//状态有变化的时候
+                temp.isLiked = likedState;
+                if (temp.isLiked) {
+                    temp.likeNum = temp.likeNum + 1;
+                }
+                else{
+                    temp.likeNum = temp.likeNum - 1;
+                }
+            }
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
+
+@end
+
+@implementation LBB_SpotSpecialDetailsViewModel //专题详情页
+
+
+- (void)setTags:(NSMutableArray<LBB_SpotsTag *> *)tags
+{
+    NSMutableArray *array = (NSMutableArray *)[tags map:^id(NSDictionary *element) {
+        return [LBB_SpotsTag mj_objectWithKeyValues:element];
+    }];
+    _tags = array;
+}
+- (void)setCollectedRecord:(NSMutableArray<LBB_SpotsCollectedRecord *> *)collectedRecord
+{
+    NSMutableArray *array = (NSMutableArray *)[collectedRecord map:^id(NSDictionary *element) {
+        return [LBB_SpotsCollectedRecord mj_objectWithKeyValues:element];
+    }];
+    _collectedRecord = array;
+}
+
+- (void)setCommentsRecord:(NSMutableArray<LBB_SpotsCommentsRecord *> *)commentsRecord
+{
+    NSMutableArray *array = (NSMutableArray *)[commentsRecord map:^id(NSDictionary *element) {
+        return [LBB_SpotsCommentsRecord mj_objectWithKeyValues:element];
+    }];
+    _commentsRecord = array;
+}
+
+-(void)setRecommendSpecials:(NSMutableArray<LBB_SpotSpecialRecommendSpecials *> *)recommendSpecials{
+    NSMutableArray *array = (NSMutableArray *)[recommendSpecials map:^id(NSDictionary *element) {
+        return [LBB_SpotSpecialRecommendSpecials mj_objectWithKeyValues:element];
+    }];
+    _recommendSpecials = array;
+}
+
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.specialId),
+                              @"allSpotsType":@(self.type),
+                              };
+    NSLog(@"collecte paraDic:%@",paraDic);
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            BOOL collecteState = [[result objectForKey:@"collecteState"] boolValue];
+            if (collecteState != temp.isCollected) {//状态有变化的时候
+                temp.isCollected = collecteState;
+                if (temp.isCollected) {
+                    temp.collecteNum = temp.collecteNum + 1;
+                }
+                else{
+                    temp.collecteNum = temp.collecteNum - 1;
+                }
+            }
+            
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
+
+@end
+
 @implementation LBB_SpotModel
 
 - (instancetype)init
@@ -296,6 +478,8 @@
     self = [super init];
     if (self) {
         self.spotDetails = [[LBB_SpotDetailsViewModel alloc]init];
+        self.spotSpecialDetails = [[LBB_SpotSpecialDetailsViewModel alloc]init];
+        self.spotSpecialList = [[NSMutableArray alloc] initFromNet];
     }
     return self;
 }
@@ -421,6 +605,87 @@
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         block(error);
     }];
+}
+
+
+/**
+ 3.2.9 专题详情(已测)
+ */
+- (void)getSpotSpecialDetailsData:(long)SpecialId{
+
+    NSString *url = [NSString stringWithFormat:@"%@/special/detail/%ld",BASEURL,SpecialId];
+    __weak typeof(self) temp = self;
+    self.spotSpecialDetails.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            [temp.spotSpecialDetails mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getSpotSpecialDetailsData success:%@",[dic objectForKey:@"result"]);
+            //pooh add detail allSpotsType
+            //  temp.spotDetails.allSpotsType = temp.allSpotsType;
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            
+        }
+        
+        temp.spotSpecialDetails.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        temp.spotSpecialDetails.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+
+}
+
+/**
+ 3.2.10 专题列表内容(已测)
+ */
+- (void)getSpotSpecialListArray:(long)SpecialId clear:(BOOL)clear{
+
+    int curPage = clear == YES ? 0 : round(self.spotSpecialList.count/10.0);
+    NSDictionary *paraDic = @{
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/special/list/%ld",BASEURL,SpecialId];
+    __weak typeof(self) temp = self;
+    self.spotSpecialList.loadSupport.loadEvent = NetLoadingEvent;
+    NSLog(@"getSpotArrayLongitude paraDic : %@",paraDic);
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSLog(@"getSpotSpecialListArray成功  %@",[dic objectForKey:@"rows"]);
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_SpotModel mj_objectArrayWithKeyValuesArray:array];
+            
+            if (clear == YES)
+            {
+                [temp.spotSpecialList removeAllObjects];
+            }
+            
+            [temp.spotSpecialList addObjectsFromArray:returnArray];
+            temp.spotSpecialList.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.spotSpecialList.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getSpotSpecialListArray失败  %@",error.domain);
+        
+        temp.spotSpecialList.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+
+
 }
 
 @end

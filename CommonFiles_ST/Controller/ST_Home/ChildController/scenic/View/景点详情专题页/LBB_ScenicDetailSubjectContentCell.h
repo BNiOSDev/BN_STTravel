@@ -7,6 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_SpotDetailsViewModel.h"
 
 @interface LBB_ScenicDetailSubjectContentCell : LBBPoohBaseTableViewCell
 
@@ -24,6 +25,6 @@
 @property(nonatomic, retain)UIButton* moreButton;
 @property(nonatomic, retain)UIView* sepLineView;
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)LBB_SpotSpecialList* model;
 
 @end

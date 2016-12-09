@@ -102,15 +102,7 @@
 
 
 -(void)setModel:(LBB_SpotsNearbyRecommendData*)model{
-
-    /*
-     @property(nonatomic, assign)long allSpotsId ;// 场景ID
-     @property(nonatomic, strong)NSString *allSpotsName ;// 场景名称
-     @property(nonatomic, strong)NSString *picUrl ;// 场景图片
-     @property(nonatomic, strong)NSString *picRemark ;// 场景图片描述
-     @property(nonatomic, strong)NSString *realPrice ;// 价格(实际价格)
-     @property(nonatomic, strong)NSMutableArray<LBB_SpotsTag*> *tags ;// 标签集合
-     */
+    _model = model;
     [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
 
     [self.titleLabel setText:model.allSpotsName];
@@ -139,9 +131,35 @@
         NSLog(@"Not Found");
     }
     self.priceLable.attributedText = strAttr;
-    
-    
-    
 }
+
+-(void)setSpecialsModel:(LBB_SpotSpecialRecommendSpecials *)specialsModel{
+    _specialsModel = specialsModel;
+    
+    [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:specialsModel.coverImagesUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+    
+    [self.titleLabel setText:specialsModel.name];
+    
+    NSString* tagString = @"";
+    for ( LBB_SpotsTag* tag in specialsModel.tags) {
+        tagString = [[tagString stringByAppendingString:tag.name] stringByAppendingString:@" "];
+        
+    }
+    
+    [self.addressLabel setText:tagString];
+    self.styleButton.hidden = YES;
+    if (specialsModel.tags.count > 0) {
+        self.styleButton.hidden = NO;
+        LBB_SpotsTag* tag = [specialsModel.tags objectAtIndex:0];
+        [self.styleButton setTitle:tag.name forState:UIControlStateNormal];
+    }
+
+}
+
+
+
+
+
+
 
 @end

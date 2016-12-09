@@ -288,6 +288,10 @@
     
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
+        LBB_SpotModel* spotModel = [[LBB_SpotModel alloc] init];
+        LBB_PoohMyFavoriteModel* obj = self.favoriteViewModel.favoriteArray[indexPath.row];
+        spotModel.allSpotsId = obj.allSpotsId;
+        dest.spotModel = spotModel;
         switch (self.favoriteType) {
             case LBBPoohSegmCtrlScenicType://景点
                 dest.homeType = LBBPoohHomeTypeScenic;

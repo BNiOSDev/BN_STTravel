@@ -15,13 +15,13 @@
  */
 //allSpotsType	Int	1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记 8用户头像 9足迹  10 线路攻略11 美食专题 12民宿专题 13景点专题
 
-- (void)collect:(int)allSpotsType
+- (void)collecte:(void (^)(NSError *error))block
 {
     NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
     
     NSDictionary *parames = @{
                               @"allSpotsId":@(self.allSpotsId),
-                              @"allSpotsType" :@(allSpotsType)
+                              @"allSpotsType" :@(self.allSpotsType)
                               };
     
     __weak typeof(self) weakSelf = self;
@@ -34,16 +34,22 @@
             int collecteState = [[result objectForKey:@"collecteState"] intValue];
             weakSelf.isCollected = collecteState;
             weakSelf.loadSupport.loadEvent = codeNumber.intValue;
+            block(nil);
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
             weakSelf.loadSupport.netRemark = errorStr;
             weakSelf.loadSupport.loadFailEvent =  codeNumber.intValue;
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
         }
         
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         weakSelf.loadSupport.loadEvent = NetLoadFailedEvent;
+        block(error);
+
     }];
 }
 
