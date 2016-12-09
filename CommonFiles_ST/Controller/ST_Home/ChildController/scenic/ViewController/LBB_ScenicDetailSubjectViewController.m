@@ -411,7 +411,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
             
             NSLog(@"LBB_ScenicDetailCommentsCell nil");
         }
-        [cell setCommentsRecord:self.spotModel.spotSpecialDetails.commentsRecord];
+      //  [cell setCommentsRecord:self.spotModel.spotSpecialDetails.commentsRecord];
+        [cell setSpotSpecialDetails:self.spotModel.spotSpecialDetails];
         return cell;
     }
     
@@ -487,7 +488,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     }
     else{
         return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailCommentsCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailCommentsCell* cell){
-            [cell setCommentsRecord:ws.spotModel.spotSpecialDetails.commentsRecord];
+            [cell setSpotSpecialDetails:ws.spotModel.spotSpecialDetails];
 
         }];
     }

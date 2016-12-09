@@ -36,6 +36,28 @@
 
 @end
 
+
+@implementation LBB_SpotsAllCommentsRecord
+
+
+-(void)setPics:(NSMutableArray<LBB_SpotsCommentsRecordPics *> *)pics{
+    NSMutableArray *array = (NSMutableArray *)[pics map:^id(NSDictionary *element) {
+        return [LBB_SpotsCommentsRecordPics mj_objectWithKeyValues:element];
+    }];
+    _pics = array;
+}
+
+-(void)setComments:(NSMutableArray<LBB_SquareComments *> *)comments{
+    NSMutableArray *array = (NSMutableArray *)[comments map:^id(NSDictionary *element) {
+        return [LBB_SquareComments mj_objectWithKeyValues:element];
+    }];
+    _comments = array;
+}
+
+
+@end
+
+
 @implementation LBB_SpotsCollectedRecord
 
 @end
@@ -69,7 +91,7 @@
         self.nearbySpotRecommends = [[NSMutableArray alloc]initFromNet];
         self.nearbyFoodRecommends = [[NSMutableArray alloc]initFromNet];
         self.nearbyHostelRecommends = [[NSMutableArray alloc]initFromNet];
-
+        self.allCommentsRecord = [[NSMutableArray alloc]initFromNet];
     }
     return self;
 }
@@ -284,6 +306,56 @@
         }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         block(error);
+    }];
+}
+
+/**
+ 3.1.14 评论列表(已测)
+ type	int	1美食 2 民宿 3 景点 4 伴手礼 5 ugc图片 6 ugc视频 7 游记 8用户头像 9足迹  10 线路攻略
+ 11 美食专题 12民宿专题 13景点专题 14伴手礼专题
+ objId	Long	对象主键
+
+ @param clear 是否清空原数据
+ */
+- (void)getSpotAllRecommendsType:(BOOL)clear{
+
+    int curPage = clear == YES ? 0 : round(self.allCommentsRecord.count/10.0);
+    NSDictionary *paraDic = @{
+                              @"objId":@(self.allSpotsId),
+                              @"type":@(self.allSpotsType),
+                              @"curPage":[NSNumber numberWithInt:curPage],
+                              @"pageNum":[NSNumber numberWithInt:10],
+                              };
+    NSLog(@"getSpotAllRecommendsType paraDic:%@",paraDic);
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/comments/list",BASEURL];
+    
+    
+    self.allCommentsRecord.loadSupport.loadEvent = NetLoadingEvent;
+    
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [LBB_SpotsAllCommentsRecord mj_objectArrayWithKeyValuesArray:array];
+            if (clear) {
+                [temp.allCommentsRecord removeAllObjects];
+            }
+            NSLog(@"getSpotAllRecommendsType succ type:%ld total:%@ data:%@",temp.allSpotsType,[dic objectForKey:@"total"],array);
+            
+            [temp.allCommentsRecord addObjectsFromArray:returnArray];
+            temp.allCommentsRecord.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.allCommentsRecord.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        temp.allCommentsRecord.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
 

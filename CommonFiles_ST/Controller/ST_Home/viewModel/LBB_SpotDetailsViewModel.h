@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "LBB_SquareDetailViewModel.h"
 @interface LBB_SpotsCommentsRecordPics : NSObject
 
 @property(nonatomic, strong)NSString *imageUrl ;// URL
-
+@property(nonatomic, assign)long picId;//	Long	图片ID
 @end
 
 @interface LBB_SpotsCommentsRecord : NSObject
@@ -24,6 +24,21 @@
 @property(nonatomic, assign)long userId ;// 发布者Id
 @property(nonatomic, strong)NSString *userName ;// 发布者用户名称
 @property(nonatomic, strong)NSString *userPicUrl ;// 发布者头像URL
+
+@end
+
+@interface LBB_SpotsAllCommentsRecord : NSObject //所有评论
+
+@property(nonatomic, assign)long commentId;//	Long	评论ID
+@property(nonatomic, assign)long userId;//	Long	主键
+@property(nonatomic, strong)NSString *userName;//	String	收藏用户名称
+@property(nonatomic, strong)NSString *userPicUrl;//	String	收藏头像URL
+@property(nonatomic, assign)int scores;//	int	评分
+@property(nonatomic, strong)NSString *remark;//	String	评语
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsCommentsRecordPics*> *pics;//	List	评论图片
+@property(nonatomic, strong)NSString *commentDate;//	String	创建时间
+@property(nonatomic, strong)NSMutableArray<LBB_SquareComments*> *comments;//	List	评论
+
 
 @end
 
@@ -128,6 +143,10 @@
 @property(nonatomic, strong)NSMutableArray<LBB_SpotsNearbyRecommendData*> *nearbyFoodRecommends;
 @property(nonatomic, strong)NSMutableArray<LBB_SpotsNearbyRecommendData*> *nearbyHostelRecommends;
 
+
+
+@property(nonatomic, strong)NSMutableArray<LBB_SpotsAllCommentsRecord*> *allCommentsRecord ;// 所有评论记录（具体几个后台控制）
+
 /**
  3.2.8	周边推荐(已测)
 
@@ -151,6 +170,17 @@
  @param block 回调函数
  */
 - (void)like:(void (^)(NSError *error))block;
+
+
+/**
+3.1.14 评论列表(已测)
+ type	int	1美食 2 民宿 3 景点 4 伴手礼 5 ugc图片 6 ugc视频 7 游记 8用户头像 9足迹  10 线路攻略
+ 11 美食专题 12民宿专题 13景点专题 14伴手礼专题
+ objId	Long	对象主键
+
+ @param clear 是否清空原数据
+ */
+- (void)getSpotAllRecommendsType:(BOOL)clear;
 
 @end
 
