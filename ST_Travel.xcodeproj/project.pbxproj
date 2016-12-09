@@ -530,10 +530,14 @@
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
 		3C022EA91DF7F315002ED79A /* LBB_VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */; };
 		3C022EAC1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EAB1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m */; };
+		3C18521B1DF941B10077A9B8 /* LBB_SerCover_CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C18521A1DF941B10077A9B8 /* LBB_SerCover_CollectionViewController.m */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
 		3C4669261DF856E800F6DEA2 /* defaultimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4669251DF856E800F6DEA2 /* defaultimage@2x.png */; };
 		3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C518C541DF66F22002653EC /* MediaPlayer.framework */; };
 		3C53FE2D1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */; };
+		3CA83FB61DF94D4000340DE3 /* LBB_SetCover_CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA83FB51DF94D4000340DE3 /* LBB_SetCover_CollectionViewCell.m */; };
+		3CA83FB91DF9570A00340DE3 /* LBB_TravelNote_ListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA83FB81DF9570A00340DE3 /* LBB_TravelNote_ListViewCell.m */; };
+		3CA83FBC1DF95F9900340DE3 /* LBB_TravelNote_contentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CA83FBB1DF95F9900340DE3 /* LBB_TravelNote_contentView.m */; };
 		8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */; };
 		844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CB1DEAC7C500164DED /* libc++.tbd */; };
 		844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */; };
@@ -1494,11 +1498,19 @@
 		3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_VideoDetailViewController.m; sourceTree = "<group>"; };
 		3C022EAA1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_VideoDetailTableViewCell.h; sourceTree = "<group>"; };
 		3C022EAB1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_VideoDetailTableViewCell.m; sourceTree = "<group>"; };
+		3C1852191DF941B10077A9B8 /* LBB_SerCover_CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_SerCover_CollectionViewController.h; path = CommonFiles_ST/Controller/ST_Square/ChildController/HostDetailControl/View/LBB_SerCover_CollectionViewController.h; sourceTree = SOURCE_ROOT; };
+		3C18521A1DF941B10077A9B8 /* LBB_SerCover_CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_SerCover_CollectionViewController.m; path = CommonFiles_ST/Controller/ST_Square/ChildController/HostDetailControl/View/LBB_SerCover_CollectionViewController.m; sourceTree = SOURCE_ROOT; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3C4669251DF856E800F6DEA2 /* defaultimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaultimage@2x.png"; sourceTree = "<group>"; };
 		3C518C541DF66F22002653EC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3C53FE2B1DF54C27003C6148 /* LBB_AddFootprint_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_AddFootprint_ViewController.h; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/View/LBB_AddFootprint_ViewController.h; sourceTree = SOURCE_ROOT; };
 		3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_AddFootprint_ViewController.m; path = CommonFiles_ST/Controller/ST_Square/ChildController/PublishVistNote/View/LBB_AddFootprint_ViewController.m; sourceTree = SOURCE_ROOT; };
+		3CA83FB41DF94D4000340DE3 /* LBB_SetCover_CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_SetCover_CollectionViewCell.h; sourceTree = "<group>"; };
+		3CA83FB51DF94D4000340DE3 /* LBB_SetCover_CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_SetCover_CollectionViewCell.m; sourceTree = "<group>"; };
+		3CA83FB71DF9570A00340DE3 /* LBB_TravelNote_ListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TravelNote_ListViewCell.h; sourceTree = "<group>"; };
+		3CA83FB81DF9570A00340DE3 /* LBB_TravelNote_ListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TravelNote_ListViewCell.m; sourceTree = "<group>"; };
+		3CA83FBA1DF95F9900340DE3 /* LBB_TravelNote_contentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TravelNote_contentView.h; sourceTree = "<group>"; };
+		3CA83FBB1DF95F9900340DE3 /* LBB_TravelNote_contentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TravelNote_contentView.m; sourceTree = "<group>"; };
 		8420AF7B1DF297C300D98F86 /* libTelephonyUtilDynamic.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libTelephonyUtilDynamic.tbd; path = usr/lib/libTelephonyUtilDynamic.tbd; sourceTree = SDKROOT; };
 		8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		844065CB1DEAC7C500164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -4450,6 +4462,8 @@
 			children = (
 				3C53FE2B1DF54C27003C6148 /* LBB_AddFootprint_ViewController.h */,
 				3C53FE2C1DF54C27003C6148 /* LBB_AddFootprint_ViewController.m */,
+				3C1852191DF941B10077A9B8 /* LBB_SerCover_CollectionViewController.h */,
+				3C18521A1DF941B10077A9B8 /* LBB_SerCover_CollectionViewController.m */,
 			);
 			path = ChileViewController;
 			sourceTree = "<group>";
@@ -4470,6 +4484,12 @@
 				1DB14D591DF3110E0023A740 /* LBB_Date_SengeMent.m */,
 				1DB14D5A1DF3110E0023A740 /* LBB_TraveNoteHead_View.h */,
 				1DB14D5B1DF3110E0023A740 /* LBB_TraveNoteHead_View.m */,
+				3CA83FB41DF94D4000340DE3 /* LBB_SetCover_CollectionViewCell.h */,
+				3CA83FB51DF94D4000340DE3 /* LBB_SetCover_CollectionViewCell.m */,
+				3CA83FB71DF9570A00340DE3 /* LBB_TravelNote_ListViewCell.h */,
+				3CA83FB81DF9570A00340DE3 /* LBB_TravelNote_ListViewCell.m */,
+				3CA83FBA1DF95F9900340DE3 /* LBB_TravelNote_contentView.h */,
+				3CA83FBB1DF95F9900340DE3 /* LBB_TravelNote_contentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5126,8 +5146,13 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
+<<<<<<< Updated upstream
 						DevelopmentTeam = 8NT4E7BWNP;
 						ProvisioningStyle = Automatic;
+=======
+						DevelopmentTeam = 7V268D74T3;
+						ProvisioningStyle = Manual;
+>>>>>>> Stashed changes
 					};
 					C9C0E9641D9948F300575A7C = {
 						CreatedOnToolsVersion = 8.0;
@@ -5421,6 +5446,7 @@
 				1DB14FDD1DF311100023A740 /* LBB_ShopRecoder_Cell.m in Sources */,
 				1DB14EC81DF3110F0023A740 /* LBB_NoticeViewCell.m in Sources */,
 				1DB14E3D1DF3110E0023A740 /* LBBPoohVerticalButton.m in Sources */,
+				3CA83FBC1DF95F9900340DE3 /* LBB_TravelNote_contentView.m in Sources */,
 				1DB14EF71DF3110F0023A740 /* LBB_AddressModel.m in Sources */,
 				1DB14EAD1DF3110F0023A740 /* LBBHomeHotestTableViewCellItem.m in Sources */,
 				1DB14E7B1DF3110E0023A740 /* LBB_NewOrderPlayTimeSelectView.m in Sources */,
@@ -5661,6 +5687,7 @@
 				1DB14F511DF311100023A740 /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				1DB14E581DF3110E0023A740 /* LBB_GuiderUserDynamicDataSource.m in Sources */,
 				1DB14FCF1DF311100023A740 /* LBB_Pulish_ImageContain_View.m in Sources */,
+				3C18521B1DF941B10077A9B8 /* LBB_SerCover_CollectionViewController.m in Sources */,
 				1DB14F621DF311100023A740 /* LBB_ZJMHostViewController.m in Sources */,
 				1DB14E531DF3110E0023A740 /* LBB_GuiderApplyTextField.m in Sources */,
 				1DB150091DF311110023A740 /* ZJCustomLabel.m in Sources */,
@@ -5677,6 +5704,7 @@
 				1DB14E6B1DF3110E0023A740 /* LBB_PoohMyFavoriteSubjectCell.m in Sources */,
 				1DB14E501DF3110E0023A740 /* LBB_FoodsMainViewController.m in Sources */,
 				1DB14E7F1DF3110E0023A740 /* LBB_OrderWaitPayViewController.m in Sources */,
+				3CA83FB91DF9570A00340DE3 /* LBB_TravelNote_ListViewCell.m in Sources */,
 				1DB14F101DF3110F0023A740 /* SettingPrivaceViewController.m in Sources */,
 				1DB14F291DF3110F0023A740 /* CardDetailViewController.m in Sources */,
 				1DB14E6C1DF3110E0023A740 /* LBB_PoohMyFavoriteViewController.m in Sources */,
@@ -5709,6 +5737,7 @@
 				1DB14EFC1DF3110F0023A740 /* ReceiptAddressViewController.m in Sources */,
 				1DB14F611DF311100023A740 /* LBB_CommentView.m in Sources */,
 				1DB14E371DF3110E0023A740 /* LBB_SceninSearchCollectionViewCell.m in Sources */,
+				3CA83FB61DF94D4000340DE3 /* LBB_SetCover_CollectionViewCell.m in Sources */,
 				1DB14E311DF3110E0023A740 /* KSViewPagerView.m in Sources */,
 				1DB14FD11DF311100023A740 /* LBB_TipView.m in Sources */,
 				1DB14FD01DF311100023A740 /* LBB_TipImage_Pulish_ImageView.m in Sources */,
@@ -5931,7 +5960,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+<<<<<<< Updated upstream
 				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+=======
+				DEVELOPMENT_TEAM = 7V268D74T3;
+>>>>>>> Stashed changes
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -6013,7 +6046,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+<<<<<<< Updated upstream
 				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+=======
+				DEVELOPMENT_TEAM = 7V268D74T3;
+>>>>>>> Stashed changes
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
