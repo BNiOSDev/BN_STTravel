@@ -665,9 +665,13 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         }
         [cell setCycleScrollViewHeight:AutoSize(386/2)];
         [cell setAllSpotsPics:self.spotModel.spotDetails.allSpotsPics];
-        [cell setPurchaseRecords:self.spotModel.spotDetails.purchaseRecords];
-       // [cell setCycleScrollViewUrls:nil];
-       // [cell showOrderMessage];
+      //  [cell setPurchaseRecords:self.spotModel.spotDetails.purchaseRecords];
+        NSString* url = @"";
+        if (self.spotModel.spotDetails.allSpotsPics.count > 0) {
+            LBB_SpotsPics* pic = self.spotModel.spotDetails.allSpotsPics[0];
+            url = pic.imageUrl;
+        }
+        [cell showOrderMessage:self.spotModel.spotDetails.purchaseRecords andImageUrl:url];
         return cell;
         
     }

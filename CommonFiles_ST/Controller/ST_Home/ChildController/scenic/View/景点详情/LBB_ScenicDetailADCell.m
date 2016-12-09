@@ -9,15 +9,16 @@
 #import "LBB_ScenicDetailADCell.h"
 #import "SDCycleScrollView.h"
 #import "GYChangeTextView.h"
+#import <AutoScrollLabel/CBAutoScrollLabel.h>
 
 
 @interface LBB_ScenicDetailADCell()<SDCycleScrollViewDelegate,GYChangeTextViewDelegate>{
     
     SDCycleScrollView *cycleScrollView;
     UIView* orderView;
-    GYChangeTextView *tView;
 
 }
+@property(nonatomic, retain)CBAutoScrollLabel* orderNewMessageLabel;
 
 @end
 
@@ -64,6 +65,7 @@
             make.top.equalTo(ws.contentView).offset(AutoSize(110/2));
             make.left.equalTo(ws.contentView).offset(AutoSize(20));
             make.height.mas_equalTo(height);
+            make.width.mas_equalTo(AutoSize(100));
         }];
         orderView.layer.cornerRadius = height/2;
         orderView.layer.masksToBounds = YES;
@@ -82,7 +84,7 @@
         self.orderPortraitImageView.layer.masksToBounds = YES;
         
         //订单信息
-     /*   self.orderNewMessageLabel = [UILabel new];
+        self.orderNewMessageLabel = [CBAutoScrollLabel new];
         [self.orderNewMessageLabel setFont:Font10];
         [self.orderNewMessageLabel setTextColor:ColorWhite];
         [orderView addSubview:self.orderNewMessageLabel];
@@ -90,24 +92,8 @@
             make.centerY.equalTo(orderView);
             make.left.equalTo(ws.orderPortraitImageView.mas_right).offset(margin);
             make.right.equalTo(orderView).offset(-margin);
-        }];*/
-       
-        CGFloat height1 = AutoSize(36/2);
-        CGFloat x = 3 + height1 + 3;
-        CGFloat width1 = DeviceWidth-AutoSize(20) - x - 3;
-
-        tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x, 0, width1, height1)];
-        tView.delegate = self;
-        [orderView addSubview:tView];
-        [tView mas_makeConstraints:^(MASConstraintMaker* make){
-            
-            make.centerY.equalTo(orderView);
-            make.left.equalTo(ws.orderPortraitImageView.mas_right).offset(margin);
-            make.right.equalTo(orderView).offset(-margin);
         }];
-        NSArray* array = @[@"IMCCP",@"a iOS developer",@"GitHub:https://github.com/IMCCP"];
-        
-        [tView animationWithTexts:array/*[NSArray arrayWithObjects:@"这是第1条",@"这是第2条",@"这是第3条", nil]*/];
+       
         
         
     }
@@ -149,47 +135,18 @@
 -(void)setPurchaseRecords:(NSMutableArray<LBB_PurchaseRecords *> *)purchaseRecords{
     
     _purchaseRecords = purchaseRecords;
-    NSMutableArray* texts = [NSMutableArray new];
+    NSString* texts = @"";
     for (LBB_PurchaseRecords* obj in purchaseRecords) {
         
-        [texts addObject:obj.showContent?obj.showContent:@""];
+        texts = [[texts stringByAppendingPathComponent:obj.showContent?obj.showContent:@""] stringByAppendingPathComponent:@"   "];
     }
-    [self setScrollTextArray:texts];
+    
+    [orderView setHidden:NO];
+    [self.orderPortraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.orderNewMessageLabel setText:texts];
+    
 }
 
-
--(void)setScrollTextArray:(NSArray*)array{
-    
-    WS(ws);
-    NSLog(@"setScrollTextArray:%@",array);
-    
-    if (tView) {
-        [tView removeFromSuperview];
-        tView = nil;
-    }
-    CGFloat margin = 3;
-
-    CGFloat height1 = AutoSize(36/2);
-    CGFloat x = 3 + height1 + 3;
-    CGFloat width1 = DeviceWidth-AutoSize(20) - x - 3;
-    
-    tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x, 0, width1, height1)];
-    tView.delegate = self;
-    [orderView addSubview:tView];
-    [tView mas_makeConstraints:^(MASConstraintMaker* make){
-        
-        make.centerY.equalTo(orderView);
-        make.left.equalTo(ws.orderPortraitImageView.mas_right).offset(margin);
-        make.right.equalTo(orderView).offset(-margin);
-    }];
-    
-    if (array.count <= 0) {
-        [tView animationWithTexts:@[@"adadadadasdas"]];
-    }
-    else{
-        [tView animationWithTexts:array];
-    }
-}
 
 
 #pragma GYChangeTextView delegate
@@ -216,11 +173,14 @@
 }
 
 //显示订单信息
--(void)showOrderMessage{
-    
+-(void)showOrderMessage:(NSString*)string andImageUrl:(NSString*)url{
+
+    NSLog(@"showOrderMessage:%@",string);
     [orderView setHidden:NO];
-    [self.orderPortraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://img.blog.163.com/photo/GlXBl26Es3YNjTZLCkFXwQ==/1984961535764592168.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-    [self.orderNewMessageLabel setText:@"最新订单来自杭州的百小小. 3秒前"];
+    [self.orderPortraitImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:IMAGE(PlaceHolderImage)];
+    [self.orderNewMessageLabel setText:string?string:@"暂时没有订单信息"];
+    [self.orderNewMessageLabel refreshLabels];
+
 }
 
 

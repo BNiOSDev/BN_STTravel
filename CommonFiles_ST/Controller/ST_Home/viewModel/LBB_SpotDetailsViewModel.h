@@ -94,7 +94,9 @@
 @property(nonatomic, assign)long allSpotsId ;// 场景ID
 @property (nonatomic,assign)long allSpotsType ;// 场景类型
 @property(nonatomic, strong)NSMutableArray<LBB_SpotsPics*> *allSpotsPics ;// 场景图片集合
-@property(nonatomic, strong)NSMutableArray<LBB_PurchaseRecords*> *purchaseRecords ;// 最近6条购买记录
+//@property(nonatomic, strong)NSMutableArray<LBB_PurchaseRecords*> *purchaseRecords ;// 最近6条购买记录
+@property(nonatomic, strong)NSString *purchaseRecords ;// 最近6条购买记录
+
 @property(nonatomic, assign)BOOL isCollected ;// 收藏标志 0未收藏 1：收藏
 @property(nonatomic, strong)NSString *shareUrl ;// 分享URL
 @property(nonatomic, strong)NSString *shareTitle ;// 分享标题

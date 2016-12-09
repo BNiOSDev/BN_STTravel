@@ -22,12 +22,12 @@
 
 //详情页的订单信息
 @property(nonatomic, retain)UIImageView* orderPortraitImageView;
-@property(nonatomic, retain)UILabel* orderNewMessageLabel;
--(void)showOrderMessage;
+-(void)showOrderMessage:(NSString*)string andImageUrl:(NSString*)url;
 
 @property(nonatomic, strong)NSMutableArray<LBB_SpotsPics*> *allSpotsPics ;// 场景图片集合
 
 #pragma 购买记录数据有问题，后台只是返回一个字符串，不是数组
 @property(nonatomic, strong)NSMutableArray<LBB_PurchaseRecords*> *purchaseRecords ;// 最近6条购买记录
+//@property(nonatomic, strong)NSMutableArray<LBB_PurchaseRecords*> *purchaseRecords ;// 最近6条购买记录
 
 @end
