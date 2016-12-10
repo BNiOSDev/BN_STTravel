@@ -17,6 +17,12 @@
 
 @implementation LBB_TravelSet_ViewController
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.blockFeedBack(self);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"游记设置";
@@ -79,7 +85,13 @@
 
 - (void)synBtnFunc:(UIButton *)btn
 {
-    [btn setImage:IMAGE(_itemArray[3][@"selectImage"]) forState:0];
+    if(_autoSync)
+    {
+        [btn setImage:IMAGE(_itemArray[3][@"image"]) forState:0];
+    }else{
+       [btn setImage:IMAGE(_itemArray[3][@"selectImage"]) forState:0];
+    }
+    _autoSync = !_autoSync;
 }
 
 @end

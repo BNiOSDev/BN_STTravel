@@ -7,7 +7,9 @@
 //
 
 #import "Base_BaseViewController.h"
+#import "Header.h"
 
 @interface LBB_AddFootprint_ViewController : Base_BaseViewController
 @property(nonatomic,strong)NSArray    *selectImageArray;
+@property(nonatomic,copy)Controllerfeedback  blockFeedBack;
 @end

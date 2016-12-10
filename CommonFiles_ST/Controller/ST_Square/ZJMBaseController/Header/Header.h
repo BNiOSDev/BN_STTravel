@@ -58,6 +58,7 @@ typedef NS_ENUM(NSInteger, UITableViewCellViewSignal)
 #define WHITECOLOR                          UIColorFromRGB(0xffffff)
 #define BACKVIEWCOLOR                   UIColorFromRGB(0xf5f5f5)
 
+typedef void(^Controllerfeedback)(UIViewController *controller);//控制器的回馈
 typedef void(^BtnFuncTion)(NSInteger tag);//按钮处理事件
 typedef void(^ClickBlockForControl)(id object, id param);
 typedef void(^CellBlockVIew)(id object,UITableViewCellViewSignal signal);

@@ -20,7 +20,6 @@
 
 @end
 
-
 /**
 消费明细
  */
@@ -66,7 +65,6 @@
 @property(nonatomic, strong)NSString* totalAmount;//	String	消费总金额
 @property(nonatomic, strong)NSMutableArray<BN_SquareTravelNotesConsumeRatios*>* consumeRatios;	//List	消费比例
 @property(nonatomic, strong)NSMutableArray<BN_SquareTravelNotesconsumeDetails*>* consumeDetails;//	List	消费明细
-
 
 
 @end

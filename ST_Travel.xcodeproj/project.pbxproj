@@ -391,7 +391,6 @@
 		1B0C757E1DFAE1520061828D /* zjmcheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0C72C81DFAE1510061828D /* zjmcheck@2x.png */; };
 		1B0C757F1DFAE1520061828D /* zjmdownlaod@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0C72C91DFAE1510061828D /* zjmdownlaod@2x.png */; };
 		1B0C75801DFAE1520061828D /* zjmfood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0C72CA1DFAE1510061828D /* zjmfood@2x.png */; };
-		1B0C75811DFAE1520061828D /* zjmhaochide.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0C72CB1DFAE1510061828D /* zjmhaochide.png */; };
 		1B0C75821DFAE1520061828D /* zjmhaochideed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0C72CC1DFAE1510061828D /* zjmhaochideed@2x.png */; };
 		1B0C75831DFAE1520061828D /* zjmhouse@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0C72CD1DFAE1510061828D /* zjmhouse@2x.png */; };
 		1B0C75841DFAE1520061828D /* zjmhousegray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0C72CE1DFAE1510061828D /* zjmhousegray@2x.png */; };
@@ -549,6 +548,7 @@
 		3C052FEA1DFAF643008612A7 /* LBB_TravelSet_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C052FE91DFAF643008612A7 /* LBB_TravelSet_ViewController.m */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
 		3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C518C541DF66F22002653EC /* MediaPlayer.framework */; };
+		3C8A16EF1DFBD64D007928B2 /* zjmhaochide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C8A16EE1DFBD64D007928B2 /* zjmhaochide@2x.png */; };
 		8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */; };
 		844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CB1DEAC7C500164DED /* libc++.tbd */; };
 		844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */; };
@@ -1261,7 +1261,6 @@
 		1B0C72C81DFAE1510061828D /* zjmcheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmcheck@2x.png"; sourceTree = "<group>"; };
 		1B0C72C91DFAE1510061828D /* zjmdownlaod@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmdownlaod@2x.png"; sourceTree = "<group>"; };
 		1B0C72CA1DFAE1510061828D /* zjmfood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmfood@2x.png"; sourceTree = "<group>"; };
-		1B0C72CB1DFAE1510061828D /* zjmhaochide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zjmhaochide.png; sourceTree = "<group>"; };
 		1B0C72CC1DFAE1510061828D /* zjmhaochideed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmhaochideed@2x.png"; sourceTree = "<group>"; };
 		1B0C72CD1DFAE1510061828D /* zjmhouse@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmhouse@2x.png"; sourceTree = "<group>"; };
 		1B0C72CE1DFAE1510061828D /* zjmhousegray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmhousegray@2x.png"; sourceTree = "<group>"; };
@@ -1534,6 +1533,7 @@
 		3C052FE91DFAF643008612A7 /* LBB_TravelSet_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TravelSet_ViewController.m; sourceTree = "<group>"; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3C518C541DF66F22002653EC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3C8A16EE1DFBD64D007928B2 /* zjmhaochide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmhaochide@2x.png"; sourceTree = "<group>"; };
 		8420AF7B1DF297C300D98F86 /* libTelephonyUtilDynamic.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libTelephonyUtilDynamic.tbd; path = usr/lib/libTelephonyUtilDynamic.tbd; sourceTree = SDKROOT; };
 		8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		844065CB1DEAC7C500164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -4278,7 +4278,7 @@
 				1B0C72C81DFAE1510061828D /* zjmcheck@2x.png */,
 				1B0C72C91DFAE1510061828D /* zjmdownlaod@2x.png */,
 				1B0C72CA1DFAE1510061828D /* zjmfood@2x.png */,
-				1B0C72CB1DFAE1510061828D /* zjmhaochide.png */,
+				3C8A16EE1DFBD64D007928B2 /* zjmhaochide@2x.png */,
 				1B0C72CC1DFAE1510061828D /* zjmhaochideed@2x.png */,
 				1B0C72CD1DFAE1510061828D /* zjmhouse@2x.png */,
 				1B0C72CE1DFAE1510061828D /* zjmhousegray@2x.png */,
@@ -5087,8 +5087,8 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 8NT4E7BWNP;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 7V268D74T3;
+						ProvisioningStyle = Manual;
 					};
 					C9C0E9641D9948F300575A7C = {
 						CreatedOnToolsVersion = 8.0;
@@ -5153,7 +5153,6 @@
 				3C052FE41DFAF605008612A7 /* zjmguanbi@2x.png in Resources */,
 				1B0C758F1DFAE1520061828D /* zjmtranported@2x.png in Resources */,
 				1B0C74FD1DFAE1520061828D /* LBB_TicketHeaderView.xib in Resources */,
-				1B0C75811DFAE1520061828D /* zjmhaochide.png in Resources */,
 				1B0C75481DFAE1520061828D /* morearrow@2x.png in Resources */,
 				1B0C75441DFAE1520061828D /* AssetsPickerChecked@2x.png in Resources */,
 				1B0C74A51DFAE1520061828D /* LBB_NoticeViewCell.xib in Resources */,
@@ -5259,6 +5258,7 @@
 				1B0C75871DFAE1520061828D /* zjmmenpiaoed@2x.png in Resources */,
 				1B0C755C1DFAE1520061828D /* zjmlittlecollect_no@2x.png in Resources */,
 				1B0C75941DFAE1520061828D /* zjmwhitePraise@2x.png in Resources */,
+				3C8A16EF1DFBD64D007928B2 /* zjmhaochide@2x.png in Resources */,
 				1B0C758D1DFAE1520061828D /* zjmshoping@2x.png in Resources */,
 				1B0C75571DFAE1520061828D /* zjmdown@2x.png in Resources */,
 				1B0C756A1DFAE1520061828D /* zjmtakephotoing@2x.png in Resources */,
@@ -5905,7 +5905,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				DEVELOPMENT_TEAM = 7V268D74T3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -5975,8 +5975,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "25597a68-6b24-449d-9017-52bfdc52a215";
+				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
 			};
 			name = Debug;
 		};
@@ -5987,7 +5987,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8NT4E7BWNP;
+				DEVELOPMENT_TEAM = 7V268D74T3;
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -6057,8 +6057,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "25597a68-6b24-449d-9017-52bfdc52a215";
+				PROVISIONING_PROFILE_SPECIFIER = Development_Foru_ZJM;
 			};
 			name = Release;
 		};

@@ -17,6 +17,7 @@
     UILabel             *houseLabel;
     UIImageView     *arrowImage;
     LBB_AddressTipView  *addTipView;
+    NSArray           *itemArray;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -26,6 +27,9 @@
         LRViewBorderRadius(self, 5.0, 1.0, LINECOLOR);
         [self setup];
         self.clipsToBounds = NO;
+        
+        itemArray =  @[@{@"image":@"zjmtravelhouseed",@"title":@"名宿",@"selectImage":@"zjmtravelhouse"},@{@"image":@"zjmtranported",@"title":@"交通",@"selectImage":@"zjmtranpord"},@{@"image":@"zjmhaochideed",@"title":@"美食",@"selectImage":@"zjmhaochide"},@{@"image":@"zjmmenpiaoed",@"title":@"门票",@"selectImage":@"zjmmenpiao"},@{@"image":@"zjmyuleed",@"title":@"娱乐",@"selectImage":@"zjmyule"},@{@"image":@"zjmshoped",@"title":@"购物",@"selectImage":@"zjmshoping"},@{@"image":@"zjmothered",@"title":@"其他",@"selectImage":@"zjmother"}] ;
+
     }
     return self;
 }
@@ -78,11 +82,13 @@
     
 }
 
-- (void)setModel:(ZJMHostModel *)model
+- (void)setModel:(BN_SquareTravelNotesconsumeDetails *)model
 {
-    houseLabel.text = @"民宿";
-    priceLbale.text = @"$123.00";
-    addTipView.address = @"厦门第一豪";
+//    int = model.
+    houseLabel.text = itemArray[model.consumptionType - 1][@"title"];
+    houseImage.image = IMAGE(itemArray[model.consumptionType - 1][@"selectImage"]);
+    priceLbale.text = [NSString stringWithFormat:@"$%.2f",model.amount.floatValue];
+    addTipView.address = model.name;
     
     addTipView.sd_layout
     .leftEqualToView(houseImage)

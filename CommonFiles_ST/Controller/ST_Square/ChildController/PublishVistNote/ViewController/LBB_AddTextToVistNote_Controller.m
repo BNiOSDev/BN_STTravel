@@ -63,6 +63,24 @@
     self.navigationItem.rightBarButtonItem = rightBrBtn;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if(_blockFeedBack)
+    {
+        self.blockFeedBack(self);
+    }
+}
+
+- (void)leftButtonClick
+{
+    if(_blockFeedBack)
+    {
+        self.blockFeedBack(self);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)checkPulish
 {
     NSLog(@"发布文本");
@@ -79,6 +97,8 @@
     _headSegment = [[LBB_Date_SengeMent alloc]initWithFrame:CGRectMake(0, addTags.bottom - 1, DeviceWidth, AUTO(32))];
     _headSegment.dateStr = [self stringFromDate:[NSDate date]];
     _headSegment.timeStr = [self stringFromTime:[NSDate date]];
+    _footprintModel.releaseTime = _headSegment.timeStr;
+    _footprintModel.releaseDate = _headSegment.dateStr;
     _headSegment.blockDatepick = ^(NSInteger tag)
     {
         if(tag == 0)
@@ -160,8 +180,8 @@
 
 - (void)addSaleFunc
 {
-    NSLog(@"asdfasf");
     LBB_EditShopRecoder_Controller  *vc = [[LBB_EditShopRecoder_Controller alloc]init];
+    vc.footPointNote = _footprintModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -176,7 +196,8 @@
     _footprintModel.picRemark = _contentText.text;
     _footprintModel.name = @"";
     _footprintModel.picUrl = @"";
-    _footprintModel.consumptionDesc = @"";
+    if(_footprintModel.consumptionDesc.length == 0)
+        _footprintModel.consumptionDesc = @"";
     _footprintModel.pics = @[];
     [_footprintModel saveTravelTrackData:YES address:_addressInfo block:^(NSError *error) {
         if(!error)
