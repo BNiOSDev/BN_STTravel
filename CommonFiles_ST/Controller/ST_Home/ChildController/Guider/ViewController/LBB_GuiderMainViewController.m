@@ -10,11 +10,21 @@
 #import "LBB_GuiderMainCell.h"
 #import "LBB_GuiderApplyViewController.h"
 #import "LBB_GuiderUserViewController.h"
-
+#import "LBB_FilterTableViewCell.h"
+#import "LBB_TagsViewModel.h"
 @interface LBB_GuiderMainViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, retain) UITableView* tableView;
+
+@property(nonatomic, retain)NSArray<LBB_SquareTags*>* guiderArray;//导游选择
+@property(nonatomic, retain)NSMutableArray<LBB_SquareTags*>* jobTimeArray;//从业时间
+@property(nonatomic, retain)NSMutableArray<LBB_SquareTags*>* genderArray; //性别选择
+
+//菜单选项的选择项
+@property (nonatomic,assign)NSInteger guiderSelectIndex;//导游选择
+@property (nonatomic,assign)NSInteger jobTimeSelectIndex;//从业时间
+@property (nonatomic,assign)NSInteger genderSelectIndex;//性别选择
 
 
 @end
@@ -24,6 +34,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.guiderSelectIndex = -1;//导游选择
+    self.jobTimeSelectIndex = -1;//从业时间
+    self.genderSelectIndex = -1;//性别选择
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,6 +53,31 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)initViewModel{
+    
+    /**
+     3.1.13	筛选标签列表(已测)
+     
+     @param classes 1美食 2 民宿 3 景点 4 伴手礼  10 线路攻略11 美食专题 12民宿专题 13景点专题 14伴手礼专题 15  用户/导游
+     @param type 1.热门推荐 2标签 3价格 4类别 5、设施 6、退票及预约提示 7、品牌 8、适合人群 9、个性标签 10、行程时长 11  导游类型  12  从业时间
+     @param dataBlock 返回标签数据
+     */
+    WS(ws);
+    [LBB_SquareTags getConditionTagsClass:15 type:11 block:^(NSArray<LBB_SquareTags*> *files, NSError *error){
+        NSLog(@"获取导游类型files:%@",files);
+        ws.guiderArray = files;
+    }];
+    
+    
+    [LBB_SquareTags getConditionTagsClass:15 type:12 block:^(NSArray<LBB_SquareTags*> *files, NSError *error){
+        
+        NSLog(@"获取从业时间files:%@",files);
+        ws.jobTimeArray = [NSMutableArray arrayWithArray:files];
+    }];
+}
+
+
 
 -(void)loadCustomNavigationButton{
   
@@ -80,6 +118,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     [self.tableView registerClass:[LBB_GuiderMainCell class] forCellReuseIdentifier:@"LBB_GuiderMainCell"];
+    [self initViewModel];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -174,7 +213,7 @@
         make.height.mas_equalTo(SeparateLineWidth);
     }];
     
-    UIButton* b2 = [UIButton new];
+  /*  UIButton* b2 = [UIButton new];
     [b2 setTitle:@"筛选" forState:UIControlStateNormal];
     [b2 setTitleColor:ColorLightGray forState:UIControlStateNormal];
     [b2.titleLabel setFont:Font14];
@@ -183,6 +222,200 @@
         make.centerY.equalTo(v);
         make.right.equalTo(v).offset(-16);
     }];
+    */
+    //////
+    
+    NSArray* segmentArray = @[@""];
+    
+    BN_FilterMenu* segmentedControl = [[BN_FilterMenu alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];;
+    [segmentedControl setTextColor:ColorGray];
+    [segmentedControl setSelectedTextColor:ColorBtnYellow];
+    segmentedControl.layer.borderWidth = 1;
+    segmentedControl.layer.borderColor = ColorLine.CGColor;
+    segmentedControl.menuArray = segmentArray;
+    [v addSubview:segmentedControl];
+    
+    UILabel* titleLabel = [UILabel new];
+    [titleLabel setText:@"筛选"];
+    [titleLabel setTextColor:ColorLightGray];
+    [titleLabel setFont:Font14];
+    [titleLabel setTextAlignment:NSTextAlignmentRight];
+    [v addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
+        make.centerY.equalTo(v);
+        make.right.equalTo(v).offset(-AutoSize(24));
+    }];
+    
+    
+    //返回section数组
+    [segmentedControl getMenuDataSectionArrayInBlock:^NSArray*(NSInteger index, NSString *title){
+        return @[
+                 @[@"导游选择",@"导游_导游选择"],
+                 @[@"从业时间",@"导游_从业时间-筛选"],
+                 @[@"性别选择",@"导游_性别选择"],
+                 ];
+        
+    }];
+    [segmentedControl getSectionInBlock:^UIView*(NSInteger index, NSInteger section, id data){
+        
+        CGFloat height = AutoSize(56/2);
+        CGFloat margin = 10;
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, height)];
+        [view setBackgroundColor:ColorWhite];
+        NSString* title = [data objectAtIndex:0];
+        NSString* imageName = [data objectAtIndex:1];
+        
+        UIImageView* imageView = [UIImageView new];
+        [imageView setImage:IMAGE(imageName)];
+        [view addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(view);
+            make.left.equalTo(view).offset(margin);
+        }];
+        
+        UILabel* titleLabel = [UILabel new];
+        [titleLabel setFont:Font15];
+        [titleLabel setTextColor:ColorGray];
+        [titleLabel setText:title];
+        [view addSubview:titleLabel];
+        [titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
+            
+            make.centerY.equalTo(view);
+            make.left.equalTo(imageView.mas_right).offset(margin/3);
+        }];
+        
+        return view;
+    }];
+    [segmentedControl heightForSectionInBlock:^CGFloat(NSInteger index, NSInteger section,id data){
+        return AutoSize(56/2);
+        
+    }];
+    //返回数据数组
+    [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
+        
+        if (section == 0) {//导游
+            
+            if (ws.guiderArray.count <= 0) {
+                return @[];
+            }
+            return @[ws.guiderArray];
+        }
+        else if (section == 1){//从业时间
+            if (ws.jobTimeArray.count <= 0) {
+                return @[];
+            }
+            return @[ws.jobTimeArray];
+        }
+        else{//性别
+            if (ws.jobTimeArray.count <= 0) {
+                return @[];
+            }
+            return @[ws.jobTimeArray];
+        }
+        
+        
+    }];
+    //返回每行的高度
+    [segmentedControl heightForRowInBlock:^CGFloat(NSInteger index, NSIndexPath *indexPath, id data) {
+        return [LBB_FilterTableViewCell getCellHeight:data];
+        
+    }];
+    //返回cell
+    [segmentedControl getCellInBlock:^UITableViewCell*(NSInteger index, NSIndexPath *indexPath, NSArray* data) {
+        NSLog(@"data:%@",data);
+        
+        static NSString *cellIdentifier = @"LBB_FilterTableViewCell";
+        LBB_FilterTableViewCell* cell = [[LBB_FilterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        
+        cell.bottomMargin = AutoSize(15);
+        
+        NSLog(@"array:%@",data);
+        if (indexPath.section == 0) {//导游选择
+            cell.selectIndex = ws.guiderSelectIndex;
+        }
+        else if (indexPath.section == 1){//从业时间
+            cell.selectIndex = ws.jobTimeSelectIndex;
+        }
+        else{//性别
+            cell.selectIndex = ws.genderSelectIndex;
+        }
+        
+        NSArray* dataArray = [data map:^id(LBB_SquareTags* model){
+            return model.tagName;
+        }];
+        NSLog(@"dataArray:%@",dataArray);
+        
+        [cell configContentView:dataArray];
+        
+        cell.click = ^(NSNumber* num){
+            if (indexPath.section == 0) {//导游选择
+                ws.guiderSelectIndex = [num integerValue];
+            }
+            else if (indexPath.section == 1){//从业时间
+                ws.jobTimeSelectIndex = [num integerValue];
+            }
+            else{//性别
+                ws.genderSelectIndex = [num integerValue];
+            }
+            [segmentedControl reloadData];
+            
+        };
+        return cell;
+        
+        
+    }];
+    //cell的选中动作
+    [segmentedControl didDeselectRowAtIndexPathBlock:^(NSInteger index, NSIndexPath *indexPath, id data) {
+        NSLog(@"index:%ld,选择 %@",index,data);
+        
+    }];
+    
+    //返回bottomView
+    [segmentedControl getMenuBottomViewInBlock:^UIView*(NSInteger index, NSString *title){
+        
+        UIView* bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, AutoSize(70/2))];
+        
+        CGFloat width = DeviceWidth* 220/640;
+        
+        UIButton* cancelButton = [UIButton new];
+        [cancelButton setBackgroundColor:ColorWhite];
+        [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        [cancelButton.titleLabel setFont:Font13];
+        [cancelButton setTitleColor:ColorBtnYellow forState:UIControlStateNormal];
+        [bottomView addSubview:cancelButton];
+        
+        UIButton* confirmButton = [UIButton new];
+        [confirmButton setBackgroundColor:ColorBtnYellow];
+        [confirmButton setTitle:@"确定" forState:UIControlStateNormal];
+        [confirmButton.titleLabel setFont:Font13];
+        [confirmButton setTitleColor:ColorWhite forState:UIControlStateNormal];
+        [bottomView addSubview:confirmButton];
+        
+        [cancelButton mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.top.bottom.equalTo(bottomView);
+            make.width.mas_equalTo(width);
+        }];
+        
+        [confirmButton mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(cancelButton.mas_right);
+            make.top.bottom.right.equalTo(bottomView);
+        }];
+        
+        [cancelButton bk_whenTapped:^{
+            [segmentedControl closeMenu];
+        }];
+        
+        
+        [confirmButton bk_whenTapped:^{
+            [segmentedControl closeMenu];
+        }];
+        
+        return bottomView;
+        
+    }];
+    
+
     
     return v;
 }
