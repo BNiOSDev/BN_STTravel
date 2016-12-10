@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
-
+typedef void(^Result)(NSData *fileData, NSString *fileName);
 @interface LBB_ZJMPhotoList : NSObject
 /**
  *  相册的名字
@@ -77,5 +77,10 @@
 
 +(UIImage *)getThumbnailImage:(NSString *)videoURL;
 - (void)getThumbnailImage:(NSString *)videoURL Block:(void(^)(UIImage *resultImage))completeImageBlock;
+
+
++ (void)getImageFromPHAsset:(PHAsset *)asset Complete:(Result)result;
++ (void)getVideoFromPHAsset:(PHAsset *)asset Complete:(Result)result;
+
 
 @end
