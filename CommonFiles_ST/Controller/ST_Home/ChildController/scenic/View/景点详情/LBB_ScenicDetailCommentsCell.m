@@ -193,8 +193,14 @@
         [self.commentsButton bk_whenTapped:^{
         
             LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc]init];
-            dest.allSpotsType = 10;// 场景类型 1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题
-          //  dest.allSpotsId = ws.model.lineId;
+            if (ws.spotDetails) {
+                dest.allSpotsType = (int)ws.spotDetails.allSpotsType;// 场景类型 1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题
+                dest.allSpotsId = ws.spotDetails.allSpotsId;
+            }
+            else{
+                dest.allSpotsType = (int)ws.spotSpecialDetails.type;// 场景类型 1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题
+                dest.allSpotsId = ws.spotSpecialDetails.specialId;
+            }
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
         
@@ -228,20 +234,6 @@
     NSMutableArray<LBB_SpotsCommentsRecord *> *commentsRecord = spotDetails.commentsRecord;
     WS(ws);
     CGFloat margin = 8;
-    
-   /* LBB_SpotsCommentsRecord* record = [[LBB_SpotsCommentsRecord alloc] init];
-    record.commentId  = 0;// 主键
-    record.remark = @"大科技活动假的很看的哈的框架啊很多大科技活动道具卡射得快大抠脚大汉大口径的";// 评论描述
-    LBB_SpotsCommentsRecordPics* pic = [[LBB_SpotsCommentsRecordPics alloc] init];
-    pic.imageUrl = @"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1481163685&di=eaae70ca3568aae8342d491c3c81e583&src=http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg";// 发布者头像URL
-     record.pics = [NSMutableArray arrayWithArray:@[pic,pic]];// 评论图片集合
-     record.commentDate = @"2017-90-09";// 评论日期
-     record.commentsNum = 199;// 评论条数
-     record.userId = 10;// 发布者Id
-     record.userName  = @"啊大大";// 发布者用户名称
-     record.userPicUrl =@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1481163685&di=eaae70ca3568aae8342d491c3c81e583&src=http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg";// 发布者头像URL
-    
-    [commentsRecord addObject:record];*/
     if (commentsRecord.count <= 0) {
         
         [self.portraitImageView mas_remakeConstraints:^(MASConstraintMaker* make){
@@ -367,24 +359,52 @@
         }];
         
         
-        CGFloat interval = 10;
-        CGFloat imageWidth = (DeviceWidth - 3* margin*2 - 2*interval)/3;
         
-        [self.imageView1 mas_remakeConstraints:^(MASConstraintMaker* make){
-            make.top.equalTo(ws.contentLabel.mas_bottom).offset(2*margin);
-            make.left.equalTo(ws.portraitImageView);
-            make.width.height.mas_equalTo(imageWidth);
-        }];
+        LBB_SpotsCommentsRecord* record = [commentsRecord objectAtIndex:0];
         
-        [self.imageView2 mas_remakeConstraints:^(MASConstraintMaker* make){
-            make.left.equalTo(ws.imageView1.mas_right).offset(interval);
-            make.centerY.width.height.equalTo(ws.imageView1);
-        }];
+        if (record.pics.count <= 0) {//没有图片
+            CGFloat interval = 10;
+            CGFloat imageWidth = (DeviceWidth - 3* margin*2 - 2*interval)/3;
+            
+            [self.imageView1 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.top.equalTo(ws.contentLabel.mas_bottom).offset(2*margin);
+                make.left.equalTo(ws.portraitImageView);
+                make.width.mas_equalTo(imageWidth);
+                make.height.equalTo(@0);
+            }];
+            
+            [self.imageView2 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.left.equalTo(ws.imageView1.mas_right).offset(interval);
+                make.centerY.width.height.equalTo(ws.imageView1);
+            }];
+            
+            [self.imageView3 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.left.equalTo(ws.imageView2.mas_right).offset(interval);
+                make.centerY.width.height.equalTo(ws.imageView1);
+            }];
+            
+        }
+        else{
+            CGFloat interval = 10;
+            CGFloat imageWidth = (DeviceWidth - 3* margin*2 - 2*interval)/3;
+            
+            [self.imageView1 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.top.equalTo(ws.contentLabel.mas_bottom).offset(2*margin);
+                make.left.equalTo(ws.portraitImageView);
+                make.width.height.mas_equalTo(imageWidth);
+            }];
+            
+            [self.imageView2 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.left.equalTo(ws.imageView1.mas_right).offset(interval);
+                make.centerY.width.height.equalTo(ws.imageView1);
+            }];
+            
+            [self.imageView3 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.left.equalTo(ws.imageView2.mas_right).offset(interval);
+                make.centerY.width.height.equalTo(ws.imageView1);
+            }];
+        }
         
-        [self.imageView3 mas_remakeConstraints:^(MASConstraintMaker* make){
-            make.left.equalTo(ws.imageView2.mas_right).offset(interval);
-            make.centerY.width.height.equalTo(ws.imageView1);
-        }];
         
         [self.timeLabel mas_remakeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.portraitImageView);
@@ -411,7 +431,6 @@
         
         
 #pragma 匹配数据
-        LBB_SpotsCommentsRecord* record = [commentsRecord objectAtIndex:0];
         [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:record.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
         [self.nickLabel setText:record.userName];
         [self.contentLabel setText:record.remark];
@@ -453,20 +472,7 @@
     NSMutableArray<LBB_SpotsCommentsRecord *> *commentsRecord = spotSpecialDetails.commentsRecord;
     WS(ws);
     CGFloat margin = 8;
-    
-    /* LBB_SpotsCommentsRecord* record = [[LBB_SpotsCommentsRecord alloc] init];
-     record.commentId  = 0;// 主键
-     record.remark = @"大科技活动假的很看的哈的框架啊很多大科技活动道具卡射得快大抠脚大汉大口径的";// 评论描述
-     LBB_SpotsCommentsRecordPics* pic = [[LBB_SpotsCommentsRecordPics alloc] init];
-     pic.imageUrl = @"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1481163685&di=eaae70ca3568aae8342d491c3c81e583&src=http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg";// 发布者头像URL
-     record.pics = [NSMutableArray arrayWithArray:@[pic,pic]];// 评论图片集合
-     record.commentDate = @"2017-90-09";// 评论日期
-     record.commentsNum = 199;// 评论条数
-     record.userId = 10;// 发布者Id
-     record.userName  = @"啊大大";// 发布者用户名称
-     record.userPicUrl =@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1481163685&di=eaae70ca3568aae8342d491c3c81e583&src=http://g.hiphotos.baidu.com/image/pic/item/0823dd54564e92589f2fe1019882d158cdbf4ec1.jpg";// 发布者头像URL
-     
-     [commentsRecord addObject:record];*/
+
     if (commentsRecord.count <= 0) {
         
         [self.portraitImageView mas_remakeConstraints:^(MASConstraintMaker* make){
@@ -591,7 +597,53 @@
             make.right.equalTo(ws.contentView).offset(-2*margin);
         }];
         
+        LBB_SpotsCommentsRecord* record = [commentsRecord objectAtIndex:0];
+
+        if (record.pics.count <= 0) {//没有图片
+            CGFloat interval = 10;
+            CGFloat imageWidth = (DeviceWidth - 3* margin*2 - 2*interval)/3;
+            
+            [self.imageView1 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.top.equalTo(ws.contentLabel.mas_bottom).offset(2*margin);
+                make.left.equalTo(ws.portraitImageView);
+                make.width.mas_equalTo(imageWidth);
+                make.height.equalTo(@0);
+            }];
+            
+            [self.imageView2 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.left.equalTo(ws.imageView1.mas_right).offset(interval);
+                make.centerY.width.height.equalTo(ws.imageView1);
+            }];
+            
+            [self.imageView3 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.left.equalTo(ws.imageView2.mas_right).offset(interval);
+                make.centerY.width.height.equalTo(ws.imageView1);
+            }];
+            
+        }
+        else{
+            CGFloat interval = 10;
+            CGFloat imageWidth = (DeviceWidth - 3* margin*2 - 2*interval)/3;
+            
+            [self.imageView1 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.top.equalTo(ws.contentLabel.mas_bottom).offset(2*margin);
+                make.left.equalTo(ws.portraitImageView);
+                make.width.height.mas_equalTo(imageWidth);
+            }];
+            
+            [self.imageView2 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.left.equalTo(ws.imageView1.mas_right).offset(interval);
+                make.centerY.width.height.equalTo(ws.imageView1);
+            }];
+            
+            [self.imageView3 mas_remakeConstraints:^(MASConstraintMaker* make){
+                make.left.equalTo(ws.imageView2.mas_right).offset(interval);
+                make.centerY.width.height.equalTo(ws.imageView1);
+            }];
+        }
         
+
+    /*
         CGFloat interval = 10;
         CGFloat imageWidth = (DeviceWidth - 3* margin*2 - 2*interval)/3;
         
@@ -610,7 +662,7 @@
             make.left.equalTo(ws.imageView2.mas_right).offset(interval);
             make.centerY.width.height.equalTo(ws.imageView1);
         }];
-        
+     */
         [self.timeLabel mas_remakeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.portraitImageView);
             make.top.equalTo(ws.imageView1.mas_bottom).offset(margin);
@@ -636,7 +688,6 @@
         
         
 #pragma 匹配数据
-        LBB_SpotsCommentsRecord* record = [commentsRecord objectAtIndex:0];
         [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:record.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
         [self.nickLabel setText:record.userName];
         [self.contentLabel setText:record.remark];

@@ -84,7 +84,7 @@
 
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.tableHeaderView = [[UIView alloc]init];
-    [self.tableView registerClass:[LBB_ScenicAllCommentCell class] forCellReuseIdentifier:@"LBB_ScenicAllCommentCell."];
+    [self.tableView registerClass:[LBB_ScenicAllCommentCell class] forCellReuseIdentifier:@"LBB_ScenicAllCommentCell"];
     [self initViewModel];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
