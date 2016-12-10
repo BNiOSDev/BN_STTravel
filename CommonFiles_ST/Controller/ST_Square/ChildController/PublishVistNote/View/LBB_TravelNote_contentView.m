@@ -65,7 +65,6 @@
         addressTip.address = model.allSpotsTypeName;
     }
     
-    imagesScroll.backgroundColor = [UIColor redColor];
     imagesScroll.sd_layout
     .topSpaceToView(self,0)
     .leftSpaceToView(self,0)

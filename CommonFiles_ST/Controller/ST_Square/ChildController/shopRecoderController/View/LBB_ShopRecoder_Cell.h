@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BN_SquareTravelNotesBillModel.h"
 @interface LBB_ShopRecoder_Cell : UITableViewCell
 @property(nonatomic,strong)NSDictionary  *dataaArray;
+@property(nonatomic,strong)BN_SquareTravelNotesConsumeRatios  *model;
 @end

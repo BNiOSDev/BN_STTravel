@@ -5,7 +5,6 @@
 //  Created by dawei che on 2016/11/21.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
-
 #import "LBB_TravelNote_BaseViewController.h"
 #import "UINavigationBar+Awesome.h"
 #import "LBB_TraveNoteHead_View.h"
@@ -26,8 +25,13 @@
 #import "LBB_SelectTip_History_ViewController.h"
 #import "LBB_TagView.h"
 #import "LBB_TravelSet_ViewController.h"
+#import "LBB_Travel_Bill_ViewController.h"
 
 @interface LBB_TravelNote_BaseViewController ()<UITableViewDelegate,UITableViewDataSource,TransImageDelegate>
+{
+    BOOL    previewSet; //no,展示地图，yes，展示预览
+    BOOL    syncStaus;  //yes,进行同步,no 不进行同步
+}
 @property(nonatomic,strong)UIView       *whiteLine;
 @property(nonatomic,weak)LBB_TraveNoteHead_View   *headView;
 @property(nonatomic,weak)UITableView  *mTableView;
@@ -77,6 +81,7 @@
 {
     [self.view addSubview:self.mTableView];
     [_mTableView registerClass:[LBB_TravelNote_ListViewCell class] forCellReuseIdentifier:@"LBB_TravelNote_ListViewCell"];
+    [_mTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCellAddress"];
     [_mTableView setTableHeaderView:self.headView];
 //    self.headView.coverImage = IMAGE(@"zjmtakephotoing");
     self.headView.backgroundColor = ColorBtnYellow;
@@ -167,6 +172,10 @@
 - (void)linerecoderFunc
 {
     NSLog(@"linerecoderFunc");
+    LBB_Travel_Bill_ViewController *vc = [[LBB_Travel_Bill_ViewController alloc]init];
+    vc.edit = YES;
+    vc.travelNotesId = _dataModel.travelDraftModel.travelNotesId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)editTextFunc
@@ -178,6 +187,11 @@
         _mapPointArray = [[NSMutableArray alloc]init];
     }
     vc.mapPointArray = _mapPointArray;
+    vc.blockFeedBack = ^(UIViewController *vc)
+    {
+        previewSet = NO;
+        [self.dataModel getTravelDraftData];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -193,7 +207,6 @@
     self.dataModel.travelDraftModel.name = _headView.travelName;
     self.dataModel.travelDraftModel.tags = _tipArray.copy;
     self.dataModel.travelDraftModel.picRemark = @"";
-//    self.dataModel.travelDraftModel.displayState = 1;
     [self.dataModel saveTravelDraftData:^(NSError *error) {
         
     }];
@@ -250,13 +263,20 @@
         if(!weakSelf.dataModel.travelDraftModel.travelNotesDetails.count)
         {
             [weakSelf showHudPrompt:@"没有数据不能预览"];
+            return ;
         }
+        previewSet = YES;
+        [_mTableView reloadData];
     }]];
     
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"游记设置" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         LBB_TravelSet_ViewController *vc = [[LBB_TravelSet_ViewController alloc]init];
         vc.blockBtnFunc = ^(NSInteger tag){
             weakSelf.dataModel.travelDraftModel.displayState = (int)tag;
+        };
+        vc.blockFeedBack = ^(UIViewController *VC)
+        {
+            syncStaus = ((LBB_TravelSet_ViewController *)VC).autoSync;
         };
         [self.navigationController pushViewController:vc animated:YES];
     }]];
@@ -320,6 +340,11 @@
             NSLog(@"图片数组");
             LBB_AddFootprint_ViewController  *Vc = [[LBB_AddFootprint_ViewController alloc]init];
             Vc.selectImageArray = [array copy];
+            Vc.blockFeedBack = ^(UIViewController *vc){
+                previewSet = NO;
+                [self.dataModel getTravelDraftData];
+            };
+            
             [weakSelf.navigationController pushViewController:Vc animated:YES];
         };
         Vc._blockJumpControl = ^(UIViewController *obj){
@@ -377,22 +402,40 @@
 
 #pragma mark -- TableViewDelegete
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if(!previewSet)
+    {
+        return _dataModel.travelDraftModel.travelNotesDetails.count;
+    }
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(!previewSet)
+    {
+        return 1;
+    }
     return _dataModel.travelDraftModel.travelNotesDetails.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return AUTO(25);
+    if(!previewSet)
+    {
+        return 10;
+    }
+    return AUTO(35);
 }
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(25))];
+        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(35))];
         headView.backgroundColor = WHITECOLOR;
         
-        UIView *ballView = [[UIView alloc]initWithFrame:CGRectMake(14, 0, AUTO(12.0), AUTO(12.0))];
+        UIView *ballView = [[UIView alloc]initWithFrame:CGRectMake(14, 10, AUTO(12.0), AUTO(12.0))];
         LRViewBorderRadius(ballView, ballView.height / 2.0, 0, [UIColor clearColor]);
         ballView.backgroundColor = BLACKCOLOR;
         [headView addSubview:ballView];
@@ -403,12 +446,12 @@
         
         ballView.centerX = line.centerX;
         
-        UILabel *sectionLabel = [[UILabel alloc]initWithFrame:CGRectMake(ballView.right + 5, 0, DeviceWidth - (ballView.right + 5), AUTO(15))];
+        UILabel *sectionLabel = [[UILabel alloc]initWithFrame:CGRectMake(ballView.right + 5, 10, DeviceWidth - (ballView.right + 5), AUTO(15))];
         sectionLabel.font = FONT(AUTO(13.0));
         sectionLabel.text = @"第一天 2016-09-10";
         sectionLabel.centerY = ballView.centerY;
         [headView addSubview:sectionLabel];
-        if(self.dataModel.travelDraftModel.travelNotesDetails.count == 0)
+        if(self.dataModel.travelDraftModel.travelNotesDetails.count == 0 || !previewSet)
         {
             return nil;
         }
@@ -418,25 +461,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    static NSString *cellID = @"TravelCell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-//    
-//    if (!cell) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-//    }
-//    if(_mapPointArray.count)
-//    {
-//        cell.textLabel.text = @"地点信息";
-//    }
-    LBB_TravelNote_ListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_TravelNote_ListViewCell"];
-    cell.accessoryType = 0;
-    TravelNotesDetails *model = [_dataModel.travelDraftModel.travelNotesDetails objectAtIndex:indexPath.row];
-    NSLog(@"%@",model);
-    cell.model = model;
-    ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
-    return cell;
+    if(!previewSet)
+    {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCellAddress"];
+            TravelNotesDetails *model = [_dataModel.travelDraftModel.travelNotesDetails objectAtIndex:indexPath.row];
+            BN_MapView  *mapView = [[BN_MapView alloc]init];
+            [mapView setFrame:CGRectMake(0, 0, cell.size.width , cell.size.height)];
+            [mapView andAnnotationLatitude:[model.dimensionality longLongValue]longitude:[model.longitude longLongValue]];
+            cell.backgroundView = mapView;
+            return cell;
+    }else{
+    
+        LBB_TravelNote_ListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_TravelNote_ListViewCell"];
+        cell.accessoryType = 0;
+        TravelNotesDetails *model = [_dataModel.travelDraftModel.travelNotesDetails objectAtIndex:indexPath.row];
+        NSLog(@"%@",model);
+        cell.model = model;
+        cell.selectionStyle = 0;
+    ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+        [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
+    
+        return cell;
+    }
  
 }
 
@@ -444,8 +491,17 @@
 {
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
 //    id model = self.dataArray[indexPath.row];
+    if(!previewSet)
+    {
+        return 100;
+    }
     id model = self.dataModel.travelDraftModel.travelNotesDetails[indexPath.row];
     return [_mTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[LBB_TravelNote_ListViewCell class] contentViewWidth:[self cellContentViewWith]];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)cellContentViewWith
@@ -470,6 +526,10 @@
     [imageArray addObject:model];
     LBB_AddFootprint_ViewController  *Vc = [[LBB_AddFootprint_ViewController alloc]init];
     Vc.selectImageArray = [imageArray copy];
+    Vc.blockFeedBack = ^(UIViewController *vc){
+        previewSet = NO;
+        [self.dataModel getTravelDraftData];
+    };
     [self.navigationController pushViewController:Vc animated:YES];
 }
 @end

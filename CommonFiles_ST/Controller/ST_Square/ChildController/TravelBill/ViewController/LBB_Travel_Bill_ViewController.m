@@ -16,19 +16,23 @@
 #import "LBB_Travel_Bill_Account_TableViewCell.h"
 #import "ZJMHostModel.h"
 #import "LBB_ShopRecoder_Controller.h"
+#import "LBB_EditShopRecoder_Controller.h"
 
 @interface LBB_Travel_Bill_ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)UITableView     *tableView;
 @property(nonatomic, strong)NSMutableArray  *dataArray;
 @property(nonatomic, weak)UIView *tabelFoot;
-
+@property(nonatomic, strong)BN_SquareTravelNotesModel  *viewModel;
 @end
 
 @implementation LBB_Travel_Bill_ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title =@"游记账单";
     self.view.backgroundColor = BACKVIEWCOLOR;
+    _viewModel = [[BN_SquareTravelNotesModel alloc]init];
+    _viewModel.travelNotesId = _travelNotesId;
     [self initData];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - AUTO(15))];
@@ -50,7 +54,12 @@
         ZJMHostModel *model = [[ZJMHostModel alloc]init];
         [_dataArray addObject:model];
     }
-    
+    [_viewModel getTravelBilllModel];
+    __weak typeof(self) weakSelf = self;
+    [_viewModel.travelBillModel.loadSupport setDataRefreshblock:^{
+        NSLog(@"%@",weakSelf.viewModel.travelBillModel);
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (UIView *)tabelFoot
@@ -85,7 +94,7 @@
     {
         return 1;
     }
-    return _dataArray.count;
+    return _viewModel.travelBillModel.consumeDetails.count;
 }
 
 
@@ -162,7 +171,7 @@
     {
         LBB_Tarvel_Bill_Free_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_Tarvel_Bill_Free_Cell"];
         cell.textLabel.text = @"消费总额";
-        cell.freeMoney = @"100.00";
+        cell.freeMoney = _viewModel.travelBillModel.totalAmount;
         return cell;
     }else if(indexPath.section == 1){
         
@@ -171,8 +180,9 @@
     }else{
             LBB_Travel_Bill_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_Travel_Bill_Cell"];
             ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+            cell.selectionStyle = 0;
             [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-            cell.model = _dataArray[indexPath.row];
+            cell.model = _viewModel.travelBillModel.consumeDetails[indexPath.row];
             return cell;
         }
     
@@ -184,7 +194,18 @@
     if(indexPath.section == 1)
     {
         LBB_ShopRecoder_Controller *vc = [[LBB_ShopRecoder_Controller alloc]init];
+        vc.dataModel = _viewModel.travelBillModel;
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    if(indexPath.section == 2)
+    {
+        if(_edit)
+        {
+            NSLog(@"");
+            LBB_EditShopRecoder_Controller *vc = [[LBB_EditShopRecoder_Controller alloc]init];
+            vc.model = _viewModel.travelBillModel.consumeDetails[indexPath.row];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
@@ -192,8 +213,8 @@
 {
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
     id model;
-    if (self.dataArray.count) {
-        model = self.dataArray[indexPath.row];
+    if (_viewModel.travelBillModel.consumeDetails.count) {
+        model = _viewModel.travelBillModel.consumeDetails[indexPath.row];
     }
     if(indexPath.section == 0)
     {

@@ -64,8 +64,6 @@
     
 }
 
-
-
 /**
  3.4.20 主页-游记消费删除（已测）
  
@@ -86,9 +84,9 @@
         if(codeNumber.intValue == 0)
         {
             NSLog(@"deleteSquareTravelNotesConsumeDetails 成功");
-            NSLog(@"deleteSquareTravelNotesConsumeDetails before:%d",temp.parentArray.count);
+            NSLog(@"deleteSquareTravelNotesConsumeDetails before:%lu",(unsigned long)temp.parentArray.count);
             [temp.parentArray removeObject:temp];
-            NSLog(@"deleteSquareTravelNotesConsumeDetails 成功:%d",temp.parentArray.count);
+            NSLog(@"deleteSquareTravelNotesConsumeDetails 成功:%lu",(unsigned long)temp.parentArray.count);
             block(nil);
         }
         else

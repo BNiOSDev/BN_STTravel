@@ -10,5 +10,7 @@
 #import "Header.h"
 
 @interface LBB_TravelSet_ViewController : Base_BaseViewController
-@property(nonatomic,copy)BtnFuncTion  blockBtnFunc;
+@property(nonatomic)BOOL                                autoSync;
+@property(nonatomic,copy)BtnFuncTion             blockBtnFunc;
+@property(nonatomic,copy)Controllerfeedback   blockFeedBack;
 @end

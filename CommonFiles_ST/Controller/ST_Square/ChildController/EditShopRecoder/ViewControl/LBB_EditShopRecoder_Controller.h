@@ -7,7 +7,10 @@
 //
 
 #import "Base_BaseViewController.h"
+#import "BN_SquareTravelNotesBillModel.h"
+#import "BN_SquareTravelNotesModel.h"
 
 @interface LBB_EditShopRecoder_Controller : Base_BaseViewController
-
+@property(nonatomic,strong)BN_SquareTravelNotesconsumeDetails *model;
+@property(nonatomic,strong)TravelNotesDetails  *footPointNote;
 @end

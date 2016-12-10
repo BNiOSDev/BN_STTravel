@@ -57,6 +57,15 @@
     
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if(_blockFeedBack)
+    {
+        self.blockFeedBack(self);
+    }
+}
+
 - (void)initNav
 {
     self.navigationItem.title = @"添加足迹";
@@ -168,6 +177,7 @@
 {
     NSLog(@"asdfasf");
     LBB_EditShopRecoder_Controller  *vc = [[LBB_EditShopRecoder_Controller alloc]init];
+    vc.footPointNote = _footprintModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -369,9 +379,12 @@
             [weakImageUrlArray addObject:model];
             
             _footprintModel.picRemark = _contentText.text;
+            _footprintModel.releaseTime = _headSegment.timeStr;
+            _footprintModel.releaseDate = _headSegment.dateStr;
             _footprintModel.name = @"";
             _footprintModel.picUrl = @"";
-            _footprintModel.consumptionDesc = @"";
+            if(_footprintModel.consumptionDesc .length == 0)
+                _footprintModel.consumptionDesc = @"";
             _footprintModel.pics = _imageUrlArray;
             [_footprintModel saveTravelTrackData:YES address:_addressInfo block:^(NSError *error) {
                 if(!error)

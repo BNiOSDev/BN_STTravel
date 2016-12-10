@@ -16,7 +16,7 @@
     UILabel            *catoryLabel;
     UILabel            *percentLabel;
     UILabel            *priceLabel;
-    
+    NSArray           *itemArray;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -24,6 +24,8 @@
     if(self == [super initWithStyle:style reuseIdentifier:reuseIdentifier])
     {
         [self setup];
+        itemArray =  @[@{@"image":@"zjmtravelhouseed",@"title":@"名宿",@"selectImage":@"zjmtravelhouse"},@{@"image":@"zjmtranported",@"title":@"交通",@"selectImage":@"zjmtranpord"},@{@"image":@"zjmhaochideed",@"title":@"美食",@"selectImage":@"zjmhaochide"},@{@"image":@"zjmmenpiaoed",@"title":@"门票",@"selectImage":@"zjmmenpiao"},@{@"image":@"zjmyuleed",@"title":@"娱乐",@"selectImage":@"zjmyule"},@{@"image":@"zjmshoped",@"title":@"购物",@"selectImage":@"zjmshoping"},@{@"image":@"zjmothered",@"title":@"其他",@"selectImage":@"zjmother"}] ;
+
     }
     return self;
 }
@@ -66,4 +68,13 @@
     percentLabel.text = dataaArray[@"percent"];
     priceLabel.text = dataaArray[@"price"];
 }
+
+- (void)setModel:(BN_SquareTravelNotesConsumeRatios *)model
+{
+    image.image = IMAGE(itemArray[model.consumptionType - 1][@"selectImage"]);
+    catoryLabel.text = itemArray[model.consumptionType - 1][@"title"];
+    percentLabel.text = [NSString stringWithFormat:@"%d%@",model.ratio,@"%"];
+    priceLabel.text = [NSString stringWithFormat:@"%.2f",model.amount.floatValue];
+}
+
 @end
