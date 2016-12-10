@@ -329,6 +329,38 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == LBBScenicDetailSectionSubjectRecommendType) {
+        LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc]init];
+        LBB_SpotSpecialDetailsViewModel* spotModel = [[LBB_SpotSpecialDetailsViewModel alloc] init];
+        LBB_SpotSpecialRecommendSpecials* recommendModel = self.spotModel.spotSpecialDetails.recommendSpecials[indexPath.row];
+        spotModel.specialId = recommendModel.specialId;
+        dest.spotModel = spotModel;
+        //type;//	Int	1美食 2 民宿 3 景点  4 伴手礼
+        
+        switch (recommendModel.type) {
+                
+            case 1://美食
+                dest.homeType = LBBPoohHomeTypeFoods;
+                break;
+            case 2://民宿
+                dest.homeType = LBBPoohHomeTypeHostel;
+                break;
+            case 3://景点
+                dest.homeType = LBBPoohHomeTypeScenic;
+                break;
+            case 4://伴手礼
+                dest.homeType = LBBPoohHomeTypeProduct;
+                break;
+        }
+        if (dest) {
+            [self.navigationController pushViewController:dest animated:YES];
+        }
+    }
+}
 
 /*
  *  对每个section的cell进行分开封装
