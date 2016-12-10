@@ -529,6 +529,7 @@
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
 		1DD5305A1DFBA5FF00F96E17 /* LBB_GuiderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD530591DFBA5FF00F96E17 /* LBB_GuiderViewModel.m */; };
+		1DD5305D1DFC214800F96E17 /* LBB_PoohCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD5305C1DFC214800F96E17 /* LBB_PoohCommentView.m */; };
 		3C022EA91DF7F315002ED79A /* LBB_VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */; };
 		3C022EAC1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EAB1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
@@ -1493,6 +1494,8 @@
 		1DB1502E1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DD530581DFBA5FF00F96E17 /* LBB_GuiderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_GuiderViewModel.h; path = ViewModel/LBB_GuiderViewModel.h; sourceTree = "<group>"; };
 		1DD530591DFBA5FF00F96E17 /* LBB_GuiderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_GuiderViewModel.m; path = ViewModel/LBB_GuiderViewModel.m; sourceTree = "<group>"; };
+		1DD5305B1DFC214800F96E17 /* LBB_PoohCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_PoohCommentView.h; path = AllComment/LBB_PoohCommentView.h; sourceTree = "<group>"; };
+		1DD5305C1DFC214800F96E17 /* LBB_PoohCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_PoohCommentView.m; path = AllComment/LBB_PoohCommentView.m; sourceTree = "<group>"; };
 		3C022EA71DF7F315002ED79A /* LBB_VideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_VideoDetailViewController.h; sourceTree = "<group>"; };
 		3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_VideoDetailViewController.m; sourceTree = "<group>"; };
 		3C022EAA1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_VideoDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -1598,6 +1601,8 @@
 			children = (
 				1D49DC141DFA5E73005043AD /* LBB_ScenicAllCommentCell.h */,
 				1D49DC151DFA5E73005043AD /* LBB_ScenicAllCommentCell.m */,
+				1DD5305B1DFC214800F96E17 /* LBB_PoohCommentView.h */,
+				1DD5305C1DFC214800F96E17 /* LBB_PoohCommentView.m */,
 			);
 			name = AllComment;
 			sourceTree = "<group>";
@@ -5644,6 +5649,7 @@
 				1DB14F351DF3110F0023A740 /* LBB_MineModel.m in Sources */,
 				1DB14FEC1DF311100023A740 /* CommentModel.m in Sources */,
 				1DB14FFF1DF311110023A740 /* JHPieForeBGView.m in Sources */,
+				1DD5305D1DFC214800F96E17 /* LBB_PoohCommentView.m in Sources */,
 				1DB14EC31DF3110F0023A740 /* LBB_MyPropertyViewCell.m in Sources */,
 				1DB1501A1DF311110023A740 /* ZJMTravelCell.m in Sources */,
 				1DB14E801DF3110E0023A740 /* LBB_ScenicMainTableViewCell.m in Sources */,
