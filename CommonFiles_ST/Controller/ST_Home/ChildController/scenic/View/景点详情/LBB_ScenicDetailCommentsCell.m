@@ -446,7 +446,7 @@
 }
 
 
--(void)setSpotSpecialDetails:(LBB_SpotSpecialDetailsViewModel *)spotSpecialDetails{
+-(void)setSpotSpecialDetails:(LBB_SpotSpecialDetailsModel *)spotSpecialDetails{
 
     _spotSpecialDetails = spotSpecialDetails;
     

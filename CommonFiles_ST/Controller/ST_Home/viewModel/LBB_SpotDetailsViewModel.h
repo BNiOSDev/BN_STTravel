@@ -227,7 +227,7 @@
 - (void)like:(void (^)(NSError *error))block;
 @end
 
-@interface LBB_SpotSpecialDetailsViewModel : BN_BaseDataModel //专题详情页
+@interface LBB_SpotSpecialDetailsModel : BN_BaseDataModel //专题详情页
 
 @property(nonatomic, assign)long specialId;//	Long	专题ID
 @property (nonatomic,assign)long type;//	Int	1美食 2 民宿 3 景点  4 伴手礼
@@ -279,9 +279,7 @@
 
 
 @property (nonatomic,strong)LBB_SpotDetailsViewModel *spotDetails;
-@property (nonatomic,strong)LBB_SpotSpecialDetailsViewModel *spotSpecialDetails;//专题内容详情
 
-@property (nonatomic,strong)NSMutableArray<LBB_SpotSpecialList*> *spotSpecialList ;// 专题内容列表
 
 
 /**
@@ -304,19 +302,28 @@
  @param block 回调函数
  */
 - (void)like:(void (^)(NSError *error))block;
-
-
-/**
-3.2.9 专题详情(已测)
- */
-- (void)getSpotSpecialDetailsData:(long)SpecialId;
-
-/**
-3.2.10 专题列表内容(已测)
- */
-- (void)getSpotSpecialListArray:(long)SpecialId
-                          clear:(BOOL)clear;
-
 @end
 
 
+//专题详情页的
+@interface LBB_SpotSpecialDetailsViewModel : BN_BaseDataModel
+
+
+@property(nonatomic, assign)long specialId;//	Long	专题ID
+
+
+@property (nonatomic,strong)LBB_SpotSpecialDetailsModel *spotSpecialDetails;//专题内容详情
+
+@property (nonatomic,strong)NSMutableArray<LBB_SpotSpecialList*> *spotSpecialList ;// 专题内容列表
+
+/**
+ 3.2.9 专题详情(已测)
+ */
+- (void)getSpotSpecialDetailsData;
+
+/**
+ 3.2.10 专题列表内容(已测)
+ */
+- (void)getSpotSpecialListArray:(BOOL)clear;
+
+@end

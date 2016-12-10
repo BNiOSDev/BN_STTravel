@@ -34,7 +34,7 @@
 //@property(nonatomic, strong)NSMutableArray<LBB_SpotsCommentsRecord*> *commentsRecord ;// 评论记录（具体几个后台控制）
 @property (nonatomic,strong)LBB_SpotDetailsViewModel *spotDetails;
 
-@property (nonatomic,strong)LBB_SpotSpecialDetailsViewModel *spotSpecialDetails;
+@property (nonatomic,strong)LBB_SpotSpecialDetailsModel *spotSpecialDetails;
 
 
 @end
