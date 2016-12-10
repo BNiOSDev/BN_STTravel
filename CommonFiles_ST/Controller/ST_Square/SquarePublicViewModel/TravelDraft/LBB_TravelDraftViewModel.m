@@ -60,9 +60,9 @@
 -(void)saveTravelDraftData:(void (^)(NSError *error))block;{
     
     
-    NSMutableArray *tagsArray = (NSMutableArray *)[self.travelDraftModel.tags map:^id(NSNumber *element) {
+    NSMutableArray *tagsArray = (NSMutableArray *)[self.travelDraftModel.tags map:^id(LBB_SquareTags *element) {
         
-        NSDictionary* dic = @{@"tagId":element};
+        NSDictionary* dic = @{@"tagId":@(element.tagId)};
         return dic;
     }];
     NSDictionary *paraDic = @{
@@ -173,7 +173,6 @@
         {
             NSLog(@"publicTravelDraftData成功:%d",[codeNumber intValue]);
             block(nil);
-            
         }
         else
         {

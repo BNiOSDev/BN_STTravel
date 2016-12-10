@@ -15,11 +15,25 @@
 #import "ZYCameraViewComtroller.h"
 #import "LBB_SelectImages_ViewController.h"
 #import "FZJPhotoModel.h"
+#import "LBB_SerCover_CollectionViewController.h"
+#import "UITableView+SDAutoTableViewCellHeight.h"
+#import "UIView+SDAutoLayout.h"
+#import "LBB_TravelDetailViewCell.h"
+#import "ZJMTravelModel.h"
+#import "LBB_TravelCommentCell.h"
+#import "LBB_TravelNote_ListViewCell.h"
+#import "LBB_TravelDraftViewModel.h"
+#import "LBB_SelectTip_History_ViewController.h"
+#import "LBB_TagView.h"
+#import "LBB_TravelSet_ViewController.h"
 
 @interface LBB_TravelNote_BaseViewController ()<UITableViewDelegate,UITableViewDataSource,TransImageDelegate>
 @property(nonatomic,strong)UIView       *whiteLine;
 @property(nonatomic,weak)LBB_TraveNoteHead_View   *headView;
 @property(nonatomic,weak)UITableView  *mTableView;
+@property(nonatomic, strong)NSMutableArray  *dataArray;
+@property(nonatomic, strong)NSMutableArray  *tipArray;
+@property(nonatomic, strong)LBB_TravelDraftViewModel  *dataModel;
 @end
 
 @implementation LBB_TravelNote_BaseViewController
@@ -28,8 +42,20 @@
     [super viewDidLoad];
     self.navigationItem.title = @"游记";
     self.view.backgroundColor = WHITECOLOR;
+    [self initData];
     [self initView];
-    
+}
+
+- (void)initData
+{
+    _tipArray = [[NSMutableArray alloc]init];
+    _dataModel = [[LBB_TravelDraftViewModel alloc]init];
+    [_dataModel getTravelDraftData];
+    __weak typeof(self) weakSelf = self;
+    [_dataModel.travelDraftModel.loadSupport setDataRefreshblock:^{
+        NSLog(@"%@",weakSelf.dataModel.travelDraftModel.travelNotesDetails);
+        [weakSelf.mTableView reloadData];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -40,10 +66,17 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage createImageWithColor:[UIColor whiteColor]]];
     [self initNav];
 }
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1.0;
+    [self.navigationController.navigationBar setShadowImage:[UIImage createImageWithColor:[UIColor grayColor]]];
+}
 
 - (void)initView
 {
     [self.view addSubview:self.mTableView];
+    [_mTableView registerClass:[LBB_TravelNote_ListViewCell class] forCellReuseIdentifier:@"LBB_TravelNote_ListViewCell"];
     [_mTableView setTableHeaderView:self.headView];
 //    self.headView.coverImage = IMAGE(@"zjmtakephotoing");
     self.headView.backgroundColor = ColorBtnYellow;
@@ -54,8 +87,26 @@
         if(tag == 0)
         {
             NSLog(@"添加标签");
+            if(_tipArray.count >= 3)
+            {
+                [self showHudPrompt:@"最多只能有三个标签"];
+                return ;
+            }
+            __weak typeof (self) weakSelf = self;
+            LBB_SelectTip_History_ViewController *vc = [[LBB_SelectTip_History_ViewController alloc]init];
+            vc.transTags = ^(id obj){
+                if(![self containsObject:(LBB_SquareTags *)obj])
+                {
+                    [_tipArray addObject:obj];
+                    [weakSelf setTagViews];
+                }
+            };
+            [self.navigationController pushViewController:vc animated:YES];
         }else{
             NSLog(@"设置封面");
+            LBB_SerCover_CollectionViewController *Vc = [[LBB_SerCover_CollectionViewController alloc]init];
+            Vc.view.backgroundColor = WHITECOLOR;
+            [self.navigationController pushViewController:Vc animated:YES];
         }
     };
     
@@ -139,25 +190,110 @@
 - (void)upTravel
 {
     NSLog(@"同步游记");
+    self.dataModel.travelDraftModel.name = _headView.travelName;
+    self.dataModel.travelDraftModel.tags = _tipArray.copy;
+    self.dataModel.travelDraftModel.picRemark = @"";
+//    self.dataModel.travelDraftModel.displayState = 1;
+    [self.dataModel saveTravelDraftData:^(NSError *error) {
+        
+    }];
+}
+
+
+- (void)setTagViews
+{
+    for(UIView *view in [_headView subviews])
+    {
+        if([view isKindOfClass:[LBB_TagView class]])
+        {
+            [view removeFromSuperview];
+        }
+    }
+    for(int i = 0;i < _tipArray.count;i++)
+    {
+        LBB_SquareTags  *tagsModel = [_tipArray objectAtIndex:i];
+        LBB_TagView   *tagView = [[LBB_TagView alloc]initWithFrame:CGRectMake(0, _headView.height - AUTO(25) - (AUTO(25) * i), AUTO(80), AUTO(20))];
+        tagView.tagModel = tagsModel;
+        __weak typeof(tagView) weakTagView = tagView;
+        tagView.blockTagFunc = ^(LBB_TagView *view)
+        {
+            weakTagView.left = _headView.width - view.width - 5;
+        };
+        tagView.tagTitleStr = tagsModel.tagName;
+        //        [tagView addTarget:self action:@selector(tagsDetailFunc:) forControlEvents:UIControlEventTouchUpInside];
+        [_headView addSubview:tagView];
+        
+    }
+}
+
+
+- (BOOL)containsObject:(LBB_SquareTags *)tag
+{
+    for(int i = 0; i < self.tipArray.count; i++)
+    {
+        LBB_SquareTags *chareTag = [self.tipArray objectAtIndex:i];
+        if([chareTag.tagName isEqualToString:tag.tagName])
+        {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (void)travelSet
 {
+    __weak  typeof (self) weakSelf = self;
     UIAlertController   *alterSheet = [UIAlertController alertControllerWithTitle: nil message: nil preferredStyle:UIAlertControllerStyleActionSheet];
     //添加Button
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"预览游记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         //处理点击拍照
+        if(!weakSelf.dataModel.travelDraftModel.travelNotesDetails.count)
+        {
+            [weakSelf showHudPrompt:@"没有数据不能预览"];
+        }
     }]];
     
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"游记设置" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        //处理点击从相册选取
+        LBB_TravelSet_ViewController *vc = [[LBB_TravelSet_ViewController alloc]init];
+        vc.blockBtnFunc = ^(NSInteger tag){
+            weakSelf.dataModel.travelDraftModel.displayState = (int)tag;
+        };
+        [self.navigationController pushViewController:vc animated:YES];
     }]];
     
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"发布游记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        //处理点击从相册选取
+        
+            UIAlertController   *alterPublish = [UIAlertController alertControllerWithTitle: @"提示" message: @"确定发布游记？" preferredStyle:UIAlertControllerStyleAlert];
+            [alterPublish addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+            }]];
+            [alterPublish addAction: [UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                NSLog(@"发布游记");
+                [weakSelf.dataModel publicTravelDraftData:^(NSError *error) {
+                    if(error == nil)
+                    {
+                        [weakSelf showHudPrompt:@"发布失败"];
+                    }
+                }];
+            }]];
+         [self presentViewController: alterPublish animated: YES completion: nil];
     }]];
     
-    [alterSheet addAction: [UIAlertAction actionWithTitle: @"删除游记" style: UIAlertActionStyleDefault handler:nil]];
+    [alterSheet addAction: [UIAlertAction actionWithTitle: @"删除游记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+        UIAlertController   *alterPublish = [UIAlertController alertControllerWithTitle: @"提示" message: @"确定删除游记？" preferredStyle:UIAlertControllerStyleAlert];
+        [alterPublish addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:^(UIAlertAction *action){
+        }]];
+        [alterPublish addAction: [UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            NSLog(@"删除游记");
+            [weakSelf.dataModel deleteTravelDraftData:^(NSError *error) {
+                if(!error)
+                {
+                    [weakSelf showHudPrompt:@"删除失败"];
+                }
+            }];
+        }]];
+        [self presentViewController: alterPublish animated: YES completion: nil];
+    }]];
     [alterSheet addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler:nil]];
     
     [self presentViewController: alterSheet animated: YES completion: nil];
@@ -206,6 +342,7 @@
         tableView.backgroundColor = ColorWhite;
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         [self setExtraCellLineHidden:tableView];
         _mTableView = tableView;
         return  tableView;
@@ -242,28 +379,86 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _dataModel.travelDraftModel.travelNotesDetails.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return _mapPointArray.count;
+    return AUTO(25);
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+        UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(25))];
+        headView.backgroundColor = WHITECOLOR;
+        
+        UIView *ballView = [[UIView alloc]initWithFrame:CGRectMake(14, 0, AUTO(12.0), AUTO(12.0))];
+        LRViewBorderRadius(ballView, ballView.height / 2.0, 0, [UIColor clearColor]);
+        ballView.backgroundColor = BLACKCOLOR;
+        [headView addSubview:ballView];
+        
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(20, ballView.bottom, 1.0, AUTO(13.0))];
+        line.backgroundColor = BLACKCOLOR;
+        [headView addSubview:line];
+        
+        ballView.centerX = line.centerX;
+        
+        UILabel *sectionLabel = [[UILabel alloc]initWithFrame:CGRectMake(ballView.right + 5, 0, DeviceWidth - (ballView.right + 5), AUTO(15))];
+        sectionLabel.font = FONT(AUTO(13.0));
+        sectionLabel.text = @"第一天 2016-09-10";
+        sectionLabel.centerY = ballView.centerY;
+        [headView addSubview:sectionLabel];
+        if(self.dataModel.travelDraftModel.travelNotesDetails.count == 0)
+        {
+            return nil;
+        }
+        return headView;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"TravelCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//    static NSString *cellID = @"TravelCell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//    
+//    if (!cell) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+//    }
+//    if(_mapPointArray.count)
+//    {
+//        cell.textLabel.text = @"地点信息";
+//    }
+    LBB_TravelNote_ListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_TravelNote_ListViewCell"];
+    cell.accessoryType = 0;
+    TravelNotesDetails *model = [_dataModel.travelDraftModel.travelNotesDetails objectAtIndex:indexPath.row];
+    NSLog(@"%@",model);
+    cell.model = model;
+    ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-    }
-    if(_mapPointArray.count)
-    {
-        cell.textLabel.text = @"地点信息";
-    }
     return cell;
+ 
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
+//    id model = self.dataArray[indexPath.row];
+    id model = self.dataModel.travelDraftModel.travelNotesDetails[indexPath.row];
+    return [_mTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[LBB_TravelNote_ListViewCell class] contentViewWidth:[self cellContentViewWith]];
+}
+
+- (CGFloat)cellContentViewWith
+{
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    
+    // 适配ios7横屏
+    if ([UIApplication sharedApplication].statusBarOrientation != UIInterfaceOrientationPortrait && [[UIDevice currentDevice].systemVersion floatValue] < 8) {
+        width = [UIScreen mainScreen].bounds.size.height;
+    }
+    return width;
+}
+
 
 #pragma mark -- TransDelegate
 - (void)transCameraImage:(UIImage *)image PHAsset:(PHAsset *)imageAsset
