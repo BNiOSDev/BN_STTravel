@@ -528,6 +528,7 @@
 		1DB1502A1DF311110023A740 /* ST_Square.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DB14E291DF3110E0023A740 /* ST_Square.xcassets */; };
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
+		1DD5305A1DFBA5FF00F96E17 /* LBB_GuiderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD530591DFBA5FF00F96E17 /* LBB_GuiderViewModel.m */; };
 		3C022EA91DF7F315002ED79A /* LBB_VideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */; };
 		3C022EAC1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C022EAB1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
@@ -1490,6 +1491,8 @@
 		1DB14E291DF3110E0023A740 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DB1502E1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1DD530581DFBA5FF00F96E17 /* LBB_GuiderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LBB_GuiderViewModel.h; path = ViewModel/LBB_GuiderViewModel.h; sourceTree = "<group>"; };
+		1DD530591DFBA5FF00F96E17 /* LBB_GuiderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LBB_GuiderViewModel.m; path = ViewModel/LBB_GuiderViewModel.m; sourceTree = "<group>"; };
 		3C022EA71DF7F315002ED79A /* LBB_VideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_VideoDetailViewController.h; sourceTree = "<group>"; };
 		3C022EA81DF7F315002ED79A /* LBB_VideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_VideoDetailViewController.m; sourceTree = "<group>"; };
 		3C022EAA1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_VideoDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -1866,6 +1869,7 @@
 		1DB149D01DF3110D0023A740 /* Guider */ = {
 			isa = PBXGroup;
 			children = (
+				1DD530571DFBA5A200F96E17 /* ViewModel */,
 				1DB149D11DF3110D0023A740 /* View */,
 				1DB149EB1DF3110D0023A740 /* ViewController */,
 			);
@@ -2136,19 +2140,11 @@
 		1DB14A431DF3110D0023A740 /* scenic */ = {
 			isa = PBXGroup;
 			children = (
-				1DB14A441DF3110D0023A740 /* Model */,
 				1DB14A451DF3110D0023A740 /* View */,
 				1DB14A661DF3110D0023A740 /* ViewController */,
 				1DB14A6D1DF3110D0023A740 /* viewModel */,
 			);
 			path = scenic;
-			sourceTree = "<group>";
-		};
-		1DB14A441DF3110D0023A740 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1DB14A451DF3110D0023A740 /* View */ = {
@@ -4954,6 +4950,15 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
+		1DD530571DFBA5A200F96E17 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1DD530581DFBA5FF00F96E17 /* LBB_GuiderViewModel.h */,
+				1DD530591DFBA5FF00F96E17 /* LBB_GuiderViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		84D80DAD1DF50A30005D4ED0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -5388,6 +5393,7 @@
 				1DB14E3F1DF3110E0023A740 /* SKTag.m in Sources */,
 				1DB14FD51DF311100023A740 /* LBB_Date_SengeMent.m in Sources */,
 				3C022EAC1DF7F4A8002ED79A /* LBB_VideoDetailTableViewCell.m in Sources */,
+				1DD5305A1DFBA5FF00F96E17 /* LBB_GuiderViewModel.m in Sources */,
 				1DB14E481DF3110E0023A740 /* LBB_DiscoveryDetailMsgCell.m in Sources */,
 				1DB14E391DF3110E0023A740 /* LBBPoohBaseTableSectionHeaderView.m in Sources */,
 				1DB14E8B1DF3110E0023A740 /* LBB_ScenicDetailVipMPaiCellItem.m in Sources */,
