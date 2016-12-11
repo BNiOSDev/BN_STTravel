@@ -127,10 +127,20 @@
         
         [ws.viewModel getAdvertisementListArrayClearData:YES];//       3.1.2 广告轮播 4.景点页面最顶部
         [ws.viewModel getSpotCondition];// 3.2.1	景点筛选条件(已测)
+        [ws getSpotArrayLongitude:YES];
+
        
     } footerRefreshDatablock:^{
          [ws.tableView.mj_footer endRefreshing];
         [ws getSpotArrayLongitude:NO];
+    }];
+    @weakify(self);
+    [RACObserve(self.locationManager, latitude) subscribeNext:^(NSString* num) {
+        @strongify(self);
+        
+        [self getSpotArrayLongitude:YES];
+        [self.locationManager.locManager stopUpdatingLocation];
+        
     }];
 }
 

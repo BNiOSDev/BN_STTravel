@@ -176,9 +176,12 @@
 -(void)showOrderMessage:(NSString*)string andImageUrl:(NSString*)url{
 
     NSLog(@"showOrderMessage:%@",string);
+    if (string.length <= 0) {
+        string = @"暂时没有订单信息";
+    }
     [orderView setHidden:NO];
     [self.orderPortraitImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:IMAGE(PlaceHolderImage)];
-    [self.orderNewMessageLabel setText:string?string:@"暂时没有订单信息"];
+    [self.orderNewMessageLabel setText:string];
     [self.orderNewMessageLabel refreshLabels];
 
 }

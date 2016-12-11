@@ -72,7 +72,8 @@
         
         //附近的商家
         [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude  dimensionality:self.locationManager.latitude clear:YES];
-
+        
+        [self.locationManager.locManager stopUpdatingLocation];
     }];
     WS(ws);
     [self.viewModel.nearShopArray.loadSupport setDataRefreshblock:^{

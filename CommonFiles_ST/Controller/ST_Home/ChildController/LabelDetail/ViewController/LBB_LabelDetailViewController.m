@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
     LBB_LabelDetailUser,//用户
 };
 
-@interface LBB_LabelDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBB_LabelDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 @property(nonatomic, retain)UITableView* tableView;
 @property(nonatomic, retain)LBB_LabelDetailHeaderView* headerView;
@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
 @property(nonatomic, retain)LBB_LabelDetailHotDataSource* hotDataSource;
 @property(nonatomic, retain)LBB_LabelDetailHotDataSource* timeDataSource;
 @property(nonatomic, retain)LBB_LabelDetailUserDataSource* userDataSource;
+@property (nonatomic, retain)UIButton* shareButton;
 
 @end
 
@@ -152,7 +153,8 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
     [self setBaseNavigationBarColor:ColorWhite];
 
     UIButton *shareButton = [[UIButton alloc] init];
-    [shareButton setImage:IMAGE(@"标签详情_分享") forState:UIControlStateNormal];
+    UIImage* image = [[UIImage imageNamed:@"标签详情_分享"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [shareButton setImage:image forState:UIControlStateNormal];
     [self.baseNavigationBarView addSubview:shareButton];
     [shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(kButtonWidth);
@@ -164,6 +166,8 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         
         
     }forControlEvents:UIControlEventTouchUpInside];
+    self.shareButton = shareButton;
+    [self.shareButton.imageView setTintColor:[UIColor whiteColor]];
 
 }
 
@@ -357,6 +361,30 @@ typedef NS_ENUM(NSInteger, LBB_LabelDetailType) {
         case LBB_LabelDetailUser:
             return [self.userDataSource tableView:self.tableView didSelectRowAtIndexPath:indexPath];
             break;
+    }
+}
+
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    NSLog(@"offset---scroll:%f",self.tableView.contentOffset.y);
+    UIColor *color=[UIColor whiteColor];
+    CGFloat offset=scrollView.contentOffset.y;
+    if (offset<=10) {
+        //self.navigationController.navigationBar.backgroundColor = [color colorWithAlphaComponent:0];
+        [self setBaseNavigationBarBackgroundColor:[UIColor clearColor]];
+        [self.shareButton.imageView setTintColor:[UIColor whiteColor]];
+        [self.baseLeftButton.imageView setTintColor:[UIColor whiteColor]];
+        [self setBaseNavigationBarColor:[UIColor whiteColor]];
+
+    }else {
+        CGFloat alpha=1-((64-offset)/64);
+        //  self.navigationController.navigationBar.backgroundColor=[color colorWithAlphaComponent:alpha];
+        [self setBaseNavigationBarBackgroundColor:[color colorWithAlphaComponent:alpha]];
+        [self.shareButton.imageView setTintColor:[[UIColor blackColor] colorWithAlphaComponent:alpha]];
+        [self.baseLeftButton.imageView setTintColor:[[UIColor blackColor] colorWithAlphaComponent:alpha]];
+        [self setBaseNavigationBarColor:[[UIColor blackColor] colorWithAlphaComponent:alpha]];
+
     }
 }
 
