@@ -37,6 +37,20 @@
 @property (nonatomic, strong)LBB_UserShowViewModel *userShowViewModel;
 
 /**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block;
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block;
+
+/**
  3.4.5	广场-广场主页-图片/视频详情（已测）
  */
 - (void)getSquareDetailViewModelData;
