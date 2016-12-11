@@ -85,16 +85,16 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     WS(ws);
     
     if (!self.spotModel) {
-        self.spotModel = [[LBB_SpotModel alloc] init];
+        self.spotModel = [[LBB_SpotSpecialDetailsViewModel alloc] init];
     }
     
-    [self.spotModel getSpotSpecialDetailsData:0];
+    [self.spotModel getSpotSpecialDetailsData];
     [self.spotModel.spotSpecialDetails.loadSupport setDataRefreshblock:^{
         
         [ws reloadTableSnap];
     }];
     
-    [self.spotModel getSpotSpecialListArray:0 clear:YES];
+    [self.spotModel getSpotSpecialListArray:YES];
     
     [self.spotModel.spotSpecialList.loadSupport setDataRefreshblock:^{
         
@@ -107,14 +107,14 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.tableView.mj_header endRefreshing];
         
-        [ws.spotModel getSpotSpecialDetailsData:0];
-        [ws.spotModel getSpotSpecialListArray:0 clear:YES];
+        [ws.spotModel getSpotSpecialDetailsData];
+        [ws.spotModel getSpotSpecialListArray:YES];
 
         
     } footerRefreshDatablock:^{
         [ws.tableView.mj_footer endRefreshing];
         
-        [ws.spotModel getSpotSpecialListArray:0 clear:NO];
+        [ws.spotModel getSpotSpecialListArray:NO];
 
     }];
     @weakify(self);
@@ -188,17 +188,18 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     [self.baseContentView setBackgroundColor:[UIColor whiteColor]];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self registerTableViewCell];
+    [self initViewModel];
     [self.baseContentView addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.top.centerX.equalTo(ws.view);
-        make.bottom.equalTo(ws.view);
+        make.width.top.centerX.equalTo(ws.baseContentView);
+        make.bottom.equalTo(ws.baseContentView);
     }];
     
 }
@@ -328,6 +329,38 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSubSectionType) {
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == LBBScenicDetailSectionSubjectRecommendType) {
+        LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc]init];
+        LBB_SpotSpecialDetailsViewModel* spotModel = [[LBB_SpotSpecialDetailsViewModel alloc] init];
+        LBB_SpotSpecialRecommendSpecials* recommendModel = self.spotModel.spotSpecialDetails.recommendSpecials[indexPath.row];
+        spotModel.specialId = recommendModel.specialId;
+        dest.spotModel = spotModel;
+        //type;//	Int	1美食 2 民宿 3 景点  4 伴手礼
+        
+        switch (recommendModel.type) {
+                
+            case 1://美食
+                dest.homeType = LBBPoohHomeTypeFoods;
+                break;
+            case 2://民宿
+                dest.homeType = LBBPoohHomeTypeHostel;
+                break;
+            case 3://景点
+                dest.homeType = LBBPoohHomeTypeScenic;
+                break;
+            case 4://伴手礼
+                dest.homeType = LBBPoohHomeTypeProduct;
+                break;
+        }
+        if (dest) {
+            [self.navigationController pushViewController:dest animated:YES];
+        }
+    }
+}
 
 /*
  *  对每个section的cell进行分开封装

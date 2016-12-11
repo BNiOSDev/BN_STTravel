@@ -15,7 +15,6 @@
 #import "LBBHomeSearchResultViewController.h"
 #import "LBBNearbyMainViewController.h"
 #import "LBBSigninMainViewController.h"
-#import "LBB_ScenicDetailSubjectViewController.h"
 
 #import "LBBPoohBaseTableSectionHeaderView.h"
 #import "LBB_HomeTableViewDataSource.h"

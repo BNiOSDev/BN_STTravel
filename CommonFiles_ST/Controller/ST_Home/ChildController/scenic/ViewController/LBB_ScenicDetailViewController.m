@@ -442,7 +442,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         NSArray* segmentArray = @[@"景点",@"美食",@"民宿"];
         
         HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
-        segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度
+        segmentedControl.selectionIndicatorHeight = 1.0f;  // 线的高度
         segmentedControl.titleTextAttributes = @{NSFontAttributeName:Font15,
                                                  NSForegroundColorAttributeName:ColorLightGray};
         segmentedControl.selectionIndicatorColor = ColorLightGray;

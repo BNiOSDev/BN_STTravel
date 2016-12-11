@@ -8,9 +8,11 @@
 
 #import "LBBPoohBaseTableViewCell.h"
 #import "LBB_SpotDetailsViewModel.h"
+#import "CommentBoxView.h"
 
 @interface LBB_ScenicAllCommentCell : LBBPoohBaseTableViewCell
 
 @property(nonatomic,retain)LBB_SpotsAllCommentsRecord* commentsRecord;
+@property(nonatomic, retain)CommentBoxView       *boxView;
 
 @end

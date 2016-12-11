@@ -103,7 +103,7 @@
     }];
     _allSpotsPics = array;
 }
-
+/*
 - (void)setPurchaseRecords:(NSMutableArray<LBB_PurchaseRecords *> *)purchaseRecords
 {
     NSMutableArray *array = (NSMutableArray *)[purchaseRecords map:^id(NSDictionary *element) {
@@ -111,7 +111,7 @@
     }];
     _purchaseRecords = array;
 }
-
+*/
 - (void)setUgc:(NSMutableArray<LBB_SpotsUgc *> *)ugc
 {
     NSMutableArray *array = (NSMutableArray *)[ugc map:^id(NSDictionary *element) {
@@ -461,7 +461,21 @@
 
 @end
 
-@implementation LBB_SpotSpecialDetailsViewModel //专题详情页
+@implementation LBB_SpotSpecialDetailsModel //专题详情页
+
+-(id)init{
+    
+    if (self = [super init]) {
+        
+        self.name = @"";//	String	名称
+        self.content = @"";//	String	专题描述 为纯文本
+        self.coverImagesUrl = @"";//	String	封面图片
+        self.shareUrl = @"";//	String	分享URL
+        self.shareTitle = @"";//	String	分享标题
+        self.shareContent = @"";//	String	分享内容
+    }
+    return self;
+}
 
 
 - (void)setTags:(NSMutableArray<LBB_SpotsTag *> *)tags
@@ -550,8 +564,6 @@
     self = [super init];
     if (self) {
         self.spotDetails = [[LBB_SpotDetailsViewModel alloc]init];
-        self.spotSpecialDetails = [[LBB_SpotSpecialDetailsViewModel alloc]init];
-        self.spotSpecialList = [[NSMutableArray alloc] initFromNet];
     }
     return self;
 }
@@ -679,13 +691,30 @@
     }];
 }
 
+@end
+
+
+//专题详情页的
+@implementation LBB_SpotSpecialDetailsViewModel
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.spotSpecialDetails = [[LBB_SpotSpecialDetailsModel alloc]init];
+        self.spotSpecialList = [[NSMutableArray alloc] initFromNet];
+    }
+    return self;
+}
+
+
 
 /**
  3.2.9 专题详情(已测)
  */
-- (void)getSpotSpecialDetailsData:(long)SpecialId{
-
-    NSString *url = [NSString stringWithFormat:@"%@/special/detail/%ld",BASEURL,SpecialId];
+- (void)getSpotSpecialDetailsData{
+    
+    NSString *url = [NSString stringWithFormat:@"%@/special/detail/%ld",BASEURL,self.specialId];
     __weak typeof(self) temp = self;
     self.spotSpecialDetails.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -709,24 +738,24 @@
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         temp.spotSpecialDetails.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
-
+    
 }
 
 /**
  3.2.10 专题列表内容(已测)
  */
-- (void)getSpotSpecialListArray:(long)SpecialId clear:(BOOL)clear{
-
+- (void)getSpotSpecialListArray:(BOOL)clear{
+    
     int curPage = clear == YES ? 0 : round(self.spotSpecialList.count/10.0);
     NSDictionary *paraDic = @{
                               @"curPage":[NSNumber numberWithInt:curPage],
                               @"pageNum":[NSNumber numberWithInt:10],
                               };
     
-    NSString *url = [NSString stringWithFormat:@"%@/special/list/%ld",BASEURL,SpecialId];
+    NSString *url = [NSString stringWithFormat:@"%@/special/list/%ld",BASEURL,self.specialId];
     __weak typeof(self) temp = self;
     self.spotSpecialList.loadSupport.loadEvent = NetLoadingEvent;
-    NSLog(@"getSpotArrayLongitude paraDic : %@",paraDic);
+    NSLog(@"getSpotSpecialListArray paraDic : %@",paraDic);
     
     [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
@@ -756,9 +785,10 @@
         
         temp.spotSpecialList.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
-
-
+    
+    
 }
+
 
 @end
 

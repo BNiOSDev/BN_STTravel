@@ -9,7 +9,8 @@
 #import "LBB_ScenicAllCommentCell.h"
 #import "CWStarRateView.h"
 #import "ZJMCommentView.h"
-#import "CommentBoxView.h"
+#import "LBB_PoohCommentView.h"
+
 @interface LBB_ScenicAllCommentCell()<CWStarRateViewDelegate>
 
 @property(nonatomic,retain)UIImageView* portraitImageView;
@@ -27,8 +28,7 @@
 @property(nonatomic, retain)UIButton* commentButton;
 @property(nonatomic, retain)UIButton* likeButton;
 
-@property(nonatomic, retain)ZJMCommentView      *commetView;      //
-@property(nonatomic, retain)CommentBoxView       *boxView;
+@property(nonatomic, retain)LBB_PoohCommentView      *commetView;      //
 
 @property(nonatomic, retain)UIView* sep;
 
@@ -164,7 +164,7 @@
         }];
         
         //评论
-        self.commetView  = [ZJMCommentView new];
+        self.commetView  = [LBB_PoohCommentView new];
         [self.contentView addSubview:self.commetView];
         [self.commetView mas_makeConstraints:^(MASConstraintMaker* make){
         
@@ -183,7 +183,6 @@
             make.top.equalTo(ws.commetView.mas_bottom).offset(3);
             make.height.mas_equalTo(AutoSize(30));
         }];
-        
         
         UIView* sep = [UIView new];
         [sep setBackgroundColor:ColorLine];

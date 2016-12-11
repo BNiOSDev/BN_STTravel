@@ -84,7 +84,7 @@
 
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.tableHeaderView = [[UIView alloc]init];
-    [self.tableView registerClass:[LBB_ScenicAllCommentCell class] forCellReuseIdentifier:@"LBB_ScenicAllCommentCell."];
+    [self.tableView registerClass:[LBB_ScenicAllCommentCell class] forCellReuseIdentifier:@"LBB_ScenicAllCommentCell"];
     [self initViewModel];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
@@ -128,8 +128,24 @@
         NSLog(@"LBB_ScenicAllCommentCell nil");
     }
     
-    
+    WS(ws);
     [cell setCommentsRecord:self.spotDetailModel.allCommentsRecord[indexPath.row]];
+    cell.boxView.sendBlock = ^(NSString* text , UITableViewCellViewSignal sign){
+    
+        LBB_SpotsAllCommentsRecord* model = ws.spotDetailModel.allCommentsRecord[indexPath.row];
+            NSLog(@"发送评论=%@",model);
+            [LBB_CommentViewModel  commentObjId:ws.spotDetailModel.allSpotsId type:(int)ws.spotDetailModel.allSpotsType scores:0 remark:text images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                    NSLog(@"评论回馈= %@",dic);
+                    //                    NSLog(@"评论回馈= %@",[@"remark"]);
+                    LBB_SquareComments *commentsModel = [LBB_SquareComments new];
+                    NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
+                    commentsModel.commentId = [commentIdStr longLongValue];
+                    commentsModel.remark = dic[@"remark"];
+                    commentsModel.userName = dic[@"userName"];
+                    [model.comments addObject:commentsModel];
+                    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+            }];
+    };
     
     return cell;
     

@@ -11,7 +11,6 @@
 #import "LBB_ScenicMainTableViewCell.h"
 #import "LBB_ScenicSearchViewController.h"
 #import "LBB_ScenicDetailViewController.h"
-#import "LBB_ScenicDetailSubjectViewController.h"
 #import "LBB_FilterTableViewCell.h"
 #import "LBB_FilterListTableViewCell.h"
 #import "LBB_HostelViewModel.h"

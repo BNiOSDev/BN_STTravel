@@ -51,7 +51,8 @@
                                   @"images":imageArray,
                                   @"parentId":@(parentId),
                                   };
-        
+        NSLog(@"commentObjId paraDic:%@",paraDic);
+
         NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/comment",BASEURL];
         __weak typeof(self) temp = self;
         [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {

@@ -309,6 +309,10 @@
     }
     else{
         LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc]init];
+        LBB_SpotSpecialDetailsViewModel* spotModel = [[LBB_SpotSpecialDetailsViewModel alloc] init];
+        LBB_PoohMyFavoriteSpecialModel* specialModel = self.subjectViewModel.favoriteSpeciallArray[indexPath.row];
+        spotModel.specialId = specialModel.specialId;
+        dest.spotModel = spotModel;
         switch (self.favoriteType) {
             case LBBPoohSegmCtrlScenicType://景点
                 dest.homeType = LBBPoohHomeTypeScenic;

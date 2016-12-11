@@ -12,6 +12,6 @@
 @interface LBB_ScenicDetailSubjectViewController : PoohBaseViewController
 
 @property(nonatomic, assign)LBBPoohHomeType homeType;
-@property(nonatomic, strong)LBB_SpotModel* spotModel;
+@property(nonatomic, strong)LBB_SpotSpecialDetailsViewModel* spotModel;
 
 @end

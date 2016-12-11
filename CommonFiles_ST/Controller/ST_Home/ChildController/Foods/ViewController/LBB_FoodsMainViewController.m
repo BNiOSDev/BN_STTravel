@@ -10,7 +10,6 @@
 #import "LBB_ScenicMainTableViewCell.h"
 #import "LBB_ScenicSearchViewController.h"
 #import "LBB_ScenicDetailViewController.h"
-#import "LBB_ScenicDetailSubjectViewController.h"
 #import "LBBPoohCycleScrollCell.h"
 #import "LBB_FoodsMainMenuCell.h"
 #import "LBB_FilterTableViewCell.h"

@@ -72,6 +72,7 @@ typedef NS_ENUM(NSInteger, LBBPoohHomeType) {
     LBBPoohHomeTypeScenic,//景点
     LBBPoohHomeTypeFoods,//美食
     LBBPoohHomeTypeHostel,//民宿
+    LBBPoohHomeTypeProduct,//伴手礼
 };
 
 
