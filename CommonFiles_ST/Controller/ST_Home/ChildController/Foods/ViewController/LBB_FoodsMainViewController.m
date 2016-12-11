@@ -133,10 +133,22 @@
         
         [ws.viewModel getAdvertisementListArrayClearData:YES];//       3.1.2 广告轮播 4.景点页面最顶部
         [ws.viewModel getFoodsCondition];// 3.2.1	景点筛选条件(已测)
+        [ws getSpotArrayLongitude:YES];
+
         
     } footerRefreshDatablock:^{
         [ws getSpotArrayLongitude:NO];
         [ws.tableView.mj_footer endRefreshing];
+    }];
+    
+    @weakify(self);
+    [RACObserve(self.locationManager, latitude) subscribeNext:^(NSString* num) {
+        @strongify(self);
+        
+        [self getSpotArrayLongitude:YES];
+        
+        [self.locationManager.locManager stopUpdatingLocation];
+        
     }];
 }
 
@@ -737,7 +749,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (section == 0) {
-        return 2;
+        return 1;
     }
     return self.viewModel.foodsArray.count;
 }
@@ -817,6 +829,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     //  [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        return;
+    }
+    
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
     dest.homeType = LBBPoohHomeTypeFoods;
     dest.spotModel = [self.viewModel.foodsArray objectAtIndex:indexPath.section - 1];

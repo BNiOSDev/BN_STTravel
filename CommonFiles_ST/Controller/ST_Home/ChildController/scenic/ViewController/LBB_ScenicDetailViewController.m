@@ -41,13 +41,14 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 };
 
 
-@interface LBB_ScenicDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBB_ScenicDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 @property (nonatomic, retain) UITableView* tableView;
 @property (nonatomic, retain) NSArray* sectionArray;
 @property (nonatomic, retain)LBB_ScenicDetailOrderConfirmView* popView;
 
 @property (nonatomic, retain)UIButton* favoriteButton;
+@property (nonatomic, retain)UIButton* shareButton;
 
 @property (nonatomic, assign)  LBBPoohSegmCtrlType nearbyRecommendsSelectType;
 
@@ -201,10 +202,23 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         
         BOOL status = [num boolValue];
         if (status) {
-            [self.favoriteButton setImage:IMAGE(@"景点详情_收藏HL") forState:UIControlStateNormal];
+            UIImage* image1 = [[UIImage imageNamed:@"景点详情_收藏HL"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [self.favoriteButton setImage:image1 forState:UIControlStateNormal];
+            [self.favoriteButton.imageView setTintColor:[UIColor redColor]];
         }
         else{
-            [self.favoriteButton setImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
+            UIImage* image1 = [[UIImage imageNamed:@"景点详情_收藏"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            [self.favoriteButton setImage:image1 forState:UIControlStateNormal];
+            
+            ///
+            CGFloat offset= self.tableView.contentOffset.y;
+            if (offset<=10) {
+                [self.favoriteButton.imageView setTintColor:[UIColor whiteColor]];
+
+            }else {
+                [self.favoriteButton.imageView setTintColor:[UIColor blackColor]];
+
+            }
         }
     }];
     
@@ -217,7 +231,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 
     WS(ws);
     UIButton *share = [[UIButton alloc] init];
-    [share setImage:IMAGE(@"景点详情_分享") forState:UIControlStateNormal];
+    UIImage* image = [[UIImage imageNamed:@"景点详情_分享"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [share setImage:image forState:UIControlStateNormal];
     [self.baseNavigationBarView addSubview:share];
     [share mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(kButtonWidth);
@@ -229,8 +244,11 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         
     }forControlEvents:UIControlEventTouchUpInside];
     
+    self.shareButton = share;
+    
     UIButton *favorite = [[UIButton alloc] init];
-    [favorite setImage:IMAGE(@"景点详情_收藏") forState:UIControlStateNormal];
+    UIImage* image1 = [[UIImage imageNamed:@"景点详情_收藏"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [favorite setImage:image1 forState:UIControlStateNormal];
     [self.baseNavigationBarView addSubview:favorite];
     [favorite mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(kButtonWidth);
@@ -246,6 +264,9 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         
     }forControlEvents:UIControlEventTouchUpInside];
     self.favoriteButton = favorite;
+    
+    [self.shareButton.imageView setTintColor:[UIColor whiteColor]];
+    [self.favoriteButton.imageView setTintColor:[UIColor whiteColor]];
 }
 
 /*
@@ -968,5 +989,38 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         
         [cell setModel:obj];
     }];
+}
+
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    NSLog(@"offset---scroll:%f",self.tableView.contentOffset.y);
+    UIColor *color=[UIColor whiteColor];
+    CGFloat offset=scrollView.contentOffset.y;
+    if (offset<=10) {
+        //self.navigationController.navigationBar.backgroundColor = [color colorWithAlphaComponent:0];
+        [self setBaseNavigationBarBackgroundColor:[UIColor clearColor]];
+        [self.shareButton.imageView setTintColor:[UIColor whiteColor]];
+        [self.baseLeftButton.imageView setTintColor:[UIColor whiteColor]];
+
+        if(self.spotModel.spotDetails.isCollected == 1){
+            [self.favoriteButton.imageView setTintColor:[UIColor redColor]];
+        }
+        else{
+            [self.favoriteButton.imageView setTintColor:[UIColor whiteColor]];
+        }
+    }else {
+        CGFloat alpha=1-((64-offset)/64);
+      //  self.navigationController.navigationBar.backgroundColor=[color colorWithAlphaComponent:alpha];
+        [self setBaseNavigationBarBackgroundColor:[color colorWithAlphaComponent:alpha]];
+        [self.shareButton.imageView setTintColor:[[UIColor blackColor] colorWithAlphaComponent:alpha]];
+        [self.baseLeftButton.imageView setTintColor:[[UIColor blackColor] colorWithAlphaComponent:alpha]];
+        if(self.spotModel.spotDetails.isCollected == 1){
+            [self.favoriteButton.imageView setTintColor:[[UIColor redColor]colorWithAlphaComponent:alpha]];
+        }
+        else{
+            [self.favoriteButton.imageView setTintColor:[[UIColor blackColor] colorWithAlphaComponent:alpha]];
+        }
+    }
 }
 @end

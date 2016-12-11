@@ -208,6 +208,7 @@ static const NSInteger kButtonWidth = 45;
             ||(self.searchType == LBBPoohHomeSearchTypeHostel)) {
             [self search:YES];
         }
+        [self.locationManager.locManager stopUpdatingLocation];
 
     }];
     

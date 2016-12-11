@@ -46,7 +46,7 @@
     // Do any additional setup after loading the view.
     self.baseContentView.backgroundColor = ColorBackground;
     self.baseNavigationBarView.backgroundColor = ColorBackground;
-    [self setStatusBarStyle:UIStatusBarStyleLightContent];
+  //  [self setStatusBarStyle:UIStatusBarStyleLightContent];
     [self setBaseNavigationBarColor:[UIColor blackColor]];
    // self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
 }
@@ -70,7 +70,7 @@
 {
 //    [super viewWillAppear:YES];
 //    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+  //  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [(Base_UITabBarBaseController*)self.tabBarController setTabBarHidden:YES animated:YES];
     
@@ -104,7 +104,9 @@
         [self addLeftButtonSelector:selector];
     }
     
-    [self setLeftButtonImage:[UIImage imageNamed:@"poohBack"]];
+    UIImage* image = [[UIImage imageNamed:@"poohBack"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self setLeftButtonImage:image];
+    [self.baseLeftButton.imageView setTintColor:[UIColor whiteColor]];
 }
 
 - (void)goBack{

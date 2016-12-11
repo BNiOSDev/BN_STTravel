@@ -19,7 +19,7 @@
         self.locManager.delegate = self;
         self.locManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locManager.distanceFilter = 5.0;
-        [self.locManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
+       // [self.locManager requestAlwaysAuthorization];//这句话ios8以上版本使用。
         [self.locManager requestWhenInUseAuthorization];//这句话ios8以上版本使用。
         [self.locManager startUpdatingLocation];
         
@@ -41,4 +41,10 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"locationManager didFailWithError%@",error);
 }
+
+-(void)dealloc{
+    
+    NSLog(@"locationManager dealloc");
+}
+
 @end
