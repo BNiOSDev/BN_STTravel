@@ -103,10 +103,13 @@
             [alert addAction:call];
             [alert addAction:cancel];
             [curVC presentViewController:alert animated:YES completion:nil];
-            
-        
         }];
 
+        [self.addressButton bk_whenTapped:^{
+        
+            [ws testAppleMap];
+        }];
+        
         
     }
     return self;
@@ -119,6 +122,19 @@
     [self.nameLable setText:model.phoneNoRemark];
     [self.addressLable setText:model.address];
     
+}
+
+
+-(void)testAppleMap{
+    
+    CLLocationCoordinate2D coords1 = CLLocationCoordinate2DMake([self.model.dimensionality floatValue],[self.model.longitude floatValue]);
+    MKMapItem *currentLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords1 addressDictionary:nil]];
+    currentLocation.name = @"目的地";
+    MKPlacemark *placemark = [[MKPlacemark alloc]initWithCoordinate:coords1];
+    
+    MKMapItem*sfStore = [[MKMapItem alloc] initWithPlacemark:placemark];
+    
+    [sfStore openInMapsWithLaunchOptions:nil];
 }
 
 @end

@@ -10,7 +10,7 @@
 #import "PoohCommon.h"
 #import "LBB_StarRatingViewController.h"
 #import "LBB_NearSign.h"
-
+#import <MapKit/MapKit.h>
 @implementation LBB_ScenicDetailPriceMsgCell
 
 {
@@ -274,6 +274,5 @@
 
     
 }
-
 
 @end
