@@ -13,6 +13,7 @@
 #import "MineViewController.h"
 #import "LBB_PublishTravel_Controller.h"
 #import "LBB_LoginViewController.h"
+#import <BN_ShopHomeViewController.h>
 
 @interface ST_TabBarController ()<UITabBarControllerDelegate>
 {
@@ -83,7 +84,8 @@
 {
     Base_BaseViewController *viewController1        = [[ST_HomeViewController alloc]init];
     Base_BaseViewController *viewController2        = [[ST_SquareViewController alloc]init];
-    Base_BaseViewController *viewController3        = [[ST_MallViewController alloc]init];
+//    Base_BaseViewController *viewController3        = [[ST_MallViewController alloc]init];
+    Base_BaseViewController *viewController3        = [[BN_ShopHomeViewController alloc]init];
     
     
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
