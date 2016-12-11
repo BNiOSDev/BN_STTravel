@@ -10,9 +10,10 @@
 #import "LBB_PraiseWithCommentView.h"
 #import "LBB_AddressTipView.h"
 #import "ZJMHostModel.h"
+#import "BN_SquareTravelNotesModel.h"
 
 @interface LBB_TravelDetailContentView : UIView
-@property(nonatomic,strong)ZJMHostModel   *model;//无实际作用，调试用
+@property(nonatomic,strong)TravelNotesDetails   *model;//无实际作用，调试用
 
 - (void)prepareForReuse;
 

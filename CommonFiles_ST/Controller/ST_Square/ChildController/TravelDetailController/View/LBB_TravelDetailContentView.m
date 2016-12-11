@@ -8,10 +8,11 @@
 
 #import "LBB_TravelDetailContentView.h"
 #import "Header.h"
+#import "LBB_TravelImageContentView.h"
 
 @implementation LBB_TravelDetailContentView
 {
-    UIImageView     *vistImage;
+    LBB_TravelImageContentView     *vistImage;
     UIImageView     *timeImage;
     UILabel              *contentLabel;
     UILabel              *timeLabel;
@@ -25,20 +26,19 @@
     {
         LRViewBorderRadius(self, 0, 0.5, LINECOLOR);
         [self setup];
-        [self setModel];
     }
     return self;
 }
 
 - (void)prepareForReuse
 {
-    vistImage.image = nil;
+    vistImage.imageArray = nil;
     timeImage.image = nil;
 }
 
 - (void)setup
 {
-    vistImage = [UIImageView new];
+    vistImage = [LBB_TravelImageContentView new];
     
     timeImage = [UIImageView new];
     timeImage.image = IMAGE(@"zjmtime");
@@ -59,28 +59,47 @@
     addressTip = [LBB_AddressTipView new];
     
     NSArray *views = @[vistImage,contentLabel,timeImage,timeLabel,addressTip];
-    [vistImage addSubview:praiseCommentView];
     [self sd_addSubviews:views];
+   
+}
+
+- (void)setModel:(TravelNotesDetails *)model
+{
+    _model = model;
+
+    NSMutableArray *imageArray = (NSMutableArray *)[model.pics map:^id(TravelNotesPics *element) {
+        NSString* dic = element.imageUrl;
+        return dic;
+    }];
+    CGFloat  vistImageHeigh = AUTO(230);
+    vistImage.imageArray = imageArray;
+    if(imageArray.count <= 0)
+    {
+        vistImageHeigh = 0;
+    }
+    
+    praiseCommentView.praiseNum = [NSString stringWithFormat:@"%d",model.likeNum];
+    praiseCommentView.commentNum =  [NSString stringWithFormat:@"%d",model.commentsNum];
+    
+    if(model.isLiked == 0)
+    {
+        NSLog(@"没有点赞");
+    }else{
+        NSLog(@"点赞");
+    }
+    
+    contentLabel.text = model.picRemark;
+    [contentLabel autoFit:contentLabel.text size:contentLabel.font maxSize:CGSizeMake(DeviceWidth - 30, DeviceHeight)];
+    timeLabel.text = [NSString stringWithFormat:@"%@ %@",model.releaseDate,model.releaseTime];
+    addressTip.address = model.allSpotsTypeName;
     
     vistImage.sd_layout
     .leftEqualToView(self)
     .topEqualToView(self)
     .rightEqualToView(self)
-    .heightIs(AUTO(225));
-}
-
-- (void)setModel
-{
+    .heightIs(vistImageHeigh);
     
-    [vistImage sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:DEFAULTIMAGE];
-    
-    praiseCommentView.praiseNum = @"190";
-    praiseCommentView.commentNum = @"40";
-    
-    contentLabel.text = @"厦门是一座美丽的城市，在这座历史悠久的城市中，房价为何涨得怎么快。";
-    [contentLabel autoFit:contentLabel.text size:contentLabel.font maxSize:CGSizeMake(DeviceWidth - 30, DeviceHeight)];
-    timeLabel.text = @"2016-09-10 10:09";
-    addressTip.address = @"约炮圣地";
+    [vistImage addSubview:praiseCommentView];
     
     contentLabel.sd_layout
     .leftSpaceToView(self,5)
@@ -103,7 +122,6 @@
     addressTip.sd_layout
     .centerYEqualToView(timeImage)
     .rightSpaceToView(self,10);
-    
     
     praiseCommentView.sd_layout
     .bottomSpaceToView(vistImage,10)

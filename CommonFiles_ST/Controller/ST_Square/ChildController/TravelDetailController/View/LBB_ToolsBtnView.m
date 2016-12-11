@@ -35,10 +35,13 @@
         [btn setImage:IMAGE(imageArray[idx]) forState:0];
         [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self addSubview:btn];
+        
+        UIView *line = [[UIView alloc]initWithFrame:CGRectMake(AUTO(10), self.height - 1.0, DeviceWidth - AUTO(20), 1.0)];
+        line.backgroundColor = LINECOLOR;
+        [self addSubview:line];
+        
     }];
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(AUTO(10), self.bottom - 1.0, DeviceWidth - AUTO(20), 1.0)];
-    line.backgroundColor = LINECOLOR;
-    [self addSubview:line];
+
 }
 
 @end

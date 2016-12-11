@@ -1,11 +1,10 @@
 //
-//  ContentImageView.m
-//  GSD_WeiXin(wechat)
+//  LBB_TravelImageContentView.m
+//  ST_Travel
 //
-//  Created by dawei che on 2016/10/20.
-//  Copyright © 2016年 GSD. All rights reserved.
+//  Created by dawei che on 2016/12/11.
+//  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
-
 //获取屏幕宽高
 #define SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
@@ -22,31 +21,31 @@
 #define VIEWHEIGHT  self.height
 #define MARGIN  5.0
 
-#import "ContentImageView.h"
+#import "LBB_TravelImageContentView.h"
 #import "UIView+SDAutoLayout.h"
 #import "UIImageView+WebCache.h"
 #import "Header.h"
 #import "LBB_TipImage_Pulish_ImageView.h"
 
-@implementation ContentImageView
+@implementation LBB_TravelImageContentView
 {
-     UIImageView         *oneImage;
-     UIImageView         *twoImage;
-     UIImageView         *threeImage;
-     UIImageView         *fourImage;
-     UIImageView         *fiveImage;
-     UIImageView         *sevenImage;
-     UIImageView         *sixImage;
-     UIImageView         *eightImage;
-     UIImageView         *nightImage;
+    UIImageView         *oneImage;
+    UIImageView         *twoImage;
+    UIImageView         *threeImage;
+    UIImageView         *fourImage;
+    UIImageView         *fiveImage;
+    UIImageView         *sevenImage;
+    UIImageView         *sixImage;
+    UIImageView         *eightImage;
+    UIImageView         *nightImage;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self == [super initWithFrame:frame])
     {
-        self.width = SCREEN_WIDTH - 75;
-        self.height = AUTO(250);
+        self.width = SCREEN_WIDTH - 20;
+        self.height = AUTO(230);
         [self setup];
     }
     return self;
@@ -64,7 +63,7 @@
     eightImage = [UIImageView new];
     nightImage = [UIImageView new];
     
-//    self.picArray = [temp copy];
+    //    self.picArray = [temp copy];
 }
 
 - (void)prepareForReuse
@@ -86,7 +85,7 @@
     {
         [view removeFromSuperview];
     }
-
+    
     _imageArray = imageArray;
     switch (imageArray.count) {
         case 0:
@@ -104,59 +103,59 @@
             break;
         case 2:
         {
-
+            
             NSArray *views = @[oneImage,twoImage];
             [self sd_addSubviews:views];
-             [self setImageFor_Two];
+            [self setImageFor_Two];
         }
             break;
         case 3:
         {
             NSArray *views = @[oneImage,twoImage,threeImage];
             [self sd_addSubviews:views];
-             [self setImageFor_Three];
+            [self setImageFor_Three];
         }
             break;
         case 4:
         {
             NSArray *views = @[oneImage,twoImage,threeImage,fourImage];
             [self sd_addSubviews:views];
-             [self setImageFor_Four];
+            [self setImageFor_Four];
         }
             break;
         case 5:
         {
             NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,];
             [self sd_addSubviews:views];
-             [self setImageFor_Five];
+            [self setImageFor_Five];
         }
             break;
         case 6:
         {
             NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage];
             [self sd_addSubviews:views];
-             [self setImageFor_Fix];
+            [self setImageFor_Fix];
         }
             break;
         case 7:
         {
             NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage];
             [self sd_addSubviews:views];
-             [self setImageFor_Seven];
+            [self setImageFor_Seven];
         }
             break;
         case 8:
         {
             NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage];
             [self sd_addSubviews:views];
-             [self setImageFor_Eight];
+            [self setImageFor_Eight];
         }
             break;
         case 9:
         {
             NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage,nightImage,];
             [self sd_addSubviews:views];
-             [self setImageFor_Night];
+            [self setImageFor_Night];
         }
             break;
         default:
@@ -169,13 +168,13 @@
     LBB_TipImage_Pulish_ImageView  *theOneImage = [[LBB_TipImage_Pulish_ImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
     [self addSubview:theOneImage];
     [theOneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
-//    theOneImage.sd_layout
-//    .topSpaceToView(self,0)
-//    .leftSpaceToView(self,0)
-//    .rightSpaceToView(self,0)
-//    .bottomSpaceToView(self,0);
+    //    theOneImage.sd_layout
+    //    .topSpaceToView(self,0)
+    //    .leftSpaceToView(self,0)
+    //    .rightSpaceToView(self,0)
+    //    .bottomSpaceToView(self,0);
     if(self.tagsArray.count > 0)
-            theOneImage.tipArray = self.tagsArray;
+        theOneImage.tipArray = self.tagsArray;
     [theOneImage clearNotifi];
 }
 - (void)setImageFor_Two
@@ -339,7 +338,7 @@
     .topSpaceToView(Image_1,2.5)
     .widthIs(cellWith)
     .bottomSpaceToView(self,0);
-
+    
     Image_6.sd_layout
     .leftSpaceToView(Image_5,2.5)
     .topSpaceToView(Image_1,2.5)
@@ -349,12 +348,12 @@
 - (void)setImageFor_Seven
 {
     [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
-//    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
-//    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
-//    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
-//    [fiveImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:nil];
-//    [sixImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[5]] placeholderImage:nil];
-//    [sevenImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[6]] placeholderImage:nil];
+    //    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
+    //    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
+    //    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
+    //    [fiveImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:nil];
+    //    [sixImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[5]] placeholderImage:nil];
+    //    [sevenImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[6]] placeholderImage:nil];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -392,8 +391,8 @@
 {
     [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
     [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
-//    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
-//    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
+    //    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
+    //    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -431,7 +430,7 @@
             lastLeftView = self;
         }
     }
-
+    
 }
 - (void)setImageFor_Night
 {
@@ -459,7 +458,8 @@
             lastLeftView = self;
         }
     }
-
+    
 }
+
 
 @end

@@ -20,10 +20,11 @@
 
 @interface LBB_TravelDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)UITableView     *tableView;
-@property(nonatomic, strong)NSMutableArray  *dataArray;
 @property(nonatomic, weak)LBB_TravelDetailHeadView *tabelHead;
 @property(nonatomic, weak)UIView *tabelFoot;
-@property(nonatomic, weak)LBB_ToolsBtnView *toolsView;
+@property(nonatomic, strong)LBB_ToolsBtnView *toolsView;
+@property(nonatomic, strong)BN_SquareTravelList *viewModel;
+@property(nonatomic, strong)NSMutableArray<NSMutableArray *>        *dealDataArray;
 @end
 
 @implementation LBB_TravelDetailViewController
@@ -31,7 +32,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
      self.view.backgroundColor = BACKVIEWCOLOR;
+    
+    [self initView];
+    
     [self initData];
+}
+
+- (void)initView
+{
+    LBB_ToolsBtnView *headView = [[LBB_ToolsBtnView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(40))];
+    _toolsView = headView;
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - AUTO(15))];
     self.tableView.delegate = self;
@@ -47,22 +57,47 @@
 
 - (void)initData
 {
-    _dataArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 9; i++) {
-        ZJMTravelModel  *model = [[ZJMTravelModel alloc]init];
-        model.iconName = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.imageUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.name = @"钟爱SD的男人";
-        model.msgContent = @"开启说走就走的旅行吧";
-        model.timeStr = @"2016-09-09";
-        model.daysStr = @"5 days";
-        model.vistNum = @"1080";
-        model.praiseNum = @"999";
-        model.commentNum = @"999";
-        model.collectNum = @"9999";
-        [_dataArray addObject:model];
+    _viewModel = [[BN_SquareTravelList alloc]init];
+    _viewModel.travelNotesId = _model.travelNotesId;
+    __weak typeof(self ) weakSelf =self;
+    [_viewModel getTravelDetailModel];
+    [_viewModel.travelDetailModel.loadSupport setDataRefreshblock:^{
+//        weakSelf.tabelHead.model = weakSelf.viewModel;
+        
+        NSArray *array = @[[NSString stringWithFormat:@"景点 %d",weakSelf.viewModel.travelDetailModel.totalScenicSpots],[NSString stringWithFormat:@"美食 %d",weakSelf.viewModel.travelDetailModel.totalFood],[NSString stringWithFormat:@"民宿 %d",weakSelf.viewModel.travelDetailModel.totalHomestay],[NSString stringWithFormat:@"购物 %d",weakSelf.viewModel.travelDetailModel.totalShop]];
+
+            weakSelf.toolsView.buttonList = array;
+            //为空时，不该有footview
+            if(weakSelf.viewModel.travelDetailModel.travelNotesDetails.count == 0)
+            {
+                weakSelf.tableView.tableFooterView = nil;
+            }
+        [weakSelf dealData];
+    }];
+    [_tableView reloadData];
+}
+
+- (void)dealData
+{
+    if(!_dealDataArray)
+    {
+        _dealDataArray = [[NSMutableArray alloc]init];
+    }else{
+        [_dealDataArray removeAllObjects];
     }
 
+    for (__block int i = 1; i <= _model.dayCount; i++) {
+        
+        NSMutableArray   *array =  [_viewModel.travelDetailModel.travelNotesDetails map:^id(TravelNotesDetails  *element) {
+            if(i == element.whitchDay)
+            {
+                 return element;
+            }
+            return nil;
+        }].mutableCopy;
+        [_dealDataArray addObject:array];
+    }
+      [self.tableView reloadData];
 }
 
 -  (LBB_TravelDetailHeadView *)tabelHead
@@ -70,7 +105,7 @@
     if(_tabelHead == nil)
     {
         LBB_TravelDetailHeadView *headView = [[LBB_TravelDetailHeadView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, 100)];
-        headView.model = _dataArray[0];
+        headView.model = _model;
         return headView;
     }
     return _tabelHead;
@@ -97,24 +132,11 @@
     return _tabelFoot;
 }
 
-- (LBB_ToolsBtnView *)toolsView
-{
-    if(_toolsView == nil)
-    {
-        LBB_ToolsBtnView *headView = [[LBB_ToolsBtnView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(40))];
-//        headView.model = _dataArray[0];
-        NSArray *array = @[@"景点 5",@"美食 12",@"民宿 13",@"购物 7"];
-        headView.buttonList = array;
-        return headView;
-    }
-    return _toolsView;
-}
-
 #pragma mark -- TableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return _model.dayCount + 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -122,7 +144,7 @@
     {
         return 1;
     }
-    return self.dataArray.count;
+    return _dealDataArray[section-1].count;
 }
 
 
@@ -178,7 +200,7 @@
         
             UILabel *sectionLabel = [[UILabel alloc]initWithFrame:CGRectMake(ballView.right + 5, 0, DeviceWidth - (ballView.right + 5), AUTO(15))];
             sectionLabel.font = FONT(AUTO(13.0));
-            sectionLabel.text = @"第一天 2016-09-10";
+            sectionLabel.text = [NSString stringWithFormat:@"第 %ld 天",section];
             sectionLabel.centerY = ballView.centerY;
             [headView addSubview:sectionLabel];
             return headView;
@@ -191,14 +213,16 @@
     {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell_TravelDetail"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = 0;
         cell.textLabel.text = @"查看线路及路费清单";
         return cell;
     }else{
         LBB_TravelDetailViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_TravelDetailViewCell"];
         cell.accessoryType = 0;
         ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
+        cell.selectionStyle = 0;
+        cell.model = _dealDataArray[indexPath.section - 1][indexPath.row];
         [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-         
         return cell;
     }
     
@@ -217,11 +241,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-    id model = self.dataArray[indexPath.row];
+
     if(indexPath.section == 0)
     {
         return AUTO(45);
     }
+    if(indexPath.row > _dealDataArray[indexPath.section - 1].count)
+    {
+        return 0;
+    }
+    id model = _dealDataArray[indexPath.section - 1][indexPath.row];
     return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[LBB_TravelDetailViewCell class] contentViewWidth:[self cellContentViewWith]];
 }
 

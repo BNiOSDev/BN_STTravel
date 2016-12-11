@@ -22,8 +22,6 @@
 @property(nonatomic, strong)UITableView         *mTableView;
 @property(nonatomic, strong)LBB_SquareTravelListViewModel   *viewModel;
 
-
-
 @end
 
 @implementation ZJMTravelsViewController
@@ -109,6 +107,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
+    vc.model = _viewModel.squareTravelArray[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

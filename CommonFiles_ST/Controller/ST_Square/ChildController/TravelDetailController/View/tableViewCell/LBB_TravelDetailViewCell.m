@@ -29,7 +29,6 @@
 {
     [super prepareForReuse];
     [cellView prepareForReuse];
-    
 }
 - (void)setup
 {
@@ -54,7 +53,7 @@
     [self setupAutoHeightWithBottomView:cellView bottomMargin:AUTO(13)];
 }
 
-- (void)setModel:(ZJMHostModel *)model
+- (void)setModel:(TravelNotesDetails *)model
 {
     _model = model;
     cellView.model = model;

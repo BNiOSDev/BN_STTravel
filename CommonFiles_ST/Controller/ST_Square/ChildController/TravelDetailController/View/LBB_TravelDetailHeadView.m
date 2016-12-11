@@ -91,29 +91,29 @@
     
 }
 
-- (void)setModel:(ZJMTravelModel *)model
+- (void)setModel:(BN_SquareTravelList *)model
 {
     _model = model;
-    contentImage.imageUrl = model.imageUrl;
-    contentLabel.text  = model.msgContent;
-    timeLabel.text = [NSString stringWithFormat:@"%@  %@   %@",model.timeStr,model.daysStr,model.vistNum];
-    [iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconName] placeholderImage:DEFAULTIMAGE];
-    nameLabel.text = model.name;
+    contentImage.imageUrl = model.travelNotesPicUrl;
+    contentLabel.text  = model.travelNotesName;
+    timeLabel.text = [NSString stringWithFormat:@"%@  %d天   %ld人访问",model.lastReleaseTime,model.dayCount,model.totalPageViews];
+    [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:DEFAULTIMAGE];
+    nameLabel.text = model.userName;
     
-    [heartBtn setTitle:model.collectNum forState:0];
-    heartBtn.width = [self getWidthWithContent:model.collectNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    [heartBtn setTitle:[NSString stringWithFormat:@"%d",model.totalCollected] forState:0];
+    heartBtn.width = [self getWidthWithContent:[NSString stringWithFormat:@"%d",model.totalCollected]  height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     heartBtn.left = DeviceWidth - 10 - heartBtn.width;
     [heartBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [heartBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    [pinBtn setTitle:model.commentNum forState:0];
-    pinBtn.width = [self getWidthWithContent:model.commentNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    [pinBtn setTitle:[NSString stringWithFormat:@"%d",model.commentsNum]  forState:0];
+    pinBtn.width = [self getWidthWithContent:[NSString stringWithFormat:@"%d",model.commentsNum] height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     pinBtn.left = DeviceWidth - heartBtn.width - pinBtn.width  - 10;
     [pinBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     [pinBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     
-    [zanBtn setTitle:model.praiseNum forState:0];
-    zanBtn.width = [self getWidthWithContent:model.praiseNum height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
+    [zanBtn setTitle:[NSString stringWithFormat:@"%d",model.likeNum] forState:0];
+    zanBtn.width = [self getWidthWithContent:[NSString stringWithFormat:@"%d",model.likeNum] height:AUTO(15) font:AUTO(11.0)] + AUTO(20);
     zanBtn.left = DeviceWidth - pinBtn.width - heartBtn.width - zanBtn.width  - 10;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];

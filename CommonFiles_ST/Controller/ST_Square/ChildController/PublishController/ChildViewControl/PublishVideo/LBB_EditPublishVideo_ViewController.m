@@ -166,7 +166,6 @@
         BC_ToolRequest  *request = [BC_ToolRequest sharedManager];
         [request uploadfile:mediaArray block:^(NSArray *files, NSError *error) {
             NSLog(@"获取的url个数：%ld",files.count);
-            //        [self upToSeverNet];
             if(files.count)
                 videoImageUrl = files[0];
             [self upToSeverNet];

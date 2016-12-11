@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ZJMHostModel.h"
+#import "BN_SquareTravelNotesModel.h"
 
 @interface LBB_TravelDetailViewCell : UITableViewCell
-@property(nonatomic,strong)ZJMHostModel   *model;
+@property(nonatomic,strong)TravelNotesDetails   *model;
 @end
