@@ -13,8 +13,8 @@
 #import "LBB_EditShopRecoder_Controller.h"
 @interface LBB_ShopRecoder_Controller ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)UITableView     *tableView;
-@property(nonatomic, strong)NSArray  *dataArray;
-@property(nonatomic, strong)JHRingChart       *tableHead;
+@property(nonatomic, strong)NSArray            *dataArray;
+@property(nonatomic, strong)JHRingChart     *tableHead;
 @end
 
 @implementation LBB_ShopRecoder_Controller
@@ -39,12 +39,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 15)];
+    self.navigationItem.title = @"消费统计";
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 64)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[LBB_ShopRecoder_Cell class] forCellReuseIdentifier:@"LBB_ShopRecoder_Cell"];
     [self.tableView setTableHeaderView:self.tableHead];
+    [self setExtraCellLineHidden:self.tableView];
+}
+
+/**
+ *  隐藏多余tablecell
+ *
+ *  @param tableView void
+ */
+- (void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view = [UIView new];
+    
+    view.backgroundColor = [UIColor clearColor];
+    
+    [tableView setTableFooterView:view];
 }
 
 - (void)initData
@@ -58,8 +74,9 @@
     if(!_tableHead)
     {
         JHRingChart *ring = [[JHRingChart alloc] initWithFrame:CGRectMake(0, 0, DeviceWidth, DeviceWidth)];
-        ring.backgroundColor = [UIColor blackColor];
-        ring.valueDataArr = @[@"0.5",@"5",@"2",@"10",@"6"];
+        ring.backgroundColor = WHITECOLOR;
+        ring.valueDataArr = @[@"0.5",@"5",@"2",@"100",@"6"];
+        ring.consumeRatios = _dataModel.consumeRatios;
         [ring showAnimation];
         return ring;
     }
@@ -68,7 +85,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _dataArray.count;
+    return _dataModel.consumeRatios.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,7 +96,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LBB_ShopRecoder_Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_ShopRecoder_Cell"];
-    cell.dataaArray = _dataArray[indexPath.row];
+    cell.selectionStyle = 0;
+    cell.model = _dataModel.consumeRatios[indexPath.row];
     return cell;
 }
 

@@ -58,7 +58,7 @@
     [self setupAutoHeightWithBottomView:cellView bottomMargin:AUTO(13)];
 }
 
-- (void)setModel:(ZJMHostModel *)model
+- (void)setModel:(BN_SquareTravelNotesconsumeDetails *)model
 {
     _model = model;
     cellView.model = model;

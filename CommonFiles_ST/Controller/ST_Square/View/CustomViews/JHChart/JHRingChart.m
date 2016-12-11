@@ -7,9 +7,12 @@
 //
 
 #import "JHRingChart.h"
-#define k_COLOR_STOCK @[[UIColor colorWithRed:1.000 green:0.783 blue:0.371 alpha:1.000], [UIColor colorWithRed:1.000 green:0.562 blue:0.968 alpha:1.000],[UIColor colorWithRed:0.313 green:1.000 blue:0.983 alpha:1.000],[UIColor colorWithRed:0.560 green:1.000 blue:0.276 alpha:1.000],[UIColor colorWithRed:0.239 green:0.651 blue:0.170 alpha:1.000]]
+#define k_COLOR_STOCK @[[UIColor colorWithRed:1.000 green:0.783 blue:0.371 alpha:1.000], [UIColor colorWithRed:1.000 green:0.562 blue:0.968 alpha:1.000],[UIColor colorWithRed:0.313 green:1.000 blue:0.983 alpha:1.000],[UIColor colorWithRed:0.560 green:1.000 blue:0.276 alpha:1.000],[UIColor colorWithRed:0.239 green:0.651 blue:0.170 alpha:1.000],[UIColor colorWithRed:0.460 green:1.000 blue:0.246 alpha:1.000],[UIColor colorWithRed:0.339 green:0.751 blue:0.170 alpha:1.000]]
 
 @interface JHRingChart ()
+{
+    NSArray *itemArray;
+}
 
 //环图间隔 单位为π
 @property (nonatomic,assign)CGFloat itemsSpace;
@@ -31,6 +34,8 @@
     if (self = [super initWithFrame:frame]) {
         self.chartOrigin = CGPointMake(CGRectGetWidth(self.frame) / 2, CGRectGetHeight(self.frame)/2);
         _redius = (CGRectGetHeight(self.frame) - 60*k_Width_Scale)/3;
+        
+        itemArray =  @[@{@"image":@"zjmtravelhouseed",@"title":@"名宿",@"selectImage":@"zjmtravelhouse"},@{@"image":@"zjmtranported",@"title":@"交通",@"selectImage":@"zjmtranpord"},@{@"image":@"zjmhaochideed",@"title":@"美食",@"selectImage":@"zjmhaochide"},@{@"image":@"zjmmenpiaoed",@"title":@"门票",@"selectImage":@"zjmmenpiao"},@{@"image":@"zjmyuleed",@"title":@"娱乐",@"selectImage":@"zjmyule"},@{@"image":@"zjmshoped",@"title":@"购物",@"selectImage":@"zjmshoping"},@{@"image":@"zjmothered",@"title":@"其他",@"selectImage":@"zjmother"}] ;
     }
     return self;
 }
@@ -46,15 +51,19 @@
     
 }
 
+- (void)setConsumeRatios:(NSMutableArray<BN_SquareTravelNotesConsumeRatios *> *)consumeRatios
+{
+    _consumeRatios = consumeRatios;
+     [self configBaseData];
+}
+
 - (void)configBaseData{
     
     _totolCount = 0;
 //    _itemsSpace =  (M_PI * 2.0 * 10 / 360)/_valueDataArr.count ;
     _itemsSpace = 0;
-    for (id obj in _valueDataArr) {
-        
-        _totolCount += [obj floatValue];
-        
+    for (BN_SquareTravelNotesConsumeRatios *obj in _consumeRatios) {
+        _totolCount += obj.ratio;
     }
 
 }
@@ -72,7 +81,7 @@
     
     CGFloat totloL = 0;
     NSInteger  i = 0;
-    for (id obj in _valueDataArr) {
+    for (BN_SquareTravelNotesConsumeRatios *obj in _consumeRatios) {
         
         CAShapeLayer *layer = [CAShapeLayer layer] ;
 
@@ -81,8 +90,8 @@
         layer.fillColor = [UIColor clearColor].CGColor;
         layer.strokeColor =[k_COLOR_STOCK[i] CGColor];
 
-        CGFloat cuttentpace = [obj floatValue] / _totolCount * (M_PI * 2 - _itemsSpace * _valueDataArr.count);
-        totloL += [obj floatValue] / _totolCount;
+        CGFloat cuttentpace = obj.ratio / _totolCount * (M_PI * 2 - _itemsSpace * _consumeRatios.count);
+        totloL += obj.ratio / _totolCount;
 
         [path addArcWithCenter:self.chartOrigin radius:_redius - 20 startAngle:lastBegin  endAngle:lastBegin  + cuttentpace clockwise:YES];
         
@@ -111,9 +120,10 @@
     
     CGFloat lastBegin = 0;
     CGFloat longLen = _redius + 30*k_Width_Scale;
-    for (NSInteger i = 0; i<_valueDataArr.count; i++) {
-        id obj = _valueDataArr[i];
-        CGFloat currentSpace = [obj floatValue] / _totolCount * (M_PI * 2 - _itemsSpace * _valueDataArr.count);;
+    for (NSInteger i = 0; i<_consumeRatios.count; i++) {
+        BN_SquareTravelNotesConsumeRatios *model = _consumeRatios[i];
+//        id obj = _valueDataArr[i];
+        CGFloat currentSpace = model.ratio / _totolCount * (M_PI * 2 - _itemsSpace * _consumeRatios.count);;
         NSLog(@"currentSpace = %f",currentSpace);
         CGFloat midSpace = lastBegin + currentSpace/2;
         
@@ -129,15 +139,15 @@
 
         CGPoint secondP = CGPointZero;
         
-        CGSize size = [[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] boundingRectWithSize:CGSizeMake(200, 100) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10*k_Width_Scale]} context:nil].size;
+        CGSize size = [[NSString stringWithFormat:@"%.02f%c",model.ratio  / _totolCount * 100,'%'] boundingRectWithSize:CGSizeMake(200, 100) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10*k_Width_Scale]} context:nil].size;
         
         if (midSpace<M_PI) {
             secondP =CGPointMake(endx.x + 20*k_Width_Scale - 25, endx.y);
-          [self drawText:[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x + 3, secondP.y - size.height / 2) WithColor:k_COLOR_STOCK[i] andFontSize:10*k_Width_Scale];
+          [self drawText:[NSString stringWithFormat:@"%.02f%c",model.ratio / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x + 3, secondP.y - size.height / 2) WithColor:k_COLOR_STOCK[i] andFontSize:10*k_Width_Scale];
 
         }else{
              secondP =CGPointMake(endx.x - 20*k_Width_Scale + 25, endx.y);
-            [self drawText:[NSString stringWithFormat:@"%.02f%c",[obj floatValue] / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x - size.width - 3, secondP.y - size.height/2) WithColor:k_COLOR_STOCK[i] andFontSize:10*k_Width_Scale];
+            [self drawText:[NSString stringWithFormat:@"%.02f%c",model.ratio / _totolCount * 100,'%'] andContext:contex atPoint:CGPointMake(secondP.x - size.width - 3, secondP.y - size.height/2) WithColor:k_COLOR_STOCK[i] andFontSize:10*k_Width_Scale];
         }
         //开始矫正结束点位置
         CGFloat centerX = self.frame.size.width / 2.0;
@@ -171,7 +181,7 @@
         }
         tipLabel.font = [UIFont systemFontOfSize:12.0];
         tipLabel.textColor = [UIColor whiteColor];
-        tipLabel.text = @"123";
+        tipLabel.text = itemArray[model.consumptionType - 1][@"title"];
         [self addSubview:tipLabel];
         //结束搭建
         NSLog(@"endpoint = %f  path = %ld",secondP.x,(long)i);

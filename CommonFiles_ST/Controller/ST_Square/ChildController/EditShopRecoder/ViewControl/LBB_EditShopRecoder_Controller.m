@@ -11,6 +11,7 @@
 #import "LBB_ShopCatgory_View.h"
 #import "LBB_AddressTipView.h"
 
+
 @interface LBB_EditShopRecoder_Controller ()
 {
     UIView *cateGoryView;
@@ -18,15 +19,22 @@
 @property(nonatomic,weak)UITextField    *shopText;
 @property(nonatomic,weak)UITextField    *shopMoney;
 @property(nonatomic,strong)NSArray       *cateArray;
+@property(nonatomic,strong)BN_SquareTravelNotesconsumeDetails *viewModel;
 @end
 
 @implementation LBB_EditShopRecoder_Controller
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    if(_model)
+    {
+        self.navigationItem.title = @"编辑消费记录";
+    }else{
+        self.navigationItem.title = @"新增消费记录";
+    }
     _cateArray = @[@{@"image":@"zjmtravelhouseed",@"title":@"名宿",@"selectImage":@"zjmtravelhouse"},@{@"image":@"zjmtranported",@"title":@"交通",@"selectImage":@"zjmtranpord"},@{@"image":@"zjmhaochideed",@"title":@"美食",@"selectImage":@"zjmhaochide"},@{@"image":@"zjmmenpiaoed",@"title":@"门票",@"selectImage":@"zjmmenpiao"},@{@"image":@"zjmyuleed",@"title":@"娱乐",@"selectImage":@"zjmyule"},@{@"image":@"zjmshoped",@"title":@"购物",@"selectImage":@"zjmshoping"},@{@"image":@"zjmothered",@"title":@"其他",@"selectImage":@"zjmother"}] ;
     self.view.backgroundColor = WHITECOLOR;
+    _viewModel = [[BN_SquareTravelNotesconsumeDetails alloc]init];
     [self initView];
 }
 
@@ -58,6 +66,7 @@
     sureBtn.titleLabel.font = FONT(AUTO(14.0));
     [sureBtn setTitle:@"确   定" forState:0];
     [sureBtn setTitleColor:WHITECOLOR forState:0];
+    [sureBtn addTarget:self action:@selector(upToserver) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sureBtn];
 }
 - (UITextField *)shopText
@@ -86,6 +95,7 @@
         textField.textColor = MORELESSBLACKCOLOR;
         textField.leftViewMode = UITextFieldViewModeAlways;
         textField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, AUTO(45))];
+        textField.keyboardType = UIKeyboardTypeNumberPad;
         textField.placeholder = @"请输入消费金额";
          LRViewBorderRadius(textField, 0, 1, LINECOLOR);
         _shopMoney = textField;
@@ -150,6 +160,40 @@
             view.layer.borderColor = [UIColor clearColor].CGColor;
         }
     }
+    self.viewModel.consumptionType = (int)btn.tag;
+}
+
+- (void)upToserver
+{
+    if(self.viewModel.consumptionType <= 0)
+    {
+        [self showHudPrompt:@"请选择消费类型"];
+        return;
+    }
+    if(_shopMoney.text.length == 0 || _shopText.text.length == 0)
+    {
+        [self showHudPrompt:@"请补齐信息"];
+        return;
+    }
+    if(_footPointNote)
+    {
+        _footPointNote.billAmount = _shopMoney.text;
+        _footPointNote.consumptionType = self.viewModel.consumptionType;
+        _footPointNote.consumptionDesc = _shopText.text;
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    self.viewModel.consumeDetailId = -1;
+    self.viewModel.consumptionDesc = _shopText.text;
+    self.viewModel.amount = _shopMoney.text;
+    self.viewModel.parentArray = @[].mutableCopy;
+    [self.viewModel modifySquareTravelNotesConsumeDetails:^(NSError *error) {
+        NSLog(@"错误信息%@",error);
+        if(error == nil)
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 @end

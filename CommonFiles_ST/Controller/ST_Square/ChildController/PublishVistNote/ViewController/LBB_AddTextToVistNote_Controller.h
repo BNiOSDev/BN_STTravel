@@ -7,7 +7,9 @@
 //
 
 #import "Base_BaseViewController.h"
+#import "Header.h"
 
 @interface LBB_AddTextToVistNote_Controller : Base_BaseViewController
 @property(nonatomic,strong)NSArray   *mapPointArray;
+@property(nonatomic,copy)Controllerfeedback  blockFeedBack;
 @end

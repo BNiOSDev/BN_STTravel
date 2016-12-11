@@ -158,16 +158,22 @@
         [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:PHImageManagerMaximumSize makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
             [imageArray addObject:AssetImage];
         }];
-        
     }
-    BC_ToolRequest  *request = [BC_ToolRequest sharedManager];
-    [request uploadfile:imageArray block:^(NSArray *files, NSError *error) {
-        NSLog(@"获取的url个数：%ld",files.count);
-//        [self upToSeverNet];
-        if(files.count)
-            videoImageUrl = files[0];
-        [self upToSeverNet];
+    
+    [FZJPhotoTool getVideoFromPHAsset:((FZJPhotoModel *)_imageArray[0]).asset Complete:^(NSData *fileData, NSString *fileName) {
+        NSMutableArray *mediaArray = [[NSMutableArray alloc] init];
+        [mediaArray addObject:fileData];
+        BC_ToolRequest  *request = [BC_ToolRequest sharedManager];
+        [request uploadfile:mediaArray block:^(NSArray *files, NSError *error) {
+            NSLog(@"获取的url个数：%ld",files.count);
+            //        [self upToSeverNet];
+            if(files.count)
+                videoImageUrl = files[0];
+            [self upToSeverNet];
+        }];
     }];
+
+
 }
 
 - (void)upToSeverNet

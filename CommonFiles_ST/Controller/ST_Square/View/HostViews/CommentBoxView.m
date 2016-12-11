@@ -68,7 +68,8 @@
 - (void)sendFunc
 {
     //发送评论
-    self.sendBlock(contentText.text,UITableViewCellSendMessage);
+    if(self.sendBlock)
+        self.sendBlock(contentText.text,UITableViewCellSendMessage);
 }
 
 @end

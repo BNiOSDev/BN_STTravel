@@ -7,13 +7,14 @@
 //
 
 #import "JHChart.h"
+#import "BN_SquareTravelNotesBillModel.h"
 
 @interface JHRingChart : JHChart
 #define k_Width_Scale  (self.frame.size.width / [UIScreen mainScreen].bounds.size.width)
 /*        值数组         */
 @property (nonatomic,strong)NSArray * valueDataArr;
 
-
+@property (nonatomic,strong)NSMutableArray<BN_SquareTravelNotesConsumeRatios*> *consumeRatios;//消费比例
 
 
 

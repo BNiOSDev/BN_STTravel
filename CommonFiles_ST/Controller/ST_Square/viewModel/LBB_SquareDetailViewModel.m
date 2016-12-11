@@ -17,7 +17,12 @@
 @end
 
 @implementation LBB_SquarePics
-
+    -(void)setTags:(NSMutableArray<LBB_SquareTags *> *)tags{
+        NSMutableArray *array = (NSMutableArray *)[tags map:^id(NSDictionary *element) {
+            return [LBB_SquareTags mj_objectWithKeyValues:element];
+        }];
+        _tags = array;
+    }
 @end
 
 @implementation LBB_SquareDetailViewModel
