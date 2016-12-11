@@ -209,7 +209,16 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         else{
             UIImage* image1 = [[UIImage imageNamed:@"景点详情_收藏"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.favoriteButton setImage:image1 forState:UIControlStateNormal];
-            [self.favoriteButton.imageView setTintColor:[UIColor whiteColor]];
+            
+            ///
+            CGFloat offset= self.tableView.contentOffset.y;
+            if (offset<=10) {
+                [self.favoriteButton.imageView setTintColor:[UIColor whiteColor]];
+
+            }else {
+                [self.favoriteButton.imageView setTintColor:[UIColor blackColor]];
+
+            }
         }
     }];
     
