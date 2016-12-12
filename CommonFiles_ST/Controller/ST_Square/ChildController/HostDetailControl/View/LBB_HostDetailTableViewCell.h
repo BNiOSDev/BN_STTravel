@@ -10,6 +10,8 @@
 #import "ZJMHostModel.h"
 #import "UIView+SDAutoLayout.h"
 #import "LBB_SquareDetailViewModel.h"
+#import "Header.h"
 @interface LBB_HostDetailTableViewCell : UITableViewCell
 @property(nonatomic, strong) LBB_SquareDetailViewModel   *model;
+@property(nonatomic,copy)CellBlockVIew  cellBtnBlock;
 @end

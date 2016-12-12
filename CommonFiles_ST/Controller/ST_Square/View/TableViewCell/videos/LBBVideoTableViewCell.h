@@ -15,4 +15,5 @@
 @interface LBBVideoTableViewCell : UITableViewCell
 @property(nonatomic, strong) LBB_SquareUgc   *model;
 @property(nonatomic, copy)BtnFuncTion             blockBtnFunc;
+@property(nonatomic, copy)CellBlockVIew          sendCommentBolck;
 @end

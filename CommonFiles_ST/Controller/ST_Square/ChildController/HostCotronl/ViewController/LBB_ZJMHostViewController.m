@@ -58,7 +58,7 @@
     [self.viewModel.squareRecommend.loadSupport setDataRefreshblock:^{
         [temp.tableView reloadData];
     }];
-    
+   
     /**
      3.4.4	广场-广场主页-图片/视频列表（已测）
      
@@ -155,14 +155,15 @@
                 LBB_SquareUgc *model = weakSelf.viewModel.ugcImageArray[indexPath.row];
                 [LBB_CommentViewModel  commentObjId:model.allSpotsId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
                     NSLog(@"评论回馈= %@",dic);
-//                    NSLog(@"评论回馈= %@",[@"remark"]);
-                    LBB_SquareComments *commentsModel = [LBB_SquareComments new];
-                    NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
-                    commentsModel.commentId = [commentIdStr longLongValue];
-                    commentsModel.remark = dic[@"remark"];
-                    commentsModel.userName = dic[@"userName"];
-                    [model.comments addObject:commentsModel];
-                    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+                    if(!error){
+                        LBB_SquareComments *commentsModel = [LBB_SquareComments new];
+                        NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
+                        commentsModel.commentId = [commentIdStr longLongValue];
+                        commentsModel.remark = dic[@"remark"];
+                        commentsModel.userName = dic[@"userName"];
+                        [model.comments addObject:commentsModel];
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+                    }
                 }];
             }
         };

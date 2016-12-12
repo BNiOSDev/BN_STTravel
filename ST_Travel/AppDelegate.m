@@ -22,6 +22,7 @@
     // Override point for customization after application launch.
     [MagicalRecord setupAutoMigratingCoreDataStack];
     [[LBB_LoginManager shareInstance] weiXinRegisterApp];
+    self.window.backgroundColor = ColorWhite;
     //向微信注册wxd930ea5d5a258f4f
 //    [WXApi registerApp:@"wx94b0ac5b1ba8e1c3" withDescription:@"demo 2.0"];
     return YES;

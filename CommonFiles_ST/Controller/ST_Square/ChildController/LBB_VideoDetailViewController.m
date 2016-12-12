@@ -87,6 +87,30 @@
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     cell.model = self.viewModel.squareDetailViewModel;
+    
+    __weak typeof(self) weakSelf = self;
+    cell.sendCommentBlock = ^(id obj,UITableViewCellViewSignal signal)
+    {
+        if(signal == UITableViewCellSendMessage)
+        {
+            NSLog(@"发送评论=%@",obj);
+            LBB_SquareUgc *model = weakSelf.viewModel;
+            [LBB_CommentViewModel  commentObjId:model.allSpotsId type:6 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                NSLog(@"评论回馈= %@",dic);
+                if(!error){
+                    LBB_SquareComments *commentsModel = [LBB_SquareComments new];
+                    NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
+                    commentsModel.commentId = [commentIdStr longLongValue];
+                    commentsModel.remark = dic[@"remark"];
+                    commentsModel.userName = dic[@"userName"];
+                    [weakSelf.viewModel.squareDetailViewModel.comments addObject:commentsModel];
+                    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+                }
+            }];
+        }
+    };
+
+    
     return cell;
 }
 

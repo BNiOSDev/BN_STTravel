@@ -13,7 +13,7 @@
 #import "BN_SquareTravelNotesModel.h"
 
 @interface LBB_TravelDetailContentView : UIView
-@property(nonatomic,strong)TravelNotesDetails   *model;//无实际作用，调试用
+@property(nonatomic,strong)TravelNotesDetails   *model;
 
 - (void)prepareForReuse;
 

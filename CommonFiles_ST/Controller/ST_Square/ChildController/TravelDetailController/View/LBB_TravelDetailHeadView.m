@@ -9,6 +9,7 @@
 #import "LBB_TravelDetailHeadView.h"
 #import "LBBTravelContentImage.h"
 #import "Header.h"
+#import "LBB_TagView.h"
 
 @implementation LBB_TravelDetailHeadView
 {
@@ -45,11 +46,11 @@
     
     downLoadBtn = [[UIButton alloc]initWithFrame:CGRectMake(DeviceWidth - AUTO(16.5) - 15, AUTO(25), AUTO(16.5), AUTO(14))];
     [downLoadBtn setBackgroundImage:IMAGE(@"zjmdownlaod") forState:0];
-    [self addSubview:downLoadBtn];
+//    [self addSubview:downLoadBtn];
     
     shareBtn = [[UIButton alloc]initWithFrame:CGRectMake(DeviceWidth - AUTO(33) - 30, AUTO(25), AUTO(16.5), AUTO(14))];
     [shareBtn setBackgroundImage:IMAGE(@"zjmshare") forState:0];
-    [self addSubview:shareBtn];
+//    [self addSubview:shareBtn];
     
     contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, AUTO(55), DeviceWidth - 40, AUTO(20))];
     contentLabel.textColor = [UIColor whiteColor];
@@ -122,6 +123,9 @@
     bottomView.backgroundColor = BACKVIEWCOLOR;
     [self addSubview:bottomView];
     self.height = bottomView.bottom;
+    
+    self.tags = model.tags;
+    [self setTagViews];
 }
 
 
@@ -145,5 +149,38 @@
                                         context:nil];
     return rect.size.width;
 }
+
+- (void)setTags:(NSArray<LBB_SquareTags *> *)tags
+{
+    _tags = tags;
+    [self setTagViews];
+}
+
+- (void)setTagViews
+{
+    for(UIView *view in [self subviews])
+    {
+        if([view isKindOfClass:[LBB_TagView class]])
+        {
+            [view removeFromSuperview];
+        }
+    }
+    for(int i = 0;i < _tags.count;i++)
+    {
+        LBB_SquareTags  *tagsModel = [_tags objectAtIndex:i];
+        LBB_TagView   *tagView = [[LBB_TagView alloc]initWithFrame:CGRectMake(0, contentImage.height - AUTO(25) - (AUTO(25) * i), AUTO(80), AUTO(20))];
+        tagView.tagModel = tagsModel;
+        __weak typeof(tagView) weakTagView = tagView;
+        tagView.blockTagFunc = ^(LBB_TagView *view)
+        {
+            weakTagView.left = contentImage.width - view.width - 5;
+        };
+        tagView.tagTitleStr = tagsModel.tagName;
+
+        [self addSubview:tagView];
+        
+    }
+}
+
 
 @end

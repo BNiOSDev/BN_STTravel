@@ -127,7 +127,6 @@
     .bottomSpaceToView(vistImage,10)
     .rightSpaceToView(vistImage,10);
     
-    
     [self setupAutoHeightWithBottomView:timeImage bottomMargin:15];
 }
 

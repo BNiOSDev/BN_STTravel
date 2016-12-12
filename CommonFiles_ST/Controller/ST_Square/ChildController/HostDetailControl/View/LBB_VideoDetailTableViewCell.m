@@ -15,6 +15,7 @@
 #import "ContentImageView.h"
 #import "Header.h"
 #import "LBB_ZJMPhotoList.h"
+#import "LBB_TagView.h"
 
 @implementation LBB_VideoDetailTableViewCell
 {
@@ -81,7 +82,11 @@
     _collectBtn.titleLabel.font = FONT(11.0);
     commetView = [ZJMCommentView new];
     
+    __weak typeof(self) weakSelf = self;
     boxView = [CommentBoxView new];
+    boxView.sendBlock = ^(NSString *str,UITableViewCellViewSignal signal){
+        weakSelf.sendCommentBlock(str,signal);
+    };
     
     NSArray   *views = @[_iconImage,_nameLable,_timeImage,_timeLabel,_addressImage,_addressNameLabel,_contentLabel,
                          _contentImage,praiseView,_collectBtn,commetView,boxView];
@@ -254,6 +259,38 @@
     .heightIs(40);
     
     [self setupAutoHeightWithBottomViewsArray:@[boxView,_contentLabel] bottomMargin:10];
+    [self setTagViews];
+}
+
+- (void)setTagViews
+{
+    for(UIView *view in [self subviews])
+    {
+        if([view isKindOfClass:[LBB_TagView class]])
+        {
+            [view removeFromSuperview];
+        }
+    }
+    __block UIView *lastView = _contentImage;
+    for(int i = 0;i < _model.tags.count;i++)
+    {
+        LBB_SquareTags  *tagsModel = [_model.tags objectAtIndex:i];
+        __block LBB_TagView   *tagView = [[LBB_TagView alloc]initWithFrame:CGRectMake(0, _contentImage.height - AUTO(25) - (AUTO(25) * i), AUTO(80), AUTO(20))];
+        [_contentImage addSubview:tagView];
+        tagView.tagModel = tagsModel;
+        __weak typeof(tagView) weakTagView = tagView;
+        tagView.blockTagFunc = ^(LBB_TagView *view)
+        {
+            //            weakTagView.left = _contentImage.width - view.width - 5;
+            weakTagView.sd_layout
+            .bottomSpaceToView(lastView,5)
+            .rightSpaceToView(lastView,5)
+            .heightIs(view.height)
+            .widthIs(view.width);
+        };
+        tagView.tagTitleStr = tagsModel.tagName;
+        
+    }
 }
 
 @end

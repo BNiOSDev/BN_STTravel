@@ -19,8 +19,9 @@
 #import "LBBVideoViewController.h"
 #import "LBB_ZJMHostViewController.h"
 #import "CoreData+MagicalRecord.h"
+#import "LBB_TravelDetailViewController.h"
 
-@interface ST_SquareViewController ()<UISearchBarDelegate,UIScrollViewDelegate>
+@interface ST_SquareViewController ()<UISearchBarDelegate,UIScrollViewDelegate,UINavigationControllerDelegate>
 {
     NSInteger  currentPage;
 }
@@ -33,6 +34,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = WHITECOLOR;
+    self.navigationController.delegate = self;
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"history"];
     [self  initNaviStyle];
     //加载Segment
@@ -47,7 +50,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [(ST_TabBarController*)self.tabBarController setTabBarHidden:NO animated:YES];
+    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1.0;
+//    [(ST_TabBarController*)self.tabBarController setTabBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage createImageWithColor:[UIColor clearColor]]];
 
@@ -155,6 +159,25 @@
     [self scrollToPage:(int)currentPage];//修复页面自动滚动偏差
 }
 
+//可以归类处理，UINavigationController在各个控制器的显示和不显示
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if(viewController == [self class])
+    {
+         [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1.0;
+    }
+    if([viewController isKindOfClass:[LBB_TravelDetailViewController class]])
+    {
+        [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 0.0;
+    }
+}
 
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if([viewController isKindOfClass:[LBB_TravelDetailViewController class]])
+    {
+        self.navigationController.navigationBar.hidden = NO;
+    }
+}
 
 @end

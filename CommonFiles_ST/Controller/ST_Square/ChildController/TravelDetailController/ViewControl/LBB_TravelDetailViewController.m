@@ -18,7 +18,7 @@
 #import "LBB_TravelDetailViewCell.h"
 #import "LBB_Travel_Bill_ViewController.h"
 
-@interface LBB_TravelDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LBB_TravelDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 @property(nonatomic, strong)UITableView     *tableView;
 @property(nonatomic, weak)LBB_TravelDetailHeadView *tabelHead;
 @property(nonatomic, weak)UIView *tabelFoot;
@@ -31,19 +31,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.view.backgroundColor = BACKVIEWCOLOR;
-    
+    self.navigationItem.title = @"游记详情";
+    self.view.backgroundColor = WHITECOLOR;
     [self initView];
-    
+    [self initNavi];
     [self initData];
 }
-
 - (void)initView
 {
     LBB_ToolsBtnView *headView = [[LBB_ToolsBtnView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(40))];
     _toolsView = headView;
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - AUTO(15))];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, - 64,self.view.frame.size.width, self.view.frame.size.height - AUTO(15) + 64)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -53,6 +52,28 @@
     [self.tableView setTableHeaderView:self.tabelHead];
     [self.tableView setTableFooterView:self.tabelFoot];
     
+}
+
+- (void)initNavi
+{
+    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"zjmshare") style:UIBarButtonItemStylePlain target:self action:@selector(shareFunc)];
+    shareBtn.tintColor = WHITECOLOR;
+    
+    UIBarButtonItem *downBtn = [[UIBarButtonItem alloc]initWithImage:IMAGE(@"zjmdownlaod") style:UIBarButtonItemStylePlain target:self action:@selector(downFunc)];
+    downBtn.tintColor = WHITECOLOR;
+    
+    NSArray *barBtns = @[downBtn,shareBtn];
+    self.navigationItem.rightBarButtonItems = barBtns;
+}
+
+- (void)shareFunc
+{
+    NSLog(@"分享");
+}
+
+- (void)downFunc
+{
+    NSLog(@"下载");
 }
 
 - (void)initData
@@ -65,13 +86,14 @@
 //        weakSelf.tabelHead.model = weakSelf.viewModel;
         
         NSArray *array = @[[NSString stringWithFormat:@"景点 %d",weakSelf.viewModel.travelDetailModel.totalScenicSpots],[NSString stringWithFormat:@"美食 %d",weakSelf.viewModel.travelDetailModel.totalFood],[NSString stringWithFormat:@"民宿 %d",weakSelf.viewModel.travelDetailModel.totalHomestay],[NSString stringWithFormat:@"购物 %d",weakSelf.viewModel.travelDetailModel.totalShop]];
-
+        
             weakSelf.toolsView.buttonList = array;
             //为空时，不该有footview
             if(weakSelf.viewModel.travelDetailModel.travelNotesDetails.count == 0)
             {
                 weakSelf.tableView.tableFooterView = nil;
             }
+        
         [weakSelf dealData];
     }];
     [_tableView reloadData];
@@ -234,6 +256,7 @@
     if(indexPath.section == 0)
     {
         LBB_Travel_Bill_ViewController *vc = [[LBB_Travel_Bill_ViewController alloc]init];
+        vc.travelNotesId = _model.travelNotesId;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -263,6 +286,21 @@
         width = [UIScreen mainScreen].bounds.size.height;
     }
     return width;
+}
+
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+     NSLog(@"偏移量=%f",scrollView.contentOffset.y);
+    
+    if(scrollView.contentOffset.y >= 0.00 && scrollView.contentOffset.y <= 64.00)
+    {
+        NSLog(@"透明度比例 %f",scrollView.contentOffset.y / 64.00);
+          [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = scrollView.contentOffset.y / 64.00;
+    }
+
+    
 }
 
 

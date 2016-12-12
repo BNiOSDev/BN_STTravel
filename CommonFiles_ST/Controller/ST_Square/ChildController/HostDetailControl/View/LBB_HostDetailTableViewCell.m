@@ -81,7 +81,11 @@
     _collectBtn.titleLabel.font = FONT(11.0);
     commetView = [ZJMCommentView new];
     
+    __weak typeof(self)  weakSelf = self;
     boxView = [CommentBoxView new];
+    boxView.sendBlock = ^(NSString *str,UITableViewCellViewSignal signal){
+        weakSelf.cellBtnBlock(str,signal);
+    };
     
     NSArray   *views = @[_iconImage,_nameLable,_timeImage,_timeLabel,_addressImage,_addressNameLabel,_contentLabel,
                          _contentImage,praiseView,_collectBtn,commetView,boxView];
