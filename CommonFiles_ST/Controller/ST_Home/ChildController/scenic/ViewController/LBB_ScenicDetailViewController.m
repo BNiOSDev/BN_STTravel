@@ -60,12 +60,15 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(@"LBB_ScenicDetailViewController viewDidLoad start");
     [self addBackButton:nil];
     [self setBaseNavigationBarHidden:NO];
     [self setBaseNavigationBarBackgroundColor:[UIColor clearColor]];
     [self setupFullContentView];
     [self setupNavigationUI];
     [self setupUI];
+    NSLog(@"LBB_ScenicDetailViewController viewDidLoad end");
+
 }
 
 - (void)didReceiveMemoryWarning {

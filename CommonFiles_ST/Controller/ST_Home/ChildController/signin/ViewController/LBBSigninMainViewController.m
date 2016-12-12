@@ -69,8 +69,9 @@
         @strongify(self);
         
         [self.viewModel getNearSignInMapArrayClearData:self.locationManager.longitude dimensionality:self.locationManager.latitude clear:YES];
-        [self.locationManager.locManager stopUpdatingLocation];
-    }];
+        if ([num floatValue] != -1) {
+            [self.locationManager.locManager stopUpdatingLocation];
+        }    }];
     
     [RACObserve(self.locationManager, longitude) subscribeNext:^(NSString* num) {
         @strongify(self);
