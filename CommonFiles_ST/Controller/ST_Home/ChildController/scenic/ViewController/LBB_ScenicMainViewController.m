@@ -139,8 +139,9 @@
         @strongify(self);
         
         [self getSpotArrayLongitude:YES];
-        [self.locationManager.locManager stopUpdatingLocation];
-        
+        if ([num floatValue] != -1) {
+            [self.locationManager.locManager stopUpdatingLocation];
+        }
     }];
 }
 
