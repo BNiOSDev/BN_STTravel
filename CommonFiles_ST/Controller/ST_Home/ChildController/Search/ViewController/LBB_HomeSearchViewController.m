@@ -625,7 +625,7 @@ static const NSInteger kButtonWidth = 45;
     if ([self.searchBar.text length] <= 0) {
         
         if (section == 0) {//历史
-            return 3;
+            return 0;
         }
         else{
             return ceil(self.viewModel.hotWordArray.count / 3.0);
