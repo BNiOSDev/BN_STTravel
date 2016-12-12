@@ -37,8 +37,8 @@
     
     self.lvLabel.layer.cornerRadius = 8.f;
     self.lvLabel.clipsToBounds = YES;
-//    self.signatureLabel.adjustsFontSizeToFitWidth = YES;
-//    self.signatureLabel.numberOfLines = 1;
+    self.signatureLabel.adjustsFontSizeToFitWidth = YES;
+    self.signatureLabel.numberOfLines = 2;
 }
 
 - (void)prepareForReuse
