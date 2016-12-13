@@ -137,7 +137,7 @@
     ticketSectionInfo.sectionContent = @"我的门票";
     ticketSectionInfo.needCheckAll = YES;
     ticketSectionInfo.detailArary = [self getTicketArray];
-    [sectionArary addObject:ticketSectionInfo];
+//    [sectionArary addObject:ticketSectionInfo];
     
     LBB_MineSectionInfo *squareSectionInfo = [[LBB_MineSectionInfo alloc] init];
     squareSectionInfo.setcionType = eTypeNone;
