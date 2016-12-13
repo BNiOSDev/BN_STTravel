@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Header.h"
 
 @interface PraiseView : UIView
 
 @property(nonatomic, strong)NSArray     *praiseArray;
-
+@property(nonatomic, copy)CellBlockVIew  praiseBlock;
 @end

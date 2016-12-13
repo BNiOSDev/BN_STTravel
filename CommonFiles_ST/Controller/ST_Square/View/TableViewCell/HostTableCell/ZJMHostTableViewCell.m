@@ -79,7 +79,12 @@
     
     _contentImage = [ContentImageView new];
     
+    __weak typeof(self) weakSelf = self;
     praiseView  = [PraiseView new];
+    praiseView.praiseBlock = ^(UIButton *btn,UITableViewCellViewSignal signal){
+        if(weakSelf.btnBlock)
+            weakSelf.btnBlock(btn,signal);
+    };
     
     _collectBtn = [UIButton new];
     _collectBtn.backgroundColor = UIColorFromRGB(0xE0E1E2);
@@ -87,14 +92,15 @@
     [_collectBtn setTitle:@"收藏" forState:0];
     [_collectBtn setTitleColor:UIColorFromRGB(0x888888) forState:0];
     _collectBtn.titleLabel.font = FONT(11.0);
+    [_collectBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     commetView = [ZJMCommentView new];
     
-    __weak typeof(self) weakSelf = self;
     boxView = [CommentBoxView new];
     boxView.sendBlock = ^(id object, UITableViewCellViewSignal signal){
         if(signal == UITableViewCellSendMessage)
         {
-            weakSelf.btnBlock(object,signal);
+            if(weakSelf.btnBlock)
+                weakSelf.btnBlock(object,signal);
         }
     };
     
@@ -264,6 +270,14 @@
     .heightIs(AUTO(30));
     
     [self setupAutoHeightWithBottomViewsArray:@[boxView,_contentLabel] bottomMargin:10];
+}
+
+- (void)btnFunc:(UIButton *)btn
+{
+    if(self.btnBlock)
+    {
+        self.btnBlock(btn,UITableViewCellCollect);
+    }
 }
 
 
