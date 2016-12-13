@@ -42,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     //注册监听者。
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(back:) name:@"goBack" object:nil];
     
@@ -56,6 +56,17 @@
     [self setContentScrollView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)dealloc
 {
     //移除本控制器的通知

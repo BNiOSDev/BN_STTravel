@@ -25,11 +25,6 @@
     return self;
 }
 
-- (void)prepareForReuse
-{
-    [super prepareForReuse];
-    [cellView prepareForReuse];
-}
 - (void)setup
 {
     cellView = [LBB_TravelDetailContentView new];
@@ -55,6 +50,7 @@
 
 - (void)setModel:(TravelNotesDetails *)model
 {
+//    [self prepareForReuse];
     _model = model;
     cellView.model = model;
 }

@@ -110,14 +110,16 @@
 
     for (__block int i = 1; i <= _model.dayCount; i++) {
         
-        NSMutableArray   *array =  [_viewModel.travelDetailModel.travelNotesDetails map:^id(TravelNotesDetails  *element) {
+        NSMutableArray    *elementArray = [[NSMutableArray alloc]init];
+        for(TravelNotesDetails *element in _viewModel.travelDetailModel.travelNotesDetails)
+        {
             if(i == element.whitchDay)
             {
-                 return element;
+                [elementArray addObject:element];
             }
-            return nil;
-        }].mutableCopy;
-        [_dealDataArray addObject:array];
+        }
+        
+        [_dealDataArray addObject:elementArray];
     }
       [self.tableView reloadData];
 }
@@ -240,6 +242,10 @@
         return cell;
     }else{
         LBB_TravelDetailViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_TravelDetailViewCell"];
+        if(!cell)
+        {
+            NSLog(@"不要啊");
+        }
         cell.accessoryType = 0;
         ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
         cell.selectionStyle = 0;

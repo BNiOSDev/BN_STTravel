@@ -15,6 +15,6 @@
 @interface LBB_TravelDetailContentView : UIView
 @property(nonatomic,strong)TravelNotesDetails   *model;
 
-- (void)prepareForReuse;
+//- (void)prepareForReuse;
 
 @end

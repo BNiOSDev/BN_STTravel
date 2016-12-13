@@ -12,5 +12,5 @@
 @property(nonatomic,strong)NSArray          *imageArray;
 @property(nonatomic,strong)NSArray          *picArray;
 @property(nonatomic,strong)NSMutableArray *tagsArray;
-- (void)prepareForReuse;
+
 @end

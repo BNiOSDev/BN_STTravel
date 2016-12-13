@@ -148,6 +148,11 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
+    //点击中间tabbar item位置不跳转
+    if(viewController == [tabBarController.viewControllers objectAtIndex:2])
+    {
+        return NO;
+    }
     NSLog(@"切换到页面%@",viewController.title);
     return YES;
 }
@@ -173,6 +178,8 @@
         [centerBtn setFrame:CGRectMake((DeviceWidth/2) - 22.5, height, 45, 45)];
     }
 }
+
+
 
 /*
  #pragma mark - Navigation

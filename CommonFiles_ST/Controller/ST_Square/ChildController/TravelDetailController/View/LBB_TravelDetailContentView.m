@@ -30,12 +30,6 @@
     return self;
 }
 
-- (void)prepareForReuse
-{
-    vistImage.imageArray = nil;
-    timeImage.image = nil;
-}
-
 - (void)setup
 {
     vistImage = [LBB_TravelImageContentView new];
