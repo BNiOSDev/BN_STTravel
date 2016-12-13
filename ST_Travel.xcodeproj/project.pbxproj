@@ -553,6 +553,9 @@
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
 		3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C518C541DF66F22002653EC /* MediaPlayer.framework */; };
+		3C5AB7661DFEAC55003B7C0A /* zjmzhuyedianzaned@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5AB7631DFEAC55003B7C0A /* zjmzhuyedianzaned@2x.png */; };
+		3C5AB7671DFEAC55003B7C0A /* zjmzhuyedianzan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5AB7641DFEAC55003B7C0A /* zjmzhuyedianzan@2x.png */; };
+		3C5AB7681DFEAC55003B7C0A /* zjmshoucanged@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5AB7651DFEAC55003B7C0A /* zjmshoucanged@2x.png */; };
 		8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */; };
 		844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CB1DEAC7C500164DED /* libc++.tbd */; };
 		844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */; };
@@ -1545,6 +1548,9 @@
 		1DB1502E1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3C518C541DF66F22002653EC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3C5AB7631DFEAC55003B7C0A /* zjmzhuyedianzaned@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmzhuyedianzaned@2x.png"; sourceTree = "<group>"; };
+		3C5AB7641DFEAC55003B7C0A /* zjmzhuyedianzan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmzhuyedianzan@2x.png"; sourceTree = "<group>"; };
+		3C5AB7651DFEAC55003B7C0A /* zjmshoucanged@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmshoucanged@2x.png"; sourceTree = "<group>"; };
 		8420AF7B1DF297C300D98F86 /* libTelephonyUtilDynamic.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libTelephonyUtilDynamic.tbd; path = usr/lib/libTelephonyUtilDynamic.tbd; sourceTree = SDKROOT; };
 		8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		844065CB1DEAC7C500164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -4296,6 +4302,9 @@
 		1B7D7B7F1DFDB113006CE905 /* 640 */ = {
 			isa = PBXGroup;
 			children = (
+				3C5AB7631DFEAC55003B7C0A /* zjmzhuyedianzaned@2x.png */,
+				3C5AB7641DFEAC55003B7C0A /* zjmzhuyedianzan@2x.png */,
+				3C5AB7651DFEAC55003B7C0A /* zjmshoucanged@2x.png */,
 				1B7D7B801DFDB113006CE905 /* 640 */,
 				1B7D7B8F1DFDB113006CE905 /* zjmbeauty@2x.png */,
 				1B7D7B901DFDB113006CE905 /* zjmcheck@2x.png */,
@@ -5165,6 +5174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B7D7DC31DFDB114006CE905 /* LBB_TicketCommentSectionView.xib in Resources */,
+				3C5AB7681DFEAC55003B7C0A /* zjmshoucanged@2x.png in Resources */,
 				1B7D7E401DFDB114006CE905 /* zjmunselect@2x.png in Resources */,
 				1B7D7E5F1DFDB114006CE905 /* zjmothered@2x.png in Resources */,
 				1B7D7E3D1DFDB114006CE905 /* zjmtakephotoed@2x.png in Resources */,
@@ -5230,6 +5240,7 @@
 				1B7D7E591DFDB114006CE905 /* zjmhouse@2x.png in Resources */,
 				1B7D7E5C1DFDB114006CE905 /* zjmmenpiao@2x.png in Resources */,
 				1B7D7D6E1DFDB114006CE905 /* LBB_MyPropertyViewCell.xib.zip in Resources */,
+				3C5AB7671DFEAC55003B7C0A /* zjmzhuyedianzan@2x.png in Resources */,
 				1B7D7E441DFDB114006CE905 /* zjmzijixuanzhong@2x.png in Resources */,
 				1B7D7E431DFDB114006CE905 /* zjmziji@2x.png in Resources */,
 				1B7D7E201DFDB114006CE905 /* zjmbofang@2x.png in Resources */,
@@ -5273,6 +5284,7 @@
 				1B7D7DA41DFDB114006CE905 /* LBB_AddressPickerView.xib in Resources */,
 				1B7D7E5A1DFDB114006CE905 /* zjmhousegray@2x.png in Resources */,
 				1B7D7E671DFDB114006CE905 /* zjmtravelhouse@2x.png in Resources */,
+				3C5AB7661DFEAC55003B7C0A /* zjmzhuyedianzaned@2x.png in Resources */,
 				1B7D7E4A1DFDB114006CE905 /* zjmothered@2x.png in Resources */,
 				1B7D7E6B1DFDB114006CE905 /* zjmxiaofei@2x.png in Resources */,
 				1B7D7D5C1DFDB114006CE905 /* ST_HomeViewController.xib in Resources */,
@@ -5335,7 +5347,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
