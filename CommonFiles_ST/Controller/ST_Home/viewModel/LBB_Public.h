@@ -8,7 +8,5 @@
 
 ///当前屏幕rect
 
-
-#define BASEURL @"http://139.224.18.14:6082/api"
 //#define BASEURL @"http://77206c46.ittun.com/lbb/" //后台debug地址
 
