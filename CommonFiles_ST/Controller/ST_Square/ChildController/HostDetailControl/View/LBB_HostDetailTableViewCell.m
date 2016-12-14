@@ -71,17 +71,20 @@
     
     _contentImage = [ContentImageView new];
     
+    __weak typeof(self)  weakSelf = self;
     praiseView  = [PraiseView new];
+    praiseView.praiseBlock = ^(UIButton *btn,UITableViewCellViewSignal signal){
+        weakSelf.cellBtnBlock(btn,signal);
+    };
     
     _collectBtn = [UIButton new];
     _collectBtn.backgroundColor = UIColorFromRGB(0xE0E1E2);
-    [_collectBtn setImage:IMAGE(@"cancelFocus") forState:0];
     [_collectBtn setTitle:@"收藏" forState:0];
     [_collectBtn setTitleColor:UIColorFromRGB(0x888888) forState:0];
-    _collectBtn.titleLabel.font = FONT(11.0);
+    _collectBtn.titleLabel.font = FONT(10.0);
+    [_collectBtn addTarget:self action:@selector(collectFunc:) forControlEvents:UIControlEventTouchUpInside];
     commetView = [ZJMCommentView new];
     
-    __weak typeof(self)  weakSelf = self;
     boxView = [CommentBoxView new];
     boxView.sendBlock = ^(NSString *str,UITableViewCellViewSignal signal){
         weakSelf.cellBtnBlock(str,signal);
@@ -167,6 +170,26 @@
      @property (nonatomic, assign)int isCollected ;// 是否收藏
      @property (nonatomic, strong)NSMutableArray<LBB_SquareComments *> *comments ;// 评论集合
      */
+    
+    if(model.isCollected == 1)
+    {
+        [_collectBtn setImage:IMAGE(@"zjmshoucanged") forState:0];
+    }
+    else
+    {
+        [_collectBtn setImage:IMAGE(@"zjmshoucang") forState:0];
+    }
+    
+    if(model.isLiked == 1)
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
+    }
+    else
+    {
+        [praiseView setBtnImage:IMAGE(@"景区列表_收藏")];
+    }
+
+    
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     NSLog(@"model.userName:%@",model.userName);
@@ -257,5 +280,9 @@
     [self setupAutoHeightWithBottomViewsArray:@[boxView,_contentLabel] bottomMargin:10];
 }
 
+- (void)collectFunc:(UIButton *)btn
+{
+    self.cellBtnBlock(btn,UITableViewCellCollect);
+}
 
 @end

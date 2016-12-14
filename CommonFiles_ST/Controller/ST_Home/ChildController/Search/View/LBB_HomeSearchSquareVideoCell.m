@@ -198,10 +198,11 @@
 
 - (void)playFunc
 {
-    if(_blockBtnFunc)
-    {
-        self.blockBtnFunc(0);
-    }
+//    if(_blockBtnFunc)
+//    {
+//        self.blockBtnFunc(0);
+//    }
+    NSLog(@"我不让你看呀");
 }
 
 

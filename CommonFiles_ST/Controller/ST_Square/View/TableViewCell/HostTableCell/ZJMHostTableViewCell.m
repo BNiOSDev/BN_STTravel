@@ -29,7 +29,7 @@
     UIImageView        *_addressImage;//地址图标
     UIImageView        *_timeImage;//时间图标
     
-    ContentImageView      *_contentImage;//主图，内容图
+    ContentImageView      *_contentImage;   //主图，内容图
     PraiseView                  *praiseView;         //
     ZJMCommentView      *commetView;      //
     CommentBoxView       *boxView;             //
@@ -50,10 +50,12 @@
 {
     [super prepareForReuse];
     [_contentImage prepareForReuse];
+    [_collectBtn setImage:nil forState:0];
 }
 
 - (void)setup
 {
+    [self.contentView removeAllSubviews];
     _iconImage = [UIButton new];
     
     _nameLable = [UILabel new];
@@ -88,7 +90,6 @@
     
     _collectBtn = [UIButton new];
     _collectBtn.backgroundColor = UIColorFromRGB(0xE0E1E2);
-    [_collectBtn setImage:IMAGE(@"cancelFocus") forState:0];
     [_collectBtn setTitle:@"收藏" forState:0];
     [_collectBtn setTitleColor:UIColorFromRGB(0x888888) forState:0];
     _collectBtn.titleLabel.font = FONT(11.0);
@@ -175,7 +176,24 @@
 - (void)setModel:(LBB_SquareUgc *)model
 {
     _model = model;
-
+    
+    if(model.isCollected == 1)
+    {
+        [_collectBtn setImage:IMAGE(@"景区列表_收藏HL") forState:0];
+    }else
+    {
+        [_collectBtn setImage:IMAGE(@"景区列表_收藏") forState:0];
+    }
+    
+    if(model.isLiked == 1)
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
+    }
+    else
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
+    }
+   
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     
@@ -212,7 +230,6 @@
 
     //评论内容
     NSMutableArray *commentModelArray = (NSMutableArray *)[model.comments map:^id(LBB_SquareComments *element) {
-        
         CommentModel *model = [[CommentModel alloc]init];
         model.userName = element.userName;// 用户名称
         model.contentStr = element.remark;// 评论内容

@@ -11,6 +11,7 @@
 #import "UIView+SDAutoLayout.h"
 #import "LBB_SquareDetailViewModel.h"
 #import "Header.h"
+#import "ZFPlayer.h"
 
 @interface LBB_VideoDetailTableViewCell : UITableViewCell
 @property(nonatomic, strong) LBB_SquareDetailViewModel   *model;

@@ -551,6 +551,19 @@
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
+		3C3F20131E00F65D00A6918E /* ASValuePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F1FF81E00F65D00A6918E /* ASValuePopUpView.m */; };
+		3C3F20141E00F65D00A6918E /* ASValueTrackingSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F1FFA1E00F65D00A6918E /* ASValueTrackingSlider.m */; };
+		3C3F20151E00F65D00A6918E /* UIImageView+ZFCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F1FFD1E00F65D00A6918E /* UIImageView+ZFCache.m */; };
+		3C3F20161E00F65D00A6918E /* UINavigationController+ZFPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F1FFF1E00F65D00A6918E /* UINavigationController+ZFPlayerRotation.m */; };
+		3C3F20171E00F65D00A6918E /* UITabBarController+ZFPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F20011E00F65D00A6918E /* UITabBarController+ZFPlayerRotation.m */; };
+		3C3F20181E00F65D00A6918E /* UIView+CustomControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F20031E00F65D00A6918E /* UIView+CustomControlView.m */; };
+		3C3F20191E00F65D00A6918E /* UIViewController+ZFPlayerRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F20051E00F65D00A6918E /* UIViewController+ZFPlayerRotation.m */; };
+		3C3F201A1E00F65D00A6918E /* MMMaterialDesignSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F20071E00F65D00A6918E /* MMMaterialDesignSpinner.m */; };
+		3C3F201B1E00F65D00A6918E /* ZFBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F20091E00F65D00A6918E /* ZFBrightnessView.m */; };
+		3C3F201C1E00F65D00A6918E /* ZFPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C3F200A1E00F65D00A6918E /* ZFPlayer.bundle */; };
+		3C3F201D1E00F65D00A6918E /* ZFPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F200D1E00F65D00A6918E /* ZFPlayerControlView.m */; };
+		3C3F201E1E00F65D00A6918E /* ZFPlayerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F20101E00F65D00A6918E /* ZFPlayerModel.m */; };
+		3C3F201F1E00F65D00A6918E /* ZFPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F20121E00F65D00A6918E /* ZFPlayerView.m */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
 		3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C518C541DF66F22002653EC /* MediaPlayer.framework */; };
 		3C5AB7661DFEAC55003B7C0A /* zjmzhuyedianzaned@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C5AB7631DFEAC55003B7C0A /* zjmzhuyedianzaned@2x.png */; };
@@ -1546,6 +1559,33 @@
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DB1502E1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3C3F1FF71E00F65D00A6918E /* ASValuePopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValuePopUpView.h; sourceTree = "<group>"; };
+		3C3F1FF81E00F65D00A6918E /* ASValuePopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValuePopUpView.m; sourceTree = "<group>"; };
+		3C3F1FF91E00F65D00A6918E /* ASValueTrackingSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValueTrackingSlider.h; sourceTree = "<group>"; };
+		3C3F1FFA1E00F65D00A6918E /* ASValueTrackingSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValueTrackingSlider.m; sourceTree = "<group>"; };
+		3C3F1FFC1E00F65D00A6918E /* UIImageView+ZFCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ZFCache.h"; sourceTree = "<group>"; };
+		3C3F1FFD1E00F65D00A6918E /* UIImageView+ZFCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZFCache.m"; sourceTree = "<group>"; };
+		3C3F1FFE1E00F65D00A6918E /* UINavigationController+ZFPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+ZFPlayerRotation.h"; sourceTree = "<group>"; };
+		3C3F1FFF1E00F65D00A6918E /* UINavigationController+ZFPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+ZFPlayerRotation.m"; sourceTree = "<group>"; };
+		3C3F20001E00F65D00A6918E /* UITabBarController+ZFPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+ZFPlayerRotation.h"; sourceTree = "<group>"; };
+		3C3F20011E00F65D00A6918E /* UITabBarController+ZFPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+ZFPlayerRotation.m"; sourceTree = "<group>"; };
+		3C3F20021E00F65D00A6918E /* UIView+CustomControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CustomControlView.h"; sourceTree = "<group>"; };
+		3C3F20031E00F65D00A6918E /* UIView+CustomControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CustomControlView.m"; sourceTree = "<group>"; };
+		3C3F20041E00F65D00A6918E /* UIViewController+ZFPlayerRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZFPlayerRotation.h"; sourceTree = "<group>"; };
+		3C3F20051E00F65D00A6918E /* UIViewController+ZFPlayerRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZFPlayerRotation.m"; sourceTree = "<group>"; };
+		3C3F20061E00F65D00A6918E /* MMMaterialDesignSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMaterialDesignSpinner.h; sourceTree = "<group>"; };
+		3C3F20071E00F65D00A6918E /* MMMaterialDesignSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaterialDesignSpinner.m; sourceTree = "<group>"; };
+		3C3F20081E00F65D00A6918E /* ZFBrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBrightnessView.h; sourceTree = "<group>"; };
+		3C3F20091E00F65D00A6918E /* ZFBrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBrightnessView.m; sourceTree = "<group>"; };
+		3C3F200A1E00F65D00A6918E /* ZFPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZFPlayer.bundle; sourceTree = "<group>"; };
+		3C3F200B1E00F65D00A6918E /* ZFPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayer.h; sourceTree = "<group>"; };
+		3C3F200C1E00F65D00A6918E /* ZFPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerControlView.h; sourceTree = "<group>"; };
+		3C3F200D1E00F65D00A6918E /* ZFPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerControlView.m; sourceTree = "<group>"; };
+		3C3F200E1E00F65D00A6918E /* ZFPlayerControlViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerControlViewDelegate.h; sourceTree = "<group>"; };
+		3C3F200F1E00F65D00A6918E /* ZFPlayerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerModel.h; sourceTree = "<group>"; };
+		3C3F20101E00F65D00A6918E /* ZFPlayerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerModel.m; sourceTree = "<group>"; };
+		3C3F20111E00F65D00A6918E /* ZFPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFPlayerView.h; sourceTree = "<group>"; };
+		3C3F20121E00F65D00A6918E /* ZFPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerView.m; sourceTree = "<group>"; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3C518C541DF66F22002653EC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3C5AB7631DFEAC55003B7C0A /* zjmzhuyedianzaned@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zjmzhuyedianzaned@2x.png"; sourceTree = "<group>"; };
@@ -4935,6 +4975,7 @@
 		1B7D7CBA1DFDB113006CE905 /* ZJMBaseController */ = {
 			isa = PBXGroup;
 			children = (
+				3C3F1FF61E00F65D00A6918E /* ZFPlayer */,
 				1B7D7CBB1DFDB113006CE905 /* Header */,
 				1B7D7CBD1DFDB113006CE905 /* ZJMBaseViewController.h */,
 				1B7D7CBE1DFDB113006CE905 /* ZJMBaseViewController.m */,
@@ -4974,6 +5015,48 @@
 				1B7D7CCC1DFDB113006CE905 /* ST_Square.xcassets */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		3C3F1FF61E00F65D00A6918E /* ZFPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				3C3F1FF71E00F65D00A6918E /* ASValuePopUpView.h */,
+				3C3F1FF81E00F65D00A6918E /* ASValuePopUpView.m */,
+				3C3F1FF91E00F65D00A6918E /* ASValueTrackingSlider.h */,
+				3C3F1FFA1E00F65D00A6918E /* ASValueTrackingSlider.m */,
+				3C3F1FFB1E00F65D00A6918E /* Category */,
+				3C3F20061E00F65D00A6918E /* MMMaterialDesignSpinner.h */,
+				3C3F20071E00F65D00A6918E /* MMMaterialDesignSpinner.m */,
+				3C3F20081E00F65D00A6918E /* ZFBrightnessView.h */,
+				3C3F20091E00F65D00A6918E /* ZFBrightnessView.m */,
+				3C3F200A1E00F65D00A6918E /* ZFPlayer.bundle */,
+				3C3F200B1E00F65D00A6918E /* ZFPlayer.h */,
+				3C3F200C1E00F65D00A6918E /* ZFPlayerControlView.h */,
+				3C3F200D1E00F65D00A6918E /* ZFPlayerControlView.m */,
+				3C3F200E1E00F65D00A6918E /* ZFPlayerControlViewDelegate.h */,
+				3C3F200F1E00F65D00A6918E /* ZFPlayerModel.h */,
+				3C3F20101E00F65D00A6918E /* ZFPlayerModel.m */,
+				3C3F20111E00F65D00A6918E /* ZFPlayerView.h */,
+				3C3F20121E00F65D00A6918E /* ZFPlayerView.m */,
+			);
+			path = ZFPlayer;
+			sourceTree = "<group>";
+		};
+		3C3F1FFB1E00F65D00A6918E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				3C3F1FFC1E00F65D00A6918E /* UIImageView+ZFCache.h */,
+				3C3F1FFD1E00F65D00A6918E /* UIImageView+ZFCache.m */,
+				3C3F1FFE1E00F65D00A6918E /* UINavigationController+ZFPlayerRotation.h */,
+				3C3F1FFF1E00F65D00A6918E /* UINavigationController+ZFPlayerRotation.m */,
+				3C3F20001E00F65D00A6918E /* UITabBarController+ZFPlayerRotation.h */,
+				3C3F20011E00F65D00A6918E /* UITabBarController+ZFPlayerRotation.m */,
+				3C3F20021E00F65D00A6918E /* UIView+CustomControlView.h */,
+				3C3F20031E00F65D00A6918E /* UIView+CustomControlView.m */,
+				3C3F20041E00F65D00A6918E /* UIViewController+ZFPlayerRotation.h */,
+				3C3F20051E00F65D00A6918E /* UIViewController+ZFPlayerRotation.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		C9C0E9431D9948F100575A7C = {
@@ -5182,6 +5265,7 @@
 				1B7D7DD91DFDB114006CE905 /* WalletViewCell.xib in Resources */,
 				1B7D7D6D1DFDB114006CE905 /* LBB_MyPropertyViewCell.xib in Resources */,
 				1B7D7DCD1DFDB114006CE905 /* TicketDetailViewCell.xib in Resources */,
+				3C3F201C1E00F65D00A6918E /* ZFPlayer.bundle in Resources */,
 				1B7D7E1B1DFDB114006CE905 /* zjmaddress@2x.png in Resources */,
 				1B7D7E461DFDB114006CE905 /* zjmhaochideed@2x.png in Resources */,
 				1B7D7DA61DFDB114006CE905 /* ReceiptAddressViewCell.xib in Resources */,
@@ -5391,6 +5475,7 @@
 				1B7D7D891DFDB114006CE905 /* LBB_ChatViewCell.m in Sources */,
 				1B7D7CE11DFDB113006CE905 /* SKTag.m in Sources */,
 				1B7D7D121DFDB113006CE905 /* LBBNearbyMainViewController.m in Sources */,
+				3C3F201D1E00F65D00A6918E /* ZFPlayerControlView.m in Sources */,
 				1B7D7E731DFDB114006CE905 /* LBB_ImagePick_ViewController.m in Sources */,
 				1B7D7DBE1DFDB114006CE905 /* CommonFunc.m in Sources */,
 				1B7D7D981DFDB114006CE905 /* LBB_MyVideoModel.m in Sources */,
@@ -5423,6 +5508,7 @@
 				1B7D7D3A1DFDB114006CE905 /* LBB_HomeSearchGoodsCell.m in Sources */,
 				1B7D7DEB1DFDB114006CE905 /* LBB_ZJMPhotoList.m in Sources */,
 				1B7D7EB41DFDB114006CE905 /* BN_SquareTravelNotesModel.m in Sources */,
+				3C3F20141E00F65D00A6918E /* ASValueTrackingSlider.m in Sources */,
 				1B7D7D9E1DFDB114006CE905 /* LBB_LoginManager.m in Sources */,
 				1B7D7EBA1DFDB114006CE905 /* JHPieChart.m in Sources */,
 				1B7D7E911DFDB114006CE905 /* LBB_AddTextToVistNote_Controller.m in Sources */,
@@ -5567,6 +5653,7 @@
 				1B7D7CF71DFDB113006CE905 /* LBB_GuiderMainCell.m in Sources */,
 				1B7D7D571DFDB114006CE905 /* LBBHomeMenuTableViewCell.m in Sources */,
 				1B7D7EE31DFDB115006CE905 /* LBB_SpotAddress.m in Sources */,
+				3C3F20181E00F65D00A6918E /* UIView+CustomControlView.m in Sources */,
 				1B7D7DC81DFDB114006CE905 /* LBB_TicketFooterView.m in Sources */,
 				1B7D7CED1DFDB113006CE905 /* LBB_DiscoveryCustomizedViewController.m in Sources */,
 				1B7D7EC11DFDB114006CE905 /* UILabel+AutoFit.m in Sources */,
@@ -5577,6 +5664,7 @@
 				1B7D7E841DFDB114006CE905 /* LBBVideo_VideosCell.m in Sources */,
 				1B7D7D1B1DFDB113006CE905 /* LBB_NewOrderInputTextField.m in Sources */,
 				1B7D7D781DFDB114006CE905 /* LBB_PromotionsViewController.m in Sources */,
+				3C3F201B1E00F65D00A6918E /* ZFBrightnessView.m in Sources */,
 				1B7D7D931DFDB114006CE905 /* LBB_MyPhotoViewCell.m in Sources */,
 				1B7D7E761DFDB114006CE905 /* LBBVideoPlayerViewController.m in Sources */,
 				1B7D7E941DFDB114006CE905 /* LBB_SelectTip_History_ViewController.m in Sources */,
@@ -5599,8 +5687,10 @@
 				1B7D7E791DFDB114006CE905 /* ZYCameraViewComtroller.m in Sources */,
 				1B7D7CFF1DFDB113006CE905 /* LBB_GuiderUserMsgCell.m in Sources */,
 				1B7D7E951DFDB114006CE905 /* LBB_HistoryTipView.m in Sources */,
+				3C3F201A1E00F65D00A6918E /* MMMaterialDesignSpinner.m in Sources */,
 				1B7D7DD81DFDB114006CE905 /* WalletViewCell.m in Sources */,
 				1B7D7D441DFDB114006CE905 /* LBBSigninMainViewController.m in Sources */,
+				3C3F20191E00F65D00A6918E /* UIViewController+ZFPlayerRotation.m in Sources */,
 				1B7D7D651DFDB114006CE905 /* MineBaseViewController.m in Sources */,
 				1B7D7D0C1DFDB113006CE905 /* LBB_LabelDetailViewController.m in Sources */,
 				1B7D7D561DFDB114006CE905 /* LBBHomeHotestTableViewCellItem.m in Sources */,
@@ -5679,6 +5769,7 @@
 				1B7D7DB21DFDB114006CE905 /* LBB_PointViewModel.m in Sources */,
 				1B7D7DAC1DFDB114006CE905 /* PersonalCenterViewController.m in Sources */,
 				1B7D7CD51DFDB113006CE905 /* LBB_FilterTableViewCell.m in Sources */,
+				3C3F201F1E00F65D00A6918E /* ZFPlayerView.m in Sources */,
 				1B7D7DAF1DFDB114006CE905 /* BalanceDetailViewCell.m in Sources */,
 				1B7D7E0E1DFDB114006CE905 /* LBB_HostDetailHeadView.m in Sources */,
 				1B7D7EAB1DFDB114006CE905 /* PraiseModel.m in Sources */,
@@ -5692,6 +5783,7 @@
 				1B7D7DC21DFDB114006CE905 /* LBB_TicketCommentSectionView.m in Sources */,
 				1B7D7E781DFDB114006CE905 /* LBB_PublishVideo_Contain_ViewController.m in Sources */,
 				1B7D7D1A1DFDB113006CE905 /* LBB_OrderTicketPriceCell.m in Sources */,
+				3C3F20151E00F65D00A6918E /* UIImageView+ZFCache.m in Sources */,
 				1B7D7E871DFDB114006CE905 /* LBB_TipImage_Pulish_ImageView.m in Sources */,
 				1B7D7CD21DFDB113006CE905 /* GYChangeTextView.m in Sources */,
 				1B7D7CFA1DFDB113006CE905 /* LBB_GuiderUserDynamicDataSource.m in Sources */,
@@ -5743,6 +5835,7 @@
 				1B7D7EAF1DFDB114006CE905 /* TipHistory+CoreDataProperties.m in Sources */,
 				1B7D7DE81DFDB114006CE905 /* LBB_MyViewCell.m in Sources */,
 				1B7D7D4B1DFDB114006CE905 /* NSString+PoohCommon.m in Sources */,
+				3C3F201E1E00F65D00A6918E /* ZFPlayerModel.m in Sources */,
 				1B7D7DB61DFDB114006CE905 /* SwitchViewCell.m in Sources */,
 				1B7D7DEC1DFDB114006CE905 /* NSArray+Sudoku.m in Sources */,
 				1B7D7D261DFDB113006CE905 /* LBB_ScenicDetailADCell.m in Sources */,
@@ -5775,14 +5868,17 @@
 				1B7D7ED11DFDB115006CE905 /* LBBFriendTableViewCell.m in Sources */,
 				1B7D7D071DFDB113006CE905 /* LBB_LabelDetailHeaderView.m in Sources */,
 				1B7D7DBD1DFDB114006CE905 /* SettingPushViewController.m in Sources */,
+				3C3F20131E00F65D00A6918E /* ASValuePopUpView.m in Sources */,
 				1B7D7D5F1DFDB114006CE905 /* LBB_HomeViewModel.m in Sources */,
 				1B7D7DA11DFDB114006CE905 /* AddAddressViewController.m in Sources */,
 				1B7D7D5A1DFDB114006CE905 /* LBBHomeSearchResultViewController.m in Sources */,
 				1B7D7DF11DFDB114006CE905 /* NSObject+MagicalDataImport.m in Sources */,
 				1B7D7D021DFDB113006CE905 /* LBB_GuiderMainViewController.m in Sources */,
 				1B7D7E8D1DFDB114006CE905 /* LBB_SetCover_CollectionViewCell.m in Sources */,
+				3C3F20171E00F65D00A6918E /* UITabBarController+ZFPlayerRotation.m in Sources */,
 				1B7D7D501DFDB114006CE905 /* LBB_PoohCoreLocationManager.m in Sources */,
 				1B7D7CF81DFDB113006CE905 /* LBB_GuiderUserDeatilMsgCell.m in Sources */,
+				3C3F20161E00F65D00A6918E /* UINavigationController+ZFPlayerRotation.m in Sources */,
 				1B7D7ED31DFDB115006CE905 /* LBB_TravelCommentCell.m in Sources */,
 				1B7D7D461DFDB114006CE905 /* LBB_SquareSnsFollowFavoriteDataSource.m in Sources */,
 				1B7D7D511DFDB114006CE905 /* PoohAppHelper.m in Sources */,

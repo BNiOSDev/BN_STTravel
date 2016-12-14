@@ -89,26 +89,95 @@
     __weak typeof (self) weakSelf = self;
     cell.cellBtnBlock = ^(id obj,UITableViewCellViewSignal signal)
     {
-        if(signal == UITableViewCellSendMessage)
+        switch (signal)
         {
-            NSLog(@"发送评论=%@",obj);
-            LBB_SquareUgc *model = weakSelf.viewModel;
-            [LBB_CommentViewModel  commentObjId:model.allSpotsId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
-                NSLog(@"评论回馈= %@",dic);
-                if(!error){
-                    LBB_SquareComments *commentsModel = [LBB_SquareComments new];
-                    NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
-                    commentsModel.commentId = [commentIdStr longLongValue];
-                    commentsModel.remark = dic[@"remark"];
-                    commentsModel.userName = dic[@"userName"];
-                    [weakSelf.viewModel.squareDetailViewModel.comments addObject:commentsModel];
-                    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-                    [tableView reloadData];
-                }
-            }];
+            case UITableViewCellSendMessage:
+            {
+                NSLog(@"发送评论=%@",obj);
+                LBB_SquareUgc *model = weakSelf.viewModel;                [LBB_CommentViewModel  commentObjId:model.allSpotsId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                    NSLog(@"评论回馈= %@",dic);
+                    if(!error){
+                        LBB_SquareComments *commentsModel = [LBB_SquareComments new];
+                        NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
+                        commentsModel.commentId = [commentIdStr longLongValue];
+                        commentsModel.remark = dic[@"remark"];
+                        commentsModel.userName = dic[@"userName"];
+                        [weakSelf.viewModel.squareDetailViewModel.comments addObject:commentsModel];
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+                    }
+                }];
+            }
+                break;
+            case UITableViewCellCollect:
+            {
+                LBB_SquareUgc  *model = self.viewModel;
+                [model collecte:^(NSError *error) {
+                    if(!error)
+                    {
+                        NSLog(@"收藏成功，更换图片");
+                        UIButton *btn = obj;
+                        if(model.isCollected == 1)
+                        {
+                            [btn setImage:IMAGE(@"景区列表_收藏HL") forState:0];
+                        }
+                        else
+                        {
+                            [btn setImage:IMAGE(@"景区列表_收藏") forState:0];
+                        }
+                    }
+                }];
+            }
+                break;
+            case UITableViewCellPraise:
+            {
+                LBB_SquareUgc  *model = self.viewModel;                NSLog(@"likeList.count = %ld",model.likeList.count);
+                [model like:^(NSError *error) {
+                    if(!error)
+                    {
+                        NSLog(@"likeList.count =  %ld",model.likeList.count);
+                        UIButton *btn = obj;
+                        if(model.isLiked == 1)
+                        {
+                            [btn setImage:IMAGE(@"zjmzhuyedianzaned") forState:0];
+                        }
+                        else
+                        {
+                            [btn setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
+                            
+                        }
+                    }
+                }];
+            }
+                break;
+                
+            default:
+                break;
         }
-    };
         
+    };
+
+//    cell.cellBtnBlock = ^(id obj,UITableViewCellViewSignal signal)
+//    {
+//        if(signal == UITableViewCellSendMessage)
+//        {
+//            NSLog(@"发送评论=%@",obj);
+//            LBB_SquareUgc *model = weakSelf.viewModel;
+//            [LBB_CommentViewModel  commentObjId:model.allSpotsId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+//                NSLog(@"评论回馈= %@",dic);
+//                if(!error){
+//                    LBB_SquareComments *commentsModel = [LBB_SquareComments new];
+//                    NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
+//                    commentsModel.commentId = [commentIdStr longLongValue];
+//                    commentsModel.remark = dic[@"remark"];
+//                    commentsModel.userName = dic[@"userName"];
+//                    [weakSelf.viewModel.squareDetailViewModel.comments addObject:commentsModel];
+//                    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//                    [tableView reloadData];
+//                }
+//            }];
+//        }
+//    };
+    
         return cell;
 }
 
