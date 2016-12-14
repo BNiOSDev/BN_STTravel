@@ -21,6 +21,7 @@
 {
     UIButton       *_iconImage;//大头像
     UIButton       *_collectBtn;
+//    UIButton       *_playBtn;
     UILabel         *_nameLable;//用户名
     UILabel         *_timeLabel;//时间
     UILabel         *_addressNameLabel;//地址
@@ -28,7 +29,7 @@
     UIImageView        *_addressImage;//地址图标
     UIImageView        *_timeImage;//时间图标
     
-    UIImageView      *_contentImage;//主图，内容图
+//    UIImageView      *_contentImage;//主图，内容图
     PraiseView                  *praiseView;         //
     ZJMCommentView      *commetView;      //
     CommentBoxView       *boxView;             //
@@ -71,6 +72,7 @@
     _contentLabel.textColor = ColorGray;
     
     _contentImage = [UIImageView new];
+    _contentImage.userInteractionEnabled = YES;
     
     __weak typeof(self) weakSelf = self;
     praiseView  = [PraiseView new];
@@ -93,6 +95,9 @@
         weakSelf.sendCommentBlock(str,signal);
     };
     
+    _playBtn = [UIButton new];
+    [_playBtn setBackgroundImage:IMAGE(@"zjmbofang") forState:0];
+    [_playBtn addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
     NSArray   *views = @[_iconImage,_nameLable,_timeImage,_timeLabel,_addressImage,_addressNameLabel,_contentLabel,
                          _contentImage,praiseView,_collectBtn,commetView,boxView];
     [self.contentView sd_addSubviews:views];
@@ -261,6 +266,12 @@
     .topSpaceToView(_contentLabel, 0)
     .rightSpaceToView(self.contentView, 0)
     .heightIs(AUTO(320));
+    [_contentImage addSubview:_playBtn];
+    _playBtn.sd_layout
+    .heightIs(AUTO(40))
+    .widthIs(AUTO(40))
+    .centerXEqualToView(_contentImage)
+    .centerYEqualToView(_contentImage);
     
     praiseView.sd_layout
     .leftSpaceToView(self.contentView,10)
@@ -324,6 +335,12 @@
     if(self.sendCommentBlock)
     {
         self.sendCommentBlock(btn,UITableViewCellCollect);
+    }
+}
+
+- (void)play:(UIButton *)sender {
+    if (self.playBlock) {
+        self.playBlock(sender);
     }
 }
 

@@ -211,23 +211,11 @@
     _addressNameLabel.text = model.allSpotsName;
     _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
     _contentLabel.text = model.videoRemark;//视频描述
-
-    FZJPhotoTool  *tool = [[FZJPhotoTool alloc]init];
-    __block UIImage  *videoImage;
-    [tool getThumbnailImage:model.videoUrl Block:^(UIImage *resultImage) {
-                videoImage = resultImage;
-    }];
-    if(!videoImage)
-    {
-        [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.videoUrl] placeholderImage:DEFAULTIMAGE];
-    }else{
-        _contentImage.image = videoImage;
-    }
-
     
+    [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.videoUrl] placeholderImage:DEFAULTIMAGE];
+
     //点赞人数
     NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {
-        
         PraiseModel* dic = [[PraiseModel alloc] init];
         dic.iconUrl = element.portrait;
         dic.userID = [NSString stringWithFormat:@"%ld",element.userId];
