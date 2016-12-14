@@ -13,9 +13,7 @@
 @property(nonatomic,assign)  int unused;//可用积分
 @property(nonatomic,assign)  int used;//使用积分
 @property(nonatomic,assign)  int total;//总积分
-
-@property(nonatomic,assign) NSInteger totalPoints;//累计总积分
-@property(nonatomic,copy)   NSString  *descURL;//积分兑换说明URL
+@property(nonatomic,copy) NSString *integralExplain; //说明html地址
 
 /**
  *3.5.10 我的-积分（已测）

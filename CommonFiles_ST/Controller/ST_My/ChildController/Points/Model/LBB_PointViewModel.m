@@ -16,7 +16,6 @@
 - (void)getPointData
 {
     NSString *url = [NSString stringWithFormat:@"%@/mime/myCredits/view",BASEURL];
-    
     self.loadSupport.loadEvent = NetLoadingEvent;
     
     __weak typeof(self) weakSelf = self;

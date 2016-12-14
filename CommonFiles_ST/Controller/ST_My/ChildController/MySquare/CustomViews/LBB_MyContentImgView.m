@@ -52,16 +52,16 @@
         CGSize contentSize = sizeOfString(tagContent, CGSizeMake(9999, 20), Font12);
         UIImage *image = IMAGE(@"我的_标签");
         UIImageView *tagImgView = [[UIImageView alloc] initWithImage:[image resizableImageWithCapInsets:
-                                                                     UIEdgeInsetsMake(image.size.height * (1.f/2.f), image.size.width * .5f,
-                                                                                      image.size.height * (1.f/2.f), image.size.width * .5f)]];
+                                                                     UIEdgeInsetsMake(0, image.size.width * .5f,
+                                                                                      0, image.size.width * .5f) resizingMode:UIImageResizingModeStretch]];
         
         if (contentSize.width > (selfFrame.size.width * (2.f/3.f))) {
             contentSize.width = selfFrame.size.width * (2.f/3.f);
         }
         
-        tagImgView.frame = CGRectMake(selfFrame.size.width - contentSize.width - AUTO(25), bottomY - contentSize.height - AUTO(5), contentSize.width + AUTO(15), contentSize.height + AUTO(5));
+        tagImgView.frame = CGRectMake(selfFrame.size.width - contentSize.width - AUTO(25), bottomY - contentSize.height - AUTO(5), contentSize.width + AUTO(15), image.size.height);
         bottomY -= AUTO(25);
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(tagImgView.bounds.size.width - contentSize.width - 5.f,(tagImgView.bounds.size.height - contentSize.height)/2.0,  contentSize.width, contentSize.height)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(tagImgView.bounds.size.width - contentSize.width - 5.f,(tagImgView.bounds.size.height - image.size.height)/2.0,  contentSize.width, image.size.height)];
         label.font = Font12;
         label.textColor = ColorWhite;
         label.text = tagContent;
