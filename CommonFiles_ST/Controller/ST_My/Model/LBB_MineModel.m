@@ -95,28 +95,28 @@
                 break;
         }
     }
-    //我的门票
-    LBB_MineSectionInfo *sectionInfo1 = self.sectionInfo[1];//门票信息
-    NSArray *ticketArray = sectionInfo1.detailArary;
-    for (int i = 0; i < ticketArray.count; i++) {
-        LBB_MineDetaiInfo *detailInfo = ticketArray[i];
-        switch (i) {
-            case 0:
-                detailInfo.newNum = self.waitPayTicketCount;
-                break;
-            case 1:
-                detailInfo.newNum = self.waitTakeTicketCount;
-                break;
-            case 2:
-                detailInfo.newNum = self.waitCommentTicketCount;
-                break;
-            case 3:
-                detailInfo.newNum = self.refundTicketCount;
-                break;
-            default:
-                break;
-        }
-    }
+//    //我的门票
+//    LBB_MineSectionInfo *sectionInfo1 = self.sectionInfo[1];//门票信息
+//    NSArray *ticketArray = sectionInfo1.detailArary;
+//    for (int i = 0; i < ticketArray.count; i++) {
+//        LBB_MineDetaiInfo *detailInfo = ticketArray[i];
+//        switch (i) {
+//            case 0:
+//                detailInfo.newNum = self.waitPayTicketCount;
+//                break;
+//            case 1:
+//                detailInfo.newNum = self.waitTakeTicketCount;
+//                break;
+//            case 2:
+//                detailInfo.newNum = self.waitCommentTicketCount;
+//                break;
+//            case 3:
+//                detailInfo.newNum = self.refundTicketCount;
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 }
 
 - (void)initData
