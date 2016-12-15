@@ -10,6 +10,7 @@
 #import "CoreData+MagicalRecord.h"
 #import "LBB_LoginManager.h"
 #import "WXApi.h"
+#import <UMSocialCore/UMSocialCore.h>
 
 @interface AppDelegate ()
 
@@ -25,6 +26,7 @@
     self.window.backgroundColor = ColorWhite;
     //向微信注册wxd930ea5d5a258f4f
 //    [WXApi registerApp:@"wx94b0ac5b1ba8e1c3" withDescription:@"demo 2.0"];
+    [[UMSocialManager defaultManager] setUmSocialAppkey:@"57b432afe0f55a9832001a0a"];
     return YES;
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
