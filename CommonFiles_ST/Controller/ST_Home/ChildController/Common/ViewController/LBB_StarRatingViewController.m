@@ -68,6 +68,7 @@ static const NSInteger kPictureInterval = 10;
 -(void)buildControls{
 
     WS(ws);
+    self.pictures = [NSMutableArray new];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.mainScrollView = [UIScrollView new];
     [self.mainScrollView setBackgroundColor:[UIColor whiteColor]];
@@ -177,10 +178,10 @@ static const NSInteger kPictureInterval = 10;
             return;
         }
         
-        if (ws.pictures.count <= 0) {
+     /*   if (ws.pictures.count <= 0) {
             [ws showHudPrompt:@"请至少选择一张照片!"];
             return;
-        }
+        }*/
         //objId	Long	场景ID
       //  type	Int	1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题 13景点专题
 
