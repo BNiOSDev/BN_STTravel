@@ -6113,10 +6113,10 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8bbd9dfc-24f3-43a1-af1a-0c81ebdc08c3";
-				PROVISIONING_PROFILE_SPECIFIER = "Tourph_ Development2";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -6195,7 +6195,7 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
