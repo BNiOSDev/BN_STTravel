@@ -575,6 +575,21 @@
 		1B82F7591E04FC0800344C53 /* UMSocialNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B82F5201E04FC0700344C53 /* UMSocialNetwork.framework */; };
 		1B82F75A1E04FC0800344C53 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B82F5221E04FC0700344C53 /* UMSocialSDKResources.bundle */; };
 		1B82F75B1E04FC0800344C53 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B82F5231E04FC0700344C53 /* UShareUI.framework */; };
+		1BD4E7051E057DD60084F9B1 /* ALBBMediaService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E6F51E057DD60084F9B1 /* ALBBMediaService.framework */; };
+		1BD4E7061E057DD60084F9B1 /* TBAVSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E6F61E057DD60084F9B1 /* TBAVSDK.framework */; };
+		1BD4E7071E057DD60084F9B1 /* VSVideoCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E6F71E057DD60084F9B1 /* VSVideoCore.framework */; };
+		1BD4E7081E057DD60084F9B1 /* YWExtensionForCustomerServiceFMWK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E6F81E057DD60084F9B1 /* YWExtensionForCustomerServiceFMWK.framework */; };
+		1BD4E7091E057DD60084F9B1 /* YWExtensionForShortVideoFMWK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E6F91E057DD60084F9B1 /* YWExtensionForShortVideoFMWK.framework */; };
+		1BD4E70A1E057DD60084F9B1 /* YWShortVideo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BD4E6FA1E057DD60084F9B1 /* YWShortVideo.bundle */; };
+		1BD4E70B1E057DD60084F9B1 /* SecurityGuardSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E6FC1E057DD60084F9B1 /* SecurityGuardSDK.framework */; };
+		1BD4E70C1E057DD60084F9B1 /* SGMain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E6FD1E057DD60084F9B1 /* SGMain.framework */; };
+		1BD4E70D1E057DD60084F9B1 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E6FE1E057DD60084F9B1 /* UTMini.framework */; };
+		1BD4E70E1E057DD60084F9B1 /* WXOpenIMSDKFMWK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E6FF1E057DD60084F9B1 /* WXOpenIMSDKFMWK.framework */; };
+		1BD4E70F1E057DD60084F9B1 /* WXOpenIMSDKResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BD4E7001E057DD60084F9B1 /* WXOpenIMSDKResource.bundle */; };
+		1BD4E7101E057DD60084F9B1 /* WXOUIModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E7011E057DD60084F9B1 /* WXOUIModule.framework */; };
+		1BD4E7111E057DD60084F9B1 /* WXOUIModuleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BD4E7021E057DD60084F9B1 /* WXOUIModuleResources.bundle */; };
+		1BD4E7121E057DD60084F9B1 /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BD4E7031E057DD60084F9B1 /* yw_1222.jpg */; };
+		1BD4E7131E057DD60084F9B1 /* YWFeedbackServiceFMWK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD4E7041E057DD60084F9B1 /* YWFeedbackServiceFMWK.framework */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
@@ -1627,6 +1642,21 @@
 		1B82F5201E04FC0700344C53 /* UMSocialNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMSocialNetwork.framework; sourceTree = "<group>"; };
 		1B82F5221E04FC0700344C53 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		1B82F5231E04FC0700344C53 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
+		1BD4E6F51E057DD60084F9B1 /* ALBBMediaService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ALBBMediaService.framework; sourceTree = "<group>"; };
+		1BD4E6F61E057DD60084F9B1 /* TBAVSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TBAVSDK.framework; sourceTree = "<group>"; };
+		1BD4E6F71E057DD60084F9B1 /* VSVideoCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VSVideoCore.framework; sourceTree = "<group>"; };
+		1BD4E6F81E057DD60084F9B1 /* YWExtensionForCustomerServiceFMWK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YWExtensionForCustomerServiceFMWK.framework; sourceTree = "<group>"; };
+		1BD4E6F91E057DD60084F9B1 /* YWExtensionForShortVideoFMWK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YWExtensionForShortVideoFMWK.framework; sourceTree = "<group>"; };
+		1BD4E6FA1E057DD60084F9B1 /* YWShortVideo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = YWShortVideo.bundle; sourceTree = "<group>"; };
+		1BD4E6FC1E057DD60084F9B1 /* SecurityGuardSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SecurityGuardSDK.framework; sourceTree = "<group>"; };
+		1BD4E6FD1E057DD60084F9B1 /* SGMain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SGMain.framework; sourceTree = "<group>"; };
+		1BD4E6FE1E057DD60084F9B1 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTMini.framework; sourceTree = "<group>"; };
+		1BD4E6FF1E057DD60084F9B1 /* WXOpenIMSDKFMWK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WXOpenIMSDKFMWK.framework; sourceTree = "<group>"; };
+		1BD4E7001E057DD60084F9B1 /* WXOpenIMSDKResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WXOpenIMSDKResource.bundle; sourceTree = "<group>"; };
+		1BD4E7011E057DD60084F9B1 /* WXOUIModule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WXOUIModule.framework; sourceTree = "<group>"; };
+		1BD4E7021E057DD60084F9B1 /* WXOUIModuleResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WXOUIModuleResources.bundle; sourceTree = "<group>"; };
+		1BD4E7031E057DD60084F9B1 /* yw_1222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yw_1222.jpg; sourceTree = "<group>"; };
+		1BD4E7041E057DD60084F9B1 /* YWFeedbackServiceFMWK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YWFeedbackServiceFMWK.framework; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1665,23 +1695,34 @@
 			files = (
 				1B82F7511E04FC0800344C53 /* libSocialSina.a in Frameworks */,
 				1B82F7541E04FC0800344C53 /* libSocialWeChat.a in Frameworks */,
+				1BD4E70D1E057DD60084F9B1 /* UTMini.framework in Frameworks */,
+				1BD4E7091E057DD60084F9B1 /* YWExtensionForShortVideoFMWK.framework in Frameworks */,
 				1B82F7551E04FC0800344C53 /* libWeChatSDK.a in Frameworks */,
 				3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */,
+				1BD4E7131E057DD60084F9B1 /* YWFeedbackServiceFMWK.framework in Frameworks */,
 				1B82F74F1E04FC0800344C53 /* TencentOpenAPI.framework in Frameworks */,
 				1B82F7521E04FC0800344C53 /* libWeiboSDK.a in Frameworks */,
+				1BD4E7071E057DD60084F9B1 /* VSVideoCore.framework in Frameworks */,
+				1BD4E7061E057DD60084F9B1 /* TBAVSDK.framework in Frameworks */,
+				1BD4E7101E057DD60084F9B1 /* WXOUIModule.framework in Frameworks */,
 				8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */,
+				1BD4E70E1E057DD60084F9B1 /* WXOpenIMSDKFMWK.framework in Frameworks */,
 				1B82F74E1E04FC0800344C53 /* libSocialQQ.a in Frameworks */,
+				1BD4E70C1E057DD60084F9B1 /* SGMain.framework in Frameworks */,
 				3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */,
 				1B82F7581E04FC0800344C53 /* UMSocialCore.framework in Frameworks */,
 				844065D01DEAC7D300164DED /* libz.tbd in Frameworks */,
 				844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */,
+				1BD4E7081E057DD60084F9B1 /* YWExtensionForCustomerServiceFMWK.framework in Frameworks */,
 				844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */,
 				1B82F75B1E04FC0800344C53 /* UShareUI.framework in Frameworks */,
 				1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */,
 				1B82F7591E04FC0800344C53 /* UMSocialNetwork.framework in Frameworks */,
+				1BD4E7051E057DD60084F9B1 /* ALBBMediaService.framework in Frameworks */,
 				1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */,
 				C91F610C1D9F559C004FE75C /* QuartzCore.framework in Frameworks */,
 				B25926B0BFB80D1B90FB4793 /* libPods-ST_Travel.a in Frameworks */,
+				1BD4E70B1E057DD60084F9B1 /* SecurityGuardSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1723,6 +1764,8 @@
 		1B82EFF91E04FC0500344C53 /* CommonFiles_ST */ = {
 			isa = PBXGroup;
 			children = (
+				1BD4E6F41E057DD60084F9B1 /* WXExtensions */,
+				1BD4E6FB1E057DD60084F9B1 /* WXFrameworks */,
 				1B82EFFA1E04FC0500344C53 /* Controller */,
 				1B82F4ED1E04FC0700344C53 /* DBModel */,
 				1B82F4F81E04FC0700344C53 /* Images */,
@@ -5196,6 +5239,35 @@
 			path = UMSocialUI;
 			sourceTree = "<group>";
 		};
+		1BD4E6F41E057DD60084F9B1 /* WXExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				1BD4E6F51E057DD60084F9B1 /* ALBBMediaService.framework */,
+				1BD4E6F61E057DD60084F9B1 /* TBAVSDK.framework */,
+				1BD4E6F71E057DD60084F9B1 /* VSVideoCore.framework */,
+				1BD4E6F81E057DD60084F9B1 /* YWExtensionForCustomerServiceFMWK.framework */,
+				1BD4E6F91E057DD60084F9B1 /* YWExtensionForShortVideoFMWK.framework */,
+				1BD4E6FA1E057DD60084F9B1 /* YWShortVideo.bundle */,
+			);
+			path = WXExtensions;
+			sourceTree = "<group>";
+		};
+		1BD4E6FB1E057DD60084F9B1 /* WXFrameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1BD4E6FC1E057DD60084F9B1 /* SecurityGuardSDK.framework */,
+				1BD4E6FD1E057DD60084F9B1 /* SGMain.framework */,
+				1BD4E6FE1E057DD60084F9B1 /* UTMini.framework */,
+				1BD4E6FF1E057DD60084F9B1 /* WXOpenIMSDKFMWK.framework */,
+				1BD4E7001E057DD60084F9B1 /* WXOpenIMSDKResource.bundle */,
+				1BD4E7011E057DD60084F9B1 /* WXOUIModule.framework */,
+				1BD4E7021E057DD60084F9B1 /* WXOUIModuleResources.bundle */,
+				1BD4E7031E057DD60084F9B1 /* yw_1222.jpg */,
+				1BD4E7041E057DD60084F9B1 /* YWFeedbackServiceFMWK.framework */,
+			);
+			path = WXFrameworks;
+			sourceTree = "<group>";
+		};
 		C9C0E9431D9948F100575A7C = {
 			isa = PBXGroup;
 			children = (
@@ -5443,6 +5515,7 @@
 				1B82F6711E04FC0800344C53 /* zjmback@2x.png in Resources */,
 				1B82F5DC1E04FC0700344C53 /* LBB_MessageCenterViewCell.xib in Resources */,
 				1B82F75A1E04FC0800344C53 /* UMSocialSDKResources.bundle in Resources */,
+				1BD4E70A1E057DD60084F9B1 /* YWShortVideo.bundle in Resources */,
 				1B82F6851E04FC0800344C53 /* zjmmengban@2x.png in Resources */,
 				1B82F66A1E04FC0800344C53 /* morearrow@2x.png in Resources */,
 				1B82F5261E04FC0700344C53 /* b27_icon_star_gray@2x.png in Resources */,
@@ -5468,12 +5541,14 @@
 				1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */,
 				1B82F6BD1E04FC0800344C53 /* zjmtravelhouseed@2x.png in Resources */,
 				1B82F6941E04FC0800344C53 /* zjmunselect@2x.png in Resources */,
+				1BD4E7111E057DD60084F9B1 /* WXOUIModuleResources.bundle in Resources */,
 				1B82F6691E04FC0800344C53 /* defaultimage@2x.png in Resources */,
 				1B82F6A21E04FC0800344C53 /* zjmtranported@2x.png in Resources */,
 				1B82F6A41E04FC0800344C53 /* zjmtravelhouseed@2x.png in Resources */,
 				1B82F6A01E04FC0800344C53 /* zjmshoping@2x.png in Resources */,
 				1B82F67D1E04FC0800344C53 /* zjmgongkai@2x.png in Resources */,
 				1B82F6961E04FC0800344C53 /* zjmxuanzhong@2x.png in Resources */,
+				1BD4E7121E057DD60084F9B1 /* yw_1222.jpg in Resources */,
 				1B82F63B1E04FC0700344C53 /* LBB_MyUserHeaderView.xib in Resources */,
 				1B82F66E1E04FC0800344C53 /* zjmadd@2x.png in Resources */,
 				C9C0E95C1D9948F200575A7C /* Assets.xcassets in Resources */,
@@ -5506,6 +5581,7 @@
 				1B82F6BC1E04FC0800344C53 /* zjmtravelhouse@2x.png in Resources */,
 				1B82F6A51E04FC0800344C53 /* zjmyule@2x.png in Resources */,
 				1B82F6BF1E04FC0800344C53 /* zjmwhitePraise@2x.png in Resources */,
+				1BD4E70F1E057DD60084F9B1 /* WXOpenIMSDKResource.bundle in Resources */,
 				1B82F69B1E04FC0800344C53 /* zjmmenpiao@2x.png in Resources */,
 				1B82F6021E04FC0700344C53 /* PersonalInfoCell.xib in Resources */,
 				1B82F67B1E04FC0800344C53 /* zjmedit@2x.png in Resources */,
@@ -6189,6 +6265,8 @@
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/UMSocialSDK",
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/CommonFiles_ST/WXExtensions",
+					"$(PROJECT_DIR)/CommonFiles_ST/WXFrameworks",
 				);
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
@@ -6280,6 +6358,8 @@
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/UMSocialSDK",
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/UMSocialUI",
+					"$(PROJECT_DIR)/CommonFiles_ST/WXExtensions",
+					"$(PROJECT_DIR)/CommonFiles_ST/WXFrameworks",
 				);
 				GCC_PREFIX_HEADER = "$(PROJECT)/PrefixHeader.pch";
 				INFOPLIST_FILE = ST_Travel/Info.plist;
