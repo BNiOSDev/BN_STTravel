@@ -172,7 +172,7 @@
                 case UITableViewCellCollect:
                 {
                     LBB_SquareUgc  *model = self.viewModel.ugcImageArray[indexPath.row];
-                    [model collecte:^(NSError *error) {
+                    [model collecte:^(NSDictionary *dic,NSError *error) {
                         if(!error)
                         {
                             NSLog(@"收藏成功，更换图片");
@@ -193,7 +193,7 @@
                 {
                     LBB_SquareUgc  *model = self.viewModel.ugcImageArray[indexPath.row];
                     NSLog(@"likeList.count = %ld",model.likeList.count);
-                    [model like:^(NSError *error) {
+                    [model like:^(NSDictionary *dic,NSError *error) {
                         if(!error)
                         {
                             NSLog(@"likeList.count =  %ld",model.likeList.count);
