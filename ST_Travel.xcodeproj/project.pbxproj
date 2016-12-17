@@ -278,9 +278,6 @@
 		1B49AA121E0222C8004ECF13 /* WalletViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B49A6D81E0222C7004ECF13 /* WalletViewCell.xib */; };
 		1B49AA131E0222C8004ECF13 /* WalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49A6DB1E0222C7004ECF13 /* WalletViewController.m */; };
 		1B49AA141E0222C8004ECF13 /* LBB_ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49A6DF1E0222C7004ECF13 /* LBB_ImagePickerViewController.m */; };
-		1B49AA151E0222C8004ECF13 /* 19.pic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1B49A6E11E0222C7004ECF13 /* 19.pic.jpg */; };
-		1B49AA161E0222C8004ECF13 /* IMG_0848.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1B49A6E21E0222C7004ECF13 /* IMG_0848.JPG */; };
-		1B49AA171E0222C8004ECF13 /* IMG_0849.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 1B49A6E31E0222C7004ECF13 /* IMG_0849.JPG */; };
 		1B49AA181E0222C8004ECF13 /* MineStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B49A6E41E0222C7004ECF13 /* MineStoryboard.storyboard */; };
 		1B49AA191E0222C8004ECF13 /* LBB_MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49A6E71E0222C7004ECF13 /* LBB_MineModel.m */; };
 		1B49AA1A1E0222C8004ECF13 /* LBB_MineViewDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B49A6EA1E0222C7004ECF13 /* LBB_MineViewDataController.m */; };
@@ -1121,9 +1118,6 @@
 		1B49A6DB1E0222C7004ECF13 /* WalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletViewController.m; sourceTree = "<group>"; };
 		1B49A6DE1E0222C7004ECF13 /* LBB_ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ImagePickerViewController.h; sourceTree = "<group>"; };
 		1B49A6DF1E0222C7004ECF13 /* LBB_ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ImagePickerViewController.m; sourceTree = "<group>"; };
-		1B49A6E11E0222C7004ECF13 /* 19.pic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 19.pic.jpg; sourceTree = "<group>"; };
-		1B49A6E21E0222C7004ECF13 /* IMG_0848.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0848.JPG; sourceTree = "<group>"; };
-		1B49A6E31E0222C7004ECF13 /* IMG_0849.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0849.JPG; sourceTree = "<group>"; };
 		1B49A6E41E0222C7004ECF13 /* MineStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MineStoryboard.storyboard; sourceTree = "<group>"; };
 		1B49A6E61E0222C7004ECF13 /* LBB_MineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_MineModel.h; sourceTree = "<group>"; };
 		1B49A6E71E0222C7004ECF13 /* LBB_MineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_MineModel.m; sourceTree = "<group>"; };
@@ -2530,7 +2524,6 @@
 			children = (
 				1B49A56E1E0222C7004ECF13 /* ChildController */,
 				1B49A6DC1E0222C7004ECF13 /* Common */,
-				1B49A6E01E0222C7004ECF13 /* MineResource */,
 				1B49A6E41E0222C7004ECF13 /* MineStoryboard.storyboard */,
 				1B49A6E51E0222C7004ECF13 /* Model */,
 				1B49A6E81E0222C7004ECF13 /* ModelController */,
@@ -3958,16 +3951,6 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		1B49A6E01E0222C7004ECF13 /* MineResource */ = {
-			isa = PBXGroup;
-			children = (
-				1B49A6E11E0222C7004ECF13 /* 19.pic.jpg */,
-				1B49A6E21E0222C7004ECF13 /* IMG_0848.JPG */,
-				1B49A6E31E0222C7004ECF13 /* IMG_0849.JPG */,
-			);
-			path = MineResource;
-			sourceTree = "<group>";
-		};
 		1B49A6E51E0222C7004ECF13 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -5307,7 +5290,6 @@
 				1B49AA911E0222C8004ECF13 /* zjmhaochideed@2x.png in Resources */,
 				1B49A9F21E0222C8004ECF13 /* LBB_InviteViewCell.xib in Resources */,
 				1B49A9F01E0222C8004ECF13 /* SwitchViewCell.xib in Resources */,
-				1B49AA151E0222C8004ECF13 /* 19.pic.jpg in Resources */,
 				1B49AA841E0222C8004ECF13 /* zjmshoped@2x.png in Resources */,
 				1B49AAA61E0222C8004ECF13 /* zjmyule@2x.png in Resources */,
 				1B49AA8E1E0222C8004ECF13 /* zjmdownlaod@2x.png in Resources */,
@@ -5362,11 +5344,9 @@
 				1B49AAA31E0222C8004ECF13 /* zjmwhitecomment@2x.png in Resources */,
 				1B49AA6B1E0222C8004ECF13 /* zjmorderss@2x.png in Resources */,
 				1B49AABE1E0222C8004ECF13 /* FZJSmallPhotoCell.xib in Resources */,
-				1B49AA171E0222C8004ECF13 /* IMG_0849.JPG in Resources */,
 				1B49AB2F1E0222C8004ECF13 /* ST_Home.xcassets in Resources */,
 				1B49AA0F1E0222C8004ECF13 /* CardViewCell.xib in Resources */,
 				1B49AA641E0222C8004ECF13 /* zjmguanbi@2x.png in Resources */,
-				1B49AA161E0222C8004ECF13 /* IMG_0848.JPG in Resources */,
 				1B49AA1E1E0222C8004ECF13 /* LBB_MySectionHeadViewCell.xib in Resources */,
 				1B49AA6E1E0222C8004ECF13 /* zjmpraise@2x.png in Resources */,
 				1B49AA9F1E0222C8004ECF13 /* zjmtranported@2x.png in Resources */,
@@ -5436,7 +5416,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
