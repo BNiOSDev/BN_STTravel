@@ -563,6 +563,7 @@
 		1DA911691E04C9FB0057D041 /* ST_Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DA90F3C1E04C9F80057D041 /* ST_Mine.xcassets */; };
 		1DA9116A1E04C9FB0057D041 /* ST_Pooh.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DA90F3D1E04C9F80057D041 /* ST_Pooh.xcassets */; };
 		1DA9116B1E04C9FB0057D041 /* ST_Square.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DA90F3E1E04C9F80057D041 /* ST_Square.xcassets */; };
+		1DA9116E1E04DBAB0057D041 /* LBB_LocalSearchRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DA9116D1E04DBAB0057D041 /* LBB_LocalSearchRecordManager.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
@@ -1586,6 +1587,8 @@
 		1DA90F3C1E04C9F80057D041 /* ST_Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Mine.xcassets; sourceTree = "<group>"; };
 		1DA90F3D1E04C9F80057D041 /* ST_Pooh.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Pooh.xcassets; sourceTree = "<group>"; };
 		1DA90F3E1E04C9F80057D041 /* ST_Square.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ST_Square.xcassets; sourceTree = "<group>"; };
+		1DA9116C1E04DBAB0057D041 /* LBB_LocalSearchRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_LocalSearchRecordManager.h; sourceTree = "<group>"; };
+		1DA9116D1E04DBAB0057D041 /* LBB_LocalSearchRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_LocalSearchRecordManager.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -2336,6 +2339,8 @@
 			children = (
 				1DA90B4F1E04C9F60057D041 /* LBB_SearchViewModel.h */,
 				1DA90B501E04C9F60057D041 /* LBB_SearchViewModel.m */,
+				1DA9116C1E04DBAB0057D041 /* LBB_LocalSearchRecordManager.h */,
+				1DA9116D1E04DBAB0057D041 /* LBB_LocalSearchRecordManager.m */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -5720,6 +5725,7 @@
 				1DA910641E04C9F90057D041 /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				1DA911301E04C9FA0057D041 /* JHPieForeBGView.m in Sources */,
 				1DA90F751E04C9F80057D041 /* LBB_GuiderUserViewController.m in Sources */,
+				1DA9116E1E04DBAB0057D041 /* LBB_LocalSearchRecordManager.m in Sources */,
 				1DA9113D1E04C9FA0057D041 /* ZJSegmentStyle.m in Sources */,
 				1DA90F491E04C9F80057D041 /* LBB_PoohPlusMinTextField.m in Sources */,
 				1DA90FAD1E04C9F80057D041 /* LBB_HomeSearchKeyWordCell.m in Sources */,

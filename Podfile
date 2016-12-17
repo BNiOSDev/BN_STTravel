@@ -27,5 +27,6 @@ pod ‘UMengUShare/Social/QQ'
 pod ‘UMengUShare/Social/Email'
 # 集成短信
 pod ‘UMengUShare/Social/SMS'
+pod 'YYCache'
 
 end

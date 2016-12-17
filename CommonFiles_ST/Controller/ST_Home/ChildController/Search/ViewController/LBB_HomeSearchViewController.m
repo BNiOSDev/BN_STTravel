@@ -27,6 +27,7 @@
 #import "LBBHostDetailViewController.h"
 #import "LBB_TravelCommentController.h"
 #import "LBB_TravelDetailViewController.h"
+#import "LBB_LocalSearchRecordManager.h"
 
 static const NSInteger kSearchButtonMarginRight = -10;
 static const NSInteger kButtonWidth = 45;
@@ -46,9 +47,13 @@ static const NSInteger kButtonWidth = 45;
 
 @property(nonatomic, retain)LBB_SearchViewModel* viewModel;
 //地理位置管理
-@property (nonatomic,retain)LBB_PoohCoreLocationManager* locationManager;
+@property(nonatomic, retain)LBB_PoohCoreLocationManager* locationManager;
 
-@property (nonatomic, strong) NSTimer *timer;
+@property(nonatomic, strong) NSTimer *timer;
+
+//历史搜索
+@property(nonatomic, retain)NSArray<NSString*>* searchRecordArray;
+@property(nonatomic, retain)LBB_LocalSearchRecordManager* searchRecordManager;
 
 
 @end
@@ -71,7 +76,27 @@ static const NSInteger kButtonWidth = 45;
     [self setNavigationBarHidden:YES];
 }
     
+-(void)refreshSearchRecordArray{
+
+    WS(ws);
+    if (!self.searchRecordManager) {
+        self.searchRecordManager = [[LBB_LocalSearchRecordManager alloc]init];
+    }
     
+    self.searchRecordManager.resBlock = ^(NSMutableArray* array){
+        
+        ws.searchRecordArray = [array copy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [ws.tableView reloadData];
+        });
+    };
+    [self.searchRecordManager queryKeyWordList];
+    
+    
+}
+
+
 /*
 #pragma mark - Navigation
 
@@ -164,7 +189,7 @@ static const NSInteger kButtonWidth = 45;
             break;
         case LBBPoohHomeSearchTypeDefault://展示搜索关键词
             
-            
+            [self refreshSearchRecordArray];
             break;
     }
 
@@ -383,7 +408,12 @@ static const NSInteger kButtonWidth = 45;
             
             break;
     }
-
+    
+    [self.searchRecordManager insertKeyWord:self.searchBar.text];
+    WS(ws);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [ws refreshSearchRecordArray];
+    });
 }
 
 
@@ -471,7 +501,8 @@ static const NSInteger kButtonWidth = 45;
         make.top.equalTo(ws.filterMenuButton.mas_bottom).offset(10);
         make.bottom.equalTo(ws.view);
     }];
-    
+    [self refreshSearchRecordArray];
+
 }
 
 -(void)loadCustomCell{
@@ -579,6 +610,7 @@ static const NSInteger kButtonWidth = 45;
     if ([self.searchBar.text length] > 0) {
         return [UIView new];
     }
+    WS(ws);
     UIView* view = [UIView new];
     [view setBackgroundColor:ColorLine];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
@@ -615,6 +647,37 @@ static const NSInteger kButtonWidth = 45;
     }];
     
     
+    UIButton* clearButton = [UIButton new];
+    [clearButton setTitle:@"清空" forState:UIControlStateNormal];
+    [clearButton.titleLabel setFont:Font13];
+    [clearButton setTitleColor:ColorGray forState:UIControlStateNormal];
+    [view addSubview:clearButton];
+    [clearButton mas_makeConstraints:^(MASConstraintMaker* make){
+        
+        make.centerY.equalTo(view);
+        make.right.equalTo(view).offset(-15);
+    }];
+    [clearButton bk_addEventHandler:^(id sender){
+        
+        ws.searchRecordManager.deleteBlock = ^(NSString* status){
+            
+            if (status) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    ws.searchRecordArray = nil;
+                    [ws.tableView reloadData];
+                });
+            }
+        };
+        [ws.searchRecordManager deleteKeyWordList];
+    } forControlEvents:UIControlEventTouchUpInside];
+    
+    if (section == 0) {
+        clearButton.hidden = NO;
+    }
+    else{
+        clearButton.hidden = YES;
+    }
+    
     return view;
     
 }
@@ -625,7 +688,7 @@ static const NSInteger kButtonWidth = 45;
     if ([self.searchBar.text length] <= 0) {
         
         if (section == 0) {//历史
-            return 0;
+            return ceil(self.searchRecordArray.count / 3.0);
         }
         else{
             return ceil(self.viewModel.hotWordArray.count / 3.0);
@@ -769,7 +832,53 @@ static const NSInteger kButtonWidth = 45;
         }
         
         if (indexPath.section == 0) {//搜索历史
+            NSInteger idx1 = indexPath.row * 3;
+            NSInteger idx2 = indexPath.row * 3+1;
+            NSInteger idx3 = indexPath.row * 3+2;
             
+            NSString *obj1 = [self.searchRecordArray objectAtIndex:idx1];
+            [cell.labelButton1 setTitle:obj1 forState:UIControlStateNormal];
+            
+            if (idx2 < self.searchRecordArray.count) {
+                NSString *obj2 = [self.searchRecordArray objectAtIndex:idx2];
+                [cell.labelButton2 setTitle:obj2 forState:UIControlStateNormal];
+                cell.labelButton2.hidden = NO;
+            }
+            else{
+                cell.labelButton2.hidden = YES;
+            }
+            
+            if (idx3 < self.searchRecordArray.count) {
+                NSString *obj3 = [self.searchRecordArray objectAtIndex:idx3];
+                [cell.labelButton3 setTitle:obj3 forState:UIControlStateNormal];
+                cell.labelButton3.hidden = NO;
+            }
+            else{
+                cell.labelButton3.hidden = YES;
+            }
+            
+            
+            cell.click = ^(NSNumber* num){
+                NSString *obj1;
+                
+                switch ([num integerValue]) {
+                    case 0:
+                        obj1 = [self.searchRecordArray objectAtIndex:idx1];
+                        break;
+                    case 1:
+                        obj1 = [self.searchRecordArray objectAtIndex:idx2];
+                        break;
+                    case 2:
+                        obj1 = [self.searchRecordArray objectAtIndex:idx3];
+                        break;
+                    default:
+                        break;
+                }
+                self.searchBar.text = obj1;
+                self.showType = self.searchType;
+                [self search:YES];
+            };
+
         }
         else{
         
