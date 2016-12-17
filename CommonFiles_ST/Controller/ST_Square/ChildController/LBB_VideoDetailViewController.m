@@ -116,10 +116,12 @@
             case UITableViewCellCollect:
             {
                 LBB_SquareUgc  *model = weakSelf.viewModel;
-                [model collecte:^(NSDictionary*dic, NSError *error) {
+
+                [model collecte:^(NSDictionary *dic,NSError *error) {
                     if(!error)
                     {
                         NSLog(@"收藏成功，更换图片");
+                        NSLog(@"收藏返回数据：%@",dic);
                         UIButton *btn = obj;
                         [btn setImage:IMAGE(@"zjmshoucanged") forState:0];
                         if(model.isCollected == 1)
@@ -138,11 +140,12 @@
             case UITableViewCellPraise:
             {
                 LBB_SquareUgc  *model = weakSelf.viewModel;                NSLog(@"likeList.count = %ld",model.likeList.count);
-                [model like:^(NSDictionary*dic, NSError *error) {
+                [model like:^(NSDictionary *dic,NSError *error) {
                     if(!error)
                     {
                         NSLog(@"likeList.count =  %ld",model.likeList.count);
-                        NSLog(@"收藏成功，更换图片");
+                        NSLog(@"点赞成功，更换图片");
+                        NSLog(@"点赞返回数据：%@",dic);
                         UIButton *btn = obj;
                         if(model.isLiked == 1)
                         {

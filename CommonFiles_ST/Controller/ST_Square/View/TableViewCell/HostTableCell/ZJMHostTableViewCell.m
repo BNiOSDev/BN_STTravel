@@ -39,6 +39,11 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        //删除cell的栏，用来优化滑动流畅程度
+        self.layer.shouldRasterize=YES;
+        self.layer.rasterizationScale=[UIScreen mainScreen].scale;
+        self.layer.drawsAsynchronously=YES;
+        
         [self setup];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -50,7 +55,6 @@
 {
     [super prepareForReuse];
     [_contentImage prepareForReuse];
-    [_collectBtn setImage:nil forState:0];
 }
 
 - (void)setup
