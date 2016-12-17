@@ -124,7 +124,7 @@
  
  @param block 回调函数
  */
-- (void)collecte:(void (^)(NSError *error))block
+- (void)collecte:(void (^)(NSDictionary*dic, NSError *error))block
 {
     NSDictionary *paraDic = @{
                               @"allSpotsId":@(self.allSpotsId),
@@ -145,17 +145,17 @@
                  temp.squareDetailViewModel.isCollected = collecteState;
             }
             
-            block(nil);
+            block(result,nil);
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            block([NSError errorWithDomain:errorStr
+            block(nil,[NSError errorWithDomain:errorStr
                                       code:codeNumber.intValue
                                   userInfo:nil]);
         }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        block(error);
+        block(nil,error);
     }];
 }
 
@@ -164,7 +164,7 @@
  
  @param block 回调函数
  */
-- (void)like:(void (^)(NSError *error))block
+- (void)like:(void (^)(NSDictionary*dic, NSError *error))block
 {
     NSDictionary *paraDic = @{
                               @"allSpotsId":@(self.allSpotsId),
@@ -193,17 +193,17 @@
                     temp.squareDetailViewModel.likeNum = temp.squareDetailViewModel.likeNum - 1;
                 }
             }
-            block(nil);
+            block(result,nil);
         }
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
-            block([NSError errorWithDomain:errorStr
+            block(nil,[NSError errorWithDomain:errorStr
                                       code:codeNumber.intValue
                                   userInfo:nil]);
         }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
-        block(error);
+        block(nil,error);
     }];
 }
 
