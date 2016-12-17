@@ -511,6 +511,11 @@
         {
             NSLog(@"需跳转到老郑的游记详情页面");
             LBB_TravelDetailViewController* dest = [[LBB_TravelDetailViewController alloc] init];
+            BN_SquareTravelList *model = [[BN_SquareTravelList alloc] init];
+            
+            BN_HomeTravelNotes* homeTravelNotes = self.viewModel.travelNotesArray[indexPath.row];
+            model.travelNotesId = homeTravelNotes.travelNotesId;
+            dest.model = model;
             [self.parentViewController.navigationController pushViewController:dest animated:YES];
             
         }

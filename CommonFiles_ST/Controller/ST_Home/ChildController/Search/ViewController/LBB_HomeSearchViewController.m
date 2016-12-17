@@ -1126,6 +1126,7 @@ static const NSInteger kButtonWidth = 45;
         case LBBPoohHomeSearchTypeTravel://游记
         {
             LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
+            vc.model = self.viewModel.travelNoteArray[indexPath.row];
             [self.navigationController pushViewController:vc animated:YES];
         }
             
