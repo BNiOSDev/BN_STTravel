@@ -14,7 +14,7 @@
 #import "LBB_SquareSnsFollowDynamicDataSource.h"
 #import "LBB_SquareSnsFollowFavoriteDataSource.h"
 #import "LBB_SquareSnsFollowFunsDataSource.h"
-
+#import "LBB_Share.h"
 
 typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     LBB_SquareSnsFollowlDynamic = 0,//动态
@@ -161,7 +161,8 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     shareButton.frame = CGRectMake(0, 0, 45, 45);
     [shareButton bk_addEventHandler:^(id sender){
         
-        
+        LBB_Share* share = [[LBB_Share alloc] init];
+        [share shareTitle:ws.viewModel.userShowViewModel.shareTitle url:ws.viewModel.userShowViewModel.shareUrl text:ws.viewModel.userShowViewModel.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
         
     }forControlEvents:UIControlEventTouchUpInside];
     
