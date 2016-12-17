@@ -10,6 +10,8 @@
 
 @interface LBB_Share : NSObject
 
++(LBB_Share *)sharedManager;
+
 - (void)shareTitle:(NSString*)tit url:(NSString*)u text:(NSString*)tex image:(UIImage*)imag viewController:(UIViewController*)viewController;
 
 @end

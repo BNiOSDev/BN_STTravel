@@ -22,6 +22,16 @@
 
 @implementation LBB_Share
 
+static LBB_Share *share = nil;
+
++(LBB_Share *)sharedManager{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        share = [[LBB_Share alloc]init];
+    });
+    return share;
+}
+
 - (void)shareTitle:(NSString*)tit url:(NSString*)u text:(NSString*)tex image:(UIImage*)imag viewController:(UIViewController*)viewController {
     
     title = tit;
