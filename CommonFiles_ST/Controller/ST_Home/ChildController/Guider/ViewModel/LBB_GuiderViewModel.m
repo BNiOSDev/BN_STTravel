@@ -138,8 +138,17 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
-            NSLog(@"getGuiderListArray 成功:%@",array);
-            NSArray *returnArray = [LBB_GuiderListViewModel mj_objectArrayWithKeyValuesArray:array];
+            
+            NSArray *dicArray = [array map:^id(NSDictionary *element) {
+                
+                NSMutableDictionary* dic = [NSMutableDictionary dictionaryWithDictionary:element];
+                dic[@"signed1"] = element[@"signed"];
+                dic[@"signed"] = nil;
+                return dic;
+            }];
+            
+            NSLog(@"getGuiderListArray 成功:%@",dicArray);
+            NSArray *returnArray = [LBB_GuiderListViewModel mj_objectArrayWithKeyValuesArray:dicArray];
             
             if (clear == YES)
             {
