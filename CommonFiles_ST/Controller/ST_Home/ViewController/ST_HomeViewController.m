@@ -23,6 +23,8 @@
 
 #import "LBB_PoohMyFavoriteViewController.h"
 
+#import "LBB_Share.h"
+
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -34,6 +36,7 @@
 
 @property(nonatomic, retain)LBB_HomeViewModel* viewModel;//数据模型
 
+@property(nonatomic, strong)LBB_Share *share;
 
 @end
 
@@ -42,6 +45,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.share = [[LBB_Share alloc]init];
+    [self.share shareTitle:@"ss" url:@"ww" text:@"dd" image:IMAGE(@"ST_TabImage2") viewController:self];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

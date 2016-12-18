@@ -10,6 +10,7 @@
 #import "CoreData+MagicalRecord.h"
 #import "LBB_LoginManager.h"
 #import "WXApi.h"
+#import <UMSocialCore/UMSocialCore.h>
 
 @interface AppDelegate ()
 
@@ -25,6 +26,19 @@
     self.window.backgroundColor = ColorWhite;
     //向微信注册wxd930ea5d5a258f4f
 //    [WXApi registerApp:@"wx94b0ac5b1ba8e1c3" withDescription:@"demo 2.0"];
+    [[UMSocialManager defaultManager] setUmSocialAppkey:@"57b432afe0f55a9832001a0a"];
+    
+    [[UMSocialManager defaultManager] openLog:YES];
+    
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx94b0ac5b1ba8e1c3" appSecret:@"1ef86c4ca4dcbe00b93064c4186bda4b" redirectURL:@"http://mobile.umeng.com/social"];
+    
+    
+    //设置分享到QQ互联的appKey和appSecret
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1105843602"  appSecret:@"b6NYFS4PEqyI7vh2" redirectURL:@"http://mobile.umeng.com/social"];
+    
+    //设置新浪的appKey和appSecret
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"4151346704"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    
     return YES;
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {

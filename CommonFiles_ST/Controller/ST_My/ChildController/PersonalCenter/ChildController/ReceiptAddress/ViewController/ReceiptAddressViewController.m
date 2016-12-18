@@ -9,7 +9,6 @@
 #import "ReceiptAddressViewController.h"
 #import "ReceiptAddressViewCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
-#import "LBB_AddressModel.h"
 #import "AddAddressViewController.h"
 
 @interface ReceiptAddressViewController ()<
@@ -21,6 +20,7 @@ ReceiptAddressViewCellDelegate
 @property (strong, nonatomic) UIView *addNewAddressView;
 
 @property (strong,nonatomic) LBB_AddressViewModel *viewModel;
+@property (strong,nonatomic) LBB_AddressModel *selectModel;
 
 @end
 
@@ -62,9 +62,20 @@ ReceiptAddressViewCellDelegate
     
     [self.viewModel.addressArray.loadSupport setDataRefreshblock:^{
         NSLog(@"数据刷新了");
+        [temp setDefalultSeletModel];
     }];
     
     [self.tableView loadData:self.viewModel.addressArray];
+}
+
+- (void)setDefalultSeletModel
+{
+    for (LBB_AddressModel *model in self.viewModel.addressArray) {
+        if (model.isDefault) {
+            self.selectModel = model;
+            break;
+        }
+    }
 }
 
 #pragma mark - tableView delegate
@@ -199,6 +210,7 @@ ReceiptAddressViewCellDelegate
     }
     
     model.isDefault = YES;
+    self.selectModel = model;
     for (int i = 0; i < self.viewModel.addressArray.count; i++) {
         LBB_AddressModel *tmpModel = self.viewModel.addressArray[i];
         if (model.addressId != tmpModel.addressId) {
@@ -216,4 +228,14 @@ ReceiptAddressViewCellDelegate
         addAddressVC.addressModel = sender;
     }
 }
+
+#pragma mark -  UI Action
+- (IBAction)backAction:(id)sender {
+    if (self.selectBlock) {
+        self.selectBlock(self.selectModel);
+        self.selectBlock = nil;
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

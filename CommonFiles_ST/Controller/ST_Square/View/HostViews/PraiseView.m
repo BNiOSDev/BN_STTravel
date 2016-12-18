@@ -13,7 +13,9 @@
 #import "PraiseModel.h"
 
 @implementation PraiseView
-
+{
+    UIButton    *praiseBtn;
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self == [super initWithFrame:frame])
@@ -30,7 +32,7 @@
             [view removeFromSuperview];
         }
     
-        UIButton    *praiseBtn = [UIButton new];
+        praiseBtn = [UIButton new];
         praiseBtn.backgroundColor = UIColorFromRGB(0xE0E1E2);
         [praiseBtn setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
         [praiseBtn setTitle:@"赞" forState:0];
@@ -110,6 +112,12 @@
     {
         self.praiseBlock(btn,UITableViewCellPraise);
     }
+}
+
+- (void)setBtnImage:(UIImage *)btnImage
+{
+    _btnImage = btnImage;
+    [praiseBtn setImage:btnImage forState:0];
 }
 
 @end

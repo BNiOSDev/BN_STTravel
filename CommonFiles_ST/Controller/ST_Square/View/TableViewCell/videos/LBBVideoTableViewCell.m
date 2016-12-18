@@ -74,9 +74,13 @@
     _contentLabel.font = Font14;
     _contentLabel.textColor = ColorGray;
     
+    __weak typeof(self) weakSelf = self;
     _contentImage = [UIImageView new];
     
     praiseView  = [PraiseView new];
+    praiseView.praiseBlock = ^(UIButton *btn,UITableViewCellViewSignal signal){
+        weakSelf.sendCommentBolck(btn,signal);
+    };
     
     _collectBtn = [UIButton new];
     _collectBtn.backgroundColor = UIColorFromRGB(0xE0E1E2);
@@ -84,9 +88,10 @@
     [_collectBtn setTitle:@"收藏" forState:0];
     [_collectBtn setTitleColor:UIColorFromRGB(0x888888) forState:0];
     _collectBtn.titleLabel.font = FONT(11.0);
+    [_collectBtn addTarget:self action:@selector(collectFunc:) forControlEvents:UIControlEventTouchUpInside];
     commetView = [ZJMCommentView new];
     
-    __weak typeof(self) weakSelf = self;
+    
     boxView = [CommentBoxView new];
     boxView.sendBlock = ^(NSString *str,UITableViewCellViewSignal signal){
         if(weakSelf.sendCommentBolck)//判断是否实现了块
@@ -180,6 +185,25 @@
      @property (nonatomic, strong)LBB_UserShowViewModel *userShowViewModel;
      */
     
+    if(model.isCollected == 1)
+    {
+        [_collectBtn setImage:IMAGE(@"景区列表_收藏HL") forState:0];
+    }
+    else
+    {
+        [_collectBtn setImage:IMAGE(@"景区列表_收藏") forState:0];
+        
+    }
+    
+    if(model.isLiked == 1)
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
+    }
+    else
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
+    }
+
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     _addressImage.image = IMAGE(@"zjmaddress");
@@ -187,23 +211,11 @@
     _addressNameLabel.text = model.allSpotsName;
     _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
     _contentLabel.text = model.videoRemark;//视频描述
-
-    FZJPhotoTool  *tool = [[FZJPhotoTool alloc]init];
-    __block UIImage  *videoImage;
-    [tool getThumbnailImage:model.videoUrl Block:^(UIImage *resultImage) {
-                videoImage = resultImage;
-    }];
-    if(!videoImage)
-    {
-        [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.videoUrl] placeholderImage:DEFAULTIMAGE];
-    }else{
-        _contentImage.image = videoImage;
-    }
-
     
+    [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.videoUrl] placeholderImage:DEFAULTIMAGE];
+
     //点赞人数
     NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {
-        
         PraiseModel* dic = [[PraiseModel alloc] init];
         dic.iconUrl = element.portrait;
         dic.userID = [NSString stringWithFormat:@"%ld",element.userId];
@@ -306,10 +318,12 @@
             .widthIs(view.width);
         };
         tagView.tagTitleStr = tagsModel.tagName;
-    
     }
 }
 
-
+- (void)collectFunc:(UIButton *)btn
+{
+        self.sendCommentBolck(btn,UITableViewCellCollect);
+}
 
 @end

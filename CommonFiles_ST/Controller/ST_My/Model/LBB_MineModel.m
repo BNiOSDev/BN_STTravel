@@ -274,7 +274,7 @@
                 break;
             case eRecentChat:
             {
-                detailInfo.detailImage = @"关注.png";
+                detailInfo.detailImage = @"我的_聊天.png";
                 detailInfo.detailContent = @"聊天";
             }
                 break;
