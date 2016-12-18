@@ -8,7 +8,15 @@
 
 #import "LBB_GuiderMainCell.h"
 #import "LBB_GuiderUserViewController.h"
-@implementation LBB_GuiderMainCell
+@implementation LBB_GuiderMainCell{
+
+    RACDisposable* racFollowState;
+    RACDisposable* racActionNum;
+    RACDisposable* racFansNum;
+    RACDisposable* racFollowNum;
+    
+    UILabel* signTitleLable;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -81,7 +89,12 @@
             make.width.mas_equalTo(AutoSize(40));
             make.height.mas_equalTo(AutoSize(15));
         }];
-        
+        [self.favoriteButton bk_addEventHandler:^(id sender){
+            
+            [ws.model attention:^(NSError* error){
+            
+            }];
+        } forControlEvents:UIControlEventTouchUpInside];
         
         //关注、粉丝、动态等标签
         self.favoriteLabel = [UILabel new];
@@ -162,6 +175,7 @@
             make.left.equalTo(ws.nameLabel);
             make.top.equalTo(identity.mas_bottom).offset(margin);
         }];
+        signTitleLable = sign;
         
         self.signLable = [UILabel new];
         [self.signLable setFont:Font13];
@@ -203,7 +217,7 @@
         
         [self.labelButton1 mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.nameLabel);
-            make.top.equalTo(sign.mas_bottom).offset(margin);
+            make.top.equalTo(signTitleLable.mas_bottom).offset(margin);
             make.width.mas_equalTo(AutoSize(80/2));
             make.height.mas_equalTo(AutoSize(30/2));
         }];
@@ -242,10 +256,152 @@
     return self;
 }
 
--(void)setModel:(id)model{
-    WS(ws);
-    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:IMAGE(PlaceHolderImage)];
-
+-(void)setModel:(LBB_GuiderListViewModel*)model{
     
+    _model = model;
+    [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
+
+    [self.nameLabel setText:model.userName];
+    [self.signLable setText:model.signed1];
+    
+    switch (model.tourAuditState) {//	Int	0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+        case 0://未提交实名认证
+            [self.vImageView setImage:IMAGE(@"导游_导游V")];
+            break;
+        case 1:// 已提交实名认证，正在审核
+            [self.vImageView setImage:IMAGE(@"导游_导游V")];
+            break;
+        case 2://认证成功
+            [self.vImageView setImage:IMAGE(@"导游_导游V")];
+            break;
+        case 3://认证失败
+            [self.vImageView setImage:IMAGE(@"导游_导游V")];
+            break;
+            
+        default://未提交实名认证
+            [self.vImageView setImage:IMAGE(@"导游_导游V")];
+            break;
+    }
+    
+    switch (model.gender) {//	Int	0女  1男  2未知（保密)
+        case 0://女
+            [self.genderImageView setImage:IMAGE(@"导游_女")];
+            break;
+        case 1://男
+            [self.genderImageView setImage:IMAGE(@"导游_男")];
+            break;
+            
+        default://未知
+            [self.genderImageView setImage:IMAGE(@"导游_女")];
+            break;
+    }
+    
+    
+    [racFollowState dispose];
+    [racFansNum dispose];
+    [racActionNum dispose];
+    [racFollowNum dispose];
+    @weakify(self);
+    racFollowState = [RACObserve(model, followState) subscribeNext:^(NSNumber* status){
+        @strongify(self);
+        //0未关注1：已关注 2：互相关注
+        
+        switch ([status intValue]) {
+            case 0:
+                [self.favoriteButton setTitle:@"关注" forState:UIControlStateNormal];
+                break;
+            case 1:
+                [self.favoriteButton setTitle:@"已关注" forState:UIControlStateNormal];
+                break;
+            case 2:
+                [self.favoriteButton setTitle:@"互相关注" forState:UIControlStateNormal];
+                break;
+                
+            default:
+                [self.favoriteButton setTitle:@"关注" forState:UIControlStateNormal];
+                break;
+        }
+    }];
+    
+    [self.favoriteLabel setText:@"关注 12"];
+    [self.funsLabel setText:@"粉丝 1290"];
+    [self.dynamicLabel setText:@"动态 1290"];
+    //动态
+    racActionNum = [RACObserve(model, actionNum) subscribeNext:^(NSNumber* num){
+        @strongify(self);
+        [self.dynamicLabel setText:[NSString stringWithFormat:@"动态 %d",[num intValue]]];
+    }];
+    
+    //关注
+    racFollowNum = [RACObserve(model, followNum) subscribeNext:^(NSNumber* num){
+        @strongify(self);
+        [self.favoriteLabel setText:[NSString stringWithFormat:@"关注 %d",[num intValue]]];
+    }];
+    
+    //粉丝
+    racFansNum = [RACObserve(model, fansNum) subscribeNext:^(NSNumber* num){
+        @strongify(self);
+        [self.funsLabel setText:[NSString stringWithFormat:@"粉丝 %d",[num intValue]]];
+    }];
+    
+    //标签
+    self.labelButton1.hidden = YES;
+    self.labelButton2.hidden = YES;
+    self.labelButton3.hidden = YES;
+    
+    NSInteger count = model.tourTags.count;
+    if (count > 0) {
+        self.labelButton1.hidden = NO;
+        LBB_GuiderTags* tag = [model.tourTags objectAtIndex:0];
+        [self.labelButton1 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 1){
+        self.labelButton2.hidden = NO;
+        LBB_GuiderTags* tag = [model.tourTags objectAtIndex:1];
+        [self.labelButton2 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+    if (count > 2){
+        self.labelButton3.hidden = NO;
+        LBB_GuiderTags* tag = [model.tourTags objectAtIndex:2];
+        [self.labelButton3 setTitle:tag.tagName forState:UIControlStateNormal];
+    }
+
+    WS(ws);
+    CGFloat margin = 8;
+    if (count <= 0) {
+        [self.labelButton1 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.nameLabel);
+            make.top.equalTo(signTitleLable.mas_bottom).offset(0);
+            make.width.mas_equalTo(AutoSize(80/2));
+            make.height.mas_equalTo(AutoSize(0));
+        }];
+        
+        [self.labelButton2 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.labelButton1.mas_right).offset(margin);
+            make.centerY.width.height.equalTo(ws.labelButton1);
+        }];
+        [self.labelButton3 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.labelButton2.mas_right).offset(margin);
+            make.centerY.width.height.equalTo(ws.labelButton1);
+        }];
+    }
+    else{
+        [self.labelButton1 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.nameLabel);
+            make.top.equalTo(signTitleLable.mas_bottom).offset(margin);
+            make.width.mas_equalTo(AutoSize(80/2));
+            make.height.mas_equalTo(AutoSize(30/2));
+        }];
+        
+        [self.labelButton2 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.labelButton1.mas_right).offset(margin);
+            make.centerY.width.height.equalTo(ws.labelButton1);
+        }];
+        [self.labelButton3 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.labelButton2.mas_right).offset(margin);
+            make.centerY.width.height.equalTo(ws.labelButton1);
+        }];
+    }
+    [self.contentView layoutSubviews];
 }
 @end

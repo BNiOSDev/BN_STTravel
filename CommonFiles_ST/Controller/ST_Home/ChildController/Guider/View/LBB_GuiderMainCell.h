@@ -7,6 +7,7 @@
 //
 
 #import "LBBPoohBaseTableViewCell.h"
+#import "LBB_GuiderViewModel.h"
 
 @interface LBB_GuiderMainCell : LBBPoohBaseTableViewCell
 
@@ -27,6 +28,6 @@
 @property(nonatomic, retain)UIButton* labelButton2;//标签1
 @property(nonatomic, retain)UIButton* labelButton3;//标签1
 
-@property(nonatomic, retain)id model;
+@property(nonatomic, retain)LBB_GuiderListViewModel* model;
 
 @end

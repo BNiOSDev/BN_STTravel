@@ -98,8 +98,6 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
-    
-    
 }
 
 -(void)initViewModel{

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D9AC5F91E06AC2C00295A09 /* LBB_GuiderConditionOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9AC5F81E06AC2C00295A09 /* LBB_GuiderConditionOption.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DAD7D301E068FCF00C2EEA0 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD780C1E068FCE00C2EEA0 /* PoohBaseTableViewController.m */; };
@@ -613,6 +614,8 @@
 
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D9AC5F71E06AC2C00295A09 /* LBB_GuiderConditionOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderConditionOption.h; sourceTree = "<group>"; };
+		1D9AC5F81E06AC2C00295A09 /* LBB_GuiderConditionOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderConditionOption.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DAD780B1E068FCE00C2EEA0 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
@@ -1715,6 +1718,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1D9AC5F61E06A34300295A09 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		1DAD78071E068FCE00C2EEA0 /* CommonFiles_ST */ = {
 			isa = PBXGroup;
 			children = (
@@ -2039,6 +2049,8 @@
 			children = (
 				1DAD788C1E068FCE00C2EEA0 /* LBB_GuiderViewModel.h */,
 				1DAD788D1E068FCE00C2EEA0 /* LBB_GuiderViewModel.m */,
+				1D9AC5F71E06AC2C00295A09 /* LBB_GuiderConditionOption.h */,
+				1D9AC5F81E06AC2C00295A09 /* LBB_GuiderConditionOption.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2424,6 +2436,7 @@
 		1DAD79301E068FCE00C2EEA0 /* Square */ = {
 			isa = PBXGroup;
 			children = (
+				1D9AC5F61E06A34300295A09 /* ViewModel */,
 				1DAD79311E068FCE00C2EEA0 /* View */,
 				1DAD79381E068FCE00C2EEA0 /* ViewController */,
 			);
@@ -5832,6 +5845,7 @@
 				1DAD7F1B1E068FD000C2EEA0 /* JHChart.m in Sources */,
 				1DAD7D3F1E068FCF00C2EEA0 /* LBBPoohBaseTableViewCell.m in Sources */,
 				1DAD7EDF1E068FD000C2EEA0 /* UIViewExt.m in Sources */,
+				1D9AC5F91E06AC2C00295A09 /* LBB_GuiderConditionOption.m in Sources */,
 				1DAD7E231E068FD000C2EEA0 /* SettingViewController.m in Sources */,
 				1DAD7ED41E068FD000C2EEA0 /* LBBHostDetailViewController.m in Sources */,
 				1DAD7E0D1E068FD000C2EEA0 /* LBB_PersonalModel.m in Sources */,
