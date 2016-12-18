@@ -41,14 +41,14 @@
  
  @param block 回调函数
  */
-- (void)collecte:(void (^)(NSError *error))block;
+- (void)collecte:(void (^)(NSDictionary*dic, NSError *error))block;
 
 /**
  点赞
  
  @param block 回调函数
  */
-- (void)like:(void (^)(NSError *error))block;
+- (void)like:(void (^)(NSDictionary*dic, NSError *error))block;
 
 /**
  3.4.5	广场-广场主页-图片/视频详情（已测）

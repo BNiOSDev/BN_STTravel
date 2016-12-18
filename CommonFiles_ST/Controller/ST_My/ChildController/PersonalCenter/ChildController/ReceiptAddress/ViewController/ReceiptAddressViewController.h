@@ -7,7 +7,12 @@
 //
 
 #import "MineBaseViewController.h"
+#import "LBB_AddressModel.h"
+
+typedef void(^SelectAddressBlock)(LBB_AddressModel *addressModel);
 
 @interface ReceiptAddressViewController : MineBaseViewController
+
+@property(nonatomic,strong) SelectAddressBlock selectBlock;
 
 @end

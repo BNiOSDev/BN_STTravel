@@ -21,7 +21,7 @@
 @property(nonatomic,copy) NSString *districtName;//县、区名称
 @property(nonatomic,assign) long  districtId;//县、区ID
 @property(nonatomic,copy) NSString  *address;//地址名称
-@property(nonatomic,copy) NSString  *zipcode;//地址名称
+@property(nonatomic,copy) NSString  *zipcode;//邮件编码
 
 /**
  3.5.33 我的-收货地址修改/保存
