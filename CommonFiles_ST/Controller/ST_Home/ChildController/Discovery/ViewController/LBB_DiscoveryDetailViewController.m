@@ -74,8 +74,7 @@
     share.frame = CGRectMake(0, 0, 45, 45);
     [share bk_addEventHandler:^(id sender){
         
-        LBB_Share* share = [[LBB_Share alloc] init];
-        [share shareTitle:ws.viewModel.discoveryDetail.shareTitle url:ws.viewModel.discoveryDetail.shareUrl text:ws.viewModel.discoveryDetail.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
+        [[LBB_Share sharedManager] shareTitle:ws.viewModel.discoveryDetail.shareTitle url:ws.viewModel.discoveryDetail.shareUrl text:ws.viewModel.discoveryDetail.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
         
     }forControlEvents:UIControlEventTouchUpInside];
     

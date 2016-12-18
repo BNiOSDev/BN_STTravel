@@ -161,8 +161,7 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     shareButton.frame = CGRectMake(0, 0, 45, 45);
     [shareButton bk_addEventHandler:^(id sender){
         
-        LBB_Share* share = [[LBB_Share alloc] init];
-        [share shareTitle:ws.viewModel.userShowViewModel.shareTitle url:ws.viewModel.userShowViewModel.shareUrl text:ws.viewModel.userShowViewModel.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
+        [[LBB_Share sharedManager] shareTitle:ws.viewModel.userShowViewModel.shareTitle url:ws.viewModel.userShowViewModel.shareUrl text:ws.viewModel.userShowViewModel.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
         
     }forControlEvents:UIControlEventTouchUpInside];
     

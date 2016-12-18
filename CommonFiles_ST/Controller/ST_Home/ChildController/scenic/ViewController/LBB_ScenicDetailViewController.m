@@ -243,8 +243,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         make.right.equalTo(ws.baseNavigationBarView).offset(kSearchButtonMarginRight);
     }];
     [share bk_addEventHandler:^(id sender){
-        LBB_Share* share = [[LBB_Share alloc] init];
-        [share shareTitle:ws.spotModel.spotDetails.shareTitle url:ws.spotModel.spotDetails.shareUrl text:ws.spotModel.spotDetails.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
+        [[LBB_Share sharedManager] shareTitle:ws.spotModel.spotDetails.shareTitle url:ws.spotModel.spotDetails.shareUrl text:ws.spotModel.spotDetails.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
         
     }forControlEvents:UIControlEventTouchUpInside];
     
