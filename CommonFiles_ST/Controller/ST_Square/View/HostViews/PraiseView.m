@@ -13,7 +13,9 @@
 #import "PraiseModel.h"
 
 @implementation PraiseView
-
+{
+    UIButton    *praiseBtn;
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if(self == [super initWithFrame:frame])
@@ -30,13 +32,14 @@
             [view removeFromSuperview];
         }
     
-        UIButton    *praiseBtn = [UIButton new];
+        praiseBtn = [UIButton new];
         praiseBtn.backgroundColor = UIColorFromRGB(0xE0E1E2);
-        [praiseBtn setImage:IMAGE(@"praiseComment") forState:0];
+        [praiseBtn setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
         [praiseBtn setTitle:@"赞" forState:0];
         [praiseBtn setTitleColor:UIColorFromRGB(0x888888) forState:0];
         praiseBtn.titleLabel.font = FONT(11.0);
         [praiseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+        [praiseBtn addTarget:self action:@selector(btnfunc:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:praiseBtn];
     
        praiseBtn.sd_layout
@@ -101,6 +104,20 @@
         }
     
      [self setupAutoHeightWithBottomView:lastView bottomMargin:0];
+}
+
+- (void)btnfunc:(UIButton *)btn
+{
+    if(self.praiseBlock)
+    {
+        self.praiseBlock(btn,UITableViewCellPraise);
+    }
+}
+
+- (void)setBtnImage:(UIImage *)btnImage
+{
+    _btnImage = btnImage;
+    [praiseBtn setImage:btnImage forState:0];
 }
 
 @end

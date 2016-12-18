@@ -8,7 +8,7 @@
 
 #import "LBBHomeAnnouncementTableViewCell.h"
 #import "GYChangeTextView.h"
-
+#import "LBB_ToWebViewController.h"
 @interface LBBHomeAnnouncementTableViewCell()<GYChangeTextViewDelegate>{
 
     UILabel* label;
@@ -119,7 +119,7 @@
     NSMutableArray* texts = [NSMutableArray new];
     for (BN_HomeNotices* obj in noticesArray) {
         
-        [texts addObject:obj.content?obj.content:@""];
+        [texts addObject:obj.title?obj.title:@""];
     }
     [self setScrollTextArray:texts];
 }
@@ -160,6 +160,14 @@
 
 - (void)gyChangeTextView:(GYChangeTextView *)textView didTapedAtIndex:(NSInteger)index {
    // NSLog(@"%@ select: %ld",[textView class],index);
+    if (self.noticesArray.count > 0) {
+        BN_HomeNotices* obj = [self.noticesArray objectAtIndex:index];
+        LBB_ToWebViewController* vc = [[LBB_ToWebViewController alloc] init];
+        vc.webTitle = obj.title;
+        vc.isLoadHtml = YES;
+        vc.htmlString = obj.content;
+        [[self getViewController].navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

@@ -10,6 +10,8 @@
 
 @interface LBB_SetPushViewModel : BN_BaseDataModel
 
+@property(nonatomic,assign) int isShakeWarn; //推送震动提醒
+@property(nonatomic,assign) int isVoiceWarn; //推送声音提醒
 @property(nonatomic,assign) int isFollowWarn;//关注提醒:
 @property(nonatomic,assign) int isChatWarn;//聊天提醒:
 @property(nonatomic,assign) int isLikeWarn;//点赞提醒

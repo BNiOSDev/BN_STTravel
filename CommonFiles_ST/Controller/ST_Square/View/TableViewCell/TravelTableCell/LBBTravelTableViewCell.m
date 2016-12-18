@@ -9,6 +9,7 @@
 #import "LBBTravelTableViewCell.h"
 #import "LBBTravelContentImage.h"
 #import "Header.h"
+#import "LBB_TagView.h"
 
 @implementation LBBTravelTableViewCell
 {
@@ -127,6 +128,7 @@
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
     
+    [self setTagViews];
 }
 
 
@@ -150,5 +152,32 @@
                                         context:nil];
     return rect.size.width;
 }
+
+- (void)setTagViews
+{
+    for(UIView *view in [self subviews])
+    {
+        if([view isKindOfClass:[LBB_TagView class]])
+        {
+            [view removeFromSuperview];
+        }
+    }
+    for(int i = 0;i < _model.tags.count;i++)
+    {
+        LBB_SquareTags  *tagsModel = [_model.tags objectAtIndex:i];
+        LBB_TagView   *tagView = [[LBB_TagView alloc]initWithFrame:CGRectMake(0, contentImage.height - AUTO(25) - (AUTO(25) * i), AUTO(80), AUTO(20))];
+        tagView.tagModel = tagsModel;
+        __weak typeof(tagView) weakTagView = tagView;
+        tagView.blockTagFunc = ^(LBB_TagView *view)
+        {
+            weakTagView.left = contentImage.width - view.width - 5;
+        };
+        tagView.tagTitleStr = tagsModel.tagName;
+        
+        [self addSubview:tagView];
+        
+    }
+}
+
 
 @end

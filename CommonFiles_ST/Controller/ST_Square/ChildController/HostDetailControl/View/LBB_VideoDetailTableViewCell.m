@@ -15,11 +15,13 @@
 #import "ContentImageView.h"
 #import "Header.h"
 #import "LBB_ZJMPhotoList.h"
+#import "LBB_TagView.h"
 
 @implementation LBB_VideoDetailTableViewCell
 {
     UIButton       *_iconImage;//大头像
     UIButton       *_collectBtn;
+//    UIButton       *_playBtn;
     UILabel         *_nameLable;//用户名
     UILabel         *_timeLabel;//时间
     UILabel         *_addressNameLabel;//地址
@@ -27,7 +29,7 @@
     UIImageView        *_addressImage;//地址图标
     UIImageView        *_timeImage;//时间图标
     
-    UIImageView      *_contentImage;//主图，内容图
+//    UIImageView      *_contentImage;//主图，内容图
     PraiseView                  *praiseView;         //
     ZJMCommentView      *commetView;      //
     CommentBoxView       *boxView;             //
@@ -70,8 +72,13 @@
     _contentLabel.textColor = ColorGray;
     
     _contentImage = [UIImageView new];
+    _contentImage.userInteractionEnabled = YES;
     
+    __weak typeof(self) weakSelf = self;
     praiseView  = [PraiseView new];
+    praiseView.praiseBlock = ^(UIButton *btn,UITableViewCellViewSignal signal){
+        weakSelf.sendCommentBlock(btn,signal);
+    };
     
     _collectBtn = [UIButton new];
     _collectBtn.backgroundColor = UIColorFromRGB(0xE0E1E2);
@@ -79,10 +86,18 @@
     [_collectBtn setTitle:@"收藏" forState:0];
     [_collectBtn setTitleColor:UIColorFromRGB(0x888888) forState:0];
     _collectBtn.titleLabel.font = FONT(11.0);
+    [_collectBtn addTarget:self action:@selector(collectFunc:) forControlEvents:UIControlEventTouchUpInside];
     commetView = [ZJMCommentView new];
     
+
     boxView = [CommentBoxView new];
+    boxView.sendBlock = ^(NSString *str,UITableViewCellViewSignal signal){
+        weakSelf.sendCommentBlock(str,signal);
+    };
     
+    _playBtn = [UIButton new];
+    [_playBtn setBackgroundImage:IMAGE(@"zjmbofang") forState:0];
+    [_playBtn addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
     NSArray   *views = @[_iconImage,_nameLable,_timeImage,_timeLabel,_addressImage,_addressNameLabel,_contentLabel,
                          _contentImage,praiseView,_collectBtn,commetView,boxView];
     [self.contentView sd_addSubviews:views];
@@ -163,6 +178,27 @@
      @property (nonatomic, assign)int isCollected ;// 是否收藏
      @property (nonatomic, strong)NSMutableArray<LBB_SquareComments *> *comments ;// 评论集合
      */
+    
+    if(model.isCollected == 1)
+    {
+        [_collectBtn setImage:IMAGE(@"景区列表_收藏HL") forState:0];
+    }
+    else
+    {
+        [_collectBtn setImage:IMAGE(@"景区列表_收藏") forState:0];
+        
+    }
+    
+    if(model.isLiked == 1)
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
+    }
+    else
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
+    }
+
+    
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     _addressImage.image = IMAGE(@"zjmaddress");
@@ -230,6 +266,12 @@
     .topSpaceToView(_contentLabel, 0)
     .rightSpaceToView(self.contentView, 0)
     .heightIs(AUTO(320));
+    [_contentImage addSubview:_playBtn];
+    _playBtn.sd_layout
+    .heightIs(AUTO(40))
+    .widthIs(AUTO(40))
+    .centerXEqualToView(_contentImage)
+    .centerYEqualToView(_contentImage);
     
     praiseView.sd_layout
     .leftSpaceToView(self.contentView,10)
@@ -254,6 +296,52 @@
     .heightIs(40);
     
     [self setupAutoHeightWithBottomViewsArray:@[boxView,_contentLabel] bottomMargin:10];
+    [self setTagViews];
+}
+
+- (void)setTagViews
+{
+    for(UIView *view in [self subviews])
+    {
+        if([view isKindOfClass:[LBB_TagView class]])
+        {
+            [view removeFromSuperview];
+        }
+    }
+    __block UIView *lastView = _contentImage;
+    for(int i = 0;i < _model.tags.count;i++)
+    {
+        LBB_SquareTags  *tagsModel = [_model.tags objectAtIndex:i];
+        __block LBB_TagView   *tagView = [[LBB_TagView alloc]initWithFrame:CGRectMake(0, _contentImage.height - AUTO(25) - (AUTO(25) * i), AUTO(80), AUTO(20))];
+        [_contentImage addSubview:tagView];
+        tagView.tagModel = tagsModel;
+        __weak typeof(tagView) weakTagView = tagView;
+        tagView.blockTagFunc = ^(LBB_TagView *view)
+        {
+            //            weakTagView.left = _contentImage.width - view.width - 5;
+            weakTagView.sd_layout
+            .bottomSpaceToView(lastView,5)
+            .rightSpaceToView(lastView,5)
+            .heightIs(view.height)
+            .widthIs(view.width);
+        };
+        tagView.tagTitleStr = tagsModel.tagName;
+        
+    }
+}
+
+- (void)collectFunc:(UIButton *)btn
+{
+    if(self.sendCommentBlock)
+    {
+        self.sendCommentBlock(btn,UITableViewCellCollect);
+    }
+}
+
+- (void)play:(UIButton *)sender {
+    if (self.playBlock) {
+        self.playBlock(sender);
+    }
 }
 
 @end

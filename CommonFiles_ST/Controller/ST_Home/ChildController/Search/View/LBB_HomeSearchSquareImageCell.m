@@ -171,6 +171,14 @@
         return dic;
     }];
     
+    NSMutableArray *tagsArray = [[NSMutableArray alloc]init];
+    if(model.pics.count == 1)
+    {
+        LBB_SquarePics *imageModel = model.pics[0];
+        tagsArray = imageModel.tags;
+    }
+    //这两个的顺序不可以替换
+    _contentImage.tagsArray = tagsArray;
     _contentImage.imageArray = imageArray;
 
     _contentLabel.sd_layout

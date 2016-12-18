@@ -95,19 +95,102 @@
     
     cell.model = self.viewModel.ugcVideoArray[indexPath.row];
     __weak typeof (self) weakSelf = self;
-    cell.blockBtnFunc = ^(NSInteger tag)
+//    
+//    cell.sendCommentBolck = ^(id obj,UITableViewCellViewSignal signal)
+//    {
+//        if(signal == UITableViewCellSendMessage)
+//        {
+//            NSLog(@"发送评论=%@",obj);
+//            LBB_SquareUgc *model = weakSelf.viewModel.ugcVideoArray[indexPath.row];
+//            [LBB_CommentViewModel  commentObjId:model.allSpotsId type:6 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+//                NSLog(@"评论回馈= %@",dic);
+//                if(!error){
+//                    LBB_SquareComments *commentsModel = [LBB_SquareComments new];
+//                    NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
+//                    commentsModel.commentId = [commentIdStr longLongValue];
+//                    commentsModel.remark = dic[@"remark"];
+//                    commentsModel.userName = dic[@"userName"];
+//                    [model.comments addObject:commentsModel];
+//                    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//                }
+//            }];
+//        }
+//    };
+    
+    cell.sendCommentBolck = ^(id obj,UITableViewCellViewSignal signal)
     {
-        if(tag == 0)
+        switch (signal)
         {
-            LBB_SquareUgc *model = weakSelf.viewModel.ugcVideoArray[indexPath.row];
-            LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc]init];
-            vc.videoUrl = [NSURL URLWithString:model.videoUrl];
-            [self presentViewController:vc animated:YES completion:nil];
-//            [self.navigationController pushViewController:vc animated:YES];
+            case UITableViewCellSendMessage:
+            {
+                NSLog(@"发送评论=%@",obj);
+                LBB_SquareUgc *model = weakSelf.viewModel.ugcVideoArray[indexPath.row];
+                [LBB_CommentViewModel  commentObjId:model.allSpotsId type:6 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                    NSLog(@"评论回馈= %@",dic);
+                    if(!error){
+                        LBB_SquareComments *commentsModel = [LBB_SquareComments new];
+                        NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
+                        commentsModel.commentId = [commentIdStr longLongValue];
+                        commentsModel.remark = dic[@"remark"];
+                        commentsModel.userName = dic[@"userName"];
+                        [model.comments addObject:commentsModel];
+                        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+                    }
+                }];
+            }
+                break;
+            case UITableViewCellCollect:
+            {
+                LBB_SquareUgc  *model = weakSelf.viewModel.ugcVideoArray[indexPath.row];
+                [model collecte:^(NSDictionary *dic,NSError *error) {
+                    if(!error)
+                    {
+                        NSLog(@"收藏成功，更换图片");
+                        UIButton *btn = obj;
+                        [btn setImage:IMAGE(@"zjmshoucanged") forState:0];
+                        if(model.isCollected == 1)
+                        {
+                            [btn setImage:IMAGE(@"景区列表_收藏HL") forState:0];
+                        }
+                        else
+                        {
+                            [btn setImage:IMAGE(@"景区列表_收藏") forState:0];
+                        }
+                    
+                    }
+                }];
+            }
+                break;
+            case UITableViewCellPraise:
+            {
+                LBB_SquareUgc  *model = weakSelf.viewModel.ugcVideoArray[indexPath.row];
+                NSLog(@"likeList.count = %ld",model.likeList.count);
+                [model like:^(NSDictionary *dic,NSError *error) {
+                    if(!error)
+                    {
+                        NSLog(@"likeList.count =  %ld",model.likeList.count);
+                        NSLog(@"收藏成功，更换图片");
+                        UIButton *btn = obj;
+                        if(model.isLiked == 1)
+                        {
+                            [btn setImage:IMAGE(@"zjmzhuyedianzaned") forState:0];
+                        }
+                        else
+                        {
+                            [btn setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
+                            
+                        }
+                    }
+                }];
+            }
+                break;
+                
+            default:
+                break;
         }
+        
     };
-    
-    
+
     return cell;
 }
 

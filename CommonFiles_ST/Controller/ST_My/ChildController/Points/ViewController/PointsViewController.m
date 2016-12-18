@@ -81,6 +81,8 @@ UICollectionViewDelegateFlowLayout
 
 - (void)initData
 {
+    self.pointsLabel.text = [NSString stringWithFormat:@"%@",@(self.viewModel.unused)];
+    
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                        @{@"Title": NSLocalizedString(@"可兑换积分",nil),
                                          @"Image" : @"我的_积分2",
@@ -159,7 +161,7 @@ UICollectionViewDelegateFlowLayout
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
     LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
     vc.baseViewType = ePointConvertDesc;
-    vc.webViewURL = self.viewModel.descURL;
+    vc.webViewURL = self.viewModel.integralExplain;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

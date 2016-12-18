@@ -122,14 +122,14 @@
 {
     self.dataSourceArray = [[NSMutableArray alloc] initWithArray:@[
                                                                    @{@"Title": NSLocalizedString(@"推送消息震动提醒",nil),
-                                                                     @"SwitchOn" : [NSNumber numberWithInt:YES],
-                                                                     @"SwitchType":[NSNumber numberWithInteger:eRemoteShakeWarn]},
+                                                                     @"SwitchOn" : [NSNumber numberWithInt:self.viewModel.isShakeWarn],
+                                                                     @"SwitchType":[NSNumber numberWithInt:self.viewModel.isVoiceWarn]},
                                                                     @{@"Title": NSLocalizedString(@"推送消息声音提醒",nil),
                                                                       @"SwitchOn" : [NSNumber numberWithInt:NO],
                                                                       @"SwitchType":[NSNumber numberWithInteger:eRemoteVoiceWarn]},
-                                                                    @{@"Title": NSLocalizedString(@"精品内容推荐提醒提醒",nil),
-                                                                      @"SwitchOn" : [NSNumber numberWithInt:YES],
-                                                                      @"SwitchType":[NSNumber numberWithInteger:eHighqualityWarn]},
+//                                                                    @{@"Title": NSLocalizedString(@"精品内容推荐提醒提",nil),
+//                                                                      @"SwitchOn" : [NSNumber numberWithInt:YES],
+//                                                                      @"SwitchType":[NSNumber numberWithInteger:eHighqualityWarn]},
                                                                     @{@"Title": NSLocalizedString(@"关注提醒",nil),
                                                                       @"SwitchOn" : [NSNumber numberWithInt:self.viewModel.isFollowWarn],
                                                                       @"SwitchType":[NSNumber numberWithInteger:eFollowWarn]},
@@ -165,10 +165,12 @@
     self.updateSwithType = switchType.integerValue;
     switch (switchType.integerValue) {
         case  eRemoteShakeWarn://推送消息震动提醒
-            
+            settingName = @"isShakeWarn";
+            settingValue = !self.viewModel.isShakeWarn;
             break;
-        case  eRemoteVoiceWarn://聊天提醒
-            
+        case  eRemoteVoiceWarn://声音提醒
+            settingName = @"isVoiceWarn";
+            settingValue = !self.viewModel.isVoiceWarn;
             break;
         case  eHighqualityWarn://精品内容推荐提醒
             

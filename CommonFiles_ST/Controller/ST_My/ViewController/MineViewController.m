@@ -25,6 +25,9 @@
 #import "LBB_MyFavoriteSquareViewController.h"
 #import "LBB_LoginViewController.h"
 #import "LBB_MyChatViewController.h"
+#import "LBB_OrderModuleViewController.h"
+#import "BN_ShopFlashSaleListViewController.h" //限时抢购
+#import "BN_ShopListViewController.h" // 商品列表
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
@@ -151,15 +154,39 @@ LBB_MySectionHeadViewDelegate
     switch (viewType) {
  /* 我的订单 */
         case eOrder: //查看全部-订单
+        {
+            LBB_OrderModuleViewController *vc = [[LBB_OrderModuleViewController alloc] init];
+            vc.baseViewType = eOrderType;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case eOrder_WaitPay: //我的订单_待付款
-            
+        {
+            LBB_OrderModuleViewController *vc = [[LBB_OrderModuleViewController alloc] init];
+            vc.baseViewType = eOrderType_WaitPay;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
-        case eOrder_WaitGetTicket: //我的订单_待取票
-            
+        case eOrder_WaitGetTicket: //我的订单_待收货
+        {
+            LBB_OrderModuleViewController *vc = [[LBB_OrderModuleViewController alloc] init];
+            vc.baseViewType = eOrderType_WaitGetTicket;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case eOrder_WaitComment: //我的订单_待评价
-            
+        {
+            LBB_OrderModuleViewController *vc = [[LBB_OrderModuleViewController alloc] init];
+            vc.baseViewType = eOrderType_WaitComment;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case eOrder_AfterAales: //我的订单_售后
+        {
+            LBB_OrderModuleViewController *vc = [[LBB_OrderModuleViewController alloc] init];
+            vc.baseViewType = eOrderType_AfterAales;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
  /* 我的门票 */
         case eTickets://查看全部-门票
@@ -232,13 +259,20 @@ LBB_MySectionHeadViewDelegate
         }
             break;
         case eGoods://商品
-            
+        {
+            BN_ShopListViewController *vc = [[BN_ShopListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case eFlashSale://限时抢购
-            
+        {
+            BN_ShopFlashSaleListViewController *vc = [[BN_ShopFlashSaleListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case eHandSpecial://伴手礼专题
-            
+        {
+        }
             break;
         case eTravelGuide://攻略
         {

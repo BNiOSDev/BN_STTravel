@@ -48,7 +48,7 @@
         
         self.titleLabel = [UILabel new];
 
-        [self.titleLabel setFont:Font12];
+        [self.titleLabel setFont:AutoFont(10)];
         [self.titleLabel setText:@"曾厝垵"];
         [self.contentView addSubview:self.titleLabel];
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
@@ -60,7 +60,7 @@
         self.disView = [[UIButton alloc]init];
         [self.disView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
         [self.disView setTitle:@"1000" forState:UIControlStateNormal];
-        [self.disView.titleLabel setFont:Font12];
+        [self.disView.titleLabel setFont:AutoFont(10)];
         [self.disView setTitleColor:ColorLightGray forState:UIControlStateNormal];
         [self.disView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [self.contentView addSubview:self.disView];
@@ -76,13 +76,13 @@
         self.greetView = [[UIButton alloc]init];
         [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
         [self.greetView setTitle:@"1000" forState:UIControlStateNormal];
-        [self.greetView.titleLabel setFont:Font12];
+        [self.greetView.titleLabel setFont:AutoFont(10)];
         [self.greetView setTitleColor:ColorLightGray forState:UIControlStateNormal];
         [self.greetView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [self.contentView addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.disView.mas_right).offset(8);
+            make.left.equalTo(ws.disView.mas_right).offset(3);
             make.centerY.height.equalTo(ws.disView);
         }];
         
@@ -147,7 +147,7 @@
     NSString* strFormat2 = @"元";
     UIColor* fontColor = ColorBtnYellow;
     NSDictionary* attrsDic = @{NSForegroundColorAttributeName:fontColor,
-                               NSFontAttributeName:Font12};    //显示的字符串进行富文本转换
+                               NSFontAttributeName:AutoFont(10)};    //显示的字符串进行富文本转换
     NSMutableAttributedString* strAttr = [[NSMutableAttributedString alloc]initWithString:strFormat1];
     //字体设置
     NSRange rang = [strFormat1 rangeOfString:strFormat2];

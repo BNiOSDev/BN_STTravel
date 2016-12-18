@@ -14,4 +14,7 @@
 
 @property(nonatomic,copy)NSURL* url;
 
+@property(nonatomic,copy)NSString* htmlString;
+@property(nonatomic,assign)BOOL isLoadHtml;
+
 @end

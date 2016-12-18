@@ -66,25 +66,13 @@
     //    self.picArray = [temp copy];
 }
 
-- (void)prepareForReuse
-{
-    oneImage.image = nil;
-    twoImage.image = nil;
-    threeImage.image = nil;
-    fourImage.image = nil;
-    fiveImage.image = nil;
-    sixImage.image = nil;
-    sevenImage.image = nil;
-    eightImage.image = nil;
-    nightImage.image = nil;
-}
-
 - (void)setImageArray:(NSArray *)imageArray
 {
     for(UIView *view in self.subviews)
     {
         [view removeFromSuperview];
     }
+    [self removeAllSubviews];
     
     _imageArray = imageArray;
     switch (imageArray.count) {
@@ -103,7 +91,6 @@
             break;
         case 2:
         {
-            
             NSArray *views = @[oneImage,twoImage];
             [self sd_addSubviews:views];
             [self setImageFor_Two];
@@ -168,11 +155,7 @@
     LBB_TipImage_Pulish_ImageView  *theOneImage = [[LBB_TipImage_Pulish_ImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
     [self addSubview:theOneImage];
     [theOneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
-    //    theOneImage.sd_layout
-    //    .topSpaceToView(self,0)
-    //    .leftSpaceToView(self,0)
-    //    .rightSpaceToView(self,0)
-    //    .bottomSpaceToView(self,0);
+
     if(self.tagsArray.count > 0)
         theOneImage.tipArray = self.tagsArray;
     [theOneImage clearNotifi];

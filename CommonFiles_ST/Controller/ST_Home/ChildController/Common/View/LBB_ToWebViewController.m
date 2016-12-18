@@ -77,10 +77,14 @@
     }];
     _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     
-    NSURL* url = self.url;
-    
-    NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
-    [self.web loadRequest:request];
+    if (self.isLoadHtml) {
+        [self loadHTML];
+    }
+    else{
+        NSURL* url = self.url;
+        NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
+        [self.web loadRequest:request];
+    }
 }
 
 
@@ -101,4 +105,10 @@
     [_progressView setProgress:1.0 animated:YES];
     
 }
+
+-(void)loadHTML{
+    
+    [self.web loadHTMLString:self.htmlString?self.htmlString:@"" baseURL:nil];
+}
+
 @end

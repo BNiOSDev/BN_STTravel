@@ -10,7 +10,7 @@
 #import "LBBPoohCycleScrollCell.h"
 #import "LBB_DiscoveryDetailMsgCell.h"
 #import "LBB_PoohAttributedTextCell.h"
-
+#import "LBB_Share.h"
 @interface LBB_DiscoveryDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
@@ -58,6 +58,7 @@
 }
 
 -(void)loadCustomNavigationButton{
+    WS(ws);
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     UIButton *download = [[UIButton alloc] init];
     [download setImage:IMAGE(@"ST_Discovery_Download") forState:UIControlStateNormal];
@@ -72,6 +73,9 @@
     [share setImage:IMAGE(@"导游_分享") forState:UIControlStateNormal];
     share.frame = CGRectMake(0, 0, 45, 45);
     [share bk_addEventHandler:^(id sender){
+        
+        LBB_Share* share = [[LBB_Share alloc] init];
+        [share shareTitle:ws.viewModel.discoveryDetail.shareTitle url:ws.viewModel.discoveryDetail.shareUrl text:ws.viewModel.discoveryDetail.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
         
     }forControlEvents:UIControlEventTouchUpInside];
     

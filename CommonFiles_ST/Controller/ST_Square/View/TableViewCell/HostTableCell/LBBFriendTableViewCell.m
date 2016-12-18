@@ -26,12 +26,11 @@
     return self;
 }
 
-- (void)prepareForReuse
-{
-    [super prepareForReuse];
-    iconImage.image = nil;
-    
-}
+//- (void)prepareForReuse
+//{
+//    [super prepareForReuse];
+//    iconImage.image = nil;
+//}
 - (void)setup
 {
     iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(15,AUTO(10) , AUTO(40), AUTO(40))];
@@ -74,6 +73,8 @@
 
 - (void)setModel:(LBB_SquareFriend *)model
 {
+    [self removeAllSubviews];
+    [self setup];
     _model = model;
     [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userHeadPortraitUrl] placeholderImage:DEFAULTIMAGE];
     nameLabel.text = model.userName;
@@ -84,9 +85,11 @@
         int status = [num intValue];
         if (status == 0) {//未关注
             [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
+             NSLog(@"id = %ld,status",model.followId);
         }
         else{//已关注
             [focusBtn setTitle:@"已关注" forState:UIControlStateNormal];
+            NSLog(@"id = %ld,statused",model.followId);
         }
     }];
 

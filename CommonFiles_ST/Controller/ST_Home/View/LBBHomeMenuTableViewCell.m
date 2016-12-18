@@ -73,7 +73,10 @@
                         dest = [[LBB_ScenicMainViewController alloc] init];
                         break;
                     case 2://伴手礼
-                        dest = [[LBB_GuiderMainViewController alloc]init];
+                       // dest = [[LBB_GuiderMainViewController alloc]init];
+                    {
+                        [[ws getViewController].tabBarController setSelectedIndex:3];
+                    }
                         break;
                     case 3://美食
                         dest = [[LBB_FoodsMainViewController alloc] init];

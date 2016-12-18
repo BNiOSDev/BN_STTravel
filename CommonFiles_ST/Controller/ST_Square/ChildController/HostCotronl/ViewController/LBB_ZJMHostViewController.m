@@ -58,7 +58,7 @@
     [self.viewModel.squareRecommend.loadSupport setDataRefreshblock:^{
         [temp.tableView reloadData];
     }];
-    
+   
     /**
      3.4.4	广场-广场主页-图片/视频列表（已测）
      
@@ -149,22 +149,74 @@
         __weak typeof(self) weakSelf = self;
         cell.btnBlock = ^(id obj,UITableViewCellViewSignal signal)
         {
-            if(signal == UITableViewCellSendMessage)
+            switch (signal)
             {
-                NSLog(@"发送评论=%@",obj);
-                LBB_SquareUgc *model = weakSelf.viewModel.ugcImageArray[indexPath.row];
-                [LBB_CommentViewModel  commentObjId:model.allSpotsId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
-                    NSLog(@"评论回馈= %@",dic);
-//                    NSLog(@"评论回馈= %@",[@"remark"]);
-                    LBB_SquareComments *commentsModel = [LBB_SquareComments new];
-                    NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
-                    commentsModel.commentId = [commentIdStr longLongValue];
-                    commentsModel.remark = dic[@"remark"];
-                    commentsModel.userName = dic[@"userName"];
-                    [model.comments addObject:commentsModel];
-                    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
-                }];
+                case UITableViewCellSendMessage:
+                {
+                    NSLog(@"发送评论=%@",obj);
+                    LBB_SquareUgc *model = weakSelf.viewModel.ugcImageArray[indexPath.row];
+                    [LBB_CommentViewModel  commentObjId:model.allSpotsId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                        NSLog(@"评论回馈= %@",dic);
+                        if(!error){
+                            LBB_SquareComments *commentsModel = [LBB_SquareComments new];
+                            NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
+                            commentsModel.commentId = [commentIdStr longLongValue];
+                            commentsModel.remark = dic[@"remark"];
+                            commentsModel.userName = dic[@"userName"];
+                            [model.comments addObject:commentsModel];
+                            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+                        }
+                    }];
+                }
+                    break;
+                case UITableViewCellCollect:
+                {
+                    LBB_SquareUgc  *model = self.viewModel.ugcImageArray[indexPath.row];
+                    [model collecte:^(NSDictionary *dic,NSError *error) {
+                        if(!error)
+                        {
+                            NSLog(@"收藏成功，更换图片");
+                            UIButton *btn = obj;
+                            if(model.isCollected == 1)
+                            {
+                                [btn setImage:IMAGE(@"景区列表_收藏HL") forState:0];
+                            }
+                            else
+                            {
+                                [btn setImage:IMAGE(@"景区列表_收藏") forState:0];
+                            }
+                        }
+                    }];
+                }
+                    break;
+                case UITableViewCellPraise:
+                {
+                    LBB_SquareUgc  *model = self.viewModel.ugcImageArray[indexPath.row];
+                    NSLog(@"likeList.count = %ld",model.likeList.count);
+                    [model like:^(NSDictionary *dic,NSError *error) {
+                        if(!error)
+                        {
+                            NSLog(@"likeList.count =  %ld",model.likeList.count);
+                            NSLog(@"收藏成功，更换图片");
+                            UIButton *btn = obj;
+                            if(model.isLiked == 1)
+                            {
+                                [btn setImage:IMAGE(@"zjmzhuyedianzaned") forState:0];
+                            }
+                            else
+                            {
+                                [btn setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
+                                
+                            }
+                        }
+                    }];
+                }
+                    break;
+                    
+                default:
+                    break;
             }
+        
         };
         [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         cell.model = self.viewModel.ugcImageArray[indexPath.row];

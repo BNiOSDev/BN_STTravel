@@ -103,7 +103,7 @@
 {
     _model = model;
     
-    contentImage.imageURL = model.videoUrl;
+    contentImage.imageURL = model.coverImageUrl;
     NSMutableArray *tagList = [NSMutableArray arrayWithCapacity:0];
     for (int i = 0; i < _model.tags.count; i++) {
         LBB_MyVideoTagModel *tagModel = _model.tags[i];

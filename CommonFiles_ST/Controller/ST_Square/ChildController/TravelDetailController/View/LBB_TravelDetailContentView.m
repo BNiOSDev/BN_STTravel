@@ -30,12 +30,6 @@
     return self;
 }
 
-- (void)prepareForReuse
-{
-    vistImage.imageArray = nil;
-    timeImage.image = nil;
-}
-
 - (void)setup
 {
     vistImage = [LBB_TravelImageContentView new];
@@ -126,7 +120,6 @@
     praiseCommentView.sd_layout
     .bottomSpaceToView(vistImage,10)
     .rightSpaceToView(vistImage,10);
-    
     
     [self setupAutoHeightWithBottomView:timeImage bottomMargin:15];
 }
