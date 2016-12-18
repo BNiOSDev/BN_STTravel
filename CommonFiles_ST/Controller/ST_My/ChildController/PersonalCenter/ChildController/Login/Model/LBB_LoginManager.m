@@ -8,6 +8,7 @@
 
 #import "LBB_LoginManager.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "SPKitExample.h"
 
 #define WeiXinAPPID         @"wx94b0ac5b1ba8e1c3"
 #define WeiXinAppsecret     @"1ef86c4ca4dcbe00b93064c4186bda4b"
@@ -119,6 +120,11 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
              NSDictionary *result = [dict objectForKey:@"result"];
              if (result && [result isKindOfClass:[NSDictionary class]]) {
                   weakSelf.userToken = [result objectForKey:@"token"];
+                 NSString *chatId  = [result objectForKey:@"chatId"];
+                 [[SPKitExample sharedInstance] exampleLoginWithUserID:chatId password:chatId successBlock:^{
+                     NSLog(@"百川登录成功");
+                 } failedBlock:^(NSError *error){
+                 }];
              }
              [BC_ToolRequest sharedManager].token = weakSelf.userToken;
              if (weakSelf.loginCompleteBlock) {
@@ -207,6 +213,11 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                                          NSDictionary *result = [dict objectForKey:@"result"];
                                          if (result && [result isKindOfClass:[NSDictionary class]]) {
                                              weakSelf.userToken = [result objectForKey:@"token"];
+                                             NSString *chatId  = [result objectForKey:@"chatId"];
+                                             [[SPKitExample sharedInstance] exampleLoginWithUserID:chatId password:chatId successBlock:^{
+                                                 NSLog(@"百川登录成功");
+                                             } failedBlock:^(NSError *error){
+                                             }];
                                          }
                                          [BC_ToolRequest sharedManager].token = weakSelf.userToken;
                                          if (weakSelf.loginCompleteBlock) {

@@ -12,6 +12,7 @@
 #import "Header.h"
 #import "LBB_ChatViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "SPKitExample.h"
 
 #define MySquareChatTableViewCell @"LBB_ChatViewCell"
 
@@ -52,20 +53,29 @@
 
 - (void)createTable
 {
-    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
-    _mTableView.height = _mTableView.height - 40 - 64;
     if (self.baseViewType == eRecentChat) {
-        _mTableView.height = DeviceHeight - 64;
         self.navigationItem.title = NSLocalizedString(@"最近联系人", nil);
     }
-    _mTableView.delegate = self;
-    _mTableView.dataSource = self;
-    _mTableView.backgroundColor = ColorBackground;
+      YWConversationListViewController *conversationListController = [[SPKitExample sharedInstance].ywIMKit makeConversationListViewController];
+    conversationListController.didSelectItemBlock = ^(YWConversation *aConversation){
+        NSLog(@"选中会话");
+    };
+    [self addChildViewController:conversationListController];
     
-    UINib *nib = [UINib nibWithNibName:@"LBB_ChatViewCell" bundle:nil];
-    [self.mTableView registerNib:nib forCellReuseIdentifier:MySquareChatTableViewCell];
-    
-    [self.view  addSubview:_mTableView];
+//    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
+//    _mTableView.height = _mTableView.height - 40 - 64;
+//    if (self.baseViewType == eRecentChat) {
+//        _mTableView.height = DeviceHeight - 64;
+//        self.navigationItem.title = NSLocalizedString(@"最近联系人", nil);
+//    }
+//    _mTableView.delegate = self;
+//    _mTableView.dataSource = self;
+//    _mTableView.backgroundColor = ColorBackground;
+//    
+//    UINib *nib = [UINib nibWithNibName:@"LBB_ChatViewCell" bundle:nil];
+//    [self.mTableView registerNib:nib forCellReuseIdentifier:MySquareChatTableViewCell];
+//    
+//    [self.view  addSubview:_mTableView];
     
 }
 
