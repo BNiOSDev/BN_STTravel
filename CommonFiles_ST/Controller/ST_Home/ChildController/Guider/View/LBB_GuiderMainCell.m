@@ -244,6 +244,10 @@
         [self.portraitImageView bk_whenTapped:^{
             
             LBB_GuiderUserViewController* dest = [[LBB_GuiderUserViewController alloc]init];
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.userId = ws.model.userId;
+            dest.viewModel = viewModel;
+            
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
         

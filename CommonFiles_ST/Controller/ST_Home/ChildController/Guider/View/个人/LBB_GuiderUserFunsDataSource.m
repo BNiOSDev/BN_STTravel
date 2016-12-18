@@ -30,7 +30,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.userFansArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"LBB_GuiderUserFunsListCell";
@@ -44,17 +44,17 @@
     [cell.rightButton setBackgroundColor:ColorWhite];
     [cell.rightButton setTitleColor:ColorGray forState:UIControlStateNormal];
     [cell.rightButton setTitle:@"已关注" forState:UIControlStateNormal];
-    [cell setModel:nil];
+    [cell setModel:self.userFansArray[indexPath.row] isTour:YES show:NO];
     
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderUserFunsListCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderUserFunsListCell *cell) {
         
-        [cell setModel:nil];
+        [cell setModel:ws.userFansArray[indexPath.row] isTour:YES show:NO];
     }];
 }
 

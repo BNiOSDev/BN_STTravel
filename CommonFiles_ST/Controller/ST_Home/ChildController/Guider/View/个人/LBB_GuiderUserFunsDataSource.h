@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LBB_SquareViewModel.h"
 
 @interface LBB_GuiderUserFunsDataSource : NSObject<UITableViewDataSource,UITableViewDelegate>
 
 - (id)initWithTableView:(UITableView *)tableView;
+@property (nonatomic, strong)NSMutableArray<LBB_UserOther *> *userFansArray;
 
 @end

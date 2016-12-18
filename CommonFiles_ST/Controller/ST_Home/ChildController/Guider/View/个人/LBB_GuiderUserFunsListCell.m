@@ -8,7 +8,9 @@
 
 #import "LBB_GuiderUserFunsListCell.h"
 
-@implementation LBB_GuiderUserFunsListCell
+@implementation LBB_GuiderUserFunsListCell{
+    RACDisposable* racFollowState;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -146,7 +148,8 @@
     [self.subTitleLabel setText:model.signature];
  
     @weakify(self);
-    [RACObserve(model, followState) subscribeNext:^(NSNumber* status){
+    [racFollowState dispose];
+    racFollowState = [RACObserve(model, followState) subscribeNext:^(NSNumber* status){
         @strongify(self);
         //0未关注1：已关注 2：互相关注
         
@@ -171,7 +174,11 @@
     self.levelButton.hidden = YES;
 
     [self.levelButton setTitle:@"" forState:UIControlStateNormal];
-    if (model.level > 0) {
+    
+    if (isTour) {
+        
+    }
+    else if (model.level > 0) {
         [self.vImageView mas_remakeConstraints:^(MASConstraintMaker* make){
             
             make.centerY.equalTo(ws.titleLabel);
@@ -203,7 +210,8 @@
         }];
         
     }
-
+    
+    
     if (!isShow) {
         self.identityLable.hidden = YES;
         [self.identityLable setText:@""];

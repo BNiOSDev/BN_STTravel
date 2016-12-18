@@ -96,6 +96,12 @@
             make.height.mas_equalTo(SeparateLineWidth);
             make.top.equalTo(ws.detailLabel.mas_bottom).offset(margin/2);
         }];
+        
+        [self.rightButton bk_whenTapped:^{
+            
+            ws.click(@0);
+            
+        }];
     }
     return self;
 }
