@@ -116,6 +116,7 @@
         if (self.guiderSelectIndex >= 0) {
             LBB_GuiderConditionOption* tagObj = [self.viewModel.guiderCondition.tags objectAtIndex:self.guiderSelectIndex];
             tagKey = tagObj.key;
+            tagKey = -1;
         }
     }
     
@@ -362,7 +363,7 @@
     [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
         
         if (section == 0) {//导游
-            
+            return @[];
             if (ws.viewModel.guiderCondition.tags.count <= 0) {
                 return @[];
             }
