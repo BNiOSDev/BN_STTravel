@@ -12,6 +12,7 @@
 #import "Header.h"
 #import "LBB_ChatViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "SPKitExample.h"
 
 #define MySquareChatTableViewCell @"LBB_ChatViewCell"
 
@@ -52,20 +53,40 @@
 
 - (void)createTable
 {
-    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
-    _mTableView.height = _mTableView.height - 40 - 64;
     if (self.baseViewType == eRecentChat) {
-        _mTableView.height = DeviceHeight - 64;
         self.navigationItem.title = NSLocalizedString(@"最近联系人", nil);
     }
-    _mTableView.delegate = self;
-    _mTableView.dataSource = self;
-    _mTableView.backgroundColor = ColorBackground;
+      YWConversationListViewController *conversationListController = [[SPKitExample sharedInstance].ywIMKit makeConversationListViewController];
     
-    UINib *nib = [UINib nibWithNibName:@"LBB_ChatViewCell" bundle:nil];
-    [self.mTableView registerNib:nib forCellReuseIdentifier:MySquareChatTableViewCell];
+    conversationListController.didSelectItemBlock = ^(YWConversation *aConversation){
+        NSLog(@"选中会话");
+         YWConversationViewController *vc = [[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:aConversation.conversationId];
+        [self.navigationController pushViewController:vc animated:vc]; 
+    };
+    [self addChildViewController:conversationListController];
     
-    [self.view  addSubview:_mTableView];
+    for (int i=0; i<self.childViewControllers.count; i++) {
+        UIViewController * vc = self.childViewControllers[i];
+        vc.view.frame = CGRectMake(i * DeviceWidth, 0, DeviceWidth, self.view.frame.size.height);
+        [self.view addSubview:vc.view];
+    }
+    
+
+    
+//    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
+//    _mTableView.height = _mTableView.height - 40 - 64;
+//    if (self.baseViewType == eRecentChat) {
+//        _mTableView.height = DeviceHeight - 64;
+//        self.navigationItem.title = NSLocalizedString(@"最近联系人", nil);
+//    }
+//    _mTableView.delegate = self;
+//    _mTableView.dataSource = self;
+//    _mTableView.backgroundColor = ColorBackground;
+//    
+//    UINib *nib = [UINib nibWithNibName:@"LBB_ChatViewCell" bundle:nil];
+//    [self.mTableView registerNib:nib forCellReuseIdentifier:MySquareChatTableViewCell];
+//    
+//    [self.view  addSubview:_mTableView];
     
 }
 

@@ -11,6 +11,7 @@
 #import "LBB_LoginManager.h"
 #import "WXApi.h"
 #import <UMSocialCore/UMSocialCore.h>
+#import "SPKitExample.h"
 
 @interface AppDelegate ()
 
@@ -38,6 +39,9 @@
     
     //设置新浪的appKey和appSecret
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"4151346704"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    
+    // YWSDK快速接入接口，程序启动后调用这个接口
+    [[SPKitExample sharedInstance] callThisInDidFinishLaunching];
     
     return YES;
 }

@@ -28,6 +28,7 @@
 #import "LBB_OrderModuleViewController.h"
 #import "BN_ShopFlashSaleListViewController.h" //限时抢购
 #import "BN_ShopListViewController.h" // 商品列表
+#import "SPKitExample.h"
 
 #define UserHeadViewHegiht (245.f/414.f)
 #define MineViewCellHeight  60.f
