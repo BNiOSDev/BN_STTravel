@@ -57,10 +57,21 @@
         self.navigationItem.title = NSLocalizedString(@"最近联系人", nil);
     }
       YWConversationListViewController *conversationListController = [[SPKitExample sharedInstance].ywIMKit makeConversationListViewController];
+    
     conversationListController.didSelectItemBlock = ^(YWConversation *aConversation){
         NSLog(@"选中会话");
+         YWConversationViewController *vc = [[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:aConversation.conversationId];
+        [self.navigationController pushViewController:vc animated:vc]; 
     };
     [self addChildViewController:conversationListController];
+    
+    for (int i=0; i<self.childViewControllers.count; i++) {
+        UIViewController * vc = self.childViewControllers[i];
+        vc.view.frame = CGRectMake(i * DeviceWidth, 0, DeviceWidth, self.view.frame.size.height);
+        [self.view addSubview:vc.view];
+    }
+    
+
     
 //    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
 //    _mTableView.height = _mTableView.height - 40 - 64;
