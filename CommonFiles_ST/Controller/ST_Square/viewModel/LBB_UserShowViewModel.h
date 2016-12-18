@@ -109,5 +109,10 @@
  */
 - (void)attention:(void (^)(NSError *error))block;
 
-
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block;
 @end

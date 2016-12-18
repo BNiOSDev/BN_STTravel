@@ -8,7 +8,12 @@
 
 #import "LBB_GuiderUserHeaderCell.h"
 #import "LBB_LabelDetailViewController.h"
-@implementation LBB_GuiderUserHeaderCell
+@implementation LBB_GuiderUserHeaderCell{
+
+    RACDisposable* racIsFollow;
+    RACDisposable* racIsLike;
+    RACDisposable* racLikeNum;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -244,6 +249,14 @@
             make.right.equalTo(ws.contentView).offset(-margin);
             make.centerY.equalTo(ws.nameLabel);
         }];
+        [self.greatButton bk_addEventHandler:^(id sender){
+            
+            [ws.model like:^(NSError* error){
+                
+            }];
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        
         
         UIView* sep = [UIView new];
         [sep setBackgroundColor:ColorLine];
@@ -351,9 +364,12 @@
     [self.photoNumLabel setText:[NSString stringWithFormat:@"%d张照片",model.photoNum]];// 照片数量
     [self.levelButton setTitle:[NSString stringWithFormat:@"Lv.%d",model.level] forState:UIControlStateNormal];// 级别
     
-    
+    [racIsLike dispose];
+    [racLikeNum dispose];
+    [racIsFollow dispose];
+
     @weakify(self);
-    [RACObserve(model, isFollow) subscribeNext:^(NSNumber* follow){
+    racIsFollow = [RACObserve(model, isFollow) subscribeNext:^(NSNumber* follow){
         @strongify(self);
         int status = [follow intValue];
         if (status == 0) {//未关注
@@ -363,7 +379,7 @@
             [self.favoriteButton setImage:IMAGE(@"导游_关注HL") forState:UIControlStateNormal];
         }
     }];
-    [RACObserve(model, isLiked) subscribeNext:^(NSNumber* like){
+    racIsLike = [RACObserve(model, isLiked) subscribeNext:^(NSNumber* like){
         @strongify(self);
         int status = [like intValue];
         if (status == 0) {//未点赞
@@ -373,7 +389,7 @@
             [self.greatButton setImage:IMAGE(@"导游_点赞HL") forState:UIControlStateNormal];
         }
     }];
-    [RACObserve(model, likeNum) subscribeNext:^(NSNumber* like){//点赞数
+    racLikeNum = [RACObserve(model, likeNum) subscribeNext:^(NSNumber* like){//点赞数
         @strongify(self);
         int num = [like intValue];
         [self.greatButton setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];
