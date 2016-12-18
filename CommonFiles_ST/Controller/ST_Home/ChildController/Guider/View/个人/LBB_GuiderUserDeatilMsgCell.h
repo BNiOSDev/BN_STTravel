@@ -26,4 +26,6 @@
 
 @property(nonatomic, assign)BOOL isOpen;
 
+@property(nonatomic, strong)ClickBlock click;
+
 @end

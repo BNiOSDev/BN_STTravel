@@ -36,6 +36,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = WHITECOLOR;
     self.navigationController.delegate = self;
+    self.navigationItem.leftBarButtonItem = nil;
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"history"];
     [self  initNaviStyle];
     //加载Segment

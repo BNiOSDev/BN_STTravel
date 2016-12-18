@@ -18,7 +18,7 @@
 #import <MediaPlayer/MPMoviePlayerController.h>
 #import "LBB_ZJMPhotoList.h"
 #import "LBB_SquareSnsFollowViewController.h"
-
+#import "LBB_TagView.h"
 
 @implementation LBB_HomeSearchSquareVideoCell
 {
@@ -159,17 +159,8 @@
     _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
     _contentLabel.text = model.remark;//视频描述
 
-    FZJPhotoTool  *tool = [[FZJPhotoTool alloc]init];
-    __block UIImage  *videoImage;
-    [tool getThumbnailImage:model.videoUrl Block:^(UIImage *resultImage) {
-                videoImage = resultImage;
-    }];
-    if(!videoImage)
-    {
-        [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.videoUrl] placeholderImage:DEFAULTIMAGE];
-    }else{
-        _contentImage.image = videoImage;
-    }
+    [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.videoUrl] placeholderImage:DEFAULTIMAGE];
+
 
     _contentLabel.sd_layout
     .leftEqualToView(_nameLable)
@@ -194,14 +185,47 @@
 
 
     [self setupAutoHeightWithBottomView:_contentImage bottomMargin:10];
+    [self setTagViews];
+
+}
+
+- (void)setTagViews
+{
+    for(UIView *view in [self subviews])
+    {
+        if([view isKindOfClass:[LBB_TagView class]])
+        {
+            [view removeFromSuperview];
+        }
+    }
+    __block UIView *lastView = _contentImage;
+    for(int i = 0;i < _model.tags.count;i++)
+    {
+        LBB_SquareTags  *tagsModel = [_model.tags objectAtIndex:i];
+        __block LBB_TagView   *tagView = [[LBB_TagView alloc]initWithFrame:CGRectMake(0, _contentImage.height - AUTO(25) - (AUTO(25) * i), AUTO(80), AUTO(20))];
+        [_contentImage addSubview:tagView];
+        tagView.tagModel = tagsModel;
+        __weak typeof(tagView) weakTagView = tagView;
+        tagView.blockTagFunc = ^(LBB_TagView *view)
+        {
+            //            weakTagView.left = _contentImage.width - view.width - 5;
+            weakTagView.sd_layout
+            .bottomSpaceToView(lastView,5)
+            .rightSpaceToView(lastView,5)
+            .heightIs(view.height)
+            .widthIs(view.width);
+        };
+        tagView.tagTitleStr = tagsModel.tagName;
+    }
 }
 
 - (void)playFunc
 {
-    if(_blockBtnFunc)
-    {
-        self.blockBtnFunc(0);
-    }
+//    if(_blockBtnFunc)
+//    {
+//        self.blockBtnFunc(0);
+//    }
+    NSLog(@"我不让你看呀");
 }
 
 

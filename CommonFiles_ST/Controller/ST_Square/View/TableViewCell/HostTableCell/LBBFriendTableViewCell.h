@@ -11,7 +11,4 @@
 
 @interface LBBFriendTableViewCell : UITableViewCell
 @property (nonatomic, strong)LBB_SquareFriend   *model;
-
-
-
 @end

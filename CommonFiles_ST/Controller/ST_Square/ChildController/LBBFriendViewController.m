@@ -36,7 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"好友推荐";
-    
     [self createTable];
 }
 
@@ -91,8 +90,8 @@
     static NSString *tableCellID = @"zjmFriend";
      LBBFriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:tableCellID];
     
-    if (!cell) {
-        cell = [[LBBFriendTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:tableCellID];
+    if (cell == nil) {
+        cell = [[LBBFriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellID];
     }
     cell.model = self.viewModel.friendArray[indexPath.row];
     return cell;

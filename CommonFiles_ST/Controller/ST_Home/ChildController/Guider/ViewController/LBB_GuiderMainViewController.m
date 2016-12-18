@@ -12,20 +12,22 @@
 #import "LBB_GuiderUserViewController.h"
 #import "LBB_FilterTableViewCell.h"
 #import "LBB_TagsViewModel.h"
+#import "LBB_GuiderViewModel.h"
+
 @interface LBB_GuiderMainViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, retain) UISearchBar *searchBar;
 @property (nonatomic, retain) UITableView* tableView;
 
-@property(nonatomic, retain)NSArray<LBB_SquareTags*>* guiderArray;//导游选择
-@property(nonatomic, retain)NSMutableArray<LBB_SquareTags*>* jobTimeArray;//从业时间
-@property(nonatomic, retain)NSMutableArray<LBB_SquareTags*>* genderArray; //性别选择
+@property(nonatomic, strong) NSTimer *timer;
+
 
 //菜单选项的选择项
 @property (nonatomic,assign)NSInteger guiderSelectIndex;//导游选择
 @property (nonatomic,assign)NSInteger jobTimeSelectIndex;//从业时间
 @property (nonatomic,assign)NSInteger genderSelectIndex;//性别选择
 
+@property (nonatomic, strong)LBB_GuiderViewModel* viewModel;
 
 @end
 
@@ -56,27 +58,94 @@
 
 -(void)initViewModel{
     
-    /**
-     3.1.13	筛选标签列表(已测)
-     
-     @param classes 1美食 2 民宿 3 景点 4 伴手礼  10 线路攻略11 美食专题 12民宿专题 13景点专题 14伴手礼专题 15  用户/导游
-     @param type 1.热门推荐 2标签 3价格 4类别 5、设施 6、退票及预约提示 7、品牌 8、适合人群 9、个性标签 10、行程时长 11  导游类型  12  从业时间
-     @param dataBlock 返回标签数据
-     */
     WS(ws);
-    [LBB_SquareTags getConditionTagsClass:15 type:11 block:^(NSArray<LBB_SquareTags*> *files, NSError *error){
-        NSLog(@"获取导游类型files:%@",files);
-        ws.guiderArray = files;
+    self.viewModel = [[LBB_GuiderViewModel alloc]init];
+    
+    /**
+     3.7.5 导游 – 查询条件（已测）
+     */
+    [self.viewModel getGuiderConditions];
+    [self.viewModel.guiderCondition.loadSupport setDataRefreshblock:^{
+        [ws getGuiderList:YES];
     }];
     
-    
-    [LBB_SquareTags getConditionTagsClass:15 type:12 block:^(NSArray<LBB_SquareTags*> *files, NSError *error){
+    /**
+     3.7.6 导游 -列表（已测）
+     @param name       模糊查询名字
+     @param tagKey     标签key
+     @param jobTimeKey 工作时长key
+     @param genderKey  性别key
+     @param clear      清空原数据
+     */
+    [self.viewModel.guiderListArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+        //[ws reloadTableSnap];
+    }];
+
+    //3.0 table view 的数据绑定，刷新，上拉刷新，下拉加载。全部集成在里面
+    [self.tableView setTableViewData:self.viewModel.guiderListArray];
+    //3.1上拉和下拉的动作
+    [self.tableView setHeaderRefreshDatablock:^{
+        [ws.viewModel guiderCondition];// 3 3.7.5 导游 – 查询条件（已测）
+        [ws getGuiderList:YES];
+        [ws.tableView.mj_header endRefreshing];
         
-        NSLog(@"获取从业时间files:%@",files);
-        ws.jobTimeArray = [NSMutableArray arrayWithArray:files];
+    } footerRefreshDatablock:^{
+        [ws getGuiderList:NO];
+        [ws.tableView.mj_footer endRefreshing];
     }];
+
+    
 }
 
+
+
+/**
+ 获取导游列表
+
+ @param clear 清空数据
+ */
+-(void)getGuiderList:(BOOL)clear{
+    
+    int tagKey = -1;//导游选择
+    int jobTimeKey = -1;//从业时间
+    int genderKey = -1;//性别选择
+    
+    if (self.viewModel.guiderCondition.tags.count > 0) {
+        
+        if (self.guiderSelectIndex >= 0) {
+            LBB_GuiderConditionOption* tagObj = [self.viewModel.guiderCondition.tags objectAtIndex:self.guiderSelectIndex];
+            tagKey = tagObj.key;
+            tagKey = -1;
+        }
+    }
+    
+    if (self.viewModel.guiderCondition.jobTime.count > 0) {
+        
+        if (self.jobTimeSelectIndex >= 0) {
+            LBB_GuiderConditionOption* tagObj = [self.viewModel.guiderCondition.jobTime objectAtIndex:self.jobTimeSelectIndex];
+            jobTimeKey = tagObj.key;
+        }
+    }
+    
+    if (self.viewModel.guiderCondition.gender.count > 0) {
+        
+        if (self.genderSelectIndex >= 0) {
+            LBB_GuiderGenderConditionOption* tagObj = [self.viewModel.guiderCondition.gender objectAtIndex:self.genderSelectIndex];
+            genderKey = tagObj.key;
+        }
+    }
+    /**
+     3.7.6 导游 -列表（已测）
+     @param name       模糊查询名字
+     @param tagKey     标签key
+     @param jobTimeKey 工作时长key
+     @param genderKey  性别key
+     @param clear      清空原数据
+     */
+    [self.viewModel getGuiderListArray:self.searchBar.text tagKey:tagKey jobTimeKey:jobTimeKey genderKey:genderKey clear:clear];
+    
+}
 
 
 -(void)loadCustomNavigationButton{
@@ -129,24 +198,33 @@
         make.top.equalTo(ws.view.mas_top);
         make.bottom.equalTo(ws.view);
     }];
-    
-    
-    
 }
-
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];
     NSLog(@"searchBarSearchButtonClicked");
-    
+    [self getGuiderList:YES];
 }
 
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     [self.searchBar becomeFirstResponder];
     return YES;
 }
+// called when text changes (including clear)
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(timerSearch) userInfo:nil repeats:NO];
+}
 
+- (void)timerSearch{
+    [self getGuiderList:YES];
 
+}
 #pragma tableView Delegate
 
 
@@ -163,7 +241,7 @@
     UIView* v = [UIView new];
     [v setBackgroundColor:ColorWhite];
     [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
-    
+ 
     UIButton* b1 = [UIButton new];
     [b1 setTitle:@"申请导游证 >" forState:UIControlStateNormal];
     [b1 setTitleColor:ColorBlack forState:UIControlStateNormal];
@@ -197,10 +275,10 @@
     //字体设置
     NSRange rang = [strFormat1 rangeOfString:strFormat2];
     if (rang.location != NSNotFound) {
-        NSLog(@"found at location = %ld, length = %ld",rang.location,rang.length);
+       // NSLog(@"found at location = %ld, length = %ld",rang.location,rang.length);
         [strAttr addAttributes:attrsDic range:NSMakeRange(rang.location, rang.length)];
     }else{
-        NSLog(@"Not Found");
+       // NSLog(@"Not Found");
     }
     b1.titleLabel.attributedText = strAttr;
    
@@ -213,18 +291,6 @@
         make.height.mas_equalTo(SeparateLineWidth);
     }];
     
-  /*  UIButton* b2 = [UIButton new];
-    [b2 setTitle:@"筛选" forState:UIControlStateNormal];
-    [b2 setTitleColor:ColorLightGray forState:UIControlStateNormal];
-    [b2.titleLabel setFont:Font14];
-    [v addSubview:b2];
-    [b2 mas_makeConstraints:^(MASConstraintMaker* make){
-        make.centerY.equalTo(v);
-        make.right.equalTo(v).offset(-16);
-    }];
-    */
-    //////
-    
     NSArray* segmentArray = @[@""];
     
     BN_FilterMenu* segmentedControl = [[BN_FilterMenu alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];;
@@ -234,6 +300,8 @@
     segmentedControl.layer.borderColor = ColorLine.CGColor;
     segmentedControl.menuArray = segmentArray;
     [v addSubview:segmentedControl];
+    
+    [v bringSubviewToFront:b1];
     
     UILabel* titleLabel = [UILabel new];
     [titleLabel setText:@"筛选"];
@@ -295,23 +363,23 @@
     [segmentedControl getMenuDataRowArrayInBlock:^NSArray*(NSInteger index, NSString *title, NSInteger section){
         
         if (section == 0) {//导游
-            
-            if (ws.guiderArray.count <= 0) {
+            return @[];
+            if (ws.viewModel.guiderCondition.tags.count <= 0) {
                 return @[];
             }
-            return @[ws.guiderArray];
+            return @[ws.viewModel.guiderCondition.tags];
         }
         else if (section == 1){//从业时间
-            if (ws.jobTimeArray.count <= 0) {
+            if (ws.viewModel.guiderCondition.jobTime.count <= 0) {
                 return @[];
             }
-            return @[ws.jobTimeArray];
+            return @[ws.viewModel.guiderCondition.jobTime];
         }
         else{//性别
-            if (ws.jobTimeArray.count <= 0) {
+            if (ws.viewModel.guiderCondition.gender.count <= 0) {
                 return @[];
             }
-            return @[ws.jobTimeArray];
+            return @[ws.viewModel.guiderCondition.gender];
         }
         
         
@@ -323,14 +391,14 @@
     }];
     //返回cell
     [segmentedControl getCellInBlock:^UITableViewCell*(NSInteger index, NSIndexPath *indexPath, NSArray* data) {
-        NSLog(@"data:%@",data);
+     //   NSLog(@"data:%@",data);
         
         static NSString *cellIdentifier = @"LBB_FilterTableViewCell";
         LBB_FilterTableViewCell* cell = [[LBB_FilterTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         
         cell.bottomMargin = AutoSize(15);
         
-        NSLog(@"array:%@",data);
+      //  NSLog(@"array:%@",data);
         if (indexPath.section == 0) {//导游选择
             cell.selectIndex = ws.guiderSelectIndex;
         }
@@ -341,10 +409,20 @@
             cell.selectIndex = ws.genderSelectIndex;
         }
         
-        NSArray* dataArray = [data map:^id(LBB_SquareTags* model){
-            return model.tagName;
-        }];
-        NSLog(@"dataArray:%@",dataArray);
+        NSArray* dataArray;
+        
+        if (indexPath.section == 2) {
+            dataArray = [data map:^id(LBB_GuiderGenderConditionOption* model){
+                return model.gender;
+            }];
+        }
+        else{
+            dataArray = [data map:^id(LBB_GuiderConditionOption* model){
+                return model.name;
+            }];
+        }
+
+      //  NSLog(@"dataArray:%@",dataArray);
         
         [cell configContentView:dataArray];
         
@@ -409,6 +487,7 @@
         
         [confirmButton bk_whenTapped:^{
             [segmentedControl closeMenu];
+            [ws getGuiderList:YES];
         }];
         
         return bottomView;
@@ -422,7 +501,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.viewModel.guiderListArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"LBB_GuiderMainCell";
@@ -431,16 +510,18 @@
         cell = [[LBB_GuiderMainCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_GuiderMainCell nil");
     }
-    [cell setModel:nil];
+    
+    LBB_GuiderListViewModel* obj = self.viewModel.guiderListArray[indexPath.row];
+    [cell setModel:obj];
     
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    LBB_GuiderListViewModel* obj = self.viewModel.guiderListArray[indexPath.row];
     return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderMainCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderMainCell *cell) {
-        
+        [cell setModel:obj];
     }];
 }
 

@@ -59,11 +59,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    NSInteger idx1 = indexPath.row * 2;
+    LBB_UserAction *obj1 = [self.userActionArray objectAtIndex:idx1];
     return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderUserDynamicCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderUserDynamicCell *cell) {
-        
-        NSInteger idx1 = indexPath.row * 2;
-        LBB_UserAction *obj1 = [self.userActionArray objectAtIndex:idx1];
+
         [cell setModel1:obj1];
     }];
 }

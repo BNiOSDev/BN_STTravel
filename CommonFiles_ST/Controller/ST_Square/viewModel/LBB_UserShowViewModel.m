@@ -266,5 +266,47 @@
     }];
 }
 
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.userId),
+                              @"allSpotsType":@(8),
+                              };
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/like",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            BOOL likedState = [[result objectForKey:@"likedState"] boolValue];
+            if (likedState != temp.isLiked) {//状态有变化的时候
+                temp.isLiked = likedState;
+                if (temp.isLiked) {
+                    temp.likeNum = temp.likeNum + 1;
+                }
+                else{
+                    temp.likeNum = temp.likeNum - 1;
+                }
+            }
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
 
 @end

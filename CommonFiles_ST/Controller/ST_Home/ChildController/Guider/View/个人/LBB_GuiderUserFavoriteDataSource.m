@@ -30,7 +30,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.userAttentionArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"LBB_GuiderUserFavoriteListCell";
@@ -39,17 +39,17 @@
         cell = [[LBB_GuiderUserFunsListCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
         NSLog(@"LBB_GuiderUserFavoriteListCell nil");
     }
-    [cell setModel:nil];
+    [cell setModel:self.userAttentionArray[indexPath.row] isTour:YES show:NO];
     
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WS(ws);
     return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderUserFavoriteListCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderUserFunsListCell *cell) {
         
-        [cell setModel:nil];
+        [cell setModel:ws.userAttentionArray[indexPath.row] isTour:YES show:NO];
     }];
 }
 

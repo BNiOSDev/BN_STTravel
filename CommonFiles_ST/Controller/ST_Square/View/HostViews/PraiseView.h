@@ -13,4 +13,5 @@
 
 @property(nonatomic, strong)NSArray     *praiseArray;
 @property(nonatomic, copy)CellBlockVIew  praiseBlock;
+@property(nonatomic,strong)UIImage      *btnImage;
 @end

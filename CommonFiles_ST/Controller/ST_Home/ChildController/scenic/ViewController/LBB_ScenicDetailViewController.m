@@ -22,7 +22,7 @@
 #import "LBB_NewOrderViewController.h"
 #import "LBB_ScenicDetailADCell.h"
 #import "LBB_PoohAttributedTextCell.h"
-
+#import "LBB_Share.h"
 static const NSInteger kSearchButtonMarginRight = -10;
 static const NSInteger kButtonWidth = 45;
 
@@ -98,8 +98,6 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
-    
-    
 }
 
 -(void)initViewModel{
@@ -243,7 +241,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         make.right.equalTo(ws.baseNavigationBarView).offset(kSearchButtonMarginRight);
     }];
     [share bk_addEventHandler:^(id sender){
-        
+        [[LBB_Share sharedManager] shareTitle:ws.spotModel.spotDetails.shareTitle url:ws.spotModel.spotDetails.shareUrl text:ws.spotModel.spotDetails.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
         
     }forControlEvents:UIControlEventTouchUpInside];
     

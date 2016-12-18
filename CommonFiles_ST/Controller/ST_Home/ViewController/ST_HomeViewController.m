@@ -23,6 +23,8 @@
 
 #import "LBB_PoohMyFavoriteViewController.h"
 
+#import "LBB_Share.h"
+
 
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -34,6 +36,7 @@
 
 @property(nonatomic, retain)LBB_HomeViewModel* viewModel;//数据模型
 
+@property(nonatomic, strong)LBB_Share *share;
 
 @end
 
@@ -318,7 +321,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return self.sectionArray.count;
+    return self.sectionArray.count - 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

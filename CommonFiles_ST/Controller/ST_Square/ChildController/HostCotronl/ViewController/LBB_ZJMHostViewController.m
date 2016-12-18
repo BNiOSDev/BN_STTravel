@@ -149,7 +149,6 @@
         __weak typeof(self) weakSelf = self;
         cell.btnBlock = ^(id obj,UITableViewCellViewSignal signal)
         {
-            
             switch (signal)
             {
                 case UITableViewCellSendMessage:
@@ -173,12 +172,19 @@
                 case UITableViewCellCollect:
                 {
                     LBB_SquareUgc  *model = self.viewModel.ugcImageArray[indexPath.row];
-                    [model collecte:^(NSError *error) {
+                    [model collecte:^(NSDictionary *dic,NSError *error) {
                         if(!error)
                         {
                             NSLog(@"收藏成功，更换图片");
                             UIButton *btn = obj;
-                            [btn setImage:IMAGE(@"zjmshoucanged") forState:0];
+                            if(model.isCollected == 1)
+                            {
+                                [btn setImage:IMAGE(@"景区列表_收藏HL") forState:0];
+                            }
+                            else
+                            {
+                                [btn setImage:IMAGE(@"景区列表_收藏") forState:0];
+                            }
                         }
                     }];
                 }
@@ -186,13 +192,23 @@
                 case UITableViewCellPraise:
                 {
                     LBB_SquareUgc  *model = self.viewModel.ugcImageArray[indexPath.row];
-                    [model like:^(NSError *error) {
+                    NSLog(@"likeList.count = %ld",model.likeList.count);
+                    [model like:^(NSDictionary *dic,NSError *error) {
                         if(!error)
                         {
+                            NSLog(@"likeList.count =  %ld",model.likeList.count);
                             NSLog(@"收藏成功，更换图片");
                             UIButton *btn = obj;
-                            [btn setImage:IMAGE(@"zjmzhuyedianzaned") forState:0];
-                                                    }
+                            if(model.isLiked == 1)
+                            {
+                                [btn setImage:IMAGE(@"zjmzhuyedianzaned") forState:0];
+                            }
+                            else
+                            {
+                                [btn setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
+                                
+                            }
+                        }
                     }];
                 }
                     break;

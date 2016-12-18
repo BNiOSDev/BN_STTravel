@@ -60,6 +60,108 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
 */
 
 
+-(void)initViewModel{
+    
+    __weak typeof(self) temp = self;
+    
+    [self.viewModel getUserShowViewModelData];
+    [self.viewModel.userShowViewModel.loadSupport setDataRefreshblock:^{
+        
+        temp.title = temp.viewModel.userShowViewModel.userName;
+
+        NSString* address = [NSString stringWithFormat:@"%@%@%@",temp.viewModel.userShowViewModel.provName,temp.viewModel.userShowViewModel.cityName,temp.viewModel.userShowViewModel.districtName];
+        temp.menuArray = @[
+                           @[@"导游_导游证号",@"导游证号",temp.viewModel.userShowViewModel.tourIdCard],
+                           @[@"导游_从业时间",@"从业时间",temp.viewModel.userShowViewModel.tourStartTime],
+                           @[@"导游_电话",@"联系电话",temp.viewModel.userShowViewModel.phoneNum],
+                           @[@"导游_地址",@"地址",address],
+                           @[@"导游_简介",@"简介",temp.viewModel.userShowViewModel.tourAWords],
+                           ];
+        
+        
+        /**
+         3.4.7	广场-广场主页-个人主页-动态（已测）
+         
+         @param clear 清空原数据
+         */
+        [temp.viewModel.userShowViewModel getUserActionArrayClearData:YES];
+        
+        
+        /**
+         3.4.8	广场-广场主页-个人主页-关注（已测）
+         
+         @param clear 清空原数据
+         */
+        [temp.viewModel.userShowViewModel getUserAttentionArrayClearData:YES];
+        
+        /**
+         3.4.9	广场-广场主页-个人主页-粉丝（已测）
+         
+         @param clear 清空原数据
+         */
+        [temp.viewModel.userShowViewModel getUserFansArrayClearData:YES];
+        //默认是动态
+        switch (temp.selectType) {
+            case LBB_GuiderUserlDynamic://动态
+                [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userActionArray];
+                
+                break;
+            case LBB_GuiderUserlFavorite://关注
+                [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userAttentionArray];
+                
+                break;
+            case LBB_GuiderUserFuns://粉丝
+                [temp.tableView setTableViewData:temp.viewModel.userShowViewModel.userFansArray];
+                break;
+            default:
+                break;
+        }
+        [temp.tableView reloadData];
+    }];
+    
+    [self.viewModel.userShowViewModel.userActionArray.loadSupport setDataRefreshblock:^{
+        NSLog(@"userActionArray reloadData");
+        [temp.tableView reloadData];
+    }];
+    [self.viewModel.userShowViewModel.userAttentionArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+    }];
+    [self.viewModel.userShowViewModel.userFansArray.loadSupport setDataRefreshblock:^{
+        [temp.tableView reloadData];
+    }];
+    
+    
+    
+    [self.tableView setHeaderRefreshDatablock:^{
+        [temp.tableView.mj_header endRefreshing];
+        [temp.viewModel getUserShowViewModelData];
+        [temp.viewModel.userShowViewModel getUserAttentionArrayClearData:YES];
+        [temp.viewModel.userShowViewModel getUserActionArrayClearData:YES];
+        [temp.viewModel.userShowViewModel getUserFansArrayClearData:YES];
+        
+        
+    } footerRefreshDatablock:^{
+        [temp.tableView.mj_footer endRefreshing];
+        switch (temp.selectType) {
+            case LBB_GuiderUserlDynamic://动态
+                [temp.viewModel.userShowViewModel getUserActionArrayClearData:NO];
+                
+                break;
+            case LBB_GuiderUserlFavorite://关注
+                [temp.viewModel.userShowViewModel getUserAttentionArrayClearData:NO];
+                
+                break;
+            case LBB_GuiderUserFuns://粉丝
+                [temp.viewModel.userShowViewModel getUserFansArrayClearData:NO];
+                break;
+            default:
+                break;
+        }
+        
+    }];
+}
+
+
 -(void)loadCustomNavigationButton{
     
     
@@ -89,10 +191,18 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
     [self.tableView registerClass:[LBB_GuiderUserMsgCell class] forCellReuseIdentifier:@"LBB_GuiderUserMsgCell"];
     [self.tableView registerClass:[LBB_GuiderUserDeatilMsgCell class] forCellReuseIdentifier:@"LBB_GuiderUserDeatilMsgCell"];
 
+    [self initViewModel];
+    
     self.dynamicDataSource = [[LBB_GuiderUserDynamicDataSource alloc] initWithTableView:self.tableView];
     self.favoriteDataSource = [[LBB_GuiderUserFavoriteDataSource alloc] initWithTableView:self.tableView];
     self.funsDataSource = [[LBB_GuiderUserFunsDataSource alloc] initWithTableView:self.tableView];
 
+    self.dynamicDataSource.userActionArray = self.viewModel.userShowViewModel.userActionArray;
+    
+    self.favoriteDataSource.userAttentionArray = self.viewModel.userShowViewModel.userAttentionArray;
+    self.funsDataSource.userFansArray = self.viewModel.userShowViewModel.userFansArray;
+
+    
     
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
@@ -233,7 +343,7 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
             NSLog(@"LBB_GuiderUserHeaderCell nil");
             
         }
-        [cell setModel:nil];
+        [cell setModel:self.viewModel.userShowViewModel];
         return cell;
     }
     else if (indexPath.row == self.menuArray.count){
@@ -243,17 +353,14 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
             cell = [[LBB_GuiderUserDeatilMsgCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
             NSLog(@"LBB_GuiderUserDeatilMsgCell nil");
         }
-        
         NSInteger row = indexPath.row - 1;
-        cell.detailString = @"作为一名学院派的导游，丰富的工作经验累积和人生体验，很赞。作为一名学院派的导游，丰富的工作经验累积和人生体验，很赞。";
+        cell.detailString = self.viewModel.userShowViewModel.tourDetails;
         
-        
-        [cell.rightButton bk_whenTapped:^{
-            
+        cell.click = ^(NSNumber* num){
             ws.isOpen = !ws.isOpen;
             [ws.tableView reloadData];
-            
-        }];
+        };
+
         if (self.isOpen) {
             [cell.rightButton setImage:IMAGE(@"导游_上拉箭头") forState:UIControlStateNormal];
             [cell.detailLabel setText:cell.detailString];
@@ -263,12 +370,9 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
             [cell.rightButton setImage:IMAGE(@"导游_下拉箭头") forState:UIControlStateNormal];
             [cell.detailLabel setText:@""];
         }
-        
         [cell.iconImageView setImage:IMAGE([[self.menuArray objectAtIndex:row] objectAtIndex:0])];
         [cell.titleLabel setText:[[self.menuArray objectAtIndex:row] objectAtIndex:1]];
-        [cell.textField setText:[[self.menuArray objectAtIndex:row] objectAtIndex:2]];
-        [cell setModel:nil];
-
+        [cell.textField setText:self.viewModel.userShowViewModel.tourAWords];
         return cell;
     }
     else{
@@ -286,12 +390,9 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
         
         return cell;
     }
-    
-
-  
 }
 
-#pragma 周边推荐
+#pragma header part
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderSectionRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
@@ -305,7 +406,7 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
         return [tableView fd_heightForCellWithIdentifier:@"LBB_GuiderUserDeatilMsgCell" cacheByIndexPath:indexPath configuration:^(LBB_GuiderUserDeatilMsgCell* cell){
             NSInteger row = indexPath.row - 1;
             
-            cell.detailString = @"作为一名学院派的导游，丰富的工作经验累积和人生体验，很赞。作为一名学院派的导游，丰富的工作经验累积和人生体验，很赞。";
+            cell.detailString = self.viewModel.userShowViewModel.tourDetails;
             if (self.isOpen) {
                 [cell.rightButton setImage:IMAGE(@"导游_上拉箭头") forState:UIControlStateNormal];
                 [cell.detailLabel setText:cell.detailString];
@@ -317,8 +418,7 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
             }
             [cell.iconImageView setImage:IMAGE([[self.menuArray objectAtIndex:row] objectAtIndex:0])];
             [cell.titleLabel setText:[[self.menuArray objectAtIndex:row] objectAtIndex:1]];
-            [cell.textField setText:[[self.menuArray objectAtIndex:row] objectAtIndex:2]];
-            [cell setModel:nil];
+            [cell.textField setText:self.viewModel.userShowViewModel.tourAWords];
         }];
     }
     else{

@@ -57,6 +57,7 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #define APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
 //获取适配后的数据大小
 #define AutoSize(num)  num * (DeviceWidth /320.0)
+#define AutoFont(x)    [UIFont systemFontOfSize:AutoSize(x)]
 
 
 typedef NS_ENUM(NSInteger, LBBPoohTicketStatus) {

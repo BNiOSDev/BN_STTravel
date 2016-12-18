@@ -14,7 +14,7 @@
 #import "LBB_SquareSnsFollowDynamicDataSource.h"
 #import "LBB_SquareSnsFollowFavoriteDataSource.h"
 #import "LBB_SquareSnsFollowFunsDataSource.h"
-
+#import "LBB_Share.h"
 
 typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     LBB_SquareSnsFollowlDynamic = 0,//动态
@@ -154,14 +154,16 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
 -(void)loadCustomNavigationButton{
     
     WS(ws);
+    UIImage* image = [[UIImage imageNamed:@"标签详情_分享"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIButton *shareButton = [[UIButton alloc] init];
     shareButton.titleLabel.font = Font14;
-    [shareButton setImage:IMAGE(@"标签详情_分享") forState:UIControlStateNormal];
+    [shareButton setImage:image forState:UIControlStateNormal];
+    [shareButton setTintColor:ColorBlack];
     [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     shareButton.frame = CGRectMake(0, 0, 45, 45);
     [shareButton bk_addEventHandler:^(id sender){
         
-        
+        [[LBB_Share sharedManager] shareTitle:ws.viewModel.userShowViewModel.shareTitle url:ws.viewModel.userShowViewModel.shareUrl text:ws.viewModel.userShowViewModel.shareContent image:IMAGE(PlaceHolderImage) viewController:ws];
         
     }forControlEvents:UIControlEventTouchUpInside];
     

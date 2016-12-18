@@ -19,6 +19,8 @@ xcuserdata
 **/.DS_Store
 **/xcuserdata
 **/DerivedData
+**/WXExtensions
+**/WXFrameworks
 
 # emacs backup files
 *~
