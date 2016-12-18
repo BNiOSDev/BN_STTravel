@@ -300,6 +300,8 @@
     segmentedControl.menuArray = segmentArray;
     [v addSubview:segmentedControl];
     
+    [v bringSubviewToFront:b1];
+    
     UILabel* titleLabel = [UILabel new];
     [titleLabel setText:@"筛选"];
     [titleLabel setTextColor:ColorLightGray];
