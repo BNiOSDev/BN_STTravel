@@ -7,7 +7,6 @@
 //
 
 #import "LBB_GuiderApplyResultViewController.h"
-#import "LBB_GuiderApplyViewModel.h"
 #import "LBB_GuiderMainViewController.h"
 @interface LBB_GuiderApplyResultViewController ()
 
@@ -15,11 +14,18 @@
 @property(nonatomic, retain)UIButton* finishButton;
 @property(nonatomic, retain)UILabel* reasonLabel;
 
-@property(nonatomic, retain)LBB_GuiderApplyViewModel* viewModel;
 
 @end
 
 @implementation LBB_GuiderApplyResultViewController
+
+-(id)init{
+    
+    if (self = [super init]) {
+        self.viewModel = [[LBB_GuiderApplyViewModel alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,12 +47,13 @@
 }
 */
 -(void)loadCustomNavigationButton{
-    
-    if (self.isSuccess) {
-        self.title = @"审核成功";
+
+    //Int	0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+    if (self.viewModel.applyResult.tourAuditState == 3) {
+        self.title = @"审核失败";
     }
     else{
-        self.title = @"审核失败";
+        self.title = @"申请成功";
     }
 }
 
@@ -54,7 +61,7 @@
     
     WS(ws);
     
-    CGFloat margin = 8;
+   // CGFloat margin = 8;
     
     [self.view setBackgroundColor:ColorWhite];
     
@@ -145,32 +152,36 @@
 
 -(void)initViewModel{
     
-    if (!self.viewModel) {
-        self.viewModel = [[LBB_GuiderApplyViewModel alloc] init];
-    }
+
     WS(ws);
-    [self.viewModel getTourAuditResult:^(NSError* error){
-    
-        if (!error) {
-            if (ws.viewModel.applyResult.tourAuditState != 3) {
-                
-                [ws.applyResultButton setImage:IMAGE(@"导游_完成") forState:UIControlStateNormal];
-                [ws.applyResultButton setTitle:@"您已提交认证审核" forState:UIControlStateNormal];
-                [ws.finishButton setTitle:@"完成" forState:UIControlStateNormal];
-                [ws.reasonLabel setText:ws.viewModel.applyResult.tourAuditReason];
-            }
-            else{
-                [ws.applyResultButton setImage:IMAGE(@"导游_失败") forState:UIControlStateNormal];
-                [ws.applyResultButton setTitle:@"您提交导游审核认证失败" forState:UIControlStateNormal];
-                [ws.finishButton setTitle:@"重新申请导游认证" forState:UIControlStateNormal];
-                
-                [ws.reasonLabel setText:ws.viewModel.applyResult.tourAuditReason];
-            }
-            [ws.reasonLabel setLineSpace:10];
-        }
+    if (!self.isRemote) {
         
-    }];
-    
+    }
+    else{
+        [self.viewModel getTourAuditResult:^(NSError* error){
+            
+            if (!error) {
+                if (ws.viewModel.applyResult.tourAuditState != 3) {
+                    
+                    [ws.applyResultButton setImage:IMAGE(@"导游_完成") forState:UIControlStateNormal];
+                    [ws.applyResultButton setTitle:@"您已提交认证审核" forState:UIControlStateNormal];
+                    [ws.finishButton setTitle:@"完成" forState:UIControlStateNormal];
+                    [ws.reasonLabel setText:ws.viewModel.applyResult.tourAuditReason];
+                    ws.title = @"申请成功";
+                }
+                else{
+                    [ws.applyResultButton setImage:IMAGE(@"导游_失败") forState:UIControlStateNormal];
+                    [ws.applyResultButton setTitle:@"您提交导游审核认证失败" forState:UIControlStateNormal];
+                    [ws.finishButton setTitle:@"重新申请导游认证" forState:UIControlStateNormal];
+                    
+                    [ws.reasonLabel setText:ws.viewModel.applyResult.tourAuditReason];
+                    ws.title = @"审核失败";
+                    
+                }
+                [ws.reasonLabel setLineSpace:10];
+            }
+        }];
+    }
 }
 
 @end

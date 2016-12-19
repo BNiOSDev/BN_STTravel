@@ -13,7 +13,8 @@
 #import "LBB_FilterTableViewCell.h"
 #import "LBB_TagsViewModel.h"
 #import "LBB_GuiderViewModel.h"
-
+#import "LBB_GuiderApplyViewModel.h"
+#import "LBB_GuiderApplyResultViewController.h"
 @interface LBB_GuiderMainViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, retain) UISearchBar *searchBar;
@@ -29,6 +30,9 @@
 
 @property (nonatomic, strong)LBB_GuiderViewModel* viewModel;
 
+@property (nonatomic, strong)LBB_GuiderApplyViewModel* applyModel;
+
+
 @end
 
 @implementation LBB_GuiderMainViewController
@@ -39,6 +43,18 @@
     self.guiderSelectIndex = -1;//导游选择
     self.jobTimeSelectIndex = -1;//从业时间
     self.genderSelectIndex = -1;//性别选择
+    
+    
+    if (!self.applyModel) {
+        self.applyModel = [[LBB_GuiderApplyViewModel alloc] init];
+    }
+    [self.applyModel getTourAuditStatus:^(LBB_GuiderApplyObject* appleObject){
+    
+    } faile:^(LBB_GuiderAuditResultObject* resultObject){
+    
+    } error:^(NSError* error){
+    
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -268,10 +284,34 @@
     
     [b1 bk_addEventHandler:^(id sender){
     
-        LBB_GuiderApplyViewController* dest = [[LBB_GuiderApplyViewController alloc]init];
-      //  dest.showLabelTag = YES;
-        dest.tags = ws.viewModel.guiderCondition.tags;
-        [ws.navigationController pushViewController:dest animated:YES];
+        [ws.applyModel getTourAuditStatus:^(LBB_GuiderApplyObject* appleObject){
+            
+            LBB_GuiderApplyViewController* dest = [[LBB_GuiderApplyViewController alloc]init];
+            dest.viewModel.applyObject = appleObject;
+            dest.gender = ws.viewModel.guiderCondition.gender;
+            [ws.navigationController pushViewController:dest animated:YES];
+            
+        } faile:^(LBB_GuiderAuditResultObject* resultObject){
+            //	Int	0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+            if (resultObject.tourAuditState == 0) {
+                LBB_GuiderApplyViewController* dest = [[LBB_GuiderApplyViewController alloc]init];
+                dest.viewModel.applyObject.auditTags = nil;
+                dest.gender = ws.viewModel.guiderCondition.gender;
+                [ws.navigationController pushViewController:dest animated:YES];
+            }
+            else{
+                LBB_GuiderApplyResultViewController* dest = [[LBB_GuiderApplyResultViewController alloc]init];
+                dest.isRemote = NO;
+                dest.viewModel.applyResult = resultObject;
+                [ws.navigationController pushViewController:dest animated:YES];
+            }
+
+            
+        } error:^(NSError* error){
+            
+            
+        }];
+
     } forControlEvents:UIControlEventTouchUpInside];
 
     

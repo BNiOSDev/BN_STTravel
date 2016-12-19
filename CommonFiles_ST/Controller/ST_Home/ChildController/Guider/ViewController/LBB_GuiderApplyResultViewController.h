@@ -7,9 +7,11 @@
 //
 
 #import "PoohBaseViewController.h"
+#import "LBB_GuiderApplyViewModel.h"
 
 @interface LBB_GuiderApplyResultViewController : Base_BaseViewController
 
-@property(nonatomic, assign)BOOL isSuccess;
+@property(nonatomic, assign)BOOL isRemote;//yes：从后台取数据  no: 本地数据
+@property(nonatomic, retain)LBB_GuiderApplyViewModel* viewModel;
 
 @end

@@ -12,7 +12,7 @@
 @interface LBB_GuiderApplyTagsObject : BN_BaseDataModel
 
 @property(nonatomic, assign)long tagId;//	Long	标签ID
-
+@property(nonatomic, strong)NSString* tagName;//	String	标签名称
 @end
 
 
@@ -40,7 +40,6 @@
 @property(nonatomic, assign)int tourAuditState;//	Int	0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
 @property(nonatomic, strong)NSString* tourAuditReason;//	String	驳回理由
 
-
 @end
 
 @interface LBB_GuiderApplyViewModel : BN_BaseDataModel
@@ -56,13 +55,19 @@
  @param idCardBackImage       身份证反面照片
  @param tourPicImage          导游证照片
  @param otherCertificateImage 其他证件照片
- @param block                 回调
+ @param succBlock                 回调
+ @param faileBlock                 回调
+ @param errorBlock                 回调
+
  */
 -(void)saveTour:(UIImage*)idCardFrontImage
   idCardBackImage:(UIImage*)idCardBackImage
     tourPicImage:(UIImage*)tourPicImage
 otherCertificateImage:(UIImage*)otherCertificateImage
-          block:(void (^)(NSError *error))block;
+           succ:(void(^)(LBB_GuiderApplyObject* applyObject))succBlock
+          faile:(void(^)(LBB_GuiderAuditResultObject* resultObject))faileBlock
+          error:(void (^)(NSError *error))errorBlock;
+
 
 
 
@@ -72,4 +77,17 @@ otherCertificateImage:(UIImage*)otherCertificateImage
  @param block 回调
  */
 -(void)getTourAuditResult:(void (^)(NSError *error))block;
+
+
+/**
+  3.7.8 导游 –编辑页面
+
+ @param succBlock  succ block 回调
+ @param faileBlock faile block 回调
+ @param errorBlock errlo block 回调
+ */
+-(void)getTourAuditStatus:(void(^)(LBB_GuiderApplyObject* applyObject))succBlock
+                    faile:(void(^)(LBB_GuiderAuditResultObject* resultObject))faileBlock
+                    error:(void (^)(NSError *error))errorBlock;
+
 @end

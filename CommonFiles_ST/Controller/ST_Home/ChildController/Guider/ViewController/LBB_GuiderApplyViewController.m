@@ -13,7 +13,6 @@
 #import "LBB_GuiderIdentityCardSelectView.h"
 #import "LBB_GuiderApplyResultViewController.h"
 #import "UITextField+TPCategory.h"
-#import "LBB_GuiderApplyViewModel.h"
 #import <NSString+TPCategory.h>
 @interface LBB_GuiderApplyViewController ()
 
@@ -21,6 +20,8 @@
 
 @property (nonatomic, retain) LBB_GuiderApplyTextField *nameTextField;//姓名
 @property (nonatomic, retain) LBB_GuiderApplyTextField *identityIDTextField;//身份证号
+@property (nonatomic, retain) LBB_GuiderApplyTextField *genderTextField;//性别
+
 @property (nonatomic, retain) LBB_GuiderApplyTextField *guiderIDTextField;//导游证号
 @property (nonatomic, retain) LBB_GuiderApplyTextField *workTimeTextField;//从业时间
 @property (nonatomic, retain) LBB_GuiderApplyTextField *telTextField;//联系电话
@@ -37,11 +38,18 @@
 
 @property(nonatomic, retain)UILabel* noteLabel;
 
-@property(nonatomic, retain)LBB_GuiderApplyViewModel* viewModel;
 
 @end
 
 @implementation LBB_GuiderApplyViewController
+
+-(id)init{
+    
+    if (self = [super init]) {
+      //  self.auditTags = [[NSMutableArray alloc] initFromNet];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -100,12 +108,8 @@
         make.top.equalTo(ws.mainScrollView.mas_bottom);
     }];
     [applyButton bk_addEventHandler:^(id sender){
-    
-        LBB_GuiderApplyResultViewController* dest = [[LBB_GuiderApplyResultViewController alloc]init];
-        dest.isSuccess = YES;
-        [ws.navigationController pushViewController:dest animated:YES];
         
-       // [ws saveTour];
+        [ws saveTour];
     } forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -140,12 +144,37 @@
         make.top.equalTo(ws.nameTextField.mas_bottom);
     }];
     
+    self.genderTextField = [[LBB_GuiderApplyTextField alloc]init];
+    [self.genderTextField.titleLable setText:@"性别"];
+    [self.mainScrollView addSubview:self.genderTextField];
+    [self.genderTextField mas_makeConstraints:^(MASConstraintMaker* make){
+        make.centerX.width.equalTo(noteLabel);
+        make.top.equalTo(ws.identityIDTextField.mas_bottom);
+    }];
+    
+    self.genderTextField.rightTextField.bk_shouldBeginEditingBlock = ^(UITextField* text){
+        
+        UIAlertController *c = [UIAlertController alertControllerWithTitle:@"请选择性别" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        for (LBB_GuiderGenderConditionOption* tag in ws.gender) {
+            UIAlertAction *action = [UIAlertAction actionWithTitle:tag.gender style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                
+                [text setText:tag.gender];
+                ws.viewModel.applyObject.genderKey = tag.key;
+            }];
+            [c addAction:action];
+        }
+        [ws presentViewController:c animated:YES completion:nil];
+        
+        return NO;
+    };
+    
     self.guiderIDTextField = [[LBB_GuiderApplyTextField alloc]init];
     [self.guiderIDTextField.titleLable setText:@"导游证号"];
     [self.mainScrollView addSubview:self.guiderIDTextField];
     [self.guiderIDTextField mas_makeConstraints:^(MASConstraintMaker* make){
         make.centerX.width.equalTo(noteLabel);
-        make.top.equalTo(ws.identityIDTextField.mas_bottom);
+        make.top.equalTo(ws.genderTextField.mas_bottom);
     }];
     
     self.workTimeTextField = [[LBB_GuiderApplyTextField alloc]init];
@@ -194,7 +223,7 @@
     }];
     
     //选择标签
-    if (self.tags.count > 0) {
+    if (self.viewModel.applyObject.auditTags.count > 0) {
         self.labelTagView = [[LBB_GuiderApplyLabelSelectView alloc] init];
         self.labelTagView.borderWidth = SeparateLineWidth;
         self.labelTagView.buttonFont = Font13;
@@ -213,9 +242,9 @@
             make.centerX.width.equalTo(noteLabel);
         }];
         NSArray* array = @[@"余罪",@"恐怖游轮",@"放牛班的春天",@"当幸福来敲门",@"哈利波特",@"死亡密码",@"源代码",@"盗梦空间",@"疯狂动物城",@"X战警",@"西游降魔篇",@"这个男人来自地球",@"致命ID致命ID致命ID致命ID",@"搏击俱乐部",@"冰雪世界"];
-        array = [self.tags map:^id(LBB_GuiderConditionOption* tag){
+        array = [self.viewModel.applyObject.auditTags map:^id(LBB_GuiderApplyTagsObject* tag){
         
-            NSString* str = tag.name;
+            NSString* str = tag.tagName;
             return str;
         }];
         
@@ -229,7 +258,7 @@
     [self.idPositiveView.titleLable setText:@"身份证证件照片"];
     [self.mainScrollView addSubview:self.idPositiveView];
     [self.idPositiveView mas_makeConstraints:^(MASConstraintMaker* make){
-        if (ws.tags.count > 0) {
+        if (ws.viewModel.applyObject.auditTags.count > 0) {
             make.top.equalTo(ws.labelTagView.mas_bottom);
         }
         else{
@@ -306,6 +335,35 @@
         make.centerX.width.equalTo(noteLabel);
         make.bottom.equalTo(ws.mainScrollView).offset(-3*margin);
     }];
+    
+    self.nameTextField.rightTextField.text = self.viewModel.applyObject.realName;
+    self.identityIDTextField.rightTextField.text = self.viewModel.applyObject.idCard;
+    self.guiderIDTextField.rightTextField.text = self.viewModel.applyObject.tourIdCard;
+    self.workTimeTextField.rightTextField.text = self.viewModel.applyObject.tourStartTime;
+    self.telTextField.rightTextField.text = self.viewModel.applyObject.phoneNum;
+    self.shortIntroTextField.rightTextField.text = self.viewModel.applyObject.tourAWords;
+    self.detailIntroTextField.bottomTextField.text = self.viewModel.applyObject.tourDetails;
+    if (self.viewModel.applyObject.tourStartTime.length <= 0) {
+        [self.workTimeTextField.rightTextField setText:[PoohAppHelper getStringFromDate:[NSDate new] withFormat:DateFormatFullDate]];
+    }
+    
+    
+    [self.idPositiveView.selectImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.applyObject.idCardFrontUrl] completed:^(UIImage* image, NSError* error , SDImageCacheType cacheType, NSURL* imageUrl){
+        [ws.idPositiveView.addButton setImage:image forState:UIControlStateNormal];
+    }];
+    [self.idNegativeView.selectImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.applyObject.idCardBackUrl] completed:^(UIImage* image, NSError* error , SDImageCacheType cacheType, NSURL* imageUrl){
+        [ws.idNegativeView.addButton setImage:image forState:UIControlStateNormal];
+
+    }];
+    [self.guiderIDView.selectImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.applyObject.tourPicUrl] completed:^(UIImage* image, NSError* error , SDImageCacheType cacheType, NSURL* imageUrl){
+        [ws.guiderIDView.addButton setImage:image forState:UIControlStateNormal];
+
+    }];
+    [self.otherIDView.selectImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.applyObject.otherCertificateUrl] completed:^(UIImage* image, NSError* error , SDImageCacheType cacheType, NSURL* imageUrl){
+        [ws.otherIDView.addButton setImage:image forState:UIControlStateNormal];
+
+    }];
+
 }
 
 
@@ -377,35 +435,43 @@
     self.viewModel.applyObject.idCard = self.identityIDTextField.rightTextField.text;
     self.viewModel.applyObject.tourIdCard = self.guiderIDTextField.rightTextField.text;
     self.viewModel.applyObject.tourStartTime = self.workTimeTextField.rightTextField.text;
-    self.viewModel.applyObject.genderKey = 1;
     self.viewModel.applyObject.phoneNum = self.telTextField.rightTextField.text;
     self.viewModel.applyObject.tourAWords = self.shortIntroTextField.rightTextField.text;
     self.viewModel.applyObject.tourDetails = self.detailIntroTextField.bottomTextField.text;
     
     [self.viewModel.applyObject.auditTags removeAllObjects];
-    for (int i = 0; i < self.tags.count; i++) {
+    for (int i = 0; i < self.viewModel.applyObject.auditTags.count; i++) {
         
         NSNumber* num = self.labelTagView.flagArray[i];
         BOOL status = [num boolValue];
         if (status) {
             LBB_GuiderApplyTagsObject* obj = [[LBB_GuiderApplyTagsObject alloc] init];
-            LBB_GuiderConditionOption* option = self.tags[i];
-            obj.tagId = option.key;
+            LBB_GuiderApplyTagsObject* option = self.viewModel.applyObject.auditTags[i];
+            obj.tagId = option.tagId;
             [self.viewModel.applyObject.auditTags addObject:obj];
         }
     }
     
-    
+    WS(ws);
     NSLog(@"self.viewModel:%@",self.viewModel);
     [self.viewModel saveTour:self.idPositiveView.selectImageView.image
              idCardBackImage:self.idNegativeView.selectImageView.image
                 tourPicImage:self.guiderIDView.selectImageView.image
-       otherCertificateImage:self.otherIDView.selectImageView.image block:^(NSError* error){
-    
-           if (!error) {
-               
-           }
-    }];
+       otherCertificateImage:self.otherIDView.selectImageView.image
+                        succ:^(LBB_GuiderApplyObject* applyObjcet){
+                            LBB_GuiderApplyResultViewController* dest = [[LBB_GuiderApplyResultViewController alloc]init];
+                            dest.isRemote = YES;
+                            [ws.navigationController pushViewController:dest animated:YES];
+                        }
+                       faile:^(LBB_GuiderAuditResultObject* resultObject){
+                           LBB_GuiderApplyResultViewController* dest = [[LBB_GuiderApplyResultViewController alloc]init];
+                           dest.isRemote = NO;
+                           dest.viewModel.applyResult = resultObject;
+                           [ws.navigationController pushViewController:dest animated:YES];
+                       }
+                       error:^(NSError* error){
+                       
+                       }];
 }
 
 @end

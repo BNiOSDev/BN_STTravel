@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D9AC5F91E06AC2C00295A09 /* LBB_GuiderConditionOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9AC5F81E06AC2C00295A09 /* LBB_GuiderConditionOption.m */; };
 		1D9AC5FC1E076ACC00295A09 /* LBB_GuiderApplyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9AC5FB1E076ACC00295A09 /* LBB_GuiderApplyViewModel.m */; };
+		1D9AC5FF1E07C77100295A09 /* UIAlertController+supportedInterfaceOrientations.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9AC5FE1E07C77100295A09 /* UIAlertController+supportedInterfaceOrientations.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DAD7D301E068FCF00C2EEA0 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD780C1E068FCE00C2EEA0 /* PoohBaseTableViewController.m */; };
@@ -619,6 +620,8 @@
 		1D9AC5F81E06AC2C00295A09 /* LBB_GuiderConditionOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderConditionOption.m; sourceTree = "<group>"; };
 		1D9AC5FA1E076ACC00295A09 /* LBB_GuiderApplyViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderApplyViewModel.h; sourceTree = "<group>"; };
 		1D9AC5FB1E076ACC00295A09 /* LBB_GuiderApplyViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderApplyViewModel.m; sourceTree = "<group>"; };
+		1D9AC5FD1E07C77100295A09 /* UIAlertController+supportedInterfaceOrientations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+supportedInterfaceOrientations.h"; sourceTree = "<group>"; };
+		1D9AC5FE1E07C77100295A09 /* UIAlertController+supportedInterfaceOrientations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+supportedInterfaceOrientations.m"; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DAD780B1E068FCE00C2EEA0 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
@@ -2498,6 +2501,8 @@
 				1DAD79481E068FCE00C2EEA0 /* UIImage+PoohCommon.m */,
 				1DAD79491E068FCE00C2EEA0 /* UILabel+Common.h */,
 				1DAD794A1E068FCE00C2EEA0 /* UILabel+Common.m */,
+				1D9AC5FD1E07C77100295A09 /* UIAlertController+supportedInterfaceOrientations.h */,
+				1D9AC5FE1E07C77100295A09 /* UIAlertController+supportedInterfaceOrientations.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -5922,6 +5927,7 @@
 				1DAD7E041E068FD000C2EEA0 /* ChangePhoneNumViewController.m in Sources */,
 				1DAD7D9C1E068FCF00C2EEA0 /* LBB_HomeSearchDefaultCell.m in Sources */,
 				1DAD7E3F1E068FD000C2EEA0 /* LBB_ImagePickerViewController.m in Sources */,
+				1D9AC5FF1E07C77100295A09 /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
 				1DAD7F0F1E068FD000C2EEA0 /* PraiseModel.m in Sources */,
 				1DAD7E451E068FD000C2EEA0 /* LBB_MySectionHeadViewCell.m in Sources */,
 				1DAD7E281E068FD000C2EEA0 /* LBB_TicketCommentTagViewCell.m in Sources */,

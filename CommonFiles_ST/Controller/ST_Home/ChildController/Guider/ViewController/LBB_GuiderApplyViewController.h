@@ -8,10 +8,12 @@
 
 #import "PoohBaseViewController.h"
 #import "LBB_GuiderConditionOption.h"
+#import "LBB_GuiderApplyViewModel.h"
 
 @interface LBB_GuiderApplyViewController : Base_BaseViewController
 
-//@property(nonatomic, assign)BOOL showLabelTag;
-@property(nonatomic,strong)NSMutableArray<LBB_GuiderConditionOption*>* tags;//	List	标签选择
+//@property(nonatomic, strong)NSMutableArray<LBB_GuiderApplyTagsObject*>* auditTags;//	List	认证标签
+@property(nonatomic, retain)LBB_GuiderApplyViewModel* viewModel;
+@property(nonatomic,strong)NSMutableArray<LBB_GuiderGenderConditionOption*>* gender;//	List	性别
 
 @end

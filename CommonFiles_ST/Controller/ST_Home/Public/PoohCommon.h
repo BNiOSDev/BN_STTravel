@@ -42,6 +42,7 @@ typedef void(^ClickBlockFour)(id object, id param1,id param2, id param3);
 #import "LBB_HomeCommonModel.h"
 #import "LBB_PoohCoreLocationManager.h"
 #import "LBB_ToWebViewController.h"
+#import "UIAlertController+supportedInterfaceOrientations.h"
 
 
 

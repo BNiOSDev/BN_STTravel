@@ -19,6 +19,18 @@
     
     if (self = [super init]) {
         self.auditTags = [[NSMutableArray alloc] initFromNet];
+        self.realName = @"";//	String	真实姓名
+        self.idCard = @"";//	String	身份证号
+        self.tourIdCard = @"";//	String	导游证号码
+        self.tourStartTime = @"";//	String	从业时间yyyy-MM-dd
+        self.genderKey = 1;//	int	性别key
+        self.phoneNum = @"";//	String	联系电话
+        self.tourAWords = @"";//	String	一句话介绍
+        self.tourDetails = @"";//	String	详情介绍
+        self.idCardFrontUrl = @"";//	String	身份证正面照片URL
+        self.idCardBackUrl = @"";//	String	身份证反面照片URL
+        self.tourPicUrl = @"";//	String	导游证照片
+        self.otherCertificateUrl = @"";//	String	其他证件照片
     }
     return self;
 }
@@ -57,20 +69,25 @@
 }
 
 
- /**
+/**
  3.7.7 导游 –申请（已测）
  
  @param idCardFrontImage      身份证正面照片
  @param idCardBackImage       身份证反面照片
  @param tourPicImage          导游证照片
  @param otherCertificateImage 其他证件照片
- @param block                 回调
+ @param succBlock                 回调
+ @param faileBlock                 回调
+ @param errorBlock                 回调
+ 
  */
 -(void)saveTour:(UIImage*)idCardFrontImage
 idCardBackImage:(UIImage*)idCardBackImage
    tourPicImage:(UIImage*)tourPicImage
 otherCertificateImage:(UIImage*)otherCertificateImage
-          block:(void (^)(NSError *error))block{
+           succ:(void(^)(LBB_GuiderApplyObject* applyObject))succBlock
+          faile:(void(^)(LBB_GuiderAuditResultObject* resultObject))faileBlock
+          error:(void (^)(NSError *error))errorBlock{
 
     
     NSMutableArray *tagsArray = (NSMutableArray *)[self.applyObject.auditTags map:^id(LBB_GuiderApplyTagsObject *element) {
@@ -158,23 +175,25 @@ otherCertificateImage:(UIImage*)otherCertificateImage
                                     NSNumber *codeNumber = [dic objectForKey:@"code"];
                                     if(codeNumber.intValue == 0)
                                     {
-                                        NSLog(@"saveTour成功:%d",[codeNumber intValue]);
-                                        block(nil);
+                                        NSLog(@"saveTour成功:%d Restlt:%@",[codeNumber intValue],[dic objectForKey:@"result"]);
+                                        
+                                        succBlock(nil);
                                     }
                                     else
                                     {
                                         NSString *errorStr = [dic objectForKey:@"remark"];
-                                        NSDictionary *result = [dic objectForKey:@"result"];
-                                        errorStr = [result objectForKey:@"auditMessage"];
                                         NSLog(@"saveTour失败:%d errorStr:%@",[codeNumber intValue],errorStr);
+                                        NSDictionary* result = [dic objectForKey:@"result"];
+                                        LBB_GuiderAuditResultObject* resultObject = [[LBB_GuiderAuditResultObject alloc] init];
+                                        resultObject.tourAuditState = [[result objectForKey:@"auditState"] intValue];
+                                        resultObject.tourAuditReason = [result objectForKey:@"auditMessage"];
+                                      //  resultObject = [LBB_GuiderAuditResultObject mj_objectWithKeyValues:[dic objectForKey:@"result"]];
                                         
-                                        block([NSError errorWithDomain:errorStr
-                                                                  code:codeNumber.intValue
-                                                              userInfo:nil]);
+                                        faileBlock(resultObject);
                                     }
                                 } failure:^(NSURLSessionDataTask *operation, NSError *error) {
                                     NSLog(@"saveTour失败 error :%@ ",error.domain);
-                                    block(error);
+                                    errorBlock(error);
                                 }];
                                 
                             }];
@@ -222,6 +241,52 @@ otherCertificateImage:(UIImage*)otherCertificateImage
         NSLog(@"getTourAuditResult失败 error :%@ ",error.domain);
         block(error);
     }];
+}
+
+
+/**
+ 3.7.8 导游 –编辑页面
+ 
+ @param succBlock  succ block 回调
+ @param faileBlock faile block 回调
+ @param errorBlock errlo block 回调
+ */
+-(void)getTourAuditStatus:(void(^)(LBB_GuiderApplyObject* applyObject))succBlock
+                    faile:(void(^)(LBB_GuiderAuditResultObject* resultObject))faileBlock
+                    error:(void (^)(NSError *error))errorBlock{
+
+    NSString *postUrl = [NSString stringWithFormat:@"%@/tour/edit",BASEURL];
+    // __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] GET:postUrl parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        NSLog(@"getTourAuditStatus result:%@",dic);
+
+        if(codeNumber.intValue == 0)
+        {
+            LBB_GuiderApplyObject* applyObject = [[LBB_GuiderApplyObject alloc] init];
+            applyObject = [LBB_GuiderApplyObject mj_objectWithKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getTourAuditStatus成功:%d result:%@",[codeNumber intValue],dic);
+            
+            succBlock(applyObject);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getTourAuditStatus失败:%d errorStr:%@",[codeNumber intValue],errorStr);
+            NSDictionary* result = [dic objectForKey:@"result"];
+            LBB_GuiderAuditResultObject* resultObject = [[LBB_GuiderAuditResultObject alloc] init];
+            resultObject.tourAuditState = [[result objectForKey:@"auditState"] intValue];
+            resultObject.tourAuditReason = [result objectForKey:@"auditMessage"];
+           // resultObject = [LBB_GuiderAuditResultObject mj_objectWithKeyValues:[dic objectForKey:@"result"]];
+            
+            faileBlock(resultObject);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getTourAuditStatus失败 error :%@ ",error.domain);
+        errorBlock(error);
+    }];
+
 }
 
 @end
