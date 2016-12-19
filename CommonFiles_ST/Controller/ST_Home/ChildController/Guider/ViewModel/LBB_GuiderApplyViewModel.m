@@ -274,13 +274,23 @@ otherCertificateImage:(UIImage*)otherCertificateImage
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
             NSLog(@"getTourAuditStatus失败:%d errorStr:%@",[codeNumber intValue],errorStr);
-            NSDictionary* result = [dic objectForKey:@"result"];
-            LBB_GuiderAuditResultObject* resultObject = [[LBB_GuiderAuditResultObject alloc] init];
-            resultObject.tourAuditState = [[result objectForKey:@"auditState"] intValue];
-            resultObject.tourAuditReason = [result objectForKey:@"auditMessage"];
-           // resultObject = [LBB_GuiderAuditResultObject mj_objectWithKeyValues:[dic objectForKey:@"result"]];
             
-            faileBlock(resultObject);
+            
+            NSDictionary* result = [dic objectForKey:@"result"];
+            
+            if (!result) {//nil的时候
+                errorBlock([NSError errorWithDomain:errorStr
+                                          code:codeNumber.intValue
+                                      userInfo:nil]);
+            }
+            else{
+                LBB_GuiderAuditResultObject* resultObject = [[LBB_GuiderAuditResultObject alloc] init];
+                resultObject.tourAuditState = [[result objectForKey:@"auditState"] intValue];
+                resultObject.tourAuditReason = [result objectForKey:@"auditMessage"];
+                // resultObject = [LBB_GuiderAuditResultObject mj_objectWithKeyValues:[dic objectForKey:@"result"]];
+                faileBlock(resultObject);
+            }
+ 
         }
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"getTourAuditStatus失败 error :%@ ",error.domain);
