@@ -7,9 +7,11 @@
 //
 
 #import "PoohBaseViewController.h"
+#import "LBB_GuiderConditionOption.h"
 
 @interface LBB_GuiderApplyViewController : Base_BaseViewController
 
-@property(nonatomic, assign)BOOL showLabelTag;
+//@property(nonatomic, assign)BOOL showLabelTag;
+@property(nonatomic,strong)NSMutableArray<LBB_GuiderConditionOption*>* tags;//	List	标签选择
 
 @end

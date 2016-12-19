@@ -10,7 +10,7 @@
 #import "PoohCommon.h"
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
 #import <CTAssetsPickerController/CTAssetsPageViewController.h>
-
+#import "UIImage+TPCategory.h"
 @interface LBB_GuiderIdentityCardSelectView()<CTAssetsPickerControllerDelegate>
 
 @property (nonatomic, strong) PHImageRequestOptions *requestOptions;
@@ -236,7 +236,7 @@
             if (!ws.selectImageView) {
                 ws.selectImageView = [UIImageView new];
             }
-            ws.selectImageView.image = result;
+            ws.selectImageView.image = [result scaleToSize:CGSizeMake(DeviceWidth, AutoSize(160))];
             [ws configImageView:YES];
         }];
     }

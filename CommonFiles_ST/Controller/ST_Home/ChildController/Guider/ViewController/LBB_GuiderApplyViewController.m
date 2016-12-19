@@ -12,7 +12,9 @@
 #import "LBB_GuiderApplyLabelSelectView.h"
 #import "LBB_GuiderIdentityCardSelectView.h"
 #import "LBB_GuiderApplyResultViewController.h"
-
+#import "UITextField+TPCategory.h"
+#import "LBB_GuiderApplyViewModel.h"
+#import <NSString+TPCategory.h>
 @interface LBB_GuiderApplyViewController ()
 
 @property (nonatomic, retain) UIScrollView *mainScrollView;
@@ -34,6 +36,8 @@
 @property (nonatomic, retain) LBB_GuiderIdentityCardSelectView * otherIDView; //其他证件照片
 
 @property(nonatomic, retain)UILabel* noteLabel;
+
+@property(nonatomic, retain)LBB_GuiderApplyViewModel* viewModel;
 
 @end
 
@@ -97,9 +101,11 @@
     }];
     [applyButton bk_addEventHandler:^(id sender){
     
-        LBB_GuiderApplyResultViewController* dest = [[LBB_GuiderApplyResultViewController alloc]init];
+      /*  LBB_GuiderApplyResultViewController* dest = [[LBB_GuiderApplyResultViewController alloc]init];
         dest.isSuccess = YES;
-        [ws.navigationController pushViewController:dest animated:YES];
+        [ws.navigationController pushViewController:dest animated:YES];*/
+        
+        [ws saveTour];
     } forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -143,6 +149,8 @@
     }];
     
     self.workTimeTextField = [[LBB_GuiderApplyTextField alloc]init];
+    [self.workTimeTextField.rightTextField setText:[PoohAppHelper getStringFromDate:[NSDate new] withFormat:DateFormatFullDate]];
+    [self.workTimeTextField.rightTextField useDateKeyboard:@"yyyy-MM-dd"];
     [self.workTimeTextField.titleLable setText:@"从业时间"];
     [self.mainScrollView addSubview:self.workTimeTextField];
     [self.workTimeTextField mas_makeConstraints:^(MASConstraintMaker* make){
@@ -186,7 +194,7 @@
     }];
     
     //选择标签
-    if (self.showLabelTag) {
+    if (self.tags.count > 0) {
         self.labelTagView = [[LBB_GuiderApplyLabelSelectView alloc] init];
         self.labelTagView.borderWidth = SeparateLineWidth;
         self.labelTagView.buttonFont = Font13;
@@ -205,6 +213,12 @@
             make.centerX.width.equalTo(noteLabel);
         }];
         NSArray* array = @[@"余罪",@"恐怖游轮",@"放牛班的春天",@"当幸福来敲门",@"哈利波特",@"死亡密码",@"源代码",@"盗梦空间",@"疯狂动物城",@"X战警",@"西游降魔篇",@"这个男人来自地球",@"致命ID致命ID致命ID致命ID",@"搏击俱乐部",@"冰雪世界"];
+        array = [self.tags map:^id(LBB_GuiderConditionOption* tag){
+        
+            NSString* str = tag.name;
+            return str;
+        }];
+        
         [self.labelTagView configContentView:array];
     }
     
@@ -215,7 +229,7 @@
     [self.idPositiveView.titleLable setText:@"身份证证件照片"];
     [self.mainScrollView addSubview:self.idPositiveView];
     [self.idPositiveView mas_makeConstraints:^(MASConstraintMaker* make){
-        if (ws.showLabelTag) {
+        if (ws.tags.count > 0) {
             make.top.equalTo(ws.labelTagView.mas_bottom);
         }
         else{
@@ -292,9 +306,135 @@
         make.centerX.width.equalTo(noteLabel);
         make.bottom.equalTo(ws.mainScrollView).offset(-3*margin);
     }];
-    
+}
 
+
+/**
+ 申请导游
+ */
+-(void)saveTour{
+
+    if (!self.viewModel) {
+        self.viewModel = [[LBB_GuiderApplyViewModel alloc] init];
+    }
     
+    if (self.nameTextField.rightTextField.text.length <= 0) {
+        [self showHudPrompt:@"请输入姓名!"];
+        return;
+    }
+    
+    if (self.identityIDTextField.rightTextField.text.length <= 0 ) {
+        [self showHudPrompt:@"请输入身份证号码!"];
+        return;
+    }
+    else if([self.identityIDTextField.rightTextField.text validateIdentityCard] == NO){
+        [self showHudPrompt:@"输入的身份证号码格式错误!"];
+        return;
+    }
+    
+    if (self.guiderIDTextField.rightTextField.text.length <= 0) {
+        [self showHudPrompt:@"请输入导游证号!"];
+        return;
+    }
+    
+    if (self.workTimeTextField.rightTextField.text.length <= 0) {
+        [self showHudPrompt:@"请输入从业时间!"];
+        return;
+    }
+    
+    if (self.telTextField.rightTextField.text.length <= 0 ) {
+        [self showHudPrompt:@"请输入联系电话!"];
+        return;
+    }
+    else if([self.telTextField.rightTextField.text validatePhone] == NO){
+        [self showHudPrompt:@"输入的电话号码格式错误!"];
+        return;
+    }
+    
+    if (self.shortIntroTextField.rightTextField.text.length <= 0) {
+        [self showHudPrompt:@"请输入一句话介绍!"];
+        return;
+    }
+    
+    if (self.detailIntroTextField.bottomTextField.text.length <= 0) {
+        [self showHudPrompt:@"请输入详细介绍!"];
+        return;
+    }
+    if (self.idPositiveView.selectImageView.image == nil) {
+        [self showHudPrompt:@"身份证正面照不能为空!"];
+        return;
+    }
+    if (self.idNegativeView.selectImageView.image == nil) {
+        [self showHudPrompt:@"身份证反面照不能为空!"];
+        return;
+    }
+    if (self.guiderIDView.selectImageView.image == nil) {
+        [self showHudPrompt:@"导游证照片不能为空!"];
+        return;
+    }
+    
+    /*
+     @property (nonatomic, retain) LBB_GuiderApplyTextField *nameTextField;//姓名
+     @property (nonatomic, retain) LBB_GuiderApplyTextField *identityIDTextField;//身份证号
+     @property (nonatomic, retain) LBB_GuiderApplyTextField *guiderIDTextField;//导游证号
+     @property (nonatomic, retain) LBB_GuiderApplyTextField *workTimeTextField;//从业时间
+     @property (nonatomic, retain) LBB_GuiderApplyTextField *telTextField;//联系电话
+     @property (nonatomic, retain) LBB_GuiderApplyTextField *shortIntroTextField;//一句话介绍
+     @property (nonatomic, retain) LBB_GuiderApplyTextField *detailIntroTextField;//详细介绍
+     @property (nonatomic, retain) LBB_GuiderApplyLabelSelectView *labelTagView; //选择标签
+     
+     @property (nonatomic, retain) LBB_GuiderIdentityCardSelectView * idPositiveView; //身份证正面
+     @property (nonatomic, retain) LBB_GuiderIdentityCardSelectView * idNegativeView; //身份证反面
+     
+     @property (nonatomic, retain) LBB_GuiderIdentityCardSelectView * guiderIDView; //导游证照片
+     
+     @property (nonatomic, retain) LBB_GuiderIdentityCardSelectView * otherIDView; //其他证件照片
+     */
+    /*
+     @property(nonatomic, strong)NSString* realName;//	String	真实姓名
+     @property(nonatomic, strong)NSString* idCard;//	String	身份证号
+     @property(nonatomic, strong)NSString* tourIdCard;//	String	导游证号码
+     @property(nonatomic, strong)NSString* tourStartTime;//	String	从业时间yyyy-MM-dd
+     @property(nonatomic, assign)int genderKey;//	int	性别key
+     @property(nonatomic, strong)NSString* phoneNum;//	String	联系电话
+     @property(nonatomic, strong)NSString* tourAWords;//	String	一句话介绍
+     @property(nonatomic, strong)NSString* tourDetails;//	String	详情介绍
+     @property(nonatomic, strong)NSMutableArray<LBB_GuiderApplyTagsObject*>* auditTags;//	List	认证标签
+     */
+    
+    self.viewModel.applyObject.realName = self.nameTextField.rightTextField.text;
+    self.viewModel.applyObject.idCard = self.identityIDTextField.rightTextField.text;
+    self.viewModel.applyObject.tourIdCard = self.guiderIDTextField.rightTextField.text;
+    self.viewModel.applyObject.tourStartTime = self.workTimeTextField.rightTextField.text;
+    self.viewModel.applyObject.genderKey = 1;
+    self.viewModel.applyObject.phoneNum = self.telTextField.rightTextField.text;
+    self.viewModel.applyObject.tourAWords = self.shortIntroTextField.rightTextField.text;
+    self.viewModel.applyObject.tourDetails = self.detailIntroTextField.bottomTextField.text;
+    
+    [self.viewModel.applyObject.auditTags removeAllObjects];
+    for (int i = 0; i < self.tags.count; i++) {
+        
+        NSNumber* num = self.labelTagView.flagArray[i];
+        BOOL status = [num boolValue];
+        if (status) {
+            LBB_GuiderApplyTagsObject* obj = [[LBB_GuiderApplyTagsObject alloc] init];
+            LBB_GuiderConditionOption* option = self.tags[i];
+            obj.tagId = option.key;
+            [self.viewModel.applyObject.auditTags addObject:obj];
+        }
+    }
+    
+    
+    NSLog(@"self.viewModel:%@",self.viewModel);
+    [self.viewModel saveTour:self.idPositiveView.selectImageView.image
+             idCardBackImage:self.idNegativeView.selectImageView.image
+                tourPicImage:self.guiderIDView.selectImageView.image
+       otherCertificateImage:self.otherIDView.selectImageView.image block:^(NSError* error){
+    
+           if (!error) {
+               
+           }
+    }];
 }
 
 @end

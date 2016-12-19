@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D9AC5F91E06AC2C00295A09 /* LBB_GuiderConditionOption.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9AC5F81E06AC2C00295A09 /* LBB_GuiderConditionOption.m */; };
+		1D9AC5FC1E076ACC00295A09 /* LBB_GuiderApplyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D9AC5FB1E076ACC00295A09 /* LBB_GuiderApplyViewModel.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DAD7D301E068FCF00C2EEA0 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAD780C1E068FCE00C2EEA0 /* PoohBaseTableViewController.m */; };
@@ -616,6 +617,8 @@
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D9AC5F71E06AC2C00295A09 /* LBB_GuiderConditionOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderConditionOption.h; sourceTree = "<group>"; };
 		1D9AC5F81E06AC2C00295A09 /* LBB_GuiderConditionOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderConditionOption.m; sourceTree = "<group>"; };
+		1D9AC5FA1E076ACC00295A09 /* LBB_GuiderApplyViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_GuiderApplyViewModel.h; sourceTree = "<group>"; };
+		1D9AC5FB1E076ACC00295A09 /* LBB_GuiderApplyViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_GuiderApplyViewModel.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DAD780B1E068FCE00C2EEA0 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
@@ -2051,6 +2054,8 @@
 				1DAD788D1E068FCE00C2EEA0 /* LBB_GuiderViewModel.m */,
 				1D9AC5F71E06AC2C00295A09 /* LBB_GuiderConditionOption.h */,
 				1D9AC5F81E06AC2C00295A09 /* LBB_GuiderConditionOption.m */,
+				1D9AC5FA1E076ACC00295A09 /* LBB_GuiderApplyViewModel.h */,
+				1D9AC5FB1E076ACC00295A09 /* LBB_GuiderApplyViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -5575,7 +5580,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
@@ -5993,6 +5998,7 @@
 				1DAD7DD61E068FCF00C2EEA0 /* LBB_NoticeViewCell.m in Sources */,
 				1DAD7D891E068FCF00C2EEA0 /* LBB_ScenicDetailADCell.m in Sources */,
 				1DAD7DBB1E068FCF00C2EEA0 /* LBBHomeMenuTableViewCell.m in Sources */,
+				1D9AC5FC1E076ACC00295A09 /* LBB_GuiderApplyViewModel.m in Sources */,
 				1DAD7DBA1E068FCF00C2EEA0 /* LBBHomeHotestTableViewCellItem.m in Sources */,
 				1DAD7D561E068FCF00C2EEA0 /* LBB_FoodsViewModel.m in Sources */,
 				1DAD7E501E068FD000C2EEA0 /* NSEntityDescription+MagicalDataImport.m in Sources */,

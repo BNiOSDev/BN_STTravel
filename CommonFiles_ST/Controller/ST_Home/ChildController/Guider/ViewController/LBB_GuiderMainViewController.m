@@ -260,7 +260,8 @@
     [b1 bk_addEventHandler:^(id sender){
     
         LBB_GuiderApplyViewController* dest = [[LBB_GuiderApplyViewController alloc]init];
-        dest.showLabelTag = YES;
+      //  dest.showLabelTag = YES;
+        dest.tags = ws.viewModel.guiderCondition.tags;
         [ws.navigationController pushViewController:dest animated:YES];
     } forControlEvents:UIControlEventTouchUpInside];
 
