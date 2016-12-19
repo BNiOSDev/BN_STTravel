@@ -11,7 +11,13 @@
 @interface LBB_ScenicDetailVipMPaiCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end
-@implementation LBB_ScenicDetailVipMPaiCell
+@implementation LBB_ScenicDetailVipMPaiCell{
+
+    RACDisposable* racLikeNum;
+    RACDisposable* racCommentsNum;
+    RACDisposable* racIsCollected;
+    RACDisposable* racIsLiked;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -58,9 +64,7 @@
         
         
         NSLog(@"LBB_ScenicDetailVipMPaiCellItemHeight:%f",LBB_ScenicDetailVipMPaiCellItemHeight);
-        
-
-        
+    
     /*
         UIView* sep = [UIView new];
         [sep setBackgroundColor:ColorLine];
@@ -92,17 +96,6 @@
     
     LBB_SpotsUgc* obj = [self.ugc objectAtIndex:indexPath.row];
     
-    /*
-     @property(nonatomic, assign)int likeNum ;// 点赞次数
-     @property(nonatomic, assign)int commentsNum ;// 评论条数
-     @property(nonatomic, strong)NSString *userName ;// 发布者用户名称
-     
-     @property(nonatomic, strong)NSString *userPicUrl ;// 发布者头像URL
-     
-     
-
-     */
-    
     [cell.mainImageView sd_setImageWithURL:[NSURL URLWithString:obj.ugcPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
     [cell.nickNameLabel setText:obj.userName];// 发布者用户名称
     [cell.portraitImageView sd_setImageWithURL:[NSURL URLWithString:obj.userPicUrl] placeholderImage:IMAGE(PlaceHolderImage)];
@@ -120,27 +113,34 @@
         } forControlEvents:UIControlEventTouchUpInside];
     }
     
+
+
+    [racIsLiked dispose];
+    [racCommentsNum dispose];
+    [racIsCollected dispose];
+    [racIsLiked dispose];
+
     // 点赞次数
-    [RACObserve(obj, likeNum) subscribeNext:^(NSNumber* num) {
+    racLikeNum = [RACObserve(obj, likeNum) subscribeNext:^(NSNumber* num) {
         int likenum = [num intValue];
         [cell.greatButton setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
     }];
     
     // 评论条数
-    [RACObserve(obj, commentsNum) subscribeNext:^(NSNumber* num) {
+    racCommentsNum = [RACObserve(obj, commentsNum) subscribeNext:^(NSNumber* num) {
         int likenum = [num intValue];
         [cell.commentsButton setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
     }];
  
  
     // 是否收藏 0否 1是
-    [RACObserve(obj, isCollected) subscribeNext:^(NSNumber* num) {
+    racIsCollected = [RACObserve(obj, isCollected) subscribeNext:^(NSNumber* num) {
         BOOL status = [num boolValue];
      //   [cell.commentsButton setTitle:[NSString stringWithFormat:@"%d",likenum] forState:UIControlStateNormal];
     }];
     
     // 是否点赞 0否 1是
-    [RACObserve(obj, isLiked) subscribeNext:^(NSNumber* num) {
+    racIsLiked = [RACObserve(obj, isLiked) subscribeNext:^(NSNumber* num) {
         BOOL status = [num boolValue];
         if (status) {
             [cell.greatButton setImage:IMAGE(@"景区列表_点赞HL")forState:UIControlStateNormal];

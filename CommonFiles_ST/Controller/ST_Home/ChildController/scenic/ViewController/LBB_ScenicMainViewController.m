@@ -226,7 +226,7 @@
  */
 
 -(void)loadCustomNavigationButton{
-    WS(ws);
+ //   WS(ws);
    self.title = @"景点";
     UIButton *search = [[UIButton alloc] init];
     search.titleLabel.font = Font14;
@@ -602,7 +602,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    WS(ws);
+  //  WS(ws);
     if (indexPath.section == 0) { //ad
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
         LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];

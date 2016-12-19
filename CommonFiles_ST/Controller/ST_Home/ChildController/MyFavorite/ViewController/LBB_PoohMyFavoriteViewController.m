@@ -249,9 +249,6 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    WS(ws);
-   
-    
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         static NSString *cellIdentifier = @"LBB_PoohMyFavoriteMainCell";
         LBB_PoohMyFavoriteMainCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];

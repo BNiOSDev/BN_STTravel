@@ -337,7 +337,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+        //    NSString *errorStr = [dic objectForKey:@"remark"];
 
         }
         
@@ -385,7 +385,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+        //    NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.spotAdvertisementArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -430,7 +430,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+        //    NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.noticesArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -474,7 +474,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+        //    NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.spotsArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -519,7 +519,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+       //     NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.travelNotesArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -558,7 +558,7 @@
     
     spotsArray.loadSupport.loadEvent = NetLoadingEvent;
     
-    __weak typeof(self) temp = self;
+   // __weak typeof(self) temp = self;
     __weak NSMutableArray *spotsArray_block = spotsArray;
     [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
@@ -574,7 +574,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+         //   NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         spotsArray_block.loadSupport.loadEvent = codeNumber.intValue;
@@ -619,7 +619,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+      //      NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.ugcArray.loadSupport.loadEvent = codeNumber.intValue;
