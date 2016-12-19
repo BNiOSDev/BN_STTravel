@@ -158,7 +158,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+          //  NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.hostelArray.loadSupport.loadEvent = codeNumber.intValue;

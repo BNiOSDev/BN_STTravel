@@ -98,15 +98,15 @@
     if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
-                NSLog(@"达人推荐美食行数:%d",self.footSpotsArray.count);
+                NSLog(@"达人推荐美食行数:%lu",self.footSpotsArray.count);
                 return self.footSpotsArray.count;
                 break;
             case LBBPoohSegmCtrlHostelType:
-                NSLog(@"达人推荐民宿行数:%d",self.liveSpotsArray.count);
+                NSLog(@"达人推荐民宿行数:%lu",self.liveSpotsArray.count);
                 return self.liveSpotsArray.count;
                 break;
             case LBBPoohSegmCtrlScenicType:
-                NSLog(@"达人推荐景点行数:%d",self.scenicSpotsArray.count);
+                NSLog(@"达人推荐景点行数:%lu",self.scenicSpotsArray.count);
                 return self.scenicSpotsArray.count;
                 break;
                 
@@ -134,15 +134,15 @@
     if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
         switch (self.pagerView.selectedSegmentIndex) {
             case LBBPoohSegmCtrlFoodsType:
-                NSLog(@"达人推荐数据美食:%d",indexPath.row);
+                NSLog(@"达人推荐数据美食:%lu",indexPath.row);
                 obj = [self.footSpotsArray objectAtIndex:indexPath.row];
                 break;
             case LBBPoohSegmCtrlHostelType:
-                NSLog(@"达人推荐数据民宿:%d",indexPath.row);
+                NSLog(@"达人推荐数据民宿:%lu",indexPath.row);
                 obj = [self.liveSpotsArray objectAtIndex:indexPath.row];
                 break;
             case LBBPoohSegmCtrlScenicType:
-                NSLog(@"达人推荐数据景点:%d",indexPath.row);
+                NSLog(@"达人推荐数据景点:%lu",indexPath.row);
                 obj = [self.scenicSpotsArray objectAtIndex:indexPath.row];
                 break;
         }

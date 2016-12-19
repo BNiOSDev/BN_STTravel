@@ -181,7 +181,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+     //       NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.foodsArray.loadSupport.loadEvent = codeNumber.intValue;

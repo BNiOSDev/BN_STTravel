@@ -82,7 +82,6 @@
                               };
     NSLog(@"getSpotArrayLongitude paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/nearby/spots",BASEURL];
-    __weak typeof(self) temp = self;
     __weak NSMutableArray *sportArray_block = sportArray;
     sportArray.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -392,6 +391,7 @@
         else
         {
             NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getSpotAdvertisementListArrayClearData errorStr:%@",errorStr);
         }
         
         temp.spotAdvertisementArray.loadSupport.loadEvent = codeNumber.intValue;

@@ -321,7 +321,7 @@
                               };
     
     NSString *url = [NSString stringWithFormat:@"%@/square/travelNotesDetail/allSpots",BASEURL];
-    __weak typeof(self) temp = self;
+ //   __weak typeof(self) temp = self;
     __weak NSMutableArray *showArray_block = showArray;
     showArray.loadSupport.loadEvent = NetLoadingEvent;
     
@@ -343,7 +343,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+  //          NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         showArray_block.loadSupport.loadEvent = codeNumber.intValue;

@@ -75,7 +75,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+         //   NSString *errorStr = [dic objectForKey:@"remark"];
             
         }
         
@@ -125,7 +125,7 @@
                               };
     NSLog(@"getAllSpotsArrayLongitude paraDic: %@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/search/allSpots",BASEURL];
-    __weak typeof(self) temp = self;
+ //   __weak typeof(self) temp = self;
     __weak NSMutableArray *sportArray_block = sportArray;
     sportArray.loadSupport.loadEvent = NetLoadingEvent;
     [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
@@ -147,7 +147,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+      //      NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         sportArray_block.loadSupport.loadEvent = codeNumber.intValue;
@@ -193,7 +193,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+      //      NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.allSpotWordArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -242,7 +242,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+     //       NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.userArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -285,7 +285,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+       //     NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.allSpotWordArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -331,7 +331,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+       //     NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.ugcArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -374,7 +374,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+       //     NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.allSpotWordArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -417,7 +417,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+     //       NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.allSpotWordArray.loadSupport.loadEvent = codeNumber.intValue;
@@ -463,7 +463,7 @@
         }
         else
         {
-            NSString *errorStr = [dic objectForKey:@"remark"];
+     //       NSString *errorStr = [dic objectForKey:@"remark"];
         }
         
         temp.travelNoteArray.loadSupport.loadEvent = codeNumber.intValue;

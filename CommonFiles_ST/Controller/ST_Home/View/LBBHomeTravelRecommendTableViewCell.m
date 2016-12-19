@@ -162,8 +162,8 @@
 
         
         CGFloat interval = 8;
-        CGFloat width = AutoSize(156/2);
-        CGFloat height = AutoSize(36/2);
+     //   CGFloat width = AutoSize(156/2);
+     //   CGFloat height = AutoSize(36/2);
 
         [self.specialLabelButton1 mas_makeConstraints:^(MASConstraintMaker* make){
             

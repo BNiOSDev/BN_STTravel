@@ -190,7 +190,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    WS(ws);
     if (indexPath.section == 0) {
         
         if (indexPath.row < 3) {

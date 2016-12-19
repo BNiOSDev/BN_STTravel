@@ -250,7 +250,7 @@
  */
 
 -(void)loadCustomNavigationButton{
-    WS(ws);
+  //  WS(ws);
     self.title = @"美食";
     UIButton *search = [[UIButton alloc] init];
     search.titleLabel.font = Font14;
@@ -784,7 +784,7 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    WS(ws);
+ //   WS(ws);
     if (indexPath.section == 0) {
         
         if (indexPath.row == 0) {
