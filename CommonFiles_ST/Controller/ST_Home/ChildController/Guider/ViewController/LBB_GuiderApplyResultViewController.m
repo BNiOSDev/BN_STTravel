@@ -47,7 +47,7 @@
 }
 */
 -(void)loadCustomNavigationButton{
-
+    [super loadCustomNavigationButton];
     //Int	0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
     if (self.viewModel.applyResult.tourAuditState == 3) {
         self.title = @"审核失败";

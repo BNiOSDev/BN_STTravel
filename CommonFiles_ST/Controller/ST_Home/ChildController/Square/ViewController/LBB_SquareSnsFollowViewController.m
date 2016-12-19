@@ -152,7 +152,7 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
 
 
 -(void)loadCustomNavigationButton{
-    
+    [super loadCustomNavigationButton];
     WS(ws);
     UIImage* image = [[UIImage imageNamed:@"标签详情_分享"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIButton *shareButton = [[UIButton alloc] init];

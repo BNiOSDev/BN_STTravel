@@ -109,7 +109,7 @@ static const NSInteger kButtonWidth = 45;
 
 
 -(void)loadCustomNavigationButton{
-    
+    [super loadCustomNavigationButton];
     //  self.title = @"取消";
 }
 

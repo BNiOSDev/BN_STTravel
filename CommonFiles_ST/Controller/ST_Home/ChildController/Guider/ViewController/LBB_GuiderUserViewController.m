@@ -164,7 +164,7 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
 
 -(void)loadCustomNavigationButton{
     
-    
+    [super loadCustomNavigationButton];
 }
 
 

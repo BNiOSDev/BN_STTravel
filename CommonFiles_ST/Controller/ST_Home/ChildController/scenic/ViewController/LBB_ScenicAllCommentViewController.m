@@ -68,7 +68,7 @@
  */
 
 -(void)loadCustomNavigationButton{
-    
+    [super loadCustomNavigationButton];
     self.title = @"全部评论";
 }
 

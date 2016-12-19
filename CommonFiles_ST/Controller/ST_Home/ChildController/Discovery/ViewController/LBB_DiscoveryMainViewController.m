@@ -112,6 +112,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
  * setup navigation bar view
  */
 -(void)loadCustomNavigationButton{
+    [super loadCustomNavigationButton];
     self.title = @"攻略";
 }
 

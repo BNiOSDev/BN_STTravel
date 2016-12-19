@@ -251,6 +251,7 @@
 
 -(void)loadCustomNavigationButton{
   //  WS(ws);
+    [super loadCustomNavigationButton];
     self.title = @"美食";
     UIButton *search = [[UIButton alloc] init];
     search.titleLabel.font = Font14;

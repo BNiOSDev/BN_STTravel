@@ -77,6 +77,7 @@
 */
 
 -(void)loadCustomNavigationButton{
+    [super loadCustomNavigationButton];
     self.title = @"申请导游";
 }
 

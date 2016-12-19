@@ -43,7 +43,7 @@
 
 -(void)loadCustomNavigationButton{
     WS(ws);
-   
+   [super loadCustomNavigationButton];
   //  self.title = @"取消";
     UIButton *cancel = [[UIButton alloc] init];
     cancel.titleLabel.font = Font14;

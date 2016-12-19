@@ -38,7 +38,7 @@
 }
 
 -(void)loadCustomNavigationButton{
-    
+    [super loadCustomNavigationButton];
     self.title = @"门票详情";
 }
 

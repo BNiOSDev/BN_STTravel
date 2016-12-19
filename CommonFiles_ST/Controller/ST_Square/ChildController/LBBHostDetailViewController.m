@@ -26,7 +26,7 @@
 
 - (void)loadCustomNavigationButton
 {
-    ;
+    [super loadCustomNavigationButton];
 }
 
 - (void)viewDidLoad {

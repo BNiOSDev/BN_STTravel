@@ -223,6 +223,7 @@
 
 -(void)loadCustomNavigationButton{
  //   WS(ws);
+    [super loadCustomNavigationButton];
     self.title = @"民宿";
     UIButton *search = [[UIButton alloc] init];
     search.titleLabel.font = Font14;

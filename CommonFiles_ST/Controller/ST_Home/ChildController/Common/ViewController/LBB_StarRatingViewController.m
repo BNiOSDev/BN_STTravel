@@ -62,6 +62,7 @@ static const NSInteger kPictureInterval = 10;
 */
 
 -(void)loadCustomNavigationButton{
+    [super loadCustomNavigationButton];
     self.title = @"评论";
 }
 

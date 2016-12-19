@@ -133,7 +133,7 @@
 
 
 -(void)loadCustomNavigationButton{
-
+    [super loadCustomNavigationButton];
     self.title = @"景点";
     if (self.favoriteType == LBBPoohSegmCtrlScenicType) {
         self.title = @"景点";

@@ -227,6 +227,7 @@
 
 -(void)loadCustomNavigationButton{
  //   WS(ws);
+    [super loadCustomNavigationButton];
    self.title = @"景点";
     UIButton *search = [[UIButton alloc] init];
     search.titleLabel.font = Font14;

@@ -55,6 +55,7 @@
 
 
 -(void)loadCustomNavigationButton{
+    [super loadCustomNavigationButton];
     self.title = @"确认订单";
 }
 

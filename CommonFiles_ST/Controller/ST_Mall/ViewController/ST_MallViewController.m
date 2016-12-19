@@ -29,7 +29,7 @@
 
 - (void)loadCustomNavigationButton
 {
-    ;
+    [super loadCustomNavigationButton];
 }
 
 - (void)didReceiveMemoryWarning {

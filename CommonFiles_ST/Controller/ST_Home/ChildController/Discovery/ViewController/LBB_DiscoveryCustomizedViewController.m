@@ -104,6 +104,7 @@ static CGFloat height = 45;
  * setup navigation bar view
  */
 -(void)loadCustomNavigationButton{
+    [super loadCustomNavigationButton];
     self.title = @"定制路线";
 }
 

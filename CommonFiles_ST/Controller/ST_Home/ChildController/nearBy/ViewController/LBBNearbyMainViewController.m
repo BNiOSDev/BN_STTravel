@@ -209,6 +209,7 @@
  */
 
 -(void)loadCustomNavigationButton{
+    [super loadCustomNavigationButton];
     self.title = @"附近";
 }
 

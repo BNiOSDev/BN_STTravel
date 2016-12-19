@@ -106,7 +106,7 @@
  * setup navigation bar view
  */
 -(void)loadCustomNavigationButton{
-    
+    [super loadCustomNavigationButton];
     WS(ws);
     self.title = @"旅游足迹";
     UIButton *sign = [[UIButton alloc] init];

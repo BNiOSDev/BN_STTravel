@@ -165,7 +165,7 @@
 
 
 -(void)loadCustomNavigationButton{
-  
+  [super loadCustomNavigationButton];
     CGFloat height = IAppNavigationBarHeight - 10;
     CGFloat width = DeviceWidth - 2*45 - 30;
     

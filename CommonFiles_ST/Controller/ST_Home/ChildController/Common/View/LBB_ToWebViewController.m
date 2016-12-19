@@ -44,7 +44,7 @@
  */
 
 -(void)loadCustomNavigationButton{
-    
+    [super loadCustomNavigationButton];
     if (self.webTitle) {
         self.title = self.webTitle;
     }

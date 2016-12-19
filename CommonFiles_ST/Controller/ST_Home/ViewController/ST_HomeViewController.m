@@ -83,6 +83,7 @@
 
 
 -(void)loadCustomNavigationButton{
+    [super loadCustomNavigationButton];
     WS(ws);
     LBBPoohVerticalButton *back = [[LBBPoohVerticalButton alloc] init];
 
