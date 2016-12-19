@@ -35,10 +35,19 @@
 @end
 
 
+@interface LBB_GuiderAuditResultObject : BN_BaseDataModel
+
+@property(nonatomic, assign)int tourAuditState;//	Int	0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+@property(nonatomic, strong)NSString* tourAuditReason;//	String	驳回理由
+
+
+@end
 
 @interface LBB_GuiderApplyViewModel : BN_BaseDataModel
 
 @property(nonatomic, strong)LBB_GuiderApplyObject* applyObject;
+
+@property(nonatomic, strong)LBB_GuiderAuditResultObject* applyResult;
 
 /**
  3.7.7 导游 –申请（已测）
@@ -55,4 +64,12 @@
 otherCertificateImage:(UIImage*)otherCertificateImage
           block:(void (^)(NSError *error))block;
 
+
+
+/**
+ 3.7.9 导游 –认证结果（已测）
+
+ @param block 回调
+ */
+-(void)getTourAuditResult:(void (^)(NSError *error))block;
 @end

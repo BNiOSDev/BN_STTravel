@@ -7,13 +7,14 @@
 //
 
 #import "LBB_GuiderApplyResultViewController.h"
-
+#import "LBB_GuiderApplyViewModel.h"
 @interface LBB_GuiderApplyResultViewController ()
 
 @property(nonatomic, retain)UIButton* applyResultButton;
 @property(nonatomic, retain)UIButton* finishButton;
 @property(nonatomic, retain)UILabel* reasonLabel;
 
+@property(nonatomic, retain)LBB_GuiderApplyViewModel* viewModel;
 
 @end
 
@@ -100,31 +101,63 @@
         make.top.equalTo(ws.reasonLabel.mas_bottom).offset(45);
     }];
     
+    [self initViewModel];
     
     @weakify (self);
     
-    [RACObserve(self, isSuccess) subscribeNext:^(NSNumber* index) {
+    [RACObserve(self.viewModel, applyResult) subscribeNext:^(LBB_GuiderAuditResultObject* model) {
         @strongify(self);
         
-        if (self.isSuccess) {
+        //	Int	0  未提交实名认证 1  已提交实名认证，正在审核 2、认证成功 3、认证失败
+
+        if (model.tourAuditState != 3) {
 
             [self.applyResultButton setImage:IMAGE(@"导游_完成") forState:UIControlStateNormal];
             [self.applyResultButton setTitle:@"您已提交认证审核" forState:UIControlStateNormal];
             [self.finishButton setTitle:@"完成" forState:UIControlStateNormal];
-            
-            [self.reasonLabel setText:@"您的导游申请已提交成功，工作人员将在三个工作日内进行审核，请耐心等待，谢谢!"];
+            [self.reasonLabel setText:model.tourAuditReason];
         }
         else{
             [self.applyResultButton setImage:IMAGE(@"导游_失败") forState:UIControlStateNormal];
             [self.applyResultButton setTitle:@"您提交导游审核认证失败" forState:UIControlStateNormal];
             [self.finishButton setTitle:@"重新申请导游认证" forState:UIControlStateNormal];
             
-            [self.reasonLabel setText:@"您的导游申请未通过审核，不通过理由为：您的导游证错误，你的姓名与身份证不匹配你的照片不清晰，请重新填写提交审核"];
+            [self.reasonLabel setText:model.tourAuditReason];
         }
         [self.reasonLabel setLineSpace:10];
         
         
     }];
+}
+
+-(void)initViewModel{
+    
+    if (!self.viewModel) {
+        self.viewModel = [[LBB_GuiderApplyViewModel alloc] init];
+    }
+    WS(ws);
+    [self.viewModel getTourAuditResult:^(NSError* error){
+    
+        if (!error) {
+            if (ws.viewModel.applyResult.tourAuditState != 3) {
+                
+                [ws.applyResultButton setImage:IMAGE(@"导游_完成") forState:UIControlStateNormal];
+                [ws.applyResultButton setTitle:@"您已提交认证审核" forState:UIControlStateNormal];
+                [ws.finishButton setTitle:@"完成" forState:UIControlStateNormal];
+                [ws.reasonLabel setText:ws.viewModel.applyResult.tourAuditReason];
+            }
+            else{
+                [ws.applyResultButton setImage:IMAGE(@"导游_失败") forState:UIControlStateNormal];
+                [ws.applyResultButton setTitle:@"您提交导游审核认证失败" forState:UIControlStateNormal];
+                [ws.finishButton setTitle:@"重新申请导游认证" forState:UIControlStateNormal];
+                
+                [ws.reasonLabel setText:ws.viewModel.applyResult.tourAuditReason];
+            }
+            [ws.reasonLabel setLineSpace:10];
+        }
+        
+    }];
+    
 }
 
 @end

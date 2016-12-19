@@ -101,11 +101,11 @@
     }];
     [applyButton bk_addEventHandler:^(id sender){
     
-      /*  LBB_GuiderApplyResultViewController* dest = [[LBB_GuiderApplyResultViewController alloc]init];
+        LBB_GuiderApplyResultViewController* dest = [[LBB_GuiderApplyResultViewController alloc]init];
         dest.isSuccess = YES;
-        [ws.navigationController pushViewController:dest animated:YES];*/
+        [ws.navigationController pushViewController:dest animated:YES];
         
-        [ws saveTour];
+       // [ws saveTour];
     } forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -372,35 +372,6 @@
         [self showHudPrompt:@"导游证照片不能为空!"];
         return;
     }
-    
-    /*
-     @property (nonatomic, retain) LBB_GuiderApplyTextField *nameTextField;//姓名
-     @property (nonatomic, retain) LBB_GuiderApplyTextField *identityIDTextField;//身份证号
-     @property (nonatomic, retain) LBB_GuiderApplyTextField *guiderIDTextField;//导游证号
-     @property (nonatomic, retain) LBB_GuiderApplyTextField *workTimeTextField;//从业时间
-     @property (nonatomic, retain) LBB_GuiderApplyTextField *telTextField;//联系电话
-     @property (nonatomic, retain) LBB_GuiderApplyTextField *shortIntroTextField;//一句话介绍
-     @property (nonatomic, retain) LBB_GuiderApplyTextField *detailIntroTextField;//详细介绍
-     @property (nonatomic, retain) LBB_GuiderApplyLabelSelectView *labelTagView; //选择标签
-     
-     @property (nonatomic, retain) LBB_GuiderIdentityCardSelectView * idPositiveView; //身份证正面
-     @property (nonatomic, retain) LBB_GuiderIdentityCardSelectView * idNegativeView; //身份证反面
-     
-     @property (nonatomic, retain) LBB_GuiderIdentityCardSelectView * guiderIDView; //导游证照片
-     
-     @property (nonatomic, retain) LBB_GuiderIdentityCardSelectView * otherIDView; //其他证件照片
-     */
-    /*
-     @property(nonatomic, strong)NSString* realName;//	String	真实姓名
-     @property(nonatomic, strong)NSString* idCard;//	String	身份证号
-     @property(nonatomic, strong)NSString* tourIdCard;//	String	导游证号码
-     @property(nonatomic, strong)NSString* tourStartTime;//	String	从业时间yyyy-MM-dd
-     @property(nonatomic, assign)int genderKey;//	int	性别key
-     @property(nonatomic, strong)NSString* phoneNum;//	String	联系电话
-     @property(nonatomic, strong)NSString* tourAWords;//	String	一句话介绍
-     @property(nonatomic, strong)NSString* tourDetails;//	String	详情介绍
-     @property(nonatomic, strong)NSMutableArray<LBB_GuiderApplyTagsObject*>* auditTags;//	List	认证标签
-     */
     
     self.viewModel.applyObject.realName = self.nameTextField.rightTextField.text;
     self.viewModel.applyObject.idCard = self.identityIDTextField.rightTextField.text;
