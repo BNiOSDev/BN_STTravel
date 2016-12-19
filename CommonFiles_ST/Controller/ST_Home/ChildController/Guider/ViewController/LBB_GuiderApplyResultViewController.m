@@ -8,6 +8,7 @@
 
 #import "LBB_GuiderApplyResultViewController.h"
 #import "LBB_GuiderApplyViewModel.h"
+#import "LBB_GuiderMainViewController.h"
 @interface LBB_GuiderApplyResultViewController ()
 
 @property(nonatomic, retain)UIButton* applyResultButton;
@@ -100,6 +101,18 @@
         make.width.mas_equalTo(AutoSize(480/2));
         make.top.equalTo(ws.reasonLabel.mas_bottom).offset(45);
     }];
+    [self.finishButton bk_addEventHandler:^(id sender){
+    
+        NSArray *temArray = ws.navigationController.viewControllers;
+        
+        for(UIViewController *temVC in temArray)
+        {
+            if ([temVC isKindOfClass:[LBB_GuiderMainViewController class]])
+            {
+                [ws.navigationController popToViewController:temVC animated:YES];
+            }
+        }
+    } forControlEvents:UIControlEventTouchUpInside];
     
     [self initViewModel];
     

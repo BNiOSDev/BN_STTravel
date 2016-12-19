@@ -246,15 +246,24 @@
     [b1 setTitle:@"申请导游证 >" forState:UIControlStateNormal];
     [b1 setTitleColor:ColorBlack forState:UIControlStateNormal];
     [b1.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-    b1.layer.borderColor = ColorLine.CGColor;
-    b1.layer.borderWidth = SeparateLineWidth;
+  //  b1.layer.borderColor = ColorLine.CGColor;
+   // b1.layer.borderWidth = SeparateLineWidth;
     b1.layer.masksToBounds = YES;
     [v addSubview:b1];
     [b1 mas_makeConstraints:^(MASConstraintMaker* make){
         make.center.equalTo(v);
         make.width.mas_equalTo(AutoSize(250/2));
+        make.height.mas_equalTo(height);
+    }];
+    
+    UILabel* coverLabel = [UILabel new];
+    coverLabel.layer.borderColor = ColorLine.CGColor;
+    coverLabel.layer.borderWidth = SeparateLineWidth;
+    [v addSubview:coverLabel];
+    [coverLabel mas_makeConstraints:^(MASConstraintMaker* make){
+        make.center.equalTo(v);
+        make.width.mas_equalTo(AutoSize(250/2));
         make.height.mas_equalTo(AutoSize(40/2));
-
     }];
     
     [b1 bk_addEventHandler:^(id sender){
@@ -264,6 +273,8 @@
         dest.tags = ws.viewModel.guiderCondition.tags;
         [ws.navigationController pushViewController:dest animated:YES];
     } forControlEvents:UIControlEventTouchUpInside];
+
+    
 
     
     //设置
@@ -303,6 +314,17 @@
     [v addSubview:segmentedControl];
     
     [v bringSubviewToFront:b1];
+    
+    UIControl* coverImage = [UIControl new];
+    [v addSubview:coverImage];
+    [coverImage mas_makeConstraints:^(MASConstraintMaker* make){
+        make.top.left.bottom.equalTo(v);
+        make.right.equalTo(b1.mas_left);
+    }];
+    [coverImage bk_whenTapped:^{
+        NSLog(@"coverImage tap");
+    }];
+    
     
     UILabel* titleLabel = [UILabel new];
     [titleLabel setText:@"筛选"];
