@@ -270,8 +270,11 @@ otherCertificateImage:(UIImage*)otherCertificateImage
             
             succBlock(applyObject);
         }
-        else
-        {
+        else if (codeNumber.intValue == NetTokenExpiredEvent) {
+            errorBlock([NSError errorWithDomain:@""
+                                           code:codeNumber.intValue
+                                       userInfo:nil]);
+        } else {
             NSString *errorStr = [dic objectForKey:@"remark"];
             NSLog(@"getTourAuditStatus失败:%d errorStr:%@",[codeNumber intValue],errorStr);
             NSDictionary* result = [dic objectForKey:@"result"];

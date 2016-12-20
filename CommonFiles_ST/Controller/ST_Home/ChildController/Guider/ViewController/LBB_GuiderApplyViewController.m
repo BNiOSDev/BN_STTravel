@@ -181,6 +181,7 @@
     self.workTimeTextField = [[LBB_GuiderApplyTextField alloc]init];
     [self.workTimeTextField.rightTextField setText:[PoohAppHelper getStringFromDate:[NSDate new] withFormat:DateFormatFullDate]];
     [self.workTimeTextField.rightTextField useDateKeyboard:@"yyyy-MM-dd"];
+    self.workTimeTextField.rightTextField.datePicker.minimumDate = [NSDate dateWithTimeIntervalSince1970:0];
     [self.workTimeTextField.titleLable setText:@"从业时间"];
     [self.mainScrollView addSubview:self.workTimeTextField];
     [self.workTimeTextField mas_makeConstraints:^(MASConstraintMaker* make){
