@@ -618,6 +618,8 @@
 		1D09E80B1E0AA4DF00BA8B11 /* WXOUIModuleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1D09E7FC1E0AA4DE00BA8B11 /* WXOUIModuleResources.bundle */; };
 		1D09E80C1E0AA4DF00BA8B11 /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D09E7FD1E0AA4DE00BA8B11 /* yw_1222.jpg */; };
 		1D09E80D1E0AA4DF00BA8B11 /* YWFeedbackServiceFMWK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D09E7FE1E0AA4DE00BA8B11 /* YWFeedbackServiceFMWK.framework */; };
+		1D09E8101E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D09E80F1E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.m */; };
+		1D09E8131E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D09E8121E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
@@ -1737,6 +1739,10 @@
 		1D09E7FC1E0AA4DE00BA8B11 /* WXOUIModuleResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WXOUIModuleResources.bundle; sourceTree = "<group>"; };
 		1D09E7FD1E0AA4DE00BA8B11 /* yw_1222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yw_1222.jpg; sourceTree = "<group>"; };
 		1D09E7FE1E0AA4DE00BA8B11 /* YWFeedbackServiceFMWK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YWFeedbackServiceFMWK.framework; sourceTree = "<group>"; };
+		1D09E80E1E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_DiscoveryDownLoadManager.h; sourceTree = "<group>"; };
+		1D09E80F1E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryDownLoadManager.m; sourceTree = "<group>"; };
+		1D09E8111E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TravelDownloadManager.h; sourceTree = "<group>"; };
+		1D09E8121E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TravelDownloadManager.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -2056,6 +2062,8 @@
 				1BD58BB41E082C6500DED267 /* View */,
 				1BD58BBD1E082C6500DED267 /* ViewController */,
 				1BD58BC61E082C6500DED267 /* viewModel */,
+				1D09E80E1E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.h */,
+				1D09E80F1E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.m */,
 			);
 			path = Discovery;
 			sourceTree = "<group>";
@@ -2596,6 +2604,8 @@
 			children = (
 				1BD58CA11E082C6500DED267 /* View */,
 				1BD58CA81E082C6500DED267 /* ViewController */,
+				1D09E8111E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.h */,
+				1D09E8121E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.m */,
 			);
 			path = Square;
 			sourceTree = "<group>";
@@ -5974,6 +5984,7 @@
 				1BD590EB1E082C6700DED267 /* LBB_PoohAttributedTextCell.m in Sources */,
 				1BD592C01E082C6800DED267 /* LBB_TravelDetailViewController.m in Sources */,
 				1BD591741E082C6700DED267 /* ST_HomeViewController.m in Sources */,
+				1D09E8131E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.m in Sources */,
 				1BD592E21E082C6800DED267 /* CommentBoxView.m in Sources */,
 				1BD592261E082C6700DED267 /* LBB_SerCover_CollectionViewController.m in Sources */,
 				1BD591B81E082C6700DED267 /* LBB_LoginViewController.m in Sources */,
@@ -6149,6 +6160,7 @@
 				1BD592B81E082C6800DED267 /* LBB_TravelCommentController.m in Sources */,
 				1BD592E71E082C6800DED267 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				C9C0E9571D9948F100575A7C /* ViewController.m in Sources */,
+				1D09E8101E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.m in Sources */,
 				1BD5911A1E082C6700DED267 /* LBB_GuiderConditionOption.m in Sources */,
 				1BD591F01E082C6700DED267 /* CardViewController.m in Sources */,
 				1BD5920B1E082C6700DED267 /* NSManagedObject+MagicalDataImport.m in Sources */,

@@ -17,6 +17,8 @@
 #import "LBB_ToolsBtnView.h"
 #import "LBB_TravelDetailViewCell.h"
 #import "LBB_Travel_Bill_ViewController.h"
+#import "LBB_TravelDownloadManager.h"
+
 
 @interface LBB_TravelDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 @property(nonatomic, strong)UITableView     *tableView;
@@ -74,6 +76,12 @@
 - (void)downFunc
 {
     NSLog(@"下载");
+    if (_viewModel.travelDetail != nil) {
+        [[LBB_TravelDownloadManager sharedInstance] saveTravelDetail:_viewModel.travelDetail curVC:self];
+    }
+    else{
+        [self showHudPrompt:@"数据存储错误,请刷新"];
+    }
 }
 
 - (void)initData

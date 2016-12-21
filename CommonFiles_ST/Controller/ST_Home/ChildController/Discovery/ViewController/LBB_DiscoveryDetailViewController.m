@@ -11,6 +11,7 @@
 #import "LBB_DiscoveryDetailMsgCell.h"
 #import "LBB_PoohAttributedTextCell.h"
 #import "LBB_Share.h"
+#import "LBB_DiscoveryDownLoadManager.h"
 @interface LBB_DiscoveryDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
@@ -73,6 +74,13 @@
     [download setImage:IMAGE(@"ST_Discovery_Download") forState:UIControlStateNormal];
     download.frame = CGRectMake(0, 0, 45, 45);
     [download bk_addEventHandler:^(id sender){
+        
+        if (ws.viewModel.discoveryDetail != nil) {
+            [[LBB_DiscoveryDownLoadManager sharedInstance] saveDiscoveryDetail:ws.viewModel.discoveryDetail curVC:ws];
+        }
+        else{
+            [ws showHudPrompt:@"数据存储错误,请刷新"];
+        }
         
     }forControlEvents:UIControlEventTouchUpInside];
     
