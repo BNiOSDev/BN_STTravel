@@ -349,20 +349,28 @@
         [self.workTimeTextField.rightTextField setText:[PoohAppHelper getStringFromDate:[NSDate new] withFormat:DateFormatFullDate]];
     }
     
+    if (self.viewModel.applyObject.genderKey == 1) {//男
+        self.genderTextField.rightTextField.text = @"男";
+    }
+    else if (self.viewModel.applyObject.genderKey == 0){//女
+        self.genderTextField.rightTextField.text = @"女";
+    }
+    
     
     [self.idPositiveView.selectImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.applyObject.idCardFrontUrl] completed:^(UIImage* image, NSError* error , SDImageCacheType cacheType, NSURL* imageUrl){
-        [ws.idPositiveView.addButton setImage:image forState:UIControlStateNormal];
+        [ws.idPositiveView setAddButtonBgImage:image];
+
     }];
     [self.idNegativeView.selectImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.applyObject.idCardBackUrl] completed:^(UIImage* image, NSError* error , SDImageCacheType cacheType, NSURL* imageUrl){
-        [ws.idNegativeView.addButton setImage:image forState:UIControlStateNormal];
+        [ws.idNegativeView setAddButtonBgImage:image];
 
     }];
     [self.guiderIDView.selectImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.applyObject.tourPicUrl] completed:^(UIImage* image, NSError* error , SDImageCacheType cacheType, NSURL* imageUrl){
-        [ws.guiderIDView.addButton setImage:image forState:UIControlStateNormal];
+        [ws.guiderIDView setAddButtonBgImage:image];
 
     }];
     [self.otherIDView.selectImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.applyObject.otherCertificateUrl] completed:^(UIImage* image, NSError* error , SDImageCacheType cacheType, NSURL* imageUrl){
-        [ws.otherIDView.addButton setImage:image forState:UIControlStateNormal];
+        [ws.otherIDView setAddButtonBgImage:image];
 
     }];
 

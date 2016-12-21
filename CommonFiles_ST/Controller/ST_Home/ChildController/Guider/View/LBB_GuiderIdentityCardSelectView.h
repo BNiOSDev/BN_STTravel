@@ -22,4 +22,6 @@
 
 -(void)hiddenTitleView:(BOOL)hidden;
 
+-(void)setAddButtonBgImage:(UIImage*)image;
+
 @end

@@ -11,6 +11,7 @@
 #import "LBB_DiscoveryDetailMsgCell.h"
 #import "LBB_PoohAttributedTextCell.h"
 #import "LBB_Share.h"
+#import "LBB_DiscoveryDownLoadManager.h"
 @interface LBB_DiscoveryDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, retain) UITableView* tableView;
@@ -42,11 +43,16 @@
 -(void)initViewModel{
 
     WS(ws);
-    [self.viewModel getDiscoveryDetailData];
     [self.viewModel.discoveryDetail.loadSupport setDataRefreshblock:^{
+        NSLog(@"discoveryDetail succ");
+        NSLog(@"self.viewModel.discoveryDetail:%@",ws.viewModel.discoveryDetail);
+        NSLog(@"self.viewModel.discoveryDetail lineContent:%@",ws.viewModel.discoveryDetail.lineContent);
+        NSLog(@"self.viewModel.discoveryDetail lineFeature:%@",ws.viewModel.discoveryDetail.lineFeature);
+
+        
         [ws.tableView reloadData];
     }];
-    
+
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.viewModel getDiscoveryDetailData];
         [ws.tableView.mj_header endRefreshing];
@@ -55,15 +61,26 @@
     
     }];
     
+    [self.viewModel getDiscoveryDetailData];
+
+    
 }
 
 -(void)loadCustomNavigationButton{
+    [super loadCustomNavigationButton];
     WS(ws);
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     UIButton *download = [[UIButton alloc] init];
     [download setImage:IMAGE(@"ST_Discovery_Download") forState:UIControlStateNormal];
     download.frame = CGRectMake(0, 0, 45, 45);
     [download bk_addEventHandler:^(id sender){
+        
+        if (ws.viewModel.discoveryDetail != nil) {
+            [[LBB_DiscoveryDownLoadManager sharedInstance] saveDiscoveryDetail:ws.viewModel.discoveryDetail curVC:ws];
+        }
+        else{
+            [ws showHudPrompt:@"数据存储错误,请刷新"];
+        }
         
     }forControlEvents:UIControlEventTouchUpInside];
     
@@ -97,17 +114,19 @@
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self registerTableViewCell];
-    [self initViewModel];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+   [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.top.centerX.equalTo(ws.view);
         make.bottom.equalTo(ws.view);
     }];
+    [self initViewModel];
+
 }
+
 
 
 -(void)registerTableViewCell{

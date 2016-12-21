@@ -211,7 +211,15 @@
         self.placeHolderLabel.hidden = NO;
         [self.addButton setBackgroundImage:nil forState:UIControlStateNormal];
     }
+}
+
+-(void)setAddButtonBgImage:(UIImage*)image{
     
+    if (!image) {
+        [self.addButton setBackgroundImage:image forState:UIControlStateNormal];
+        self.placeHolderLabel.hidden = YES;
+        [self.addButton setImage:nil forState:UIControlStateNormal];
+    }
 }
 
 #pragma CTAssetsPickerController delegate
