@@ -42,11 +42,16 @@
 -(void)initViewModel{
 
     WS(ws);
-    [self.viewModel getDiscoveryDetailData];
     [self.viewModel.discoveryDetail.loadSupport setDataRefreshblock:^{
+        NSLog(@"discoveryDetail succ");
+        NSLog(@"self.viewModel.discoveryDetail:%@",ws.viewModel.discoveryDetail);
+        NSLog(@"self.viewModel.discoveryDetail lineContent:%@",ws.viewModel.discoveryDetail.lineContent);
+        NSLog(@"self.viewModel.discoveryDetail lineFeature:%@",ws.viewModel.discoveryDetail.lineFeature);
+
+        
         [ws.tableView reloadData];
     }];
-    
+
     [self.tableView setHeaderRefreshDatablock:^{
         [ws.viewModel getDiscoveryDetailData];
         [ws.tableView.mj_header endRefreshing];
@@ -55,9 +60,13 @@
     
     }];
     
+    [self.viewModel getDiscoveryDetailData];
+
+    
 }
 
 -(void)loadCustomNavigationButton{
+    [super loadCustomNavigationButton];
     WS(ws);
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     UIButton *download = [[UIButton alloc] init];
@@ -97,17 +106,19 @@
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self registerTableViewCell];
-    [self initViewModel];
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+   [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.top.centerX.equalTo(ws.view);
         make.bottom.equalTo(ws.view);
     }];
+    [self initViewModel];
+
 }
+
 
 
 -(void)registerTableViewCell{
