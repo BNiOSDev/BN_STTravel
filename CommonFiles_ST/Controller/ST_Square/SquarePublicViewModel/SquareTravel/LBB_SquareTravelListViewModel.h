@@ -9,6 +9,27 @@
 #import <Foundation/Foundation.h>
 #import "LBB_TagsViewModel.h"
 #import "BN_SquareTravelNotesModel.h"
+#import "LBB_SquareDetailViewModel.h"
+
+@interface BN_SquareTravelComments : BN_BaseDataModel
+
+@property(nonatomic, assign)long travelNotesId ;// 游记主键
+@property(nonatomic, strong)NSString* shareUrl ;// 分享URL
+@property(nonatomic, strong)NSString* shareTitle ;// 分享标题
+@property(nonatomic, strong)NSString* shareContent ;// 分享内容
+@property(nonatomic, strong)NSString* travelNotesName ;// 游记名称
+@property(nonatomic, strong)NSString* travelNotesPicUrl ;// 游记封面
+@property(nonatomic, strong)NSString* lastReleaseTime ;// 发布日期
+@property(nonatomic, assign)long userId ;// 用户ID
+@property(nonatomic, strong)NSString* userName ;// 用户名称
+@property(nonatomic, strong)NSString* userPicUrl ;// 用户头像
+@property(nonatomic, assign)int isLiked ;// 是否点赞
+@property(nonatomic, assign)int likeNum ;// 点赞数
+@property(nonatomic, strong)NSArray<LBB_SquareLikeList*>* likeList ;// 点赞集合
+@property(nonatomic, assign)int commentsNum ;// 评论数
+@property(nonatomic, strong)NSArray<LBB_SquareComments*>* comments ;// 评论集合
+
+@end
 
 @interface BN_SquareTravelList : BN_BaseDataModel
 
@@ -31,8 +52,15 @@
 /**
  3.4.17 主页-游记详情/游记下载（已测）
  */
-@property(nonatomic, strong)BN_SquareTravelNotesModel* travelDetailModel;
+@property(nonatomic, strong)BN_SquareTravelNotesModel* travelDetail;
 -(void)getTravelDetailModel;
+
+
+/**
+ 3.4.28	主页-游记评论（已测）
+ */
+@property(nonatomic, strong)BN_SquareTravelComments*travelComments;
+-(void)getTravelCommentsModel;
 
 @end
 

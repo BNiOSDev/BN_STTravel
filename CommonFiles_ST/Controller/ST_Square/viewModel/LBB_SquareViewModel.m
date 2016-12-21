@@ -10,6 +10,7 @@
 
 @implementation LBB_SquareUgc
 
+
 - (instancetype)init
 {
     self = [super init];

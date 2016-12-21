@@ -8,6 +8,26 @@
 
 #import "BN_SquareTravelNotesModel.h"
 
+@implementation BN_TravelNotesDetailsComments
+
+- (void)setLikeList:(NSMutableArray<LBB_SquareLikeList *> *)likeList
+{
+    NSMutableArray *array = (NSMutableArray *)[likeList map:^id(NSDictionary *element) {
+        return [LBB_SquareLikeList mj_objectWithKeyValues:element];
+    }];
+    _likeList = array;
+}
+
+- (void)setComments:(NSMutableArray<LBB_SquareComments *> *)comments
+{
+    NSMutableArray *array = (NSMutableArray *)[comments map:^id(NSDictionary *element) {
+        return [LBB_SquareComments mj_objectWithKeyValues:element];
+    }];
+    _comments = array;
+}
+
+@end
+
 @implementation TravelNotesPics
 
 -(id)init{
@@ -40,10 +60,50 @@
         self.consumptionType = 1;//	Int	消费类型 1 民宿 2 交通 3 美食 4 门票 5 娱乐 6 购物 7 其他
         self.consumptionDesc = @"";;//	String	消费描述
         self.allSpotsType = 1;//1美食 2 民宿 3 景点
+        self.travelNotesDetailsComments = [[BN_TravelNotesDetailsComments alloc]init];
     }
     return self;
 }
 
+/**
+ 3.4.29	主页-足记评论（已测)
+ */
+-(void)getTravelNotesDetailsCommentsModel{
+    
+    NSDictionary *paraDic = @{
+                              @"travelNotesDetailId":@(self.travelNotesDetailId),
+                              };
+    NSLog(@"paraDic:%@",paraDic);
+    
+    
+    NSString *url = [NSString stringWithFormat:@"%@/travelNotesDetail/comments",BASEURL];
+    __weak typeof(self) temp = self;
+    self.travelNotesDetailsComments.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            [temp.travelNotesDetailsComments mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getTravelDetailModel 成功  %@",[dic objectForKey:@"result"]);
+            NSLog(@"getTravelDetailModel temp.travelDetailModel:  %@",temp.travelNotesDetailsComments);
+            
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getTravelDetailModel errorStr : %@",errorStr);
+            
+        }
+        
+        temp.travelNotesDetailsComments.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getTravelDetailModel 失败 : %@",error.domain);
+        
+        temp.travelNotesDetailsComments.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
 
 -(void)setPics:(NSArray<TravelNotesPics *> *)pics{
 

@@ -82,14 +82,14 @@
     _viewModel.travelNotesId = _model.travelNotesId;
     __weak typeof(self ) weakSelf =self;
     [_viewModel getTravelDetailModel];
-    [_viewModel.travelDetailModel.loadSupport setDataRefreshblock:^{
+    [_viewModel.travelDetail.loadSupport setDataRefreshblock:^{
 //        weakSelf.tabelHead.model = weakSelf.viewModel;
         
-        NSArray *array = @[[NSString stringWithFormat:@"景点 %d",weakSelf.viewModel.travelDetailModel.totalScenicSpots],[NSString stringWithFormat:@"美食 %d",weakSelf.viewModel.travelDetailModel.totalFood],[NSString stringWithFormat:@"民宿 %d",weakSelf.viewModel.travelDetailModel.totalHomestay],[NSString stringWithFormat:@"购物 %d",weakSelf.viewModel.travelDetailModel.totalShop]];
+        NSArray *array = @[[NSString stringWithFormat:@"景点 %d",weakSelf.viewModel.travelDetail.totalScenicSpots],[NSString stringWithFormat:@"美食 %d",weakSelf.viewModel.travelDetail.totalFood],[NSString stringWithFormat:@"民宿 %d",weakSelf.viewModel.travelDetail.totalHomestay],[NSString stringWithFormat:@"购物 %d",weakSelf.viewModel.travelDetail.totalShop]];
         
             weakSelf.toolsView.buttonList = array;
             //为空时，不该有footview
-            if(weakSelf.viewModel.travelDetailModel.travelNotesDetails.count == 0)
+            if(weakSelf.viewModel.travelDetail.travelNotesDetails.count == 0)
             {
                 weakSelf.tableView.tableFooterView = nil;
             }
@@ -111,7 +111,7 @@
     for (__block int i = 1; i <= _model.dayCount; i++) {
         
         NSMutableArray    *elementArray = [[NSMutableArray alloc]init];
-        for(TravelNotesDetails *element in _viewModel.travelDetailModel.travelNotesDetails)
+        for(TravelNotesDetails *element in _viewModel.travelDetail.travelNotesDetails)
         {
             if(i == element.whitchDay)
             {

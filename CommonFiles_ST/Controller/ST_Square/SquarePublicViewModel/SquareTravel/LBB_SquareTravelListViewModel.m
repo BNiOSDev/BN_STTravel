@@ -8,12 +8,33 @@
 
 #import "LBB_SquareTravelListViewModel.h"
 
+@implementation BN_SquareTravelComments
+
+- (void)setLikeList:(NSMutableArray<LBB_SquareLikeList *> *)likeList
+{
+    NSMutableArray *array = (NSMutableArray *)[likeList map:^id(NSDictionary *element) {
+        return [LBB_SquareLikeList mj_objectWithKeyValues:element];
+    }];
+    _likeList = array;
+}
+
+- (void)setComments:(NSMutableArray<LBB_SquareComments *> *)comments
+{
+    NSMutableArray *array = (NSMutableArray *)[comments map:^id(NSDictionary *element) {
+        return [LBB_SquareComments mj_objectWithKeyValues:element];
+    }];
+    _comments = array;
+}
+
+@end
+
 @implementation BN_SquareTravelList
 
 -(id)init{
     
     if (self = [super init]) {
-        self.travelDetailModel = [[BN_SquareTravelNotesModel alloc]init];
+        self.travelDetail = [[BN_SquareTravelNotesModel alloc]init];
+        self.travelComments = [[BN_SquareTravelComments alloc]init];
     }
     return self;
 }
@@ -42,16 +63,16 @@
     
     NSString *url = [NSString stringWithFormat:@"%@/square/travelNotes/view",BASEURL];
     __weak typeof(self) temp = self;
-    self.travelDetailModel.loadSupport.loadEvent = NetLoadingEvent;
+    self.travelDetail.loadSupport.loadEvent = NetLoadingEvent;
     
     [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
         if(codeNumber.intValue == 0)
         {
-            [temp.travelDetailModel mj_setKeyValues:[dic objectForKey:@"result"]];
+            [temp.travelDetail mj_setKeyValues:[dic objectForKey:@"result"]];
             NSLog(@"getTravelDetailModel 成功  %@",[dic objectForKey:@"result"]);
-            NSLog(@"getTravelDetailModel temp.travelDetailModel:  %@",temp.travelDetailModel);
+            NSLog(@"getTravelDetailModel temp.travelDetailModel:  %@",temp.travelDetail);
 
         }
         else
@@ -61,11 +82,51 @@
             
         }
         
-        temp.travelDetailModel.loadSupport.loadEvent = codeNumber.intValue;
+        temp.travelDetail.loadSupport.loadEvent = codeNumber.intValue;
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"getTravelDetailModel 失败 : %@",error.domain);
 
-        temp.travelDetailModel.loadSupport.loadEvent = NetLoadFailedEvent;
+        temp.travelDetail.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
+/**
+ 3.4.28	主页-游记评论（已测）
+ */
+-(void)getTravelCommentsModel{
+    
+    NSDictionary *paraDic = @{
+                              @"travelNotesId":@(self.travelNotesId),
+                              };
+    NSLog(@"paraDic:%@",paraDic);
+    
+    
+    NSString *url = [NSString stringWithFormat:@"%@/square/travelNotes/comments",BASEURL];
+    __weak typeof(self) temp = self;
+    self.travelComments.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            [temp.travelComments mj_setKeyValues:[dic objectForKey:@"result"]];
+            NSLog(@"getTravelDetailModel 成功  %@",[dic objectForKey:@"result"]);
+            NSLog(@"getTravelDetailModel temp.travelDetailModel:  %@",temp.travelComments);
+            
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            NSLog(@"getTravelDetailModel errorStr : %@",errorStr);
+            
+        }
+        
+        temp.travelComments.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        NSLog(@"getTravelDetailModel 失败 : %@",error.domain);
+        
+        temp.travelComments.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
 
