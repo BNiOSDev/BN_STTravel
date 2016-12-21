@@ -201,7 +201,7 @@
     _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
     _contentLabel.text = model.videoRemark;//视频描述
     
-    [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.videoUrl] placeholderImage:DEFAULTIMAGE];
+    [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.coverImageUrl] placeholderImage:DEFAULTIMAGE];
 
     //点赞人数
     NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {

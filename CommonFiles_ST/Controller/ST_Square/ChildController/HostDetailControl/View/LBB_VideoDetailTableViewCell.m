@@ -208,13 +208,9 @@
     [tool getThumbnailImage:model.videoUrl Block:^(UIImage *resultImage) {
         videoImage = resultImage;
     }];
-    if(!videoImage)
-    {
-        [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.videoUrl] placeholderImage:DEFAULTIMAGE];
-    }else{
-        _contentImage.image = videoImage;
-    }
-    
+
+    [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.coverImageUrl] placeholderImage:DEFAULTIMAGE];
+
     //点赞人数
     NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {
         

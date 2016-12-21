@@ -15,6 +15,7 @@
 @property (nonatomic, assign)long ugcId ;// 主键
 @property (nonatomic, assign)int ugcType ;// 1.照片 2.视频
 @property (nonatomic, strong)NSString *videoUrl ;// 视频地址(类型为2)
+@property (nonatomic, strong)NSString *coverImageUrl;// 封面图片(类型为2)
 @property (nonatomic, assign)long userId ;// 用户ID
 @property (nonatomic, strong)NSString *userName ;// 用户名称
 @property (nonatomic, strong)NSString *userPicUrl ;// 用户头像

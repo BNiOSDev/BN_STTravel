@@ -129,6 +129,45 @@
     {
         LBB_TravelDetailHeadView *headView = [[LBB_TravelDetailHeadView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, 100)];
         headView.model = _model;
+        __weak typeof(self) weakSelf = self;
+        headView.cellBlock = ^(UIButton *btn,UITableViewCellViewSignal signal)
+        {
+            switch (signal) {
+                case UITableViewCellCollect:
+                {
+                    [_model collecte:^(NSDictionary *dic, NSError *error) {
+                        NSLog(@"收藏成功");
+                        if(weakSelf.model.isCollected == 1)
+                        {
+                            [btn setImage:IMAGE(@"我的_小收藏-点击后") forState:0];
+                            [btn setTitle:[NSString stringWithFormat:@"%ld",btn.titleLabel.text.integerValue + 1] forState:0];
+                        }else{
+                            [btn setImage:IMAGE(@"我的_小收藏") forState:0];
+                            [btn setTitle:[NSString stringWithFormat:@"%ld",btn.titleLabel.text.integerValue - 1] forState:0];
+                        }
+
+                    }];
+                }
+                    break;
+                case UITableViewCellPraise:
+                {
+                    [_model like:^(NSDictionary *dic, NSError *error) {
+                        if(weakSelf.model.isLiked == 1)
+                        {
+                            [btn setImage:IMAGE(@"我的_点赞_点击后") forState:0];
+                            [btn setTitle:[NSString stringWithFormat:@"%ld",btn.titleLabel.text.integerValue + 1] forState:0];
+                        }else{
+                            [btn setImage:IMAGE(@"我的_点赞") forState:0];
+                            [btn setTitle:[NSString stringWithFormat:@"%ld",btn.titleLabel.text.integerValue - 1] forState:0];
+                        }
+                    }];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        };
         return headView;
     }
     return _tabelHead;

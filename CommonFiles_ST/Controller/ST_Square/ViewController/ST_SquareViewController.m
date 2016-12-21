@@ -154,7 +154,7 @@
 // 只要滚动UIScrollView就会调用
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    int  pageIndex = (int)(scrollView.contentOffset.x / DeviceWidth);
+//    int  pageIndex = (int)(scrollView.contentOffset.x / DeviceWidth);
     NSLog(@"%d",(int)(scrollView.contentOffset.x / DeviceWidth));
 
     [self scrollToPage:(int)currentPage];//修复页面自动滚动偏差

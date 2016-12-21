@@ -75,19 +75,19 @@
     heartBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20, contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     heartBtn.titleLabel.font = FONT(AUTO(11.0));
     [heartBtn setTitleColor:[UIColor grayColor] forState:0];
-    [heartBtn setImage:IMAGE(@"zjmlittlecollect_no") forState:0];
+    [heartBtn setImage:IMAGE(@"我的_小收藏") forState:0];
     [self addSubview:heartBtn];
     
     pinBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - heartBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     pinBtn.titleLabel.font = FONT(AUTO(11.0));
     [pinBtn setTitleColor:[UIColor grayColor] forState:0];
-    [pinBtn setImage:IMAGE(@"zjmcomment") forState:0];
+    [pinBtn setImage:IMAGE(@"我的_评论") forState:0];
     [self addSubview:pinBtn];
     
     zanBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - pinBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     zanBtn.titleLabel.font = FONT(AUTO(11.0));
     [zanBtn setTitleColor:[UIColor grayColor] forState:0];
-    [zanBtn setImage:IMAGE(@"zjmdianzan") forState:0];
+    [zanBtn setImage:IMAGE(@"我的_点赞") forState:0];
     [self addSubview:zanBtn];
     
 }
@@ -123,6 +123,21 @@
     bottomView.backgroundColor = BACKVIEWCOLOR;
     [self addSubview:bottomView];
     self.height = bottomView.bottom;
+    
+    if(model.isLiked == 1)
+    {
+        [zanBtn setImage:IMAGE(@"我的_点赞_点击后") forState:0];
+    }else{
+        [zanBtn setImage:IMAGE(@"我的_点赞") forState:0];
+    }
+    
+    if(model.isCollected == 1)
+    {
+        [heartBtn setImage:IMAGE(@"我的_小收藏-点击后") forState:0];
+    }else{
+        [heartBtn setImage:IMAGE(@"我的_小收藏") forState:0];
+    }
+
     
     self.tags = model.tags;
     [self setTagViews];

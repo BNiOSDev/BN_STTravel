@@ -71,7 +71,7 @@
     pinBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - heartBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
     pinBtn.titleLabel.font = FONT(AUTO(11.0));
     [pinBtn setTitleColor:[UIColor grayColor] forState:0];
-    [pinBtn setImage:IMAGE(@"zjmcomment") forState:0];
+    [pinBtn setImage:IMAGE(@"我的_评论") forState:0];
     [self addSubview:pinBtn];
     
     zanBtn = [[UIButton alloc]initWithFrame:CGRectMake(self.width - 20 - pinBtn.width - AUTO(5), contentImage.bottom + AUTO(5), AUTO(20), AUTO(15))];
@@ -127,6 +127,20 @@
     zanBtn.left = DeviceWidth - pinBtn.width - heartBtn.width - zanBtn.width  - 10;
     [zanBtn addTarget:self action:@selector(btnFunc:) forControlEvents:UIControlEventTouchUpInside];
     [zanBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    
+    if(model.isLiked == 1)
+    {
+        [zanBtn setImage:IMAGE(@"我的_点赞_点击后") forState:0];
+    }else{
+        [zanBtn setImage:IMAGE(@"我的_点赞") forState:0];
+    }
+    
+    if(model.isCollected == 1)
+    {
+        [heartBtn setImage:IMAGE(@"我的_小收藏-点击后") forState:0];
+    }else{
+        [heartBtn setImage:IMAGE(@"我的_小收藏") forState:0];
+    }
     
     [self setTagViews];
 }

@@ -92,8 +92,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LBBTravelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZJMTravelNormal];
-    cell.cellBlock = ^(id view,UITableViewCellViewSignal signal){
-        [self dealCellSignal:signal withIndex:indexPath];
+    cell.cellBlock = ^(UIButton *view,UITableViewCellViewSignal signal){
+        [self dealCellSignal:signal withIndex:indexPath withView:view];
     };
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     
@@ -119,13 +119,28 @@
 
 
 #pragma mark 处理点击cell上面的按钮
-- (void)dealCellSignal:(UITableViewCellViewSignal)signel  withIndex:(NSIndexPath *)indexPath
+- (void)dealCellSignal:(UITableViewCellViewSignal)signel  withIndex:(NSIndexPath *)indexPath withView:(UIButton *)btn
 {
     NSLog(@"indexPath = %ld",(long)indexPath.row);
     switch (signel) {
         case UITableViewCellCollect:
         {
             NSLog(@"收藏");
+            BN_SquareTravelList *model = self.viewModel.squareTravelArray[indexPath.row];
+            [model collecte:^(NSDictionary *dic, NSError *error) {
+                if(!error)
+                {
+                    NSLog(@"收藏成功");
+                    if(model.isCollected == 1)
+                    {
+                        [btn setImage:IMAGE(@"我的_小收藏-点击后") forState:0];
+                        [btn setTitle:[NSString stringWithFormat:@"%ld",btn.titleLabel.text.integerValue + 1] forState:0];
+                    }else{
+                        [btn setImage:IMAGE(@"我的_小收藏") forState:0];
+                        [btn setTitle:[NSString stringWithFormat:@"%ld",btn.titleLabel.text.integerValue - 1] forState:0];
+                    }
+                }
+            }];
         }
             break;
         case UITableViewCellConment:
@@ -136,7 +151,21 @@
             break;
         case UITableViewCellPraise:
         {
-            NSLog(@"点赞");
+            BN_SquareTravelList *model = self.viewModel.squareTravelArray[indexPath.row];
+            [model like:^(NSDictionary *dic, NSError *error) {
+                if(!error)
+                {
+                    NSLog(@"点赞成功");
+                    if(model.isLiked == 1)
+                    {
+                        [btn setImage:IMAGE(@"我的_点赞_点击后") forState:0];
+                        [btn setTitle:[NSString stringWithFormat:@"%ld",btn.titleLabel.text.integerValue + 1] forState:0];
+                    }else{
+                        [btn setImage:IMAGE(@"我的_点赞") forState:0];
+                        [btn setTitle:[NSString stringWithFormat:@"%ld",btn.titleLabel.text.integerValue - 1] forState:0];
+                    }
+                }
+            }];
         }
             break;
         

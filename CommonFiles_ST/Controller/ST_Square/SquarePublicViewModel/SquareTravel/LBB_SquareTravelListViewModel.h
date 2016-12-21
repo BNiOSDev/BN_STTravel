@@ -62,6 +62,20 @@
 @property(nonatomic, strong)BN_SquareTravelComments*travelComments;
 -(void)getTravelCommentsModel;
 
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSDictionary*dic, NSError *error))block;
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSDictionary*dic, NSError *error))block;
+
 @end
 
 
