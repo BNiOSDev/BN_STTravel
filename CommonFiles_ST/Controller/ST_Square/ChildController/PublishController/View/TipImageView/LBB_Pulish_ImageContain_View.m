@@ -9,9 +9,7 @@
 //获取屏幕宽高
 #define SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-//屏幕适配
-#define FB_FIX_SIZE_WIDTH(w) (((w) / 375.0) * SCREEN_WIDTH)
-#define SET_FIX_SIZE_WIDTH (SCREEN_WIDTH /375.0)
+
 //获取当前app版本
 #define IOS_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
 

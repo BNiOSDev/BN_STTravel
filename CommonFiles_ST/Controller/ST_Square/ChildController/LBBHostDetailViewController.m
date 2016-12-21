@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.title = @"游记详情";
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 44)];
     [self initViewModel];
     self.tableView.delegate = self;
@@ -94,7 +94,7 @@
             case UITableViewCellSendMessage:
             {
                 NSLog(@"发送评论=%@",obj);
-                LBB_SquareUgc *model = weakSelf.viewModel;                [LBB_CommentViewModel  commentObjId:model.allSpotsId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                LBB_SquareUgc *model = weakSelf.viewModel;                [LBB_CommentViewModel  commentObjId:model.ugcId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
                     NSLog(@"评论回馈= %@",dic);
                     if(!error){
                         LBB_SquareComments *commentsModel = [LBB_SquareComments new];

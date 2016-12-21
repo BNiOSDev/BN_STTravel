@@ -125,7 +125,7 @@
     switch (signel) {
         case UITableViewCellCollect:
         {
-            
+            NSLog(@"收藏");
         }
             break;
         case UITableViewCellConment:
@@ -136,7 +136,7 @@
             break;
         case UITableViewCellPraise:
         {
-            
+            NSLog(@"点赞");
         }
             break;
         

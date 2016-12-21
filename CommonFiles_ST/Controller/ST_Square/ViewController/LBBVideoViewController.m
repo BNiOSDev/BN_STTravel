@@ -125,7 +125,7 @@
             {
                 NSLog(@"发送评论=%@",obj);
                 LBB_SquareUgc *model = weakSelf.viewModel.ugcVideoArray[indexPath.row];
-                [LBB_CommentViewModel  commentObjId:model.allSpotsId type:6 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                [LBB_CommentViewModel  commentObjId:model.ugcId type:6 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
                     NSLog(@"评论回馈= %@",dic);
                     if(!error){
                         LBB_SquareComments *commentsModel = [LBB_SquareComments new];

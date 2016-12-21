@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
 }
 -(void)showIndicator{
     self.Indicator.hidden = NO;

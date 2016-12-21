@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.title = @"视频详情";
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height - 44)];
     [self initViewModel];
     self.tableView.delegate = self;
@@ -98,9 +98,7 @@
         {
             case UITableViewCellSendMessage:
             {
-                NSLog(@"发送评论=%@",obj);
-                LBB_SquareUgc *model = weakSelf.viewModel;                [LBB_CommentViewModel  commentObjId:model.allSpotsId type:6 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
-                    NSLog(@"评论回馈= %@",dic);
+                LBB_SquareUgc *model = weakSelf.viewModel;                [LBB_CommentViewModel  commentObjId:model.ugcId type:6 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
                     if(!error){
                         LBB_SquareComments *commentsModel = [LBB_SquareComments new];
                         NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
@@ -120,8 +118,6 @@
                 [model collecte:^(NSDictionary *dic,NSError *error) {
                     if(!error)
                     {
-                        NSLog(@"收藏成功，更换图片");
-                        NSLog(@"收藏返回数据：%@",dic);
                         UIButton *btn = obj;
                         [btn setImage:IMAGE(@"zjmshoucanged") forState:0];
                         if(model.isCollected == 1)
@@ -143,9 +139,6 @@
                 [model like:^(NSDictionary *dic,NSError *error) {
                     if(!error)
                     {
-                        NSLog(@"likeList.count =  %ld",model.likeList.count);
-                        NSLog(@"点赞成功，更换图片");
-                        NSLog(@"点赞返回数据：%@",dic);
                         UIButton *btn = obj;
                         if(model.isLiked == 1)
                         {

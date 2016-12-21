@@ -189,15 +189,6 @@
         [_collectBtn setImage:IMAGE(@"景区列表_收藏") forState:0];
     }
     
-    if(model.isLiked == 1)
-    {
-        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
-    }
-    else
-    {
-        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
-    }
-   
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     
@@ -228,6 +219,15 @@
         return dic;
     }];
     praiseView.praiseArray = praiseModelArray;
+    
+    if(model.isLiked == 1)
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
+    }
+    else
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
+    }
     //这两个的顺序不可以替换
     _contentImage.tagsArray = tagsArray;
     _contentImage.imageArray = imageArray;

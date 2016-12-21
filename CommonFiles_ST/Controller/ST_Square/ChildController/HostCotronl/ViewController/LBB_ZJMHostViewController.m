@@ -104,33 +104,42 @@
 {
     if(section == 0)
     {
-        return 1;
+        if (self.viewModel.friendArray.count > 0)
+            return 1;
+        else
+            return 0;
     }
     return self.viewModel.ugcImageArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return AUTO(25);
+    if(self.viewModel.friendArray.count > 0)
+        return AUTO(25);
+    else
+        return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     if(section == 0)
     {
-        UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(25))];
-        footView.backgroundColor = BACKVIEWCOLOR;
+        if(self.viewModel.friendArray.count > 0)
+        {
+            UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(25))];
+            footView.backgroundColor = BACKVIEWCOLOR;
         
-        UIButton *moreBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth,AUTO(20))];
-        LRViewBorderRadius(moreBtn, 0, 0.5, LINECOLOR);
-        moreBtn.backgroundColor = WHITECOLOR;
-        [moreBtn setTitle:@"查看更多" forState:0];
-        [moreBtn setImage:IMAGE(@"morearrow") forState:0];
-        moreBtn.titleLabel.font = Font10;
-        [moreBtn setTitleColor:ColorGray forState:0];
-        [moreBtn setImageEdgeInsets:UIEdgeInsetsMake(0, AUTO(100), 0, 0)];
-        [footView addSubview:moreBtn];
-        return footView;
+            UIButton *moreBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth,AUTO(20))];
+            LRViewBorderRadius(moreBtn, 0, 0.5, LINECOLOR);
+            moreBtn.backgroundColor = WHITECOLOR;
+            [moreBtn setTitle:@"查看更多" forState:0];
+            [moreBtn setImage:IMAGE(@"morearrow") forState:0];
+            moreBtn.titleLabel.font = Font10;
+            [moreBtn setTitleColor:ColorGray forState:0];
+            [moreBtn setImageEdgeInsets:UIEdgeInsetsMake(0, AUTO(100), 0, 0)];
+            [footView addSubview:moreBtn];
+            return footView;
+        }
     }
     return nil;
 }
@@ -155,7 +164,7 @@
                 {
                     NSLog(@"发送评论=%@",obj);
                     LBB_SquareUgc *model = weakSelf.viewModel.ugcImageArray[indexPath.row];
-                    [LBB_CommentViewModel  commentObjId:model.allSpotsId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                    [LBB_CommentViewModel  commentObjId:model.ugcId type:5 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
                         NSLog(@"评论回馈= %@",dic);
                         if(!error){
                             LBB_SquareComments *commentsModel = [LBB_SquareComments new];

@@ -173,23 +173,12 @@
     
     if(model.isCollected == 1)
     {
-        [_collectBtn setImage:IMAGE(@"zjmshoucanged") forState:0];
-    }
-    else
+        [_collectBtn setImage:IMAGE(@"景区列表_收藏HL") forState:0];
+    }else
     {
-        [_collectBtn setImage:IMAGE(@"zjmshoucang") forState:0];
-    }
-    
-    if(model.isLiked == 1)
-    {
-        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
-    }
-    else
-    {
-        [praiseView setBtnImage:IMAGE(@"景区列表_收藏")];
+        [_collectBtn setImage:IMAGE(@"景区列表_收藏") forState:0];
     }
 
-    
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     NSLog(@"model.userName:%@",model.userName);
@@ -222,6 +211,15 @@
         return dic;
     }];
     praiseView.praiseArray = praiseModelArray;
+    if(model.isLiked == 1)
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
+    }
+    else
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
+    }
+    
     
     
     //评论内容

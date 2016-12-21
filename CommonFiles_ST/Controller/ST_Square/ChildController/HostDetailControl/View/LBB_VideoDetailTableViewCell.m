@@ -189,16 +189,6 @@
         
     }
     
-    if(model.isLiked == 1)
-    {
-        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
-    }
-    else
-    {
-        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
-    }
-
-    
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     _addressImage.image = IMAGE(@"zjmaddress");
@@ -235,7 +225,17 @@
         return dic;
     }];
     praiseView.praiseArray = praiseModelArray;
+    if(model.isLiked == 1)
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
+    }
+    else
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
+    }
     
+    
+
     
     //评论内容
     NSMutableArray *commentModelArray = (NSMutableArray *)[model.comments map:^id(LBB_SquareComments *element) {

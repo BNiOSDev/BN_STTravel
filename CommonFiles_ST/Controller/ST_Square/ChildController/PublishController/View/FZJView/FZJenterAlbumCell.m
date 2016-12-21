@@ -11,6 +11,7 @@
 @implementation FZJenterAlbumCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     _iconImageView.layer.cornerRadius = 5;
     _iconImageView.layer.masksToBounds = YES;
 }

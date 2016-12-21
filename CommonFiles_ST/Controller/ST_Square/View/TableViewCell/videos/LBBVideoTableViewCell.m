@@ -91,7 +91,6 @@
     [_collectBtn addTarget:self action:@selector(collectFunc:) forControlEvents:UIControlEventTouchUpInside];
     commetView = [ZJMCommentView new];
     
-    
     boxView = [CommentBoxView new];
     boxView.sendBlock = ^(NSString *str,UITableViewCellViewSignal signal){
         if(weakSelf.sendCommentBolck)//判断是否实现了块
@@ -192,18 +191,8 @@
     else
     {
         [_collectBtn setImage:IMAGE(@"景区列表_收藏") forState:0];
-        
     }
     
-    if(model.isLiked == 1)
-    {
-        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
-    }
-    else
-    {
-        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
-    }
-
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
     _addressImage.image = IMAGE(@"zjmaddress");
@@ -222,12 +211,19 @@
         dic.likeId = element.likeId;
         return dic;
     }];
-    praiseView.praiseArray = praiseModelArray;
     
+    praiseView.praiseArray = praiseModelArray;
+    if(model.isLiked == 1)
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
+    }
+    else
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
+    }
     
     //评论内容
     NSMutableArray *commentModelArray = (NSMutableArray *)[model.comments map:^id(LBB_SquareComments *element) {
-        
         CommentModel *model = [[CommentModel alloc]init];
         model.userName = element.userName;// 用户名称
         model.contentStr = element.remark;// 评论内容

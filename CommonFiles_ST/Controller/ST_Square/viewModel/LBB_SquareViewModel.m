@@ -128,7 +128,7 @@
 - (void)collecte:(void (^)(NSDictionary*dic, NSError *error))block
 {
     NSDictionary *paraDic = @{
-                              @"allSpotsId":@(self.allSpotsId),
+                              @"allSpotsId":@(self.ugcId),
                               @"allSpotsType":@(self.ugcType + 4),
                               };
     NSLog(@"collecte paraDic:%@",paraDic);
@@ -168,7 +168,7 @@
 - (void)like:(void (^)(NSDictionary*dic, NSError *error))block
 {
     NSDictionary *paraDic = @{
-                              @"allSpotsId":@(self.allSpotsId),
+                              @"allSpotsId":@(self.ugcId),
                               @"allSpotsType":@(self.ugcType + 4),
                               };
     NSLog(@"like paraDic:%@",paraDic);

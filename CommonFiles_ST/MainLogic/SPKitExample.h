@@ -11,7 +11,6 @@
 #import <WXOpenIMSDKFMWK/YWFMWK.h>
 #import <WXOUIModule/YWUIFMWK.h>
 
-
 #define SPTribeSystemConversationID [NSString stringWithFormat:@"%@SPTribeSystem", kYWCustomConversationIdPrefix]
 
 /// 自定义会话的id
