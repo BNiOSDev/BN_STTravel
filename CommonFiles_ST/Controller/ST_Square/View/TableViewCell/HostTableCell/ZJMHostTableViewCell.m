@@ -210,7 +210,7 @@
     }
     
     //点赞人数
-    NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeList map:^id(LBB_SquareLikeList *element) {
+    NSMutableArray *praiseModelArray = (NSMutableArray *)[model.likeds map:^id(LBB_SquareLikeList *element) {
         
         PraiseModel* dic = [[PraiseModel alloc] init];
         dic.iconUrl = element.portrait;
