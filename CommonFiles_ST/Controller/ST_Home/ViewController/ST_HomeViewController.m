@@ -25,7 +25,7 @@
 
 #import "LBB_Share.h"
 
-
+#import "ST_SquareViewController.h"
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, retain) UISearchBar *searchBar;
@@ -374,16 +374,22 @@
         make.right.equalTo(v).offset(-16);
     }];
     
+    WS(ws);
     [btn bk_addEventHandler:^(id sender){
         
         if (section == LBBHomeSectionTravelRecommendType) {//游记推荐，跳转到游记
-            [self.tabBarController setSelectedIndex:1];
+            
+            [ws publish:@"SquareScrollToTravel"];
+            [ws.tabBarController setSelectedIndex:1];
+            
         }
         else if (section == LBBHomeSectionSquareCenterType) {//广场中心，跳转到广场主页
-            [self.tabBarController setSelectedIndex:1];
+            [ws publish:@"SquareScrollToHost"];
+            [ws.tabBarController setSelectedIndex:1];
+            
         }
         else if (section == LBBHomeSectionTravelProductType) {//旅游产品，跳转到商场主页
-            [self.tabBarController setSelectedIndex:3];
+            [ws.tabBarController setSelectedIndex:3];
         }
         
     } forControlEvents:UIControlEventTouchUpInside];

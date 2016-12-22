@@ -307,7 +307,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
         make.bottom.equalTo(ws.baseContentView);
     }];
     
-    
+   
+#if 0
     if (self.homeType == LBBPoohHomeTypeScenic) {//景点页面才展示
         
         [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -387,6 +388,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             
         } forControlEvents:UIControlEventTouchUpInside];
     }
+#endif
 }
 
 
