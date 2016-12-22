@@ -105,7 +105,7 @@
     _viewType = viewType;
     switch (_viewType) {
         case MyTravelsViewDownloaed://我的下载-游记
-        case MyTravelsViewGuide: //我的下载-攻略
+        case MyTravelsViewGuideDownloaed: //我的下载-攻略
         {
             deleteBtn.hidden = NO;
         }

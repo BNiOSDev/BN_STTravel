@@ -104,7 +104,7 @@
     [self addChildViewController:travelVC];
     
     LBB_TravelGuideViewController *travelGuideVC = [[LBB_TravelGuideViewController alloc]init];
-    travelGuideVC.travelviewType =  MyTravelsViewGuide;
+    travelGuideVC.travelviewType =  MyTravelsViewGuideDownloaed;
     [self addChildViewController:travelGuideVC];
 }
 

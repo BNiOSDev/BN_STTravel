@@ -23,9 +23,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     
     self.bottomViewBottomContraint.constant = -TabHeight;
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"我的登录_顶部返回"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
-    self.navigationItem.leftBarButtonItem = backBarButton;
+    // self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+//    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"我的登录_顶部返回"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
+//    self.navigationItem.leftBarButtonItem = backBarButton;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -228,6 +228,7 @@ UITableViewDataSource
    [self performSegueWithIdentifier:@"LBB_InviteFriendsViewController" sender:nil];
 }
 
+//关于我们
 - (void)aboutUS:(id)sender
 {
     UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
@@ -236,6 +237,16 @@ UITableViewDataSource
     vc.webViewURL = @"http://www.baidu.com/";
     [self.navigationController pushViewController:vc animated:YES];
 }
+//去评分
+- (void)starComment:(id)sender
+{
+    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+    LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
+    vc.baseViewType = eSettongAboutUS;
+    vc.webViewURL = @"http://www.baidu.com/";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - 计算缓存大小
 - (void)cacheSize
 {

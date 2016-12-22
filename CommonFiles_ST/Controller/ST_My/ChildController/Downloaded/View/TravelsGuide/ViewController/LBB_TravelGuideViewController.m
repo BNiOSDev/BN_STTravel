@@ -15,12 +15,14 @@
 #import "Header.h"
 #import "LBB_DiscoveryDetailViewController.h"
 #import "LBB_StarRatingViewController.h"
+#import "LBB_DiscoveryDownLoadManager.h"
 
 #define MyTravelNormal  @"LBB_MyTravelTableViewCell"
 
 @interface LBB_TravelGuideViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic, strong)UITableView    *mTableView;
 @property(nonatomic, strong) LBB_TravelGuideViewModelModel *viewModel;
+@property(nonatomic, strong) NSMutableArray<LBB_DiscoveryDetailModel*> *downloadedTravelArray;
 @end
 
 @implementation LBB_TravelGuideViewController
@@ -37,31 +39,55 @@
      [self createTable];
      [self initDataSource];
 }
-
-
+ 
 - (void)initDataSource
 {
     if (!self.viewModel) {
         self.viewModel = [[LBB_TravelGuideViewModelModel alloc] init];
     }
-    __weak typeof (self) weakSelf = self;
-    [self.mTableView setHeaderRefreshDatablock:^{
+    if (self.travelviewType == MyTravelsViewGuideDownloaed) {
+        self.downloadedTravelArray = [[LBB_DiscoveryDownLoadManager sharedInstance] getDiscoveryDetailArray];
+        NSMutableArray *travelArray = [NSMutableArray arrayWithCapacity:self.downloadedTravelArray.count];
+        for (int i = 0;i < self.downloadedTravelArray.count; i++) {
+            LBB_DiscoveryDetailModel *tmpModel = self.downloadedTravelArray[i];
+            LBB_TravelGuideModel *travelModel = [[LBB_TravelGuideModel alloc] init];
+            travelModel.lineId = tmpModel.lineId;//路线ID
+            travelModel.coverImageUrl = tmpModel.coverImagesUrl;//列表上显示的图片
+            travelModel.name = tmpModel.name;//标题
+            
+            travelModel.releaseDate  = nil;//发布日期
+            travelModel.dayCount = 0;//天数
+            
+            travelModel.isCollected = tmpModel.isCollected;//收藏标志0未收藏 1：收藏
+            travelModel.isLiked = tmpModel.isLiked;//点赞标志 0未点赞 1：点赞
+            travelModel.likeNum = tmpModel.likeNum;//点赞次数
+            travelModel.commentsNum = tmpModel.commentsNum;//评论条数
+            travelModel.collecteNum = tmpModel.collecteNum;//收藏次数
+            [travelArray addObject:travelModel];
+        }
+        self.viewModel.travelGuideArray = travelArray;
+        [self.mTableView reloadData];
+        
+    }else {
+        __weak typeof (self) weakSelf = self;
+        [self.mTableView setHeaderRefreshDatablock:^{
+            [weakSelf.viewModel getMyTravelGuideList:YES];
+        } footerRefreshDatablock:^{
+            [weakSelf.viewModel getMyTravelGuideList:NO];
+        }];
+        
+        //设置绑定数组
+        [self.mTableView setTableViewData:self.viewModel.travelGuideArray];
+        
+        [self.viewModel.travelGuideArray.loadSupport setDataRefreshblock:^{
+            NSLog(@"数据刷新了");
+        }];
+        
+        [self.mTableView loadData:self.viewModel.travelGuideArray];
+        
+        //刷新数据
         [weakSelf.viewModel getMyTravelGuideList:YES];
-    } footerRefreshDatablock:^{
-        [weakSelf.viewModel getMyTravelGuideList:NO];
-    }];
-    
-    //设置绑定数组
-    [self.mTableView setTableViewData:self.viewModel.travelGuideArray];
-
-    [self.viewModel.travelGuideArray.loadSupport setDataRefreshblock:^{
-        NSLog(@"数据刷新了");
-    }];
-    
-    [self.mTableView loadData:self.viewModel.travelGuideArray];
-    
-    //刷新数据
-    [weakSelf.viewModel getMyTravelGuideList:YES];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -166,10 +192,33 @@
             [travelGuideModel collect];
         }
             break;
-            
+        case UICollectionViewCellDelete://删除
+        {
+            if (self.travelviewType == MyTravelsViewGuideDownloaed){
+                [self deleteDownloadedTravelWithID:travelGuideModel.lineId successBlock:^(NSError* error){
+                    [self.viewModel.travelGuideArray removeObject:travelGuideModel];
+                    [self.mTableView reloadData];
+                }];
+            }
+        }
         default:
             break;
     }
 }
 
+
+- (void)deleteDownloadedTravelWithID:(long)lineID successBlock:(void(^)(NSError* error))block
+{
+    for (int i = 0; i < self.downloadedTravelArray.count; i++) {
+        LBB_DiscoveryDetailModel *tmpModel = self.downloadedTravelArray[i];
+        if (tmpModel.lineId == lineID) {
+            [[LBB_DiscoveryDownLoadManager sharedInstance] deleteDiscoveryDetail:tmpModel succ:^(NSError* error){
+                if (block) {
+                    block(error);
+                }
+            }];
+            break;
+        }
+    }
+}
 @end
