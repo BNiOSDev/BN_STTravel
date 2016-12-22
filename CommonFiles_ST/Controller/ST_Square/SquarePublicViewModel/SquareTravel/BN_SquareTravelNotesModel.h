@@ -96,6 +96,14 @@
 -(void)deleteTravelTrackData:(void (^)(NSError *error))block;
 
 
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSDictionary*dic, NSError *error))block;
+
+
 @end
 
 //3.4.17 主页-游记详情/游记下载（已测）
