@@ -88,7 +88,7 @@
 
 #pragma mark -- 创建顶部btn
 - (void)createItem:(NSMutableArray *)item {
-    
+    _btnArray = [[NSMutableArray alloc]init];
     int count = (int)self.titleList.count;
     CGFloat marginX = (self.frame.size.width - count * 60)/(count + 1);
     for (int i = 0; i<count; i++) {
@@ -113,7 +113,7 @@
             [buttonItem setTitleColor:LG_ButtonColor_Selected forState:UIControlStateNormal];
             [self creatBanner:firstX];
         }
-        
+        [_btnArray addObject:buttonItem];
         buttonX += marginX;
     }
     
@@ -143,9 +143,7 @@
     [self bannerMoveTo:bannerX];
     [self didSelectButton:btn];
     [self.delegate scrollToPage:(int)(btn.tag - 1)];
-    
-    
- 
+
 }
 
 -(void)moveToOffsetX:(CGFloat)offsetX  AndIndex:(NSInteger)index{
@@ -168,7 +166,16 @@
 
 -(void)moveToButtonIndex:(NSInteger)index
 {
-
+    //获取被点击按钮
+    UIButton *btn = _btnArray[index];
+    
+    [btn setTitleColor:LG_ButtonColor_Selected forState:UIControlStateNormal];
+    
+    CGFloat bannerX = btn.center.x;
+    
+    [self bannerMoveTo:bannerX];
+    [self didSelectButton:btn];
+    [self.delegate scrollToPage:(int)index];
 }
 
 -(void)bannerMoveTo:(CGFloat)bannerX{

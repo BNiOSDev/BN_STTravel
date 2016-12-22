@@ -24,6 +24,7 @@
 @property(nonatomic,strong)NSMutableArray *buttonList;
 @property(nonatomic,weak)CALayer *LGLayer;
 @property(nonatomic,assign)CGFloat bannerNowX;
+@property(nonatomic,strong)NSMutableArray       *btnArray;//存放三个按钮的数组
 
 + (instancetype)initWithTitleList:(NSMutableArray *)titleList;
 -(id)initWithTitleList:(NSMutableArray*)titleList;

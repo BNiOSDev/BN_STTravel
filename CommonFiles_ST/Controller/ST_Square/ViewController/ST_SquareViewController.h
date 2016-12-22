@@ -14,5 +14,5 @@
 @property(nonatomic,strong)NSMutableArray *buttonList;
 @property (nonatomic, weak)LGSegment *segment;
 @property(nonatomic,weak)CALayer *LGLayer;
--(void)scrollToPage:(int)Page;//0,1,2
+-(void)scrollToIndex:(int)Page;//0,1,2
 @end

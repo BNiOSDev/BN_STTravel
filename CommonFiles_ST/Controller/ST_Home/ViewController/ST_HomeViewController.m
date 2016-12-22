@@ -26,6 +26,8 @@
 #import "LBB_Share.h"
 
 #import "ST_SquareViewController.h"
+#import "ST_TabBarController.h"// 用途：获取tabbar上的控制器
+
 @interface ST_HomeViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, retain) UISearchBar *searchBar;
@@ -380,11 +382,23 @@
         if (section == LBBHomeSectionTravelRecommendType) {//游记推荐，跳转到游记
             
             [ws publish:@"SquareScrollToTravel"];
+            if([((UINavigationController *)[ws.tabBarController.viewControllers objectAtIndex:1]).topViewController isKindOfClass:[ST_SquareViewController class]])
+            {
+                NSLog(@"是的没错，就是他");
+                ST_SquareViewController *squareVC = (ST_SquareViewController *)((UINavigationController *)[ws.tabBarController.viewControllers objectAtIndex:1]).topViewController;
+                [squareVC scrollToIndex:1];
+            }
             [ws.tabBarController setSelectedIndex:1];
             
         }
         else if (section == LBBHomeSectionSquareCenterType) {//广场中心，跳转到广场主页
             [ws publish:@"SquareScrollToHost"];
+            if([((UINavigationController *)[ws.tabBarController.viewControllers objectAtIndex:1]).topViewController isKindOfClass:[ST_SquareViewController class]])
+            {
+                NSLog(@"是的没错，就是他");
+                ST_SquareViewController *squareVC = (ST_SquareViewController *)((UINavigationController *)[ws.tabBarController.viewControllers objectAtIndex:1]).topViewController;
+                [squareVC scrollToIndex:0];
+            }
             [ws.tabBarController setSelectedIndex:1];
             
         }

@@ -45,7 +45,6 @@
     [self addChildViewController];
     //加载ScrollView
     [self setContentScrollView];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -138,6 +137,12 @@
     LBBVideoViewController * vc3 = [[LBBVideoViewController alloc]init];
     [self addChildViewController:vc3];
     
+}
+
+-(void)scrollToIndex:(int)Page
+{
+    NSLog(@"已有滚动");
+    [self.segment moveToButtonIndex:Page];
 }
 
 #pragma mark - UIScrollViewDelegate

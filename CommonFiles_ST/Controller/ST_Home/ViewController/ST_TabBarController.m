@@ -84,6 +84,7 @@
 {
     Base_BaseViewController *viewController1        = [[ST_HomeViewController alloc]init];
     Base_BaseViewController *viewController2        = [[ST_SquareViewController alloc]init];
+    viewController2.view.backgroundColor = ColorWhite;
 //    Base_BaseViewController *viewController3        = [[ST_MallViewController alloc]init];
     Base_BaseViewController *viewController3        = [[BN_ShopHomeViewController alloc]init];
     
