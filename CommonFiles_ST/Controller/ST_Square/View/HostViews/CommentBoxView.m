@@ -69,7 +69,10 @@
 {
     //发送评论
     if(self.sendBlock)
+    {
         self.sendBlock(contentText.text,UITableViewCellSendMessage);
+        contentText.text = @"";
+    }
 }
 
 @end

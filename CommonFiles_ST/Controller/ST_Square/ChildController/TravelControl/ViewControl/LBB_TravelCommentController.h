@@ -7,7 +7,8 @@
 //
 
 #import "Base_BaseViewController.h"
+#import "LBB_SquareTravelListViewModel.h"
 
 @interface LBB_TravelCommentController : Base_BaseViewController
-
+@property(nonatomic,strong)BN_SquareTravelList  *viewModel;
 @end

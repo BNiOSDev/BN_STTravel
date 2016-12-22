@@ -146,6 +146,7 @@
         case UITableViewCellConment:
         {
             LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
+            vc.viewModel = self.viewModel.squareTravelArray[indexPath.row];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

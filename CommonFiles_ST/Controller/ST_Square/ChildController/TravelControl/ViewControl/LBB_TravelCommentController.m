@@ -15,6 +15,7 @@
 #import "Header.h"
 #import "CommentModel.h"
 #import "LBB_TravelCommentCell.h"
+#import "LBB_SquareViewModel.h"
 
 @interface LBB_TravelCommentController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)UITableView     *tableView;
@@ -37,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
-    
+    self.navigationItem.title = @"视频评论";
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -48,55 +49,75 @@
 
 - (void)initData
 {
-    _imageArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 0; i++) {
-        NSString *str = @"http://c.hiphotos.baidu.com/image/pic/item/6c224f4a20a446230b10a7179a22720e0df3d7e8.jpg";
-        [_imageArray addObject:str];
-    }
-    _praiseArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 10; i++) {
-        PraiseModel *model = [[PraiseModel alloc]init];
-        model.iconUrl = @"";
-        [_praiseArray addObject:model];
-    }
-    
-    _commentArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 2; i++) {
-        CommentModel *model = [[CommentModel alloc]init];
-        model.userName = @"小大王";
-        model.contentStr = @"大王叫我来巡山，抓个和尚当晚餐。看到和尚太有型，抓来当我压寨老公哇哈哈";
-        [_commentArray addObject:model];
-    }
-    
-    _dataArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i <= 0; i++) {
-        ZJMHostModel *model = [[ZJMHostModel alloc]init];
-        model.iconUrl = @"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg";
-        model.userName = @"zjmzjmzjmzjm";
-        model.timeAgo = @"15min ago";
-        model.address = @"address";
-        model.content = @"wdashkdfahsdfhasjkdfhasjlkhfdajshdfjkashdfjakshdjshfkjsahfksajhfsakjhfaslhfkalshfasfkajhfalskhksal";
-        model.hostImageUrl = @"";
-        model.praiseModelArray = _praiseArray;
-        model.commentModelArray = _commentArray;
-        [_dataArray addObject:model];
-    }
-    
+    __weak typeof(self) weakSelf = self;
+    [_viewModel getTravelCommentsModel];
+    [_viewModel.travelComments.loadSupport setDataRefreshblock:^{
+        NSLog(@"获取数据成功！！！");
+        [weakSelf.tableView reloadData];
+    }];
     
 }
 
 #pragma mark -- TableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak typeof(self) weakSelf = self;
         LBB_TravelCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBB_TravelCommentCell"];
+        cell.commentBlock = ^(id obj, UITableViewCellViewSignal signal)
+    {
+        switch (signal) {
+            case UITableViewCellSendMessage:
+            {
+                NSLog(@"pinglun");
+                BN_SquareTravelList *model = weakSelf.viewModel;                [LBB_CommentViewModel  commentObjId:model.travelNotesId type:7 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                    NSLog(@"评论回馈= %@",dic);
+                    if(!error){
+                        LBB_SquareComments *commentsModel = [LBB_SquareComments new];
+                        NSString *commentIdStr = [NSString stringWithFormat:@"%@",dic[@"commentId"]];
+                        commentsModel.commentId = [commentIdStr longLongValue];
+                        commentsModel.remark = dic[@"remark"];
+                        commentsModel.userName = dic[@"userName"];
+                        
+                        [weakSelf.viewModel getTravelCommentsModel];
+                    }
+                }];
+
+            };
+                break;
+            case UITableViewCellPraise:
+            {
+                BN_SquareTravelList *model = self.viewModel;
+                [model like:^(NSDictionary *dic, NSError *error) {
+                    if(!error)
+                    {
+                        NSLog(@"点赞成功");
+                        if(model.isLiked == 1)
+                        {
+                            [(UIButton *)obj setImage:IMAGE(@"zjmzhuyedianzaned") forState:0];
+               
+                        }else{
+                            [(UIButton *)obj setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
+
+                        }
+                    }
+                }];
+
+            }
+                break;
+                
+            default:
+                break;
+        }
+    };
+    
         ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
         [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-        cell.model = self.dataArray[indexPath.row];
+        cell.model = self.viewModel.travelComments;
         return cell;
     
 }
@@ -110,7 +131,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应 * >>>>>>>>>>>>>>>>>>>>>>>>
-    id model = self.dataArray[indexPath.row];
+    id model = self.viewModel.travelComments;
 
     return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[LBB_TravelCommentCell class] contentViewWidth:[self cellContentViewWith]];
 }

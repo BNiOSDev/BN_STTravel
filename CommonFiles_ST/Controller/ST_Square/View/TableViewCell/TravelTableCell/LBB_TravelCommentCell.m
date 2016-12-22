@@ -54,12 +54,30 @@
     timeLabel.font = FONT(AUTO(12.0));
     timeLabel.textColor = MORELESSBLACKCOLOR;
     timeLabel.textAlignment = NSTextAlignmentRight;
-    
+    __weak typeof(self) weakSelf = self;
     praiseView  = [PraiseView new];
+    
+    praiseView.praiseBlock = ^(UIButton *btn,UITableViewCellViewSignal signal)
+    {
+        if(weakSelf.commentBlock)
+        {
+            weakSelf.commentBlock(btn,signal);
+        }
+    };
+    
     commetView = [ZJMCommentView new];
     commetView.maxWidth = DeviceWidth - 20;
 
     boxView = [CommentBoxView new];
+    
+    boxView.sendBlock = ^(NSString *str,UITableViewCellViewSignal signal)
+    {
+        if(weakSelf.commentBlock)
+        {
+            weakSelf.commentBlock(str,signal);
+        }
+    };
+    
     NSArray *views = @[headBackImage,_iconImage,nameLabel,timeLabel,praiseView,commetView,boxView];
     [self.contentView sd_addSubviews:views];
     
@@ -107,17 +125,34 @@
 
 }
 
-- (void)setModel:(ZJMHostModel *)model
+- (void)setModel:(BN_SquareTravelComments *)model
 {
     _model = model;
-    headBackImage.backgroundColor = [UIColor orangeColor];
-    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.iconUrl] placeholderImage:DEFAULTIMAGE];
+    [headBackImage sd_setImageWithURL:[NSURL URLWithString:model.travelNotesPicUrl] placeholderImage:DEFAULTIMAGE];
+    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:DEFAULTIMAGE];
     nameLabel.text = model.userName;
-    timeLabel.text = model.timeAgo;
+    timeLabel.text = model.lastReleaseTime;
     
-    praiseView.praiseArray = model.praiseModelArray;
+    praiseView.praiseArray = model.likeList;
+    if(model.isLiked == 1)
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzaned")];
+    }
+    else
+    {
+        [praiseView setBtnImage:IMAGE(@"zjmzhuyedianzan")];
+    }
     
-    commetView.commentArray = model.commentModelArray;
+    //评论内容
+    NSMutableArray *commentModelArray = (NSMutableArray *)[model.comments map:^id(LBB_SquareComments *element) {
+        
+        CommentModel *model = [[CommentModel alloc]init];
+        model.userName = element.userName;// 用户名称
+        model.contentStr = element.remark;// 评论内容
+        model.userID = [NSString stringWithFormat:@"%ld",element.commentId];// 评论ID
+        return model;
+    }];
+    commetView.commentArray = commentModelArray;
     
     [self setupAutoHeightWithBottomView:boxView bottomMargin:10];
 }

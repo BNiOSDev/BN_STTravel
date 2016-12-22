@@ -20,6 +20,7 @@
 #import "LBB_ZJMHostViewController.h"
 #import "CoreData+MagicalRecord.h"
 #import "LBB_TravelDetailViewController.h"
+#import "LBB_HomeSearchViewController.h"
 
 @interface ST_SquareViewController ()<UISearchBarDelegate,UIScrollViewDelegate,UINavigationControllerDelegate>
 {
@@ -185,5 +186,16 @@
         self.navigationController.navigationBar.hidden = NO;
     }
 }
+
+#pragma mark searchBarShouldBeginEditing
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"zzzzz");
+    LBB_HomeSearchViewController* searchVC = [[LBB_HomeSearchViewController alloc]init];
+    searchVC.searchType = LBBPoohHomeSearchTypeUser;
+    [self.navigationController pushViewController:searchVC animated:YES];
+    return NO;
+}
+
 
 @end

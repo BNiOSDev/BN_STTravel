@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ZJMHostModel.h"
+#import "Header.h"
+#import "LBB_SquareTravelListViewModel.h"
+
 @interface LBB_TravelCommentCell : UITableViewCell
-@property(nonatomic,strong)ZJMHostModel         *model;
+@property(nonatomic,strong)BN_SquareTravelComments  *model;
+@property(nonatomic,copy)CellBlockVIew   commentBlock;
 @end

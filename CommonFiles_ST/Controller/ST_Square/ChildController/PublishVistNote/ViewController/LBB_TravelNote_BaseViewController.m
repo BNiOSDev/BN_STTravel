@@ -190,6 +190,12 @@
     vc.blockFeedBack = ^(UIViewController *vc)
     {
         previewSet = NO;
+        [self.dataModel saveTravelDraftData:^(NSError *error) {
+            if(!error)
+            {
+                
+            }
+        }];
         [self.dataModel getTravelDraftData];
     };
     [self.navigationController pushViewController:vc animated:YES];
@@ -461,7 +467,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if(!previewSet)
     {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCellAddress"];
