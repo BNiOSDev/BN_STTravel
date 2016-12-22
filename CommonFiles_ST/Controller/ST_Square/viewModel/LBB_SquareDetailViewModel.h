@@ -55,7 +55,7 @@
 @property (nonatomic, strong)NSString *videoRemark ;// 视频描述
 @property (nonatomic, assign)int likeNum ;// 点赞次数
 @property (nonatomic, assign)int isLiked ;// 是否点赞
-@property (nonatomic, strong)NSMutableArray<LBB_SquareLikeList *> *likeList ;// 点赞集合
+@property (nonatomic, strong)NSMutableArray<LBB_SquareLikeList *> *likeds ;// 点赞集合
 @property (nonatomic, assign)int isCollected ;// 是否收藏
 @property (nonatomic, strong)NSMutableArray<LBB_SquareComments *> *comments ;// 评论集合
 

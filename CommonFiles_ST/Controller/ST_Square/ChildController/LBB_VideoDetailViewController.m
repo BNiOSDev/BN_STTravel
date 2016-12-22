@@ -135,7 +135,7 @@
                 break;
             case UITableViewCellPraise:
             {
-                LBB_SquareUgc  *model = weakSelf.viewModel;                NSLog(@"likeList.count = %ld",model.likeList.count);
+                LBB_SquareUgc  *model = weakSelf.viewModel;                NSLog(@"likeList.count = %ld",model.likeds.count);
                 [model like:^(NSDictionary *dic,NSError *error) {
                     if(!error)
                     {

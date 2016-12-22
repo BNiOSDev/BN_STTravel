@@ -130,11 +130,11 @@
                 break;
             case UITableViewCellPraise:
             {
-                LBB_SquareUgc  *model = self.viewModel;                NSLog(@"likeList.count = %ld",model.likeList.count);
+                LBB_SquareUgc  *model = self.viewModel;                NSLog(@"likeList.count = %ld",model.likeds.count);
                 [model like:^(NSDictionary *dic,NSError *error) {
                     if(!error)
                     {
-                        NSLog(@"likeList.count =  %ld",model.likeList.count);
+                        NSLog(@"likeList.count =  %ld",model.likeds.count);
                         UIButton *btn = obj;
                         if(model.isLiked == 1)
                         {

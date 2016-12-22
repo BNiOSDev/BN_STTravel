@@ -37,13 +37,14 @@
     _tags = array;
 }
 
-- (void)setLikeList:(NSMutableArray<LBB_SquareLikeList *> *)likeList
-{
-    NSMutableArray *array = (NSMutableArray *)[likeList map:^id(NSDictionary *element) {
+-(void)setLikeds:(NSMutableArray<LBB_SquareLikeList *> *)likeds{
+
+    NSMutableArray *array = (NSMutableArray *)[likeds map:^id(NSDictionary *element) {
         return [LBB_SquareLikeList mj_objectWithKeyValues:element];
     }];
-    _likeList = array;
+    _likeds = array;
 }
+
 
 - (void)setComments:(NSMutableArray<LBB_SquareComments *> *)comments
 {

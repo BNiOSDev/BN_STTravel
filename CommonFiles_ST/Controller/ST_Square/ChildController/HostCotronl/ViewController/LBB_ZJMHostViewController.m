@@ -201,11 +201,11 @@
                 case UITableViewCellPraise:
                 {
                     LBB_SquareUgc  *model = self.viewModel.ugcImageArray[indexPath.row];
-                    NSLog(@"likeList.count = %ld",model.likeList.count);
+                    NSLog(@"likeList.count = %ld",model.likeds.count);
                     [model like:^(NSDictionary *dic,NSError *error) {
                         if(!error)
                         {
-                            NSLog(@"likeList.count =  %ld",model.likeList.count);
+                            NSLog(@"likeList.count =  %ld",model.likeds.count);
                             NSLog(@"收藏成功，更换图片");
                             UIButton *btn = obj;
                             if(model.isLiked == 1)
