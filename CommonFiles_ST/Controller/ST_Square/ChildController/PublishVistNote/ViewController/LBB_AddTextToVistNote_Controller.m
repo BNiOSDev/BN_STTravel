@@ -202,7 +202,13 @@
     [_footprintModel saveTravelTrackData:YES address:_addressInfo block:^(NSError *error) {
         if(!error)
         {
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.dataModel saveTravelDraftData:^(NSError *error) {
+                if(!error)
+                {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+
         }
     }];
 }

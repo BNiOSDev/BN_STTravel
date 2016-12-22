@@ -8,8 +8,10 @@
 
 #import "Base_BaseViewController.h"
 #import "Header.h"
+#import "LBB_TravelDraftViewModel.h"
 
 @interface LBB_AddTextToVistNote_Controller : Base_BaseViewController
 @property(nonatomic,strong)NSArray   *mapPointArray;
 @property(nonatomic,copy)Controllerfeedback  blockFeedBack;
+@property(nonatomic, strong)LBB_TravelDraftViewModel  *dataModel;
 @end

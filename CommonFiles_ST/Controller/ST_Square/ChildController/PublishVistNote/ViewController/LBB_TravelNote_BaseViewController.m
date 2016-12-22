@@ -182,6 +182,7 @@
 {
     NSLog(@"editTextFunc");
     LBB_AddTextToVistNote_Controller *vc = [[LBB_AddTextToVistNote_Controller alloc]init];
+    vc.dataModel = self.dataModel;
     if(!_mapPointArray)
     {
         _mapPointArray = [[NSMutableArray alloc]init];
@@ -190,12 +191,12 @@
     vc.blockFeedBack = ^(UIViewController *vc)
     {
         previewSet = NO;
-        [self.dataModel saveTravelDraftData:^(NSError *error) {
-            if(!error)
-            {
-                
-            }
-        }];
+//        [self.dataModel saveTravelDraftData:^(NSError *error) {
+//            if(!error)
+//            {
+//                
+//            }
+//        }];
         [self.dataModel getTravelDraftData];
     };
     [self.navigationController pushViewController:vc animated:YES];
