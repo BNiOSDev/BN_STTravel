@@ -14,6 +14,7 @@
 #import "LBB_MyPropertyViewController.h"
 #import "LBB_MessageSquareViewController.h"
 #import "LBB_MessageCenterModel.h"
+#import "SPKitExample.h"
 
 @interface LBB_MessageCenterViewController ()
 <UITableViewDelegate,
@@ -232,7 +233,16 @@ UITableViewDataSource
             break;
         case eCustomer://我的客服
         {
-            [self performSegueWithIdentifier:@"LBB_CustomerViewController" sender:[NSNumber numberWithInt:eCustomer]];
+            YWPerson *person=[[YWPerson alloc]initWithPersonId:@"鹭爸爸888" EServiceGroupId:nil baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
+            YWConversation *conversation=[YWP2PConversation fetchConversationByPerson:person creatIfNotExist:YES baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
+            YWConversationViewController *conversationController=[[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:conversation.conversationId];
+            Base_BaseViewController *vc = [[Base_BaseViewController alloc]init];
+            [vc addChildViewController:conversationController];
+            vc.view.frame = conversationController.view.frame = self.view.bounds;
+            [vc.view addSubview:conversationController.view];
+            
+            [self.navigationController pushViewController:vc animated:YES];
+//            [self performSegueWithIdentifier:@"LBB_CustomerViewController" sender:[NSNumber numberWithInt:eCustomer]];
         }
             break;
         case ePurchageNotifion://购买通知
