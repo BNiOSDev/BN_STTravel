@@ -79,11 +79,12 @@
 
  @param isAdd YES:新增足迹  NO:修改足迹
  @param spotAddress 选择地址回调的地址内容
-
+ @param travelNoteId 草稿的游记id
  @param block 结果回调
  */
 
 -(void)saveTravelTrackData:(BOOL)isAdd
+              travelNoteId:(long)travelNoteId
                    address:(LBB_SpotAddress*)spotAddress
                      block:(void (^)(NSError *error))block;
 

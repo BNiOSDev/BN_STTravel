@@ -120,9 +120,11 @@
  3.4.24 主页-足记保存（已测）
  
  @param isAdd YES:新增足迹  NO:修改足迹
+ @param travelNoteId 草稿的游记id
  @param block 结果回调
  */
 -(void)saveTravelTrackData:(BOOL)isAdd
+                   travelNoteId:(long)travelNoteId
                    address:(LBB_SpotAddress*)spotAddress
                      block:(void (^)(NSError *error))block{
     NSDictionary *paraDic;
@@ -138,6 +140,7 @@
         paraDic = @{
                                   @"releaseTime":self.releaseTime,
                                   @"releaseDate":self.releaseDate,
+                                  @"travelNoteId":@(travelNoteId),
                                   @"name":self.name,
                                   @"picUrl":self.picUrl,
                                   @"picRemark":self.picRemark,
@@ -156,6 +159,7 @@
                                   @"travelNotesDetailId":@(self.travelNotesDetailId),//非空则代表修改
                                   @"releaseTime":self.releaseTime,
                                   @"releaseDate":self.releaseDate,
+                                  @"travelNoteId":@(travelNoteId),
                                   @"name":self.name,
                                   @"picUrl":self.picUrl,
                                   @"longitude":spotAddress.longy,
