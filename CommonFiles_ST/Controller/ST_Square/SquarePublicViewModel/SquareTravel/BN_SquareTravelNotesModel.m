@@ -76,7 +76,7 @@
     NSLog(@"paraDic:%@",paraDic);
     
     
-    NSString *url = [NSString stringWithFormat:@"%@/travelNotesDetail/comments",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/square/travelNotesDetail/comments",BASEURL];
     __weak typeof(self) temp = self;
     self.travelNotesDetailsComments.loadSupport.loadEvent = NetLoadingEvent;
     
