@@ -191,12 +191,6 @@
     vc.blockFeedBack = ^(UIViewController *vc)
     {
         previewSet = NO;
-//        [self.dataModel saveTravelDraftData:^(NSError *error) {
-//            if(!error)
-//            {
-//                
-//            }
-//        }];
         [self.dataModel getTravelDraftData];
     };
     [self.navigationController pushViewController:vc animated:YES];
@@ -346,6 +340,7 @@
         Vc.returnBlock = ^(NSMutableArray *array){
             NSLog(@"图片数组");
             LBB_AddFootprint_ViewController  *Vc = [[LBB_AddFootprint_ViewController alloc]init];
+            Vc.dataModel = _dataModel;
             Vc.selectImageArray = [array copy];
             Vc.blockFeedBack = ^(UIViewController *vc){
                 previewSet = NO;

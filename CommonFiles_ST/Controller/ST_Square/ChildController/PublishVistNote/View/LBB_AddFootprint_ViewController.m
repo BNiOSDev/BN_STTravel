@@ -386,7 +386,7 @@
             if(_footprintModel.consumptionDesc .length == 0)
                 _footprintModel.consumptionDesc = @"";
             _footprintModel.pics = _imageUrlArray;
-            [_footprintModel saveTravelTrackData:YES address:_addressInfo block:^(NSError *error) {
+            [_footprintModel saveTravelTrackData:YES travelNoteId:_dataModel.travelDraftModel.travelNotesId  address:_addressInfo block:^(NSError *error) {
                 if(!error)
                 {
                     [self.navigationController popViewControllerAnimated:YES];
