@@ -153,8 +153,8 @@
         return;
     }
     
-    if ([self.phoneNum validateMobile] == 0) {
-        [self showHudPrompt:@"请输入正确的手机号码"];
+    if (self.phoneNum.length == 0) {
+        [self showHudPrompt:@"请输入手机号码"];
         return;
     }
     if ([self.address length] == 0) {

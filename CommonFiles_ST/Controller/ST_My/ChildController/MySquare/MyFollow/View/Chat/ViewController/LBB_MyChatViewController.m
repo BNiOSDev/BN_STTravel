@@ -80,7 +80,6 @@
     [vc.view addSubview:conversationController.view];
     
     [self.navigationController pushViewController:vc animated:YES];
-    
 
     
 //    _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];

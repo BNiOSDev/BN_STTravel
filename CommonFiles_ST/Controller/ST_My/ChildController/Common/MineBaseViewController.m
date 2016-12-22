@@ -24,8 +24,8 @@
     
     self.bottomViewBottomContraint.constant = -TabHeight;
     self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"我的登录_顶部返回"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
-    self.navigationItem.leftBarButtonItem = backBarButton;
+//    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"我的登录_顶部返回"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
+//    self.navigationItem.leftBarButtonItem = backBarButton;
 }
 
 - (void)didReceiveMemoryWarning {
