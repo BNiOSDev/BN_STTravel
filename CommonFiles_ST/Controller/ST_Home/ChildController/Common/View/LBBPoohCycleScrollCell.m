@@ -14,6 +14,7 @@
 #import "LBB_ScenicDetailSubjectViewController.h"
 
 #import "LBB_ScenicDetailViewController.h"
+#import "LBB_PoohCycleTransManager.h"
 
 @interface LBBPoohCycleScrollCell()<SDCycleScrollViewDelegate>{
 
@@ -142,115 +143,10 @@
     }
     else{
     
-        /*
-         @interface BN_HomeAdvertisement : NSObject
-         @property (nonatomic, assign)int classes;//广告类型1 外部连接 2 列表 3 详情
-         @property (nonatomic, assign)int type;//1.美食 2.民宿  3.景点 4伴手礼
-         @property (nonatomic, strong)NSString *hrefUrl;//跳转地址（当是外部链接的时候有值）
-         @property (nonatomic, assign)long objId;//跳转主键（当是跳转到原生的时候有值）
-         
-         @end
-         */
         BN_HomeAdvertisement* model = [self.adModelArray objectAtIndex:index];
         NSLog(@"cycleScrollView didSelect :%@",model);
-
-        switch (model.classes) {
-            case 1://外部链接
-            {
-                LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
-                webViewController.url = [NSURL URLWithString:model.hrefUrl];
-                [[self getViewController].navigationController pushViewController:webViewController animated:YES];
-            }
-                break;
-            case 2://列表
-            {
-                UIViewController* dest;
-                switch (model.type) {
-                    case 1://美食
-                        dest = [[LBB_FoodsMainViewController alloc] init];
-                        break;
-                    case 2://民宿
-                        dest = [[LBB_HostelMainViewController alloc] init];
-                        break;
-                    case 3://景点
-                        dest = [[LBB_ScenicMainViewController alloc] init];
-                        break;
-                    case 4://伴手礼
-                        break;
-                    default:
-                        break;
-                }
-                if (dest) {
-                    [[self getViewController].navigationController pushViewController:dest animated:YES];
-                }
-
-            }
-                break;
-            case 3://详情
-            {
-                LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc] init];
-                LBB_SpotModel* viewModel = [[LBB_SpotModel alloc]init];
-                viewModel.allSpotsId = model.objId;//主键Id
-                dest.spotModel = viewModel;
-                switch (model.type) {
-                    case 1://美食
-                        dest.homeType = LBBPoohHomeTypeFoods;
-                        [[self getViewController].navigationController pushViewController:dest animated:YES];
-
-                        break;
-                    case 2://民宿
-                        dest.homeType = LBBPoohHomeTypeHostel;
-                        [[self getViewController].navigationController pushViewController:dest animated:YES];
-
-                        break;
-                    case 3://景点
-                        dest.homeType = LBBPoohHomeTypeScenic;
-                        [[self getViewController].navigationController pushViewController:dest animated:YES];
-
-                        break;
-                    case 4://伴手礼
-                        break;
-                    case 11://美食专题
-                    {
-                        LBB_ScenicDetailSubjectViewController* vc = [[LBB_ScenicDetailSubjectViewController alloc] init];
-                        vc.homeType = LBBPoohHomeTypeFoods;
-                        LBB_SpotSpecialDetailsViewModel* spotModel = [[LBB_SpotSpecialDetailsViewModel alloc] init];
-                        spotModel.specialId = model.objId;
-                        vc.spotModel = spotModel;
-                        [[self getViewController].navigationController pushViewController:vc animated:YES];
-
-                    }
-                        break;
-                    case 12://民宿专题
-                    {
-                        LBB_ScenicDetailSubjectViewController* vc = [[LBB_ScenicDetailSubjectViewController alloc] init];
-                        vc.homeType = LBBPoohHomeTypeHostel;
-                        LBB_SpotSpecialDetailsViewModel* spotModel = [[LBB_SpotSpecialDetailsViewModel alloc] init];
-                        spotModel.specialId = model.objId;
-                        vc.spotModel = spotModel;
-                        [[self getViewController].navigationController pushViewController:vc animated:YES];
-                    }
-                        break;
-                    case 13://景点专题
-                    {
-                        LBB_ScenicDetailSubjectViewController* vc = [[LBB_ScenicDetailSubjectViewController alloc] init];
-                        vc.homeType = LBBPoohHomeTypeScenic;
-                        LBB_SpotSpecialDetailsViewModel* spotModel = [[LBB_SpotSpecialDetailsViewModel alloc] init];
-                        spotModel.specialId = model.objId;
-                        vc.spotModel = spotModel;
-                        [[self getViewController].navigationController pushViewController:vc animated:YES];
-                    
-                    }
-                        break;
-                    default:
-                        break;
-                }
-            }
-                break;
-                
-            default:
-                break;
-        }
+        [[LBB_PoohCycleTransManager sharedInstance] transmission:model viewController:[self getViewController]];
+        
     }
 }
 
