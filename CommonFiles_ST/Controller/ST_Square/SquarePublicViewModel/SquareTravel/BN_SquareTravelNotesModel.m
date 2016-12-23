@@ -157,20 +157,20 @@
     else{
         paraDic = @{
                                   @"travelNotesDetailId":@(self.travelNotesDetailId),//非空则代表修改
+                                  @"travelNoteId":@(travelNoteId),
                                   @"releaseTime":self.releaseTime,
                                   @"releaseDate":self.releaseDate,
-                                  @"travelNoteId":@(travelNoteId),
                                   @"name":self.name,
+                                  @"pics":picsArray,
                                   @"picUrl":self.picUrl,
-                                  @"longitude":spotAddress.longy,
-                                  @"dimensionality":spotAddress.dimx,
+                                  @"picRemark":self.picRemark,
+                                  @"longitude":self.longitude,
                                   @"dimensionality":self.dimensionality,
                                   @"billAmount":@([self.billAmount doubleValue]),
                                   @"allSpotsType":@(self.allSpotsType),
-                                  @"objId":@(spotAddress.allSpotsId),
+                                  @"objId":@(self.objId),
                                   @"consumptionType":@(self.consumptionType),
                                   @"consumptionDesc":self.consumptionDesc,
-                                  @"pics":picsArray,
 
                                   };
     }
