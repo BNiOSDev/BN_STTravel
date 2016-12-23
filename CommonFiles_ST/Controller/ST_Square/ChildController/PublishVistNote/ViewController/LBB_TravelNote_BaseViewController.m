@@ -512,6 +512,7 @@
             
         }else{
             LBB_AddTextToVistNote_Controller   *vc = [[LBB_AddTextToVistNote_Controller alloc]init];
+             vc.dataModel = self.dataModel;
             vc.model = model;
             [self.navigationController pushViewController:vc animated:YES];
         }
