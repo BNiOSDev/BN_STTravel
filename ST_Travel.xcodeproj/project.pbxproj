@@ -591,8 +591,6 @@
 		1BD593271E082C6800DED267 /* SPKitExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD590AA1E082C6600DED267 /* SPKitExample.m */; };
 		1BD593281E082C6800DED267 /* SPUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD590AC1E082C6600DED267 /* SPUtil.m */; };
 		1BD593381E082C6800DED267 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD590C31E082C6600DED267 /* libSocialQQ.a */; };
-		1BD593391E082C6800DED267 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD590C41E082C6600DED267 /* TencentOpenAPI.framework */; };
-		1BD5933A1E082C6800DED267 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BD590C51E082C6600DED267 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		1BD5933B1E082C6800DED267 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD590C81E082C6600DED267 /* libSocialSina.a */; };
 		1BD5933C1E082C6800DED267 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD590C91E082C6600DED267 /* libWeiboSDK.a */; };
 		1BD5933D1E082C6800DED267 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BD590D41E082C6600DED267 /* WeiboSDK.bundle */; };
@@ -1699,8 +1697,6 @@
 		1BD590AB1E082C6600DED267 /* SPUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPUtil.h; sourceTree = "<group>"; };
 		1BD590AC1E082C6600DED267 /* SPUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPUtil.m; sourceTree = "<group>"; };
 		1BD590C31E082C6600DED267 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
-		1BD590C41E082C6600DED267 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		1BD590C51E082C6600DED267 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		1BD590C61E082C6600DED267 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
 		1BD590C81E082C6600DED267 /* libSocialSina.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSina.a; sourceTree = "<group>"; };
 		1BD590C91E082C6600DED267 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
@@ -1798,7 +1794,6 @@
 				3CEE05D71E0C0D2F00EE5785 /* SecurityGuardSDK.framework in Frameworks */,
 				1BD5933E1E082C6800DED267 /* libSocialWeChat.a in Frameworks */,
 				3CEE05D41E0C0D2F00EE5785 /* YWExtensionForCustomerServiceFMWK.framework in Frameworks */,
-				1BD593391E082C6800DED267 /* TencentOpenAPI.framework in Frameworks */,
 				1BD583A61E06E74200DED267 /* GLKit.framework in Frameworks */,
 				847FF62D1E02CF75009D1131 /* CoreMotion.framework in Frameworks */,
 				1BD593381E082C6800DED267 /* libSocialQQ.a in Frameworks */,
@@ -5431,8 +5426,6 @@
 			isa = PBXGroup;
 			children = (
 				1BD590C31E082C6600DED267 /* libSocialQQ.a */,
-				1BD590C41E082C6600DED267 /* TencentOpenAPI.framework */,
-				1BD590C51E082C6600DED267 /* TencentOpenApi_IOS_Bundle.bundle */,
 				1BD590C61E082C6600DED267 /* UMSocialQQHandler.h */,
 			);
 			path = QQ;
@@ -5673,7 +5666,8 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 6E8RHK4YC3;
+						ProvisioningStyle = Manual;
 					};
 					C9C0E9641D9948F300575A7C = {
 						CreatedOnToolsVersion = 8.0;
@@ -5858,7 +5852,6 @@
 				1BD5924C1E082C6700DED267 /* zjmremenbiaoqian@2x.png in Resources */,
 				1BD591EF1E082C6700DED267 /* CardViewCell.xib in Resources */,
 				1BD592511E082C6700DED267 /* zjmtag@2x.png in Resources */,
-				1BD5933A1E082C6800DED267 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				1BD592991E082C6700DED267 /* FZJenterAlbumCell.xib in Resources */,
 				1BD592751E082C6700DED267 /* zjmothered@2x.png in Resources */,
 				1BD593261E082C6800DED267 /* pub_title_ico_back_white@2x.png in Resources */,
@@ -5918,7 +5911,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6F84DF5BACCEA5F067419499 /* [CP] Embed Pods Frameworks */ = {
@@ -6548,7 +6541,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6E8RHK4YC3;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/BN_BaseKit/CommonFiles_BaseCode/ThirdPartySDK/OpenIM/WXFrameworks",
@@ -6632,8 +6626,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "49c0aeaf-9ab6-4fb6-b6ff-89690dacc17f";
+				PROVISIONING_PROFILE_SPECIFIER = "Tourph_ Development2";
 			};
 			name = Debug;
 		};
@@ -6645,6 +6639,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/BN_BaseKit/CommonFiles_BaseCode/ThirdPartySDK/OpenIM/WXFrameworks",
