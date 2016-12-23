@@ -122,7 +122,7 @@
                   if (result) {
                       [weakSelf.navigationController popViewControllerAnimated:YES];
                   }else {
-                      [weakSelf showHudPrompt:userToken];
+//                      [weakSelf showHudPrompt:userToken];
                   }
               }];
     }else{

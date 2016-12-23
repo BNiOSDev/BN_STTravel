@@ -77,8 +77,8 @@ UITableViewDataSource
                                                                    @{@"Title": NSLocalizedString(@"下载设置",nil),
                                                                      @"Image" : @"19.pic.jpg",
                                                                      @"Action":@"showPickerMenu:",
-                                                                     @"ActionSender" : [NSNumber numberWithInt:eDownloadSetting]},
-                                                                   @{@"Title": NSLocalizedString(@"邀请好友",nil),
+//                                                                     @"ActionSender" : [NSNumber numberWithInt:eDownloadSetting]},
+//                                                                   @{@"Title": NSLocalizedString(@"邀请好友",nil),
                                                                      @"Image" : @"19.pic.jpg",
                                                                      @"Action":@"inviteFriends:",
                                                                      @"ActionSender" : [NSNumber numberWithInt:eInviteFriends]},
@@ -240,11 +240,12 @@ UITableViewDataSource
 //去评分
 - (void)starComment:(id)sender
 {
-    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
-    LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
-    vc.baseViewType = eSettongAboutUS;
-    vc.webViewURL = @"http://www.baidu.com/";
-    [self.navigationController pushViewController:vc animated:YES];
+//    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+//    LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
+//    vc.baseViewType = eSettongAboutUS;
+//    vc.webViewURL = @"http://www.baidu.com/";
+//    [self.navigationController pushViewController:vc animated:YES];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/us/app/id%d", 1101627686]]];
 }
 
 #pragma mark - 计算缓存大小
