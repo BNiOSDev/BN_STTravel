@@ -54,12 +54,21 @@
 - (void)initData
 {
     _tipArray = [[NSMutableArray alloc]init];
+    _imageArray = [[NSMutableArray alloc]init];
     _dataModel = [[LBB_TravelDraftViewModel alloc]init];
     [_dataModel getTravelDraftData];
     __weak typeof(self) weakSelf = self;
+   
     [_dataModel.travelDraftModel.loadSupport setDataRefreshblock:^{
         NSLog(@"%@",weakSelf.dataModel.travelDraftModel.travelNotesDetails);
         [weakSelf.mTableView reloadData];
+        [weakSelf.imageArray removeAllObjects];
+        for (TravelNotesDetails *footModel in weakSelf.dataModel.travelDraftModel.travelNotesDetails) {
+            for(TravelNotesPics *imageModel in footModel.pics)
+            {
+                [weakSelf.imageArray addObject:imageModel];
+            }
+        }
     }];
 }
 
@@ -80,14 +89,14 @@
 
 - (void)initView
 {
+    __weak typeof (self) weakSelf = self;
     [self.view addSubview:self.mTableView];
     [_mTableView registerClass:[LBB_TravelNote_ListViewCell class] forCellReuseIdentifier:@"LBB_TravelNote_ListViewCell"];
     [_mTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCellAddress"];
     [_mTableView setTableHeaderView:self.headView];
 //    self.headView.coverImage = IMAGE(@"zjmtakephotoing");
-    self.headView.backgroundColor = ColorBtnYellow;
-    self.headView.travelName = @"this is shit";
-    self.headView.travelTime = @"2016-09-09";
+//    self.headView.travelName = @"this is shit";
+//    self.headView.travelTime = @"2016-09-09";
     self.headView.btnFunction = ^(NSInteger tag)
     {
         if(tag == 0)
@@ -98,7 +107,7 @@
                 [self showHudPrompt:@"最多只能有三个标签"];
                 return ;
             }
-            __weak typeof (self) weakSelf = self;
+            
             LBB_SelectTip_History_ViewController *vc = [[LBB_SelectTip_History_ViewController alloc]init];
             vc.transTags = ^(id obj){
                 if(![self containsObject:(LBB_SquareTags *)obj])
@@ -112,6 +121,11 @@
             NSLog(@"设置封面");
             LBB_SerCover_CollectionViewController *Vc = [[LBB_SerCover_CollectionViewController alloc]init];
             Vc.view.backgroundColor = WHITECOLOR;
+            Vc.imageArray = _imageArray;
+            Vc.setCoverBlock = ^(TravelNotesPics *model){
+                _dataModel.travelDraftModel.picUrl = model.imageUrl;
+                weakSelf.headView.coverImage = weakSelf.dataModel.travelDraftModel.picUrl;
+            };
             [self.navigationController pushViewController:Vc animated:YES];
         }
     };
@@ -206,6 +220,10 @@
 - (void)upTravel
 {
     NSLog(@"同步游记");
+    if(_headView.travelName.length == 0)
+    {
+        _headView.travelName = @"";
+    }
     self.dataModel.travelDraftModel.name = _headView.travelName;
     self.dataModel.travelDraftModel.tags = _tipArray.copy;
     self.dataModel.travelDraftModel.picRemark = @"";
@@ -290,8 +308,14 @@
             }]];
             [alterPublish addAction: [UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 NSLog(@"发布游记");
+                if(_headView.travelName.length == 0)
+                {
+                    _headView.travelName = @"";
+                }
+                weakSelf.dataModel.travelDraftModel.name = _headView.travelName;
+                weakSelf.dataModel.travelDraftModel.picUrl = _headView.coverImage;
                 [weakSelf.dataModel publicTravelDraftData:^(NSError *error) {
-                    if(error == nil)
+                    if(!error)
                     {
                         [weakSelf showHudPrompt:@"发布失败"];
                     }
@@ -509,11 +533,24 @@
         TravelNotesDetails *model = [_dataModel.travelDraftModel.travelNotesDetails objectAtIndex:indexPath.section];
         if(model.pics.count > 0)
         {
-            
+            LBB_AddFootprint_ViewController   *vc = [[LBB_AddFootprint_ViewController alloc]init];
+            vc.dataModel = self.dataModel;
+            vc.model = model;
+            vc.blockFeedBack = ^(UIViewController *vc)
+            {
+                previewSet = NO;
+                [self.dataModel getTravelDraftData];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
         }else{
             LBB_AddTextToVistNote_Controller   *vc = [[LBB_AddTextToVistNote_Controller alloc]init];
              vc.dataModel = self.dataModel;
             vc.model = model;
+            vc.blockFeedBack = ^(UIViewController *vc)
+            {
+                previewSet = NO;
+                [self.dataModel getTravelDraftData];
+            };
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

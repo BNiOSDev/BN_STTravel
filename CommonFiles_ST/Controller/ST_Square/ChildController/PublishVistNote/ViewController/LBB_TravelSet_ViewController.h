@@ -13,4 +13,5 @@
 @property(nonatomic)BOOL                                autoSync;
 @property(nonatomic,copy)BtnFuncTion             blockBtnFunc;
 @property(nonatomic,copy)Controllerfeedback   blockFeedBack;
+
 @end

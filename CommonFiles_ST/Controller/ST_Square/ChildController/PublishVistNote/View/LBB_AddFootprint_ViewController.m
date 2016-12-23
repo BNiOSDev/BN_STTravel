@@ -27,6 +27,7 @@
 {
     LBB_AddClass_Button  *addAddres;
     LBB_AddClass_Button  *addSale;
+    BOOL  newFoot;//是否新发布
 }
 @property(nonatomic,strong)LBB_Date_SengeMent    *headSegment;
 @property(nonatomic,strong)UITextView                       *contentText;
@@ -44,6 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = WHITECOLOR;
+    newFoot = YES;
     [self initNav];
     [self initView];
 }
@@ -77,6 +79,7 @@
 - (void)checkPulish
 {
     NSLog(@"发布文本");
+    [self publishFunc];
 }
 
 - (void)initView
@@ -109,6 +112,18 @@
     [addImage addTarget:self action:@selector(addimageFunc) forControlEvents:UIControlEventTouchUpInside];
     [_imageScrollView addSubview:addImage];
     
+    // 修改足迹做的处理
+    if(_model)
+    {
+        NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+        for(TravelNotesPics *url in _model.pics)
+        {
+            UIImage *image = [self getImageFromURL:url.imageUrl];
+            [imageArray addObject:image];
+        }
+        _selectImageArray = imageArray.copy;
+    }
+    
     for(int i = 0;i < _selectImageArray.count;i++)
     {
         UIImageView  *image = [[UIImageView alloc]initWithFrame:CGRectMake(AUTO(5) + (AUTO(5) + AUTO(90)) * (i), AUTO(5), AUTO(90), AUTO(90))];
@@ -116,10 +131,16 @@
         CGSize size = image.size;
         size.width *= [UIScreen mainScreen].scale;
         size.height *= [UIScreen mainScreen].scale;
-        FZJPhotoModel  *model = self.selectImageArray[i];
-        [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:size makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
+        id obj = self.selectImageArray[i];
+        if([obj isKindOfClass:[UIImage class]])
+        {
+            image.image = obj;//修改足迹
+        }else{
+            FZJPhotoModel  *model = self.selectImageArray[i];
+            [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:size makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
              image.image = AssetImage;
-        }];
+            }];
+        }
        
         [_imageScrollView addSubview:image];
         
@@ -148,6 +169,24 @@
     publishBtn.titleLabel.font = FONT(AUTO(14.0));
     [publishBtn addTarget:self action:@selector(publishFunc) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:publishBtn];
+    
+    if(_model)
+    {
+        _headSegment.dateStr = _model.releaseDate;
+        _headSegment.timeStr = _model.releaseTime;
+        _contentText.text = _model.picRemark;
+        BN_MapView  *mapView = [[BN_MapView alloc]init];
+        [mapView setFrame:CGRectMake(0, addAddres.bottom + 5, DeviceWidth, AUTO(100))];
+        [mapView andAnnotationLatitude:[_model.dimensionality longLongValue]longitude:[_model.longitude longLongValue]];
+        [self.view addSubview:mapView];
+        addSale.top = mapView.bottom + 5;
+        addSale.titleStr = @"修改消费记录";
+        addAddres.titleStr = @"修改地址信息";
+        self.navigationItem.title = @"修改足迹";
+        
+        _footprintModel = _model;
+    }
+
 }
 
 - (void)addAddressFunc
@@ -176,6 +215,12 @@
 - (void)addSaleFunc
 {
     NSLog(@"asdfasf");
+    if(_model)
+    {
+        _footprintModel.billAmount = _model.billAmount;
+        _footprintModel.consumptionType = _model.consumptionType;
+        _footprintModel.consumptionDesc = _model.consumptionDesc;
+    }
     LBB_EditShopRecoder_Controller  *vc = [[LBB_EditShopRecoder_Controller alloc]init];
     vc.footPointNote = _footprintModel;
     [self.navigationController pushViewController:vc animated:YES];
@@ -183,6 +228,16 @@
 
 - (void)publishFunc
 {
+    if(_model)
+    {
+        newFoot = NO;
+        _footprintModel.travelNotesDetailId = _model.travelNotesDetailId;
+        _addressInfo = [[LBB_SpotAddress alloc]init];
+        _addressInfo.longy = _model.longitude;
+        _addressInfo.dimx = _model.dimensionality;
+        _addressInfo.allSpotsId = _model.objId;
+    }
+    
     if(!_addressInfo)
     {
         [self showHudPrompt:@"请添加地点信息"];
@@ -357,10 +412,15 @@
 - (void)getImageUrl
 {
     NSMutableArray *imageArray = [[NSMutableArray alloc] init];
-    for (FZJPhotoModel *model in _selectImageArray) {
-        [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:model.asset makeSize:PHImageManagerMaximumSize makeResizeMode:           PHImageRequestOptionsResizeModeExact completion:^(UIImage *    AssetImage) {
-            [imageArray addObject:AssetImage];
-        }];
+    for (id model in _selectImageArray) {
+        if([model isKindOfClass:[UIImage class]])
+        {
+            [imageArray addObject:model];
+        }else{
+            [[FZJPhotoTool defaultFZJPhotoTool] getImageByAsset:((FZJPhotoModel *)model).asset makeSize:       PHImageManagerMaximumSize makeResizeMode:               PHImageRequestOptionsResizeModeExact completion:^(UIImage *     AssetImage) {
+                [imageArray addObject:AssetImage];
+            }];
+        }
         
     }
     
@@ -386,7 +446,8 @@
             if(_footprintModel.consumptionDesc .length == 0)
                 _footprintModel.consumptionDesc = @"";
             _footprintModel.pics = _imageUrlArray;
-            [_footprintModel saveTravelTrackData:YES travelNoteId:_dataModel.travelDraftModel.travelNotesId  address:_addressInfo block:^(NSError *error) {
+            
+            [_footprintModel saveTravelTrackData:newFoot travelNoteId:_dataModel.travelDraftModel.travelNotesId  address:_addressInfo block:^(NSError *error) {
                 if(!error)
                 {
                     [self.navigationController popViewControllerAnimated:YES];
@@ -397,6 +458,18 @@
         }];
     }];
 
+}
+
+#pragma maek -- 下载图片
+-(UIImage *) getImageFromURL:(NSString *)fileURL {
+    
+    NSLog(@"执行图片下载函数");
+    UIImage * result;
+    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:fileURL]];
+    result = [UIImage imageWithData:data];
+
+    return result;
+    
 }
 
 @end

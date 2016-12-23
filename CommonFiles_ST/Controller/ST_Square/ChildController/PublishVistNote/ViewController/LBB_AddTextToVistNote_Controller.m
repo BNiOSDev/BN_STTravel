@@ -88,13 +88,13 @@
 
 - (void)initView
 {
-    LBB_AddClass_Button  *addTags = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(35))];
-    addTags.titleStr = @"添加标签";
-    [addTags addTarget:self action:@selector(addTagsFunc) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addTags];
+//    LBB_AddClass_Button  *addTags = [[LBB_AddClass_Button alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(35))];
+//    addTags.titleStr = @"添加标签";
+//    [addTags addTarget:self action:@selector(addTagsFunc) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:addTags];
     
     __weak typeof (self) weakSelf = self;
-    _headSegment = [[LBB_Date_SengeMent alloc]initWithFrame:CGRectMake(0, addTags.bottom - 1, DeviceWidth, AUTO(32))];
+    _headSegment = [[LBB_Date_SengeMent alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(32))];
     _headSegment.dateStr = [self stringFromDate:[NSDate date]];
     _headSegment.timeStr = [self stringFromTime:[NSDate date]];
     _footprintModel.releaseTime = _headSegment.timeStr;
@@ -144,6 +144,9 @@
         [mapView andAnnotationLatitude:[_model.dimensionality longLongValue]longitude:[_model.longitude longLongValue]];
         [self.view addSubview:mapView];
         addSale.top = mapView.bottom + 5;
+        addSale.titleStr = @"修改消费记录";
+        addAddres.titleStr = @"修改地址信息";
+        self.navigationItem.title = @"修改足迹";
     }
 }
 
@@ -192,6 +195,12 @@
 
 - (void)addSaleFunc
 {
+    if(_model)
+    {
+        _footprintModel.billAmount = _model.billAmount;
+        _footprintModel.consumptionType = _model.consumptionType;
+        _footprintModel.consumptionDesc = _model.consumptionDesc;
+    }
     LBB_EditShopRecoder_Controller  *vc = [[LBB_EditShopRecoder_Controller alloc]init];
     vc.footPointNote = _footprintModel;
     [self.navigationController pushViewController:vc animated:YES];

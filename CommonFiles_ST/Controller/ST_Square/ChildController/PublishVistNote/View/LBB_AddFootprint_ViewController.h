@@ -14,4 +14,5 @@
 @property(nonatomic,strong)NSArray    *selectImageArray;
 @property(nonatomic,copy)Controllerfeedback  blockFeedBack;
 @property(nonatomic, strong)LBB_TravelDraftViewModel  *dataModel;
+@property(nonatomic,strong)TravelNotesDetails                 *model;       //足迹模型
 @end

@@ -6624,7 +6624,7 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -6720,7 +6720,7 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

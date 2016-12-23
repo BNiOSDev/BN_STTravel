@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Header.h"
+#import "BN_SquareTravelNotesModel.h"
 
 @interface LBB_SerCover_CollectionViewController : UICollectionViewController
-
+@property(nonatomic,strong)NSMutableArray<TravelNotesPics *>   *imageArray;
+@property(nonatomic,copy)BlockAddTip             setCoverBlock;
 @end

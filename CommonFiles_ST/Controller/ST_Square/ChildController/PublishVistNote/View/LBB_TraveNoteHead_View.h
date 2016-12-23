@@ -11,7 +11,7 @@
 
 
 @interface LBB_TraveNoteHead_View : UIView<UITextFieldDelegate>
-@property(nonatomic,strong)UIImage   *coverImage;
+@property(nonatomic,strong)NSString   *coverImage;
 @property(nonatomic,copy)NSString     *travelName;
 @property(nonatomic,copy)NSString     *travelTime;
 @property(nonatomic,copy)BtnFuncTion btnFunction;
