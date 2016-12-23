@@ -133,6 +133,18 @@
     publishBtn.titleLabel.font = FONT(AUTO(14.0));
     [publishBtn addTarget:self action:@selector(publishFunc) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:publishBtn];
+    
+    if(_model)
+    {
+        _headSegment.dateStr = _model.releaseDate;
+        _headSegment.timeStr = _model.releaseTime;
+        _contentText.text = _model.picRemark;
+        BN_MapView  *mapView = [[BN_MapView alloc]init];
+        [mapView setFrame:CGRectMake(0, addAddres.bottom + 5, DeviceWidth, AUTO(100))];
+        [mapView andAnnotationLatitude:[_model.dimensionality longLongValue]longitude:[_model.longitude longLongValue]];
+        [self.view addSubview:mapView];
+        addSale.top = mapView.bottom + 5;
+    }
 }
 
 - (void)addTagsFunc
@@ -188,6 +200,16 @@
 - (void)publishFunc
 {
     NSLog(@"publishFunc");
+    BOOL  newFoot = YES;//是否新发布
+    if(_model)
+    {
+        newFoot = NO;
+        _footprintModel.travelNotesDetailId = _model.travelNotesDetailId;
+        _addressInfo = [[LBB_SpotAddress alloc]init];
+        _addressInfo.longy = _model.longitude;
+        _addressInfo.dimx = _model.dimensionality;
+        _addressInfo.allSpotsId = _model.objId;
+    }
     if(!_addressInfo)
     {
         [self showHudPrompt:@"请添加地点信息"];
@@ -199,16 +221,11 @@
     if(_footprintModel.consumptionDesc.length == 0)
         _footprintModel.consumptionDesc = @"";
     _footprintModel.pics = @[];
-    [_footprintModel saveTravelTrackData:YES travelNoteId:_dataModel.travelDraftModel.travelNotesId  address:_addressInfo block:^(NSError *error) {
+
+    [_footprintModel saveTravelTrackData:newFoot travelNoteId:_dataModel.travelDraftModel.travelNotesId  address:_addressInfo block:^(NSError *error) {
         if(!error)
         {
-            [self.dataModel saveTravelDraftData:^(NSError *error) {
-                if(!error)
-                {
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-            }];
-
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }

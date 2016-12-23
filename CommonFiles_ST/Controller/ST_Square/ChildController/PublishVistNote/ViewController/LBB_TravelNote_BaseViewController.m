@@ -37,6 +37,7 @@
 @property(nonatomic,weak)UITableView  *mTableView;
 @property(nonatomic, strong)NSMutableArray  *dataArray;
 @property(nonatomic, strong)NSMutableArray  *tipArray;
+@property(nonatomic, strong)NSMutableArray  *imageArray;
 @property(nonatomic, strong)LBB_TravelDraftViewModel  *dataModel;
 @end
 
@@ -503,6 +504,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(!previewSet)
+    {
+        TravelNotesDetails *model = [_dataModel.travelDraftModel.travelNotesDetails objectAtIndex:indexPath.section];
+        if(model.pics.count > 0)
+        {
+            
+        }else{
+            LBB_AddTextToVistNote_Controller   *vc = [[LBB_AddTextToVistNote_Controller alloc]init];
+            vc.model = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 - (CGFloat)cellContentViewWith
