@@ -230,6 +230,9 @@
             
             NSLog(@"commentsView touch 需跳转到全部评论页面");
             LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
+            BN_SquareTravelList  *viewModel = [[BN_SquareTravelList alloc] init];
+            viewModel.travelNotesId = ws.model.travelNotesId;
+            vc.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:vc animated:YES];
             
         }];
