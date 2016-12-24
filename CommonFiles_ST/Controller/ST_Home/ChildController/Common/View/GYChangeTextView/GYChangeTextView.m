@@ -65,6 +65,7 @@ typedef NS_ENUM(NSUInteger, GYTitlePosition) {
 
 - (void)startAnimation {
   //  self.shouldStop = NO;//pooh add
+    NSLog(@"kkk startAnimation");
     __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.3 delay:self.needDealy options:UIViewAnimationOptionCurveEaseInOut animations:^{
         if ([weakSelf currentTitlePosition] == GYTitlePositionMiddle) {
@@ -82,7 +83,11 @@ typedef NS_ENUM(NSUInteger, GYTitlePosition) {
             weakSelf.needDealy = DEALY_WHEN_TITLE_IN_MIDDLE;
         }
         if (!weakSelf.shouldStop) {
-            [weakSelf startAnimation];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf startAnimation];
+            });
+           // [weakSelf startAnimation];
         } else { //停止动画后，要设置label位置和label显示内容
             weakSelf.textLabel.layer.position = weakSelf.middlePosition;
             weakSelf.textLabel.text = [weakSelf.contentsAry objectAtIndex:[weakSelf realCurrentIndex]];
