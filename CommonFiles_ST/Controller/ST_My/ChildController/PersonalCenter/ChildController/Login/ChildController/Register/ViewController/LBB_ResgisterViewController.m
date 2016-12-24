@@ -105,7 +105,7 @@
 - (IBAction)getCheckNumBtnClickAction:(id)sender
 {
     self.account = [self.account Trim];
-    if (![self.account validateMobile]) {
+    if ([self.account length] == 0) {
         [self showHudPrompt:@"手机号输入错误，请重新输入"];
         return;
     }
@@ -120,7 +120,7 @@
     self.password = [self.password Trim];
     self.comfirmPassword = [self.comfirmPassword Trim];
     
-    if (![self.account validateMobile]) {
+    if ([self.account length] == 0) {
          [self showHudPrompt:@"手机号输入错误，请重新输入"];
         return;
     }

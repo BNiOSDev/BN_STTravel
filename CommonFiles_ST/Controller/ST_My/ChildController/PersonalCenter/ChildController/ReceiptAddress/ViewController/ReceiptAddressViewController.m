@@ -63,6 +63,7 @@ ReceiptAddressViewCellDelegate
     [self.viewModel.addressArray.loadSupport setDataRefreshblock:^{
         NSLog(@"数据刷新了");
         [temp setDefalultSeletModel];
+        [temp.tableView reloadData];
     }];
     
     [self.tableView loadData:self.viewModel.addressArray];
