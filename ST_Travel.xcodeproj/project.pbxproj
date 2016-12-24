@@ -625,6 +625,8 @@
 		841D39471E0E4F9C00560E8B /* WXOUIModuleResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 841D39381E0E4F9C00560E8B /* WXOUIModuleResources.bundle */; };
 		841D39481E0E4F9C00560E8B /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 841D39391E0E4F9C00560E8B /* yw_1222.jpg */; };
 		841D39491E0E4F9C00560E8B /* YWFeedbackServiceFMWK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841D393A1E0E4F9C00560E8B /* YWFeedbackServiceFMWK.framework */; };
+		841D39821E0E771800560E8B /* LBB_AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D397B1E0E771800560E8B /* LBB_AboutUsViewController.m */; };
+		841D39831E0E771800560E8B /* LBB_AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841D397C1E0E771800560E8B /* LBB_AboutUsViewController.xib */; };
 		8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */; };
 		844065CC1DEAC7C500164DED /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CB1DEAC7C500164DED /* libc++.tbd */; };
 		844065CE1DEAC7CD00164DED /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 844065CD1DEAC7CD00164DED /* libsqlite3.0.tbd */; };
@@ -1748,6 +1750,9 @@
 		841D39381E0E4F9C00560E8B /* WXOUIModuleResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WXOUIModuleResources.bundle; sourceTree = "<group>"; };
 		841D39391E0E4F9C00560E8B /* yw_1222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yw_1222.jpg; sourceTree = "<group>"; };
 		841D393A1E0E4F9C00560E8B /* YWFeedbackServiceFMWK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YWFeedbackServiceFMWK.framework; sourceTree = "<group>"; };
+		841D397A1E0E771800560E8B /* LBB_AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_AboutUsViewController.h; sourceTree = "<group>"; };
+		841D397B1E0E771800560E8B /* LBB_AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_AboutUsViewController.m; sourceTree = "<group>"; };
+		841D397C1E0E771800560E8B /* LBB_AboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBB_AboutUsViewController.xib; sourceTree = "<group>"; };
 		8420AF7B1DF297C300D98F86 /* libTelephonyUtilDynamic.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libTelephonyUtilDynamic.tbd; path = usr/lib/libTelephonyUtilDynamic.tbd; sourceTree = SDKROOT; };
 		8420AF7D1DF2981700D98F86 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		844065CB1DEAC7C500164DED /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -3739,6 +3744,7 @@
 		1BD58DE81E082C6500DED267 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				841D39711E0E771800560E8B /* AboutUs */,
 				1BD58DE91E082C6500DED267 /* ChildController */,
 				1BD58E031E082C6500DED267 /* Common */,
 				1BD58E071E082C6500DED267 /* ViewController */,
@@ -5522,6 +5528,16 @@
 			path = CommonFiles_ST/WXFrameworks;
 			sourceTree = SOURCE_ROOT;
 		};
+		841D39711E0E771800560E8B /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				841D397A1E0E771800560E8B /* LBB_AboutUsViewController.h */,
+				841D397B1E0E771800560E8B /* LBB_AboutUsViewController.m */,
+				841D397C1E0E771800560E8B /* LBB_AboutUsViewController.xib */,
+			);
+			path = AboutUs;
+			sourceTree = "<group>";
+		};
 		C9C0E9431D9948F100575A7C = {
 			isa = PBXGroup;
 			children = (
@@ -5795,6 +5811,7 @@
 				1BD5923A1E082C6700DED267 /* zjmdianzan@2x.png in Resources */,
 				1BD592291E082C6700DED267 /* back@2x.png in Resources */,
 				1BD592691E082C6700DED267 /* zjmbeauty@2x.png in Resources */,
+				841D39831E0E771800560E8B /* LBB_AboutUsViewController.xib in Resources */,
 				1BD590E51E082C6700DED267 /* b27_icon_star_yellow@2x.png in Resources */,
 				1BD591DA1E082C6700DED267 /* LBB_TicketCommentPicturViewCell.xib in Resources */,
 				1BD593141E082C6800DED267 /* greeting_message@2x.png in Resources */,
@@ -6106,6 +6123,7 @@
 				1BD5921D1E082C6700DED267 /* MagicalRecord.m in Sources */,
 				1BD591441E082C6700DED267 /* LBB_ScenicDetailTravelRecommendCell.m in Sources */,
 				1BD591C21E082C6700DED267 /* LBB_PersonalModel.m in Sources */,
+				841D39821E0E771800560E8B /* LBB_AboutUsViewController.m in Sources */,
 				1BD592DE1E082C6800DED267 /* ZJCustomLabel.m in Sources */,
 				1BD591A01E082C6700DED267 /* LBB_MyContentImgView.m in Sources */,
 				1BD591531E082C6700DED267 /* LBB_HomeSearchSquareImageCell.m in Sources */,

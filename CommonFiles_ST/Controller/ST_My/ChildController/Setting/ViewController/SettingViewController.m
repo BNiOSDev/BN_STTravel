@@ -10,6 +10,7 @@
 #import "Base_Utils.h"
 #import "CommonFunc.h"
 #import "LBB_WebViewController.h"
+#import "LBB_AboutUsViewController.h"
 
 typedef NS_ENUM(NSInteger,SettingViewType) {
     ePushNotification = 0,//推送通知
@@ -231,11 +232,18 @@ UITableViewDataSource
 //关于我们
 - (void)aboutUS:(id)sender
 {
-    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
-    LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
+    LBB_AboutUsViewController *vc = [[LBB_AboutUsViewController alloc] initWithNibName:@"LBB_AboutUsViewController" bundle:nil];
     vc.baseViewType = eSettongAboutUS;
-    vc.webViewURL = @"http://www.baidu.com/";
     [self.navigationController pushViewController:vc animated:YES];
+
+    
+//    NSString *urlPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlPath];
+//    UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+//    LBB_WebViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_WebViewController"];
+//    vc.baseViewType = eSettongAboutUS;
+//    vc.webViewURL = urlPath;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 //去评分
 - (void)starComment:(id)sender
