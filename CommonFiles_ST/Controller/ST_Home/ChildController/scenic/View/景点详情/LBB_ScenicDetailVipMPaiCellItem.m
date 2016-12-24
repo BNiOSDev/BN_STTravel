@@ -9,6 +9,8 @@
 #import "LBB_ScenicDetailVipMPaiCellItem.h"
 #import "PoohCommon.h"
 #import "LBBVideoPlayerViewController.h"
+#import "LBB_VideoDetailViewController.h"
+#import "LBBHostDetailViewController.h"
 @implementation LBB_ScenicDetailVipMPaiCellItem
 
 
@@ -98,10 +100,18 @@
         
         [self.commentsButton bk_whenTapped:^{
             
-            NSLog(@"disView touch");
-            [ws.model collecte:^(NSError* error){
-            
-            }];
+            LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.ugcId = ws.model.ugcId;
+            if (ws.model.ugcType == 1) {	//1.照片 2.视频
+                LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+                vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                LBB_VideoDetailViewController *Vc = [[LBB_VideoDetailViewController alloc]init];
+                Vc.viewModel = viewModel;
+                [[ws getViewController].navigationController pushViewController:Vc animated:YES];
+            }
         }];
         [self.greatButton bk_whenTapped:^{
             
