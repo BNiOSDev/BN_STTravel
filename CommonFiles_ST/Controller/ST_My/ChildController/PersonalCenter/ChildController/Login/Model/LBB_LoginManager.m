@@ -557,7 +557,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                             kOPEN_PERMISSION_GET_VIP_RICH_INFO,
                             nil];
     
-    [_oauth authorize:permissions inSafari:NO];
+    [self.oauth authorize:permissions inSafari:NO];
 }
 /**
  * 登录成功后的回调
@@ -565,7 +565,18 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 - (void)tencentDidLogin
 {
     NSLog(@"tencentDidLogin");
-    [_oauth getUserInfo];
+    [self.oauth getUserInfo];
+}
+/**
+ * 登录失败后的回调
+ * \param cancelled 代表用户是否主动退出登录
+ */
+- (void)tencentDidNotLogin:(BOOL)cancelled
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登录失败" message:@"请检查下是否网络原因等" delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles: nil];
+    
+    alertView.tag = 3;
+    [alertView show];
 }
 
 /**
