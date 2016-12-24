@@ -105,12 +105,7 @@
     }
     else{//视频
         cell.playButton.hidden = NO;
-        [cell.playButton bk_addEventHandler:^(id sender){
-            
-            //ugcVideoUrl ;// 视频地址
-            NSLog(@"playButton touch");
-            
-        } forControlEvents:UIControlEventTouchUpInside];
+
     }
     
 
@@ -149,18 +144,9 @@
             [cell.greatButton setImage:IMAGE(@"景区列表_点赞")forState:UIControlStateNormal];
         }
     }];
+
     
-    [cell.commentsButton bk_whenTapped:^{
-        
-        NSLog(@"disView touch");
-        
-    }];
-    [cell.greatButton bk_whenTapped:^{
-        
-        NSLog(@"greetView touch");
-        
-    }];
-    
+    [cell setModel:obj];
     
     return cell;
 }

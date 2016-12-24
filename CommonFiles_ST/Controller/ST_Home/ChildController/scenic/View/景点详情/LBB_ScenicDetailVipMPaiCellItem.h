@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LBB_SpotDetailsViewModel.h"
 #define LBB_ScenicDetailVipMPaiCellMainImageViewHeight AutoSize(268.0/2)
 #define LBB_ScenicDetailVipMPaiCellPortraitImageViewHeight AutoSize(30.0)
 
@@ -24,5 +24,7 @@
 @property(nonatomic, retain)UIButton* greatButton;
 
 @property(nonatomic, retain)UIButton* playButton;
+
+@property(nonatomic, retain)LBB_SpotsUgc* model;
 
 @end

@@ -153,7 +153,6 @@
             BOOL collecteState = [[result objectForKey:@"collecteState"] boolValue];
             if (collecteState != temp.isCollected) {//状态有变化的时候
                 temp.isCollected = collecteState;
-                temp.isCollected = collecteState;
             }
             
             block(result,nil);
@@ -194,13 +193,10 @@
             BOOL likedState = [[result objectForKey:@"likedState"] boolValue];
             if (likedState != temp.isLiked) {//状态有变化的时候
                 temp.isLiked = likedState;
-                temp.isLiked = likedState;
                 if (temp.isLiked) {
-                    temp.likeNum = temp.likeNum + 1;
                     temp.likeNum = temp.likeNum + 1;
                 }
                 else{
-                    temp.likeNum = temp.likeNum - 1;
                     temp.likeNum = temp.likeNum - 1;
                 }
             }

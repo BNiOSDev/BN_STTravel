@@ -8,6 +8,7 @@
 
 #import "LBB_ScenicDetailVipMPaiCellItem.h"
 #import "PoohCommon.h"
+#import "LBBVideoPlayerViewController.h"
 @implementation LBB_ScenicDetailVipMPaiCellItem
 
 
@@ -85,6 +86,31 @@
         [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(PlaceHolderImage)];
         [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:@"http://s7.sinaimg.cn/middle/3d312b52gc448d757ad86&690"] placeholderImage:IMAGE(PlaceHolderImage)];
 
+        
+        [self.playButton bk_addEventHandler:^(id sender){
+            LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc]init];
+            vc.videoUrl = [NSURL URLWithString:ws.model.ugcVideoUrl];
+            [[ws getViewController] presentViewController:vc animated:YES completion:nil];
+
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        [self.commentsButton bk_whenTapped:^{
+            
+            NSLog(@"disView touch");
+            [ws.model collecte:^(NSError* error){
+            
+            }];
+        }];
+        [self.greatButton bk_whenTapped:^{
+            
+            NSLog(@"greetView touch");
+            [ws.model like:^(NSError* error){
+            
+            }];
+        }];
+        
         
         [self.contentView layoutSubviews];//it must to be done to layouts subviews
         
