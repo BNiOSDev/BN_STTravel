@@ -608,6 +608,13 @@
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
+		3C3654271E0E23A600FF251B /* STConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3654191E0E23A600FF251B /* STConst.m */; };
+		3C3654281E0E23A600FF251B /* STUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C36541B1E0E23A600FF251B /* STUI.m */; };
+		3C3654291E0E23A600FF251B /* UIView+ST.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C36541D1E0E23A600FF251B /* UIView+ST.m */; };
+		3C36542A1E0E23A600FF251B /* STAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3654201E0E23A600FF251B /* STAlertView.m */; };
+		3C36542B1E0E23A600FF251B /* STIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3654221E0E23A600FF251B /* STIndicatorView.m */; };
+		3C36542C1E0E23A600FF251B /* STPhotoBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3654241E0E23A600FF251B /* STPhotoBrowserController.m */; };
+		3C36542D1E0E23A600FF251B /* STPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3654261E0E23A600FF251B /* STPhotoBrowserView.m */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
 		3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C518C541DF66F22002653EC /* MediaPlayer.framework */; };
 		3CEE05D11E0C0D2F00EE5785 /* ALBBMediaService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CEE05C11E0C0D2E00EE5785 /* ALBBMediaService.framework */; };
@@ -1731,6 +1738,21 @@
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DB1502E1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3C3654171E0E23A600FF251B /* STConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STConfig.h; sourceTree = "<group>"; };
+		3C3654181E0E23A600FF251B /* STConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STConst.h; sourceTree = "<group>"; };
+		3C3654191E0E23A600FF251B /* STConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STConst.m; sourceTree = "<group>"; };
+		3C36541A1E0E23A600FF251B /* STUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUI.h; sourceTree = "<group>"; };
+		3C36541B1E0E23A600FF251B /* STUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STUI.m; sourceTree = "<group>"; };
+		3C36541C1E0E23A600FF251B /* UIView+ST.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ST.h"; sourceTree = "<group>"; };
+		3C36541D1E0E23A600FF251B /* UIView+ST.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ST.m"; sourceTree = "<group>"; };
+		3C36541F1E0E23A600FF251B /* STAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STAlertView.h; sourceTree = "<group>"; };
+		3C3654201E0E23A600FF251B /* STAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STAlertView.m; sourceTree = "<group>"; };
+		3C3654211E0E23A600FF251B /* STIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STIndicatorView.h; sourceTree = "<group>"; };
+		3C3654221E0E23A600FF251B /* STIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STIndicatorView.m; sourceTree = "<group>"; };
+		3C3654231E0E23A600FF251B /* STPhotoBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPhotoBrowserController.h; sourceTree = "<group>"; };
+		3C3654241E0E23A600FF251B /* STPhotoBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPhotoBrowserController.m; sourceTree = "<group>"; };
+		3C3654251E0E23A600FF251B /* STPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPhotoBrowserView.h; sourceTree = "<group>"; };
+		3C3654261E0E23A600FF251B /* STPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPhotoBrowserView.m; sourceTree = "<group>"; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3C518C541DF66F22002653EC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3CEE05C11E0C0D2E00EE5785 /* ALBBMediaService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ALBBMediaService.framework; sourceTree = "<group>"; };
@@ -5196,6 +5218,8 @@
 			children = (
 				1BD5904E1E082C6600DED267 /* Header */,
 				1BD590501E082C6600DED267 /* ZFPlayer */,
+				3C3654161E0E23A600FF251B /* STPhotoBrowserConfig */,
+				3C36541E1E0E23A600FF251B /* STPhotoBrowserView */,
 				1BD5906D1E082C6600DED267 /* ZJMBaseViewController.h */,
 				1BD5906E1E082C6600DED267 /* ZJMBaseViewController.m */,
 			);
@@ -5489,6 +5513,35 @@
 				3CEE05C71E0C0D2F00EE5785 /* WXFrameworks */,
 			);
 			path = openIM;
+			sourceTree = "<group>";
+		};
+		3C3654161E0E23A600FF251B /* STPhotoBrowserConfig */ = {
+			isa = PBXGroup;
+			children = (
+				3C3654171E0E23A600FF251B /* STConfig.h */,
+				3C3654181E0E23A600FF251B /* STConst.h */,
+				3C3654191E0E23A600FF251B /* STConst.m */,
+				3C36541A1E0E23A600FF251B /* STUI.h */,
+				3C36541B1E0E23A600FF251B /* STUI.m */,
+				3C36541C1E0E23A600FF251B /* UIView+ST.h */,
+				3C36541D1E0E23A600FF251B /* UIView+ST.m */,
+			);
+			path = STPhotoBrowserConfig;
+			sourceTree = "<group>";
+		};
+		3C36541E1E0E23A600FF251B /* STPhotoBrowserView */ = {
+			isa = PBXGroup;
+			children = (
+				3C36541F1E0E23A600FF251B /* STAlertView.h */,
+				3C3654201E0E23A600FF251B /* STAlertView.m */,
+				3C3654211E0E23A600FF251B /* STIndicatorView.h */,
+				3C3654221E0E23A600FF251B /* STIndicatorView.m */,
+				3C3654231E0E23A600FF251B /* STPhotoBrowserController.h */,
+				3C3654241E0E23A600FF251B /* STPhotoBrowserController.m */,
+				3C3654251E0E23A600FF251B /* STPhotoBrowserView.h */,
+				3C3654261E0E23A600FF251B /* STPhotoBrowserView.m */,
+			);
+			path = STPhotoBrowserView;
 			sourceTree = "<group>";
 		};
 		3CEE05C01E0C0D2E00EE5785 /* WXExtensions */ = {
@@ -5985,6 +6038,7 @@
 				1BD592E21E082C6800DED267 /* CommentBoxView.m in Sources */,
 				1BD592261E082C6700DED267 /* LBB_SerCover_CollectionViewController.m in Sources */,
 				1BD591B81E082C6700DED267 /* LBB_LoginViewController.m in Sources */,
+				3C36542A1E0E23A600FF251B /* STAlertView.m in Sources */,
 				1BD591F61E082C6700DED267 /* LBB_MineModel.m in Sources */,
 				1BD591811E082C6700DED267 /* LBB_DownloadedViewController.m in Sources */,
 				1BD591D31E082C6700DED267 /* LBB_InviteFriendsViewController.m in Sources */,
@@ -5992,6 +6046,7 @@
 				1BD591831E082C6700DED267 /* LBB_FightGroupViewController.m in Sources */,
 				1BD5913E1E082C6700DED267 /* LBB_ScenicDetailAddressCell.m in Sources */,
 				1BD591671E082C6700DED267 /* UIImage+PoohCommon.m in Sources */,
+				3C3654291E0E23A600FF251B /* UIView+ST.m in Sources */,
 				1BD591641E082C6700DED267 /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
 				1BD592271E082C6700DED267 /* LBB_VideoDetailTableViewCell.m in Sources */,
 				1BD591E11E082C6700DED267 /* LBB_TicketFooterView.m in Sources */,
@@ -6016,6 +6071,7 @@
 				1BD5929F1E082C6700DED267 /* LBB_Pulish_ImageContain_View.m in Sources */,
 				1BD592BB1E082C6800DED267 /* LBB_ToolsBtnView.m in Sources */,
 				1BD5914A1E082C6700DED267 /* LBB_ScenicDetailSubjectLableCell.m in Sources */,
+				3C36542D1E0E23A600FF251B /* STPhotoBrowserView.m in Sources */,
 				1BD5916C1E082C6700DED267 /* LBB_HomeTableViewDataSource.m in Sources */,
 				1BD5911B1E082C6700DED267 /* LBB_GuiderViewModel.m in Sources */,
 				1BD5915E1E082C6700DED267 /* LBB_SquareSnsFollowFavoriteDataSource.m in Sources */,
@@ -6078,11 +6134,13 @@
 				1BD5921B1E082C6700DED267 /* MagicalRecord+Setup.m in Sources */,
 				1BD591F11E082C6700DED267 /* WalletViewCell.m in Sources */,
 				1BD591A71E082C6700DED267 /* LBB_FollowViewCell.m in Sources */,
+				3C3654271E0E23A600FF251B /* STConst.m in Sources */,
 				1BD591501E082C6700DED267 /* LBB_HomeSearchDefaultCell.m in Sources */,
 				1BD592D91E082C6800DED267 /* LGSegment.m in Sources */,
 				1BD5929A1E082C6700DED267 /* FZJSmallPhotoCell.m in Sources */,
 				1BD591A21E082C6700DED267 /* LBB_ChatViewCell.m in Sources */,
 				1BD593041E082C6800DED267 /* ZFPlayerModel.m in Sources */,
+				3C36542B1E0E23A600FF251B /* STIndicatorView.m in Sources */,
 				1BD5915A1E082C6700DED267 /* LBB_SignInListViewController.m in Sources */,
 				1BD592D11E082C6800DED267 /* JHColumnChart.m in Sources */,
 				1BD5929C1E082C6700DED267 /* LBB_ImageCollect_TableViewCell.m in Sources */,
@@ -6187,6 +6245,7 @@
 				1BD591391E082C6700DED267 /* LBB_OrderWaitPayViewController.m in Sources */,
 				1BD590E91E082C6700DED267 /* LBB_FilterListTableViewCell.m in Sources */,
 				1BD5910C1E082C6700DED267 /* LBB_GuiderMainCell.m in Sources */,
+				3C3654281E0E23A600FF251B /* STUI.m in Sources */,
 				1BD592CC1E082C6800DED267 /* BN_SquareTravelNotesBillModel.m in Sources */,
 				1BD592E81E082C6800DED267 /* UIView+SDAutoLayout.m in Sources */,
 				1BD592881E082C6700DED267 /* LBBFriendViewController.m in Sources */,
@@ -6289,6 +6348,7 @@
 				1BD5928D1E082C6700DED267 /* LBB_PulishContain_ViewController.m in Sources */,
 				1BD591421E082C6700DED267 /* LBB_ScenicDetailOrderConfirmView.m in Sources */,
 				1BD593011E082C6800DED267 /* ZFBrightnessView.m in Sources */,
+				3C36542C1E0E23A600FF251B /* STPhotoBrowserController.m in Sources */,
 				1BD591051E082C6700DED267 /* LBB_DiscoveryViewModel.m in Sources */,
 				1BD591271E082C6700DED267 /* LBB_PoohMyFavoriteViewModel.m in Sources */,
 				1BD5930B1E082C6800DED267 /* SPGreetingBubbleChatView.m in Sources */,

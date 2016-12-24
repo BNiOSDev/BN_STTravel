@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LBB_SquareDetailViewModel.h"
-@interface ContentImageView : UIView
+#import "STPhotoBrowserController.h"
+@interface ContentImageView : UIView<STPhotoBrowserDelegate>
 @property(nonatomic,strong)NSArray          *imageArray;
 @property(nonatomic,strong)NSArray          *picArray;
 @property(nonatomic,strong)NSMutableArray *tagsArray;
