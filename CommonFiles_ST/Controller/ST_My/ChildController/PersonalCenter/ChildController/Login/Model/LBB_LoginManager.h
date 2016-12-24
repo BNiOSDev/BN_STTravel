@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <WXApi.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/TencentOAuthObject.h>
+#import <TencentOpenAPI/TencentApiInterface.h>
 
 @interface LoginUserInfo : NSObject
 
@@ -22,13 +25,15 @@ typedef void(^LoginBlock)(NSString *userToken,BOOL result);
 
 typedef NS_ENUM(NSInteger,LoginType)
 {
-    eLoginTelePhone = 1,//手机号码登录
-    eLoginQQ,//QQ登录
-    eLoginWeChat//微信登录
+    eLoginTelePhone = 0,//手机号码登录
+    eLoginWeChat = 1,//微信登录
+    eLoginQQ = 2//QQ登录
 };
 
 @interface LBB_LoginManager : NSObject<WXApiDelegate>
 
+
+@property(nonatomic,assign) LoginType loginType;
 //登录完成回调 返回是否成功和失败信息
 @property (nonatomic,copy) LoginBlock loginCompleteBlock;
 //注册完成回调，返回是否注册成功

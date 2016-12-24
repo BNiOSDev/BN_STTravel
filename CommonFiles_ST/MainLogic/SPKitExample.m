@@ -375,7 +375,7 @@ UIAlertViewDelegate>
         if (aError.code == 0 || [[self.ywIMKit.IMCore getLoginService] isCurrentLogined]) {
             /// 登录成功
 #ifdef DEBUG
-            [[SPUtil sharedInstance] showNotificationInViewController:self.rootWindow.rootViewController title:@"登录成功" subtitle:nil type:SPMessageNotificationTypeSuccess];
+//            [[SPUtil sharedInstance] showNotificationInViewController:self.rootWindow.rootViewController title:nil subtitle:nil type:SPMessageNotificationTypeSuccess];
 #endif
             
             

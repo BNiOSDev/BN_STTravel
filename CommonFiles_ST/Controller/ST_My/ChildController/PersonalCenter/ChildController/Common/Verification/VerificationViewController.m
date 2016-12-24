@@ -126,7 +126,7 @@ UITextFieldDelegate
 #pragma mark - UI Action
 - (IBAction)getVerificationNum:(id)sender {
     self.phoneNum = [self.phoneNum Trim];
-    if (![self.phoneNum validateMobile]) {
+    if ([self.phoneNum length] == 0) {
         UIAlertView *alertView =  [[UIAlertView alloc] initWithTitle:@"手机号不对" message:nil delegate:self cancelButtonTitle:@"好的" otherButtonTitles: nil];
         [alertView show];
         return;
@@ -217,7 +217,7 @@ UITextFieldDelegate
 {
     self.phoneNum = [self.phoneNum Trim];
     self.checkNum = [self.checkNum Trim];
-    if (![self.phoneNum validateMobile]) {
+    if ([self.phoneNum length] == 0) {
         [self showHudPrompt:@"手机号不对"];
         return;
     }
