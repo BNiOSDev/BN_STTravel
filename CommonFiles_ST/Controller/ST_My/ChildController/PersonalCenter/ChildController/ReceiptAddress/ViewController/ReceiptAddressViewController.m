@@ -66,7 +66,7 @@ ReceiptAddressViewCellDelegate
         [temp.tableView reloadData];
     }];
     
-    [self.tableView loadData:self.viewModel.addressArray];
+//    [self.tableView loadData:self.viewModel.addressArray];
 }
 
 - (void)setDefalultSeletModel
