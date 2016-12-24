@@ -13,6 +13,9 @@
 #import "LBB_ScenicDetailSubjectViewController.h"
 
 #import "LBB_ScenicDetailViewController.h"
+#import <BN_ShopGoodDetailViewController.h>
+#import "BN_ShopSorterViewController.h"
+
 @implementation LBB_PoohCycleTransManager
 
 
@@ -50,6 +53,16 @@ viewController:(UIViewController*)viewController{
                     dest = [[LBB_ScenicMainViewController alloc] init];
                     break;
                     case 4://伴手礼
+                {
+                    BN_ShopSorterViewController *vc = [[BN_ShopSorterViewController alloc]initWith:0];
+                    [viewController.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                case 14://伴手礼
+                {
+                    BN_ShopSorterViewController *vc = [[BN_ShopSorterViewController alloc]initWith:0];
+                    [viewController.navigationController pushViewController:vc animated:YES];
+                }
                     break;
                 default:
                     break;
@@ -83,6 +96,10 @@ viewController:(UIViewController*)viewController{
                     
                     break;
                     case 4://伴手礼
+                {
+                    BN_ShopGoodDetailViewController *shopGoodDetailViewController = [[BN_ShopGoodDetailViewController alloc]initWith:model.objId];
+                    [viewController.navigationController pushViewController:shopGoodDetailViewController animated:YES];
+                }
                     break;
                     case 11://美食专题
                 {
