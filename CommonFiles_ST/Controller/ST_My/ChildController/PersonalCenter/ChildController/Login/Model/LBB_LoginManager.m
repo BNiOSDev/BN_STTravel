@@ -21,7 +21,7 @@ static NSString *kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_friend,sns
 @end
 
 
-@interface LBB_LoginManager()
+@interface LBB_LoginManager()<TencentSessionDelegate>
 
 @property(nonatomic,copy) NSString *account;
 @property(nonatomic,copy) NSString *password;
@@ -29,10 +29,10 @@ static NSString *kAuthScope = @"snsapi_message,snsapi_userinfo,snsapi_friend,sns
 @property(nonatomic,copy) NSString *userToken;
 @property(nonatomic,copy) NSString *address;
 @property(nonatomic,assign) NSInteger sex;
-@property(nonatomic,assign) LoginType loginType;
 @property(nonatomic,assign) BOOL isLogin;
 @property(nonatomic,strong) UIImage *userHeadImage;
-@property(nonatomic,assign) int  thirdType;//第三方登录类型 1：微信 2：QQ
+@property(nonatomic,strong) TencentOAuth* oauth;
+
 @end
 
 @implementation LBB_LoginManager
@@ -93,7 +93,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 {
     self.account = account;
     self.password = password;
-    self.loginType = loginType;
+    self.loginType = eLoginTelePhone;
     self.loginCompleteBlock = completeBlock;
     
     NSString *deviceID  =  [self uuid];
@@ -163,23 +163,35 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
              ViewController:(UIViewController*)vc
               CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 {
-    self.thirdType = thirdType;
+    self.loginType = thirdType;
     BOOL isSuccess = NO;
-    
-    if (![WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未安装微信app,或者版本不支持" message:@"是否马上去下载更新微信?" delegate:self cancelButtonTitle:@"不了" otherButtonTitles:@"去下载", nil];
-        [alertView show];
-        return isSuccess;
-    }
     
     self.loginCompleteBlock = completeBlock;
     
-    if(self.thirdType == 1){
+    if(self.loginType == eLoginWeChat){
+        if (![WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未安装微信app,或者版本不支持" message:@"是否马上去下载更新微信?" delegate:self cancelButtonTitle:@"不了" otherButtonTitles:@"去下载", nil];
+            alertView.tag = 1;
+            [alertView show];
+      
+            return isSuccess;
+        }
+        
         SendAuthReq* req = [[SendAuthReq alloc] init];
         req.scope = kAuthScope;
         isSuccess = [WXApi sendAuthReq:req
                              viewController:vc
                                    delegate:self];
+    }else if(self.loginType == eLoginQQ){
+        if (![TencentOAuth iphoneQQInstalled]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您还未安装QQapp,或者版本不支持" message:@"是否马上去下载更新微信?" delegate:self cancelButtonTitle:@"不了" otherButtonTitles:@"去下载", nil];
+            
+            alertView.tag = 2;
+            [alertView show];
+            return isSuccess;
+        }
+        
+        [self loginWithQQ];
     }
    
     return isSuccess;
@@ -189,7 +201,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 {
     NSString *deviceID  =  [self uuid];
     NSMutableDictionary *paraDic = [NSMutableDictionary dictionaryWithCapacity:0];
-    [paraDic setObject:@(self.thirdType) forKey:@"thirdType"];
+    [paraDic setObject:@(self.loginType) forKey:@"thirdType"];
     [paraDic setObject:openID forKey:@"openId"];
     [paraDic setObject:@(2) forKey:@"deviceSystemType"];
     [paraDic setObject:deviceID forKey:@"deviceId"];
@@ -329,6 +341,8 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                     @"Token":self.userToken
                     };
     }
+    
+    [self.oauth logout:self];
     
     NSString *url = [NSString stringWithFormat:@"%@/mime/logout",BASEURL];
     __weak typeof(self) weakSelf = self;
@@ -515,6 +529,78 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
     return nil;
 }
 
+#pragma mark - QQ登录
+- (TencentOAuth*)oauth
+{
+    //注意： 初始化授权 开发者需要在这里填入自己申请到的 AppID
+    if (!_oauth) {
+      _oauth = [[TencentOAuth alloc] initWithAppId:@"1105843602" andDelegate:self];
+    }
+    return _oauth;
+}
+
+- (void)loginWithQQ
+{
+    NSArray* permissions = [NSArray arrayWithObjects:
+                            kOPEN_PERMISSION_GET_USER_INFO,
+                            kOPEN_PERMISSION_GET_SIMPLE_USER_INFO,
+                            kOPEN_PERMISSION_ADD_ALBUM,
+                            kOPEN_PERMISSION_ADD_ONE_BLOG,
+                            kOPEN_PERMISSION_ADD_SHARE,
+                            kOPEN_PERMISSION_ADD_TOPIC,
+                            kOPEN_PERMISSION_CHECK_PAGE_FANS,
+                            kOPEN_PERMISSION_GET_INFO,
+                            kOPEN_PERMISSION_GET_OTHER_INFO,
+                            kOPEN_PERMISSION_LIST_ALBUM,
+                            kOPEN_PERMISSION_UPLOAD_PIC,
+                            kOPEN_PERMISSION_GET_VIP_INFO,
+                            kOPEN_PERMISSION_GET_VIP_RICH_INFO,
+                            nil];
+    
+    [_oauth authorize:permissions inSafari:NO];
+}
+/**
+ * 登录成功后的回调
+ */
+- (void)tencentDidLogin
+{
+    NSLog(@"tencentDidLogin");
+    [_oauth getUserInfo];
+}
+
+/**
+ * 获取用户个人信息回调
+ * \param response API返回结果，具体定义参见sdkdef.h文件中\ref APIResponse
+ * \remarks 正确返回示例: \snippet example/getUserInfoResponse.exp success
+ *          错误返回示例: \snippet example/getUserInfoResponse.exp fail
+ */
+- (void)getUserInfoResponse:(APIResponse*) response
+{
+    NSLog(@"response =%@",response);
+    NSString *openid = _oauth.openId;
+    NSDictionary *dict = response.jsonResponse;
+    NSString *nickname = @"";
+    NSString *headimgurl = @"";
+    if (dict) {
+        nickname = [dict objectForKey:@"nickname"];
+        headimgurl = [dict objectForKey:@"figureurl_qq_2"];
+    }
+    
+    [self thirdPartyLogin:openid username:nickname userPicUrl:headimgurl];
+}
+/**
+ * 退出登录的回调
+ */
+- (void)tencentDidLogout
+{
+   NSLog(@"tencentDidLogout");
+}
+- (void)tencentOAuth:(TencentOAuth *)tencentOAuth doCloseViewController:(UIViewController *)viewController
+{
+    NSLog(@"tencentOAuth");
+}
+
+
 - (void)saveLoginUserInfo:(LoginUserInfo*)userInfo
 {
     if (userInfo) {
@@ -601,7 +687,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSLog(@"buttonIndex = %ld",buttonIndex);
-    if (buttonIndex == 1 && self.thirdType == 1) {//去下载微信
+    if (buttonIndex == 1 && self.loginType == eLoginWeChat) {//去下载微信
         NSString *weixinURL = [WXApi getWXAppInstallUrl];
         if (weixinURL) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:weixinURL]];
