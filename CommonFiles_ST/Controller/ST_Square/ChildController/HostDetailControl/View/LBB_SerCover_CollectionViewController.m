@@ -12,8 +12,9 @@
 
 @interface LBB_SerCover_CollectionViewController ()
 {
-    UIView *cellView;
-    UIImageView  *selectImage;
+    UIView                *cellView;
+    UIImageView      *selectImage;
+    TravelNotesPics *model;
 }
 @end
 
@@ -76,6 +77,11 @@ static NSString * const reuseIdentifier = @"SelectCoverCell";
 - (void)okSelect
 {
     NSLog(@"选中啦");
+    if(self.setCoverBlock)
+    {
+        self.setCoverBlock(model);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)backControl
@@ -101,14 +107,15 @@ static NSString * const reuseIdentifier = @"SelectCoverCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 10;
+    return _imageArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     LBB_SetCover_CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     UIImageView  *cellImage = [[UIImageView alloc]initWithFrame:cell.frame];
-    [cellImage sd_setImageWithURL:[NSURL URLWithString:@"http://c.hiphotos.baidu.com/image/pic/item/6c224f4a20a446230b10a7179a22720e0df3d7e8.jpg"] placeholderImage:DEFAULTIMAGE];
+    TravelNotesPics *model = _imageArray[indexPath.row];
+    [cellImage sd_setImageWithURL:[NSURL URLWithString:model.imageUrl] placeholderImage:DEFAULTIMAGE];
     cell.backgroundView = cellImage;
 
     return cell;
@@ -120,7 +127,8 @@ static NSString * const reuseIdentifier = @"SelectCoverCell";
     [cell addSubview:cellView];
     selectImage.left = cell.width - AUTO(20);
     [cell addSubview:selectImage];
-    
+    model = [_imageArray objectAtIndex:indexPath.row];
+
 }
 
 #pragma mark <UICollectionViewDelegate>

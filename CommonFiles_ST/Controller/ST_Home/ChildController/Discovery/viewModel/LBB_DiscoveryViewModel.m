@@ -388,6 +388,7 @@
             
             [temp.advertisementArray addObjectsFromArray:returnArray];
             temp.advertisementArray.networkTotal = [dic objectForKey:@"total"];
+            NSLog(@"getAdvertisementListArrayClearData:%@",array);
         }
         else
         {

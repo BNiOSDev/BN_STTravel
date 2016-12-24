@@ -68,6 +68,21 @@
     [sureBtn setTitleColor:WHITECOLOR forState:0];
     [sureBtn addTarget:self action:@selector(upToserver) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:sureBtn];
+    
+    if(_footPointNote.consumptionDesc.length > 0)
+    {
+        self.navigationItem.title = @"修改消费记录";
+        _shopText.text = _footPointNote.consumptionDesc;
+        _shopMoney.text = _footPointNote.billAmount;
+        for(UIButton *view in cateGoryView.subviews)
+        {
+            if(view.tag == _footPointNote.consumptionType - 1)
+            {
+                [self btnFunc:view];
+            }
+        }
+    }
+    
 }
 - (UITextField *)shopText
 {

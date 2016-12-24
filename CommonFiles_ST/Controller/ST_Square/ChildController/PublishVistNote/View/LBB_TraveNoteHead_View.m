@@ -65,9 +65,9 @@
     return self;
 }
 
-- (void)setCoverImage:(UIImage *)coverImage
+- (void)setCoverImage:(NSString *)coverImage
 {
-    backImage.image = coverImage;
+    [backImage sd_setImageWithURL:[NSURL URLWithString:coverImage] placeholderImage:DEFAULTIMAGE];
 }
 
 - (void)setTravelName:(NSString *)travelName
@@ -93,8 +93,13 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    _travelTime = string;
+    _travelName = string;
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"");
 }
 
 @end

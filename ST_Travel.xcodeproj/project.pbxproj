@@ -603,6 +603,7 @@
 		1BD593441E082C6800DED267 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD590E11E082C6700DED267 /* UShareUI.framework */; };
 		1D09E8101E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D09E80F1E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.m */; };
 		1D09E8131E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D09E8121E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.m */; };
+		1D118CA21E0D850000129E1F /* LBB_PoohCycleTransManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D118CA11E0D850000129E1F /* LBB_PoohCycleTransManager.m */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
 		1DB1502F1DF313770023A740 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502B1DF313770023A740 /* Main.storyboard */; };
@@ -1724,6 +1725,8 @@
 		1D09E80F1E0AB0B500BA8B11 /* LBB_DiscoveryDownLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_DiscoveryDownLoadManager.m; sourceTree = "<group>"; };
 		1D09E8111E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_TravelDownloadManager.h; sourceTree = "<group>"; };
 		1D09E8121E0AC5DD00BA8B11 /* LBB_TravelDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_TravelDownloadManager.m; sourceTree = "<group>"; };
+		1D118CA01E0D850000129E1F /* LBB_PoohCycleTransManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_PoohCycleTransManager.h; sourceTree = "<group>"; };
+		1D118CA11E0D850000129E1F /* LBB_PoohCycleTransManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_PoohCycleTransManager.m; sourceTree = "<group>"; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1DB1502C1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -1992,6 +1995,8 @@
 				1BD58BA11E082C6500DED267 /* LBBPoohVerticalLableControl.m */,
 				1BD58BA21E082C6500DED267 /* SKTag */,
 				1BD58BA91E082C6500DED267 /* XDPopupListView */,
+				1D118CA01E0D850000129E1F /* LBB_PoohCycleTransManager.h */,
+				1D118CA11E0D850000129E1F /* LBB_PoohCycleTransManager.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6045,6 +6050,7 @@
 				1BD592921E082C6700DED267 /* ZYCameraViewComtroller.m in Sources */,
 				1BD592D21E082C6800DED267 /* JHLineChart.m in Sources */,
 				1BD5931D1E082C6800DED267 /* LBB_Share.m in Sources */,
+				1D118CA21E0D850000129E1F /* LBB_PoohCycleTransManager.m in Sources */,
 				1BD5919B1E082C6700DED267 /* LBB_MessageSquareViewController.m in Sources */,
 				1BD591351E082C6700DED267 /* LBB_NewOrderPlayTimeSelectView.m in Sources */,
 				1BD592171E082C6700DED267 /* MagicalRecord+Actions.m in Sources */,
@@ -6618,7 +6624,7 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "49c0aeaf-9ab6-4fb6-b6ff-89690dacc17f";
 				PROVISIONING_PROFILE_SPECIFIER = "Tourph_ Development2";
@@ -6715,7 +6721,7 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.lkin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -42,7 +42,7 @@
 - (void)setTitleStr:(NSString *)titleStr
 {
     _titleStr = titleStr;
-    
+    [tipImage removeFromSuperview];
     CGSize size = [_titleStr textSize:titleLabel.font withWidth:titleLabel.width];
     titleLabel.width = size.width + 10;
     titleLabel.centerX = self.width / 2.0;

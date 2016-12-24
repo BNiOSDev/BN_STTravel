@@ -13,5 +13,6 @@
 @interface LBB_AddTextToVistNote_Controller : Base_BaseViewController
 @property(nonatomic,strong)NSArray   *mapPointArray;
 @property(nonatomic,copy)Controllerfeedback  blockFeedBack;
-@property(nonatomic, strong)LBB_TravelDraftViewModel  *dataModel;
+@property(nonatomic, strong)LBB_TravelDraftViewModel  *dataModel;//游记模型
+@property(nonatomic,strong)TravelNotesDetails                 *model;       //足迹模型
 @end
