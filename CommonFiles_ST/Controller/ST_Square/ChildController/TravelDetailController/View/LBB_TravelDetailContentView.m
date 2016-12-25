@@ -47,8 +47,15 @@
     timeLabel = [UILabel new];
     timeLabel.font = FONT(AUTO(13.0));
     timeLabel.textColor = MORELESSBLACKCOLOR;
-    
+    __weak typeof(self) weakSelf = self;
     praiseCommentView = [LBB_PraiseWithCommentView new];
+    praiseCommentView.cellBlock = ^(id obj,UITableViewCellViewSignal signal)
+    {
+       if(weakSelf.cellBlock)
+        {
+            weakSelf.cellBlock(obj,signal);
+        }
+    };
     
     addressTip = [LBB_AddressTipView new];
     
@@ -71,7 +78,12 @@
     {
         vistImageHeigh = 0;
     }
-    
+    if(model.isLiked == 1)
+    {
+        praiseCommentView.dianzanImage = IMAGE(@"我的_点赞_点击后");
+    }else{
+        praiseCommentView.dianzanImage = IMAGE(@"zjmwhitePraise");
+    }
     praiseCommentView.praiseNum = [NSString stringWithFormat:@"%d",model.likeNum];
     praiseCommentView.commentNum =  [NSString stringWithFormat:@"%d",model.commentsNum];
     

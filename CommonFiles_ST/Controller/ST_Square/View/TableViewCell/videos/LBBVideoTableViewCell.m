@@ -31,7 +31,7 @@
     UIImageView        *_addressImage;//地址图标
     UIImageView        *_timeImage;//时间图标
     
-    UIImageView      *_contentImage;//主图，内容图
+    
     PraiseView                  *praiseView;         //
     ZJMCommentView      *commetView;      //
     CommentBoxView       *boxView;             //
@@ -76,6 +76,7 @@
     
     __weak typeof(self) weakSelf = self;
     _contentImage = [UIImageView new];
+    _contentImage.userInteractionEnabled = YES;
     
     praiseView  = [PraiseView new];
     praiseView.praiseBlock = ^(UIButton *btn,UITableViewCellViewSignal signal){
@@ -103,8 +104,9 @@
     [_playBtn addTarget:self action:@selector(playFunc) forControlEvents:UIControlEventTouchUpInside];
     
     NSArray   *views = @[_iconImage,_nameLable,_timeImage,_timeLabel,_addressImage,_addressNameLabel,_contentLabel,
-    _contentImage,praiseView,_collectBtn,commetView,boxView,_playBtn];
+    _contentImage,praiseView,_collectBtn,commetView,boxView];
     [self.contentView sd_addSubviews:views];
+    [_contentImage addSubview:_playBtn];
     
     UIView *contentView = self.contentView;
     CGFloat margin = 10;

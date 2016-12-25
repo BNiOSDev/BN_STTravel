@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "ZJMHostModel.h"
 #import "BN_SquareTravelNotesModel.h"
+#import "Header.h"
 
 @interface LBB_TravelDetailViewCell : UITableViewCell
 @property(nonatomic,strong)TravelNotesDetails   *model;
+@property(nonatomic,copy)CellBlockVIew   cellBlock;
 @end

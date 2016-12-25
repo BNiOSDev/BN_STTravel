@@ -27,7 +27,14 @@
 
 - (void)setup
 {
+    __weak typeof (self) weakSelf = self;
     cellView = [LBB_TravelDetailContentView new];
+    cellView.cellBlock = ^(id obj,UITableViewCellViewSignal signal){
+        if(weakSelf.cellBlock)
+        {
+            weakSelf.cellBlock(obj,signal);
+        }
+    };
     [self.contentView addSubview:cellView];
     
     line = [UIView new];

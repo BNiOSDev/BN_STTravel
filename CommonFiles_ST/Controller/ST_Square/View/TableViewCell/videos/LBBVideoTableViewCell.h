@@ -10,10 +10,13 @@
 #import "ZJMHostModel.h"
 #import "UIView+SDAutoLayout.h"
 #import "LBB_SquareViewModel.h"
+
 #import "Header.h"
 
 @interface LBBVideoTableViewCell : UITableViewCell
 @property(nonatomic, strong) LBB_SquareUgc   *model;
 @property(nonatomic, copy)BtnFuncTion             blockBtnFunc;
 @property(nonatomic, copy)CellBlockVIew          sendCommentBolck;
+
+@property(nonatomic,strong)UIImageView      *contentImage;//主图，内容图
 @end

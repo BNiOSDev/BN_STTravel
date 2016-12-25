@@ -7,7 +7,7 @@
 //
 
 #import "LBB_PraiseWithCommentView.h"
-#import "Header.h"
+
 
 @implementation LBB_PraiseWithCommentView
 {
@@ -31,9 +31,15 @@
 - (void)setup
 {
     praiseImage = [UIImageView new];
+    praiseImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *imageTag = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(praiseFunc:)];
+    [praiseImage addGestureRecognizer:imageTag];
     praiseImage.image = IMAGE(@"zjmwhitePraise");
     
     commentImage = [UIImageView new];
+    commentImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *commentTag = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(praiseFunc:)];
+    [commentImage addGestureRecognizer:commentTag];
     commentImage.image = IMAGE(@"zjmwhitecomment");
     
     praiseLabel = [UILabel new];
@@ -94,6 +100,28 @@
     
     [self setupAutoWidthWithRightView:commentLabel rightMargin:5];
     [self setupAutoHeightWithBottomView:praiseImage bottomMargin:5];
+}
+
+- (void)setDianzanImage:(UIImage *)dianzanImage
+{
+    praiseImage.image = dianzanImage;
+}
+
+- (void)praiseFunc:(UITapGestureRecognizer *)tap
+{
+    if(tap.view == praiseImage)
+    {
+        if(self.cellBlock)
+        {
+            self.cellBlock(self,UITableViewCellPraise);
+        }
+    }else
+    {
+        if(self.cellBlock)
+        {
+            self.cellBlock(self,UITableViewCellConment);
+        }
+    }
 }
 
 @end

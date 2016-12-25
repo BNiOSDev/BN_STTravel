@@ -76,6 +76,7 @@
     threeImage.userInteractionEnabled = YES;
     fourImage.userInteractionEnabled = YES;
     fiveImage.userInteractionEnabled = YES;
+    sixImage.userInteractionEnabled = YES;
     
 //    self.picArray = [temp copy];
 }
@@ -427,6 +428,7 @@
     {
         UIImageView  *image = [[UIImageView alloc]init];
         image.tag = i;
+        image.userInteractionEnabled = YES;
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
         UITapGestureRecognizer    *tapimage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
         [image addGestureRecognizer:tapimage];
@@ -478,6 +480,7 @@
     {
         UIImageView  *image = [[UIImageView alloc]init];
         image.tag = i;
+        image.userInteractionEnabled = YES;
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
         UITapGestureRecognizer    *tapimage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
         [image addGestureRecognizer:tapimage];
@@ -509,6 +512,7 @@
     {
         UIImageView  *image = [[UIImageView alloc]init];
         image.tag = i;
+        image.userInteractionEnabled = YES;
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
         UITapGestureRecognizer    *tapimage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
         [image addGestureRecognizer:tapimage];

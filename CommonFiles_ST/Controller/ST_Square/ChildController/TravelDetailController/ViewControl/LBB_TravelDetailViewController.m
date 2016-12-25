@@ -18,7 +18,10 @@
 #import "LBB_TravelDetailViewCell.h"
 #import "LBB_Travel_Bill_ViewController.h"
 #import "LBB_TravelDownloadManager.h"
-
+#import "LBB_Share.h"
+#import "LBB_TravelCommentController.h"
+#import "LBB_PraiseWithCommentView.h"
+#import "LBB_FootCommentViewController.h"
 
 @interface LBB_TravelDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 @property(nonatomic, strong)UITableView     *tableView;
@@ -37,8 +40,14 @@
     self.view.backgroundColor = WHITECOLOR;
     [self initView];
     [self initNavi];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self initData];
 }
+
 - (void)initView
 {
     LBB_ToolsBtnView *headView = [[LBB_ToolsBtnView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, AUTO(40))];
@@ -71,6 +80,8 @@
 - (void)shareFunc
 {
     NSLog(@"分享");
+    [[LBB_Share sharedManager] shareTitle:_viewModel.travelDetail.shareTitle url:_viewModel.travelDetail.shareUrl
+                                     text:_viewModel.travelDetail.shareContent image:nil viewController:self ];
 }
 
 - (void)downFunc
@@ -169,6 +180,13 @@
                             [btn setTitle:[NSString stringWithFormat:@"%ld",btn.titleLabel.text.integerValue - 1] forState:0];
                         }
                     }];
+                }
+                    break;
+                    case UITableViewCellConment:
+                {
+                    LBB_TravelCommentController *vc = [[LBB_TravelCommentController alloc]init];
+                    vc.viewModel = weakSelf.model;
+                    [self.navigationController pushViewController:vc animated:YES];
                 }
                     break;
                     
@@ -297,6 +315,45 @@
         cell.selectionStyle = 0;
         cell.model = _dealDataArray[indexPath.section - 1][indexPath.row];
         [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
+        __weak typeof(self) weakSelf = self;
+        cell.cellBlock = ^(id obj,UITableViewCellViewSignal signal){
+            switch (signal) {
+                    case UITableViewCellPraise:
+                {
+                    NSLog(@"dianzan");
+                    TravelNotesDetails *footModel = weakSelf.dealDataArray[indexPath.section - 1][indexPath.row];
+                    [footModel like:^(NSDictionary *dic, NSError *error) {
+                        if(!error)
+                        {
+                            NSLog(@"%@",dic);
+                            if(footModel.isLiked == 1)
+                            {
+                                ( (LBB_PraiseWithCommentView *)obj).dianzanImage = IMAGE(@"我的_点赞_点击后");
+                                ( (LBB_PraiseWithCommentView *)obj).praiseNum = [NSString stringWithFormat:@"%ld",( (LBB_PraiseWithCommentView *)obj).praiseNum.integerValue + 1];
+                            }else{
+                                 ( (LBB_PraiseWithCommentView *)obj).dianzanImage = IMAGE(@"zjmwhitePraise");
+                                ( (LBB_PraiseWithCommentView *)obj).praiseNum = [NSString stringWithFormat:@"%ld",( (LBB_PraiseWithCommentView *)obj).praiseNum.integerValue - 1];
+                            }
+                        
+
+                        }
+                    }];
+                }
+                    break;
+                    case UITableViewCellConment:
+                {
+                    NSLog(@"pinlun");
+                    LBB_FootCommentViewController *vc = [[LBB_FootCommentViewController alloc]init];
+                    vc.dataModel = weakSelf.dealDataArray[indexPath.section - 1][indexPath.row];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        };
+        
         return cell;
     }
     
