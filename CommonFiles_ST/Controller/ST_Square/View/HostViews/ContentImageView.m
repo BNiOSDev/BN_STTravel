@@ -26,6 +26,7 @@
 #import "Header.h"
 #import "LBB_TipImage_Pulish_ImageView.h"
 
+
 @implementation ContentImageView
 {
      UIImageView         *oneImage;
@@ -37,6 +38,8 @@
      UIImageView         *sixImage;
      UIImageView         *eightImage;
      UIImageView         *nightImage;
+     UITapGestureRecognizer  *tapGesture;//图片点击手势
+     UIImageView          *currentImageView;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -45,6 +48,8 @@
     {
         self.width = SCREEN_WIDTH - 75;
         self.height = AUTO(250);
+        self.userInteractionEnabled = YES;
+        
         [self setup];
     }
     return self;
@@ -53,14 +58,24 @@
 - (void)setup
 {
     oneImage = [UIImageView new];
+    oneImage.tag = 0;
     twoImage = [UIImageView new];
+    twoImage.tag = 1;
     threeImage = [UIImageView new];
+    threeImage.tag = 2;
     fourImage = [UIImageView new];
+    fourImage.tag = 3;
     fiveImage = [UIImageView new];
+    fiveImage.tag = 4;
     sixImage = [UIImageView new];
     sevenImage = [UIImageView new];
     eightImage = [UIImageView new];
     nightImage = [UIImageView new];
+    oneImage.userInteractionEnabled = YES;
+    twoImage.userInteractionEnabled = YES;
+    threeImage.userInteractionEnabled = YES;
+    fourImage.userInteractionEnabled = YES;
+    fiveImage.userInteractionEnabled = YES;
     
 //    self.picArray = [temp copy];
 }
@@ -78,14 +93,25 @@
     nightImage.image = nil;
 }
 
+- (void)showViewSet:(UIView *)imageview
+{
+    for(UIView *view in [self subviews])
+    {
+        if(view == imageview)
+        {
+            view.hidden = NO;
+        }else{
+            view.hidden = YES;
+        }
+    }
+}
+
 - (void)setImageArray:(NSArray *)imageArray
 {
-    for(UIView *view in self.subviews)
-    {
-        [view removeFromSuperview];
-    }
-
+    [self removeAllSubviews];
+    [self setup];
     _imageArray = imageArray;
+
     switch (imageArray.count) {
         case 0:
         {
@@ -96,13 +122,13 @@
         case 1:
         {
             NSArray *views = @[oneImage];
+            [self showViewSet:oneImage];
             [self sd_addSubviews:views];
             [self setImageFor_One];
         }
             break;
         case 2:
         {
-
             NSArray *views = @[oneImage,twoImage];
             [self sd_addSubviews:views];
              [self setImageFor_Two];
@@ -180,7 +206,13 @@
 {
     [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
     [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
-    
+    UITapGestureRecognizer    *tapone = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *taptwo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    [oneImage addGestureRecognizer:tapone];
+    [twoImage addGestureRecognizer:taptwo];
+//    [threeImage addGestureRecognizer:tapGesture];
+//    [fourImage addGestureRecognizer:tapGesture];
+//    [fiveImage addGestureRecognizer:tapGesture];
     oneImage.sd_layout
     .leftSpaceToView(self,0)
     .topSpaceToView(self,0)
@@ -198,6 +230,13 @@
     [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
     [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
     [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:DEFAULTIMAGE];
+    UITapGestureRecognizer    *tapone = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *taptwo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapthree = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    [oneImage addGestureRecognizer:tapone];
+    [twoImage addGestureRecognizer:taptwo];
+    [threeImage addGestureRecognizer:tapthree];
+
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -224,6 +263,15 @@
     [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
     [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:DEFAULTIMAGE];
     [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:DEFAULTIMAGE];
+    UITapGestureRecognizer    *tapone = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *taptwo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapthree = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapfour = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    [oneImage addGestureRecognizer:tapone];
+    [twoImage addGestureRecognizer:taptwo];
+    [threeImage addGestureRecognizer:tapthree];
+    [fourImage addGestureRecognizer:tapfour];
+//    [fiveImage addGestureRecognizer:tapGesture];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -257,6 +305,16 @@
     [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:DEFAULTIMAGE];
     [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:DEFAULTIMAGE];
     [fiveImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:DEFAULTIMAGE];
+    UITapGestureRecognizer    *tapone = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *taptwo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapthree = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapfour = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapfive = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    [oneImage addGestureRecognizer:tapone];
+    [twoImage addGestureRecognizer:taptwo];
+    [threeImage addGestureRecognizer:tapthree];
+    [fourImage addGestureRecognizer:tapfour];
+    [fiveImage addGestureRecognizer:tapfive];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -290,69 +348,69 @@
 }
 - (void)setImageFor_Fix
 {
-    UIImageView         *Image_1 = [UIImageView new];
-    UIImageView         *Image_2 = [UIImageView new];
-    UIImageView         *Image_3 = [UIImageView new];
-    UIImageView         *Image_4 = [UIImageView new];
-    UIImageView         *Image_5 = [UIImageView new];
-    UIImageView         *Image_6 = [UIImageView new];
-    NSArray   *array = @[Image_1,Image_2,Image_3,Image_4,Image_5,Image_6];
-    [self sd_addSubviews:array];
-    [Image_1 sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
-    [Image_2 sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
-    [Image_3 sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:DEFAULTIMAGE];
-    [Image_4 sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:DEFAULTIMAGE];
-    [Image_5 sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:DEFAULTIMAGE];
-    [Image_6 sd_setImageWithURL:[NSURL URLWithString:_imageArray[5]] placeholderImage:DEFAULTIMAGE];
+    [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
+    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
+    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:DEFAULTIMAGE];
+    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:DEFAULTIMAGE];
+    [fiveImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:DEFAULTIMAGE];
+    [sixImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[5]] placeholderImage:DEFAULTIMAGE];
+    UITapGestureRecognizer    *tapone = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *taptwo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapthree = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapfour = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapfive = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *tapsex = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    [oneImage addGestureRecognizer:tapone];
+    [twoImage addGestureRecognizer:taptwo];
+    [threeImage addGestureRecognizer:tapthree];
+    [fourImage addGestureRecognizer:tapfour];
+    [fiveImage addGestureRecognizer:tapfive];
+    [sixImage addGestureRecognizer:tapsex];
     
     CGFloat cellWith = (VIEWWIDTH - 5)/3.0;
     CGFloat cellHeight = (VIEWHEIGHT - 5)/3.0;
     
-    Image_1.sd_layout
+    oneImage.sd_layout
     .leftSpaceToView(self,0)
     .topSpaceToView(self,0)
     .rightSpaceToView(self,cellWith + 2.5)
     .bottomSpaceToView(self,cellHeight + 2.5);
     
-    Image_2.sd_layout
-    .leftSpaceToView(Image_1,2.5)
+    twoImage.sd_layout
+    .leftSpaceToView(oneImage,2.5)
     .topSpaceToView(self,0)
     .rightSpaceToView(self,0)
     .heightIs(cellHeight);
     
-    Image_3.sd_layout
-    .leftSpaceToView(Image_1,2.5)
-    .topSpaceToView(Image_2,2.5)
+    threeImage.sd_layout
+    .leftSpaceToView(oneImage,2.5)
+    .topSpaceToView(twoImage,2.5)
     .rightSpaceToView(self,0)
     .heightIs(cellHeight);
     
-    Image_4.sd_layout
+    fourImage.sd_layout
     .leftSpaceToView(self,0)
-    .topSpaceToView(Image_1,2.5)
+    .topSpaceToView(oneImage,2.5)
     .widthIs(cellWith)
     .bottomSpaceToView(self,0);
     
-    Image_5.sd_layout
-    .leftSpaceToView(Image_4,2.5)
-    .topSpaceToView(Image_1,2.5)
+    fiveImage.sd_layout
+    .leftSpaceToView(fourImage,2.5)
+    .topSpaceToView(oneImage,2.5)
     .widthIs(cellWith)
     .bottomSpaceToView(self,0);
 
-    Image_6.sd_layout
-    .leftSpaceToView(Image_5,2.5)
-    .topSpaceToView(Image_1,2.5)
+    sixImage.sd_layout
+    .leftSpaceToView(fiveImage,2.5)
+    .topSpaceToView(oneImage,2.5)
     .widthIs(cellWith)
     .bottomSpaceToView(self,0);
 }
 - (void)setImageFor_Seven
 {
     [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
-//    [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:nil];
-//    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
-//    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
-//    [fiveImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[4]] placeholderImage:nil];
-//    [sixImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[5]] placeholderImage:nil];
-//    [sevenImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[6]] placeholderImage:nil];
+    UITapGestureRecognizer    *tapone = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    [oneImage addGestureRecognizer:tapone];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -368,7 +426,10 @@
     for(int i = 1; i < _imageArray.count;i++)
     {
         UIImageView  *image = [[UIImageView alloc]init];
+        image.tag = i;
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
+        UITapGestureRecognizer    *tapimage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+        [image addGestureRecognizer:tapimage];
         [self addSubview:image];
         CGFloat cellMargin = (i == 1 || i == 4) ? 0:2.5;
         image.sd_layout
@@ -390,8 +451,11 @@
 {
     [oneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
     [twoImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[1]] placeholderImage:DEFAULTIMAGE];
-//    [threeImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[2]] placeholderImage:nil];
-//    [fourImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[3]] placeholderImage:nil];
+    UITapGestureRecognizer    *tapone = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+    UITapGestureRecognizer    *taptwo = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+
+    [oneImage addGestureRecognizer:tapone];
+    [twoImage addGestureRecognizer:taptwo];
     
     oneImage.sd_layout
     .leftSpaceToView(self,0)
@@ -413,7 +477,10 @@
     for(int i = 2; i < _imageArray.count;i++)
     {
         UIImageView  *image = [[UIImageView alloc]init];
+        image.tag = i;
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
+        UITapGestureRecognizer    *tapimage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+        [image addGestureRecognizer:tapimage];
         [self addSubview:image];
         CGFloat cellMargin = (i == 2 || i == 5) ? 0:2.5;
         image.sd_layout
@@ -441,7 +508,10 @@
     for(int i = 0; i < _imageArray.count;i++)
     {
         UIImageView  *image = [[UIImageView alloc]init];
+        image.tag = i;
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
+        UITapGestureRecognizer    *tapimage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
+        [image addGestureRecognizer:tapimage];
         [self addSubview:image];
         CGFloat cellMargin = (i % 3 == 0) ? 0:2.5;
         image.sd_layout
@@ -458,6 +528,47 @@
         }
     }
 
+}
+
+
+- (void)browerImage:(UIGestureRecognizer *)tap
+{
+    NSLog(@"%ld",tap.view.tag);
+    //启动图片浏览器
+    STPhotoBrowserController *browserVc = [[STPhotoBrowserController alloc] init];
+    browserVc.sourceImagesContainerView = self; // 原图的父控件
+    browserVc.countImage = self.imageArray.count; // 图片总数
+    
+    currentImageView = (UIImageView *)tap.view;
+//    self.currentArray = cell.arrayImageUrl;
+    
+    browserVc.currentPage = tap.view.tag;
+    browserVc.delegate = self;
+    [browserVc show];
+}
+
+#pragma mark - photobrowser代理方法
+- (UIImage *)photoBrowser:(STPhotoBrowserController *)browser placeholderImageForIndex:(NSInteger)index
+{
+    return currentImageView.image;
+}
+
+- (NSURL *)photoBrowser:(STPhotoBrowserController *)browser highQualityImageURLForIndex:(NSInteger)index
+{
+    NSString *urlStr = self.imageArray[index];
+    return [NSURL URLWithString:urlStr];
+}
+
+
+//获取控制器
+- (UIViewController*)viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
 }
 
 @end

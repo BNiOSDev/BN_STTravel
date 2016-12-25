@@ -289,7 +289,7 @@
 
 - (void)setTagViews
 {
-    for(UIView *view in [self subviews])
+    for(UIView *view in [_contentImage subviews])
     {
         if([view isKindOfClass:[LBB_TagView class]])
         {
@@ -312,8 +312,11 @@
             .rightSpaceToView(lastView,5)
             .heightIs(view.height)
             .widthIs(view.width);
+            
+            lastView = weakTagView;
         };
         tagView.tagTitleStr = tagsModel.tagName;
+        
     }
 }
 

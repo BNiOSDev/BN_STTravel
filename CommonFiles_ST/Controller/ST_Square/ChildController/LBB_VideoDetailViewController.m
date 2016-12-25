@@ -182,7 +182,7 @@
         // 设置播放控制层和model
         [weakSelf.playerView playerControlView:weakSelf.controlView playerModel:playerModel];
         // 下载功能
-//        weakSelf.playerView.hasDownload = YES;
+        weakSelf.playerView.hasDownload = YES;
         // 自动播放
         [weakSelf.playerView autoPlayTheVideo];
     };
