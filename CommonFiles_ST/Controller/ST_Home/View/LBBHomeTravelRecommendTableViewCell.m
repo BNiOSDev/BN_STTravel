@@ -112,37 +112,37 @@
         //specialLabelButton
         self.specialLabelButton1 = [UIButton new];
         [self.specialLabelButton1 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.specialLabelButton1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+       // [self.specialLabelButton1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton1.titleLabel setFont:Font12];
+        [self.specialLabelButton1.titleLabel setFont:AutoFont(11)];
         
         self.specialLabelButton2 = [UIButton new];
         [self.specialLabelButton2 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.specialLabelButton2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+      //  [self.specialLabelButton2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton2.titleLabel setFont:Font12];
+        [self.specialLabelButton2.titleLabel setFont:AutoFont(11)];
         
         self.specialLabelButton3 = [UIButton new];
         [self.specialLabelButton3 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.specialLabelButton3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+     //   [self.specialLabelButton3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton3.titleLabel setFont:Font12];
+        [self.specialLabelButton3.titleLabel setFont:AutoFont(11)];
         
         self.specialLabelButton4 = [UIButton new];
         [self.specialLabelButton4 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.specialLabelButton4 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+      //  [self.specialLabelButton4 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton4.titleLabel setFont:Font12];
+        [self.specialLabelButton4.titleLabel setFont:AutoFont(11)];
         
         self.specialLabelButton5 = [UIButton new];
         [self.specialLabelButton5 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.specialLabelButton5 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+      //  [self.specialLabelButton5 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton5 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton5.titleLabel setFont:Font12];
+        [self.specialLabelButton5.titleLabel setFont:AutoFont(11)];
         
         self.specialLabelButton6 = [UIButton new];
         [self.specialLabelButton6 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.specialLabelButton6 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+       // [self.specialLabelButton6 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.specialLabelButton6 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.specialLabelButton6.titleLabel setFont:Font12];
         
