@@ -12,32 +12,31 @@
 #import "LBB_SquareAddressViewModel.h"
 #import "LBB_SquareDetailViewModel.h"
 
-@interface BN_TravelNotesDetailsComments : BN_BaseDataModel
-
-@property(nonatomic, assign)long travelNotesId ;// 游记主键
-@property(nonatomic, strong)NSString* shareUrl ;// 分享URL
-@property(nonatomic, strong)NSString* shareTitle ;// 分享标题
-@property(nonatomic, strong)NSString* shareContent ;// 分享内容
-@property(nonatomic, strong)NSString* travelNotesName ;// 游记名称
-@property(nonatomic, strong)NSString* travelNotesPicUrl ;// 游记封面
-@property(nonatomic, strong)NSString* lastReleaseTime ;// 发布日期
-@property(nonatomic, assign)long userId ;// 用户ID
-@property(nonatomic, strong)NSString* userName ;// 用户名称
-@property(nonatomic, strong)NSString* userPicUrl ;// 用户头像
-@property(nonatomic, assign)int isLiked ;// 是否点赞
-@property(nonatomic, assign)int likeNum ;// 点赞数
-@property(nonatomic, strong)NSArray<LBB_SquareLikeList*>* likeList ;// 点赞集合
-@property(nonatomic, assign)int commentsNum ;// 评论数
-@property(nonatomic, strong)NSArray<LBB_SquareComments*>* comments ;// 评论集合
-
-@end
-
 @interface TravelNotesPics : BN_BaseDataModel
 
 @property(nonatomic, assign)long picId;//	Long	图片ID
 @property(nonatomic, strong)NSString* imageUrl;//	String	图片url
 
+@end
 
+@interface BN_TravelNotesDetailsComments : BN_BaseDataModel
+
+@property(nonatomic, assign)long travelNotesDetailId ;// 足记ID
+@property(nonatomic, strong)NSString* shareUrl ;// 分享URL
+@property(nonatomic, strong)NSString* shareTitle ;// 分享标题
+@property(nonatomic, strong)NSString* shareContent ;// 分享内容
+@property(nonatomic, strong)NSArray<TravelNotesPics*>* pics ;// 图片集合
+@property(nonatomic, strong)NSString* picRemark ;// 图片描述
+@property(nonatomic, strong)NSString* releaseDate ;// 发布日期
+@property(nonatomic, strong)NSString* releaseTime ;// 发布时间
+@property(nonatomic, assign)long objId ;// 场景ID
+@property(nonatomic, assign)int allSpotsType ;// 场景类型
+@property(nonatomic, strong)NSString* allSpotsTypeName ;// 场景类型名称
+@property(nonatomic, assign)int isLiked ;// 是否点赞
+@property(nonatomic, assign)int likeNum ;// 点赞数
+@property(nonatomic, strong)NSArray<LBB_SquareLikeList*>* likeList ;// 点赞集合
+@property(nonatomic, assign)int commentsNum ;// 评论数
+@property(nonatomic, strong)NSArray<LBB_SquareComments*>* comments ;// 评论集合
 
 @end
 
