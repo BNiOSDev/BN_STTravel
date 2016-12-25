@@ -25,73 +25,73 @@
         //标签
         self.labelButton1 = [UIButton new];
         [self.labelButton1 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.labelButton1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+       // [self.labelButton1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.labelButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.labelButton1.titleLabel setFont:Font12];
+        [self.labelButton1.titleLabel setFont:AutoFont(11)];
         [self.labelButton1 setTitle:@"厦门" forState:UIControlStateNormal];
         [self addSubview:self.labelButton1];
         [self.labelButton1 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.bottom.equalTo(ws).offset(-AutoSize(18));
             make.right.equalTo(ws).offset(-AutoSize(8));
+            make.bottom.equalTo(ws).offset(-AutoSize(18));
         }];
         
         self.labelButton2 = [UIButton new];
         [self.labelButton2 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.labelButton2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+       // [self.labelButton2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.labelButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.labelButton2.titleLabel setFont:Font12];
+        [self.labelButton2.titleLabel setFont:AutoFont(11)];
         [self.labelButton2 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self addSubview:self.labelButton2];
         [self.labelButton2 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.height.equalTo(ws.labelButton1);
+            make.right.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton1.mas_top).offset(-10);
         }];
         
         self.labelButton3 = [UIButton new];
         [self.labelButton3 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.labelButton3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+       // [self.labelButton3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.labelButton3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.labelButton3.titleLabel setFont:Font12];
+        [self.labelButton3.titleLabel setFont:AutoFont(11)];
         [self.labelButton3 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self addSubview:self.labelButton3];
         [self.labelButton3 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.height.equalTo(ws.labelButton1);
+            make.right.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton2.mas_top).offset(-10);
         }];
         
         self.labelButton4 = [UIButton new];
         [self.labelButton4 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.labelButton4 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+      //  [self.labelButton4 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.labelButton4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.labelButton4.titleLabel setFont:Font12];
+        [self.labelButton4.titleLabel setFont:AutoFont(11)];
         [self.labelButton4 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self addSubview:self.labelButton4];
         [self.labelButton4 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.height.equalTo(ws.labelButton1);
+            make.right.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton3.mas_top).offset(-10);
         }];
         
         self.labelButton5 = [UIButton new];
         [self.labelButton5 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.labelButton5 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+       // [self.labelButton5 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.labelButton5 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.labelButton5.titleLabel setFont:Font12];
+        [self.labelButton5.titleLabel setFont:AutoFont(11)];
         [self.labelButton5 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self addSubview:self.labelButton5];
         [self.labelButton5 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.height.equalTo(ws.labelButton1);
+            make.right.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton4.mas_top).offset(-10);
         }];
         
         self.labelButton6 = [UIButton new];
         [self.labelButton6 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-        [self.labelButton6 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+       // [self.labelButton6 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         [self.labelButton6 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.labelButton6.titleLabel setFont:Font12];
+        [self.labelButton6.titleLabel setFont:AutoFont(11)];
         [self.labelButton6 setTitle:@"胶卷摄影" forState:UIControlStateNormal];
         [self addSubview:self.labelButton6];
         [self.labelButton6 mas_makeConstraints:^(MASConstraintMaker* make){
-            make.left.height.equalTo(ws.labelButton1);
+            make.right.equalTo(ws.labelButton1);
             make.bottom.equalTo(ws.labelButton5.mas_top).offset(-10);
         }];
         
