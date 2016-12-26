@@ -136,5 +136,62 @@
     [self setupAutoHeightWithBottomView:timeImage bottomMargin:15];
 }
 
+- (void)setNoteModel:(BN_TravelNotesDetailsComments *)noteModel
+{
+    _noteModel = noteModel;
+    
+//   NSMutableArray *imageArray = (NSMutableArray *)[_noteModel.pics map:^id(TravelNotesPics *element) {
+//       NSString* dic = element.imageUrl;
+//        return dic;
+//    }];
+   CGFloat  vistImageHeigh = AUTO(230);
+    
+    vistImage.imageArray = [[NSMutableArray alloc]init];
+    
+   if(vistImage.imageArray.count <= 0)
+    {
+        vistImageHeigh = 0;
+    }
+    
+    contentLabel.text = _noteModel.picRemark;
+    [contentLabel autoFit:contentLabel.text size:contentLabel.font maxSize:CGSizeMake(DeviceWidth - 30, DeviceHeight)];
+    timeLabel.text = [NSString stringWithFormat:@"%@ %@",_noteModel.releaseDate,_noteModel.releaseTime];
+    addressTip.address = _noteModel.allSpotsTypeName;
+    
+    vistImage.sd_layout
+    .leftEqualToView(self)
+    .topEqualToView(self)
+    .rightEqualToView(self)
+    .heightIs(vistImageHeigh);
+    
+    contentLabel.sd_layout
+    .leftSpaceToView(self,5)
+    .topSpaceToView(vistImage,5)
+    .rightSpaceToView(self,5)
+    .heightIs(contentLabel.height);
+    
+    timeImage.sd_layout
+    .leftSpaceToView(self,5)
+    .topSpaceToView(contentLabel,10)
+    .heightIs(AUTO(12))
+    .widthIs(AUTO(12));
+    
+    timeLabel.sd_layout
+    .leftSpaceToView(timeImage,5)
+    .centerYEqualToView(timeImage)
+    .rightEqualToView(self)
+    .heightIs(AUTO(15));
+    
+    addressTip.sd_layout
+    .centerYEqualToView(timeImage)
+    .rightSpaceToView(self,10);
+    
+    praiseCommentView.sd_layout
+    .bottomSpaceToView(vistImage,10)
+    .rightSpaceToView(vistImage,10);
+    
+    [self setupAutoHeightWithBottomView:timeImage bottomMargin:15];
+}
+
 
 @end

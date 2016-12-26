@@ -16,6 +16,7 @@
 @interface LBB_TravelDetailContentView : UIView
 @property(nonatomic,strong)TravelNotesDetails   *model;
 @property(nonatomic,copy)CellBlockVIew   cellBlock;
+@property(nonatomic,strong)BN_TravelNotesDetailsComments  *noteModel;
 //- (void)prepareForReuse;
 
 @end
