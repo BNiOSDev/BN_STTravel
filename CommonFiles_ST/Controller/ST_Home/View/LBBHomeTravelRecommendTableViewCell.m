@@ -10,6 +10,8 @@
 #import "LBB_LabelDetailViewController.h"
 #import "LBB_SquareSnsFollowViewController.h"
 #import "LBB_TravelCommentController.h"
+#import "LBB_TagView.h"
+
 @implementation LBBHomeTravelRecommendTableViewCell
 {
     RACDisposable* racIsCollected;
@@ -109,103 +111,7 @@
         }];
 
         
-        //specialLabelButton
-        self.specialLabelButton1 = [UIButton new];
-        [self.specialLabelButton1 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-       // [self.specialLabelButton1 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-        [self.specialLabelButton1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton1.titleLabel setFont:AutoFont(11)];
-        
-        self.specialLabelButton2 = [UIButton new];
-        [self.specialLabelButton2 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-      //  [self.specialLabelButton2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-        [self.specialLabelButton2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton2.titleLabel setFont:AutoFont(11)];
-        
-        self.specialLabelButton3 = [UIButton new];
-        [self.specialLabelButton3 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-     //   [self.specialLabelButton3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-        [self.specialLabelButton3 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton3.titleLabel setFont:AutoFont(11)];
-        
-        self.specialLabelButton4 = [UIButton new];
-        [self.specialLabelButton4 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-      //  [self.specialLabelButton4 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-        [self.specialLabelButton4 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton4.titleLabel setFont:AutoFont(11)];
-        
-        self.specialLabelButton5 = [UIButton new];
-        [self.specialLabelButton5 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-      //  [self.specialLabelButton5 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-        [self.specialLabelButton5 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton5.titleLabel setFont:AutoFont(11)];
-        
-        self.specialLabelButton6 = [UIButton new];
-        [self.specialLabelButton6 setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
-       // [self.specialLabelButton6 setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-        [self.specialLabelButton6 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.specialLabelButton6.titleLabel setFont:Font12];
-        
-        [self.contentView addSubview:self.specialLabelButton1];
-        [self.contentView addSubview:self.specialLabelButton2];
-        [self.contentView addSubview:self.specialLabelButton3];
-        [self.contentView addSubview:self.specialLabelButton4];
-        [self.contentView addSubview:self.specialLabelButton5];
-        [self.contentView addSubview:self.specialLabelButton6];
-
-        [self.specialLabelButton1 setTitle:@"厦门" forState:UIControlStateNormal];
-        [self.specialLabelButton2 setTitle:@"厦门" forState:UIControlStateNormal];
-        [self.specialLabelButton3 setTitle:@"厦门" forState:UIControlStateNormal];
-        [self.specialLabelButton4 setTitle:@"厦门" forState:UIControlStateNormal];
-        [self.specialLabelButton5 setTitle:@"厦门" forState:UIControlStateNormal];
-        [self.specialLabelButton6 setTitle:@"厦门" forState:UIControlStateNormal];
-
-        
-        CGFloat interval = 8;
-     //   CGFloat width = AutoSize(156/2);
-     //   CGFloat height = AutoSize(36/2);
-
-        [self.specialLabelButton1 mas_makeConstraints:^(MASConstraintMaker* make){
-            
-            make.right.equalTo(ws.contentView).offset(-8);
-          //  make.height.mas_equalTo(height);
-          //  make.width.mas_equalTo(width);
-            make.bottom.equalTo(ws.bgImageView).offset(-2*interval);
-        }];
-        
-        [self.specialLabelButton2 mas_makeConstraints:^(MASConstraintMaker* make){
-        
-            make.right.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton1.mas_top).offset(-interval);
-        }];
-        
-        [self.specialLabelButton3 mas_makeConstraints:^(MASConstraintMaker* make){
-            
-            make.right.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton2.mas_top).offset(-interval);
-        }];
-        [self.specialLabelButton4 mas_makeConstraints:^(MASConstraintMaker* make){
-            
-            make.right.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton3.mas_top).offset(-interval);
-        }];
-        [self.specialLabelButton5 mas_makeConstraints:^(MASConstraintMaker* make){
-            
-            make.right.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton4.mas_top).offset(-interval);
-        }];
-        [self.specialLabelButton6 mas_makeConstraints:^(MASConstraintMaker* make){
-            
-            make.right.equalTo(ws.specialLabelButton1);
-            make.bottom.equalTo(ws.specialLabelButton5.mas_top).offset(-interval);
-        }];
-        
-        [self.specialLabelButton6 setHidden:YES];
-        [self.specialLabelButton5 setHidden:YES];
-        [self.specialLabelButton4 setHidden:YES];
-        [self.specialLabelButton3 setHidden:YES];
-        [self.specialLabelButton2 setHidden:YES];
-        [self.specialLabelButton1 setHidden:YES];
+      
 
      
         
@@ -253,63 +159,6 @@
             [[self getViewController].navigationController pushViewController:dest animated:YES];
         }];
 
-        [self.specialLabelButton1 bk_whenTapped:^{
-            
-            NSLog(@"specialLabelButton1 touch");
-            BN_HomeTag* tag = [ws.model.tags objectAtIndex:0];
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
-            viewModel.tagId = tag.tagId;
-            dest.viewModel = viewModel;
-            [[self getViewController].navigationController pushViewController:dest animated:YES];
-        }];
-
-        [self.specialLabelButton2 bk_whenTapped:^{
-            BN_HomeTag* tag = [ws.model.tags objectAtIndex:1];
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
-            viewModel.tagId = tag.tagId;
-            dest.viewModel = viewModel;
-            [[self getViewController].navigationController pushViewController:dest animated:YES];
-        }];
-
-        [self.specialLabelButton3 bk_whenTapped:^{
-            BN_HomeTag* tag = [ws.model.tags objectAtIndex:2];
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
-            viewModel.tagId = tag.tagId;
-            dest.viewModel = viewModel;
-            [[self getViewController].navigationController pushViewController:dest animated:YES];
-        }];
-
-        [self.specialLabelButton4 bk_whenTapped:^{
-            BN_HomeTag* tag = [ws.model.tags objectAtIndex:3];
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
-            viewModel.tagId = tag.tagId;
-            dest.viewModel = viewModel;
-            [[self getViewController].navigationController pushViewController:dest animated:YES];
-        }];
-    
-        [self.specialLabelButton5 bk_whenTapped:^{
-            BN_HomeTag* tag = [ws.model.tags objectAtIndex:4];
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
-            viewModel.tagId = tag.tagId;
-            dest.viewModel = viewModel;
-            [[self getViewController].navigationController pushViewController:dest animated:YES];
-        }];
-    
-
-        [self.specialLabelButton6 bk_whenTapped:^{
-            BN_HomeTag* tag = [ws.model.tags objectAtIndex:5];
-            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
-            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
-            viewModel.tagId = tag.tagId;
-            dest.viewModel = viewModel;
-            [[self getViewController].navigationController pushViewController:dest animated:YES];
-        }];
-        
         
     }
     return self;
@@ -381,47 +230,72 @@
     [self.travlTitleLable setText:model.travelNotesName];//游记标题
     [self.userLable setText:model.userName];//用户名
 
-    //标签
-    self.specialLabelButton1.hidden = YES;
-    self.specialLabelButton2.hidden = YES;
-    self.specialLabelButton3.hidden = YES;
-    self.specialLabelButton4.hidden = YES;
-    self.specialLabelButton5.hidden = YES;
-    self.specialLabelButton6.hidden = YES;
-    
-    NSInteger count = model.tags.count;
-    if (count > 0) {
-        self.specialLabelButton1.hidden = NO;
-        BN_HomeTag* tag = [model.tags objectAtIndex:0];
-        [self.specialLabelButton1 setTitle:tag.tagName forState:UIControlStateNormal];
+    [self setTagViews];
+}
+
+- (void)setTagViews
+{
+    WS(ws);
+    NSInteger baseTagNum = 432;
+    for(UIView *view in [self.contentView subviews])
+    {
+        if([view isKindOfClass:[UIButton class]])
+        {
+            if (view.tag >= baseTagNum) {
+                [view removeFromSuperview];
+            }
+        }
     }
-    if (count > 1){
-        self.specialLabelButton2.hidden = NO;
-        BN_HomeTag* tag = [model.tags objectAtIndex:1];
-        [self.specialLabelButton2 setTitle:tag.tagName forState:UIControlStateNormal];
+    CGFloat interval = 8;
+
+    UIView* lastView = nil;
+    for(int i = 0;i < _model.tags.count;i++)
+    {
+        
+        BN_HomeTag* homeTags = [_model.tags objectAtIndex:i];
+        NSString *content = [NSString stringWithFormat:@"   %@",homeTags.tagName];
+        UIFont *font = AutoFont(11);
+        CGSize size = CGSizeMake(MAXFLOAT, AutoSize(18));
+        CGSize buttonSize = [content boundingRectWithSize:size
+                                                  options:NSStringDrawingTruncatesLastVisibleLine  | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                               attributes:@{ NSFontAttributeName:font}
+                                                  context:nil].size;
+        
+        NSLog(@"AutoSize(18):%f",AutoSize(18));
+        NSLog(@"buttonSize.height:%f",buttonSize.height);
+        NSLog(@"buttonSize.width:%f",buttonSize.width);
+
+        UIButton* tagButton = [UIButton new];
+        [tagButton setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        [tagButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [tagButton.titleLabel setFont:font];
+        [tagButton setTitle:content forState:UIControlStateNormal];
+        [self.contentView addSubview:tagButton];
+        [tagButton mas_makeConstraints:^(MASConstraintMaker* make){
+            
+            make.right.equalTo(ws.contentView).offset(-8);
+            if (lastView) {
+                make.bottom.equalTo(lastView.mas_top).offset(-interval);
+            }
+            else{
+                make.bottom.equalTo(ws.bgImageView).offset(-2*interval);
+            }
+            make.height.mas_equalTo(buttonSize.height + 5);
+            make.width.mas_equalTo(buttonSize.width + 35);
+
+        }];
+        tagButton.tag = baseTagNum + i;
+        lastView = tagButton;
+        
+        [tagButton bk_whenTapped:^{
+            LBB_LabelDetailViewController* dest = [[LBB_LabelDetailViewController alloc]init];
+            LBB_SquareTags* viewModel = [[LBB_SquareTags alloc]init];
+            viewModel.tagId = homeTags.tagId;
+            dest.viewModel = viewModel;
+            [[ws getViewController].navigationController pushViewController:dest animated:YES];
+        }];
+
     }
-    if (count > 2){
-        self.specialLabelButton3.hidden = NO;
-        BN_HomeTag* tag = [model.tags objectAtIndex:2];
-        [self.specialLabelButton3 setTitle:tag.tagName forState:UIControlStateNormal];
-    }
-    if (count > 3){
-        self.specialLabelButton4.hidden = NO;
-        BN_HomeTag* tag = [model.tags objectAtIndex:3];
-        [self.specialLabelButton4 setTitle:tag.tagName forState:UIControlStateNormal];
-    }
-    if (count > 4){
-        self.specialLabelButton5.hidden = NO;
-        BN_HomeTag* tag = [model.tags objectAtIndex:4];
-        [self.specialLabelButton5 setTitle:tag.tagName forState:UIControlStateNormal];
-    }
-    if (count > 5){
-        self.specialLabelButton6.hidden = NO;
-        BN_HomeTag* tag = [model.tags objectAtIndex:5];
-        [self.specialLabelButton6 setTitle:tag.tagName forState:UIControlStateNormal];
-    }
-    
-    
 }
 
 @end

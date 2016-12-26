@@ -18,12 +18,6 @@
 @property(nonatomic, retain)UIButton* greetView;
 @property(nonatomic, retain)UIButton* favoriteButton;
 
-@property(nonatomic, retain)UIButton* specialLabelButton1;
-@property(nonatomic, retain)UIButton* specialLabelButton2;
-@property(nonatomic, retain)UIButton* specialLabelButton3;
-@property(nonatomic, retain)UIButton* specialLabelButton4;
-@property(nonatomic, retain)UIButton* specialLabelButton5;
-@property(nonatomic, retain)UIButton* specialLabelButton6;
 
 @property(nonatomic, retain)BN_HomeTravelNotes* model;
 
