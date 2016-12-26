@@ -202,9 +202,9 @@
         if(_edit)
         {
             NSLog(@"");
-            LBB_EditShopRecoder_Controller *vc = [[LBB_EditShopRecoder_Controller alloc]init];
-            vc.model = _viewModel.travelBillModel.consumeDetails[indexPath.row];
-            [self.navigationController pushViewController:vc animated:YES];
+//            LBB_EditShopRecoder_Controller *vc = [[LBB_EditShopRecoder_Controller alloc]init];
+//            vc.model = _viewModel.travelBillModel.consumeDetails[indexPath.row];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }

@@ -626,8 +626,6 @@
 		1BDFE6961E10D4CD00A02B4B /* yw_1222.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BDFE40A1E10D4CC00A02B4B /* yw_1222.jpg */; };
 		1BDFE6971E10D4CD00A02B4B /* YWFeedbackServiceFMWK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDFE40B1E10D4CC00A02B4B /* YWFeedbackServiceFMWK.framework */; };
 		1BDFE6981E10D4CD00A02B4B /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDFE4101E10D4CC00A02B4B /* libSocialQQ.a */; };
-		1BDFE6991E10D4CD00A02B4B /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDFE4111E10D4CC00A02B4B /* TencentOpenAPI.framework */; };
-		1BDFE69A1E10D4CD00A02B4B /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BDFE4121E10D4CC00A02B4B /* TencentOpenApi_IOS_Bundle.bundle */; };
 		1BDFE69B1E10D4CD00A02B4B /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDFE4151E10D4CC00A02B4B /* libSocialSina.a */; };
 		1BDFE69C1E10D4CD00A02B4B /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDFE4161E10D4CC00A02B4B /* libWeiboSDK.a */; };
 		1BDFE69D1E10D4CD00A02B4B /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BDFE4211E10D4CC00A02B4B /* WeiboSDK.bundle */; };
@@ -1769,8 +1767,6 @@
 		1BDFE40A1E10D4CC00A02B4B /* yw_1222.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yw_1222.jpg; sourceTree = "<group>"; };
 		1BDFE40B1E10D4CC00A02B4B /* YWFeedbackServiceFMWK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YWFeedbackServiceFMWK.framework; sourceTree = "<group>"; };
 		1BDFE4101E10D4CC00A02B4B /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
-		1BDFE4111E10D4CC00A02B4B /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		1BDFE4121E10D4CC00A02B4B /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		1BDFE4131E10D4CC00A02B4B /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
 		1BDFE4151E10D4CC00A02B4B /* libSocialSina.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSina.a; sourceTree = "<group>"; };
 		1BDFE4161E10D4CC00A02B4B /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
@@ -1846,7 +1842,6 @@
 				1BDFE6A11E10D4CD00A02B4B /* UMSocialCore.framework in Frameworks */,
 				1BDFE6891E10D4CD00A02B4B /* ALBBMediaService.framework in Frameworks */,
 				1BDFE69E1E10D4CD00A02B4B /* libSocialWeChat.a in Frameworks */,
-				1BDFE6991E10D4CD00A02B4B /* TencentOpenAPI.framework in Frameworks */,
 				1BD583A61E06E74200DED267 /* GLKit.framework in Frameworks */,
 				1BDFE68D1E10D4CD00A02B4B /* YWExtensionForShortVideoFMWK.framework in Frameworks */,
 				1BDFE6921E10D4CD00A02B4B /* WXOpenIMSDKFMWK.framework in Frameworks */,
@@ -5598,8 +5593,6 @@
 			isa = PBXGroup;
 			children = (
 				1BDFE4101E10D4CC00A02B4B /* libSocialQQ.a */,
-				1BDFE4111E10D4CC00A02B4B /* TencentOpenAPI.framework */,
-				1BDFE4121E10D4CC00A02B4B /* TencentOpenApi_IOS_Bundle.bundle */,
 				1BDFE4131E10D4CC00A02B4B /* UMSocialQQHandler.h */,
 			);
 			path = QQ;
@@ -5914,7 +5907,6 @@
 				1BDFE5871E10D4CD00A02B4B /* zjmbiaoqian@2x.png in Resources */,
 				1BDFE58E1E10D4CD00A02B4B /* zjmdown@2x.png in Resources */,
 				1BDFE5AE1E10D4CD00A02B4B /* zjmhaochideed@2x.png in Resources */,
-				1BDFE69A1E10D4CD00A02B4B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				1BDFE5951E10D4CD00A02B4B /* zjmhaoyouxuanzhong@2x.png in Resources */,
 				1BDFE5471E10D4CC00A02B4B /* MineStoryboard.storyboard in Resources */,
 				1BDFE52E1E10D4CC00A02B4B /* LBB_TicketCommentSectionView.xib in Resources */,

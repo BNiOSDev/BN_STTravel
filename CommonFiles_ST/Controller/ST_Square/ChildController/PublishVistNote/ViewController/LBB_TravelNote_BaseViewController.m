@@ -31,6 +31,7 @@
 {
     BOOL    previewSet; //no,展示地图，yes，展示预览
     BOOL    syncStaus;  //yes,进行同步,no 不进行同步
+    
 }
 @property(nonatomic,strong)UIView       *whiteLine;
 @property(nonatomic,weak)LBB_TraveNoteHead_View   *headView;
@@ -47,6 +48,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"游记";
     self.view.backgroundColor = WHITECOLOR;
+    
     [self initData];
     [self initView];
 }
@@ -64,6 +66,10 @@
         [weakSelf.mTableView reloadData];
         [weakSelf.imageArray removeAllObjects];
         for (TravelNotesDetails *footModel in weakSelf.dataModel.travelDraftModel.travelNotesDetails) {
+            weakSelf.headView.headImageUrl = weakSelf.dataModel.travelDraftModel.userPicUrl;
+            weakSelf.headView.coverImage = weakSelf.dataModel.travelDraftModel.picUrl;
+            weakSelf.headView.travelTime = weakSelf.dataModel.travelDraftModel.lastReleaseTime;
+            
             for(TravelNotesPics *imageModel in footModel.pics)
             {
                 [weakSelf.imageArray addObject:imageModel];
@@ -124,7 +130,7 @@
             Vc.imageArray = _imageArray;
             Vc.setCoverBlock = ^(TravelNotesPics *model){
                 _dataModel.travelDraftModel.picUrl = model.imageUrl;
-                weakSelf.headView.coverImage = weakSelf.dataModel.travelDraftModel.picUrl;
+                weakSelf.headView.coverImage = model.imageUrl;
             };
             [self.navigationController pushViewController:Vc animated:YES];
         }
@@ -220,15 +226,30 @@
 - (void)upTravel
 {
     NSLog(@"同步游记");
-    if(_headView.travelName.length == 0)
+    if(_headView.travelNameLabel.text.length == 0)
     {
         _headView.travelName = @"";
     }
-    self.dataModel.travelDraftModel.name = _headView.travelName;
+    if( self.dataModel.travelDraftModel.picUrl.length == 0)
+    {
+         self.dataModel.travelDraftModel.picUrl = @"";
+    }
+    self.dataModel.travelDraftModel.name = _headView.travelNameLabel.text;
     self.dataModel.travelDraftModel.tags = _tipArray.copy;
-    self.dataModel.travelDraftModel.picRemark = @"";
+    self.dataModel.travelDraftModel.picRemark = @"-1";
     [self.dataModel saveTravelDraftData:^(NSError *error) {
-        
+                if(!error)
+                {
+                    NSLog(@"保存草稿成功");
+                    [self toSaveTravel];
+                }
+    }];
+}
+
+- (void)toSaveTravel
+{
+    [self.dataModel publicTravelDraftData:^(NSError *error) {
+
     }];
 }
 
@@ -308,18 +329,7 @@
             }]];
             [alterPublish addAction: [UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action){
                 NSLog(@"发布游记");
-                if(_headView.travelName.length == 0)
-                {
-                    _headView.travelName = @"";
-                }
-                weakSelf.dataModel.travelDraftModel.name = _headView.travelName;
-                weakSelf.dataModel.travelDraftModel.picUrl = _headView.coverImage;
-                [weakSelf.dataModel publicTravelDraftData:^(NSError *error) {
-                    if(!error)
-                    {
-                        [weakSelf showHudPrompt:@"发布失败"];
-                    }
-                }];
+                [self upTravel];
             }]];
          [self presentViewController: alterPublish animated: YES completion: nil];
     }]];
@@ -408,6 +418,9 @@
     {
         LBB_TraveNoteHead_View  *tableView = [[LBB_TraveNoteHead_View alloc]initWithFrame:CGRectMake(0, -64, DeviceWidth, AUTO(175))];
         _headView = tableView;
+        self.headView.headImageUrl = self.dataModel.travelDraftModel.userPicUrl;
+        self.headView.travelTime = self.dataModel.travelDraftModel.lastReleaseTime;
+        self.headView.coverImage = self.dataModel.travelDraftModel.picUrl;
         return  tableView;
     }
     return _headView;

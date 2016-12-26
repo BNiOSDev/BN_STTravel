@@ -161,7 +161,7 @@
     
     NSDictionary *paraDic = @{
                               @"travelNoteId":@(self.travelDraftModel.travelNotesId),
-                              
+            
                               };
     NSLog(@"paraDic:%@",paraDic);
     NSString *url = [NSString stringWithFormat:@"%@/square/travelNotes/release",BASEURL];

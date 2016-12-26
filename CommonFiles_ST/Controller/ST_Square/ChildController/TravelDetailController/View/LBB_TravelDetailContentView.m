@@ -140,14 +140,13 @@
 {
     _noteModel = noteModel;
     
-//   NSMutableArray *imageArray = (NSMutableArray *)[_noteModel.pics map:^id(TravelNotesPics *element) {
-//       NSString* dic = element.imageUrl;
-//        return dic;
-//    }];
+   NSMutableArray *imageArray = (NSMutableArray *)[_noteModel.pics map:^id(TravelNotesPics *element) {
+       NSString* dic = element.imageUrl;
+        return dic;
+    }];
    CGFloat  vistImageHeigh = AUTO(230);
     
-    vistImage.imageArray = [[NSMutableArray alloc]init];
-    
+    vistImage.imageArray = imageArray;
    if(vistImage.imageArray.count <= 0)
     {
         vistImageHeigh = 0;
@@ -157,7 +156,11 @@
     [contentLabel autoFit:contentLabel.text size:contentLabel.font maxSize:CGSizeMake(DeviceWidth - 30, DeviceHeight)];
     timeLabel.text = [NSString stringWithFormat:@"%@ %@",_noteModel.releaseDate,_noteModel.releaseTime];
     addressTip.address = _noteModel.allSpotsTypeName;
-    
+    if(addressTip.address.length <= 0)
+    {
+        addressTip.address = _noteModel.shareTitle;
+    }
+
     vistImage.sd_layout
     .leftEqualToView(self)
     .topEqualToView(self)

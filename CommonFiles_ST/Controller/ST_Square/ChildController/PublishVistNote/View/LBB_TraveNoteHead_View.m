@@ -14,7 +14,7 @@
     UIButton         *addTip;
     UIImageView  *backImage;
     UIImageView  *headImage;
-    UITextField      *travelNameLabel;
+    
     UILabel           *travelTimeLabel;
 }
 
@@ -50,14 +50,14 @@
         [headImage sd_setImageWithURL:[NSURL URLWithString:@"http://e.hiphotos.baidu.com/image/pic/item/c83d70cf3bc79f3d7467e245b8a1cd11738b29c4.jpg"] placeholderImage:DEFAULTIMAGE];
         [self addSubview:headImage];
         
-        travelNameLabel = [[UITextField alloc]initWithFrame:CGRectMake(headImage.right + AUTO(10), headImage.top + 2, DeviceWidth, AUTO(20))];
-        travelNameLabel.textColor = WHITECOLOR;
-        travelNameLabel.font = FONT(AUTO(15.0));
-        travelNameLabel.placeholder = @"输入游记名称";
-        travelNameLabel.delegate = self;
-        [self addSubview:travelNameLabel];
+        _travelNameLabel = [[UITextField alloc]initWithFrame:CGRectMake(headImage.right + AUTO(10), headImage.top + 2, DeviceWidth, AUTO(20))];
+        _travelNameLabel.textColor = WHITECOLOR;
+        _travelNameLabel.font = FONT(AUTO(15.0));
+        _travelNameLabel.placeholder = @"输入游记名称";
+        _travelNameLabel.delegate = self;
+        [self addSubview:_travelNameLabel];
         
-        travelTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(headImage.right + AUTO(10), travelNameLabel.bottom + 2, DeviceWidth, AUTO(15))];
+        travelTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(headImage.right + AUTO(10), _travelNameLabel.bottom + 2, DeviceWidth, AUTO(15))];
         travelTimeLabel.textColor = WHITECOLOR;
         travelTimeLabel.font = FONT(AUTO(12.0));
         [self addSubview:travelTimeLabel];
@@ -65,15 +65,22 @@
     return self;
 }
 
+- (void)setHeadImageUrl:(NSString *)headImageUrl
+{
+    _headImageUrl = headImageUrl;
+    [headImage sd_setImageWithURL:[NSURL URLWithString:headImageUrl] placeholderImage:DEFAULTIMAGE];
+}
+
 - (void)setCoverImage:(NSString *)coverImage
 {
+    _coverImage = coverImage;
     [backImage sd_setImageWithURL:[NSURL URLWithString:coverImage] placeholderImage:DEFAULTIMAGE];
 }
 
 - (void)setTravelName:(NSString *)travelName
 {
     _travelName = travelName;
-    travelNameLabel.text = travelName;
+    _travelNameLabel.text = travelName;
 }
 
 - (void)setTravelTime:(NSString *)travelTime
@@ -91,15 +98,5 @@
     }
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    _travelName = string;
-    return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    NSLog(@"");
-}
 
 @end

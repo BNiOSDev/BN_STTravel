@@ -151,6 +151,7 @@
 - (void)setImageFor_One
 {
     LBB_TipImage_Pulish_ImageView  *theOneImage = [[LBB_TipImage_Pulish_ImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+    theOneImage.backgroundColor = [UIColor blueColor];
     [self addSubview:theOneImage];
     [theOneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
 

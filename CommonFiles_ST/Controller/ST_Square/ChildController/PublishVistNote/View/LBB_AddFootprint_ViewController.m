@@ -46,8 +46,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = WHITECOLOR;
     newFoot = YES;
-    [self initNav];
-    [self initView];
+    [self showHud:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -56,7 +55,13 @@
     
     [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1.0;
     [self.navigationController.navigationBar setShadowImage:[UIImage createImageWithColor:[UIColor whiteColor]]];
-    
+    [self initNav];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self initView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -121,7 +126,13 @@
             UIImage *image = [self getImageFromURL:url.imageUrl];
             [imageArray addObject:image];
         }
+        for (int i = 0; i < _model.pics.count; i++) {
+            TravelNotesPics *url = _model.pics[i];
+            UIImage *image = [self getImageFromURL:url.imageUrl];
+            [imageArray addObject:image];
+        }
         _selectImageArray = imageArray.copy;
+     
     }
     
     for(int i = 0;i < _selectImageArray.count;i++)
@@ -186,7 +197,7 @@
         
         _footprintModel = _model;
     }
-
+    [self showHud:NO];
 }
 
 - (void)addAddressFunc
