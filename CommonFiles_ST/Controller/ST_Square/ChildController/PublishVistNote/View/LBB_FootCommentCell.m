@@ -127,10 +127,10 @@
 - (void)setModel:(BN_TravelNotesDetailsComments *)model
 {
     _model = model;
-    [headBackImage sd_setImageWithURL:[NSURL URLWithString:model.travelNotesPicUrl] placeholderImage:DEFAULTIMAGE];
-    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:DEFAULTIMAGE];
-    nameLabel.text = model.userName;
-    timeLabel.text = model.lastReleaseTime;
+//    [headBackImage sd_setImageWithURL:[NSURL URLWithString:model.travelNotesPicUrl] placeholderImage:DEFAULTIMAGE];
+//    [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:DEFAULTIMAGE];
+//    nameLabel.text = model.userName;
+//    timeLabel.text = model.lastReleaseTime;
     
     praiseView.praiseArray = model.likeList;
     if(model.isLiked == 1)
