@@ -10,6 +10,14 @@
 
 @implementation BN_TravelNotesDetailsComments
 
+- (void)setPics:(NSArray<TravelNotesPics *> *)pics
+{
+    NSMutableArray *array = (NSMutableArray *)[pics map:^id(NSDictionary *element) {
+        return [LBB_SquareLikeList mj_objectWithKeyValues:element];
+    }];
+    _pics = array;
+}
+
 - (void)setLikeList:(NSMutableArray<LBB_SquareLikeList *> *)likeList
 {
     NSMutableArray *array = (NSMutableArray *)[likeList map:^id(NSDictionary *element) {
