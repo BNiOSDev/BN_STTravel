@@ -15,6 +15,7 @@
 #import "LBB_ScenicDetailViewController.h"
 #import <BN_ShopGoodDetailViewController.h>
 #import "BN_ShopSorterViewController.h"
+#import <BN_ShopSpecialSubjectViewController.h>
 
 @implementation LBB_PoohCycleTransManager
 
@@ -129,6 +130,12 @@ viewController:(UIViewController*)viewController{
                     LBB_SpotSpecialDetailsViewModel* spotModel = [[LBB_SpotSpecialDetailsViewModel alloc] init];
                     spotModel.specialId = model.objId;
                     vc.spotModel = spotModel;
+                    [viewController.navigationController pushViewController:vc animated:YES];
+                    
+                }
+                case 14://伴手礼专题
+                {
+                    BN_ShopSpecialSubjectViewController *vc = [[BN_ShopSpecialSubjectViewController alloc]initWith:model.objId];
                     [viewController.navigationController pushViewController:vc animated:YES];
                     
                 }
