@@ -13,7 +13,7 @@
 - (void)setPics:(NSArray<TravelNotesPics *> *)pics
 {
     NSMutableArray *array = (NSMutableArray *)[pics map:^id(NSDictionary *element) {
-        return [LBB_SquareLikeList mj_objectWithKeyValues:element];
+        return [TravelNotesPics mj_objectWithKeyValues:element];
     }];
     _pics = array;
 }
