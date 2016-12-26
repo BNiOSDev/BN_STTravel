@@ -43,7 +43,6 @@
 
     __weak typeof (self) weakSelf = self;
     cellView = [LBB_TravelDetailContentView new];
-    cellView.backgroundColor = [UIColor redColor];
     praiseView  = [PraiseView new];
     
     praiseView.praiseBlock = ^(UIButton *btn,UITableViewCellViewSignal signal)

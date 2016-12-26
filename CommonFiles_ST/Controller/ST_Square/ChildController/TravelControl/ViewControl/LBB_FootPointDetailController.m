@@ -40,6 +40,10 @@
     [super viewDidLoad];
     [self initData];
     self.navigationItem.title = @"足迹评论";
+}
+
+- (void)initView
+{
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -54,6 +58,7 @@
     [_notesDataModel getTravelNotesDetailsCommentsModel];
     [_notesDataModel.travelNotesDetailsComments.loadSupport setDataRefreshblock:^{
         NSLog(@"获取数据成功！！！");
+        [weakSelf initView];
         [weakSelf.tableView reloadData];
     }];
     
@@ -75,7 +80,7 @@
             case UITableViewCellSendMessage:
             {
                 NSLog(@"pinglun");
-                BN_SquareTravelList *model = weakSelf.viewModel;                [LBB_CommentViewModel  commentObjId:model.travelNotesId type:7 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
+                TravelNotesDetails *model = weakSelf.notesDataModel;                [LBB_CommentViewModel  commentObjId:model.travelNotesDetailId type:9 scores:0 remark:(NSString *)obj images:@[] parentId:0 block:^(NSDictionary *dic, NSError *error) {
                     NSLog(@"评论回馈= %@",dic);
                     if(!error){
                         LBB_SquareComments *commentsModel = [LBB_SquareComments new];
@@ -84,7 +89,7 @@
                         commentsModel.remark = dic[@"remark"];
                         commentsModel.userName = dic[@"userName"];
                         
-                        [weakSelf.viewModel getTravelCommentsModel];
+                        [weakSelf.notesDataModel getTravelNotesDetailsCommentsModel];
                     }
                 }];
                 
@@ -92,7 +97,7 @@
                 break;
             case UITableViewCellPraise:
             {
-                BN_SquareTravelList *model = self.viewModel;
+                TravelNotesDetails *model = self.notesDataModel;
                 [model like:^(NSDictionary *dic, NSError *error) {
                     if(!error)
                     {
@@ -105,6 +110,7 @@
                             [(UIButton *)obj setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
                             
                         }
+                        [self.notesDataModel getTravelNotesDetailsCommentsModel];
                     }
                 }];
                 
