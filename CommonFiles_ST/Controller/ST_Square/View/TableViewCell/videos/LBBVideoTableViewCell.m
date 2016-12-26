@@ -311,7 +311,7 @@
 //            weakTagView.left = _contentImage.width - view.width - 5;
             weakTagView.sd_layout
             .bottomSpaceToView(lastView,5)
-            .rightSpaceToView(lastView,5)
+            .rightSpaceToView(_contentImage,5)
             .heightIs(view.height)
             .widthIs(view.width);
             

@@ -21,7 +21,7 @@
 #import "LBB_Share.h"
 #import "LBB_TravelCommentController.h"
 #import "LBB_PraiseWithCommentView.h"
-#import "LBB_FootCommentViewController.h"
+#import "LBB_FootPointDetailController.h"
 
 @interface LBB_TravelDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 @property(nonatomic, strong)UITableView     *tableView;
@@ -334,8 +334,7 @@
                                  ( (LBB_PraiseWithCommentView *)obj).dianzanImage = IMAGE(@"zjmwhitePraise");
                                 ( (LBB_PraiseWithCommentView *)obj).praiseNum = [NSString stringWithFormat:@"%ld",( (LBB_PraiseWithCommentView *)obj).praiseNum.integerValue - 1];
                             }
-                        
-
+                    
                         }
                     }];
                 }
@@ -343,9 +342,9 @@
                     case UITableViewCellConment:
                 {
                     NSLog(@"pinlun");
-                    LBB_FootCommentViewController *vc = [[LBB_FootCommentViewController alloc]init];
-                    vc.dataModel = weakSelf.dealDataArray[indexPath.section - 1][indexPath.row];
-                    [self.navigationController pushViewController:vc animated:YES];
+                    LBB_FootPointDetailController   *vC = [[LBB_FootPointDetailController alloc]init];
+                    vC.notesDataModel = weakSelf.dealDataArray[indexPath.section - 1][indexPath.row];
+                    [self.navigationController pushViewController:vC animated:YES];
                 }
                     break;
                     

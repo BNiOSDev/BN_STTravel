@@ -395,10 +395,10 @@
         [self showHudPrompt:@"请输入身份证号码!"];
         return;
     }
-    else if([self.identityIDTextField.rightTextField.text validateIdentityCard] == NO){
-        [self showHudPrompt:@"输入的身份证号码格式错误!"];
-        return;
-    }
+//    else if([self.identityIDTextField.rightTextField.text validateIdentityCard] == NO){
+//        [self showHudPrompt:@"输入的身份证号码格式错误!"];
+//        return;
+//    }
     
     if (self.guiderIDTextField.rightTextField.text.length <= 0) {
         [self showHudPrompt:@"请输入导游证号!"];

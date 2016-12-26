@@ -17,12 +17,10 @@
 #import "ST_TabBarController.h"
 
 #import "ZFPlayer.h"
-#import "XLVideoPlayer.h"
+
 
 @interface LBB_VideoDetailViewController ()<UITableViewDelegate,UITableViewDataSource,ZFPlayerDelegate>
-{
-    XLVideoPlayer *_player;
-}
+
 @property(nonatomic, strong)UITableView     *tableView;
 @property (nonatomic, strong) ZFPlayerView        *playerView;
 @property (nonatomic, strong) ZFPlayerControlView *controlView;
@@ -40,12 +38,6 @@
 {
     [super viewDidDisappear:animated];
     [self.playerView resetPlayer];
-}
-
-- (void)dealloc
-{
-    [_player destroyPlayer];
-    _player = nil;
 }
 
 - (void)viewDidLoad {
@@ -82,15 +74,6 @@
     
     
 }
-
-- (XLVideoPlayer *)player {
-    if (!_player) {
-        _player = [[XLVideoPlayer alloc] init];
-        _player.frame = CGRectMake(0, 64, self.view.frame.size.width, 250);
-    }
-    return _player;
-}
-
 
 #pragma mark -- TableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
