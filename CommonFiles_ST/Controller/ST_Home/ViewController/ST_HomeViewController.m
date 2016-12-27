@@ -270,6 +270,15 @@
     [self.viewModel.liveSpotsArray.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];//data reload
     }];
+    
+    /**
+     1.1.1	首页热门商品
+     */
+    [self.viewModel getGoodsArrayRecommend];
+    [self.viewModel.goodsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+    
     /**
      3.1.9 广场中心
      @param clear 是否清空原数据

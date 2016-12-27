@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B5D18881E12BD640027CA43 /* LBBHomeGoodsCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D18871E12BD640027CA43 /* LBBHomeGoodsCollectionViewItem.m */; };
+		1B5D188B1E12BE770027CA43 /* LBBHomeGoodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D188A1E12BE770027CA43 /* LBBHomeGoodsCollectionViewCell.m */; };
 		1BD583A61E06E74200DED267 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD583A51E06E74200DED267 /* GLKit.framework */; };
 		1BDFE42F1E10D4CC00A02B4B /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDFDE9A1E10D4CA00A02B4B /* PoohBaseTableViewController.m */; };
 		1BDFE4301E10D4CC00A02B4B /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDFDE9C1E10D4CA00A02B4B /* PoohBaseViewController.m */; };
@@ -687,6 +689,10 @@
 
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B5D18861E12BD640027CA43 /* LBBHomeGoodsCollectionViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeGoodsCollectionViewItem.h; sourceTree = "<group>"; };
+		1B5D18871E12BD640027CA43 /* LBBHomeGoodsCollectionViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeGoodsCollectionViewItem.m; sourceTree = "<group>"; };
+		1B5D18891E12BE770027CA43 /* LBBHomeGoodsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBBHomeGoodsCollectionViewCell.h; sourceTree = "<group>"; };
+		1B5D188A1E12BE770027CA43 /* LBBHomeGoodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBBHomeGoodsCollectionViewCell.m; sourceTree = "<group>"; };
 		1BD583A51E06E74200DED267 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		1BDFDE991E10D4CA00A02B4B /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		1BDFDE9A1E10D4CA00A02B4B /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
@@ -2752,6 +2758,10 @@
 				1BDFDFFA1E10D4CA00A02B4B /* LBBHomeSquareCenterTableViewCell.m */,
 				1BDFDFFB1E10D4CA00A02B4B /* LBBHomeTravelRecommendTableViewCell.h */,
 				1BDFDFFC1E10D4CA00A02B4B /* LBBHomeTravelRecommendTableViewCell.m */,
+				1B5D18861E12BD640027CA43 /* LBBHomeGoodsCollectionViewItem.h */,
+				1B5D18871E12BD640027CA43 /* LBBHomeGoodsCollectionViewItem.m */,
+				1B5D18891E12BE770027CA43 /* LBBHomeGoodsCollectionViewCell.h */,
+				1B5D188A1E12BE770027CA43 /* LBBHomeGoodsCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6168,6 +6178,7 @@
 				1BDFE6611E10D4CD00A02B4B /* ZFBrightnessView.m in Sources */,
 				1BDFE6651E10D4CD00A02B4B /* ZFPlayerView.m in Sources */,
 				1BDFE6691E10D4CD00A02B4B /* SPCallingCardBubbleViewModel.m in Sources */,
+				1B5D18881E12BD640027CA43 /* LBBHomeGoodsCollectionViewItem.m in Sources */,
 				1BDFE49C1E10D4CC00A02B4B /* LBB_ScenicDetailViewController.m in Sources */,
 				1BDFE6321E10D4CD00A02B4B /* UIView+ZJFrame.m in Sources */,
 				1BDFE48E1E10D4CC00A02B4B /* LBB_ScenicDetailBookStatusCell.m in Sources */,
@@ -6319,6 +6330,7 @@
 				1BDFE5461E10D4CC00A02B4B /* LBB_ImagePickerViewController.m in Sources */,
 				1BDFE48C1E10D4CC00A02B4B /* LBB_ScenicDetailADCell.m in Sources */,
 				1BDFE4AA1E10D4CC00A02B4B /* LBB_SignInRankListViewController.m in Sources */,
+				1B5D188B1E12BE770027CA43 /* LBBHomeGoodsCollectionViewCell.m in Sources */,
 				1BDFE4881E10D4CC00A02B4B /* LBB_OrderWaitPayViewController.m in Sources */,
 				1BDFE4EC1E10D4CC00A02B4B /* LBB_MessageCenterModel.m in Sources */,
 				1BDFE56E1E10D4CD00A02B4B /* MagicalRecord+ShorthandSupport.m in Sources */,

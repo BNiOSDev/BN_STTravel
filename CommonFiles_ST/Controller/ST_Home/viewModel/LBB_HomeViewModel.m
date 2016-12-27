@@ -8,6 +8,91 @@
 
 #import "LBB_HomeViewModel.h"
 
+
+@implementation BN_HomeHotGoodsObject
+
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.goods_id),
+                              @"allSpotsType":@(14),
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            temp.is_collect = [[result objectForKey:@"collecteState"] boolValue];
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block
+{
+    NSDictionary *paraDic = @{
+                              @"allSpotsId":@(self.goods_id),
+                              @"allSpotsType":@(14),
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/like",BASEURL];
+    __weak typeof(self) temp = self;
+    [[BC_ToolRequest sharedManager] POST:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            id result = [dic objectForKey:@"result"];
+            BOOL likedState = [[result objectForKey:@"likedState"] boolValue];
+            if (likedState != temp.is_like) {//状态有变化的时候
+                temp.is_like = likedState;
+                if (temp.is_like) {
+                    temp.total_like = temp.total_like + 1;
+                }
+                else{
+                    temp.total_like = temp.total_like - 1;
+                }
+            }
+            block(nil);
+        }
+        else
+        {
+            NSString *errorStr = [dic objectForKey:@"remark"];
+            block([NSError errorWithDomain:errorStr
+                                      code:codeNumber.intValue
+                                  userInfo:nil]);
+        }
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        block(error);
+    }];
+}
+
+@end
+
 @implementation BN_HomeUgcList
 
 /**
@@ -296,6 +381,8 @@
         self.liveSpotsArray = [[NSMutableArray alloc]initFromNet];
         self.ugcArray = [[NSMutableArray alloc]initFromNet];
         self.giftAdvertisementArray = [[NSMutableArray alloc] initFromNet];
+        self.goodsArray = [[NSMutableArray alloc] initFromNet];
+
     }
     return self;
 }
@@ -675,6 +762,45 @@
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
 
         temp.ugcArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
+/**
+ 1.1.1	首页热门商品
+ */
+- (void)getGoodsArrayRecommend{
+    NSString *url = [NSString stringWithFormat:@"%@/mall/hotGoods",BASEURL];
+ 
+    NSMutableArray *spotsArray = nil;
+
+    spotsArray = self.goodsArray;
+
+    
+    spotsArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    // __weak typeof(self) temp = self;
+    __weak NSMutableArray *spotsArray_block = spotsArray;
+    [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [BN_HomeHotGoodsObject mj_objectArrayWithKeyValuesArray:array];
+            [spotsArray_block removeAllObjects];
+            NSLog(@"getGoodsArrayRecommend:%@",array);
+
+            [spotsArray_block addObjectsFromArray:returnArray];
+            spotsArray_block.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            //   NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        spotsArray_block.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        spotsArray_block.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
 
