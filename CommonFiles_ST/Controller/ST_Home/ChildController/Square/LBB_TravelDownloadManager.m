@@ -42,7 +42,7 @@
     
     if (isExit) {
         
-        [vc showHudPrompt:@"攻略已下载"];
+        [vc showHudPrompt:@"游记已下载"];
         NSLog(@"攻略已下载");
     }
     else{
@@ -54,7 +54,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"LBB_TravelDetailArray"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         NSLog(@"saveDiscoveryDetail:%@",dic);
-        [vc showHudPrompt:@"攻略下载成功"];
+        [vc showHudPrompt:@"游记下载成功"];
         NSLog(@"攻略下载成功");
     }
 }

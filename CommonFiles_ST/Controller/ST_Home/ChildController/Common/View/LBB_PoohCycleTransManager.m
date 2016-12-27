@@ -17,6 +17,13 @@
 #import "BN_ShopSorterViewController.h"
 #import <BN_ShopSpecialSubjectViewController.h>
 
+#import "LBB_DiscoveryMainViewController.h"
+#import "LBB_DiscoveryDetailViewController.h"
+#import "LBBHostDetailViewController.h"
+#import "LBB_VideoDetailViewController.h"
+#import "LBB_TravelDetailViewController.h"
+#import "LBB_SquareSnsFollowViewController.h"
+#import "LBB_FootPointDetailController.h"
 @implementation LBB_PoohCycleTransManager
 
 
@@ -59,6 +66,14 @@ viewController:(UIViewController*)viewController{
                     [viewController.navigationController pushViewController:vc animated:YES];
                 }
                     break;
+
+                    case 10://攻略
+                {
+                    LBB_DiscoveryMainViewController* vc = [[LBB_DiscoveryMainViewController alloc] init];
+                    [viewController.navigationController pushViewController:vc animated:YES];
+                }
+                    
+                    break;
                 case 14://伴手礼
                 {
                     BN_ShopSorterViewController *vc = [[BN_ShopSorterViewController alloc]initWith:0];
@@ -100,6 +115,63 @@ viewController:(UIViewController*)viewController{
                 {
                     BN_ShopGoodDetailViewController *shopGoodDetailViewController = [[BN_ShopGoodDetailViewController alloc]initWith:model.objId];
                     [viewController.navigationController pushViewController:shopGoodDetailViewController animated:YES];
+                }
+                    break;
+                    
+                case 5://ugc图片
+                {
+                    LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+                    LBB_SquareUgc  *viewModel = [[LBB_SquareUgc alloc] init];
+                    viewModel.ugcId = model.objId;
+                    vc.viewModel = viewModel;
+                    [viewController.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                case 6://ugc视频
+                {
+                    LBB_SquareUgc  *viewModel = [[LBB_SquareUgc alloc] init];
+                    viewModel.ugcId = model.objId;
+                    LBB_VideoDetailViewController *Vc = [[LBB_VideoDetailViewController alloc]init];
+                    Vc.viewModel = viewModel;
+                    [viewController.navigationController pushViewController:Vc animated:YES];
+                }
+                    break;
+                case 7://游记
+                {
+                    LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
+                    BN_SquareTravelList* viewModel = [[BN_SquareTravelList alloc] init];
+                    viewModel.travelNotesId = model.objId;
+                    vc.model = viewModel;
+                    [viewController.navigationController pushViewController:vc animated:YES];
+                }
+                    break;
+                case 8://用户头像
+                {
+                    
+                    LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
+                    LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+                    viewModel.userId = model.objId;
+                    dest.viewModel = viewModel;
+                    [viewController.navigationController pushViewController:dest animated:YES];
+                }
+                    break;
+                case 9://足迹
+                {
+                    LBB_FootPointDetailController *vC = [[LBB_FootPointDetailController alloc]init];
+                    TravelNotesDetails* viewModel = [[TravelNotesDetails alloc] init];
+                    viewModel.objId = model.objId;
+                    [viewController.navigationController pushViewController:vC animated:YES];
+                }
+                    break;
+                    
+                    
+                    case 10://攻略
+                {
+                    LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]init];
+                    LBB_DiscoveryModel* viewModel = [[LBB_DiscoveryModel alloc] init];
+                    viewModel.lineId = model.objId;
+                    dest.viewModel = viewModel;
+                    [viewController.navigationController pushViewController:dest animated:YES];
                 }
                     break;
                     case 11://美食专题

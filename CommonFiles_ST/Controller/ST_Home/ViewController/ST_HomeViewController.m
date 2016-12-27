@@ -47,6 +47,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UIImageView *imageView;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -215,6 +217,14 @@
         [ws.tableView reloadData];//data reload
     }];
     
+    /**
+     3.1.2 广告轮播 11.首页-伴手礼推荐广告位
+     @param clear 是否清空原数据
+     */
+    [self.viewModel getGiftAdvertisementListArrayClearData:YES];
+    [self.viewModel.giftAdvertisementArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
     
     /**
      3.1.3 公告轮播
@@ -260,6 +270,15 @@
     [self.viewModel.liveSpotsArray.loadSupport setDataRefreshblock:^{
         [ws.tableView reloadData];//data reload
     }];
+    
+    /**
+     1.1.1	首页热门商品
+     */
+    [self.viewModel getGoodsArrayRecommend];
+    [self.viewModel.goodsArray.loadSupport setDataRefreshblock:^{
+        [ws.tableView reloadData];//data reload
+    }];
+    
     /**
      3.1.9 广场中心
      @param clear 是否清空原数据
@@ -325,7 +344,7 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return self.sectionArray.count - 1;
+    return self.sectionArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

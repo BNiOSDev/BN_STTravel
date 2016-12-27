@@ -9,6 +9,38 @@
 #import <Foundation/Foundation.h>
 #import "LBB_HomeCommonModel.h"
 
+
+
+@interface BN_HomeHotGoodsObject : BN_BaseDataModel
+
+@property(nonatomic,copy)NSString* name;// String 商品名称
+@property(nonatomic,assign)int total_comment;// int 总评论数
+@property(nonatomic,assign)int total_like;// int 点赞数
+@property(nonatomic,assign)int total_collected;// int 收藏数
+@property(nonatomic,assign)int is_like;// int 是否点赞 (1:是0:否)
+@property(nonatomic,assign)int is_collect;// int 是否收藏(1:是 0:否)
+@property(nonatomic,assign)long goods_id;// Long 商品ID
+@property(nonatomic,copy)NSString* pic_url;// String 图片地址
+@property(nonatomic,copy)NSString* front_price;// String 显示价格
+@property(nonatomic,copy)NSString* real_price;// String 真实价格
+
+/**
+ 3.1.5 收藏
+ 
+ @param block 回调函数
+ */
+- (void)collecte:(void (^)(NSError *error))block;
+
+
+/**
+ 点赞
+ 
+ @param block 回调函数
+ */
+- (void)like:(void (^)(NSError *error))block;
+
+@end
+
 @interface BN_HomeUgcList : NSObject
 
 @property (nonatomic, assign)long ugcId;//广场ID
@@ -124,6 +156,10 @@
 @property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *advertisementArray;
 //热门推荐广告
 @property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *spotAdvertisementArray;
+
+//伴手礼推荐广告
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *giftAdvertisementArray;
+
 //公告
 @property (nonatomic, strong)NSMutableArray<BN_HomeNotices*> *noticesArray;
 //热门推荐
@@ -137,6 +173,10 @@
 @property (nonatomic, strong)NSMutableArray<BN_HomeSpotsList*> *footSpotsArray;
 //达人民宿推荐
 @property (nonatomic, strong)NSMutableArray<BN_HomeSpotsList*> *liveSpotsArray;
+
+//伴手礼推荐
+@property (nonatomic, strong)NSMutableArray<BN_HomeHotGoodsObject*> *goodsArray;
+
 //广场中心
 @property (nonatomic, strong)NSMutableArray<BN_HomeUgcList *> *ugcArray;
 
@@ -155,6 +195,12 @@
  @param clear 是否清空原数据
  */
 - (void)getSpotAdvertisementListArrayClearData:(BOOL)clear;
+/**
+ 3.1.2 广告轮播 11 首页-伴手礼推荐广告位
+ 
+ @param clear 是否清空原数据
+ */
+- (void)getGiftAdvertisementListArrayClearData:(BOOL)clear;
 
 /**
  3.1.3 公告轮播
@@ -193,5 +239,10 @@
  @param clear 是否清空原数据
  */
 - (void)getUgcArrayClearData:(BOOL)clear;
+
+/**
+ 1.1.1	首页热门商品
+ */
+- (void)getGoodsArrayRecommend;
 
 @end

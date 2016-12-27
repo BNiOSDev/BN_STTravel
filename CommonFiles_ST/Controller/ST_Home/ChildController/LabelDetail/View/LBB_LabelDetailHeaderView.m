@@ -27,6 +27,8 @@
         CGFloat margin = 8;
         
         self.bgImageView = [UIImageView new];
+        self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.bgImageView.clipsToBounds = YES;
         [self addSubview:self.bgImageView];
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -36,6 +38,8 @@
 
         
         self.portraitImageView = [UIImageView new];
+        self.portraitImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.portraitImageView.clipsToBounds = YES;
         [self addSubview:self.portraitImageView];
         [self.portraitImageView mas_makeConstraints:^(MASConstraintMaker* make){
             

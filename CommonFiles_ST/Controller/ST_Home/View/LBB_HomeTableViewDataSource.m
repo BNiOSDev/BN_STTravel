@@ -15,6 +15,8 @@
 #import "LBBHomeSquareCenterTableViewCell.h"
 #import "LBB_ScenicDetailSubjectViewController.h"
 #import "LBB_TravelDetailViewController.h"
+#import "LBBHomeGoodsCollectionViewCell.h"
+
 @interface LBB_HomeTableViewDataSource()
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -37,7 +39,7 @@
         [self.tableView registerClass:[LBBHomeAnnouncementTableViewCell class] forCellReuseIdentifier:@"LBBHomeAnnouncementTableViewCell"];
         [self.tableView registerClass:[LBBHomeHotestTableViewCell class] forCellReuseIdentifier:@"LBBHomeHotestTableViewCell"];
         [self.tableView registerClass:[LBBHomeHotestTableViewCell class] forCellReuseIdentifier:@"LBBHomeVIPRecommendTableViewCell"];
-
+        [self.tableView registerClass:[LBBHomeGoodsCollectionViewCell class] forCellReuseIdentifier:@"LBBHomeGoodsCollectionViewCell"];
         [self.tableView registerClass:[LBBHomeTravelRecommendTableViewCell class] forCellReuseIdentifier:@"LBBHomeTravelRecommendTableViewCell"];
         [self.tableView registerClass:[LBBHomeSquareCenterTableViewCell class] forCellReuseIdentifier:@"LBBHomeSquareCenterTableViewCell"];
         self.tableView.delegate = self;
@@ -431,7 +433,7 @@
 #pragma    //伴手礼推荐
 -(UITableViewCell*)tableView:(UITableView *)tableView travelProductCellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WS(ws);
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0) {//
         
         static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
         LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -441,32 +443,20 @@
             
         }
         [cell setCycleScrollViewHeight:AutoSize(390/2)];
-        [cell setCycleScrollViewUrls:nil];
-        [cell setEnableBlock:YES];
-        cell.click = ^(NSNumber* index){
-            
-            //  NSInteger num = [index integerValue];
-            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
-            [ws.parentViewController.navigationController pushViewController:dest animated:YES];
-            
-        };
+        [cell setAdModelArray:self.viewModel.giftAdvertisementArray];//设置model。首页广告的数据
         
         return cell;
     }
     else if (indexPath.row == 1){
-        static NSString *cellIdentifier = @"LBBHomeHotestTableViewCell";
-        LBBHomeHotestTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        static NSString *cellIdentifier = @"LBBHomeGoodsCollectionViewCell";
+        LBBHomeGoodsCollectionViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
-            cell = [[LBBHomeHotestTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-            NSLog(@"LBBHomeHotestTableViewCell nil");
+            cell = [[LBBHomeGoodsCollectionViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            NSLog(@"LBBHomeGoodsCollectionViewCell nil");
         }
-        [cell setPagerViewHidden:NO];
-        cell.type = LBBHomeHotestTableViewCellTravelProductType;
-        [cell.pagerView setSelectedSegmentIndex:self.giftRecommendType];
-        cell.pagerView.indexChangeBlock = ^(NSInteger index){
-            NSLog(@"segmentedControl select:%ld",index);
-            ws.giftRecommendType = index;
-        };
+        cell.type = LBBHomeHotestTableViewCellHotType1;
+        [cell setPagerViewHidden:YES];
+        [cell setSpotsArray:self.viewModel.goodsArray];
         return cell;
     }
     else{
@@ -484,8 +474,8 @@
         }];
     }
     else{
-        return [tableView fd_heightForCellWithIdentifier:@"LBBHomeHotestTableViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeHotestTableViewCell* cell){
-            [cell setPagerViewHidden:NO];
+        return [tableView fd_heightForCellWithIdentifier:@"LBBHomeGoodsCollectionViewCell" cacheByIndexPath:indexPath configuration:^(LBBHomeGoodsCollectionViewCell* cell){
+            [cell setPagerViewHidden:YES];
         }];
     }
 }

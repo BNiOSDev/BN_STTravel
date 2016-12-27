@@ -837,7 +837,7 @@
     
     LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
     dest.homeType = LBBPoohHomeTypeFoods;
-    dest.spotModel = [self.viewModel.foodsArray objectAtIndex:indexPath.section - 1];
+    dest.spotModel = [self.viewModel.foodsArray objectAtIndex:indexPath.row];
 
     [self.navigationController pushViewController:dest animated:YES];
 }

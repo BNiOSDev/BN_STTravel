@@ -20,6 +20,8 @@
         
         self.bgImageView = [UIImageView new];
       //  [self.bgImageView setContentMode:UIViewContentModeScaleAspectFill];
+        self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.bgImageView.clipsToBounds = YES;
         [self addSubview:self.bgImageView];
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
             

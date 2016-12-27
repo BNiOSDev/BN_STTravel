@@ -27,6 +27,8 @@
         CGFloat margin = 8;
 
         self.goodImageView = [UIImageView new];
+        self.goodImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.goodImageView.clipsToBounds = YES;
         [self.contentView addSubview:self.goodImageView];
         [self.goodImageView mas_makeConstraints:^(MASConstraintMaker* make){
         

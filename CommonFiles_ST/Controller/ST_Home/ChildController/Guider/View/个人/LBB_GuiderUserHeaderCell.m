@@ -33,6 +33,8 @@
         CGFloat bgHeight = AutoSize(380/2);
         
         self.bgImageView = [UIImageView new];
+        self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.bgImageView.clipsToBounds = YES;
         [self.contentView addSubview:self.bgImageView];
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.top.width.equalTo(ws.contentView);
@@ -287,7 +289,8 @@
         NSLog(@"buttonSize.width:%f",buttonSize.width);
         
         UIButton* tagButton = [UIButton new];
-        [tagButton setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        UIImage *image =  [[UIImage imageNamed:@"labelDetailBg"] stretchableImageWithLeftCapWidth:40 topCapHeight:0];
+        [tagButton setBackgroundImage:image forState:UIControlStateNormal];
         [tagButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [tagButton.titleLabel setFont:font];
         [tagButton setTitle:content forState:UIControlStateNormal];

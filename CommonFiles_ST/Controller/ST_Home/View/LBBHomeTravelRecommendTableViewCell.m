@@ -34,6 +34,8 @@
     if (self) {
         [self.contentView setBackgroundColor:ColorWhite];
         self.bgImageView = [UIImageView new];
+        self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.bgImageView.clipsToBounds = YES;
         [self.contentView addSubview:self.bgImageView];
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
         
@@ -231,6 +233,7 @@
     [self.userLable setText:model.userName];//用户名
 
     [self setTagViews];
+//    [self setTagsView_TwoVersion];
 }
 
 - (void)setTagViews
@@ -251,7 +254,7 @@
     UIView* lastView = nil;
     for(int i = 0;i < _model.tags.count;i++)
     {
-        
+    
         BN_HomeTag* homeTags = [_model.tags objectAtIndex:i];
         NSString *content = [NSString stringWithFormat:@"   %@",homeTags.tagName];
         UIFont *font = AutoFont(11);
@@ -266,7 +269,8 @@
         NSLog(@"buttonSize.width:%f",buttonSize.width);
 
         UIButton* tagButton = [UIButton new];
-        [tagButton setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        UIImage *image =  [[UIImage imageNamed:@"labelDetailBg"] stretchableImageWithLeftCapWidth:40 topCapHeight:0];
+        [tagButton setBackgroundImage:image forState:UIControlStateNormal];
         [tagButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [tagButton.titleLabel setFont:font];
         [tagButton setTitle:content forState:UIControlStateNormal];
@@ -294,8 +298,12 @@
             dest.viewModel = viewModel;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
+        
+        
 
     }
+    
 }
+
 
 @end

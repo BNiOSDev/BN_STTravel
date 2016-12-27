@@ -16,6 +16,8 @@
     if (self = [super init]) {
         
         self.bgImageView = [UIImageView new];
+        self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.bgImageView.clipsToBounds = YES;
         [self addSubview:self.bgImageView];
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -66,7 +68,8 @@
         NSLog(@"buttonSize.width:%f",buttonSize.width);
         
         UIButton* tagButton = [UIButton new];
-        [tagButton setBackgroundImage:IMAGE(@"labelDetailBg") forState:UIControlStateNormal];
+        UIImage *image =  [[UIImage imageNamed:@"labelDetailBg"] stretchableImageWithLeftCapWidth:40 topCapHeight:0];
+        [tagButton setBackgroundImage:image forState:UIControlStateNormal];
         [tagButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [tagButton.titleLabel setFont:font];
         [tagButton setTitle:content forState:UIControlStateNormal];
