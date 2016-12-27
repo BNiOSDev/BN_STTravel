@@ -117,7 +117,7 @@
                                                               image:IMAGEOriginal(@"ST_TabImage2")
                                                       selectedImage:IMAGEOriginal(@"ST_TabImage2d")];
     
-    viewController3.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商城"
+    viewController3.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"伴手礼"
                                                               image:IMAGEOriginal(@"ST_TabImage3")
                                                       selectedImage:IMAGEOriginal(@"ST_TabImage3d")];
     
