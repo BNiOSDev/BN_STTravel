@@ -441,15 +441,7 @@
             
         }
         [cell setCycleScrollViewHeight:AutoSize(390/2)];
-        [cell setCycleScrollViewUrls:nil];
-        [cell setEnableBlock:YES];
-        cell.click = ^(NSNumber* index){
-            
-            //  NSInteger num = [index integerValue];
-            LBB_ScenicDetailSubjectViewController* dest = [[LBB_ScenicDetailSubjectViewController alloc] init];
-            [ws.parentViewController.navigationController pushViewController:dest animated:YES];
-            
-        };
+        [cell setAdModelArray:self.viewModel.giftAdvertisementArray];//设置model。首页广告的数据
         
         return cell;
     }

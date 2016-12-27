@@ -124,6 +124,10 @@
 @property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *advertisementArray;
 //热门推荐广告
 @property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *spotAdvertisementArray;
+
+//伴手礼推荐广告
+@property (nonatomic, strong)NSMutableArray<BN_HomeAdvertisement*> *giftAdvertisementArray;
+
 //公告
 @property (nonatomic, strong)NSMutableArray<BN_HomeNotices*> *noticesArray;
 //热门推荐
@@ -155,6 +159,12 @@
  @param clear 是否清空原数据
  */
 - (void)getSpotAdvertisementListArrayClearData:(BOOL)clear;
+/**
+ 3.1.2 广告轮播 11 首页-伴手礼推荐广告位
+ 
+ @param clear 是否清空原数据
+ */
+- (void)getGiftAdvertisementListArrayClearData:(BOOL)clear;
 
 /**
  3.1.3 公告轮播

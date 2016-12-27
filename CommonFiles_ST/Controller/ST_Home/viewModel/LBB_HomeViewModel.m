@@ -295,6 +295,7 @@
         self.footSpotsArray = [[NSMutableArray alloc]initFromNet];
         self.liveSpotsArray = [[NSMutableArray alloc]initFromNet];
         self.ugcArray = [[NSMutableArray alloc]initFromNet];
+        self.giftAdvertisementArray = [[NSMutableArray alloc] initFromNet];
     }
     return self;
 }
@@ -392,6 +393,54 @@
     } failure:^(NSURLSessionDataTask *operation, NSError *error) {
 
         temp.spotAdvertisementArray.loadSupport.loadEvent = NetLoadFailedEvent;
+    }];
+}
+
+
+/**
+ 3.1.2 广告轮播 11 首页-伴手礼推荐广告位
+ 
+ @param clear 是否清空原数据
+ */
+- (void)getGiftAdvertisementListArrayClearData:(BOOL)clear{
+    //    int curPage = clear == YES ? 0 : round(self.advertisementArray.count/10.0);
+    //    NSDictionary *paraDic = @{
+    //                              @"curPage":[NSNumber numberWithInt:curPage],
+    //                              @"pageNum":[NSNumber numberWithInt:10],
+    //                              };
+    NSDictionary *paraDic = @{
+                              @"position":@(11)
+                              };
+    
+    NSString *url = [NSString stringWithFormat:@"%@/homePage/advertisementList",BASEURL];
+    __weak typeof(self) temp = self;
+    self.giftAdvertisementArray.loadSupport.loadEvent = NetLoadingEvent;
+    
+    [[BC_ToolRequest sharedManager] GET:url parameters:paraDic success:^(NSURLSessionDataTask *operation, id responseObject) {
+        NSDictionary *dic = responseObject;
+        NSNumber *codeNumber = [dic objectForKey:@"code"];
+        if(codeNumber.intValue == 0)
+        {
+            NSArray *array = [dic objectForKey:@"rows"];
+            NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
+            
+            if (clear == YES)
+            {
+                [temp.giftAdvertisementArray removeAllObjects];
+            }
+            
+            [temp.giftAdvertisementArray addObjectsFromArray:returnArray];
+            temp.giftAdvertisementArray.networkTotal = [dic objectForKey:@"total"];
+        }
+        else
+        {
+            //    NSString *errorStr = [dic objectForKey:@"remark"];
+        }
+        
+        temp.giftAdvertisementArray.loadSupport.loadEvent = codeNumber.intValue;
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
+        
+        temp.giftAdvertisementArray.loadSupport.loadEvent = NetLoadFailedEvent;
     }];
 }
 
