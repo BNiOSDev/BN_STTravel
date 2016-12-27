@@ -62,7 +62,7 @@
     timeLabel.font = FONT(AUTO(13.0));
     [self addSubview:timeLabel];
     
-    iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(20, contentImage.bottom - AUTO(10), AUTO(30), AUTO(30))];
+    iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(20, contentImage.bottom - AUTO(20), AUTO(43), AUTO(43))];
     iconImage.clipsToBounds = YES;
     LRViewBorderRadius(iconImage, iconImage.height / 2.0, 0, [UIColor clearColor]);
     [self addSubview:iconImage];
@@ -97,7 +97,7 @@
     _model = model;
     contentImage.imageUrl = model.travelNotesPicUrl;
     contentLabel.text  = model.travelNotesName;
-    timeLabel.text = [NSString stringWithFormat:@"%@  %d天   %ld人访问",model.lastReleaseTime,model.dayCount,model.totalPageViews];
+    timeLabel.text = [NSString stringWithFormat:@"%@  %d天",model.lastReleaseTime,model.dayCount];
     [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:DEFAULTIMAGE];
     nameLabel.text = model.userName;
     

@@ -28,7 +28,7 @@
     self.navigationItem.title = @"发布内容";
     self.view.backgroundColor = ColorWhite;
     
-    UIBarButtonItem  *backItem = [[UIBarButtonItem alloc] initWithTitle:@"back" style:0 target:self action:@selector(backToController)];
+    UIBarButtonItem  *backItem = [[UIBarButtonItem alloc] initWithTitle:@"我的登录_顶部返回" style:0 target:self action:@selector(backToController)];
     backItem.tintColor = [UIColor blueColor];
     self.navigationItem.leftBarButtonItem = backItem;
     

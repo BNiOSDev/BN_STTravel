@@ -72,11 +72,14 @@
         NSString* dic = element.imageUrl;
         return dic;
     }];
-    CGFloat  vistImageHeigh = AUTO(230);
+    CGFloat  vistImageHeigh = AUTO(200);
     vistImage.imageArray = imageArray;
     if(imageArray.count <= 0)
     {
         vistImageHeigh = 0;
+    }else if(imageArray.count > 1)
+    {
+        vistImageHeigh = AUTO(205) * imageArray.count - 5;
     }
     if(model.isLiked == 1)
     {
@@ -144,12 +147,15 @@
        NSString* dic = element.imageUrl;
         return dic;
     }];
-   CGFloat  vistImageHeigh = AUTO(230);
+   CGFloat  vistImageHeigh = AUTO(200);
     
     vistImage.imageArray = imageArray;
-   if(vistImage.imageArray.count <= 0)
+    if(imageArray.count <= 0)
     {
         vistImageHeigh = 0;
+    }else if(imageArray.count > 1)
+    {
+        vistImageHeigh = AUTO(205) * imageArray.count - 5;
     }
     
     contentLabel.text = _noteModel.picRemark;
