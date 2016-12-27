@@ -77,6 +77,9 @@
     if(imageArray.count <= 0)
     {
         vistImageHeigh = 0;
+    }else if(imageArray.count > 1)
+    {
+        vistImageHeigh = AUTO(205) * imageArray.count - 5;
     }
     if(model.isLiked == 1)
     {

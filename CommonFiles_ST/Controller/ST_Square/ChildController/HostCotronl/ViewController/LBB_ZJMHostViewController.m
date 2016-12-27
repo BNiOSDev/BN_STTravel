@@ -56,6 +56,7 @@
     __weak typeof(self) temp = self;
     [self.viewModel getSquareRecommendData];
     [self.viewModel.squareRecommend.loadSupport setDataRefreshblock:^{
+        NSLog(@"%@",temp.viewModel.squareRecommend.userName);
         [temp.tableView reloadData];
     }];
    

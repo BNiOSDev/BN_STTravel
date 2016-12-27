@@ -82,65 +82,65 @@
             break;
         case 1:
         {
-            NSArray *views = @[oneImage];
-            [self sd_addSubviews:views];
+//            NSArray *views = @[oneImage];
+//            [self sd_addSubviews:views];
             [self setImageFor_One];
         }
             break;
         case 2:
         {
-            NSArray *views = @[oneImage,twoImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Two];
+//            NSArray *views = @[oneImage,twoImage];
+//            [self sd_addSubviews:views];
+            [self repairLayout];
         }
             break;
         case 3:
         {
-            NSArray *views = @[oneImage,twoImage,threeImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Three];
+//            NSArray *views = @[oneImage,twoImage,threeImage];
+//            [self sd_addSubviews:views];
+            [self repairLayout];
         }
             break;
         case 4:
         {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Four];
+//            NSArray *views = @[oneImage,twoImage,threeImage,fourImage];
+//            [self sd_addSubviews:views];
+            [self repairLayout];
         }
             break;
         case 5:
         {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,];
-            [self sd_addSubviews:views];
-            [self setImageFor_Five];
+//            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,];
+//            [self sd_addSubviews:views];
+            [self repairLayout];
         }
             break;
         case 6:
         {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Fix];
+//            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage];
+//            [self sd_addSubviews:views];
+            [self repairLayout];
         }
             break;
         case 7:
         {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Seven];
+//            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage];
+//            [self sd_addSubviews:views];
+            [self repairLayout];
         }
             break;
         case 8:
         {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Eight];
+//            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage];
+//            [self sd_addSubviews:views];
+            [self repairLayout];
         }
             break;
         case 9:
         {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage,nightImage,];
-            [self sd_addSubviews:views];
-            [self setImageFor_Night];
+//            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage,nightImage,];
+//            [self sd_addSubviews:views];
+            [self repairLayout];
         }
             break;
         default:
@@ -441,6 +441,20 @@
         }
     }
     
+}
+
+
+//  修改后的布局
+ - (void)repairLayout
+{
+    for(int i = 0;i < _imageArray.count;i++)
+    {
+        UIImageView *image  =  [[UIImageView alloc]initWithFrame:CGRectMake(0, AUTO(205) * i, self.width, AUTO(200))];
+        image.contentMode = UIViewContentModeScaleAspectFill;
+        image.clipsToBounds = YES;
+        [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
+        [self addSubview:image];
+    }
 }
 
 

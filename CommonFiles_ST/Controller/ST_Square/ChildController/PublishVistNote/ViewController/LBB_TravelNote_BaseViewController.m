@@ -249,7 +249,10 @@
 - (void)toSaveTravel
 {
     [self.dataModel publicTravelDraftData:^(NSError *error) {
-
+         if(!error)
+         {
+             [self.navigationController popViewControllerAnimated:YES];
+         }
     }];
 }
 
