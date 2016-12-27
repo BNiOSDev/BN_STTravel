@@ -30,6 +30,8 @@
         CGFloat height = AutoSize(177/2);
 
         self.mainImageView = [UIImageView new];
+        self.mainImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.mainImageView.clipsToBounds = YES;
         [self.contentView addSubview:self.mainImageView];
         [self.mainImageView mas_makeConstraints:^(MASConstraintMaker* make){
             make.left.equalTo(ws.contentView).offset(2*margin);
