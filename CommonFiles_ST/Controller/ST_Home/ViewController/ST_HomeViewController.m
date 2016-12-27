@@ -47,6 +47,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UIImageView *imageView;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
