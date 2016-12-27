@@ -38,7 +38,6 @@
     [super viewDidLoad];
     self.navigationItem.title = @"游记详情";
     self.view.backgroundColor = WHITECOLOR;
-    [self initView];
     [self initNavi];
 }
 
@@ -104,7 +103,10 @@
     [_viewModel.travelDetail.loadSupport setDataRefreshblock:^{
 
         NSArray *array = @[[NSString stringWithFormat:@"景点 %d",weakSelf.viewModel.travelDetail.totalScenicSpots],[NSString stringWithFormat:@"美食 %d",weakSelf.viewModel.travelDetail.totalFood],[NSString stringWithFormat:@"民宿 %d",weakSelf.viewModel.travelDetail.totalHomestay],[NSString stringWithFormat:@"购物 %d",weakSelf.viewModel.travelDetail.totalShop]];
-        
+            if(!weakSelf.tableView)
+            {
+                    [weakSelf initView];
+            }
             weakSelf.toolsView.buttonList = array;
             //为空时，不该有footview
             if(weakSelf.viewModel.travelDetail.travelNotesDetails.count == 0)

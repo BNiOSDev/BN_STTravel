@@ -72,7 +72,7 @@
         NSString* dic = element.imageUrl;
         return dic;
     }];
-    CGFloat  vistImageHeigh = AUTO(230);
+    CGFloat  vistImageHeigh = AUTO(200);
     vistImage.imageArray = imageArray;
     if(imageArray.count <= 0)
     {
@@ -147,7 +147,7 @@
        NSString* dic = element.imageUrl;
         return dic;
     }];
-   CGFloat  vistImageHeigh = AUTO(230);
+   CGFloat  vistImageHeigh = AUTO(200);
     
     vistImage.imageArray = imageArray;
     if(imageArray.count <= 0)
