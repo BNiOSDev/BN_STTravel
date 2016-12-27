@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Header.h"
 
 @interface LBB_PraiseWithCommentView : UIView
 
 @property(nonatomic, copy)NSString      *praiseNum;
 @property(nonatomic, copy)NSString      *commentNum;
-
+@property(nonatomic, copy)CellBlockVIew   cellBlock;
+@property(nonatomic, strong)UIImage    *dianzanImage;
 @end

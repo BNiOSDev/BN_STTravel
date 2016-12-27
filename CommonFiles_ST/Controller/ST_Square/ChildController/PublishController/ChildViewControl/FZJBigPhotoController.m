@@ -55,6 +55,7 @@
 #pragma mark --
 - (void)backBaseControl
 {
+    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark 初始化UI

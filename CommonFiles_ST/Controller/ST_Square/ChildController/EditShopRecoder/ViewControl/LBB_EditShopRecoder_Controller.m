@@ -175,7 +175,7 @@
             view.layer.borderColor = [UIColor clearColor].CGColor;
         }
     }
-    self.viewModel.consumptionType = (int)btn.tag;
+    self.viewModel.consumptionType = (int)btn.tag+1;
 }
 
 - (void)upToserver

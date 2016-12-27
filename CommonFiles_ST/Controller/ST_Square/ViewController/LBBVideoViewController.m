@@ -19,10 +19,13 @@
 #import "LBBVideoPlayerViewController.h"
 #import "LBB_VideoDetailViewController.h"
 
-@interface LBBVideoViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "ZFPlayer.h"
+
+@interface LBBVideoViewController ()<UITableViewDelegate,UITableViewDataSource,ZFPlayerDelegate>
 @property(nonatomic, strong)UITableView     *tableView;
 @property(nonatomic, strong)LBB_SquareViewModel* viewModel;
-
+@property (nonatomic, strong) ZFPlayerView        *playerView;
+@property (nonatomic, strong) ZFPlayerControlView *controlView;
 
 @end
 
@@ -190,6 +193,32 @@
         }
         
     };
+    
+    __block NSIndexPath *weakIndexPath = indexPath;
+    __block LBBVideoTableViewCell *weakCell     = cell;
+    cell.blockBtnFunc = ^(NSInteger stuas)
+    {
+        LBB_SquareUgc *videoDateModel = weakSelf.viewModel.ugcVideoArray[indexPath.row];
+        ZFPlayerModel *playerModel = [[ZFPlayerModel alloc] init];
+        playerModel.title            = @"     ";
+        playerModel.videoURL         = [NSURL URLWithString:videoDateModel.videoUrl];
+        playerModel.placeholderImageURLString = videoDateModel.coverImageUrl;
+        playerModel.tableView        = weakSelf.tableView;
+        playerModel.indexPath        = weakIndexPath;
+        // 赋值分辨率字典
+        playerModel.resolutionDic    = nil;
+        // player的父视图
+        weakCell.contentImage.userInteractionEnabled = YES;
+        playerModel.fatherView       = weakCell.contentImage;
+        
+        // 设置播放控制层和model
+        [weakSelf.playerView playerControlView:weakSelf.controlView playerModel:playerModel];
+        // 下载功能
+        //weakSelf.playerView.hasDownload = YES;
+        // 自动播放
+        [weakSelf.playerView autoPlayTheVideo];
+
+    };
 
     return cell;
 }
@@ -224,6 +253,31 @@
 }
 
 
+- (ZFPlayerView *)playerView
+{
+    if (!_playerView) {
+        _playerView = [ZFPlayerView sharedPlayerView];
+        _playerView.delegate = self;
+        // 当cell播放视频由全屏变为小屏时候，不回到中间位置
+        _playerView.cellPlayerOnCenter = NO;
+        
+        // 当cell划出屏幕的时候停止播放
+        // _playerView.stopPlayWhileCellNotVisable = YES;
+        //（可选设置）可以设置视频的填充模式，默认为（等比例填充，直到一个维度到达区域边界）
+         _playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspectFill;
+        // 静音
+        // _playerView.mute = YES;
+    }
+    return _playerView;
+}
+
+- (ZFPlayerControlView *)controlView
+{
+    if (!_controlView) {
+        _controlView = [[ZFPlayerControlView alloc] init];
+    }
+    return _controlView;
+}
 
 
 @end

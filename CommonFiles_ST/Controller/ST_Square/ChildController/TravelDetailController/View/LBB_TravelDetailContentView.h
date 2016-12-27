@@ -11,10 +11,12 @@
 #import "LBB_AddressTipView.h"
 #import "ZJMHostModel.h"
 #import "BN_SquareTravelNotesModel.h"
+#import "Header.h"
 
 @interface LBB_TravelDetailContentView : UIView
 @property(nonatomic,strong)TravelNotesDetails   *model;
-
+@property(nonatomic,copy)CellBlockVIew   cellBlock;
+@property(nonatomic,strong)BN_TravelNotesDetailsComments  *noteModel;
 //- (void)prepareForReuse;
 
 @end

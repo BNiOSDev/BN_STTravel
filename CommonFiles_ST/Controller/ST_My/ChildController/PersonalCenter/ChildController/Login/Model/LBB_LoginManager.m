@@ -397,7 +397,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                               @"passwd":self.password
                               };
     
-    NSString *url = [NSString stringWithFormat:@"%@/mime/password/retrieve",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/mime/passwd/retrieve",BASEURL];
     __weak typeof(self) weakSelf = self;
     
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic
@@ -445,7 +445,7 @@ CompleteBlock:(void (^)(NSString *userToken,BOOL result))completeBlock
                               @"newPasswd":newPasswd
                               };
     
-    NSString *url = [NSString stringWithFormat:@"%@/mime/password/update",BASEURL];
+    NSString *url = [NSString stringWithFormat:@"%@/mime/passwd/update",BASEURL];
     __weak typeof(self) weakSelf = self;
     
     [[BC_ToolRequest sharedManager] POST:url parameters:paraDic

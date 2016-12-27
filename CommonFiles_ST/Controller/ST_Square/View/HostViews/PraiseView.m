@@ -89,7 +89,7 @@
                     praiseNumLabel.font = [UIFont systemFontOfSize:12.0];
                     praiseNumLabel.textColor = UIColorFromRGB(0x888888);
                     praiseNumLabel.backgroundColor = LINECOLOR;
-                    praiseNumLabel.text = @"99";
+                    praiseNumLabel.text = [NSString stringWithFormat:@"%ld",praiseArray.count];
                     praiseNumLabel.textAlignment = NSTextAlignmentCenter;
                     [self addSubview:praiseNumLabel];
                     

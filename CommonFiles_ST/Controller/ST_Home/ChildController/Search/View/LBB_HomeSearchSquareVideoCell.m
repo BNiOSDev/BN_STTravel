@@ -191,7 +191,7 @@
 
 - (void)setTagViews
 {
-    for(UIView *view in [self subviews])
+    for(UIView *view in [_contentImage subviews])
     {
         if([view isKindOfClass:[LBB_TagView class]])
         {
