@@ -180,7 +180,8 @@
     //这两个的顺序不可以替换
     _contentImage.tagsArray = tagsArray;
     _contentImage.imageArray = imageArray;
-
+    _contentImage.contentMode = UIViewContentModeScaleAspectFill;
+    _contentImage.clipsToBounds = YES;
     _contentLabel.sd_layout
     .leftEqualToView(_nameLable)
     .topSpaceToView(_iconImage, 5);

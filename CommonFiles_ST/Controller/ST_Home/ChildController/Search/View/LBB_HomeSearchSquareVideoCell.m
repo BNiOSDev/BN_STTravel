@@ -79,7 +79,8 @@
     _contentLabel.textColor = ColorGray;
     
     _contentImage = [UIImageView new];
-    
+    _contentImage.contentMode = UIViewContentModeScaleAspectFill;
+    _contentImage.clipsToBounds = YES;
     
     _playBtn =  [UIButton new];
     [_playBtn setImage:IMAGE(@"zjmbofang") forState:0];
