@@ -27,6 +27,8 @@
     {
         self.userInteractionEnabled = YES;
         tapTouch = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touchAddTip:)];
+        self.contentMode = UIViewContentModeScaleAspectFill;
+        self.clipsToBounds = YES;
         [self addGestureRecognizer:tapTouch];
     }
     return self;

@@ -150,9 +150,12 @@
    CGFloat  vistImageHeigh = AUTO(230);
     
     vistImage.imageArray = imageArray;
-   if(vistImage.imageArray.count <= 0)
+    if(imageArray.count <= 0)
     {
         vistImageHeigh = 0;
+    }else if(imageArray.count > 1)
+    {
+        vistImageHeigh = AUTO(205) * imageArray.count - 5;
     }
     
     contentLabel.text = _noteModel.picRemark;

@@ -69,27 +69,6 @@
     NSArray *views = @[cellView,praiseView,commetView,boxView];
     [self.contentView sd_addSubviews:views];
     
-    cellView.sd_layout
-    .leftSpaceToView(self.contentView,10)
-    .rightSpaceToView(self.contentView,10)
-    .topEqualToView(self.contentView);
-    
-    praiseView.sd_layout
-    .leftSpaceToView(self.contentView,10)
-    .topSpaceToView(cellView,10.0)
-    .widthIs(DeviceWidth - 20);
-    
-    commetView.sd_layout
-    .leftEqualToView(praiseView)
-    .topSpaceToView(praiseView,10.0)
-    .rightEqualToView(praiseView);
-    
-    boxView.sd_layout
-    .leftEqualToView(commetView)
-    .topSpaceToView(commetView,10.0)
-    .rightEqualToView(commetView)
-    .heightIs(AUTO(30));
-    
 }
 
 - (void)setModel:(BN_TravelNotesDetailsComments *)model
@@ -118,6 +97,27 @@
         return model;
     }];
     commetView.commentArray = commentModelArray;
+    
+    cellView.sd_layout
+    .leftSpaceToView(self.contentView,10)
+    .rightSpaceToView(self.contentView,10)
+    .topEqualToView(self.contentView);
+    
+    praiseView.sd_layout
+    .leftSpaceToView(self.contentView,10)
+    .topSpaceToView(cellView,10.0)
+    .widthIs(DeviceWidth - 20);
+    
+    commetView.sd_layout
+    .leftEqualToView(praiseView)
+    .topSpaceToView(praiseView,10.0)
+    .rightEqualToView(praiseView);
+    
+    boxView.sd_layout
+    .leftEqualToView(commetView)
+    .topSpaceToView(commetView,10.0)
+    .rightEqualToView(commetView)
+    .heightIs(AUTO(30));
     
     [self setupAutoHeightWithBottomView:boxView bottomMargin:10];
 }
