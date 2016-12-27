@@ -82,7 +82,8 @@
     }
     else{
         NSURL* url = self.url;
-        NSURLRequest* request = [NSURLRequest requestWithURL:url] ;
+        NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
+        [request addValue:@"true" forHTTPHeaderField:@"islbbApp"];
         [self.web loadRequest:request];
     }
 }
