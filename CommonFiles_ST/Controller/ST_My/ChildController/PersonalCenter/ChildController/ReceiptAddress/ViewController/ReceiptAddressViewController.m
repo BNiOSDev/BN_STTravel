@@ -202,6 +202,11 @@ ReceiptAddressViewCellDelegate
         [weakSelf showHudPrompt:remark];
     }];
     [cellModel setDefaultAddress];
+    
+    if (self.selectBlock) {
+        self.selectBlock(self.selectModel);
+        self.selectBlock = nil;
+    }
 }
 
 - (void)updateDefaultModel:(LBB_AddressModel*)model
@@ -235,8 +240,17 @@ ReceiptAddressViewCellDelegate
     }
 }
 
+-(void)loadCustomNavigationButton{
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"QJTL_NavLeftBack"] style:UIBarButtonItemStylePlain target:self action:@selector(buttonAction:)];
+    
+    
+    leftBarButton.tintColor = [UIColor colorWithRed:0.0 green:0.1176 blue:0.4549 alpha:1.0];
+    
+    self.navigationItem.leftBarButtonItem = leftBarButton;
+}
+
 #pragma mark -  UI Action
-- (IBAction)backAction:(id)sender {
+-(void)buttonAction:(UIButton*)button {
     if (self.selectBlock) {
         self.selectBlock(self.selectModel);
         self.selectBlock = nil;

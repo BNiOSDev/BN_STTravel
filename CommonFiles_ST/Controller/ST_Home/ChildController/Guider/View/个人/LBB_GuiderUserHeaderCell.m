@@ -90,6 +90,7 @@
             
             YWPerson *person=[[YWPerson alloc]initWithPersonId:ws.model.chatId EServiceGroupId:nil baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
             YWConversation *conversation=[YWP2PConversation fetchConversationByPerson:person creatIfNotExist:YES baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
+            if (conversation == nil)return ;
             YWConversationViewController *conversationController=[[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:conversation.conversationId];
             Base_BaseViewController *vc = [[Base_BaseViewController alloc]init];
             [vc addChildViewController:conversationController];
