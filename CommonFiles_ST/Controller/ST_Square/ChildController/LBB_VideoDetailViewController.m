@@ -149,15 +149,22 @@
                     if(!error)
                     {
                         UIButton *btn = obj;
+                        LBB_SquareLikeList * likeModel = [[LBB_SquareLikeList alloc]init];
+                        likeModel.portrait = dic[@"userPicUrl"];
                         if(model.isLiked == 1)
                         {
                             [btn setImage:IMAGE(@"zjmzhuyedianzaned") forState:0];
+                            [weakSelf.viewModel.squareDetailViewModel.likeds addObject:likeModel];
                         }
                         else
                         {
                             [btn setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
-                            
+                            [weakSelf.viewModel.squareDetailViewModel.likeds enumerateObjectsUsingBlock:^(LBB_SquareLikeList * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                if([obj.portrait isEqualToString:likeModel.portrait])
+                                    [weakSelf.viewModel.squareDetailViewModel.likeds removeObjectAtIndex:idx];
+                            }];
                         }
+                        [self.tableView reloadData];
                     }
                 }];
             }
