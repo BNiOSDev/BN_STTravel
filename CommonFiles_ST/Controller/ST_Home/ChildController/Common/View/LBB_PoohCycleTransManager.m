@@ -47,7 +47,7 @@ viewController:(UIViewController*)viewController{
             [viewController.navigationController pushViewController:webViewController animated:YES];
         }
             break;
-            case 2://列表
+    /*        case 2://列表
         {
             UIViewController* dest;
             switch (model.type) {
@@ -89,7 +89,8 @@ viewController:(UIViewController*)viewController{
             
         }
             break;
-            case 3://详情
+     */
+            case 2://详情
         {
             LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc] init];
             LBB_SpotModel* viewModel = [[LBB_SpotModel alloc]init];
