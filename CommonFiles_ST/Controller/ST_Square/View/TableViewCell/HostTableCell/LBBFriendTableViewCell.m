@@ -79,6 +79,12 @@
     [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userHeadPortraitUrl] placeholderImage:DEFAULTIMAGE];
     nameLabel.text = model.userName;
     contentLabel.text = model.attentionRemark;
+    if(model.AttentionStatus == 0)
+    {
+        [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
+    }else{
+        [focusBtn setTitle:@"已关注" forState:UIControlStateNormal];
+    }
    // @weakify(self)
     [RACObserve(model, AttentionStatus) subscribeNext:^(NSNumber* num) {
         
