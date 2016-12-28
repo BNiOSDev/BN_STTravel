@@ -138,6 +138,7 @@
             moreBtn.titleLabel.font = Font10;
             [moreBtn setTitleColor:ColorGray forState:0];
             [moreBtn setImageEdgeInsets:UIEdgeInsetsMake(0, AUTO(100), 0, 0)];
+            [moreBtn addTarget:self action:@selector(catFreienfMore:) forControlEvents:UIControlEventTouchUpInside];
             [footView addSubview:moreBtn];
             return footView;
         }
@@ -248,7 +249,7 @@
     {
         LBBFriendViewController   *vc = [[LBBFriendViewController alloc]init];
         vc.viewModel = self.viewModel;
-        [self.navigationController pushViewController:vc animated:YES];
+//        [self.navigationController pushViewController:vc animated:YES];
     }else{
         LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
         vc.viewModel = self.viewModel.ugcImageArray[indexPath.row];
@@ -280,5 +281,11 @@
     return width;
 }
 
+- (void)catFreienfMore:(UIButton *)btn
+{
+    LBBFriendViewController   *vc = [[LBBFriendViewController alloc]init];
+    vc.viewModel = self.viewModel;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end
