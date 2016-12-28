@@ -240,7 +240,7 @@ UITableViewDataSource
             [vc addChildViewController:conversationController];
             vc.view.frame = conversationController.view.frame = self.view.bounds;
             [vc.view addSubview:conversationController.view];
-            
+            vc.title = @"鹭爸爸888";
             [self.navigationController pushViewController:vc animated:YES];
 //            [self performSegueWithIdentifier:@"LBB_CustomerViewController" sender:[NSNumber numberWithInt:eCustomer]];
         }

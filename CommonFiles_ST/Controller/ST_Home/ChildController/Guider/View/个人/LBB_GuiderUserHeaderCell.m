@@ -88,14 +88,14 @@
         self.privateLetterButton.layer.masksToBounds = YES;
         [self.privateLetterButton bk_addEventHandler:^(id sender){
             
-            YWPerson *person=[[YWPerson alloc]initWithPersonId:self.model.chatId EServiceGroupId:nil baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
+            YWPerson *person=[[YWPerson alloc]initWithPersonId:ws.model.chatId EServiceGroupId:nil baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
             YWConversation *conversation=[YWP2PConversation fetchConversationByPerson:person creatIfNotExist:YES baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
             YWConversationViewController *conversationController=[[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:conversation.conversationId];
             Base_BaseViewController *vc = [[Base_BaseViewController alloc]init];
             [vc addChildViewController:conversationController];
             vc.view.frame = conversationController.view.frame = [ws getViewController].view.bounds;
             [vc.view addSubview:conversationController.view];
-            vc.title = self.model.userName;
+            vc.title = ws.model.userName;
             [[ws getViewController].navigationController pushViewController:vc animated:YES];
 
         } forControlEvents:UIControlEventTouchUpInside];
