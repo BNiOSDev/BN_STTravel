@@ -122,6 +122,7 @@
         self.commentsView = [[UIButton alloc]init];
         [self.commentsView setImage:IMAGE(@"景区列表_评论") forState:UIControlStateNormal];
         [self.commentsView setTitle:@"1000" forState:UIControlStateNormal];
+        [self.commentsView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
         [self.commentsView setTitleColor:ColorLightGray forState:UIControlStateNormal];
         [self.commentsView.titleLabel setFont:Font12];
         [self.contentView addSubview:self.commentsView];
@@ -155,7 +156,8 @@
             NSLog(@"greetView touch");
             
         }];
-
+        self.greetView.hidden = YES;
+        
         
         UIView* sep = [UIView new];
         [sep setBackgroundColor:ColorLine];
