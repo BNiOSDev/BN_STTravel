@@ -8,6 +8,8 @@
 
 #import "LBB_GuiderUserHeaderCell.h"
 #import "LBB_LabelDetailViewController.h"
+#import "SPKitExample.h"
+
 @implementation LBB_GuiderUserHeaderCell{
 
     RACDisposable* racIsFollow;
@@ -84,6 +86,21 @@
         }];
         self.privateLetterButton.layer.cornerRadius = buttonHeight/2;
         self.privateLetterButton.layer.masksToBounds = YES;
+        [self.privateLetterButton bk_addEventHandler:^(id sender){
+            
+            YWPerson *person=[[YWPerson alloc]initWithPersonId:self.model.chatId EServiceGroupId:nil baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
+            YWConversation *conversation=[YWP2PConversation fetchConversationByPerson:person creatIfNotExist:YES baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
+            YWConversationViewController *conversationController=[[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:conversation.conversationId];
+            Base_BaseViewController *vc = [[Base_BaseViewController alloc]init];
+            [vc addChildViewController:conversationController];
+            vc.view.frame = conversationController.view.frame = [ws getViewController].view.bounds;
+            [vc.view addSubview:conversationController.view];
+            vc.title = self.model.userName;
+            [[ws getViewController].navigationController pushViewController:vc animated:YES];
+
+        } forControlEvents:UIControlEventTouchUpInside];
+        
+        
         //地点和几张照片
         self.photoNumLabel = [UILabel new];
         [self.photoNumLabel setFont:Font13];
