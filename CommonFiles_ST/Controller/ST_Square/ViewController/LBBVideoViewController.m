@@ -172,17 +172,23 @@
                     if(!error)
                     {
                         NSLog(@"likeList.count =  %ld",model.likeds.count);
-                        NSLog(@"收藏成功，更换图片");
                         UIButton *btn = obj;
+                        LBB_SquareLikeList * likeModel = [[LBB_SquareLikeList alloc]init];
+                        likeModel.portrait = dic[@"userPicUrl"];
                         if(model.isLiked == 1)
                         {
                             [btn setImage:IMAGE(@"zjmzhuyedianzaned") forState:0];
+                            [model.likeds addObject:likeModel];
                         }
                         else
                         {
                             [btn setImage:IMAGE(@"zjmzhuyedianzan") forState:0];
-                            
+                            [model.likeds enumerateObjectsUsingBlock:^(LBB_SquareLikeList * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                if([obj.portrait isEqualToString:likeModel.portrait])
+                                    [model.likeds removeObjectAtIndex:idx];
+                            }];
                         }
+                      [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
                     }
                 }];
             }
