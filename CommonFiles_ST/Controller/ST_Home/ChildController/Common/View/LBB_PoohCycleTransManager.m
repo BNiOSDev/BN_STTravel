@@ -62,7 +62,7 @@ viewController:(UIViewController*)viewController{
                     break;
                     case 4://伴手礼
                 {
-                    BN_ShopSorterViewController *vc = [[BN_ShopSorterViewController alloc]initWith:0];
+                    BN_ShopSorterViewController *vc = [[BN_ShopSorterViewController alloc]initWith:model.objId];
                     [viewController.navigationController pushViewController:vc animated:YES];
                 }
                     break;
@@ -76,7 +76,7 @@ viewController:(UIViewController*)viewController{
                     break;
                 case 14://伴手礼
                 {
-                    BN_ShopSorterViewController *vc = [[BN_ShopSorterViewController alloc]initWith:0];
+                    BN_ShopSorterViewController *vc = [[BN_ShopSorterViewController alloc]initWith:model.objId];
                     [viewController.navigationController pushViewController:vc animated:YES];
                 }
                     break;

@@ -510,7 +510,6 @@
 		75DD23D91E134E7600DBF61E /* LBBFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD20C71E134E7400DBF61E /* LBBFriendModel.m */; };
 		75DD23DA1E134E7600DBF61E /* PraiseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD20C91E134E7400DBF61E /* PraiseModel.m */; };
 		75DD23DB1E134E7600DBF61E /* ZJMHostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD20CB1E134E7400DBF61E /* ZJMHostModel.m */; };
-		75DD23DC1E134E7600DBF61E /* SearchTagsHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75DD20CC1E134E7400DBF61E /* SearchTagsHistory.xcdatamodeld */; };
 		75DD23DD1E134E7600DBF61E /* TipHistory+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD20CF1E134E7400DBF61E /* TipHistory+CoreDataClass.m */; };
 		75DD23DE1E134E7600DBF61E /* TipHistory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD20D11E134E7400DBF61E /* TipHistory+CoreDataProperties.m */; };
 		75DD23DF1E134E7600DBF61E /* TipHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 75DD20D21E134E7400DBF61E /* TipHistory.xcdatamodeld */; };
@@ -1565,7 +1564,6 @@
 		75DD20C91E134E7400DBF61E /* PraiseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PraiseModel.m; sourceTree = "<group>"; };
 		75DD20CA1E134E7400DBF61E /* ZJMHostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJMHostModel.h; sourceTree = "<group>"; };
 		75DD20CB1E134E7400DBF61E /* ZJMHostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJMHostModel.m; sourceTree = "<group>"; };
-		75DD20CD1E134E7400DBF61E /* SearchTagsHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SearchTagsHistory.xcdatamodel; sourceTree = "<group>"; };
 		75DD20CE1E134E7400DBF61E /* TipHistory+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TipHistory+CoreDataClass.h"; sourceTree = "<group>"; };
 		75DD20CF1E134E7400DBF61E /* TipHistory+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TipHistory+CoreDataClass.m"; sourceTree = "<group>"; };
 		75DD20D01E134E7400DBF61E /* TipHistory+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TipHistory+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -5044,7 +5042,6 @@
 			isa = PBXGroup;
 			children = (
 				75DD20C11E134E7400DBF61E /* HostModel */,
-				75DD20CC1E134E7400DBF61E /* SearchTagsHistory.xcdatamodeld */,
 				75DD20CE1E134E7400DBF61E /* TipHistory+CoreDataClass.h */,
 				75DD20CF1E134E7400DBF61E /* TipHistory+CoreDataClass.m */,
 				75DD20D01E134E7400DBF61E /* TipHistory+CoreDataProperties.h */,
@@ -5811,7 +5808,7 @@
 				TargetAttributes = {
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 6E8RHK4YC3;
+						DevelopmentTeam = 8NT4E7BWNP;
 						ProvisioningStyle = Automatic;
 					};
 					C9C0E9641D9948F300575A7C = {
@@ -6314,7 +6311,6 @@
 				75DD23BF1E134E7600DBF61E /* LBB_TravelNote_BaseViewController.m in Sources */,
 				75DD22FE1E134E7500DBF61E /* AddCardViewController.m in Sources */,
 				75DD23F81E134E7600DBF61E /* CommentBoxView.m in Sources */,
-				75DD23DC1E134E7600DBF61E /* SearchTagsHistory.xcdatamodeld in Sources */,
 				75DD22521E134E7500DBF61E /* LBB_ScenicDetailVipFavoriteCell.m in Sources */,
 				75DD230E1E134E7500DBF61E /* LBB_MyUserHeaderView.m in Sources */,
 				75DD240A1E134E7600DBF61E /* ZJMTravelsViewController.m in Sources */,
@@ -6705,7 +6701,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6E8RHK4YC3;
+				DEVELOPMENT_TEAM = 8NT4E7BWNP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6805,7 +6801,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6E8RHK4YC3;
+				DEVELOPMENT_TEAM = 8NT4E7BWNP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6986,16 +6982,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		75DD20CC1E134E7400DBF61E /* SearchTagsHistory.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				75DD20CD1E134E7400DBF61E /* SearchTagsHistory.xcdatamodel */,
-			);
-			currentVersion = 75DD20CD1E134E7400DBF61E /* SearchTagsHistory.xcdatamodel */;
-			path = SearchTagsHistory.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		75DD20D21E134E7400DBF61E /* TipHistory.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
