@@ -195,6 +195,14 @@
         default:
             break;
     }
+    for(UIView *view in self.subviews)
+    {
+        if([view isKindOfClass:[UIImageView class]])
+        {
+            view.contentMode = UIViewContentModeScaleAspectFill;
+            view.clipsToBounds = YES;
+        }
+    }
 }
 
 - (void)setImageFor_One

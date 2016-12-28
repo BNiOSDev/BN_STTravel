@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initData];
-    self.navigationItem.title = @"视频评论";
+    self.navigationItem.title = @"足迹评论";
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;

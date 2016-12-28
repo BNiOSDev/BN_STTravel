@@ -77,7 +77,18 @@
     fourImage.userInteractionEnabled = YES;
     fiveImage.userInteractionEnabled = YES;
     sixImage.userInteractionEnabled = YES;
-    
+    oneImage.contentMode = UIViewContentModeScaleAspectFill;
+    oneImage.clipsToBounds = YES;
+    twoImage.contentMode = UIViewContentModeScaleAspectFill;
+    twoImage.clipsToBounds = YES;
+    threeImage.contentMode = UIViewContentModeScaleAspectFill;
+    threeImage.clipsToBounds = YES;
+    fourImage.contentMode = UIViewContentModeScaleAspectFill;
+    fourImage.clipsToBounds = YES;
+    fiveImage.contentMode = UIViewContentModeScaleAspectFill;
+    fiveImage.clipsToBounds = YES;
+    sixImage.contentMode = UIViewContentModeScaleAspectFill;
+    sixImage.clipsToBounds = YES;
 //    self.picArray = [temp copy];
 }
 
@@ -192,6 +203,8 @@
 - (void)setImageFor_One
 {
     LBB_TipImage_Pulish_ImageView  *theOneImage = [[LBB_TipImage_Pulish_ImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+    theOneImage.contentMode = UIViewContentModeScaleAspectFill;
+    theOneImage.clipsToBounds = YES;
     [self addSubview:theOneImage];
     [theOneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
 //    theOneImage.sd_layout
@@ -429,6 +442,8 @@
         UIImageView  *image = [[UIImageView alloc]init];
         image.tag = i;
         image.userInteractionEnabled = YES;
+        image.contentMode = UIViewContentModeScaleAspectFill;
+        image.clipsToBounds = YES;
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
         UITapGestureRecognizer    *tapimage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
         [image addGestureRecognizer:tapimage];
@@ -481,6 +496,8 @@
         UIImageView  *image = [[UIImageView alloc]init];
         image.tag = i;
         image.userInteractionEnabled = YES;
+        image.contentMode = UIViewContentModeScaleAspectFill;
+        image.clipsToBounds = YES;
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
         UITapGestureRecognizer    *tapimage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
         [image addGestureRecognizer:tapimage];
@@ -513,6 +530,8 @@
         UIImageView  *image = [[UIImageView alloc]init];
         image.tag = i;
         image.userInteractionEnabled = YES;
+        image.contentMode = UIViewContentModeScaleAspectFill;
+        image.clipsToBounds = YES;
         [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
         UITapGestureRecognizer    *tapimage = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(browerImage:)];
         [image addGestureRecognizer:tapimage];

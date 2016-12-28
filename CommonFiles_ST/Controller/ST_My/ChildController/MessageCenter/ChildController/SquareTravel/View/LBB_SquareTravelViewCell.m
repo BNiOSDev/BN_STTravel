@@ -50,17 +50,17 @@
     NSString *contentText = nil;
     switch (self.messgeType) {
         case eMessageFollow:
-            contentText = [NSString stringWithFormat:@"%@关注了您",_cellInfo.userName];
+            contentText = [NSString stringWithFormat:@"%@ 关注了您",_cellInfo.userName];
             break;
         case eMessageLike:
-            contentText = [NSString stringWithFormat:@"%@赞了您发布的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            contentText = [NSString stringWithFormat:@"%@ 赞了您发布的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
             break;
          
         case eMessageComment:
-            contentText = [NSString stringWithFormat:@"%@评论了您发布的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            contentText = [NSString stringWithFormat:@"%@ 评论了您发布的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
             break;
         case eMessageCollection:
-            contentText = [NSString stringWithFormat:@"%@收藏了您发布的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
+            contentText = [NSString stringWithFormat:@"%@ 收藏了您发布的%@%@",_cellInfo.userName,_cellInfo.objTypeName,_cellInfo.objName];
             break;
         default:
             break;

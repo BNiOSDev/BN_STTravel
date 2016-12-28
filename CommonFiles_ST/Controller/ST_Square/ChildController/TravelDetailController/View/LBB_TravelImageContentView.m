@@ -43,7 +43,7 @@
     if(self == [super initWithFrame:frame])
     {
         self.width = SCREEN_WIDTH - 20;
-        self.height = AUTO(230);
+        self.height = AUTO(200);
         [self setup];
     }
     return self;
@@ -73,84 +73,89 @@
     [self removeAllSubviews];
     
     _imageArray = imageArray;
-    switch (imageArray.count) {
-        case 0:
-        {
-            self.height = 0;
-            NSLog(@"没有图片哦");
-        }
-            break;
-        case 1:
-        {
-            NSArray *views = @[oneImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_One];
-        }
-            break;
-        case 2:
-        {
-            NSArray *views = @[oneImage,twoImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Two];
-        }
-            break;
-        case 3:
-        {
-            NSArray *views = @[oneImage,twoImage,threeImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Three];
-        }
-            break;
-        case 4:
-        {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Four];
-        }
-            break;
-        case 5:
-        {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,];
-            [self sd_addSubviews:views];
-            [self setImageFor_Five];
-        }
-            break;
-        case 6:
-        {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Fix];
-        }
-            break;
-        case 7:
-        {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Seven];
-        }
-            break;
-        case 8:
-        {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage];
-            [self sd_addSubviews:views];
-            [self setImageFor_Eight];
-        }
-            break;
-        case 9:
-        {
-            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage,nightImage,];
-            [self sd_addSubviews:views];
-            [self setImageFor_Night];
-        }
-            break;
-        default:
-            break;
-    }
+    
+    [self repairLayout];
+    
+//    switch (imageArray.count) {
+//        case 0:
+//        {
+//            self.height = 0;
+//            NSLog(@"没有图片哦");
+//        }
+//            break;
+//        case 1:
+//        {
+////            NSArray *views = @[oneImage];
+////            [self sd_addSubviews:views];
+//            [self setImageFor_One];
+//        }
+//            break;
+//        case 2:
+//        {
+////            NSArray *views = @[oneImage,twoImage];
+////            [self sd_addSubviews:views];
+//            [self repairLayout];
+//        }
+//            break;
+//        case 3:
+//        {
+////            NSArray *views = @[oneImage,twoImage,threeImage];
+////            [self sd_addSubviews:views];
+//            [self repairLayout];
+//        }
+//            break;
+//        case 4:
+//        {
+////            NSArray *views = @[oneImage,twoImage,threeImage,fourImage];
+////            [self sd_addSubviews:views];
+//            [self repairLayout];
+//        }
+//            break;
+//        case 5:
+//        {
+////            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,];
+////            [self sd_addSubviews:views];
+//            [self repairLayout];
+//        }
+//            break;
+//        case 6:
+//        {
+////            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage];
+////            [self sd_addSubviews:views];
+//            [self repairLayout];
+//        }
+//            break;
+//        case 7:
+//        {
+////            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage];
+////            [self sd_addSubviews:views];
+//            [self repairLayout];
+//        }
+//            break;
+//        case 8:
+//        {
+////            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage];
+////            [self sd_addSubviews:views];
+//            [self repairLayout];
+//        }
+//            break;
+//        case 9:
+//        {
+////            NSArray *views = @[oneImage,twoImage,threeImage,fourImage,fiveImage,sixImage,sevenImage,eightImage,nightImage,];
+////            [self sd_addSubviews:views];
+//            [self repairLayout];
+//        }
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 - (void)setImageFor_One
 {
     LBB_TipImage_Pulish_ImageView  *theOneImage = [[LBB_TipImage_Pulish_ImageView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
+    theOneImage.contentMode = UIViewContentModeScaleAspectFill;
+    theOneImage.clipsToBounds = YES;
     theOneImage.backgroundColor = [UIColor blueColor];
     [self addSubview:theOneImage];
     [theOneImage sd_setImageWithURL:[NSURL URLWithString:_imageArray[0]] placeholderImage:DEFAULTIMAGE];
@@ -441,6 +446,20 @@
         }
     }
     
+}
+
+
+//  修改后的布局
+ - (void)repairLayout
+{
+    for(int i = 0;i < _imageArray.count;i++)
+    {
+        UIImageView *image  =  [[UIImageView alloc]initWithFrame:CGRectMake(0, AUTO(205) * i, self.width, AUTO(200))];
+        image.contentMode = UIViewContentModeScaleAspectFill;
+        image.clipsToBounds = YES;
+        [image sd_setImageWithURL:[NSURL URLWithString:_imageArray[i]] placeholderImage:DEFAULTIMAGE];
+        [self addSubview:image];
+    }
 }
 
 

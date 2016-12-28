@@ -42,6 +42,7 @@
         sevenImage = [UIImageView new];
         eightImage = [UIImageView new];
         nightImage = [UIImageView new];
+
     }
     return self;
 }
