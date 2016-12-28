@@ -851,7 +851,7 @@
         {
             NSLog(@"getSpotSpecialListArray成功  %@",[dic objectForKey:@"rows"]);
             NSArray *array = [dic objectForKey:@"rows"];
-            NSArray *returnArray = [LBB_SpotModel mj_objectArrayWithKeyValuesArray:array];
+            NSArray *returnArray = [LBB_SpotSpecialList mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
             {
