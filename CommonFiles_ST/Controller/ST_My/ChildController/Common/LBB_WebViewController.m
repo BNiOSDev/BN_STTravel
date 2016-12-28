@@ -25,7 +25,8 @@
     }
     
     if (self.webViewURL) {
-        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.webViewURL]];
+        NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.webViewURL]];
+        [request addValue:@"true" forHTTPHeaderField:@"islbbApp"];
         [self.webView loadRequest:request];
     }
 }

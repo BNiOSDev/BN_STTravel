@@ -100,7 +100,7 @@
     navigationControllerSquare            = [[UINavigationController alloc]initWithRootViewController:viewController2];
     navigationControllerSquare.title      = @"广场";
     navigationControllerMall       = [[UINavigationController alloc]initWithRootViewController:viewController3];
-    navigationControllerMall.title = @"商城";
+    navigationControllerMall.title = @"伴手礼";
     navigationControllerMy         = [[UINavigationController alloc]initWithRootViewController:viewController4];
     navigationControllerMy.title   = @"我的";
     
@@ -117,7 +117,7 @@
                                                               image:IMAGEOriginal(@"ST_TabImage2")
                                                       selectedImage:IMAGEOriginal(@"ST_TabImage2d")];
     
-    viewController3.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"商城"
+    viewController3.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"伴手礼"
                                                               image:IMAGEOriginal(@"ST_TabImage3")
                                                       selectedImage:IMAGEOriginal(@"ST_TabImage3d")];
     

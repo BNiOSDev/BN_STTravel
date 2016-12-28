@@ -29,6 +29,4 @@
 
 @property(nonatomic, retain)LBB_UserShowViewModel* model;
 
-
-
 @end

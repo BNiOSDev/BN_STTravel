@@ -227,6 +227,11 @@ ReceiptAddressViewCellDelegate
     if ([dstVC isKindOfClass:NSClassFromString(@"AddAddressViewController")]) {
         AddAddressViewController *addAddressVC = (AddAddressViewController*)dstVC;
         addAddressVC.addressModel = sender;
+        
+        __weak typeof(self) weakSelf = self;
+        addAddressVC.completeBlock = ^(LBB_AddressModel *model){
+             [weakSelf.viewModel getAddressList:YES];
+        };
     }
 }
 

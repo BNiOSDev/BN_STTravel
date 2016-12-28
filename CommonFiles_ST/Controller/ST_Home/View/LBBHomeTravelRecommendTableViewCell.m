@@ -34,6 +34,8 @@
     if (self) {
         [self.contentView setBackgroundColor:ColorWhite];
         self.bgImageView = [UIImageView new];
+        self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.bgImageView.clipsToBounds = YES;
         [self.contentView addSubview:self.bgImageView];
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
         

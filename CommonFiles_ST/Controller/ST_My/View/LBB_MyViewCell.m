@@ -16,9 +16,9 @@
     self.label.textColor = ColorGray;
     self.label.font = Font12;
     self.numLabel.font = Font10;
-    self.numLabel.layer.borderColor = ColorBtnYellow.CGColor;
     self.numLabel.layer.cornerRadius = 8.f;
-    self.numLabel.textColor = ColorBtnYellow;
+    self.numLabel.backgroundColor = ColorRed;
+    self.numLabel.textColor = ColorWhite;
     self.numLabel.adjustsFontSizeToFitWidth = YES;
 }
 

@@ -9,8 +9,10 @@
 #import "MineBaseViewController.h"
 #import "LBB_AddressModel.h"
 
+typedef void(^AddressBlock)(LBB_AddressModel *model);
 @interface AddAddressViewController : MineBaseViewController
 
 @property(nonatomic,strong) LBB_AddressModel *addressModel;
+@property(nonatomic,strong) AddressBlock completeBlock;
 
 @end

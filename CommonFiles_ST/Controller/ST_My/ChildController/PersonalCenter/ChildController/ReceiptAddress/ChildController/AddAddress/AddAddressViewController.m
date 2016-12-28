@@ -51,6 +51,7 @@
 - (void)dealloc
 {
     self.addressModel = nil;
+    self.completeBlock = nil;
 }
 
 - (void)viewDidLoad {
@@ -187,6 +188,9 @@
     __weak typeof (self) weakSelf = self;
     [self.addressModel.loadSupport setDataRefreshblock:^{
         [weakSelf showHudPrompt:@"保存成功！"];
+        if (weakSelf.completeBlock) {
+            weakSelf.completeBlock(weakSelf.addressModel);
+        }
     }];
     
     [self.addressModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){

@@ -12,6 +12,8 @@
 #import "WXApi.h"
 #import <UMSocialCore/UMSocialCore.h>
 #import "SPKitExample.h"
+#import "UMessage.h"
+#import <UserNotificationsUI/UserNotificationsUI.h>
 
 @interface AppDelegate ()
 
@@ -27,6 +29,25 @@
     self.window.backgroundColor = ColorWhite;
     //向微信注册wxd930ea5d5a258f4f
 //    [WXApi registerApp:@"wx94b0ac5b1ba8e1c3" withDescription:@"demo 2.0"];
+    [UMessage startWithAppkey:@"56f35615e0f55ac9c20003f2" launchOptions:launchOptions httpsenable:YES ];
+    
+    //注册通知，如果要使用category的自定义策略，可以参考demo中的代码。
+    [UMessage registerForRemoteNotifications];
+    
+    //iOS10必须加下面这段代码。
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate=self;
+    UNAuthorizationOptions types10=UNAuthorizationOptionBadge|  UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
+    [center requestAuthorizationWithOptions:types10     completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            //点击允许
+            //这里可以添加一些自己的逻辑
+        } else {
+            //点击不允许
+            //这里可以添加一些自己的逻辑
+        }
+    }];
+    
     [[UMSocialManager defaultManager] setUmSocialAppkey:@"57b432afe0f55a9832001a0a"];
     
     [[UMSocialManager defaultManager] openLog:YES];
@@ -85,6 +106,61 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+//iOS10以下使用这个方法接收通知
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    //关闭友盟自带的弹出框
+    [UMessage setAutoAlert:NO];
+    [UMessage didReceiveRemoteNotification:userInfo];
+    
+    //    self.userInfo = userInfo;
+    //    //定制自定的的弹出框
+    //    if([UIApplication sharedApplication].applicationState == UIApplicationStateActive)
+    //    {
+    //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"标题"
+    //                                                            message:@"Test On ApplicationStateActive"
+    //                                                           delegate:self
+    //                                                  cancelButtonTitle:@"确定"
+    //                                                  otherButtonTitles:nil];
+    //
+    //        [alertView show];
+    //
+    //    }
+}
+
+
+//iOS10新增：处理前台收到通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于前台时的远程推送接受
+        //关闭友盟自带的弹出框
+        [UMessage setAutoAlert:NO];
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+        
+    }else{
+        //应用处于前台时的本地推送接受
+    }
+    //当应用处于前台时提示设置，需要哪个可以设置哪一个
+    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
+}
+
+//iOS10新增：处理后台点击通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于后台时的远程推送接受
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+        
+    }else{
+        //应用处于后台时的本地推送接受
+    }
+    
+}
+
 
 
 @end

@@ -673,7 +673,8 @@
     NSString *url = [NSString stringWithFormat:@"%@/spot/view/%ld",BASEURL,self.allSpotsId];
     __weak typeof(self) temp = self;
     self.spotDetails.loadSupport.loadEvent = NetLoadingEvent;
-    
+    NSLog(@"getSpotDetailsData url:%@",url);
+
     [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
         NSNumber *codeNumber = [dic objectForKey:@"code"];
