@@ -60,10 +60,11 @@
     
     conversationListController.didSelectItemBlock = ^(YWConversation *aConversation){
         NSLog(@"选中会话");
+//        YWPerson *person=[[YWPerson alloc]initWithPersonId:@"鹭爸爸888" EServiceGroupId:nil baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
+//        YWConversation *conversation=[YWP2PConversation fetchConversationByPerson:person creatIfNotExist:YES baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
+//        YWConversationViewController *conversationController=[[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:conversation.conversationId];
         
-        YWPerson *person=[[YWPerson alloc]initWithPersonId:@"鹭爸爸888" EServiceGroupId:nil baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
-        YWConversation *conversation=[YWP2PConversation fetchConversationByPerson:person creatIfNotExist:YES baseContext:[SPKitExample sharedInstance].ywIMKit.IMCore];
-        YWConversationViewController *conversationController=[[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:conversation.conversationId];
+        YWConversationViewController *conversationController = [[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:aConversation.conversationId];
         Base_BaseViewController *vc = [[Base_BaseViewController alloc]init];
         [vc addChildViewController:conversationController];
         vc.view.frame = conversationController.view.frame = self.view.bounds;

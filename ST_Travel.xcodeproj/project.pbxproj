@@ -5837,7 +5837,7 @@
 					C9C0E94B1D9948F100575A7C = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 6E8RHK4YC3;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -6821,10 +6821,10 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "831bc3dc-6e3c-4398-a351-c6c21cdf1485";
+				PROVISIONING_PROFILE_SPECIFIER = "Tourph_ Development2";
 			};
 			name = Debug;
 		};
@@ -6836,7 +6836,7 @@
 				CODE_SIGN_ENTITLEMENTS = ST_Travel/ST_Travel.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: dawei che (8475DELD6B)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6E8RHK4YC3;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6920,7 +6920,7 @@
 					"\"UIKit\"",
 					"\"-Objc -all_load\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.forudesigns.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YHZ.Tourph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

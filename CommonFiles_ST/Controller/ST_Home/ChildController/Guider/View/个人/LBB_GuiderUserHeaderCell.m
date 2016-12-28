@@ -8,6 +8,8 @@
 
 #import "LBB_GuiderUserHeaderCell.h"
 #import "LBB_LabelDetailViewController.h"
+#import "SPKitExample.h"
+
 @implementation LBB_GuiderUserHeaderCell{
 
     RACDisposable* racIsFollow;
@@ -84,6 +86,17 @@
         }];
         self.privateLetterButton.layer.cornerRadius = buttonHeight/2;
         self.privateLetterButton.layer.masksToBounds = YES;
+        
+        self.privateLetterButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            NSLog(@"按钮被点击");
+            YWConversationViewController *conversationController = [[SPKitExample sharedInstance].ywIMKit makeConversationViewControllerWithConversationId:self.model.chatId];
+            Base_BaseViewController *vc = [[Base_BaseViewController alloc]init];
+            [vc addChildViewController:conversationController];
+            vc.view.frame = conversationController.view.frame = [self getViewController].view.bounds;
+            [vc.view addSubview:conversationController.view];
+            return [RACSignal empty];
+        }];
+        
         //地点和几张照片
         self.photoNumLabel = [UILabel new];
         [self.photoNumLabel setFont:Font13];
