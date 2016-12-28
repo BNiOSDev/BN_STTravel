@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B5D28E41E13EB900027CA43 /* libUMessage_Sdk_1.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B5D28E21E13EB900027CA43 /* libUMessage_Sdk_1.4.0.a */; };
 		1BD583A61E06E74200DED267 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD583A51E06E74200DED267 /* GLKit.framework */; };
 		1DAC47CD1DE2B259001443DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CC1DE2B259001443DE /* CoreLocation.framework */; };
 		1DAC47CF1DE2B25F001443DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DAC47CE1DE2B25F001443DE /* MapKit.framework */; };
@@ -689,6 +690,8 @@
 
 /* Begin PBXFileReference section */
 		0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ST_Travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B5D28E21E13EB900027CA43 /* libUMessage_Sdk_1.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.4.0.a; sourceTree = "<group>"; };
+		1B5D28E31E13EB900027CA43 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		1BD583A51E06E74200DED267 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		1DAC47CC1DE2B259001443DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		1DAC47CE1DE2B25F001443DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -1863,6 +1866,7 @@
 				847FF6211E02CF4E009D1131 /* libresolv.tbd in Frameworks */,
 				847FF61F1E02CF42009D1131 /* libsqlite3.tbd in Frameworks */,
 				847FF61D1E02CF39009D1131 /* libstdc++.6.0.9.tbd in Frameworks */,
+				1B5D28E41E13EB900027CA43 /* libUMessage_Sdk_1.4.0.a in Frameworks */,
 				3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */,
 				75DD24531E134E7600DBF61E /* UShareUI.framework in Frameworks */,
 				8420AF7E1DF2981700D98F86 /* CoreTelephony.framework in Frameworks */,
@@ -1935,6 +1939,15 @@
 				0870AB83FAA0D30BD981EC9B /* libPods-ST_Travel.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1B5D28E11E13EB900027CA43 /* UMessage_Sdk_1.4.0 */ = {
+			isa = PBXGroup;
+			children = (
+				1B5D28E21E13EB900027CA43 /* libUMessage_Sdk_1.4.0.a */,
+				1B5D28E31E13EB900027CA43 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.4.0;
 			sourceTree = "<group>";
 		};
 		75DD1C521E134E7300DBF61E /* CommonFiles_ST */ = {
@@ -5535,6 +5548,7 @@
 		75DD21BB1E134E7400DBF61E /* QJTL_ThirdPartyCode */ = {
 			isa = PBXGroup;
 			children = (
+				1B5D28E11E13EB900027CA43 /* UMessage_Sdk_1.4.0 */,
 				75DD21BC1E134E7400DBF61E /* UMSocial */,
 				75DD21DC1E134E7400DBF61E /* WXExtensions */,
 				75DD21E31E134E7500DBF61E /* WXFrameworks */,
@@ -6717,6 +6731,7 @@
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMessage_Sdk_1.4.0",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -6816,6 +6831,7 @@
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/SocialLibraries/QQ",
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/SocialLibraries/Sina",
 					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMSocial/SocialLibraries/WeChat",
+					"$(PROJECT_DIR)/CommonFiles_ST/QJTL_ThirdPartyCode/UMessage_Sdk_1.4.0",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
