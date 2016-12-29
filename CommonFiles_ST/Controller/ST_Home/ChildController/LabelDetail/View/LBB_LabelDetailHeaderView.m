@@ -29,6 +29,7 @@
         self.bgImageView = [UIImageView new];
         self.bgImageView.contentMode = UIViewContentModeScaleAspectFill;
         self.bgImageView.clipsToBounds = YES;
+        [self.bgImageView setImage:IMAGE(@"标签背景-640")];
         [self addSubview:self.bgImageView];
         [self.bgImageView mas_makeConstraints:^(MASConstraintMaker* make){
             
@@ -258,7 +259,7 @@
     _model = model;
   //  [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
     [self.portraitImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
-    [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+  /*  [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage) completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
         
         [ws.bgImageView setImageToBlur:image
                               blurRadius:kLBBlurredImageDefaultBlurRadius
@@ -266,7 +267,7 @@
                              NSLog(@"The blurred image has been set");
                          }];
     }];
-    
+    */
     [self.typeLabel setText:model.tagName];
     [self.numLabel setText:[NSString stringWithFormat:@"%d 张照片",model.photoNum]];
    

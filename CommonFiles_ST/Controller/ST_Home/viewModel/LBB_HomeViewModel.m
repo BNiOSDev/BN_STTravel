@@ -680,14 +680,14 @@
                               };
     NSMutableArray *spotsArray = nil;
     switch (Type) {
-        case 1:
-            spotsArray = self.scenicSpotsArray;
-            break;
-        case 2:
+        case 1://美食
             spotsArray = self.footSpotsArray;
             break;
-        case 3:
+        case 2://民宿
             spotsArray = self.liveSpotsArray;
+            break;
+        case 3://景点
+            spotsArray = self.scenicSpotsArray;
             break;
         default:
             spotsArray = self.scenicSpotsArray;

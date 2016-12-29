@@ -358,7 +358,10 @@
     cell.pagerView.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
         ws.vipRecommendType = index;
-        [ws.tableView reloadData];
+        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBHomeSectionVipRecommendType];
+        [ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+        //一个cell刷新
+      //  [ws.tableView reloadData];
     };
     
     /*
