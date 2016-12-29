@@ -438,7 +438,7 @@ static const NSInteger kButtonWidth = 45;
     [self.filterMenuButton setImageEdgeInsets:UIEdgeInsetsMake(0, AutoSize(35), 0, AutoSize(-35))];
     [self.filterMenuButton setTitleEdgeInsets:UIEdgeInsetsMake(0, AutoSize(-10), 0, AutoSize(10))];
     [self.filterMenuButton setBackgroundColor:ColorBtnYellow];
-    [self.filterMenuButton.titleLabel setFont:Font13];
+    [self.filterMenuButton.titleLabel setFont:AutoFont(12)];
     [self.view addSubview:self.filterMenuButton];
     self.mDropDownListView = [[XDPopupListView alloc] initWithBoundView:self.filterMenuButton dataSource:self delegate:self popupType:XDPopupListViewDropDown];
     [self.mDropDownListView.tableView setBounces:NO];
