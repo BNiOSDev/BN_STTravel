@@ -126,7 +126,7 @@
 {
     NSString *url = [NSString stringWithFormat:@"%@/mime/address/list",BASEURL];
     
-    int curPage = isClear == YES ? 0 : round(self.addressArray.count/10.0);
+    int curPage = isClear == YES ? 0 : floor(self.addressArray.count/10.0);
 
     NSDictionary *parames = @{
                               @"curPage":[NSNumber numberWithInt:curPage],
@@ -147,8 +147,21 @@
             if (isClear) {
               [weakSelf.addressArray removeAllObjects];
             }
-           
-            [weakSelf.addressArray addObjectsFromArray:returnArray];
+            for (LBB_AddressModel *result in returnArray) {
+                BOOL isExit = NO;
+                for (int i = 0; i < weakSelf.addressArray.count; i++) {
+                    LBB_AddressModel *orignModel = weakSelf.addressArray[i];
+                    if (orignModel.addressId == result.addressId) {
+                        [weakSelf.addressArray replaceObjectAtIndex:i withObject:result];
+                        isExit = YES;
+                        break;
+                    }
+                }
+                
+                if (!isExit) {
+                    [weakSelf.addressArray addObject:result];
+                }
+            }
             weakSelf.addressArray.networkTotal = [dic objectForKey:@"total"];
             weakSelf.addressArray.loadSupport.loadEvent = codeNumber.intValue;
         }else{

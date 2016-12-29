@@ -235,7 +235,7 @@ ReceiptAddressViewCellDelegate
         
         __weak typeof(self) weakSelf = self;
         addAddressVC.completeBlock = ^(LBB_AddressModel *model){
-             [weakSelf.viewModel getAddressList:YES];
+             [weakSelf.viewModel getAddressList:NO];
         };
     }
 }
