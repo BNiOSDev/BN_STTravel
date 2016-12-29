@@ -901,6 +901,11 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 -(CGFloat)tableView:(UITableView *)tableView heightForVipMPaiRowAtIndexPath:(NSIndexPath *)indexPath{
     
     WS(ws);
+    
+    if (self.spotModel.spotDetails.ugc.count <= 0) {
+        return 0;
+    }
+    
     CGFloat height = [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailVipMPaiCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailVipMPaiCell* cell){
         [cell setUgc:ws.spotModel.spotDetails.ugc];
 
