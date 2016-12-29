@@ -134,6 +134,8 @@
         
         
         self.imageView1 = [UIImageView new];
+        self.imageView1.contentMode = UIViewContentModeScaleAspectFill;
+        self.imageView1.clipsToBounds = YES;
         [self.contentView addSubview:self.imageView1];
         [self.imageView1 mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.equalTo(ws.contentView);
@@ -158,6 +160,8 @@
         }];
         
         self.imageView2 = [UIImageView new];
+        self.imageView2.contentMode = UIViewContentModeScaleAspectFill;
+        self.imageView2.clipsToBounds = YES;
         [self.contentView addSubview:self.imageView2];
         [self.imageView2 mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.width.equalTo(ws.contentView);
@@ -199,38 +203,21 @@
     
     
     _model = model;
-    
-    /*
-     @property(nonatomic, assign)long relId;//	Long	专题与对象关系ID
-     @property(nonatomic, assign)int type;//	int	对象类型 1美食 2 民宿 3 景点  4 伴手礼
-     @property(nonatomic, assign)long objId;//	Long	对应的对象ID 如类型是景点,则本ID为关联的景点id
-
-     @property(nonatomic, assign)int likeNum;//	Int	点赞次数
-     @property(nonatomic, assign)int commentsNum;//	Int	评论条数
-     @property(nonatomic, assign)int collecteNum;//	Int	收藏次数
-     @property(nonatomic, assign)int isCollected;//	int	收藏标志 0未收藏 1：收藏
-     @property(nonatomic, assign)int isLiked;//	int	点赞标志 0未点赞 1：点赞
-     */
-    
-    /*
-     
-     @property(nonatomic, retain)UIButton* commentsView;
-     @property(nonatomic, retain)UIButton* favoriteView;
-     
-     @property(nonatomic, retain)UIImageView* imageView1;
-     @property(nonatomic, retain)UIImageView* imageView2;
-     @property(nonatomic, retain)UILabel* contentLabel;
-     
-     @property(nonatomic, retain)UIButton* moreButton;
-     @property(nonatomic, retain)UIView* sepLineView;
-     */
-    
     CGFloat margin = 8;
     [self.imageView1 sd_setImageWithURL:[NSURL URLWithString:model.imageUrl1] placeholderImage:IMAGE(PlaceHolderImage)];
     [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:model.imageUrl2] placeholderImage:IMAGE(PlaceHolderImage)];
     [self.contentLabel setText:model.contentDisplay];
     [self.contentLabel setLineSpace:margin];
-
+    
+    /* ******/
+ /*   NSString* att = model.contentDisplay;
+    if (!att) {
+        att = @"";
+    }
+    NSMutableAttributedString *htmlString =[[NSMutableAttributedString alloc] initWithData:[att dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:[NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:NULL error:nil];
+    self.contentLabel.attributedText = htmlString;
+  */
+    /*******/
     [self.titleLabel setText:model.titleDisplay];
     [self.subTitleLabel setText:model.viceTitleDisplay];
     
