@@ -461,6 +461,7 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getSpotAdvertisementListArrayClearData:%@",array);
             NSArray *returnArray = [BN_HomeAdvertisement mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
@@ -598,6 +599,7 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"热门推荐getSpotsArrayClearData:%@",array);
             NSArray *returnArray = [BN_HomeSpotsList mj_objectArrayWithKeyValuesArray:array];
             
             if (clear == YES)
@@ -702,6 +704,7 @@
         if(codeNumber.intValue == 0)
         {
             NSArray *array = [dic objectForKey:@"rows"];
+            NSLog(@"getSpotsArrayWithType type:%ld array:%@",Type,array);
             NSArray *returnArray = [BN_HomeSpotsList mj_objectArrayWithKeyValuesArray:array];
             [spotsArray_block removeAllObjects];
             

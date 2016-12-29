@@ -361,6 +361,11 @@
         [ws.tableView reloadData];
     };
     
+    /*
+     LBBPoohSegmCtrlScenicType = 0,//景点
+     LBBPoohSegmCtrlFoodsType,//美食
+     LBBPoohSegmCtrlHostelType,//民宿
+     */
     switch (self.vipRecommendType) {
         case LBBPoohSegmCtrlFoodsType:
             [cell setFootSpotsArray:self.viewModel.footSpotsArray];
