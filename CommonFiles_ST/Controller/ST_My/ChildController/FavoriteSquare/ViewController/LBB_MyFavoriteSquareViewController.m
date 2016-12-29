@@ -111,7 +111,7 @@
     
     
     self.travelContrller = [[LBB_MyTravelViewController alloc]init];
-    self.travelContrller.travelviewType = MyTravelsViewDownloaed;
+    self.travelContrller.travelviewType = MyTravelsViewFravorite;
     self.travelContrller.squareType = MySquareViewFravorite;
     [self addChildViewController:self.travelContrller];
 }
