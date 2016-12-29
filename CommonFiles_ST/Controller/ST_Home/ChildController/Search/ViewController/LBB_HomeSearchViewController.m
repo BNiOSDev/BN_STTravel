@@ -699,7 +699,7 @@ static const NSInteger kButtonWidth = 45;
         switch (self.showType) {
             case LBBPoohHomeSearchTypeGoods://伴手礼
             {
-                return 10;
+                return 0;
             }
                 break;
             case LBBPoohHomeSearchTypeScenic://景点
