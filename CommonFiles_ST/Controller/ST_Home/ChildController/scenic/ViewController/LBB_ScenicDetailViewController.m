@@ -432,6 +432,14 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     if (section == LBBScenicDetailSectionHeaderType) {
         return 0.001;
     }
+    
+    if (section == LBBScenicDetailSectionVipMPaiType) {//达人秒拍
+        
+        if (self.spotModel.spotDetails.ugc.count <= 0) {
+            return 0.001;
+        }
+    }
+    
     if (section == LBBScenicDetailSectionTravelRecommendType) {
         return AutoSize(40)+ TopSegmmentControlHeight;
     }
@@ -441,6 +449,12 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == LBBScenicDetailSectionHeaderType) {
         return [UIView new];
+    }
+    if (section == LBBScenicDetailSectionVipMPaiType) {//达人秒拍
+        
+        if (self.spotModel.spotDetails.ugc.count <= 0) {
+            return [UIView new];
+        }
     }
     WS(ws);
     UIView* v = [UIView new];
