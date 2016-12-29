@@ -63,13 +63,12 @@
    
     [_dataModel.travelDraftModel.loadSupport setDataRefreshblock:^{
         NSLog(@"%@",weakSelf.dataModel.travelDraftModel.travelNotesDetails);
+        weakSelf.headView.headImageUrl = weakSelf.dataModel.travelDraftModel.userPicUrl;
+        weakSelf.headView.coverImage = weakSelf.dataModel.travelDraftModel.picUrl;
+        weakSelf.headView.travelTime = weakSelf.dataModel.travelDraftModel.lastReleaseTime;
         [weakSelf.mTableView reloadData];
         [weakSelf.imageArray removeAllObjects];
         for (TravelNotesDetails *footModel in weakSelf.dataModel.travelDraftModel.travelNotesDetails) {
-            weakSelf.headView.headImageUrl = weakSelf.dataModel.travelDraftModel.userPicUrl;
-            weakSelf.headView.coverImage = weakSelf.dataModel.travelDraftModel.picUrl;
-            weakSelf.headView.travelTime = weakSelf.dataModel.travelDraftModel.lastReleaseTime;
-            
             for(TravelNotesPics *imageModel in footModel.pics)
             {
                 [weakSelf.imageArray addObject:imageModel];
