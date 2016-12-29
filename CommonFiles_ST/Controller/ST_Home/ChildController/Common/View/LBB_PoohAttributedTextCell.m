@@ -35,6 +35,7 @@
         CGFloat margin = 8;
         
         self.attributedTextLabel = [UILabel new];
+        self.attributedTextLabel.numberOfLines = 0;
         [self.contentView addSubview:self.attributedTextLabel];
         [self.attributedTextLabel mas_makeConstraints:^(MASConstraintMaker* make){
             

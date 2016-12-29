@@ -185,7 +185,20 @@
     }];
     segmentedControl.indexChangeBlock = ^(NSInteger index){
         NSLog(@"segmentedControl select:%ld",index);
-        ws.addressType = (int)index+1;
+        switch (index) {
+            case 0://景点
+                ws.addressType = 3;
+                break;
+            case 1://美食
+                ws.addressType = 1;
+                break;
+            case 2://民宿
+                ws.addressType = 2;
+                break;
+                
+            default:
+                break;
+        }
         [self.viewModel getsTravelNotesDetailAllSpotsType:ws.addressType name:self.searchBar.text ClearData:YES];
     };
     

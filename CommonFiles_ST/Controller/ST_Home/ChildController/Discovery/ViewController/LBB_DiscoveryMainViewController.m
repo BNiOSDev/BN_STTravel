@@ -19,6 +19,7 @@
 #import "LBB_HostelMainViewController.h"
 #import "LBB_ScenicMainViewController.h"
 #import "LBB_ScenicDetailViewController.h"
+#import "LBB_PoohCycleTransManager.h"
 static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
 
 
@@ -281,69 +282,7 @@ static NSString *cellIdentifier = @"LBB_DiscoveryMainTableViewCell";
     NSLog(@"cycleScrollView didSelectItemAtIndex:%ld",index);
     BN_HomeAdvertisement* model = [self.viewModel.advertisementArray objectAtIndex:index];
     NSLog(@"cycleScrollView didSelect :%@",model);
-    
-    switch (model.classes) {
-        case 1://外部链接
-        {
-            LBB_ToWebViewController *webViewController = [[LBB_ToWebViewController alloc]init];
-            webViewController.url = [NSURL URLWithString:model.hrefUrl];
-            [[self getViewController].navigationController pushViewController:webViewController animated:YES];
-        }
-            break;
-        case 2://列表
-        {
-            UIViewController* dest;
-            switch (model.type) {
-                case 1://美食
-                    dest = [[LBB_FoodsMainViewController alloc] init];
-                    break;
-                case 2://民宿
-                    dest = [[LBB_HostelMainViewController alloc] init];
-                    break;
-                case 3://景点
-                    dest = [[LBB_ScenicMainViewController alloc] init];
-                    break;
-                case 4://伴手礼
-                    break;
-                default:
-                    break;
-            }
-            if (dest) {
-                [self.navigationController pushViewController:dest animated:YES];
-            }
-            
-        }
-            break;
-        case 3://详情
-        {
-            LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc] init];
-            LBB_SpotModel* viewModel = [[LBB_SpotModel alloc]init];
-            viewModel.allSpotsId = model.objId;//主键Id
-            dest.spotModel = viewModel;
-            switch (model.type) {
-                case 1://美食
-                    dest.homeType = LBBPoohHomeTypeFoods;
-                    break;
-                case 2://民宿
-                    dest.homeType = LBBPoohHomeTypeHostel;
-                    break;
-                case 3://景点
-                    dest.homeType = LBBPoohHomeTypeScenic;
-                    break;
-                case 4://伴手礼
-                    break;
-                default:
-                    break;
-            }
-            if (dest) {
-                [self.navigationController pushViewController:dest animated:YES];
-            }
-        }
-            break;
-            
-        default:
-            break;
-    }
+    [[LBB_PoohCycleTransManager sharedInstance] transmission:model viewController:self];
 
 }
 
