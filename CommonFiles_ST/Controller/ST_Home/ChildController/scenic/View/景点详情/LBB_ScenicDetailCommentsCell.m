@@ -58,7 +58,7 @@
         [self.moreButton mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.portraitImageView);
             make.right.equalTo(arrow.mas_left);
-            make.width.mas_equalTo(AutoSize(60));
+            make.width.mas_equalTo(AutoSize(70));
         }];
         
         self.nickLabel = [UILabel new];
@@ -255,7 +255,7 @@
         [self.moreButton mas_remakeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.portraitImageView);
             make.right.equalTo(self.arrow.mas_left);
-            make.width.mas_equalTo(AutoSize(60));
+            make.width.mas_equalTo(AutoSize(70));
             make.height.mas_equalTo(0);
         }];
         
@@ -345,7 +345,7 @@
         [self.moreButton mas_remakeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.portraitImageView);
             make.right.equalTo(self.arrow.mas_left);
-            make.width.mas_equalTo(AutoSize(60));
+            make.width.mas_equalTo(AutoSize(70));
         }];
         
         [self.nickLabel mas_remakeConstraints:^(MASConstraintMaker* make){
@@ -494,7 +494,7 @@
         [self.moreButton mas_remakeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.portraitImageView);
             make.right.equalTo(self.arrow.mas_left);
-            make.width.mas_equalTo(AutoSize(60));
+            make.width.mas_equalTo(AutoSize(70));
             make.height.mas_equalTo(0);
         }];
         
@@ -584,7 +584,7 @@
         [self.moreButton mas_remakeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.portraitImageView);
             make.right.equalTo(self.arrow.mas_left);
-            make.width.mas_equalTo(AutoSize(60));
+            make.width.mas_equalTo(AutoSize(70));
         }];
         
         [self.nickLabel mas_remakeConstraints:^(MASConstraintMaker* make){
