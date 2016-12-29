@@ -2,7 +2,7 @@
 //  LBB_ShopChatViewController.h
 //  ST_Travel
 //
-//  Created by dhxiang on 16/12/29.
+//  Created by 美少男 on 16/12/29.
 //  Copyright © 2016年 GL_RunMan. All rights reserved.
 //
 
@@ -15,5 +15,12 @@
  * @parames chatid 百川聊天ID
  **/
 - (instancetype)initWithChatId:(NSString*)chatID;
+
+/**
+ * 设置聊天ID
+ * @parames chatid 百川聊天ID
+ **/
+
+- (void)setupChatID:(NSString *)chatID;
 
 @end
