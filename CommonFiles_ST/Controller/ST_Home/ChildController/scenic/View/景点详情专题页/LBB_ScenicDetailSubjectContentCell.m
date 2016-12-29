@@ -16,7 +16,7 @@
     RACDisposable* racCommentsNum;
     RACDisposable* racCollecteNum;
 
-    
+    UIView* gv;
 }
 
 
@@ -70,6 +70,7 @@
             make.centerX.equalTo(ws.contentView);
             make.top.equalTo(ws.subTitleLabel.mas_bottom).offset(margin);
         }];
+        gv = v;
         
         self.greatView = [[UIButton alloc]init];
         [self.greatView setImage:IMAGE(@"景点专题_点赞") forState:UIControlStateNormal];
@@ -220,6 +221,37 @@
     /*******/
     [self.titleLabel setText:model.titleDisplay];
     [self.subTitleLabel setText:model.viceTitleDisplay];
+    WS(ws);
+    if (model.imageUrl1.length <= 0) {//没有图片1
+        [self.imageView1 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.centerX.width.equalTo(ws.contentView);
+            make.top.equalTo(gv.mas_bottom).offset(margin);
+            make.height.mas_equalTo(0);
+        }];
+    }
+    else{
+    
+        [self.imageView1 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.centerX.width.equalTo(ws.contentView);
+            make.top.equalTo(gv.mas_bottom).offset(margin);
+            make.height.mas_equalTo(AutoSize(430/2));
+        }];
+    }
+    
+    if (model.imageUrl2.length <= 0) {//没有图片2
+        [self.imageView2 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.centerX.width.equalTo(ws.contentView);
+            make.top.equalTo(ws.contentLabel.mas_bottom).offset(margin);
+            make.height.mas_equalTo(0);
+        }];
+    }
+    else{
+        [self.imageView2 mas_remakeConstraints:^(MASConstraintMaker* make){
+            make.centerX.width.equalTo(ws.contentView);
+            make.top.equalTo(ws.contentLabel.mas_bottom).offset(margin);
+            make.height.mas_equalTo(AutoSize(430/2));
+        }];
+    }
     
     @weakify (self);
     [racIsCollected dispose];
@@ -280,6 +312,7 @@
         [self.greatView setTitle:[NSString stringWithFormat:@"%d",sts] forState:UIControlStateNormal];
     }];
     
+    [self.contentView layoutSubviews];
 }
 
 @end
