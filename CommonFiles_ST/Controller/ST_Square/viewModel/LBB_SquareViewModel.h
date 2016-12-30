@@ -67,11 +67,13 @@
 
 @interface LBB_SquareFriend : BN_BaseDataModel
 
-@property (nonatomic, assign)long followId ;// 主键
+@property (nonatomic, assign)long userId ;// 主键
 @property (nonatomic, strong)NSString *userName ;// 用户名称
 @property (nonatomic, strong)NSString *attentionRemark ;// 关注备注(如：哈哈小子等3人与TA互相关注)
 @property (nonatomic, strong)NSString *userHeadPortraitUrl ;// 用户头像
 @property (nonatomic, assign)int AttentionStatus ;// 0:未关注 1：已关注
+@property (nonatomic, assign)int count ;// 0:未关注 1：已关注
+@property (nonatomic, strong)NSString *friendName ;// 用户头像
 
 
 /**
