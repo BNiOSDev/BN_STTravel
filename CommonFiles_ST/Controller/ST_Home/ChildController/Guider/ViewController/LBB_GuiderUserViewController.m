@@ -244,8 +244,7 @@ typedef NS_ENUM(NSInteger, LBB_GuiderUserType) {
     }
     
     UIView* v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, height)];
-    
-    NSArray* segmentArray = @[@"动态112",@"关注12",@"粉丝1212"];
+    NSArray* segmentArray = @[[NSString stringWithFormat:@"动态%d",self.viewModel.userShowViewModel.actionNum],[NSString stringWithFormat:@"关注%d",self.viewModel.userShowViewModel.followNum],[NSString stringWithFormat:@"粉丝%d",self.viewModel.userShowViewModel.fansNum]];
     
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:segmentArray];
     segmentedControl.selectionIndicatorHeight = 2.0f;  // 线的高度

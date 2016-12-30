@@ -21,7 +21,7 @@
 {
     NSDictionary *paraDic = @{
                               @"allSpotsId":@(self.goods_id),
-                              @"allSpotsType":@(14),
+                              @"allSpotsType":@(4),
                               };
     
     NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/collecte",BASEURL];
@@ -56,7 +56,7 @@
 {
     NSDictionary *paraDic = @{
                               @"allSpotsId":@(self.goods_id),
-                              @"allSpotsType":@(14),
+                              @"allSpotsType":@(4),
                               };
     
     NSString *url = [NSString stringWithFormat:@"%@/homePage/scienicSpots/like",BASEURL];

@@ -55,6 +55,7 @@
         [self.textField mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.iconImageView);
             make.left.equalTo(ws.titleLabel.mas_right).offset(margin);
+            make.right.equalTo(ws.contentView).offset(-margin).priorityLow();
         }];
                 
         self.sepLineTop = [UIView new];
