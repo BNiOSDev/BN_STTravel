@@ -312,6 +312,8 @@
         [ws.viewModel getSpotsArrayWithType:2];//3.1.8 达人推荐 2.美食
         [ws.viewModel getSpotsArrayWithType:3];//3.1.8 达人推荐 3.民宿
         [ws.viewModel getUgcArrayClearData:YES];//3.1.9 广场中心
+        [ws.viewModel getGoodsArrayRecommend];//商品推荐
+        [ws.viewModel getGiftAdvertisementListArrayClearData:YES];//伴手礼推荐广告位
 
         
     } footerRefreshDatablock:^{

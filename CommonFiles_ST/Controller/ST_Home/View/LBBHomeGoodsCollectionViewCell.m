@@ -239,6 +239,11 @@
 }
 
 
+-(void)setSpotsArray:(NSMutableArray<BN_HomeHotGoodsObject *> *)spotsArray{
+    
+    _spotsArray = spotsArray;
+    [self.collectionView reloadData];
+}
 
 -(void)setScenicSpotsArray:(NSMutableArray<BN_HomeHotGoodsObject *> *)scenicSpotsArray{
     _scenicSpotsArray = scenicSpotsArray;

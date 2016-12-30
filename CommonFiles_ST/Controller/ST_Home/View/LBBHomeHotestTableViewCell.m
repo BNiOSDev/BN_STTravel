@@ -238,7 +238,11 @@
     [self.contentView layoutSubviews];
 }
 
-
+-(void)setSpotsArray:(NSMutableArray<BN_HomeSpotsList *> *)spotsArray{
+    
+    _spotsArray = spotsArray;
+    [self.collectionView reloadData];
+}
 
 -(void)setScenicSpotsArray:(NSMutableArray<BN_HomeSpotsList *> *)scenicSpotsArray{
     _scenicSpotsArray = scenicSpotsArray;

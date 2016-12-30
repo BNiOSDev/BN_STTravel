@@ -781,7 +781,7 @@
     
     spotsArray.loadSupport.loadEvent = NetLoadingEvent;
     
-    // __weak typeof(self) temp = self;
+    __weak typeof(self) temp = self;
     __weak NSMutableArray *spotsArray_block = spotsArray;
     [[BC_ToolRequest sharedManager] GET:url parameters:nil success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSDictionary *dic = responseObject;
