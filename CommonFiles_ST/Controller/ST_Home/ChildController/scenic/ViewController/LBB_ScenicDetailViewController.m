@@ -278,16 +278,40 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     
     WS(ws);
     
-    
-    self.sectionArray = @[
-                          @"",
-                          @"景点详情_达人秒拍",
-                          @"景点详情_推荐理由",
-                          @"景点详情_景点详情",
-                          @"景点详情_景区设施",
-                          @"景点详情_温馨提示",
-                          @"景点详情_周边推荐",
-                          ];
+    if (self.homeType == LBBPoohHomeTypeFoods){
+        self.sectionArray = @[
+                              @"",
+                              @"景点详情_达人秒拍",
+                              @"景点详情_推荐理由",
+                              @"景点详情_美食详情",
+                              @"景点详情_景区设施",
+                              @"景点详情_温馨提示",
+                              @"景点详情_周边推荐",
+                              ];
+    }
+    else if (self.homeType == LBBPoohHomeTypeHostel){
+        self.sectionArray = @[
+                              @"",
+                              @"景点详情_达人秒拍",
+                              @"景点详情_推荐理由",
+                              @"景点详情_民宿详情",
+                              @"景点详情_景区设施",
+                              @"景点详情_温馨提示",
+                              @"景点详情_周边推荐",
+                              ];
+    }
+    else{
+        self.sectionArray = @[
+                                  @"",
+                                  @"景点详情_达人秒拍",
+                                  @"景点详情_推荐理由",
+                                  @"景点详情_景点详情",
+                                  @"景点详情_景区设施",
+                                  @"景点详情_温馨提示",
+                                  @"景点详情_周边推荐",
+                                  ];
+
+    }
     
     self.automaticallyAdjustsScrollViewInsets = NO;//对策scroll View自动向下移动20像素问题
     [self.baseContentView setBackgroundColor:[UIColor whiteColor]];
@@ -441,9 +465,9 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     }
     
     if (section == LBBScenicDetailSectionTravelRecommendType) {
-        return AutoSize(40)+ TopSegmmentControlHeight;
+        return AutoSize(42)+ TopSegmmentControlHeight;
     }
-    return AutoSize(40);
+    return AutoSize(42);
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -709,7 +733,9 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             LBB_SpotsPics* pic = self.spotModel.spotDetails.allSpotsPics[0];
             url = pic.imageUrl;
         }
-        [cell showOrderMessage:self.spotModel.spotDetails.purchaseRecords andImageUrl:url];
+        if (self.homeType == LBBPoohHomeTypeScenic) {
+            [cell showOrderMessage:self.spotModel.spotDetails.purchaseRecords andImageUrl:url];
+        }
         return cell;
         
     }

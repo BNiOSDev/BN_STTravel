@@ -7,7 +7,7 @@
 //
 
 #import "LBB_DiscoveryDetailViewController.h"
-#import "LBBPoohCycleScrollCell.h"
+#import "LBBDiscoveryDetailImageViewCell.h"
 #import "LBB_DiscoveryDetailMsgCell.h"
 #import "LBB_PoohAttributedTextCell.h"
 #import "LBB_Share.h"
@@ -132,7 +132,7 @@
 -(void)registerTableViewCell{
     //header part
 
-    [self.tableView registerClass:[LBBPoohCycleScrollCell class] forCellReuseIdentifier:@"LBBPoohCycleScrollCell"];
+    [self.tableView registerClass:[LBBDiscoveryDetailImageViewCell class] forCellReuseIdentifier:@"LBBDiscoveryDetailImageViewCell"];
     [self.tableView registerClass:[LBB_DiscoveryDetailMsgCell class] forCellReuseIdentifier:@"LBB_DiscoveryDetailMsgCell"];
     [self.tableView registerClass:[LBB_PoohAttributedTextCell class] forCellReuseIdentifier:@"LBB_PoohAttributedTextCell"];
 
@@ -191,9 +191,9 @@
     if (indexPath.section == 0) {
         
         if (indexPath.row == 0) {
-            return [tableView fd_heightForCellWithIdentifier:@"LBBPoohCycleScrollCell" cacheByIndexPath:indexPath configuration:^(LBBPoohCycleScrollCell* cell){
-                [cell setCycleScrollViewHeight:AutoSize(344/2)];
-                [cell setCycleScrollViewUrls:@[self.viewModel.discoveryDetail.coverImagesUrl]];
+            return [tableView fd_heightForCellWithIdentifier:@"LBBDiscoveryDetailImageViewCell" cacheByIndexPath:indexPath configuration:^(LBBDiscoveryDetailImageViewCell* cell){
+                
+                [cell.bgImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.discoveryDetail.coverImagesUrl] placeholderImage:IMAGE(PlaceHolderImage)];
             }];
         }
         else{
@@ -222,14 +222,13 @@
     if (indexPath.section == 0) {
         
         if (indexPath.row == 0) {
-            static NSString *cellIdentifier = @"LBBPoohCycleScrollCell";
-            LBBPoohCycleScrollCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            static NSString *cellIdentifier = @"LBBDiscoveryDetailImageViewCell";
+            LBBDiscoveryDetailImageViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             if (cell == nil) {
-                cell = [[LBBPoohCycleScrollCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-                NSLog(@"LBBPoohCycleScrollCell nil");
+                cell = [[LBBDiscoveryDetailImageViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+                NSLog(@"LBBDiscoveryDetailImageViewCell nil");
             }
-            [cell setCycleScrollViewHeight:AutoSize(344/2)];
-            [cell setCycleScrollViewUrls:@[self.viewModel.discoveryDetail.coverImagesUrl]];
+            [cell.bgImageView sd_setImageWithURL:[NSURL URLWithString:self.viewModel.discoveryDetail.coverImagesUrl] placeholderImage:IMAGE(PlaceHolderImage)];
             return cell;
         }
         else{
