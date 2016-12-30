@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIView *levelGuideBgView;
 @property (weak, nonatomic) IBOutlet UIButton *coverPictureBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *userHeadImgView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *levelLabelRightContraint;
+
 @end
 
 
@@ -100,12 +102,23 @@
         }else {
             self.levelImgView.hidden = YES;
             self.levelLabel.hidden = YES;
-        } 
+        }
         if (_viewModel.auditState == 2) {
             self.guideImgView.hidden = NO;
             self.guideLabel.hidden = NO;
-        }else {self.guideImgView.hidden = YES;
+        }else {
+            self.guideImgView.hidden = YES;
             self.guideLabel.hidden = YES;
+            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+            paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;
+            paragraphStyle.alignment = NSTextAlignmentLeft;
+            
+            NSDictionary *attributes = @{NSFontAttributeName:self.levelLabel.font,
+                                         NSParagraphStyleAttributeName: paragraphStyle};
+            
+            CGSize size = [self.levelLabel.text sizeWithAttributes:attributes];
+            self.levelLabelRightContraint.constant = (size.width + 20)/2.0;
+            
         }
     }else {
         self.levelImgView.hidden = YES;
