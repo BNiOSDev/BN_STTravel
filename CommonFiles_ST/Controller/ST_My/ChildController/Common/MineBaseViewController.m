@@ -244,7 +244,7 @@
             break;
         case eNotice://消息中心-鹭爸公告
         {
-            self.navigationItem.title = NSLocalizedString(@"鹭爸公告", nil);
+            self.navigationItem.title = NSLocalizedString(@"鹭爸爸公告", nil);
         }
             break;
         case eNoticeDetail://消息中心-鹭爸公告-公告详情

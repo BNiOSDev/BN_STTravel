@@ -199,7 +199,7 @@ UITableViewDataSource
             break;
         case eNotice://鹭爸公告
         {
-            titleStr = TEXT(@"鹭爸公告");
+            titleStr = TEXT(@"鹭爸爸公告");
             imageName = @"鹭爸公告.png"; //icon 本地图标
         }
             break;
