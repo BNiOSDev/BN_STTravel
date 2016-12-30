@@ -11,9 +11,7 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "AddAddressViewController.h"
 
-@interface ReceiptAddressViewController ()<
-ReceiptAddressViewCellDelegate
->
+@interface ReceiptAddressViewController ()<ReceiptAddressViewCellDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
@@ -80,6 +78,17 @@ ReceiptAddressViewCellDelegate
 }
 
 #pragma mark - tableView delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LBB_AddressModel *model = self.viewModel.addressArray[indexPath.row];
+    if (self.selectBlock) {
+        self.selectBlock(model);
+        self.selectBlock = nil;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.viewModel.addressArray.count;
