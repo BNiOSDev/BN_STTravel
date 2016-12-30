@@ -20,6 +20,7 @@
 @property (nonatomic, strong)NSString *userName ;// 用户名称
 @property (nonatomic, strong)NSString *userPicUrl ;// 用户头像
 @property (nonatomic, assign)long timeDistance ;// 时间距离(分)
+@property (nonatomic, strong)NSString *timeDistanceRemark;//距离时间秒速
 @property (nonatomic, assign)long allSpotsId ;// 场景ID
 @property (nonatomic, strong)NSString *allSpotsName ;// 场景名称
 @property (nonatomic, strong)NSMutableArray<LBB_SquarePics *> *pics ;// 图片集合

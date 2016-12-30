@@ -193,7 +193,7 @@
     _nameLable.text = model.userName;
     
     _addressNameLabel.text = model.allSpotsName ;// 场景名称;
-    _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
+    _timeLabel.text = [NSString stringWithFormat:@"%@",model.timeDistanceRemark];
     _contentLabel.text = model.picsRemark ;// 图片描述
     //图片集合
     NSMutableArray *imageArray = (NSMutableArray *)[model.pics map:^id(LBB_SquarePics *element) {

@@ -200,7 +200,7 @@
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");
     _addressNameLabel.text = model.allSpotsName;
-    _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
+    _timeLabel.text = [NSString stringWithFormat:@"%@",model.timeDistanceRemark];
     _contentLabel.text = model.videoRemark;//视频描述
     
     [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.coverImageUrl] placeholderImage:DEFAULTIMAGE];

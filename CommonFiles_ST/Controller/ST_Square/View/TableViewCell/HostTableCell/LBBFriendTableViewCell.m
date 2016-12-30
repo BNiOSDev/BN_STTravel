@@ -47,7 +47,7 @@
     [self addSubview:contentLabel];
     
     focusBtn = [[UIButton alloc]initWithFrame:CGRectMake(DeviceWidth - AUTO(45) - 20, AUTO(20), AUTO(45), AUTO(20))];
-    [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
+//    [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
     [focusBtn setTitleColor:UIColorFromRGB(0xBA9150) forState:0];
     focusBtn.titleLabel.font = FONT(AUTO(12.0));
     LRViewBorderRadius(focusBtn, 2.0, 0.5, UIColorFromRGB(0xBA9150));
@@ -85,7 +85,7 @@
     }else{
         [focusBtn setTitle:@"已关注" forState:UIControlStateNormal];
     }
-   // @weakify(self)
+    @weakify(self)
     [RACObserve(model, AttentionStatus) subscribeNext:^(NSNumber* num) {
         
         int status = [num intValue];
