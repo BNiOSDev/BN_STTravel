@@ -25,6 +25,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = ColorLine;
+        self.image = IMAGE(@"poohtest");
+        self.contentMode = UIViewContentModeScaleAspectFill;
     }
     return self;
 }
@@ -80,7 +82,7 @@
     if ([_imageURL length]) {
         [self  sd_setImageWithURL:[NSURL URLWithString:_imageURL] placeholderImage:DEFAULTIMAGE];
     }else {
-        self.image = nil;
+        self.image = IMAGE(@"poohtest");
     }
     
 }
