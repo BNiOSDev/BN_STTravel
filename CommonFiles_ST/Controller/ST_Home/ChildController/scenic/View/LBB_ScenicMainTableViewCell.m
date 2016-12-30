@@ -75,7 +75,7 @@
 
             make.left.equalTo(ws.titleLabel);
             make.top.equalTo(ws.titleLabel.mas_bottom).offset(margin);
-            make.width.lessThanOrEqualTo(@(120));
+            make.width.lessThanOrEqualTo(@(AutoSize(100)));
         }];
         
         UIView* sep = [UIView new];
