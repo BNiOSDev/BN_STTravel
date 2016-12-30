@@ -58,6 +58,7 @@
         [self.textField mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.iconImageView);
             make.left.equalTo(ws.titleLabel.mas_right).offset(margin);
+            make.right.equalTo(ws.contentView.mas_right).offset(-AutoSize(20) - 20);
         }];
         
         self.rightButton = [UIButton new];
