@@ -16,9 +16,22 @@
 
 @property (nonatomic, retain) UITableView* tableView;
 
+@property (nonatomic, assign) BOOL isLocal;
+
+
 @end
 
 @implementation LBB_DiscoveryDetailViewController
+
+-(id)initWithDetailModel:(LBB_DiscoveryDetailModel*)detailModel{
+
+    if (self = [super init]) {
+        self.viewModel = [[LBB_DiscoveryModel alloc] init];
+        self.viewModel.discoveryDetail = detailModel;
+        self.isLocal = YES;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -123,7 +136,9 @@
         make.width.top.centerX.equalTo(ws.view);
         make.bottom.equalTo(ws.view);
     }];
-    [self initViewModel];
+    if (!self.isLocal) {
+        [self initViewModel];
+    }
 
 }
 
