@@ -72,7 +72,7 @@
 @property (nonatomic, strong)NSString *attentionRemark ;// 关注备注(如：哈哈小子等3人与TA互相关注)
 @property (nonatomic, strong)NSString *userHeadPortraitUrl ;// 用户头像
 @property (nonatomic, assign)int AttentionStatus ;// 0:未关注 1：已关注
-
+@property (nonatomic, assign)int  userId;
 
 /**
  3.4.3	广场-广场主页-好友关注（已测）

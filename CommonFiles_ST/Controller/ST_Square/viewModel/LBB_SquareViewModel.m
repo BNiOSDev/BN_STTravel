@@ -216,7 +216,7 @@
 - (void)attention:(void (^)(NSError *error))block
 {
     NSDictionary *paraDic = @{
-                              @"beUserId":@(self.followId),
+                              @"beUserId":@(self.userId),
                               };
     
     NSString *url = [NSString stringWithFormat:@"%@/square/friends/attention",BASEURL];
