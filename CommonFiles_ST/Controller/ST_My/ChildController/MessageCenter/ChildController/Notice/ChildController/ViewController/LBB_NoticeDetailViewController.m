@@ -32,7 +32,8 @@
     if (self.viewModel) {
         self.titleLabel.text = self.viewModel.title;
         self.timeLabel.text = self.viewModel.createTime;
-        self.textView.text = self.viewModel.content;
+        NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[self.viewModel.content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        self.textView.attributedText = attrStr;
     }
 }
 

@@ -9,6 +9,8 @@
 #import "LBBHomeAnnouncementTableViewCell.h"
 #import "GYChangeTextView.h"
 #import "LBB_ToWebViewController.h"
+#import "LBB_NoticeDetailViewController.h"
+
 @interface LBBHomeAnnouncementTableViewCell()<GYChangeTextViewDelegate>{
 
     UILabel* label;
@@ -173,11 +175,24 @@
    // NSLog(@"%@ select: %ld",[textView class],index);
     if (self.noticesArray.count > 0) {
         BN_HomeNotices* obj = [self.noticesArray objectAtIndex:index];
-        LBB_ToWebViewController* vc = [[LBB_ToWebViewController alloc] init];
-        vc.webTitle = obj.title;
-        vc.isLoadHtml = YES;
-        vc.htmlString = obj.content;
-        [[self getViewController].navigationController pushViewController:vc animated:YES];
+        LBB_NoticeModel *noticeModel = [[LBB_NoticeModel alloc]init];
+        noticeModel.noticesId = obj.noticesId;
+        WS(ws);
+        [noticeModel getNoticeModelDataBlock:^(LBB_NoticeModel *model ,NSError *error) {
+            if (!error) {
+                UIStoryboard *main = [UIStoryboard storyboardWithName:@"MineStoryboard" bundle:nil];
+                LBB_NoticeDetailViewController* vc = [main instantiateViewControllerWithIdentifier:@"LBB_NoticeDetailViewController"];
+                vc.title = @"鹭爸爸公告";
+                vc.viewModel = noticeModel;
+                [[ws getViewController].navigationController pushViewController:vc animated:YES];
+            }
+        }];
+
+//        LBB_ToWebViewController* vc = [[LBB_ToWebViewController alloc] init];
+//        vc.webTitle = obj.title;
+//        vc.isLoadHtml = YES;
+//        vc.htmlString = obj.content;
+//        [[self getViewController].navigationController pushViewController:vc animated:YES];
     }
 }
 

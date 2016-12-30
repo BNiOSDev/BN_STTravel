@@ -15,6 +15,8 @@
 @property(nonatomic,copy) NSString* content;//内容
 @property(nonatomic,copy) NSString* createTime;//创建时间
 
+- (void)getNoticeModelDataBlock:(void (^)(LBB_NoticeModel *noticeModel ,NSError* error))block;
+
 @end
 
 @interface LBB_NoticeViewModel : BN_BaseDataModel
