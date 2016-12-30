@@ -58,15 +58,15 @@
         
         contentLabel = [UILabel new];
         [contentLabel setFont:Font12];
-        [contentLabel setTextAlignment:NSTextAlignmentCenter];
-        [contentLabel setNumberOfLines:0];
+       // [contentLabel setTextAlignment:NSTextAlignmentCenter];
+        [contentLabel setNumberOfLines:2];
         [contentLabel setTextColor:ColorLightGray];
         [self.contentView addSubview:contentLabel];
         [contentLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerX.equalTo(ws.contentView);
             make.top.equalTo(titleLabel.mas_bottom).offset(margin);
-            make.left.equalTo(ws.contentView).offset(4*margin);
-            make.right.equalTo(ws.contentView).offset(-4*margin);
+            make.left.equalTo(ws.contentView).offset(2*margin);
+            make.right.equalTo(ws.contentView).offset(-2*margin);
 
         }];
         

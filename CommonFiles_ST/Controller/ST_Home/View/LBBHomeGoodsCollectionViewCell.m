@@ -53,7 +53,7 @@
         horizontalCellLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         horizontalCellLayout.minimumInteritemSpacing = 6;
         horizontalCellLayout.minimumLineSpacing = 6;
-        horizontalCellLayout.itemSize = CGSizeMake(AutoSize(280/2), AutoSize(260/2));
+        horizontalCellLayout.itemSize = CGSizeMake(AutoSize(186/2), AutoSize(260/2));
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:horizontalCellLayout];
         

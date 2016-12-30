@@ -91,11 +91,11 @@
         int status = [num intValue];
         if (status == 0) {//未关注
             [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
-             NSLog(@"id = %ld,status",model.followId);
+             NSLog(@"id = %ld,status",model.userId);
         }
         else{//已关注
             [focusBtn setTitle:@"已关注" forState:UIControlStateNormal];
-            NSLog(@"id = %ld,statused",model.followId);
+            NSLog(@"id = %ld,statused",model.userId);
         }
     }];
 

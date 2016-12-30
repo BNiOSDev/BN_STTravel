@@ -134,9 +134,20 @@
         tView = nil;
     }
     
-    CGFloat x = 3 + 20 + 20 + title.frame.size.width + 25;
+    UIFont *font = [UIFont boldSystemFontOfSize:AutoSize(14)];
+    CGSize size = CGSizeMake(MAXFLOAT, AutoSize(100));
+    CGSize buttonSize = [title.text boundingRectWithSize:size
+                                              options:NSStringDrawingTruncatesLastVisibleLine  | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                           attributes:@{ NSFontAttributeName:font}
+                                              context:nil].size;
     
-    tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x+40, 0, DeviceWidth-40-x, AutoSize(35))];
+    NSLog(@"AutoSize(18):%f",AutoSize(18));
+    NSLog(@"buttonSize.height:%f",buttonSize.height);
+    NSLog(@"buttonSize.width:%f",buttonSize.width);
+    
+    CGFloat x = 3 + 20 + 20 + buttonSize.width;
+    
+    tView = [[GYChangeTextView alloc] initWithFrame:CGRectMake(x, 0, DeviceWidth-x, AutoSize(35))];
     tView.delegate = self;
     [self.contentView addSubview:tView];
     [tView mas_makeConstraints:^(MASConstraintMaker* make){

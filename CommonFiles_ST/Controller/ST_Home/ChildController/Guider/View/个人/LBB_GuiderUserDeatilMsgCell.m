@@ -35,7 +35,9 @@
             make.top.equalTo(ws.contentView).offset(margin);
             make.left.equalTo(ws.contentView).offset(3*margin);
           //  make.width.height.mas_equalTo(AutoSize(14));
+           // make.width.lessThanOrEqualTo(@(AutoSize(15)));
         }];
+        
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setFont:Font15];
