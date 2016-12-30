@@ -65,6 +65,7 @@
     _nameLable = [UILabel new];
     _nameLable.font = [UIFont systemFontOfSize:14.0];
     _nameLable.textColor = ColorBlack;
+//    [self showShadow:_nameLable];
     
     _addressImage = [UIImageView new];
     
@@ -299,6 +300,16 @@
     {
         self.btnBlock(btn,UITableViewCellCollect);
     }
+}
+
+//  加阴影
+- (void)showShadow:(UIView*)view
+{
+    CALayer *layer = [view layer];
+    layer.shadowOffset = CGSizeMake(1.f, 1.f);
+    layer.shadowRadius = .5f;
+    layer.shadowColor = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.7;
 }
 
 

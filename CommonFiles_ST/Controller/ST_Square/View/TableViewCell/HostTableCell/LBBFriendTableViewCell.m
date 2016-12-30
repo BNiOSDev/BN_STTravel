@@ -78,6 +78,7 @@
     _model = model;
     [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userHeadPortraitUrl] placeholderImage:DEFAULTIMAGE];
     nameLabel.text = model.userName;
+//    [self showShadow:nameLabel];
     contentLabel.text = model.attentionRemark;
     if(model.AttentionStatus == 0)
     {
@@ -99,7 +100,16 @@
         }
     }];
 
-    
+}
+
+//  加阴影
+- (void)showShadow:(UIView*)view
+{
+    CALayer *layer = [view layer];
+    layer.shadowOffset = CGSizeMake(1.f, 1.f);
+    layer.shadowRadius = .5f;
+    layer.shadowColor = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.7;
 }
 
 @end
