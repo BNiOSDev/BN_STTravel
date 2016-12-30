@@ -146,6 +146,7 @@
             
             make.right.equalTo(ws.deletePriceLabel.mas_left).offset(-8);
             make.centerY.equalTo(ws.addressLabel);
+            make.left.equalTo(ws.distanceLabel.mas_right).offset(3).priorityLow();
         }];
         
         self.greatButton = [[UIButton alloc]init];
@@ -253,10 +254,10 @@
     
     _model = model;
     
-    [self.addressLabel setText:model.allSpotsName];
+    [self.addressLabel setText:model.address];
     
     [self.bgImageView sd_setImageWithURL:[NSURL URLWithString:model.picUrl] placeholderImage:IMAGE(PlaceHolderImage)];
-    [self.titleLabel setText:model.picRemark];
+    [self.titleLabel setText:model.allSpotsName];
     
     [self.distanceLabel setText:[NSString stringWithFormat:@"%.0fkm",model.distance]];
     [self.commentsButton setTitle:[NSString stringWithFormat:@"%d",model.commentsNum] forState:UIControlStateNormal];
