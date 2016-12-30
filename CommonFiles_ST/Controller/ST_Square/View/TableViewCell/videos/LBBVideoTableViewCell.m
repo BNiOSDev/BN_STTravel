@@ -197,10 +197,11 @@
     
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
+//    [self showShadow:_nameLable];
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");
     _addressNameLabel.text = model.allSpotsName;
-    _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
+    _timeLabel.text = [NSString stringWithFormat:@"%@",model.timeDistanceRemark];
     _contentLabel.text = model.videoRemark;//视频描述
     
     [_contentImage sd_setImageWithURL:[NSURL URLWithString:model.coverImageUrl] placeholderImage:DEFAULTIMAGE];
@@ -325,6 +326,16 @@
 - (void)collectFunc:(UIButton *)btn
 {
         self.sendCommentBolck(btn,UITableViewCellCollect);
+}
+
+//  加阴影
+- (void)showShadow:(UIView*)view
+{
+    CALayer *layer = [view layer];
+    layer.shadowOffset = CGSizeMake(1.f, 1.f);
+    layer.shadowRadius = .5f;
+    layer.shadowColor = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.7;
 }
 
 @end

@@ -47,7 +47,7 @@
     [self addSubview:contentLabel];
     
     focusBtn = [[UIButton alloc]initWithFrame:CGRectMake(DeviceWidth - AUTO(45) - 20, AUTO(20), AUTO(45), AUTO(20))];
-    [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
+//    [focusBtn setTitle:@"关注" forState:UIControlStateNormal];
     [focusBtn setTitleColor:UIColorFromRGB(0xBA9150) forState:0];
     focusBtn.titleLabel.font = FONT(AUTO(12.0));
     LRViewBorderRadius(focusBtn, 2.0, 0.5, UIColorFromRGB(0xBA9150));
@@ -78,6 +78,7 @@
     _model = model;
     [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userHeadPortraitUrl] placeholderImage:DEFAULTIMAGE];
     nameLabel.text = model.userName;
+//    [self showShadow:nameLabel];
     contentLabel.text = model.attentionRemark;
     if(model.AttentionStatus == 0)
     {
@@ -85,7 +86,7 @@
     }else{
         [focusBtn setTitle:@"已关注" forState:UIControlStateNormal];
     }
-   // @weakify(self)
+    @weakify(self)
     [RACObserve(model, AttentionStatus) subscribeNext:^(NSNumber* num) {
         
         int status = [num intValue];
@@ -99,7 +100,16 @@
         }
     }];
 
-    
+}
+
+//  加阴影
+- (void)showShadow:(UIView*)view
+{
+    CALayer *layer = [view layer];
+    layer.shadowOffset = CGSizeMake(1.f, 1.f);
+    layer.shadowRadius = .5f;
+    layer.shadowColor = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.7;
 }
 
 @end

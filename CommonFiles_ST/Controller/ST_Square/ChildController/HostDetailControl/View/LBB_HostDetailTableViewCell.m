@@ -181,6 +181,7 @@
 
     [_iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl]  forState:UIControlStateNormal placeholderImage:DEFAULTIMAGE];
     _nameLable.text = model.userName;
+//    [self showShadow:_nameLable];
     NSLog(@"model.userName:%@",model.userName);
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");
@@ -281,6 +282,16 @@
 - (void)collectFunc:(UIButton *)btn
 {
     self.cellBtnBlock(btn,UITableViewCellCollect);
+}
+
+//  加阴影
+- (void)showShadow:(UIView*)view
+{
+    CALayer *layer = [view layer];
+    layer.shadowOffset = CGSizeMake(1.f, 1.f);
+    layer.shadowRadius = .5f;
+    layer.shadowColor = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.7;
 }
 
 @end
