@@ -238,6 +238,12 @@
             [self.numLabel setText:[NSString stringWithFormat:@"%d 张照片",tags.tagsViewModel.photoNum]];
         }];
         
+        self.labelButton1.hidden = YES;
+        self.labelButton2.hidden = YES;
+        self.labelButton3.hidden = YES;
+        self.labelButton4.hidden = YES;
+
+        
     }
     return self;
 }
