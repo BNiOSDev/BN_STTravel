@@ -162,7 +162,12 @@
     _model = model;
     contentImage.imageURL = model.travelNotePicUrl;
     contentLabel.text  = model.travelNoteName;
-    timeLabel.text = [NSString stringWithFormat:@"%@  %@   %@",model.releaseDate,@(model.dayCount),@(model.totalCollected)];
+    
+    timeLabel.text = [NSString stringWithFormat:@"%@",model.releaseDate];
+    if(model.dayCount > 0)
+    {
+          timeLabel.text = [NSString stringWithFormat:@"%@  %@",model.releaseDate,@(model.dayCount)];
+    }
     
     CGFloat deleteWidth = 0.f;
     CGFloat interval = 15.f;

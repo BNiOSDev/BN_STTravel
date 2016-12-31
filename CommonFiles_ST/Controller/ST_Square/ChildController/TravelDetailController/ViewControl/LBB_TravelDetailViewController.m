@@ -149,7 +149,7 @@
         [_dealDataArray removeAllObjects];
     }
 
-    for (__block int i = 1; i <= _model.dayCount; i++) {
+    for (__block int i = 1; i <= _viewModel.travelDetail.travelDayCount; i++) {
         
         NSMutableArray    *elementArray = [[NSMutableArray alloc]init];
         for(TravelNotesDetails *element in _viewModel.travelDetail.travelNotesDetails)
@@ -247,7 +247,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _model.dayCount + 1;
+    return _viewModel.travelDetail.travelDayCount + 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
