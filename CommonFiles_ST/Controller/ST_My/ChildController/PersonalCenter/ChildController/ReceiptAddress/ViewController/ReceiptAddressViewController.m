@@ -84,9 +84,9 @@
     if (self.selectBlock) {
         self.selectBlock(model);
         self.selectBlock = nil;
+        [self.navigationController popViewControllerAnimated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -205,17 +205,19 @@
     
     [cellModel.loadSupport setDataRefreshblock:^{
         [weakSelf updateDefaultModel:weakModel];
+        
+        if (weakSelf.selectBlock) {
+            weakSelf.selectBlock(weakSelf.selectModel);
+            weakSelf.selectBlock = nil;
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
     }];
     
     [cellModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
         [weakSelf showHudPrompt:remark];
     }];
-    [cellModel setDefaultAddress];
     
-    if (self.selectBlock) {
-        self.selectBlock(self.selectModel);
-        self.selectBlock = nil;
-    }
+    [cellModel setDefaultAddress];
 }
 
 - (void)updateDefaultModel:(LBB_AddressModel*)model
