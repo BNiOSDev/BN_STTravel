@@ -65,6 +65,7 @@
     _nameLable = [UILabel new];
     _nameLable.font = [UIFont systemFontOfSize:14.0];
     _nameLable.textColor = ColorBlack;
+//    [self showShadow:_nameLable];
     
     _addressImage = [UIImageView new];
     
@@ -193,7 +194,7 @@
     _nameLable.text = model.userName;
     
     _addressNameLabel.text = model.allSpotsName ;// 场景名称;
-    _timeLabel.text = [NSString stringWithFormat:@"%ld 分钟前",model.timeDistance];
+    _timeLabel.text = [NSString stringWithFormat:@"%@",model.timeDistanceRemark];
     _contentLabel.text = model.picsRemark ;// 图片描述
     //图片集合
     NSMutableArray *imageArray = (NSMutableArray *)[model.pics map:^id(LBB_SquarePics *element) {
@@ -299,6 +300,16 @@
     {
         self.btnBlock(btn,UITableViewCellCollect);
     }
+}
+
+//  加阴影
+- (void)showShadow:(UIView*)view
+{
+    CALayer *layer = [view layer];
+    layer.shadowOffset = CGSizeMake(1.f, 1.f);
+    layer.shadowRadius = .5f;
+    layer.shadowColor = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.7;
 }
 
 

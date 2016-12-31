@@ -140,10 +140,10 @@
 {
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row < self.viewModel.travelGuideArray.count) {
-        LBB_TravelGuideModel *guideModel = self.viewModel.travelGuideArray[indexPath.row];
-        LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]init];
-        dest.viewModel = [[LBB_DiscoveryModel alloc] init];
-        dest.viewModel.lineId = guideModel.lineId;
+       // LBB_TravelGuideModel *guideModel = self.viewModel.travelGuideArray[indexPath.row];
+        LBB_DiscoveryDetailViewController* dest = [[LBB_DiscoveryDetailViewController alloc]initWithDetailModel:self.downloadedTravelArray[indexPath.row]];
+       // dest.viewModel = [[LBB_DiscoveryModel alloc] init];
+       // dest.viewModel.lineId = guideModel.lineId;
         [self.navigationController pushViewController:dest animated:YES];
     }
 }

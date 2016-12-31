@@ -59,7 +59,7 @@
         contentLabel = [UILabel new];
         [contentLabel setFont:Font12];
        // [contentLabel setTextAlignment:NSTextAlignmentCenter];
-        [contentLabel setNumberOfLines:0];
+        [contentLabel setNumberOfLines:2];
         [contentLabel setTextColor:ColorLightGray];
         [self.contentView addSubview:contentLabel];
         [contentLabel mas_makeConstraints:^(MASConstraintMaker* make){

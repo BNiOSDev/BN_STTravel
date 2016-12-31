@@ -27,6 +27,7 @@
 @property (nonatomic, strong)NSString *userPicUrl;//	String	用户头像
 @property (nonatomic, strong)NSString *remark;//	String	备注
 @property (nonatomic, strong)NSString *videoUrl;//	String	视频地址(视频)
+@property (nonatomic, strong)NSString *timeDistanceRemark;//距离时间秒速
 @property (nonatomic, strong)NSMutableArray<LBB_SquarePics *> *pics;//	List	图片集合
 @property (nonatomic, assign)long timeDistance;//	Long	时间距离(分)
 @property (nonatomic, assign)long allSpotsId;//	Long	场景ID

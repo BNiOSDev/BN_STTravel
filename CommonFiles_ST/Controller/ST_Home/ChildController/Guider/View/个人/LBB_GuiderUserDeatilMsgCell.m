@@ -34,7 +34,7 @@
         [self.iconImageView mas_makeConstraints:^(MASConstraintMaker* make){
             make.top.equalTo(ws.contentView).offset(margin);
             make.left.equalTo(ws.contentView).offset(3*margin);
-          //  make.width.height.mas_equalTo(AutoSize(14));
+            make.width.height.mas_equalTo(AutoSize(14));
            // make.width.lessThanOrEqualTo(@(AutoSize(15)));
         }];
         
@@ -47,6 +47,7 @@
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.iconImageView);
             make.left.equalTo(ws.iconImageView.mas_right).offset(2*margin);
+            make.width.equalTo(@35);
         }];
         
         self.textField = [UITextField new];
@@ -58,6 +59,7 @@
         [self.textField mas_makeConstraints:^(MASConstraintMaker* make){
             make.centerY.equalTo(ws.iconImageView);
             make.left.equalTo(ws.titleLabel.mas_right).offset(margin);
+            make.right.equalTo(ws.contentView.mas_right).offset(-AutoSize(20) - 20);
         }];
         
         self.rightButton = [UIButton new];
