@@ -133,6 +133,7 @@
             NSLog(@"commentsButton touch");
             LBB_StarRatingViewController* dest = [[LBB_StarRatingViewController alloc]init];
             dest.allSpotsType = 10;// 场景类型 1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题
+            dest.themeTitle = @"攻略评价";
             dest.allSpotsId = ws.model.lineId;
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];

@@ -44,7 +44,28 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self initData];
+    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 0.0;
+    if(_model == nil && _travelDetailModel)
+    {
+        _viewModel = [[BN_SquareTravelList alloc]init];
+        _viewModel.travelDetail = _travelDetailModel;
+        NSArray *array = @[[NSString stringWithFormat:@"景点 %d",self.viewModel.travelDetail.totalScenicSpots],[NSString stringWithFormat:@"美食 %d",self.viewModel.travelDetail.totalFood],[NSString stringWithFormat:@"民宿 %d",self.viewModel.travelDetail.totalHomestay],[NSString stringWithFormat:@"购物 %d",self.viewModel.travelDetail.totalShop]];
+        if(!self.tableView)
+        {
+            [self initView];
+        }
+        self.toolsView.buttonList = array;
+        //为空时，不该有footview
+        if(self.viewModel.travelDetail.travelNotesDetails.count == 0)
+        {
+            self.tableView.tableFooterView = nil;
+        }
+        
+        [self dealData];
+        [self.tableView reloadData];
+    }else{
+        [self initData];
+    }
 }
 
 - (void)initView
@@ -149,7 +170,7 @@
     if(_tabelHead == nil)
     {
         LBB_TravelDetailHeadView *headView = [[LBB_TravelDetailHeadView alloc]initWithFrame:CGRectMake(0, 0, DeviceWidth, 100)];
-        headView.model = _model;
+        headView.model = _viewModel.travelDetail;
         __weak typeof(self) weakSelf = self;
         headView.cellBlock = ^(UIButton *btn,UITableViewCellViewSignal signal)
         {

@@ -13,7 +13,7 @@
 
 @interface LBB_TravelDetailHeadView : UIView
 //@property(nonatomic,strong)ZJMTravelModel       *model;
-@property(nonatomic,strong)BN_SquareTravelList   *model;
+@property(nonatomic,strong)BN_SquareTravelNotesModel   *model;
 @property(nonatomic,strong)CellBlockVIew           cellBlock;//按钮事件块
 @property(nonatomic, strong)NSArray<LBB_SquareTags*>* tags;//	List	标签 ：不是必须传的
 @end

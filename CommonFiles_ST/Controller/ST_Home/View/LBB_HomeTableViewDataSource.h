@@ -11,10 +11,10 @@
 
 typedef NS_ENUM(NSInteger, LBBHomeSectionType) {
     LBBHomeSectionMenuType = 0,//入口
-    LBBHomeSectionHotestType,//热门推荐
-    LBBHomeSectionTravelRecommendType,//游记推荐
     LBBHomeSectionVipRecommendType,//达人推荐
     LBBHomeSectionSquareCenterType,//广场中心
+    LBBHomeSectionTravelRecommendType,//游记推荐
+    LBBHomeSectionHotestType,//热门推荐
     LBBHomeSectionTravelProductType,//旅游产品
 };
 

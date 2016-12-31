@@ -10,7 +10,6 @@
 #import "LBB_MyVideoViewCell.h"
 #import "Header.h"
 #import "LBB_VideoDetailViewController.h"
-#import "LBBVideoPlayerViewController.h"
 
 @interface LBB_MyVideoViewController ()
 <
@@ -134,9 +133,10 @@ UICollectionViewDelegateFlowLayout>
     if (indexPath.row < self.viewModel.videoArray.count) {
         LBB_MyVideoModel *cellModel = self.viewModel.videoArray[indexPath.row];
         if ([cellModel.videoUrl length]) {
-            LBBVideoPlayerViewController  *vc = [[LBBVideoPlayerViewController alloc] init];
-            vc.videoUrl = [NSURL URLWithString:cellModel.videoUrl];
-            [self presentViewController:vc animated:YES completion:nil];
+            LBB_VideoDetailViewController *vc = [[LBB_VideoDetailViewController alloc]init];
+            vc.viewModel = [[LBB_SquareUgc alloc] init];
+            vc.viewModel.ugcId = cellModel.ugcId;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }

@@ -119,7 +119,7 @@
 -(void)setModel:(LBB_SpotDetailsViewModel *)model{
     
     _model = model;
-    [self.nameLable setText:model.phoneNoRemark];
+    [self.nameLable setText:model.phoneNo];
     [self.addressLable setText:model.address];
     
 }

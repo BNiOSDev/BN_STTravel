@@ -27,6 +27,7 @@
         self.backgroundColor = ColorLine;
         self.image = IMAGE(@"poohtest");
         self.contentMode = UIViewContentModeScaleAspectFill;
+        self.clipsToBounds = YES;
     }
     return self;
 }
@@ -53,17 +54,15 @@
         NSString *tagContent = _tagList[i];
         CGSize contentSize = sizeOfString(tagContent, CGSizeMake(9999, 20), Font12);
         UIImage *image = IMAGE(@"我的_标签");
-        UIImageView *tagImgView = [[UIImageView alloc] initWithImage:[image resizableImageWithCapInsets:
-                                                                     UIEdgeInsetsMake(0, image.size.width * .5f,
-                                                                                      0, image.size.width * .5f) resizingMode:UIImageResizingModeStretch]];
-        
+        UIImage *tagImage =  [image stretchableImageWithLeftCapWidth:40 topCapHeight:0];
+        UIImageView *tagImgView = [[UIImageView alloc] initWithImage:tagImage];
         if (contentSize.width > (selfFrame.size.width * (2.f/3.f))) {
             contentSize.width = selfFrame.size.width * (2.f/3.f);
         }
         
-        tagImgView.frame = CGRectMake(selfFrame.size.width - contentSize.width - AUTO(25), bottomY - contentSize.height - AUTO(5), contentSize.width + AUTO(15), image.size.height);
+        tagImgView.frame = CGRectMake(selfFrame.size.width - contentSize.width - AUTO(25), bottomY - contentSize.height - AUTO(5), contentSize.width + AUTO(15), image.size.height*2.f/3.0);
         bottomY -= AUTO(25);
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(tagImgView.bounds.size.width - contentSize.width - 5.f,(tagImgView.bounds.size.height - image.size.height)/2.0,  contentSize.width, image.size.height)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(tagImgView.bounds.size.width - contentSize.width - 5.f,(tagImgView.bounds.size.height - image.size.height*2.f/3.0)/2.0,  contentSize.width, image.size.height*2.f/3.0)];
         label.font = Font12;
         label.textColor = ColorWhite;
         label.text = tagContent;
