@@ -76,6 +76,19 @@
 
 -(void)setContentLabelText:(NSString *)content{
     
+    NSMutableArray *strArray = [[NSMutableArray alloc]initWithArray:[content componentsSeparatedByString:@"\""]];
+    [strArray enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj rangeOfString:@"width="].location != NSNotFound) {
+            NSString *strWidth = strArray[idx + 1];
+            NSString *strHeight = strArray[idx + 3];
+            strHeight = [NSString stringWithFormat:@"%d",(int)((DeviceWidth*strHeight.floatValue*1.0)/strWidth.floatValue)];
+            strWidth = [NSString stringWithFormat:@"%d",(int)DeviceWidth];
+            strArray[idx + 1] = strWidth;
+            strArray[idx + 3] = strHeight;
+        }
+    }];
+    content = [strArray componentsJoinedByString:@"\""];
+    
  //   self.contentLabel.text = content;
     NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     self.contentLabel.attributedText = attrStr;

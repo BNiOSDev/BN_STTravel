@@ -58,9 +58,20 @@
         att = @"";
     }
 
-//    self.attributedTextLabel.text = text;
+    self.attributedTextLabel.text = text;
+    NSMutableArray *strArray = [[NSMutableArray alloc]initWithArray:[att componentsSeparatedByString:@"\""]];
+    [strArray enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj rangeOfString:@"width="].location != NSNotFound) {
+            NSString *strWidth = strArray[idx + 1];
+            NSString *strHeight = strArray[idx + 3];
+            strHeight = [NSString stringWithFormat:@"%d",(int)((DeviceWidth*strHeight.floatValue*1.0)/strWidth.floatValue)];
+            strWidth = [NSString stringWithFormat:@"%d",(int)DeviceWidth];
+            strArray[idx + 1] = strWidth;
+            strArray[idx + 3] = strHeight;
+        }
+    }];
+    att = [strArray componentsJoinedByString:@"\""];
 
-    
     NSMutableAttributedString *htmlString =[[NSMutableAttributedString alloc] initWithData:[att dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:[NSNumber numberWithInt:NSUTF8StringEncoding]} documentAttributes:NULL error:nil];
     self.attributedTextLabel.attributedText = htmlString;
    
