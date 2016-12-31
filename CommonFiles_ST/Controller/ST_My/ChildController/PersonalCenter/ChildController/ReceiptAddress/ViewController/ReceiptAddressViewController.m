@@ -11,9 +11,7 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "AddAddressViewController.h"
 
-@interface ReceiptAddressViewController ()<
-ReceiptAddressViewCellDelegate
->
+@interface ReceiptAddressViewController ()<ReceiptAddressViewCellDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *dataSourceArray;
@@ -80,6 +78,17 @@ ReceiptAddressViewCellDelegate
 }
 
 #pragma mark - tableView delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LBB_AddressModel *model = self.viewModel.addressArray[indexPath.row];
+    if (self.selectBlock) {
+        self.selectBlock(model);
+        self.selectBlock = nil;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.viewModel.addressArray.count;
@@ -196,17 +205,19 @@ ReceiptAddressViewCellDelegate
     
     [cellModel.loadSupport setDataRefreshblock:^{
         [weakSelf updateDefaultModel:weakModel];
+        
+        if (weakSelf.selectBlock) {
+            weakSelf.selectBlock(weakSelf.selectModel);
+            weakSelf.selectBlock = nil;
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
     }];
     
     [cellModel.loadSupport setDataRefreshFailBlock:^(NetLoadEvent code ,NSString* remark){
         [weakSelf showHudPrompt:remark];
     }];
-    [cellModel setDefaultAddress];
     
-    if (self.selectBlock) {
-        self.selectBlock(self.selectModel);
-        self.selectBlock = nil;
-    }
+    [cellModel setDefaultAddress];
 }
 
 - (void)updateDefaultModel:(LBB_AddressModel*)model

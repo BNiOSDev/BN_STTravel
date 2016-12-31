@@ -12,4 +12,6 @@
 
 @property(nonatomic, retain)LBB_DiscoveryModel* viewModel;
 
+-(id)initWithDetailModel:(LBB_DiscoveryDetailModel*)detailModel;
+
 @end
