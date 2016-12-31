@@ -151,8 +151,30 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+  
+    if(indexPath.row < self.viewModel.travelArray.count){
+         LBB_TravelModel *tmpModel = self.viewModel.travelArray[indexPath.row];
+        BN_SquareTravelList *vcModel = [[BN_SquareTravelList alloc] init];;
+        vcModel.travelNotesId = tmpModel.travelNoteId;//	Long	游记主键
+        vcModel.travelNotesName= tmpModel.travelNoteName; //	String	游记名称
+        vcModel.travelNotesPicUrl = tmpModel.travelNotePicUrl;//	String	游记封面
+        vcModel.lastReleaseTime = tmpModel.releaseDate;//	String	发布日期
+        vcModel.dayCount = tmpModel.dayCount;//	Int	天数
+        vcModel.isLiked = tmpModel.isLiked;//	int	是否点赞
+        vcModel.likeNum = tmpModel.totalLike;//	Int	点赞数
+        vcModel.commentsNum = tmpModel.totalComment;//	Int	评论数
+        vcModel.isCollected = tmpModel.isCollected;//	int	是否收藏
+        vcModel.totalCollected = tmpModel.totalCollected;//	Int	收藏数
+        LBB_TravelDetailViewController *vc = [[LBB_TravelDetailViewController alloc]init];
+        vc.model = vcModel;
+        if (self.travelviewType == MyTravelsViewDownloaed){
+            vc.model = nil;
+            vc.travelDetailModel = self.downloadedTravelArray[indexPath.row];
+        }
+         [self.navigationController pushViewController:vc animated:YES];
+    }
+   
+   
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
