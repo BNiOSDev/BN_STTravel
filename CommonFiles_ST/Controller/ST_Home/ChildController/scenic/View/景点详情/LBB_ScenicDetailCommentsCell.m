@@ -203,6 +203,20 @@
                 dest.allSpotsType = (int)ws.spotSpecialDetails.type;// 场景类型 1美食 2 民宿 3 景点  5 ugc图片 6 ugc视频 7 游记9足迹  10 线路攻略11 美食专题 12民宿专题
                 dest.allSpotsId = ws.spotSpecialDetails.specialId;
             }
+            switch (dest.allSpotsType) {
+                case 1:
+                    dest.themeTitle = @"美食评价";
+                    break;
+                case 2:
+                    dest.themeTitle = @"民宿评价";
+                    break;
+                case 3:
+                    dest.themeTitle = @"景点评价";
+                    break;
+                default:
+                    dest.themeTitle = @"美食评价";
+                    break;
+            }
             [[ws getViewController].navigationController pushViewController:dest animated:YES];
         }];
         
