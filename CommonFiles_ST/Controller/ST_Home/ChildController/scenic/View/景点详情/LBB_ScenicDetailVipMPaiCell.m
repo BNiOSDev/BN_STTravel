@@ -165,4 +165,17 @@
     [self.collectionView reloadData];
 }
 
+//定义每个Section的四边间距
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    NSLog(@"insetForSectionAtIndex");
+    if (self.ugc.count <= 1) {
+        CGFloat margin = (DeviceWidth - DeviceWidth * 530/640)/2;
+        return UIEdgeInsetsMake(0, margin, 0, margin);//分别为上、左、下、右
+
+    }
+    return UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
+
+}
+
 @end
