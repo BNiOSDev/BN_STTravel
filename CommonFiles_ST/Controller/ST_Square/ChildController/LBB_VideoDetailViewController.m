@@ -51,6 +51,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
+    [[self.navigationController.navigationBar subviews] objectAtIndex:0].alpha = 1.0;
 //    [self.tableView registerClass:[LBB_VideoDetailTableViewCell class] forCellReuseIdentifier:@"LBB_VideoDetailTableViewCell"];
 }
 
