@@ -27,6 +27,7 @@
         self.backgroundColor = ColorLine;
         self.image = IMAGE(@"poohtest");
         self.contentMode = UIViewContentModeScaleAspectFill;
+        self.clipsToBounds = YES;
     }
     return self;
 }
