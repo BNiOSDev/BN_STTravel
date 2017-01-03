@@ -118,8 +118,8 @@
                                                       selectedImage:IMAGEOriginal(@"ST_TabImage2d")];
     
     viewController3.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"伴手礼"
-                                                              image:IMAGEOriginal(@"ST_TabImage3")
-                                                      selectedImage:IMAGEOriginal(@"ST_TabImage3d")];
+                                                              image:IMAGEOriginal(@"ST_TabImage31")
+                                                      selectedImage:IMAGEOriginal(@"ST_TabImage3d1")];
     
     viewController4.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"我的"
                                                               image:IMAGEOriginal(@"ST_TabImage4")
