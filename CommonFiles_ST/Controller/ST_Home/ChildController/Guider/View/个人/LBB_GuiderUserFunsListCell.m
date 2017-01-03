@@ -37,7 +37,14 @@
             make.bottom.equalTo(ws.contentView).offset(-interval);
             make.width.height.mas_equalTo(AutoSize(84/2));
         }];
-
+        self.portraitImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+            if (ws.enableBlock) {
+                ws.block(@0);
+            }
+        }];
+        [self.portraitImageView addGestureRecognizer:tap];
+        
         
         self.titleLabel = [UILabel new];
         [self.titleLabel setFont:Font15];

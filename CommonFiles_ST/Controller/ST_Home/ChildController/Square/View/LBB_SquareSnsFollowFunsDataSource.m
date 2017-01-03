@@ -8,7 +8,7 @@
 
 #import "LBB_SquareSnsFollowFunsDataSource.h"
 #import "LBB_GuiderUserFunsListCell.h"
-
+#import "LBB_SquareSnsFollowViewController.h"
 
 @interface LBB_SquareSnsFollowFunsDataSource()
 
@@ -45,6 +45,18 @@
     [cell.rightButton setTitleColor:ColorGray forState:UIControlStateNormal];
     [cell.rightButton setTitle:@"已关注" forState:UIControlStateNormal];
     [cell setModel:self.userFansArray[indexPath.row] isTour:NO show:NO];
+    
+    WS(ws);
+    cell.enableBlock = YES;
+    cell.block = ^(NSNumber* num){
+
+        LBB_SquareSnsFollowViewController* dest = [[LBB_SquareSnsFollowViewController alloc]init];
+        LBB_SquareUgc* viewModel = [[LBB_SquareUgc alloc] init];
+        LBB_UserOther* userObj = ws.userFansArray[indexPath.row];
+        viewModel.userId = userObj.userId;
+        dest.viewModel = viewModel;
+        [ws.parentController.navigationController pushViewController:dest animated:YES];
+    };
     
     
     return cell;

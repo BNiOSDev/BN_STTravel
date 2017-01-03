@@ -24,4 +24,8 @@
 @property(nonatomic, retain)LBB_UserOther* model;
 -(void)setModel:(LBB_UserOther*)model isTour:(BOOL)isTour show:(BOOL)isShow;
 
+@property(nonatomic,strong)ClickBlock block;
+
+@property(nonatomic,assign)BOOL enableBlock;
+
 @end
