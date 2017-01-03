@@ -482,6 +482,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     }
     WS(ws);
     UIView* v = [UIView new];
+    //[v setBackgroundColor:[UIColor getRandomColor]];
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
     [v setBackgroundColor:[UIColor whiteColor]];
@@ -490,14 +491,14 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
     [img setContentMode:UIViewContentModeCenter];
     [v addSubview:img];
     [img mas_makeConstraints:^(MASConstraintMaker* make){
-        make.center.height.width.equalTo(v);
-        // make.width.equalTo(@184);
+        make.center.equalTo(v);
+     //   make.width.equalTo(@184);
     }];
     if (section == LBBScenicDetailSectionTravelRecommendType) {
         
         
         [img mas_remakeConstraints:^(MASConstraintMaker* make){
-            make.centerX.width.equalTo(v);
+            make.centerX.equalTo(v);
             make.top.equalTo(v).offset(16);
         }];
         
@@ -734,7 +735,9 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             url = pic.imageUrl;
         }
         if (self.homeType == LBBPoohHomeTypeScenic) {
-            [cell showOrderMessage:self.spotModel.spotDetails.purchaseRecords andImageUrl:url];
+            if (self.spotModel.spotDetails.purchaseRecords.length > 0) {
+                [cell showOrderMessage:self.spotModel.spotDetails.purchaseRecords andImageUrl:url];
+            }
         }
         return cell;
         
