@@ -46,7 +46,7 @@
 -(id)init{
     
     if (self = [super init]) {
-      //  self.auditTags = [[NSMutableArray alloc] initFromNet];
+        self.viewModel = [[LBB_GuiderApplyViewModel alloc] init];
     }
     return self;
 }
@@ -337,7 +337,8 @@
         make.centerX.width.equalTo(noteLabel);
         make.bottom.equalTo(ws.mainScrollView).offset(-3*margin);
     }];
-    
+    NSLog(@"init self.viewModel:%@",self.viewModel);
+
     self.nameTextField.rightTextField.text = self.viewModel.applyObject.realName;
     self.identityIDTextField.rightTextField.text = self.viewModel.applyObject.idCard;
     self.guiderIDTextField.rightTextField.text = self.viewModel.applyObject.tourIdCard;

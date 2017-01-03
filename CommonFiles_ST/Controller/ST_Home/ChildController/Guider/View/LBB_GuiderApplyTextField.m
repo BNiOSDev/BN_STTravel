@@ -28,7 +28,7 @@
         UIView* sub = [UIView new];
         [self addSubview:sub];
         [sub mas_makeConstraints:^(MASConstraintMaker* make){
-            make.width.mas_equalTo(AutoSize(75));
+            make.width.mas_equalTo(AutoSize(85));
             make.left.equalTo(ws).offset(margin);
             make.top.equalTo(ws).offset(1.5*margin);
             make.height.mas_equalTo(AutoSize(50/2));
@@ -36,7 +36,7 @@
         
         UILabel* mark = [UILabel new];
         [mark setTextColor:ColorRed];
-        [mark setFont:Font15];
+        [mark setFont:AutoFont(14)];
         [mark setText:@"*"];
         [sub addSubview:mark];
         [mark mas_makeConstraints:^(MASConstraintMaker* make){
@@ -49,7 +49,7 @@
         
         self.titleLable = [UILabel new];
         [self.titleLable setTextColor:ColorGray];
-        [self.titleLable setFont:Font15];
+        [self.titleLable setFont:AutoFont(14)];
         [self.titleLable setText:@"身份证号"];
         [sub addSubview:self.titleLable];
         [self.titleLable mas_makeConstraints:^(MASConstraintMaker* make){
@@ -61,7 +61,7 @@
         
         self.rightTextField = [UITextField new];
         [self.rightTextField setTextColor:ColorGray];
-        [self.rightTextField setFont:Font15];
+        [self.rightTextField setFont:AutoFont(14)];
         [self.rightTextField setTextAlignment:NSTextAlignmentLeft];
         [self addSubview:self.rightTextField];
         [self.rightTextField mas_makeConstraints:^(MASConstraintMaker* make){
@@ -76,7 +76,7 @@
         
         self.bottomTextField = [UITextView new];
         [self.bottomTextField setTextColor:ColorGray];
-        [self.bottomTextField setFont:Font15];
+        [self.bottomTextField setFont:AutoFont(14)];
         [self.bottomTextField setPlaceholder:@"请输入您的详细介绍"];
         [self.bottomTextField setTextAlignment:NSTextAlignmentLeft];
         [self addSubview:self.bottomTextField];
