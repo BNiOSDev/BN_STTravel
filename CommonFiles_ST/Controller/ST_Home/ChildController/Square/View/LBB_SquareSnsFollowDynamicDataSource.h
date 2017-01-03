@@ -13,5 +13,6 @@
 
 - (id)initWithTableView:(UITableView *)tableView;
 @property (nonatomic, strong)NSMutableArray<LBB_UserAction *> *userActionArray;
+@property (nonatomic, assign) UIViewController *parentController;
 
 @end

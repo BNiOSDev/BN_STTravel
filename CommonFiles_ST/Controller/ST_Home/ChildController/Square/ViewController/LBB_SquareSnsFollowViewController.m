@@ -186,12 +186,15 @@ typedef NS_ENUM(NSInteger, LBB_SquareSnsFollowType) {
     
     self.dynamicDataSource = [[LBB_SquareSnsFollowDynamicDataSource alloc] initWithTableView:self.tableView];
     self.dynamicDataSource.userActionArray = self.viewModel.userShowViewModel.userActionArray;
+    self.dynamicDataSource.parentController = self;
     
     self.favoriteDataSource = [[LBB_SquareSnsFollowFavoriteDataSource alloc] initWithTableView:self.tableView];
     self.favoriteDataSource.userAttentionArray = self.viewModel.userShowViewModel.userAttentionArray;
+    self.favoriteDataSource.parentController = self;
 
     self.funsDataSource = [[LBB_SquareSnsFollowFunsDataSource alloc] initWithTableView:self.tableView];
     self.funsDataSource.userFansArray = self.viewModel.userShowViewModel.userFansArray;
+    self.funsDataSource.parentController = self;
 
     
     

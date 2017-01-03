@@ -13,5 +13,6 @@
 
 - (id)initWithTableView:(UITableView *)tableView;
 @property (nonatomic, strong)NSMutableArray<LBB_UserOther *> *userAttentionArray;
+@property (nonatomic, assign) UIViewController *parentController;
 
 @end

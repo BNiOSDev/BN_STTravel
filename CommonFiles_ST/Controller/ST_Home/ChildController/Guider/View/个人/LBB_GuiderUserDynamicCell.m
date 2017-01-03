@@ -75,6 +75,21 @@
             make.width.height.equalTo(ws.item1);
         }];
         
+        
+        [self.item1 bk_whenTapped:^{
+        
+            if (ws.enableBlock) {
+                ws.block(@0);
+            }
+            
+            
+        }];
+        [self.item2 bk_whenTapped:^{
+            if (ws.enableBlock) {
+                ws.block(@1);
+            }
+        }];
+        
     }
     return self;
 }

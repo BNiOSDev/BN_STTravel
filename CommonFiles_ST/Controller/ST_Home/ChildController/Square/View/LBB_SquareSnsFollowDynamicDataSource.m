@@ -8,7 +8,7 @@
 
 #import "LBB_SquareSnsFollowDynamicDataSource.h"
 #import "LBB_GuiderUserDynamicCell.h"
-
+#import "LBB_TravelDetailViewController.h"
 
 @interface LBB_SquareSnsFollowDynamicDataSource()
 
@@ -45,6 +45,8 @@
     
     LBB_UserAction *obj1 = [self.userActionArray objectAtIndex:idx1];
     [cell setModel1:obj1];
+    cell.enableBlock = YES;
+    
     
     if (idx2 < self.userActionArray.count) {
         LBB_UserAction *obj2 = [self.userActionArray objectAtIndex:idx2];
@@ -55,6 +57,21 @@
         cell.item2.hidden = YES;
     }
     
+    cell.tag = indexPath.row;
+
+    WS(ws);
+    cell.block = ^(NSNumber* num){
+        
+        NSInteger index = cell.tag*2 + [num integerValue];
+        NSLog(@"需跳转到老郑的游记详情页面");
+        LBB_TravelDetailViewController* dest = [[LBB_TravelDetailViewController alloc] init];
+        BN_SquareTravelList *model = [[BN_SquareTravelList alloc] init];
+        
+        LBB_UserAction* user = ws.userActionArray[index];
+        model.travelNotesId = user.objId;
+        dest.model = model;
+        [ws.parentController.navigationController pushViewController:dest animated:YES];
+    };
     return cell;
 }
 

@@ -8,8 +8,8 @@
 
 #import "LBBPoohBaseTableViewCell.h"
 #import "LBB_SquareViewModel.h"
-
-@interface LBB_GuiderUserDynamicCellItem : UIView
+#import "PoohCommon.h"
+@interface LBB_GuiderUserDynamicCellItem : UIControl
 
 @property(nonatomic,retain)UIImageView* bgImageView;
 
@@ -24,5 +24,9 @@
 
 @property(nonatomic,retain)LBB_UserAction* model1;
 @property(nonatomic,retain)LBB_UserAction* model2;
+
+@property(nonatomic,strong)ClickBlock block;
+
+@property(nonatomic,assign)BOOL enableBlock;
 
 @end

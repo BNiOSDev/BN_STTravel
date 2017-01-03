@@ -12,5 +12,6 @@
 
 - (id)initWithTableView:(UITableView *)tableView;
 @property (nonatomic, strong)NSMutableArray<LBB_UserOther *> *userFansArray;
+@property (nonatomic, assign) UIViewController *parentController;
 
 @end
