@@ -7,7 +7,8 @@
 //
 
 #import "LBB_ScenicDetailSubjectContentCell.h"
-
+#import "LBB_ScenicDetailViewController.h"
+#import <BN_ShopGoodDetailViewController.h>
 @interface LBB_ScenicDetailSubjectContentCell()
 {
     RACDisposable* racIsCollected;
@@ -195,6 +196,45 @@
             make.left.equalTo(ws.contentView).offset(16);
             make.right.equalTo(ws.contentView).offset(-16);
         }];
+        
+#pragma button action
+        [self.moreButton bk_addEventHandler:^(id sender){
+        
+         //type;//	int	对象类型 1美食 2 民宿 3 景点  4 伴手礼
+            //objId;//	Long	对应的对象ID 如类型是景点,则本ID为关联的景点id
+            
+            LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc] init];
+            LBB_SpotModel* viewModel = [[LBB_SpotModel alloc]init];
+            viewModel.allSpotsId = self.model.objId;//主键Id
+            viewModel.allSpotsType = self.model.type;//类型
+
+            dest.spotModel = viewModel;
+            switch (self.model.type) {
+                case 1://美食
+                    dest.homeType = LBBPoohHomeTypeFoods;
+                    [[ws getViewController].navigationController pushViewController:dest animated:YES];
+                    
+                    break;
+                case 2://民宿
+                    dest.homeType = LBBPoohHomeTypeHostel;
+                    [[ws getViewController].navigationController pushViewController:dest animated:YES];
+                    
+                    break;
+                case 3://景点
+                    dest.homeType = LBBPoohHomeTypeScenic;
+                    [[ws getViewController].navigationController pushViewController:dest animated:YES];
+                    
+                    break;
+                case 4://伴手礼
+                {
+                    BN_ShopGoodDetailViewController *shopGoodDetailViewController = [[BN_ShopGoodDetailViewController alloc]initWith:self.model.objId];
+                    [[ws getViewController].navigationController pushViewController:shopGoodDetailViewController animated:YES];
+                }
+                    break;
+            }
+            
+        } forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return self;
 }
