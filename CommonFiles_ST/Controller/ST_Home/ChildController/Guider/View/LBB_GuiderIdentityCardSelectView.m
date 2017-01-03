@@ -36,7 +36,7 @@
         
         UILabel* mark = [UILabel new];
         [mark setTextColor:ColorRed];
-        [mark setFont:Font15];
+        [mark setFont:AutoFont(14)];
         [mark setText:@"*"];
         [self addSubview:mark];
         [mark mas_makeConstraints:^(MASConstraintMaker* make){
@@ -52,7 +52,7 @@
         
         titleLable = [UILabel new];
         [titleLable setTextColor:ColorGray];
-        [titleLable setFont:Font15];
+        [titleLable setFont:AutoFont(14)];
         [titleLable setText:@"身份证证件照片"];
         [self addSubview:titleLable];
         [titleLable mas_makeConstraints:^(MASConstraintMaker* make){
