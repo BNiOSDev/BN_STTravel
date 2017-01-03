@@ -36,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = NSLocalizedString(@"攻略", nil);
      [self createTable];
      [self initDataSource];
 }
@@ -69,6 +70,7 @@
         [self.mTableView reloadData];
         
     }else {
+        
         __weak typeof (self) weakSelf = self;
         [self.mTableView setHeaderRefreshDatablock:^{
             [weakSelf.viewModel getMyTravelGuideList:YES];
@@ -98,10 +100,10 @@
 - (void)createTable
 {
     _mTableView = [[UITableView alloc]initWithFrame:DeviceRect style:UITableViewStyleGrouped];
-    _mTableView.height = _mTableView.height - TopSegmmentControlHeight - 64;
+    CGRect mainRect = CGRectMake(0, 0, DeviceWidth, DeviceHeight - 64.f);
+    _mTableView = [[UITableView alloc]initWithFrame:mainRect style:UITableViewStyleGrouped];
     if(self.travelviewType == MyTravelsGuideViewFravorite) {
-        _mTableView.height = DeviceHeight - 64;
-        self.navigationItem.title = NSLocalizedString(@"攻略", nil);
+        _mTableView.height = DeviceHeight - TopSegmmentControlHeight - 64;
     }
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
@@ -161,6 +163,10 @@
     return AUTO(215);
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1f;
+}
 
 #pragma mark 处理点击cell上面的按钮
 - (void)dealCellSignal:(UICollectionViewCellSignal)signel  withIndex:(NSIndexPath *)indexPath Object:(id)infoObject

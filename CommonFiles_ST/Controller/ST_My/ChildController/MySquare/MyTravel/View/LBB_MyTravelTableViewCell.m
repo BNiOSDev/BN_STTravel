@@ -166,7 +166,7 @@
     timeLabel.text = [NSString stringWithFormat:@"%@",model.releaseDate];
     if(model.dayCount > 0)
     {
-          timeLabel.text = [NSString stringWithFormat:@"%@  %@",model.releaseDate,@(model.dayCount)];
+          timeLabel.text = [NSString stringWithFormat:@"%@  %@天",model.releaseDate,@(model.dayCount)];
     }
     
     CGFloat deleteWidth = 0.f;
@@ -214,8 +214,11 @@
     _guideModel = guideModel;
     contentImage.imageURL = _guideModel.coverImageUrl;
     contentLabel.text  = _guideModel.name;
-//    timeLabel.text = [NSString stringWithFormat:@"%@  %@   %@",_guideModel.releaseDate,@(_guideModel.dayCount),@(_guideModel.totalCollected)];
-    
+    timeLabel.text = [NSString stringWithFormat:@"%@",_guideModel.releaseDate];
+//    if (_guideModel.releaseDate) {
+//        timeLabel.text = [NSString stringWithFormat:@"%@  %@天",_guideModel.releaseDate,@(_guideModel.dayCount)];
+//    }
+
     CGFloat deleteWidth = 0.f;
     CGFloat interval = 15.f;
     
