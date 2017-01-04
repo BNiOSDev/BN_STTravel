@@ -53,7 +53,7 @@
     
       __block UIView *weakSelf = lastView;
     
-        if(praiseArray.count <= 4)
+        if(praiseArray.count <= 6)
         {
             [praiseArray enumerateObjectsUsingBlock:^(PraiseModel  * obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 UIImageView *imageView = [[UIImageView alloc]init];
@@ -67,9 +67,27 @@
                 
                 [imageView setSd_cornerRadius:@(2.0)];
                 weakSelf = imageView;
+                
+                if(idx == (praiseArray.count - 1))
+                {
+                    UILabel   *praiseNumLabel = [UILabel new];
+                    praiseNumLabel.font = [UIFont systemFontOfSize:12.0];
+                    praiseNumLabel.textColor = UIColorFromRGB(0x888888);
+                    praiseNumLabel.backgroundColor = LINECOLOR;
+                    praiseNumLabel.text = [NSString stringWithFormat:@"%ld",praiseArray.count];
+                    praiseNumLabel.textAlignment = NSTextAlignmentCenter;
+                    [self addSubview:praiseNumLabel];
+                    
+                    praiseNumLabel.sd_layout
+                    .topSpaceToView(self,0)
+                    .leftSpaceToView(weakSelf, margin)
+                    .heightIs(18)
+                    .widthIs(18);
+                    [praiseNumLabel setSd_cornerRadius:@(2.0)];
+                }
             }];
         }else{
-            for(int i = 0;i < 4;i++)
+            for(int i = 0;i < 6;i++)
             {
                 UIImageView *imageView = [[UIImageView alloc]init];
                 imageView.backgroundColor = [UIColor redColor];
