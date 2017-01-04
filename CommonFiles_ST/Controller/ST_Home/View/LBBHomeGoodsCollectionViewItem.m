@@ -59,22 +59,6 @@
             
         }];
         
-        self.disView = [[UIButton alloc]init];
-        [self.disView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
-        [self.disView setTitle:@"1000" forState:UIControlStateNormal];
-        [self.disView.titleLabel setFont:AutoFont(10)];
-        [self.disView setTitleColor:ColorLightGray forState:UIControlStateNormal];
-        [self.disView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
-        [self.contentView addSubview:self.disView];
-        [self.disView mas_makeConstraints:^(MASConstraintMaker* make){
-            
-            make.left.equalTo(ws.titleLabel);
-            make.top.equalTo(ws.titleLabel.mas_bottom).offset(8);
-            make.bottom.equalTo(ws.contentView).offset(-3);
-            //  make.height.equalTo(@16);
-        }];
-        
-        
         self.greetView = [[UIButton alloc]init];
         [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
         [self.greetView setTitle:@"1000" forState:UIControlStateNormal];
@@ -84,9 +68,24 @@
         [self.contentView addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
             
-          //  make.left.equalTo(ws.disView.mas_right).offset(3);
+            
             make.left.equalTo(ws.titleLabel);
-            make.centerY.height.equalTo(ws.disView);
+            make.top.equalTo(ws.titleLabel.mas_bottom).offset(8);
+            make.bottom.equalTo(ws.contentView).offset(-3);
+            //  make.height.equalTo(@16);
+        }];
+        
+        self.disView = [[UIButton alloc]init];
+        [self.disView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
+        [self.disView setTitle:@"1000" forState:UIControlStateNormal];
+        [self.disView.titleLabel setFont:AutoFont(10)];
+        [self.disView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.disView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
+        [self.contentView addSubview:self.disView];
+        [self.disView mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.greetView.mas_right).offset(3);
+            make.centerY.height.equalTo(ws.greetView);
+            
         }];
         self.disView.hidden = YES;
         
@@ -99,7 +98,7 @@
         [self.priceLabel mas_makeConstraints:^(MASConstraintMaker* make){
             
             make.right.equalTo(ws.contentView);
-            make.centerY.height.equalTo(ws.disView);
+            make.centerY.height.equalTo(ws.greetView);
         }];
         
         [self layoutSubviews];//it must to be done to layouts subviews
@@ -133,23 +132,11 @@
 -(void)setModel:(BN_HomeHotGoodsObject *)model{
     
     _model = model;
-    
-    /*
-     @property(nonatomic,copy)NSString* name;// String 商品名称
-     @property(nonatomic,assign)int total_comment;// int 总评论数
-     @property(nonatomic,assign)int total_like;// int 点赞数
-     @property(nonatomic,assign)int total_collected;// int 收藏数
-     @property(nonatomic,assign)int is_like;// int 是否点赞 (1:是0:否)
-     @property(nonatomic,assign)int is_collect;// int 是否收藏(1:是 0:否)
-     @property(nonatomic,assign)long goods_id;// Long 商品ID
-     @property(nonatomic,copy)NSString* pic_url;// String 图片地址
-     @property(nonatomic,copy)NSString* front_price;// String 显示价格
-     @property(nonatomic,copy)NSString* real_price;// String 真实价格
-     */
-    
+
     [self.mainImageView sd_setImageWithURL:[NSURL URLWithString:model.pic_url] placeholderImage:IMAGE(PlaceHolderImage)];//场景图片
     [self.titleLabel setText:model.name];//场景名称
     [self.disView setTitle:[NSString stringWithFormat:@"%d",model.total_comment] forState:UIControlStateNormal];//评论条数
+ //   [self.greetView setTitle:[NSString stringWithFormat:@"%d",model.total_like] forState:UIControlStateNormal];//点赞条数
     
     //单价设置
     NSString* strFormat1 = [NSString stringWithFormat:@"%@元起/人",model.front_price];

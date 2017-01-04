@@ -59,22 +59,6 @@
             
         }];
 
-        self.disView = [[UIButton alloc]init];
-        [self.disView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
-        [self.disView setTitle:@"1000" forState:UIControlStateNormal];
-        [self.disView.titleLabel setFont:AutoFont(10)];
-        [self.disView setTitleColor:ColorLightGray forState:UIControlStateNormal];
-        [self.disView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
-        [self.contentView addSubview:self.disView];
-        [self.disView mas_makeConstraints:^(MASConstraintMaker* make){
-        
-            make.left.equalTo(ws.titleLabel);
-            make.top.equalTo(ws.titleLabel.mas_bottom).offset(8);
-            make.bottom.equalTo(ws.contentView).offset(-3);
-          //  make.height.equalTo(@16);
-        }];
-
-        
         self.greetView = [[UIButton alloc]init];
         [self.greetView setImage:IMAGE(@"ST_Home_Great") forState:UIControlStateNormal];
         [self.greetView setTitle:@"1000" forState:UIControlStateNormal];
@@ -84,9 +68,28 @@
         [self.contentView addSubview:self.greetView];
         [self.greetView mas_makeConstraints:^(MASConstraintMaker* make){
             
-            make.left.equalTo(ws.disView.mas_right).offset(3);
-            make.centerY.height.equalTo(ws.disView);
+
+            make.left.equalTo(ws.titleLabel);
+            make.top.equalTo(ws.titleLabel.mas_bottom).offset(8);
+            make.bottom.equalTo(ws.contentView).offset(-3);
+            //  make.height.equalTo(@16);
         }];
+        
+        self.disView = [[UIButton alloc]init];
+        [self.disView setImage:IMAGE(@"ST_Home_Comments") forState:UIControlStateNormal];
+        [self.disView setTitle:@"1000" forState:UIControlStateNormal];
+        [self.disView.titleLabel setFont:AutoFont(10)];
+        [self.disView setTitleColor:ColorLightGray forState:UIControlStateNormal];
+        [self.disView setTitleEdgeInsets:UIEdgeInsetsMake(0, 2, 0, -2)];
+        [self.contentView addSubview:self.disView];
+        [self.disView mas_makeConstraints:^(MASConstraintMaker* make){
+            make.left.equalTo(ws.greetView.mas_right).offset(3);
+            make.centerY.height.equalTo(ws.greetView);
+
+        }];
+
+        
+
         
         self.priceLabel = [UILabel new];
         [self.priceLabel setText:@"120元起/人"];
@@ -97,7 +100,7 @@
         [self.priceLabel mas_makeConstraints:^(MASConstraintMaker* make){
         
             make.right.equalTo(ws.contentView);
-            make.centerY.height.equalTo(ws.disView);
+            make.centerY.height.equalTo(ws.greetView);
         }];
         
         [self layoutSubviews];//it must to be done to layouts subviews
