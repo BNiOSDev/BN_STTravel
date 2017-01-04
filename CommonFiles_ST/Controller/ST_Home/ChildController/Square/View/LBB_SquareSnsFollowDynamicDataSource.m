@@ -9,7 +9,8 @@
 #import "LBB_SquareSnsFollowDynamicDataSource.h"
 #import "LBB_GuiderUserDynamicCell.h"
 #import "LBB_TravelDetailViewController.h"
-
+#import "LBBHostDetailViewController.h"
+#import "LBB_VideoDetailViewController.h"
 @interface LBB_SquareSnsFollowDynamicDataSource()
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -63,14 +64,34 @@
     cell.block = ^(NSNumber* num){
         
         NSInteger index = cell.tag*2 + [num integerValue];
-        NSLog(@"需跳转到老郑的游记详情页面");
-        LBB_TravelDetailViewController* dest = [[LBB_TravelDetailViewController alloc] init];
-        BN_SquareTravelList *model = [[BN_SquareTravelList alloc] init];
-        
+        //@property (nonatomic, assign)int actionType ;// 5 ugc图片 6 ugc视频 7 游记
         LBB_UserAction* user = ws.userActionArray[index];
-        model.travelNotesId = user.objId;
-        dest.model = model;
-        [ws.parentController.navigationController pushViewController:dest animated:YES];
+        if (user.actionType == 5) {//ugc 图片
+            LBBHostDetailViewController *vc = [[LBBHostDetailViewController alloc]init];
+            LBB_SquareUgc  *viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.ugcId = user.objId;
+            vc.viewModel = viewModel;
+            [ws.parentController.navigationController pushViewController:vc animated:YES];
+        }
+        else if (user.actionType == 6){//ugc视频
+            LBB_SquareUgc  *viewModel = [[LBB_SquareUgc alloc] init];
+            viewModel.ugcId = user.objId;
+            LBB_VideoDetailViewController *Vc = [[LBB_VideoDetailViewController alloc]init];
+            Vc.viewModel = viewModel;
+            [ws.parentController.navigationController pushViewController:Vc animated:YES];
+        }
+        else if (user.actionType == 7){//游记
+            
+            LBB_TravelDetailViewController* dest = [[LBB_TravelDetailViewController alloc] init];
+            BN_SquareTravelList *model = [[BN_SquareTravelList alloc] init];
+            
+            model.travelNotesId = user.objId;
+            dest.model = model;
+            [ws.parentController.navigationController pushViewController:dest animated:YES];
+        }
+        
+        
+
     };
     return cell;
 }
