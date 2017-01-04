@@ -61,6 +61,7 @@
 
 @property(nonatomic, assign)long tagId ;// 主键
 @property(nonatomic, strong)NSString *name ;// 标签名称
+@property(nonatomic, strong)NSString *tagName ;// 标签名称
 
 @end
 

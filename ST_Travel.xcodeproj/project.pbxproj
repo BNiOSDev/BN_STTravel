@@ -14,6 +14,7 @@
 		1DB150301DF313770023A740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DB1502D1DF313770023A740 /* LaunchScreen.storyboard */; };
 		3C455DDE1DEEB6090086B53D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C455DDD1DEEB6090086B53D /* CoreData.framework */; };
 		3C518C551DF66F22002653EC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C518C541DF66F22002653EC /* MediaPlayer.framework */; };
+		75213B251E1CF88E00E89065 /* LBB_ScenicDetailTagsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75213B241E1CF88E00E89065 /* LBB_ScenicDetailTagsCell.m */; };
 		758F5E301E16B7FC0050AA54 /* PoohBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758F58921E16B7FA0050AA54 /* PoohBaseTableViewController.m */; };
 		758F5E311E16B7FC0050AA54 /* PoohBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 758F58941E16B7FA0050AA54 /* PoohBaseViewController.m */; };
 		758F5E321E16B7FC0050AA54 /* b27_icon_star_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 758F58991E16B7FA0050AA54 /* b27_icon_star_gray@2x.png */; };
@@ -699,6 +700,8 @@
 		1DB1502E1DF313770023A740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C455DDD1DEEB6090086B53D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3C518C541DF66F22002653EC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		75213B231E1CF88E00E89065 /* LBB_ScenicDetailTagsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBB_ScenicDetailTagsCell.h; sourceTree = "<group>"; };
+		75213B241E1CF88E00E89065 /* LBB_ScenicDetailTagsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBB_ScenicDetailTagsCell.m; sourceTree = "<group>"; };
 		758F58911E16B7FA0050AA54 /* PoohBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseTableViewController.h; sourceTree = "<group>"; };
 		758F58921E16B7FA0050AA54 /* PoohBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoohBaseTableViewController.m; sourceTree = "<group>"; };
 		758F58931E16B7FA0050AA54 /* PoohBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoohBaseViewController.h; sourceTree = "<group>"; };
@@ -2546,6 +2549,8 @@
 				758F598B1E16B7FA0050AA54 /* LBB_ScenicDetailVipMPaiCellItem.m */,
 				758F598C1E16B7FA0050AA54 /* LBB_ScenicTextTableViewCell.h */,
 				758F598D1E16B7FA0050AA54 /* LBB_ScenicTextTableViewCell.m */,
+				75213B231E1CF88E00E89065 /* LBB_ScenicDetailTagsCell.h */,
+				75213B241E1CF88E00E89065 /* LBB_ScenicDetailTagsCell.m */,
 			);
 			path = "景点详情";
 			sourceTree = "<group>";
@@ -6322,6 +6327,7 @@
 				758F5F211E16B7FC0050AA54 /* LBB_RouteViewController.m in Sources */,
 				758F60321E16B7FD0050AA54 /* JHShowInfoView.m in Sources */,
 				758F5FF51E16B7FD0050AA54 /* LBBVideoCollectionViewCell.m in Sources */,
+				75213B251E1CF88E00E89065 /* LBB_ScenicDetailTagsCell.m in Sources */,
 				758F60271E16B7FD0050AA54 /* BN_SquareTravelNotesBillModel.m in Sources */,
 				758F5F531E16B7FC0050AA54 /* LBB_MyUserHeaderView.m in Sources */,
 				758F5ECD1E16B7FC0050AA54 /* LBB_SpotDetailsViewModel.m in Sources */,

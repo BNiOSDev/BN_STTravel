@@ -23,6 +23,8 @@
 #import "LBB_ScenicDetailADCell.h"
 #import "LBB_PoohAttributedTextCell.h"
 #import "LBB_Share.h"
+#import "LBB_ScenicDetailTagsCell.h"
+
 static const NSInteger kSearchButtonMarginRight = -10;
 static const NSInteger kButtonWidth = 45;
 
@@ -52,6 +54,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 
 @property (nonatomic, assign)  LBBPoohSegmCtrlType nearbyRecommendsSelectType;
 
+@property(nonatomic, assign)BOOL isOpen;
 
 @end
 
@@ -430,7 +433,8 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 
     //景点详情 LBB_PoohAttributedTextCell.h
     [self.tableView registerClass:[LBB_PoohAttributedTextCell class] forCellReuseIdentifier:@"LBB_PoohAttributedTextCell"];
-
+    [self.tableView registerClass:[LBB_ScenicDetailTagsCell class] forCellReuseIdentifier:@"LBB_ScenicDetailTagsCell"];
+    
     //景区设施
     [self.tableView registerClass:[LBB_ScenicDetailEquipmentCell class] forCellReuseIdentifier:@"LBB_ScenicDetailEquipmentCell"];
 
@@ -573,7 +577,7 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
             return 1;
             break;
         case LBBScenicDetailSectionSpotType://景点详情
-            return 1;
+            return 2;
             break;
         case LBBScenicDetailSectionEquipmentType://景区设施
             return 1;
@@ -800,16 +804,40 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 
 #pragma 景点详情
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForScenicDetailRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *cellIdentifier = @"LBB_PoohAttributedTextCell";
-    LBB_PoohAttributedTextCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[LBB_PoohAttributedTextCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        
-        NSLog(@"LBB_PoohAttributedTextCell nil");
+    WS(ws);
+    if (indexPath.row == 0) {
+        static NSString *cellIdentifier = @"LBB_PoohAttributedTextCell";
+        LBB_PoohAttributedTextCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBB_PoohAttributedTextCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            
+            NSLog(@"LBB_PoohAttributedTextCell nil");
+        }
+        [cell setAttributedText:self.spotModel.spotDetails.details];
+        return cell;
     }
-    [cell setAttributedText:self.spotModel.spotDetails.details];
-    return cell;
+    else{
+        static NSString *cellIdentifier = @"LBB_ScenicDetailTagsCell";
+        LBB_ScenicDetailTagsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[LBB_ScenicDetailTagsCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+            
+            NSLog(@"LBB_PoohAttributedTextCell nil");
+        }
+        cell.isOpen = self.isOpen;
+        cell.homeType = self.homeType;
+        [cell setTags:self.spotModel.spotDetails.tags];
+        cell.block = ^(id data){
+            
+            ws.isOpen = !ws.isOpen;
+             NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:LBBScenicDetailSectionSpotType];
+             [ws.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+        };
+        
+        return cell;
+    }
+    
+
 }
 #pragma 景区设施
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForEquipmentRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -974,10 +1002,25 @@ typedef NS_ENUM(NSInteger, LBBScenicDetailSectionType) {
 -(CGFloat)tableView:(UITableView *)tableView heightForScenicDetailRowAtIndexPath:(NSIndexPath *)indexPath{
     
     WS(ws);
-    return [tableView fd_heightForCellWithIdentifier:@"LBB_PoohAttributedTextCell" cacheByIndexPath:indexPath configuration:^(LBB_PoohAttributedTextCell* cell){
-        [cell setAttributedText:ws.spotModel.spotDetails.details];
+    
+    if (indexPath.row == 0) {
         
-    }];
+        if (!self.isOpen) {
+            return 100;
+        }
+        
+        return [tableView fd_heightForCellWithIdentifier:@"LBB_PoohAttributedTextCell" cacheByIndexPath:indexPath configuration:^(LBB_PoohAttributedTextCell* cell){
+            [cell setAttributedText:ws.spotModel.spotDetails.details];
+            
+        }];
+    }
+    else{
+        
+        return [tableView fd_heightForCellWithIdentifier:@"LBB_ScenicDetailTagsCell" cacheByIndexPath:indexPath configuration:^(LBB_ScenicDetailTagsCell* cell){
+            [cell setTags:ws.spotModel.spotDetails.tags];
+        }];
+    }
+
     
 }
 
