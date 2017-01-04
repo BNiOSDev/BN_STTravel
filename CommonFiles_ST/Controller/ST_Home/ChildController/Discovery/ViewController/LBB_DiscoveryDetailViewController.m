@@ -167,9 +167,9 @@
         return 0.001;
     }
     if (section == 1) {
-        return SeparateLineWidth;
+        return SeparateLineWidth + AutoSize(45);
     }
-    return AutoSize(10);
+    return AutoSize(10) + AutoSize(45);
 }
 
 -(UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -178,6 +178,35 @@
     CGFloat height = [self tableView:tableView heightForHeaderInSection:section];
     [v setFrame:CGRectMake(0, 0, DeviceWidth, height)];
     [v setBackgroundColor:ColorLine];
+    
+    if (section == 1) {
+        
+        UILabel* l = [UILabel new];
+        [l setTextAlignment:NSTextAlignmentCenter];
+        [l setFont:AutoFont(20)];
+        [l setText:@"行程包含"];
+        [l setBackgroundColor:[UIColor whiteColor]];
+        [v addSubview:l];
+        [l mas_makeConstraints:^(MASConstraintMaker* make){
+            make.top.equalTo(v).offset(SeparateLineWidth);
+            make.width.centerX.bottom.equalTo(v);
+        }];
+    }
+    else if(section == 2){
+        UILabel* l = [UILabel new];
+        [l setTextAlignment:NSTextAlignmentCenter];
+        [l setFont:AutoFont(20)];
+        [l setText:@"线路特色"];
+        [l setBackgroundColor:[UIColor whiteColor]];
+        [v addSubview:l];
+        [l mas_makeConstraints:^(MASConstraintMaker* make){
+            make.top.equalTo(v).offset(AutoSize(10));
+            make.width.centerX.bottom.equalTo(v);
+        }];
+    }
+    
+    
+    
     return v;
 }
 
