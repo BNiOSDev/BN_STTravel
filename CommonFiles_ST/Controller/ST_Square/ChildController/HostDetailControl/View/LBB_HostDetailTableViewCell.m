@@ -98,7 +98,6 @@
     CGFloat margin = 10;
     _addressImage.image = IMAGE(@"zjmaddress");
     _timeImage.image = IMAGE(@"zjmtime");
-    UIImage *addressImage = IMAGE(@"zjmaddress");
     UIImage *timeImage = IMAGE(@"zjmtime");
     
     _iconImage.sd_layout
@@ -119,25 +118,7 @@
     .heightIs(timeImage.size.height)
     .widthIs(timeImage.size.width);
     
-    _timeLabel.sd_layout
-    .leftSpaceToView(_timeImage, margin - 5)
-    //    .topEqualToView(_timeImage)
-    .centerYEqualToView(_timeImage)
-    .heightIs(18);
-    //        .widthIs(300);
-    
-    _addressImage.sd_layout
-    .leftSpaceToView(_timeLabel,margin)
-    .topSpaceToView(_nameLable,5.0)
-    .heightIs(addressImage.size.height)
-    .widthIs(addressImage.size.width);
-    
-    _addressNameLabel.sd_layout
-    .leftSpaceToView(_addressImage, margin - 5)
-    //    .topEqualToView(_addressImage)
-    .centerYEqualToView(_addressImage)
-    .heightIs(18);
-}
+    }
 
 
 - (void)setModel:(LBB_SquareDetailViewModel *)model
@@ -222,7 +203,6 @@
     }
     
     
-    
     //评论内容
     NSMutableArray *commentModelArray = (NSMutableArray *)[model.comments map:^id(LBB_SquareComments *element) {
         
@@ -233,6 +213,27 @@
         return model;
     }];
     commetView.commentArray = commentModelArray;
+    UIImage *addressImage = IMAGE(@"zjmaddress");
+    
+    _timeLabel.sd_layout
+    .leftSpaceToView(_timeImage, 10 - 5)
+    .centerYEqualToView(_timeImage)
+    .heightIs(18);
+    
+    [_timeLabel autoFitReturnNewSize:_timeLabel.text size:_timeLabel.font maxSize:CGSizeMake(DeviceWidth - 200, 18)];
+    
+    _addressImage.sd_layout
+    .leftSpaceToView(_timeLabel,10)
+    .topSpaceToView(_nameLable,5.0)
+    .heightIs(addressImage.size.height)
+    .widthIs(addressImage.size.width);
+    
+    _addressNameLabel.sd_layout
+    .leftSpaceToView(_addressImage, 10 - 5)
+    .rightSpaceToView(self.contentView,5)
+    .centerYEqualToView(_addressImage)
+    .heightIs(18);
+
     
     _contentLabel.sd_layout
     .leftSpaceToView(self.contentView,10)

@@ -105,8 +105,7 @@
     
     contentImage.imageUrl = model.travelNotesPicUrl;//	String	游记封面
     contentLabel.text  = model.travelNotesName;//	String	游记名称
-    timeLabel.text = model.lastReleaseTime;//	String	发布日期
-    //[NSString stringWithFormat:@"%@  %@   %@",model.timeStr,model.daysStr,model.vistNum];
+    timeLabel.text = [NSString stringWithFormat:@"%@  %d 天",model.lastReleaseTime,model.dayCount];;//	String	发布日期
     [iconImage sd_setImageWithURL:[NSURL URLWithString:model.userPicUrl] placeholderImage:DEFAULTIMAGE];//	String	用户头像
     nameLabel.text = model.userName;//	String	用户名称
     
