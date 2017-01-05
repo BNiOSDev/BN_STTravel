@@ -8,7 +8,7 @@
 
 #import "LBBHomeGoodsCollectionViewCell.h"
 #import "LBBHomeGoodsCollectionViewItem.h"
-
+#import <BN_ShopGoodDetailViewController.h>
 @interface LBBHomeGoodsCollectionViewCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end
@@ -157,45 +157,10 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    /*
-    BN_HomeHotGoodsObject* obj;
-    if (self.type == LBBHomeHotestTableViewCellVipRecommendType) {
-        switch (self.pagerView.selectedSegmentIndex) {
-            case LBBPoohSegmCtrlFoodsType:
-                obj = [self.footSpotsArray objectAtIndex:indexPath.row];
-                break;
-            case LBBPoohSegmCtrlHostelType:
-                obj = [self.liveSpotsArray objectAtIndex:indexPath.row];
-                break;
-            case LBBPoohSegmCtrlScenicType:
-                obj = [self.scenicSpotsArray objectAtIndex:indexPath.row];
-                break;
-        }
-    }
-    else if (self.type == LBBHomeHotestTableViewCellHotType) {
-        
-        obj = [self.spotsArray objectAtIndex:indexPath.row];
-    }
     
-    LBB_ScenicDetailViewController* dest = [[LBB_ScenicDetailViewController alloc]init];
-    LBB_SpotModel* viewModel = [[LBB_SpotModel alloc]init];
-    viewModel.allSpotsId = obj.allSpotsId;
-    dest.spotModel = viewModel;
-    switch (obj.allSpotsType) {//	1.美食 2.民宿 3景点
-        case 1://美食
-            dest.homeType = LBBPoohHomeTypeFoods;
-            break;
-        case 2://民宿
-            dest.homeType = LBBPoohHomeTypeHostel;
-            break;
-        case 3://景点
-            dest.homeType = LBBPoohHomeTypeScenic;
-            break;
-    }
-    if (dest) {
-        [[self getViewController].navigationController pushViewController:dest animated:YES];
-    }
-    */
+    BN_HomeHotGoodsObject* obj = self.spotsArray[indexPath.row];
+    BN_ShopGoodDetailViewController *shopGoodDetailViewController = [[BN_ShopGoodDetailViewController alloc]initWith:obj.goods_id];
+    [[self getViewController].navigationController pushViewController:shopGoodDetailViewController animated:YES];
 }
 
 
